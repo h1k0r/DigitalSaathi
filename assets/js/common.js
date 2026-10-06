@@ -6,6 +6,16 @@
 (function () {
   'use strict';
 
+  // Automatically remove /index.html from URL bar for clean, professional URLs
+  try {
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') + window.location.search + window.location.hash;
+      window.history.replaceState(null, '', cleanPath);
+    }
+  } catch (e) {
+    // Ignore in non-browser/restricted contexts
+  }
+
   // ==========================================================================
   // 1. MASTER TOOL & ROUTE REGISTRY (Global Instant Search Database)
   // ==========================================================================
