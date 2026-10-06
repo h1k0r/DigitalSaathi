@@ -16,10 +16,10 @@
 
   const ADSENSE_CONFIG = {
     // Set to true once approved by Google AdSense
-    enabled: false,
+    enabled: true,
 
-    // Replace ca-pub-XXXXXXXXXXXXXXXX with the publisher ID supplied by Google AdSense
-    publisherId: "ca-pub-XXXXXXXXXXXXXXXX",
+    // Google AdSense Publisher ID
+    publisherId: "ca-pub-7919122689237518",
 
     // Automatically load Google Auto Ads script in <head> when enabled
     autoAds: true,
