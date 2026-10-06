@@ -753,10 +753,122 @@
       }
     });
   }
-  window.upgradeEmojiIcons = upgradeEmojiIcons;
+  // ==========================================================================
+  // 11. PRIVACY-COMPLIANT COOKIE CONSENT & ADSENSE CONTROLLER
+  // ==========================================================================
+  class ConsentController {
+    constructor() {
+      this.STORAGE_KEY = 'ds_consent_status';
+      this.banner = null;
+    }
+
+    init() {
+      let status = null;
+      try {
+        status = localStorage.getItem(this.STORAGE_KEY);
+      } catch (e) {
+        // localStorage blocked or private browsing
+      }
+
+      if (!status) {
+        this.renderBanner();
+      } else if (status === 'accepted') {
+        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.init === 'function') {
+          window.DIGITALSAATHI_ADS.init();
+        }
+      } else {
+        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.collapse === 'function') {
+          window.DIGITALSAATHI_ADS.collapse();
+        }
+      }
+    }
+
+    renderBanner() {
+      if (document.getElementById('ds-consent-banner')) return;
+
+      const cookiePolicyUrl = resolveRelativeUrl('cookie-policy.html');
+      const privacyPolicyUrl = resolveRelativeUrl('privacy.html');
+
+      const banner = document.createElement('aside');
+      banner.id = 'ds-consent-banner';
+      banner.className = 'ds-consent-banner';
+      banner.setAttribute('role', 'region');
+      banner.setAttribute('aria-label', 'Cookie Consent Preferences');
+
+      banner.innerHTML = `
+        <div class="ds-consent-container">
+          <div class="ds-consent-content">
+            <div class="ds-consent-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10 1.5 1.5 0 0 1-1.5 1.5H19a2 2 0 0 0-2 2v1.5a1.5 1.5 0 0 1-1.5 1.5A10 10 0 0 1 12 2z"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="16" cy="7.5" r="1"/><circle cx="10" cy="14" r="1"/><circle cx="15.5" cy="13" r="1.5"/></svg>
+              Cookie Preferences &amp; Privacy
+            </div>
+            <p class="ds-consent-text">
+              We use cookies to provide essential site functionality and analyze usage. When enabled, non-personalized or personalized advertising supports our free service. All tool processing occurs privately inside your browser. Read our <a href="${cookiePolicyUrl}">Cookie Policy</a> and <a href="${privacyPolicyUrl}">Privacy Policy</a>.
+            </p>
+          </div>
+          <div class="ds-consent-actions">
+            <button type="button" class="ds-consent-btn ds-consent-btn-reject" id="ds-consent-reject-btn">Essential Only</button>
+            <button type="button" class="ds-consent-btn ds-consent-btn-accept" id="ds-consent-accept-btn">Accept All</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(banner);
+      banner.style.display = 'block';
+      this.banner = banner;
+
+      const acceptBtn = banner.querySelector('#ds-consent-accept-btn');
+      const rejectBtn = banner.querySelector('#ds-consent-reject-btn');
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+          this.setConsent('accepted');
+        });
+      }
+
+      if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+          this.setConsent('rejected');
+        });
+      }
+    }
+
+    setConsent(val) {
+      try {
+        localStorage.setItem(this.STORAGE_KEY, val);
+      } catch (e) {
+        // storage disabled
+      }
+
+      if (this.banner) {
+        this.banner.style.display = 'none';
+      }
+
+      if (val === 'accepted') {
+        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.init === 'function') {
+          window.DIGITALSAATHI_ADS.init();
+        }
+      } else {
+        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.collapse === 'function') {
+          window.DIGITALSAATHI_ADS.collapse();
+        }
+      }
+    }
+
+    openBanner() {
+      if (!this.banner) {
+        this.renderBanner();
+      } else {
+        this.banner.style.display = 'block';
+      }
+    }
+  }
+
+  const dsConsent = new ConsentController();
+  window.DIGITALSAATHI_CONSENT = dsConsent;
 
   // ==========================================================================
-  // 11. LIFECYCLE BOOTSTRAP
+  // 12. LIFECYCLE BOOTSTRAP
   // ==========================================================================
   document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -766,6 +878,7 @@
     initAccordions();
     dsModal.init();
     upgradeEmojiIcons();
+    dsConsent.init();
   });
 
 })();

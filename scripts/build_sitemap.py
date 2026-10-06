@@ -26,7 +26,8 @@ entries = [
     ("about.html", "monthly", "0.70"),
     ("contact.html", "monthly", "0.70"),
     ("privacy.html", "monthly", "0.70"),
-    ("terms.html", "monthly", "0.70")
+    ("terms.html", "monthly", "0.70"),
+    ("cookie-policy.html", "monthly", "0.70")
 ]
 
 # Add all tool files

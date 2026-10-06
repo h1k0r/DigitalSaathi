@@ -1,0 +1,13 @@
+# ==============================================================================
+# DIGITALSAATHI AUTHORIZED DIGITAL SELLERS (ADS.TXT)
+# Website: https://digitalsaathi.vytra.in
+# Standard: IAB OpenRTB / Google AdSense Specification
+#
+# IMPORTANT SETUP INSTRUCTIONS:
+# 1. Do NOT leave pub-XXXXXXXXXXXXXXXX in production when applying for AdSense.
+# 2. In your Google AdSense dashboard, copy your exact Publisher ID.
+# 3. Replace 'pub-XXXXXXXXXXXXXXXX' below with your actual Google AdSense Publisher ID.
+#    (e.g., google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0)
+# ==============================================================================
+
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

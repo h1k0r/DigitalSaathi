@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found (404) — DigitalSaathi</title>
+  <meta name="description" content="The page you requested could not be found. Browse DigitalSaathi's free, browser-based online tools for PDF, images, calculations, code, and text.">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Page Not Found (404) — DigitalSaathi">
+  <meta property="og:description" content="The page you requested could not be found. Explore 50+ free client-side tools on DigitalSaathi.">
+  <meta property="og:site_name" content="DigitalSaathi">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .error-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 1.25rem 5rem;
+      text-align: center;
+    }
+    .error-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--primary-600);
+      background: var(--primary-50);
+      border: 1px solid var(--primary-100);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .error-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+    .error-title span {
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .error-desc {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+    .quick-links-section {
+      background: #ffffff;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+    }
+    .quick-links-header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .quick-links-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+    .quick-links-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .popular-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .quick-tool-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+    .quick-tool-card:hover {
+      border-color: var(--primary-500);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .quick-tool-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      background: var(--bg-surface-subtle);
+    }
+    .quick-tool-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .quick-tool-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item"><a href="pdf/index.html" class="nav-link">PDF Tools</a></li>
+        <li class="nav-item"><a href="image/index.html" class="nav-link">Image Tools</a></li>
+        <li class="nav-item"><a href="calculators/index.html" class="nav-link">Calculators</a></li>
+        <li class="nav-item"><a href="developer/index.html" class="nav-link">Developer</a></li>
+        <li class="nav-item"><a href="tools/index.html" class="nav-link">All Tools</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="tools/index.html" class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem;">Directory</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Error Content -->
+  <main class="container error-wrapper">
+    <div class="error-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Status 404 • Not Found
+    </div>
+
+    <h1 class="error-title">Looking for a <span>Tool?</span></h1>
+    <p class="error-desc">
+      The page you were looking for doesn't exist, may have moved, or had its URL updated. All 50+ DigitalSaathi tools remain 100% free, browser-based, and private.
+    </p>
+
+    <div class="error-actions">
+      <a href="index.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 1rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Return to Homepage
+      </a>
+      <a href="tools/index.html" class="btn btn-outline" style="padding: 12px 24px; font-size: 1rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Browse All Tools
+      </a>
+    </div>
+
+    <!-- Quick Links to Most Popular Tools -->
+    <section class="quick-links-section">
+      <div class="quick-links-header">
+        <h2>Popular Free Tools</h2>
+        <p>Jump straight into our most visited client-side web utilities:</p>
+      </div>
+
+      <div class="popular-tools-grid">
+        <a href="pdf/merge.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #dc2626; background: #fef2f2;">📑</div>
+          <div>
+            <div class="quick-tool-name">Merge PDF</div>
+            <div class="quick-tool-desc">Combine multiple PDFs into one</div>
+          </div>
+        </a>
+
+        <a href="pdf/compress.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #dc2626; background: #fef2f2;">🗜️</div>
+          <div>
+            <div class="quick-tool-name">Compress PDF</div>
+            <div class="quick-tool-desc">Reduce PDF size under 100KB/200KB</div>
+          </div>
+        </a>
+
+        <a href="image/compress.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #2563eb; background: #eff6ff;">🗜️</div>
+          <div>
+            <div class="quick-tool-name">Image Compressor</div>
+            <div class="quick-tool-desc">Compress JPG, PNG &amp; WebP</div>
+          </div>
+        </a>
+
+        <a href="image/resize.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #2563eb; background: #eff6ff;">📐</div>
+          <div>
+            <div class="quick-tool-name">Image Resizer</div>
+            <div class="quick-tool-desc">Resize photo dimensions &amp; DPI</div>
+          </div>
+        </a>
+
+        <a href="image/jpg-to-png.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #059669; background: #ecfdf5;">🔄</div>
+          <div>
+            <div class="quick-tool-name">JPG to PNG</div>
+            <div class="quick-tool-desc">Convert JPG to lossless PNG</div>
+          </div>
+        </a>
+
+        <a href="image/png-to-jpg.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #059669; background: #ecfdf5;">🖼️</div>
+          <div>
+            <div class="quick-tool-name">PNG to JPG</div>
+            <div class="quick-tool-desc">Convert PNG with custom background</div>
+          </div>
+        </a>
+
+        <a href="calculators/percentage.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #7c3aed; background: #f5f3ff;">📊</div>
+          <div>
+            <div class="quick-tool-name">Percentage Calculator</div>
+            <div class="quick-tool-desc">Marks, discounts &amp; percentage diff</div>
+          </div>
+        </a>
+
+        <a href="developer/json.html" class="quick-tool-card">
+          <div class="quick-tool-icon" style="color: #0891b2; background: #ecfeff;">💻</div>
+          <div>
+            <div class="quick-tool-name">JSON Formatter</div>
+            <div class="quick-tool-desc">Format, validate and inspect JSON</div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col footer-about">
+        <a href="index.html" class="logo">
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p class="footer-desc">
+          100% Free, Private &amp; Secure Client-Side Web Tools Suite. Zero server uploads.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Tools Categories</h4>
+        <ul class="footer-links">
+          <li><a href="pdf/index.html">PDF Tools</a></li>
+          <li><a href="image/index.html">Image Tools</a></li>
+          <li><a href="calculators/index.html">Calculators</a></li>
+          <li><a href="developer/index.html">Developer Tools</a></li>
+          <li><a href="tools/index.html">All 50+ Tools</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="pdf/merge.html">Merge PDF</a></li>
+          <li><a href="pdf/compress.html">Compress PDF</a></li>
+          <li><a href="image/compress.html">Image Compressor</a></li>
+          <li><a href="image/resize.html">Image Resizer</a></li>
+          <li><a href="developer/json.html">JSON Formatter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Legal &amp; About</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 DigitalSaathi. All rights reserved. Free client-side tools with in-browser privacy.</p>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="config/ads-config.js"></script>
+  <script src="assets/js/common.js"></script>
+</body>
+</html>
