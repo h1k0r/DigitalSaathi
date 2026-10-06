@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | DigitalSaathi</title>
+  <meta name="description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .reorder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .reorder-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+    .reorder-thumb-wrapper {
+      width: 110px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 8px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+    }
+    .reorder-thumb-wrapper canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .reorder-controls {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/reorder.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/reorder.html">
+  <meta property="og:title" content="Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | DigitalSaathi">
+  <meta property="og:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | DigitalSaathi">
+  <meta name="twitter:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Reorder PDF Pages Online Free \u2014 Rearrange PDF Page Sequence | DigitalSaathi",
+      "url": "https://digitalsaathi.com/pdf/reorder.html",
+      "description": "Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pdf Tools",
+          "item": "https://digitalsaathi.com/pdf/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reorder PDF Pages Online Free \u2014 Rearrange PDF Page Sequence",
+          "item": "https://digitalsaathi.com/pdf/reorder.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Navigation -->
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="tool-hero">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
+        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
+        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
+        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
+        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
+        <span style="color:#ffffff;">Reorder Pages</span>
+      </div>
+      <h1>🔀 Reorder PDF Pages</h1>
+      <p>Rearrange the sequence of pages in your PDF document with visual move controls.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="tool-content">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
+      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+      <span>/</span>
+      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main);font-weight:600;">Reorder Pages</span>
+    </nav>
+
+    <div class="tool-box">
+
+      <!-- Upload Area -->
+      <div class="upload-zone" id="drop-zone">
+        <span class="upload-icon">🔀</span>
+        <div class="upload-text">Click or Drag & Drop PDF to Reorder Pages</div>
+        <div class="upload-hint">Upload a PDF document to visually reorganize pages (100% private)</div>
+        <input type="file" id="pdf-input" accept="application/pdf">
+      </div>
+
+      <!-- Settings & Grid -->
+      <div id="reorder-settings-section" style="display:none; margin-top:24px;">
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid #e5e7eb; padding-bottom:16px;">
+          <div>
+            <h3 id="doc-name-display">Document Pages</h3>
+            <div style="font-size:0.85rem; color:#6b7280;" id="doc-info-display"></div>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" id="btn-reverse-order" class="btn btn-sm btn-secondary">🔄 Reverse All Pages</button>
+            <button type="button" id="btn-reset-order" class="btn btn-sm btn-secondary">↺ Reset Order</button>
+            <button type="button" id="btn-change-doc" class="btn btn-sm btn-outline">Change File</button>
+          </div>
+        </div>
+
+        <!-- Page Cards Grid -->
+        <div class="reorder-grid" id="reorder-pages-grid"></div>
+
+        <button type="button" id="btn-save-reorder" class="btn btn-primary btn-full" style="margin-top:24px;">💾 Save & Download Reordered PDF</button>
+      </div>
+
+      <!-- Processing -->
+      <div id="processing-box" style="display:none; text-align:center; padding:32px 0;">
+        <div class="spinner"></div>
+        <div style="font-weight:600; margin-top:12px;" id="processing-msg">Loading pages...</div>
+      </div>
+
+      <!-- Result Box -->
+      <div id="result-box" class="result-box" style="display:none;">
+        <span style="font-size:2.5rem; display:block; margin-bottom:8px;">🎉</span>
+        <h3>PDF Pages Successfully Reordered!</h3>
+        <p id="result-details" style="font-size:0.875rem; color:#065f46; margin-bottom:16px;"></p>
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+          <button type="button" id="btn-download-reordered" class="btn btn-success">📥 Download Reordered PDF</button>
+          <button type="button" id="btn-reorder-more" class="btn btn-secondary">Reorder Another File</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    (function () {
+      let rawArrayBuffer = null;
+      let totalPages = 0;
+      let originalFilename = 'document.pdf';
+      let renderedThumbnails = []; // Array of canvas elements
+      let pageOrder = []; // Array of 0-based page indices: [0, 1, 2, ...]
+      let reorderedPdfBytes = null;
+
+      const fileInput = document.getElementById('pdf-input');
+      const settingsSection = document.getElementById('reorder-settings-section');
+      const docNameDisplay = document.getElementById('doc-name-display');
+      const docInfoDisplay = document.getElementById('doc-info-display');
+      const pagesGrid = document.getElementById('reorder-pages-grid');
+      const btnReverse = document.getElementById('btn-reverse-order');
+      const btnReset = document.getElementById('btn-reset-order');
+      const btnChangeDoc = document.getElementById('btn-change-doc');
+      const btnSaveReorder = document.getElementById('btn-save-reorder');
+      const processingBox = document.getElementById('processing-box');
+      const processingMsg = document.getElementById('processing-msg');
+      const resultBox = document.getElementById('result-box');
+      const resultDetails = document.getElementById('result-details');
+      const btnDownloadReordered = document.getElementById('btn-download-reordered');
+      const btnReorderMore = document.getElementById('btn-reorder-more');
+
+      fileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        originalFilename = file.name;
+        rawArrayBuffer = await file.arrayBuffer();
+        await renderPdfPages();
+      });
+
+      btnChangeDoc.addEventListener('click', () => fileInput.click());
+
+      async function renderPdfPages() {
+        settingsSection.style.display = 'none';
+        resultBox.style.display = 'none';
+        processingBox.style.display = 'block';
+        processingMsg.textContent = 'Rendering page previews...';
+
+        try {
+          const loadingTask = pdfjsLib.getDocument({ data: rawArrayBuffer });
+          const pdfDoc = await loadingTask.promise;
+          totalPages = pdfDoc.numPages;
+
+          pageOrder = Array.from({ length: totalPages }, (_, i) => i);
+          renderedThumbnails = [];
+
+          docNameDisplay.textContent = originalFilename;
+          docInfoDisplay.textContent = `${totalPages} Pages Total`;
+
+          for (let i = 1; i <= totalPages; i++) {
+            const page = await pdfDoc.getPage(i);
+            const viewport = page.getViewport({ scale: 0.25 });
+
+            const canvas = document.createElement('canvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            const renderContext = {
+              canvasContext: canvas.getContext('2d'),
+              viewport: viewport
+            };
+            await page.render(renderContext).promise;
+            renderedThumbnails.push(canvas);
+          }
+
+          renderGrid();
+          processingBox.style.display = 'none';
+          settingsSection.style.display = 'block';
+        } catch (err) {
+          console.error(err);
+          processingBox.style.display = 'none';
+          if (typeof showToast === 'function') showToast('Error reading PDF: ' + err.message, 'error');
+        }
+      }
+
+      function renderGrid() {
+        pagesGrid.innerHTML = '';
+
+        pageOrder.forEach((pageIdx, currentPosition) => {
+          const card = document.createElement('div');
+          card.className = 'reorder-card';
+          card.innerHTML = `
+            <div class="reorder-thumb-wrapper" id="thumb-pos-${currentPosition}"></div>
+            <div style="font-size:0.8rem; font-weight:700; color:var(--gray-800);">Page ${pageIdx + 1}</div>
+            <div style="font-size:0.7rem; color:#6b7280;">(Position ${currentPosition + 1})</div>
+            <div class="reorder-controls">
+              <button type="button" class="btn btn-sm btn-secondary move-pos-btn" data-dir="-1" data-pos="${currentPosition}" ${currentPosition === 0 ? 'disabled' : ''} title="Move Left">←</button>
+              <button type="button" class="btn btn-sm btn-secondary move-pos-btn" data-dir="1" data-pos="${currentPosition}" ${currentPosition === pageOrder.length - 1 ? 'disabled' : ''} title="Move Right">→</button>
+            </div>
+          `;
+          card.querySelector(`#thumb-pos-${currentPosition}`).appendChild(renderedThumbnails[pageIdx].cloneNode(true));
+          pagesGrid.appendChild(card);
+        });
+      }
+
+      pagesGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.move-pos-btn');
+        if (!btn) return;
+        const pos = parseInt(btn.dataset.pos, 10);
+        const dir = parseInt(btn.dataset.dir, 10);
+        const newPos = pos + dir;
+
+        if (newPos >= 0 && newPos < pageOrder.length) {
+          const temp = pageOrder[pos];
+          pageOrder[pos] = pageOrder[newPos];
+          pageOrder[newPos] = temp;
+          renderGrid();
+        }
+      });
+
+      btnReverse.addEventListener('click', () => {
+        pageOrder.reverse();
+        renderGrid();
+      });
+
+      btnReset.addEventListener('click', () => {
+        pageOrder = Array.from({ length: totalPages }, (_, i) => i);
+        renderGrid();
+      });
+
+      // Save reordered PDF
+      btnSaveReorder.addEventListener('click', async () => {
+        settingsSection.style.display = 'none';
+        processingBox.style.display = 'block';
+        processingMsg.textContent = 'Compiling reordered PDF...';
+
+        try {
+          const donorDoc = await PDFLib.PDFDocument.load(rawArrayBuffer, { ignoreEncryption: true });
+          const newDoc = await PDFLib.PDFDocument.create();
+
+          const copiedPages = await newDoc.copyPages(donorDoc, pageOrder);
+          copiedPages.forEach(p => newDoc.addPage(p));
+
+          reorderedPdfBytes = await newDoc.save();
+
+          processingBox.style.display = 'none';
+          resultBox.style.display = 'block';
+          resultDetails.textContent = `Rearranged ${totalPages} pages into the new sequence (${formatFileSize(reorderedPdfBytes.byteLength)}).`;
+          if (typeof showToast === 'function') showToast('PDF reordered successfully!', 'success');
+        } catch (err) {
+          console.error(err);
+          processingBox.style.display = 'none';
+          settingsSection.style.display = 'block';
+          if (typeof showToast === 'function') showToast('Error reordering PDF: ' + err.message, 'error');
+        }
+      });
+
+      btnDownloadReordered.addEventListener('click', () => {
+        if (!reorderedPdfBytes) return;
+        const blob = new Blob([reorderedPdfBytes], { type: 'application/pdf' });
+        const name = originalFilename.replace(/\.pdf$/i, '_reordered.pdf');
+        if (typeof downloadBlob === 'function') {
+          downloadBlob(blob, name);
+        } else {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = name;
+          a.click();
+        }
+      });
+
+      btnReorderMore.addEventListener('click', () => {
+        settingsSection.style.display = 'none';
+        resultBox.style.display = 'none';
+        fileInput.value = '';
+      });
+    })();
+  </script>
+</body>
+</html>

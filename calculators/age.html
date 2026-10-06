@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator — Free Exact Chronological Age & Birthday Calculator | DigitalSaathi</title>
+  <meta name="description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
+  <meta name="keywords" content="age calculator, calculate age from dob, chronological age, birthday countdown, days lived calculator, exact age online">
+  
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .calc-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2rem;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+    .result-hero {
+      background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%);
+      border: 2px solid var(--primary-200);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+      margin-top: 1.5rem;
+      display: none;
+    }
+    .result-hero.active { display: block; }
+    .age-primary-display {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-800);
+      margin: 0.5rem 0 1rem;
+      letter-spacing: -0.02em;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 0.75rem;
+      text-align: center;
+      box-shadow: var(--shadow-xs);
+    }
+    .stat-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .birthday-box {
+      background: #f8fafc;
+      border: 1px dashed var(--primary-300);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/calculators/age.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/calculators/age.html">
+  <meta property="og:title" content="Age Calculator — Free Exact Chronological Age & Birthday Calculator | DigitalSaathi">
+  <meta property="og:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Age Calculator — Free Exact Chronological Age & Birthday Calculator | DigitalSaathi">
+  <meta name="twitter:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Age Calculator \u2014 Free Exact Chronological Age & Birthday Calculator | DigitalSaathi",
+      "url": "https://digitalsaathi.com/calculators/age.html",
+      "description": "Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Calculators Tools",
+          "item": "https://digitalsaathi.com/tools/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Age Calculator \u2014 Free Exact Chronological Age & Birthday Calculator",
+          "item": "https://digitalsaathi.com/calculators/age.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+        <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="container page-content" style="max-width: 900px; padding: 2rem 1rem 4rem;">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Calculators</a>
+      <span>/</span>
+      <span class="current">Age Calculator</span>
+    </nav>
+
+    <!-- Tool Header -->
+    <div class="tool-hero">
+      <h1 class="tool-hero-title">Age Calculator</h1>
+      <p class="tool-hero-subtitle">Calculate your exact chronological age in years, months, days, minutes, and find your next birthday countdown.</p>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="calc-card">
+      <form id="ageForm">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="dob" class="form-label" style="font-weight:600; display:block; margin-bottom:8px;">Date of Birth (DOB) *</label>
+            <input type="date" id="dob" class="form-input" style="width:100%; padding:10px 14px; border:1px solid var(--border-default); border-radius:var(--radius-md);" required>
+          </div>
+          <div class="form-group">
+            <label for="targetDate" class="form-label" style="font-weight:600; display:block; margin-bottom:8px;">Age as of Date</label>
+            <input type="date" id="targetDate" class="form-input" style="width:100%; padding:10px 14px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:center;">
+          <button type="submit" class="btn btn-primary" style="flex:1; padding:12px 24px; font-weight:700;">Calculate Exact Age</button>
+          <button type="button" id="resetBtn" class="btn btn-outline" style="padding:12px 20px;">Reset</button>
+        </div>
+      </form>
+
+      <!-- Results Display -->
+      <div id="resultsArea" class="result-hero">
+        <div style="font-size:0.9rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Your Chronological Age</div>
+        <div id="primaryAgeText" class="age-primary-display">-- Years, -- Months, -- Days</div>
+        
+        <div id="birthdayBox" class="birthday-box">
+          <span style="font-size:1.4rem;">🎂</span>
+          <span id="nextBirthdayText">Next Birthday in: -- days (--)</span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-pill">
+            <div id="statTotalMonths" class="stat-num">0</div>
+            <div class="stat-label">Total Months</div>
+          </div>
+          <div class="stat-pill">
+            <div id="statTotalWeeks" class="stat-num">0</div>
+            <div class="stat-label">Total Weeks</div>
+          </div>
+          <div class="stat-pill">
+            <div id="statTotalDays" class="stat-num">0</div>
+            <div class="stat-label">Total Days</div>
+          </div>
+          <div class="stat-pill">
+            <div id="statTotalHours" class="stat-num">0</div>
+            <div class="stat-label">Total Hours</div>
+          </div>
+          <div class="stat-pill">
+            <div id="statTotalMinutes" class="stat-num">0</div>
+            <div class="stat-label">Total Minutes</div>
+          </div>
+          <div class="stat-pill">
+            <div id="statZodiac" class="stat-num" style="font-size:1rem;">--</div>
+            <div class="stat-label">Zodiac Sign</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Section -->
+    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:2rem; margin-bottom:2rem;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1rem;">How to Calculate Your Exact Age</h2>
+      <ol style="padding-left:1.25rem; color:var(--text-body); line-height:1.7;">
+        <li>Select your <strong>Date of Birth</strong> using the date picker.</li>
+        <li>Optionally adjust the <strong>Age as of Date</strong> (defaults to today's date).</li>
+        <li>Click <strong>Calculate Exact Age</strong> to see your age in years, months, days, plus total lived hours and next birthday countdown.</li>
+      </ol>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:2rem; margin-bottom:2rem;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.25rem;">Frequently Asked Questions</h2>
+      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:1rem 0;">
+        <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">How is exact chronological age calculated?</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">The calculator accounts for leap years, variations in days per month (28, 29, 30, or 31), and calculates the precise difference between the birth date and reference date.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem 0 0;">
+        <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">Is my date of birth saved or stored on any server?</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">No. All calculations are executed 100% client-side in your web browser. No personal data or dates are ever sent to any server.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('ageForm');
+      const dobInput = document.getElementById('dob');
+      const targetInput = document.getElementById('targetDate');
+      const resultsArea = document.getElementById('resultsArea');
+      const resetBtn = document.getElementById('resetBtn');
+
+      // Set default target date to today
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+      targetInput.value = todayStr;
+      targetInput.max = '2099-12-31';
+      dobInput.max = todayStr;
+
+      function getZodiacSign(day, month) {
+        const signs = [
+          { name: 'Capricorn ♑', d: 20, m: 1 },
+          { name: 'Aquarius ♒', d: 19, m: 2 },
+          { name: 'Pisces ♓', d: 20, m: 3 },
+          { name: 'Aries ♈', d: 20, m: 4 },
+          { name: 'Taurus ♉', d: 21, m: 5 },
+          { name: 'Gemini ♊', d: 21, m: 6 },
+          { name: 'Cancer ♋', d: 23, m: 7 },
+          { name: 'Leo ♌', d: 23, m: 8 },
+          { name: 'Virgo ♍', d: 23, m: 9 },
+          { name: 'Libra ♎', d: 23, m: 10 },
+          { name: 'Scorpio ♏', d: 22, m: 11 },
+          { name: 'Sagittarius ♐', d: 22, m: 12 },
+          { name: 'Capricorn ♑', d: 31, m: 12 }
+        ];
+        for (let i = 0; i < signs.length; i++) {
+          if (month === signs[i].m && day <= signs[i].d) return signs[i].name;
+          if (month === signs[i].m - 1 && day > signs[i-1]?.d) return signs[i].name;
+        }
+        return 'Capricorn ♑';
+      }
+
+      function calculateAge(dob, targetDate) {
+        let years = targetDate.getFullYear() - dob.getFullYear();
+        let months = targetDate.getMonth() - dob.getMonth();
+        let days = targetDate.getDate() - dob.getDate();
+
+        if (days < 0) {
+          months--;
+          const prevMonthLastDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
+          days += prevMonthLastDay;
+        }
+
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        // Total time diff in ms
+        const diffMs = targetDate.getTime() - dob.getTime();
+        const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const totalWeeks = Math.floor(totalDays / 7);
+        const totalMonths = (years * 12) + months;
+        const totalHours = totalDays * 24;
+        const totalMinutes = totalHours * 60;
+
+        // Next Birthday calculation
+        const nextBday = new Date(targetDate.getFullYear(), dob.getMonth(), dob.getDate());
+        if (nextBday < targetDate) {
+          nextBday.setFullYear(targetDate.getFullYear() + 1);
+        }
+        const bdayDiffMs = nextBday.getTime() - targetDate.getTime();
+        const bdayDiffDays = Math.ceil(bdayDiffMs / (1000 * 60 * 60 * 24));
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const nextBdayDayOfWeek = dayNames[nextBday.getDay()];
+
+        const zodiac = getZodiacSign(dob.getDate(), dob.getMonth() + 1);
+
+        return {
+          years, months, days,
+          totalMonths, totalWeeks, totalDays, totalHours, totalMinutes,
+          nextBdayDays: bdayDiffDays,
+          nextBdayDayOfWeek,
+          zodiac
+        };
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const dobVal = dobInput.value;
+        const targetVal = targetInput.value || todayStr;
+
+        if (!dobVal) {
+          window.showToast('Please select your Date of Birth.', 'warning');
+          return;
+        }
+
+        const dob = new Date(dobVal + 'T00:00:00');
+        const target = new Date(targetVal + 'T00:00:00');
+
+        if (dob > target) {
+          window.showToast('Date of Birth cannot be after the reference date.', 'error');
+          return;
+        }
+
+        const res = calculateAge(dob, target);
+
+        document.getElementById('primaryAgeText').textContent = `${res.years} Years, ${res.months} Months, ${res.days} Days`;
+        document.getElementById('nextBirthdayText').textContent = res.nextBdayDays === 0 ? '🎉 Happy Birthday Today!' : `Next Birthday in ${res.nextBdayDays} days (on a ${res.nextBdayDayOfWeek})`;
+        
+        document.getElementById('statTotalMonths').textContent = res.totalMonths.toLocaleString();
+        document.getElementById('statTotalWeeks').textContent = res.totalWeeks.toLocaleString();
+        document.getElementById('statTotalDays').textContent = res.totalDays.toLocaleString();
+        document.getElementById('statTotalHours').textContent = res.totalHours.toLocaleString();
+        document.getElementById('statTotalMinutes').textContent = res.totalMinutes.toLocaleString();
+        document.getElementById('statZodiac').textContent = res.zodiac;
+
+        resultsArea.classList.add('active');
+        resultsArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        targetInput.value = todayStr;
+        resultsArea.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

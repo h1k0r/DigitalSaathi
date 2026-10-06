@@ -1,0 +1,19 @@
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+
+# Large Raw Research Files
+seo/seo_keywords_master.csv
+
+# Logs & Temporary Files
+*.log

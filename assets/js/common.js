@@ -1,0 +1,771 @@
+/* ==========================================================================
+   DIGITALSAATHI — MASTER JAVASCRIPT SYSTEM (v2.0 Production)
+   "Your Digital Companion for Students, Job Seekers & Cyber Cafés"
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  // ==========================================================================
+  // 1. MASTER TOOL & ROUTE REGISTRY (Global Instant Search Database)
+  // ==========================================================================
+  const SEARCH_REGISTRY = [
+    // PDF Tools - Organize
+    { title: 'Merge PDF', category: 'PDF Tools', icon: '📑', url: 'pdf/merge.html', keywords: 'combine join merge multiple pdfs into one document' },
+    { title: 'Split PDF', category: 'PDF Tools', icon: '✂️', url: 'pdf/split.html', keywords: 'split separate extract pages from pdf document' },
+    { title: 'Organize PDF', category: 'PDF Tools', icon: '📑', url: 'pdf/organize.html', keywords: 'reorganize reorder delete add rotate pages in pdf' },
+    { title: 'Rotate PDF', category: 'PDF Tools', icon: '🔄', url: 'pdf/rotate.html', keywords: 'rotate orientation landscape portrait 90 180 degrees' },
+    { title: 'Crop PDF', category: 'PDF Tools', icon: '📐', url: 'pdf/crop.html', keywords: 'crop margins trim page size box bounding area' },
+    { title: 'Page Numbers', category: 'PDF Tools', icon: '🔢', url: 'pdf/page-numbers.html', keywords: 'add page numbers footer header numbering roman' },
+    { title: 'Extract Pages', category: 'PDF Tools', icon: '📥', url: 'pdf/extract.html', keywords: 'extract specific page range separate download' },
+    { title: 'Reorder Pages', category: 'PDF Tools', icon: '🔀', url: 'pdf/reorder.html', keywords: 'drag reorder sort rearrange pdf pages' },
+
+    // PDF Tools - Convert
+    { title: 'PDF to Word Converter', category: 'PDF Tools', icon: '📝', url: 'pdf/pdf-to-word.html', keywords: 'convert pdf to docx word editable document' },
+    { title: 'PDF to PowerPoint', category: 'PDF Tools', icon: '📊', url: 'pdf/pdf-to-ppt.html', keywords: 'convert pdf to pptx powerpoint presentation slides' },
+    { title: 'PDF to Excel', category: 'PDF Tools', icon: '📈', url: 'pdf/pdf-to-excel.html', keywords: 'convert pdf table to xlsx excel spreadsheet csv' },
+    { title: 'Word to PDF', category: 'PDF Tools', icon: '📄', url: 'pdf/word-to-pdf.html', keywords: 'convert docx word document to pdf format' },
+    { title: 'PowerPoint to PDF', category: 'PDF Tools', icon: '📽️', url: 'pdf/ppt-to-pdf.html', keywords: 'convert ppt pptx powerpoint slides to pdf document' },
+    { title: 'Excel to PDF', category: 'PDF Tools', icon: '📊', url: 'pdf/excel-to-pdf.html', keywords: 'convert xls xlsx excel spreadsheet to pdf table' },
+    { title: 'PDF to JPG Converter', category: 'PDF Tools', icon: '🖼️', url: 'pdf/pdf-to-jpg.html', keywords: 'convert pdf pages images jpg png zip download' },
+    { title: 'JPG to PDF Converter', category: 'PDF Tools', icon: '📑', url: 'pdf/jpg-to-pdf.html', keywords: 'convert photos image jpg png to pdf document combine a4' },
+    { title: 'HTML to PDF Converter', category: 'PDF Tools', icon: '🌐', url: 'pdf/html-to-pdf.html', keywords: 'convert html web page code url to pdf document' },
+    { title: 'PDF/A Converter', category: 'PDF Tools', icon: '🏛️', url: 'pdf/pdf-a.html', keywords: 'pdfa pdf a archive standard preservation iso long term' },
+    { title: 'PDF to Markdown', category: 'PDF Tools', icon: '📑', url: 'pdf/pdf-to-markdown.html', keywords: 'extract markdown md formatting text headings code' },
+
+    // PDF Tools - Optimize & Edit
+    { title: 'PDF Compressor', category: 'PDF Tools', icon: '🗜️', url: 'pdf/compress.html', keywords: 'reduce size compress pdf kb mb 100kb shrink form upload' },
+    { title: 'Repair PDF', category: 'PDF Tools', icon: '🔧', url: 'pdf/repair.html', keywords: 'fix corrupt broken damaged pdf header cross reference table' },
+    { title: 'Edit PDF', category: 'PDF Tools', icon: '✏️', url: 'pdf/edit.html', keywords: 'edit pdf add text shapes images annotations highlight' },
+    { title: 'Sign PDF', category: 'PDF Tools', icon: '✍️', url: 'pdf/sign.html', keywords: 'draw signature sign contract digital document' },
+    { title: 'Watermark PDF', category: 'PDF Tools', icon: '💧', url: 'pdf/watermark.html', keywords: 'add watermark text confidential logo stamp angle opacity' },
+    { title: 'Redact PDF', category: 'PDF Tools', icon: '⬛', url: 'pdf/redact.html', keywords: 'redact black out sensitive personal data hide privacy' },
+    { title: 'PDF Forms', category: 'PDF Tools', icon: '📋', url: 'pdf/forms.html', keywords: 'fill pdf forms textfields checkboxes export form data' },
+
+    // PDF Tools - Security, OCR & Analysis
+    { title: 'Protect PDF', category: 'PDF Tools', icon: '🔒', url: 'pdf/protect.html', keywords: 'encrypt password protect secure restrict permissions' },
+    { title: 'Unlock PDF', category: 'PDF Tools', icon: '🔓', url: 'pdf/unlock.html', keywords: 'remove password unlock decrypt open protected pdf' },
+    { title: 'Scan to PDF', category: 'PDF Tools', icon: '📷', url: 'pdf/scan-to-pdf.html', keywords: 'camera scan document paper to pdf mobile web' },
+    { title: 'OCR PDF (Text Recognition)', category: 'PDF Tools', icon: '👁️', url: 'pdf/ocr.html', keywords: 'ocr recognize text scanned image searchable extract' },
+    { title: 'Compare PDF', category: 'PDF Tools', icon: '🔍', url: 'pdf/compare.html', keywords: 'compare two pdf documents side by side difference diff' },
+    { title: 'PDF Information & Metadata', category: 'PDF Tools', icon: 'ℹ️', url: 'pdf/info.html', keywords: 'metadata author title subject fonts inspect page count' },
+    { title: 'PDF Viewer & Reader', category: 'PDF Tools', icon: '👁️', url: 'pdf/viewer.html', keywords: 'view read inspect search zoom preview pdf online' },
+    { title: 'PDF Page Counter & Stats', category: 'PDF Tools', icon: '🔢', url: 'pdf/page-counter.html', keywords: 'count pages words metadata fast analyze inspect' },
+    { title: 'AI PDF Summarizer', category: 'PDF Tools', icon: '🤖', url: 'pdf/ai-summarizer.html', keywords: 'summarize key points insights client side ai extract overview' },
+    { title: 'Translate PDF', category: 'PDF Tools', icon: '🌐', url: 'pdf/translate.html', keywords: 'translate language hindi english marathi bengali tamil' },
+    { title: 'Create PDF Workflow', category: 'PDF Tools', icon: '⚡', url: 'pdf/workflow.html', keywords: 'automate chained pipeline merge compress convert batch' },
+    { title: 'All PDF Tools Suite', category: 'PDF Tools', icon: '✨', url: 'pdf/index.html', keywords: 'all 38 pdf tools online free client side' },
+
+    // Image Tools
+    { title: 'Image Compressor (Under 20KB/50KB/100KB)', category: 'Image Tools', icon: '🗜️', url: 'image/compress.html', keywords: 'compress photo reduce size quality slider webp jpg png ssc upsc kb' },
+    { title: 'Image Resizer (Pixel & Exam Scale)', category: 'Image Tools', icon: '📐', url: 'image/resize.html', keywords: 'resize image dimensions width height aspect ratio ssc upsc custom' },
+    { title: 'Image Cropper', category: 'Image Tools', icon: '✂️', url: 'image/crop.html', keywords: 'crop photo passport 3.5x4.5 ratio square 1:1 circular avatar landscape' },
+    { title: 'Universal Image Converter', category: 'Image Tools', icon: '🔄', url: 'image/convert.html', keywords: 'convert image format batch zip jpg png webp gif bmp' },
+    { title: 'JPG to PDF Converter', category: 'Image Tools', icon: '📄', url: 'image/jpg-to-pdf.html', keywords: 'convert jpg images to pdf combine multiple photos a4 document' },
+    { title: 'Passport Photo Background Changer', category: 'Image Tools', icon: '🎭', url: 'image/remove-bg.html', keywords: 'remove background change white blue red passport photo seva exam' },
+    { title: 'Blur & Redact Censor Tool', category: 'Image Tools', icon: '🔒', url: 'image/blur-face.html', keywords: 'blur redact pixelate censor aadhaar pan card number face identity' },
+    { title: 'Image Watermark Tool', category: 'Image Tools', icon: '💧', url: 'image/watermark.html', keywords: 'watermark stamp copyright protection diagonal tile logo text photo' },
+    { title: 'Photo Enhancer & Scan Optimizer', category: 'Image Tools', icon: '✨', url: 'image/photo-enhancer.html', keywords: 'enhance clarify scan xerox marksheet text boost contrast filter' },
+    { title: 'Bulk Image Resizer & Compressor', category: 'Image Tools', icon: '⚡', url: 'image/bulk-resize.html', keywords: 'bulk batch resize compress multiple 50 images zip download' },
+    { title: 'Rotate & Flip Image', category: 'Image Tools', icon: '🔄', url: 'image/rotate.html', keywords: 'rotate 90 180 degrees flip horizontal mirror selfie vertical' },
+    { title: 'Image Color Picker & Palette', category: 'Image Tools', icon: '🎨', url: 'image/color-picker.html', keywords: 'color picker eyedropper extract palette hex rgb hsl loupe' },
+    { title: 'Image to Base64 Encoder', category: 'Image Tools', icon: '💻', url: 'image/base64.html', keywords: 'image to base64 data uri html img css background string decode' },
+    { title: 'DPI / PPI Converter (300 DPI)', category: 'Image Tools', icon: '🖨️', url: 'image/dpi-converter.html', keywords: 'dpi converter 200 300 600 ppi upsc ssc exam print jfif header' },
+    { title: 'PNG to JPG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/png-to-jpg.html', keywords: 'png to jpg convert white background transparent fill quality' },
+    { title: 'JPG to PNG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/jpg-to-png.html', keywords: 'jpg to png convert lossless original quality uncompressed' },
+    { title: 'WebP Converter', category: 'Image Tools', icon: '⚡', url: 'image/webp-converter.html', keywords: 'webp converter convert to webp 70 percent smaller size web optimization' },
+    { title: 'Passport Photo Maker (A4 Grid)', category: 'Image Tools', icon: '📸', url: 'image/passport-photo.html', keywords: 'passport photo 3.5x4.5 ssc upsc visa 2x2 a4 print sheet grid' },
+    { title: 'Signature Resizer (<20KB)', category: 'Image Tools', icon: '✍️', url: 'image/signature.html', keywords: 'resize signature under 20kb 50kb ibps ssc upsc dimension 140x60' },
+    { title: 'All Image Tools Suite', category: 'Image Tools', icon: '✨', url: 'image/index.html', keywords: 'all 18 image photo tools free private browser' },
+
+    // Calculators
+    { title: 'Percentage Calculator', category: 'Calculators', icon: '📊', url: 'calculators/percentage.html', keywords: 'percentage marks calculator grade 9.5 multiplier convert' },
+    { title: 'Age Calculator', category: 'Calculators', icon: '🎂', url: 'calculators/age.html', keywords: 'age calculator dob date of birth birthday countdown' },
+    { title: 'Loan EMI Calculator', category: 'Calculators', icon: '💰', url: 'calculators/emi.html', keywords: 'emi loan interest principal monthly payment amortization' },
+    { title: 'CGPA Calculator', category: 'Calculators', icon: '🎓', url: 'calculators/cgpa.html', keywords: 'cgpa sgpa semester credits percentage 10 point 4 point university' },
+    { title: 'Attendance Calculator', category: 'Calculators', icon: '📅', url: 'calculators/attendance.html', keywords: 'attendance 75 percent target bunks classes bunk balance tracker' },
+
+    // Developer & Data Tools
+    { title: 'JSON Formatter & Validator', category: 'Developer', icon: '💻', url: 'developer/json.html', keywords: 'json formatter validator beautify minify tree syntax json' },
+    { title: 'Base64 Encoder & Decoder', category: 'Developer', icon: '🔤', url: 'developer/base64.html', keywords: 'base64 encode decode data uri image to base64 binary' },
+    { title: 'SQL Query Formatter', category: 'Developer', icon: '💾', url: 'developer/sql.html', keywords: 'sql formatter beautify indent uppercase keywords format query' },
+
+    // Text & Utility Tools
+    { title: 'Word Counter & Text Analyzer', category: 'Text Tools', icon: '📝', url: 'text/word-counter.html', keywords: 'word counter characters count reading time paragraphs sentences' },
+    { title: 'QR Code Generator', category: 'Utility Tools', icon: '📱', url: 'utilities/qr-generator.html', keywords: 'qr code generator create custom qr wifi url vcard' },
+    { title: 'Password Generator', category: 'Utility Tools', icon: '🔐', url: 'utilities/password-generator.html', keywords: 'password generator secure random password strong passphrase' }
+  ];
+
+  function getBasePrefix() {
+    const hasParentRelative = document.querySelector('link[href^="../"], script[src^="../"]');
+    return hasParentRelative ? '../' : '';
+  }
+
+  function resolveRelativeUrl(url) {
+    if (!url) return '#';
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('#')) return url;
+    const cleanPath = url.replace(/^\/+/, '');
+    return getBasePrefix() + cleanPath;
+  }
+
+  // ==========================================================================
+  // 2. TOAST NOTIFICATION SYSTEM
+  // ==========================================================================
+  class ToastManager {
+    constructor() {
+      this.container = null;
+    }
+
+    _ensureContainer() {
+      if (!this.container || !document.body.contains(this.container)) {
+        this.container = document.querySelector('.toast-container');
+        if (!this.container) {
+          this.container = document.createElement('div');
+          this.container.className = 'toast-container';
+          document.body.appendChild(this.container);
+        }
+      }
+    }
+
+    show(message, type = 'info', duration = 3500) {
+      this._ensureContainer();
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+
+      const iconMap = {
+        success: '✓',
+        error: '✕',
+        warning: '⚠',
+        info: 'ℹ'
+      };
+
+      const icon = iconMap[type] || 'ℹ';
+      toast.innerHTML = `
+        <span class="toast-icon" style="font-weight:bold;margin-right:8px;">${icon}</span>
+        <span class="toast-msg" style="flex:1;">${escapeHtml(message)}</span>
+      `;
+
+      this.container.appendChild(toast);
+
+      // Trigger entrance
+      requestAnimationFrame(() => {
+        toast.classList.add('visible');
+      });
+
+      // Auto dismiss
+      const timer = setTimeout(() => {
+        this.dismiss(toast);
+      }, duration);
+
+      toast.addEventListener('click', () => {
+        clearTimeout(timer);
+        this.dismiss(toast);
+      });
+
+      return toast;
+    }
+
+    dismiss(toast) {
+      if (!toast) return;
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(100%)';
+      toast.style.transition = 'all 0.25s ease';
+      setTimeout(() => {
+        if (toast.parentElement) toast.parentElement.removeChild(toast);
+      }, 260);
+    }
+
+    success(msg, duration) { return this.show(msg, 'success', duration); }
+    error(msg, duration)   { return this.show(msg, 'error', duration || 4500); }
+    warning(msg, duration) { return this.show(msg, 'warning', duration); }
+    info(msg, duration)    { return this.show(msg, 'info', duration); }
+  }
+
+  window.dsToast = new ToastManager();
+  window.showToast = (msg, type) => window.dsToast.show(msg, type);
+
+  // ==========================================================================
+  // 3. UPLOAD DROPZONE HELPER
+  // ==========================================================================
+  function initDropZone(zoneElement, options = {}) {
+    if (!zoneElement) return;
+    const fileInput = zoneElement.querySelector('input[type="file"]');
+    if (!fileInput) return;
+
+    const onFiles = options.onFiles || zoneElement.__onFiles || null;
+
+    // Click to upload
+    zoneElement.addEventListener('click', (e) => {
+      if (e.target !== fileInput) {
+        fileInput.click();
+      }
+    });
+
+    // Drag & Drop events
+    ['dragenter', 'dragover'].forEach(evtName => {
+      zoneElement.addEventListener(evtName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        zoneElement.classList.add('drag-over');
+      });
+    });
+
+    ['dragleave', 'dragend', 'drop'].forEach(evtName => {
+      zoneElement.addEventListener(evtName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        zoneElement.classList.remove('drag-over');
+      });
+    });
+
+    zoneElement.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files && dt.files.length > 0) {
+        fileInput.files = dt.files;
+        fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+        if (typeof onFiles === 'function') {
+          onFiles(dt.files);
+        }
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        if (typeof onFiles === 'function') {
+          onFiles(fileInput.files);
+        }
+      }
+    });
+  }
+
+  window.initDropZone = initDropZone;
+
+  // Auto-bind all `.upload-zone` on DOM ready
+  function autoInitDropZones() {
+    document.querySelectorAll('.upload-zone').forEach(zone => {
+      initDropZone(zone);
+    });
+  }
+
+  // ==========================================================================
+  // 4. MODAL DIALOG CONTROLLER
+  // ==========================================================================
+  const dsModal = {
+    open(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    },
+    close(modalId) {
+      const modal = typeof modalId === 'string' ? document.getElementById(modalId) : modalId;
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    },
+    init() {
+      // Trigger open buttons
+      document.querySelectorAll('[data-modal-target]').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = trigger.getAttribute('data-modal-target');
+          dsModal.open(targetId);
+        });
+      });
+
+      // Trigger close buttons & backdrop click
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay || e.target.closest('[data-modal-close]')) {
+            dsModal.close(overlay);
+          }
+        });
+      });
+
+      // ESC key dismiss
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const activeModal = document.querySelector('.modal-overlay.active');
+          if (activeModal) dsModal.close(activeModal);
+        }
+      });
+    }
+  };
+  window.dsModal = dsModal;
+
+  // ==========================================================================
+  // 5. GLOBAL SEARCH ENGINE & COMMAND PALETTE (Ctrl+K)
+  // ==========================================================================
+  function initCommandPalette() {
+    let overlay = document.querySelector('.command-palette-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'command-palette-overlay';
+      overlay.id = 'commandPaletteModal';
+      overlay.innerHTML = `
+        <div class="command-palette-modal" role="dialog" aria-modal="true" aria-label="Quick Search">
+          <div class="palette-search-header">
+            <span class="palette-search-icon">🔍</span>
+            <input type="text" class="palette-search-input" id="paletteSearchInput" placeholder="Type a tool name, format, or task..." autocomplete="off" spellcheck="false">
+            <button class="palette-close-btn" id="paletteCloseBtn" aria-label="Close search">ESC</button>
+          </div>
+          <div class="palette-results-list" id="paletteResultsList">
+            <!-- Dynamically populated -->
+          </div>
+          <div class="palette-footer">
+            <span><kbd style="background:#fff;border:1px solid #cbd5e1;padding:1px 4px;border-radius:4px;">↑</kbd> <kbd style="background:#fff;border:1px solid #cbd5e1;padding:1px 4px;border-radius:4px;">↓</kbd> to navigate</span>
+            <span><kbd style="background:#fff;border:1px solid #cbd5e1;padding:1px 4px;border-radius:4px;">↵</kbd> to open</span>
+            <span><kbd style="background:#fff;border:1px solid #cbd5e1;padding:1px 4px;border-radius:4px;">esc</kbd> to dismiss</span>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    }
+
+    const input = overlay.querySelector('#paletteSearchInput');
+    const resultsList = overlay.querySelector('#paletteResultsList');
+    const closeBtn = overlay.querySelector('#paletteCloseBtn');
+    let selectedIndex = 0;
+
+    function renderResults(query = '') {
+      let filtered = [];
+      const cleanQ = query.toLowerCase().trim();
+      if (!cleanQ) {
+        filtered = SEARCH_REGISTRY.slice(0, 10);
+      } else {
+        filtered = SEARCH_REGISTRY.filter(item => {
+          return item.title.toLowerCase().includes(cleanQ) ||
+                 item.category.toLowerCase().includes(cleanQ) ||
+                 (item.keywords && item.keywords.toLowerCase().includes(cleanQ));
+        });
+      }
+
+      if (filtered.length === 0) {
+        resultsList.innerHTML = `
+          <div style="padding: 24px; text-align: center; color: var(--text-muted);">
+            <div style="font-size: 1.6rem; margin-bottom: 6px;">🔍</div>
+            No tools found for "<strong>${escapeHtml(query)}</strong>".
+          </div>
+        `;
+        return;
+      }
+
+      selectedIndex = 0;
+      resultsList.innerHTML = filtered.map((item, idx) => {
+        const finalUrl = resolveRelativeUrl(item.url);
+        return `
+          <a href="${finalUrl}" class="palette-result-item ${idx === 0 ? 'selected' : ''}" data-idx="${idx}">
+            <span class="palette-result-icon">${item.icon}</span>
+            <div class="palette-result-info">
+              <div class="palette-result-title">${cleanQ ? highlightMatch(item.title, cleanQ) : escapeHtml(item.title)}</div>
+              <div class="palette-result-category">${escapeHtml(item.category)}</div>
+            </div>
+            <span class="palette-result-badge">Open →</span>
+          </a>
+        `;
+      }).join('');
+    }
+
+    function openPalette() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      input.value = '';
+      renderResults('');
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closePalette() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('#headerSearchBtn, #mobileSearchBtn, .nav-search-btn, .mobile-search-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPalette();
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePalette);
+    }
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePalette();
+    });
+
+    input.addEventListener('input', (e) => {
+      renderResults(e.target.value);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const items = resultsList.querySelectorAll('.palette-result-item');
+      if (items.length === 0) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        items.forEach((it, idx) => it.classList.toggle('selected', idx === selectedIndex));
+        if (items[selectedIndex]) items[selectedIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        items.forEach((it, idx) => it.classList.toggle('selected', idx === selectedIndex));
+        if (items[selectedIndex]) items[selectedIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (items[selectedIndex]) {
+          items[selectedIndex].click();
+        }
+      } else if (e.key === 'Escape') {
+        closePalette();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (overlay.classList.contains('active')) {
+          closePalette();
+        } else {
+          openPalette();
+        }
+      } else if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        openPalette();
+      }
+    });
+  }
+
+  function initGlobalSearch() {
+    initCommandPalette();
+
+    const searchInputs = document.querySelectorAll('#global-search, .search-bar, .nav-search-input, #toolSearchInput');
+    const searchResultsBoxes = document.querySelectorAll('#search-results, .search-results-dropdown, .search-results');
+
+    if (searchInputs.length === 0) return;
+
+    searchInputs.forEach(input => {
+      const parent = input.closest('.hero-search-box, .search-container, .search-filter-wrap') || input.parentElement;
+      const resultsContainer = parent ? parent.querySelector('#search-results, .search-results-dropdown, .search-results') : searchResultsBoxes[0];
+
+      if (!resultsContainer) return;
+
+      input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length < 2) {
+          resultsContainer.innerHTML = '';
+          resultsContainer.classList.remove('active');
+          resultsContainer.style.display = 'none';
+          return;
+        }
+
+        const matches = SEARCH_REGISTRY.filter(item => {
+          return item.title.toLowerCase().includes(query) ||
+                 item.category.toLowerCase().includes(query) ||
+                 (item.keywords && item.keywords.toLowerCase().includes(query));
+        });
+
+        if (matches.length === 0) {
+          resultsContainer.innerHTML = `
+            <div style="padding: 16px; text-align: center; color: var(--text-muted);">
+              <span style="font-size: 1.5rem; display:block; margin-bottom:4px;">🔍</span>
+              No matching tools found for "<strong>${escapeHtml(query)}</strong>".
+            </div>
+          `;
+        } else {
+          resultsContainer.innerHTML = matches.map(item => {
+            const finalUrl = resolveRelativeUrl(item.url);
+            return `
+              <a href="${finalUrl}" class="search-result-item" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-subtle);text-decoration:none;color:var(--text-main);">
+                <span style="font-size:1.4rem;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--bg-surface-subtle);border-radius:8px;">${item.icon}</span>
+                <div style="flex:1;">
+                  <div style="font-weight:600;font-size:0.95rem;color:var(--text-main);">${highlightMatch(item.title, query)}</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted);">${item.category}</div>
+                </div>
+                <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">Open →</span>
+              </a>
+            `;
+          }).join('');
+        }
+
+        resultsContainer.classList.add('active');
+        resultsContainer.style.display = 'block';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !resultsContainer.contains(e.target)) {
+          resultsContainer.classList.remove('active');
+          resultsContainer.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 6. TABS SYSTEM
+  // ==========================================================================
+  function initTabs() {
+    document.querySelectorAll('.tabs').forEach(tabGroup => {
+      const buttons = tabGroup.querySelectorAll('.tab-btn');
+      const container = tabGroup.closest('.tab-wrapper') || tabGroup.parentElement;
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const targetId = btn.getAttribute('data-tab');
+          if (container && targetId) {
+            container.querySelectorAll('.tab-content').forEach(panel => {
+              panel.classList.remove('active');
+            });
+            const targetPanel = container.querySelector(`#${targetId}`);
+            if (targetPanel) {
+              targetPanel.classList.add('active');
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 7. ACCORDION SYSTEM
+  // ==========================================================================
+  function initAccordions() {
+    document.querySelectorAll('.accordion-header, .faq-question').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item, .faq-item');
+        if (!item) return;
+
+        const parent = item.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Close siblings if inside accordion container
+        if (parent && parent.classList.contains('accordion-exclusive')) {
+          parent.querySelectorAll('.accordion-item, .faq-item').forEach(sibling => {
+            sibling.classList.remove('active');
+          });
+        }
+
+        if (!isActive) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 8. MOBILE NAVIGATION DRAWER & SCROLL BEHAVIOR
+  // ==========================================================================
+  function initNavigation() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('active');
+        const isOpen = links.classList.contains('active');
+        toggle.textContent = isOpen ? '✕' : '☰';
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Close menu on link click
+      links.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          links.classList.remove('active');
+          toggle.textContent = '☰';
+        });
+      });
+
+      // Close menu on outside click
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !links.contains(e.target)) {
+          links.classList.remove('active');
+          toggle.textContent = '☰';
+        }
+      });
+    }
+
+    // Navbar elevation on scroll
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+  }
+
+  // ==========================================================================
+  // 9. HELPER UTILITIES
+  // ==========================================================================
+  function formatFileSize(bytes) {
+    if (!bytes || bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
+  }
+
+  function downloadDataURL(dataUrl, filename) {
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+    }, 100);
+  }
+
+  async function copyToClipboard(text, successMsg = 'Copied to clipboard!') {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      window.dsToast.success(successMsg);
+      return true;
+    } catch (err) {
+      window.dsToast.error('Failed to copy text.');
+      return false;
+    }
+  }
+
+  function debounce(func, wait = 200) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function highlightMatch(text, query) {
+    if (!query) return escapeHtml(text);
+    const safeText = escapeHtml(text);
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return safeText.replace(regex, '<span style="background:var(--primary-100);color:var(--primary-800);border-radius:2px;padding:0 2px;">$1</span>');
+  }
+
+  // Expose global helpers
+  window.formatFileSize = formatFileSize;
+  window.downloadBlob = downloadBlob;
+  window.downloadDataURL = downloadDataURL;
+  window.copyToClipboard = copyToClipboard;
+  window.debounce = debounce;
+  window.escapeHtml = escapeHtml;
+  window.resolveRelativeUrl = resolveRelativeUrl;
+
+  // ==========================================================================
+  // 10. AUTO-UPGRADE EMOJI ICONS TO PROFESSIONAL VECTOR SVG TILES (iLovePDF Standard)
+  // ==========================================================================
+  function upgradeEmojiIcons() {
+    if (!window.getToolSvgIcon) return;
+    const iconWraps = document.querySelectorAll('.saas-tool-icon-wrap, .tool-icon-box');
+    iconWraps.forEach(wrap => {
+      const card = wrap.closest('a');
+      if (!card) return;
+      const href = (card.getAttribute('href') || '').toLowerCase();
+      
+      let toolId = '';
+      if (href.includes('merge')) toolId = 'merge-pdf';
+      else if (href.includes('split')) toolId = 'split-pdf';
+      else if (href.includes('compress') && href.includes('pdf')) toolId = 'compress-pdf';
+      else if (href.includes('compress')) toolId = 'compress-image';
+      else if (href.includes('pdf-to-word') || href.includes('word-to-pdf')) toolId = 'pdf-to-word';
+      else if (href.includes('pdf-to-ppt') || href.includes('ppt-to-pdf')) toolId = 'pdf-to-ppt';
+      else if (href.includes('pdf-to-excel') || href.includes('excel-to-pdf')) toolId = 'pdf-to-excel';
+      else if (href.includes('edit')) toolId = 'edit-pdf';
+      else if (href.includes('pdf-to-jpg')) toolId = 'pdf-to-jpg';
+      else if (href.includes('jpg-to-pdf')) toolId = 'jpg-to-pdf';
+      else if (href.includes('sign')) toolId = 'sign-pdf';
+      else if (href.includes('rotate')) toolId = 'rotate-pdf';
+      else if (href.includes('protect')) toolId = 'protect-pdf';
+      else if (href.includes('unlock')) toolId = 'unlock-pdf';
+      else if (href.includes('organize')) toolId = 'organize-pdf';
+      else if (href.includes('crop')) toolId = 'crop-image';
+      else if (href.includes('resize')) toolId = 'resize-image';
+      else if (href.includes('convert')) toolId = 'convert-image';
+      else if (href.includes('passport')) toolId = 'passport-photo';
+      else if (href.includes('signature')) toolId = 'signature-resizer';
+      else if (href.includes('json')) toolId = 'json-formatter';
+      else if (href.includes('base64')) toolId = 'base64-converter';
+      else if (href.includes('sql')) toolId = 'sql-formatter';
+      else if (href.includes('emi')) toolId = 'emi-calculator';
+      else if (href.includes('age')) toolId = 'age-calculator';
+      else if (href.includes('percentage')) toolId = 'percentage-calculator';
+      else if (href.includes('cgpa')) toolId = 'cgpa-calculator';
+      else if (href.includes('attendance')) toolId = 'attendance-calculator';
+      else if (href.includes('qr')) toolId = 'qr-generator';
+      else if (href.includes('password')) toolId = 'password-generator';
+      else if (href.includes('word-counter')) toolId = 'word-counter';
+
+      if (toolId) {
+        const svgTileHtml = window.getToolSvgIcon(toolId);
+        if (svgTileHtml) {
+          const temp = document.createElement('div');
+          temp.innerHTML = svgTileHtml;
+          const newTile = temp.firstElementChild;
+          wrap.replaceWith(newTile);
+        }
+      }
+    });
+  }
+  window.upgradeEmojiIcons = upgradeEmojiIcons;
+
+  // ==========================================================================
+  // 11. LIFECYCLE BOOTSTRAP
+  // ==========================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    initNavigation();
+    initGlobalSearch();
+    autoInitDropZones();
+    initTabs();
+    initAccordions();
+    dsModal.init();
+    upgradeEmojiIcons();
+  });
+
+})();

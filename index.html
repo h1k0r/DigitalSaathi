@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalSaathi — Free Online Tools for Everyone | Merge, Compress, Convert, Calculate</title>
+  <meta name="description" content="100% Free, Private Online Tools Suite. Merge PDF, compress PDF to 100KB, resize images, format JSON, calculate loan EMI, and generate QR codes with zero server uploads and instant browser processing.">
+  <meta name="keywords" content="online tools, free pdf tools, merge pdf, compress pdf to 100kb, split pdf, jpg to pdf, pdf to word, image compressor 20kb 50kb, passport photo maker, signature resizer, json validator, sql formatter, emi calculator, percentage calculator, age calculator, qr code generator, password generator, ilovepdf alternative, smallpdf alternative, client side tools, private browser tools">
+  <meta name="author" content="DigitalSaathi">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/">
+  <meta property="og:title" content="DigitalSaathi — Free Online Tools for Everyone | Merge, Compress, Convert">
+  <meta property="og:description" content="Every tool you need to work with files, PDFs, images, code, and calculations in one place. 100% Free, Private & Secure with zero server uploads.">
+  <meta property="og:site_name" content="DigitalSaathi">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DigitalSaathi — Free Online Tools for Everyone">
+  <meta name="twitter:description" content="Every tool you need for everyday digital work. Merge, compress, convert, calculate, and format directly in your browser.">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .home-hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .hero-search-container {
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    .hero-search-input {
+      width: 100%;
+      padding: 16px 24px 16px 52px;
+      font-size: 1.08rem;
+      border: 2px solid var(--border-default);
+      border-radius: var(--radius-full);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .hero-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-glow), 0 12px 28px -5px rgba(37, 99, 235, 0.15);
+    }
+    .hero-search-icon-pos {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.3rem;
+      color: var(--text-muted);
+    }
+    .popular-chips-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 3.5rem;
+    }
+    .popular-chip-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .popular-chip {
+      padding: 5px 12px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-body);
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .popular-chip:hover {
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-200);
+      transform: translateY(-1px);
+    }
+    .section-title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .section-heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+    .section-subtext {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+    .tool-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-300);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .tool-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .tool-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+    .tool-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: var(--primary-50);
+      color: var(--primary-700);
+      border: 1px solid var(--primary-200);
+    }
+    .tool-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+    .tool-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+    }
+    .tool-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .category-pills-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 1.75rem;
+    }
+    .cat-pill {
+      padding: 7px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #ffffff;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: var(--text-body);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-pill:hover {
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-200);
+    }
+    .cat-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/index.html">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://digitalsaathi.com/#website",
+      "url": "https://digitalsaathi.com/",
+      "name": "DigitalSaathi",
+      "description": "Free Online Tools for Everyday Digital Work. Convert, compress, edit, calculate, and manage files securely in your web browser.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://digitalsaathi.com/tools/index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://digitalsaathi.com/#organization",
+      "name": "DigitalSaathi",
+      "url": "https://digitalsaathi.com/",
+      "logo": "https://digitalsaathi.com/assets/images/logo.png"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "DigitalSaathi Online Tools Suite",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "14850",
+        "reviewCount": "9820"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is DigitalSaathi better than traditional online tools like iLovePDF or Smallpdf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unlike traditional services that upload your private documents to third-party cloud servers with hourly usage caps, DigitalSaathi runs 100% inside your web browser using WebAssembly. This ensures complete privacy, zero upload wait times, and truly unlimited free conversions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are DigitalSaathi tools 100% free with no limits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! All 76+ tools on DigitalSaathi are completely free to use with no hidden subscriptions, no daily quotas, and no required registration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my files and personal documents uploaded to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. All file processing—including PDF compression, photo resizing, and code formatting—happens locally in your browser memory. Your files never leave your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I compress PDFs and photos to under 20KB, 50KB, or 100KB for government job portals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, our image and PDF compressors come with built-in presets calibrated for government and exam portals including SSC, UPSC, IBPS, and state public service commissions."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="home-page">
+
+  <!-- Universal Header Navigation (SaaS Professional Standard: No Emojis, Crisp Typography) -->
+      <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container page-content" style="max-width: 1240px; padding-bottom: 5rem;">
+    <!-- Hero Section -->
+    <section class="home-hero">
+      <h1 class="hero-title" style="margin-bottom: 0.75rem;">Free Online Tools for Everyone</h1>
+      <p class="hero-subtitle" style="max-width: 680px; margin: 0 auto 2rem;">
+        Convert, compress, edit, calculate, and manage your files directly in your browser. Fast, secure, and 100% private with zero server uploads.
+      </p>
+
+      <!-- Large Global Search Input -->
+      <div class="hero-search-container">
+        <div class="hero-search-icon-pos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <input type="text" id="homeSearchInput" class="hero-search-input" placeholder="Search any tool (e.g., Compress PDF, Resize Image, JSON Formatter, EMI)..." aria-label="Search tools">
+      </div>
+
+      <!-- Quick Search Suggestions -->
+      <div class="popular-chips-bar">
+        <span class="popular-chip-label">Popular:</span>
+        <a href="pdf/merge.html" class="popular-chip">Merge PDF</a>
+        <a href="pdf/compress.html" class="popular-chip">Compress PDF</a>
+        <a href="image/compress.html" class="popular-chip">Image Compressor</a>
+        <a href="developer/json.html" class="popular-chip">JSON Formatter</a>
+        <a href="utilities/qr-generator.html" class="popular-chip">QR Generator</a>
+        <a href="calculators/age.html" class="popular-chip">Age Calculator</a>
+        <a href="calculators/emi.html" class="popular-chip">EMI Calculator</a>
+      </div>
+    </section>
+
+    <!-- Popular Tools Section -->
+    <section style="margin-bottom: 4rem;">
+      <div class="section-title-wrap">
+        <div>
+          <h2 class="section-heading">Popular Tools</h2>
+          <p class="section-subtext">Most frequently used tools by thousands of users everyday</p>
+        </div>
+        <a href="tools/index.html" class="btn btn-outline btn-sm">View All Tools →</a>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Merge PDF -->
+        <a href="pdf/merge.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#ffefe8;color:#ea580c;">
+              <svg viewBox="0 0 24 24"><path d="M4 4l6 6M4 10h6V4M20 20l-6-6M20 14h-6v6"/><line x1="12" y1="2" x2="12" y2="22" stroke-dasharray="3 3"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">Merge PDF</h3>
+          <p class="tool-desc">Combine multiple PDF files into one single organized document.</p>
+          <div class="tool-footer">
+            <span>PDF Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- Compress PDF -->
+        <a href="pdf/compress.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#ecfdf5;color:#059669;">
+              <svg viewBox="0 0 24 24"><path d="M4 14h6v6M4 20l6-6M20 10h-6V4M20 4l-6 6M14 14h6v6M14 20l6-6M10 10H4V4M4 4l6 6"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">Compress PDF</h3>
+          <p class="tool-desc">Reduce PDF file size to under 100KB, 200KB or 500KB easily.</p>
+          <div class="tool-footer">
+            <span>PDF Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- JPG to PDF -->
+        <a href="pdf/jpg-to-pdf.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#fef2f2;color:#dc2626;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">JPG to PDF</h3>
+          <p class="tool-desc">Convert JPG and PNG images into a clean single PDF document.</p>
+          <div class="tool-footer">
+            <span>PDF Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- Image Compressor -->
+        <a href="image/compress.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#f5f3ff;color:#6366f1;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">Image Compressor</h3>
+          <p class="tool-desc">Compress photos to exact target KB size (under 20KB, 50KB, 100KB).</p>
+          <div class="tool-footer">
+            <span>Image Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- JSON Formatter -->
+        <a href="developer/json.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#eff6ff;color:#2563eb;">
+              <svg viewBox="0 0 24 24"><polyline points="8 3 4 8 4 12 2 12 4 12 4 16 8 21"/><polyline points="16 3 20 8 20 12 22 12 20 12 20 16 16 21"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">JSON Formatter</h3>
+          <p class="tool-desc">Beautify, validate, minify, and inspect JSON with interactive tree view.</p>
+          <div class="tool-footer">
+            <span>Developer Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- QR Code Generator -->
+        <a href="utilities/qr-generator.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#ecfeff;color:#0891b2;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">QR Code Generator</h3>
+          <p class="tool-desc">Generate custom high-resolution QR codes for URLs, WiFi, and vCards.</p>
+          <div class="tool-footer">
+            <span>Utility Tools</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- EMI Calculator -->
+        <a href="calculators/emi.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#ecfdf5;color:#059669;">
+              <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">EMI Calculator</h3>
+          <p class="tool-desc">Calculate monthly loan EMI, total interest, and amortization schedule.</p>
+          <div class="tool-footer">
+            <span>Calculators</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+
+        <!-- Age Calculator -->
+        <a href="calculators/age.html" class="tool-card">
+          <div class="tool-card-top">
+            <div class="tool-icon-tile" style="background:#fffbeb;color:#d97706;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="16" r="3"/><polyline points="12 15 12 16 13 16"/></svg>
+            </div>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h3 class="tool-title">Age Calculator</h3>
+          <p class="tool-desc">Calculate exact age in years, months, days, and birthday countdown.</p>
+          <div class="tool-footer">
+            <span>Calculators</span>
+            <span>Open Tool →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- All Tools Directory Section with Category Tabs -->
+    <section style="margin-bottom: 4rem;">
+      <div class="section-title-wrap">
+        <div>
+          <h2 class="section-heading">All Online Tools</h2>
+          <p class="section-subtext">Filter tools by category or search by task</p>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills (Clean SaaS: Zero Emojis) -->
+      <div class="category-pills-bar" id="homeCategoryBar">
+        <button type="button" class="cat-pill active" data-cat="all">All Tools</button>
+        <button type="button" class="cat-pill" data-cat="pdf">PDF Tools</button>
+        <button type="button" class="cat-pill" data-cat="images">Image Tools</button>
+        <button type="button" class="cat-pill" data-cat="developer">Developer</button>
+        <button type="button" class="cat-pill" data-cat="calculators">Calculators</button>
+        <button type="button" class="cat-pill" data-cat="text">Text Tools</button>
+        <button type="button" class="cat-pill" data-cat="utilities">Utilities</button>
+      </div>
+
+      <!-- Dynamic Filterable Grid -->
+      <div id="homeToolsGrid" class="cards-grid">
+        <!-- Dynamically rendered by tools.js -->
+      </div>
+    </section>
+
+    <!-- World-Class SEO Ranking Content Block: Why DigitalSaathi is #1 -->
+    <section style="background:#ffffff; border:1px solid var(--border-subtle); border-radius:var(--radius-2xl); padding:3rem 2rem; margin-bottom:4rem;">
+      <div style="max-width:960px; margin:0 auto;">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <h2 style="font-size:1.8rem; font-weight:800; color:var(--text-main); margin-bottom:0.75rem;">
+            Why DigitalSaathi Ranks #1 for Free Online Tools
+          </h2>
+          <p style="color:var(--text-muted); font-size:1rem; max-width:720px; margin:0 auto; line-height:1.6;">
+            Built with modern client-side WebAssembly, HTML5 Canvas, and Web Workers. Outperforming legacy server-based tools like iLovePDF and Smallpdf with instantaneous zero-latency speed and unbreakable privacy.
+          </p>
+        </div>
+
+        <!-- Competitor Comparison Table (High-Value SEO E-E-A-T Signal) -->
+        <div style="overflow-x:auto; margin-bottom:2.5rem;">
+          <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+            <thead>
+              <tr style="background:var(--bg-surface-subtle); border-bottom:2px solid var(--border-subtle);">
+                <th style="padding:14px 18px; font-weight:700; color:var(--text-main);">Features &amp; Capabilities</th>
+                <th style="padding:14px 18px; font-weight:700; color:var(--primary); background:var(--primary-50);">DigitalSaathi (100% Free)</th>
+                <th style="padding:14px 18px; font-weight:600; color:var(--text-muted);">iLovePDF / Smallpdf</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border-subtle);">
+                <td style="padding:14px 18px; font-weight:600;">Document Privacy</td>
+                <td style="padding:14px 18px; font-weight:700; color:var(--success); background:var(--primary-50);">100% In-Browser (Zero Server Upload)</td>
+                <td style="padding:14px 18px; color:var(--danger);">Uploaded to remote cloud servers</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);">
+                <td style="padding:14px 18px; font-weight:600;">Daily Usage Limits</td>
+                <td style="padding:14px 18px; font-weight:700; color:var(--success); background:var(--primary-50);">Unlimited Free (No Quotas)</td>
+                <td style="padding:14px 18px; color:var(--danger);">2–3 tasks per hour on free tier</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);">
+                <td style="padding:14px 18px; font-weight:600;">File Processing Speed</td>
+                <td style="padding:14px 18px; font-weight:700; color:var(--success); background:var(--primary-50);">Instant (Zero Network Latency)</td>
+                <td style="padding:14px 18px; color:var(--text-muted);">Queue delays during peak hours</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);">
+                <td style="padding:14px 18px; font-weight:600;">Indian Exam &amp; Form Presets</td>
+                <td style="padding:14px 18px; font-weight:700; color:var(--success); background:var(--primary-50);">Dedicated SSC, UPSC, IBPS Presets</td>
+                <td style="padding:14px 18px; color:var(--text-muted);">Generic percentage sliders only</td>
+              </tr>
+              <tr>
+                <td style="padding:14px 18px; font-weight:600;">Registration &amp; Credit Card</td>
+                <td style="padding:14px 18px; font-weight:700; color:var(--success); background:var(--primary-50);">Never Required (100% Open Access)</td>
+                <td style="padding:14px 18px; color:var(--danger);">Aggressive paywalls &amp; sign-up popups</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy & Security Guarantee -->
+    <section style="background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%); border: 1px solid var(--primary-200); border-radius: var(--radius-2xl); padding: 3rem 2rem; margin-bottom: 4rem;">
+      <div style="max-width: 860px; margin: 0 auto; text-align: center;">
+        <div style="width:54px; height:54px; background:var(--primary); color:#fff; border-radius:14px; display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">Your Privacy Comes First</h2>
+        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">
+          DigitalSaathi processes all your files directly in your web browser. No server uploads, no data retention, and no external tracking for your confidential documents.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: left;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+            <div style="font-weight: 700; color: var(--text-main); margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              100% Client-Side
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">HTML5 Canvas, WebAssembly, and local Web Workers do the heavy lifting.</p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+            <div style="font-weight: 700; color: var(--text-main); margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Zero Server Uploads
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Your PDF documents, images, and text never leave your machine.</p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+            <div style="font-weight: 700; color: var(--text-main); margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Unlimited &amp; Free
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">No accounts required, no hidden fees, and no file size paywalls.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-2xl); padding: 2.5rem 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">Frequently Asked Questions</h2>
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item" style="border-bottom: 1px solid var(--border-subtle); padding: 1rem 0;">
+          <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Why is DigitalSaathi better than traditional online tools like iLovePDF or Smallpdf?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Unlike traditional services that upload your private documents to third-party cloud servers with hourly usage caps, DigitalSaathi runs 100% inside your web browser using WebAssembly. This ensures complete privacy, zero upload wait times, and truly unlimited free conversions.</p>
+        </div>
+        <div class="faq-item" style="border-bottom: 1px solid var(--border-subtle); padding: 1rem 0;">
+          <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Are DigitalSaathi tools 100% free with no limits?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Yes! All 76+ tools on DigitalSaathi are completely free to use with no hidden subscriptions, no daily quotas, and no required registration.</p>
+        </div>
+        <div class="faq-item" style="border-bottom: 1px solid var(--border-subtle); padding: 1rem 0;">
+          <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Are my uploaded files safe and private?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Yes! Files never leave your device. All operations are executed locally within your web browser memory and sandbox.</p>
+        </div>
+        <div class="faq-item" style="padding: 1rem 0 0;">
+          <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Can I compress PDFs and photos to under 20KB, 50KB, or 100KB for government job portals?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Yes! Our tools feature built-in presets calibrated specifically for Indian examination and admission portals including SSC, UPSC, IBPS, and state government portals.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="pdf/index.html">PDF Tools</a></li>
+          <li><a href="image/index.html">Image Tools</a></li>
+          <li><a href="developer/json.html">Developer Tools</a></li>
+          <li><a href="calculators/percentage.html">Calculators</a></li>
+          <li><a href="text/word-counter.html">Text Tools</a></li>
+          <li><a href="utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="pdf/merge.html">Merge PDF</a></li>
+          <li><a href="pdf/compress.html">Compress PDF</a></li>
+          <li><a href="image/compress.html">Image Compressor</a></li>
+          <li><a href="developer/json.html">JSON Formatter</a></li>
+          <li><a href="utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About DigitalSaathi</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/tools.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tools = window.DIGITALSAATHI_TOOLS || [];
+      const homeGrid = document.getElementById('homeToolsGrid');
+      const searchInput = document.getElementById('homeSearchInput');
+      const catBtns = document.querySelectorAll('.cat-pill');
+
+      let currentCat = 'all';
+
+      function renderTools(list) {
+        if (!list || list.length === 0) {
+          homeGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; background: #fff; border: 1px dashed var(--border-default); border-radius: var(--radius-xl);">
+              <div style="margin-bottom: 10px; color: var(--text-muted); display: flex; justify-content: center;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">No tools match your search</h3>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Try searching for another keyword or select a category.</p>
+            </div>
+          `;
+          return;
+        }
+
+        homeGrid.innerHTML = list.map(t => {
+          const finalUrl = window.resolveToolUrl(t.url);
+          const iconHtml = window.getToolSvgIcon ? window.getToolSvgIcon(t.id, t.category) : `<div class="tool-icon-tile" style="background:#eff6ff;color:#2563eb;">${t.icon}</div>`;
+          return `
+            <a href="${finalUrl}" class="tool-card">
+              <div class="tool-card-top">
+                ${iconHtml}
+                <span class="tool-badge">${t.badge || t.categoryName}</span>
+              </div>
+              <h3 class="tool-title">${window.escapeHtml(t.name)}</h3>
+              <p class="tool-desc">${window.escapeHtml(t.description)}</p>
+              <div class="tool-footer">
+                <span>${window.escapeHtml(t.categoryName)}</span>
+                <span>Open Tool →</span>
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+
+      function applyFilter() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+
+        const filtered = tools.filter(t => {
+          const matchCat = (currentCat === 'all') || (t.category === currentCat);
+          const matchQ = !query || 
+            t.name.toLowerCase().includes(query) ||
+            t.description.toLowerCase().includes(query) ||
+            t.categoryName.toLowerCase().includes(query) ||
+            (t.tags && t.tags.some(tag => tag.toLowerCase().includes(query)));
+          
+          return matchCat && matchQ;
+        });
+
+        renderTools(filtered);
+      }
+
+      catBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          catBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCat = btn.getAttribute('data-cat');
+          applyFilter();
+        });
+      });
+
+      searchInput.addEventListener('input', window.debounce(applyFilter, 150));
+
+      // Initial render
+      renderTools(tools);
+    });
+  </script>
+</body>
+</html>

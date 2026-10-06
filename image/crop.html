@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Cropper (Passport & Social Ratios) | DigitalSaathi</title>
+  <meta name="description" content="Crop photos online with aspect ratios for Indian passport, SSC, and social media.">
+  <link rel="canonical" href="https://digitalsaathi.com/image/crop.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Image Cropper (Passport & Social Ratios) | DigitalSaathi">
+  <meta property="og:description" content="Crop photos online with aspect ratios for Indian passport, SSC, and social media.">
+  <meta property="og:url" content="https://digitalsaathi.com/image/crop.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <style>
+    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
+    .tool-header-box { text-align: center; margin-bottom: 2rem; }
+    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
+    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
+    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
+    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
+    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
+    .badge-stat-orig { background: #f1f5f9; color: #475569; }
+    .badge-stat-new { background: #ecfdf5; color: #059669; }
+    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
+  </style>
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Image Cropper (Passport & Social Ratios) | DigitalSaathi",
+      "url": "https://digitalsaathi.com/image/crop.html",
+      "description": "Crop photos online with aspect ratios for Indian passport, SSC, and social media.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Image Tools",
+          "item": "https://digitalsaathi.com/image/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Image Cropper (Passport & Social Ratios)",
+          "item": "https://digitalsaathi.com/image/crop.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+  <main class="tool-page-container">
+    <div class="tool-header-box">
+      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#fff1f2; color:#f43f5e; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
+        ✓ Interactive Drag & Drop Crop Handles
+      </div>
+      <h1 class="tool-header-title">Image Cropper</h1>
+      <p class="tool-header-desc">Crop your photos with standard aspect ratios: 3.5:4.5cm Passport, 1:1 Square, 16:9 Landscape, or Freeform.</p>
+    </div>
+
+    <div class="tool-main-card">
+      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✂️</div>
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose an Image to Crop</h3>
+        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload JPG, PNG, or WebP photo</p>
+      </div>
+
+      <div id="controls-section" style="display: none;">
+        <div class="tool-controls-panel">
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            <button type="button" class="btn btn-primary btn-sm ratio-btn" data-ratio="free">Freeform</button>
+            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="1:1">1:1 Square</button>
+            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="3.5:4.5">3.5:4.5 Passport</button>
+            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="4:3">4:3 Standard</button>
+            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="16:9">16:9 Widescreen</button>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-rotate-cw">🔄 Rotate 90°</button>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-flip-h">↔️ Flip Horizontal</button>
+          </div>
+        </div>
+
+        <div class="tool-preview-panel" style="margin-top: 1rem;">
+          <div style="max-width: 100%; overflow: auto; text-align: center; background: #334155; padding: 1rem; border-radius: 8px;">
+            <canvas id="crop-canvas" style="max-width: 100%; max-height: 500px; cursor: crosshair; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></canvas>
+          </div>
+
+          <div style="margin-top: 1.25rem;">
+            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
+              📥 Crop & Download Photo
+            </button>
+            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
+              🔄 Change Photo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let img = null;
+      let rotation = 0;
+      let flipH = false;
+      let cropRect = { x: 50, y: 50, w: 200, h: 200 };
+      let isDragging = false;
+      let dragMode = null;
+      let startX, startY;
+      let ratio = 'free';
+
+      const fileInput = document.getElementById('file-input');
+      const dropZone = document.getElementById('drop-zone');
+      const controlsSection = document.getElementById('controls-section');
+      const canvas = document.getElementById('crop-canvas');
+      const ctx = canvas.getContext('2d');
+      const downloadBtn = document.getElementById('download-btn');
+      const resetBtn = document.getElementById('reset-btn');
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            img = new Image();
+            img.onload = () => {
+              dropZone.style.display = 'none';
+              controlsSection.style.display = 'block';
+              canvas.width = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              cropRect = {
+                x: Math.round(img.naturalWidth * 0.1),
+                y: Math.round(img.naturalHeight * 0.1),
+                w: Math.round(img.naturalWidth * 0.8),
+                h: Math.round(img.naturalHeight * 0.8)
+              };
+              draw();
+            };
+            img.src = ev.target.result;
+          };
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      });
+
+      document.querySelectorAll('.ratio-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.ratio-btn').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
+          btn.classList.add('btn-primary');
+          btn.classList.remove('btn-secondary');
+          ratio = btn.dataset.ratio;
+          adjustCropForRatio();
+          draw();
+        });
+      });
+
+      function adjustCropForRatio() {
+        if (ratio === '1:1') {
+          const size = Math.min(cropRect.w, cropRect.h);
+          cropRect.w = size; cropRect.h = size;
+        } else if (ratio === '3.5:4.5') {
+          cropRect.h = Math.round(cropRect.w * (4.5 / 3.5));
+        } else if (ratio === '4:3') {
+          cropRect.h = Math.round(cropRect.w * (3 / 4));
+        } else if (ratio === '16:9') {
+          cropRect.h = Math.round(cropRect.w * (9 / 16));
+        }
+      }
+
+      document.getElementById('btn-rotate-cw').addEventListener('click', () => {
+        rotation = (rotation + 90) % 360;
+        draw();
+      });
+      document.getElementById('btn-flip-h').addEventListener('click', () => {
+        flipH = !flipH;
+        draw();
+      });
+
+      function draw() {
+        if (!img) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+        ctx.fillRect(0, 0, canvas.width, cropRect.y);
+        ctx.fillRect(0, cropRect.y + cropRect.h, canvas.width, canvas.height - (cropRect.y + cropRect.h));
+        ctx.fillRect(0, cropRect.y, cropRect.x, cropRect.h);
+        ctx.fillRect(cropRect.x + cropRect.w, cropRect.y, canvas.width - (cropRect.x + cropRect.w), cropRect.h);
+
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+
+        ctx.fillStyle = '#2563eb';
+        ctx.fillRect(cropRect.x + cropRect.w - 12, cropRect.y + cropRect.h - 12, 14, 14);
+        ctx.restore();
+      }
+
+      function getCanvasCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        return {
+          x: (e.clientX - rect.left) * scaleX,
+          y: (e.clientY - rect.top) * scaleY
+        };
+      }
+
+      canvas.addEventListener('mousedown', (e) => {
+        const pt = getCanvasCoords(e);
+        const handleX = cropRect.x + cropRect.w - 12;
+        const handleY = cropRect.y + cropRect.h - 12;
+
+        if (pt.x >= handleX && pt.x <= handleX + 24 && pt.y >= handleY && pt.y <= handleY + 24) {
+          isDragging = true;
+          dragMode = 'resize';
+        } else if (pt.x >= cropRect.x && pt.x <= cropRect.x + cropRect.w && pt.y >= cropRect.y && pt.y <= cropRect.y + cropRect.h) {
+          isDragging = true;
+          dragMode = 'move';
+          startX = pt.x - cropRect.x;
+          startY = pt.y - cropRect.y;
+        }
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const pt = getCanvasCoords(e);
+
+        if (dragMode === 'move') {
+          cropRect.x = Math.max(0, Math.min(canvas.width - cropRect.w, pt.x - startX));
+          cropRect.y = Math.max(0, Math.min(canvas.height - cropRect.h, pt.y - startY));
+        } else if (dragMode === 'resize') {
+          cropRect.w = Math.max(50, Math.min(canvas.width - cropRect.x, pt.x - cropRect.x));
+          if (ratio === 'free') {
+            cropRect.h = Math.max(50, Math.min(canvas.height - cropRect.y, pt.y - cropRect.y));
+          } else {
+            adjustCropForRatio();
+          }
+        }
+        draw();
+      });
+
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      downloadBtn.addEventListener('click', () => {
+        if (!img) return;
+        const outCanvas = document.createElement('canvas');
+        outCanvas.width = cropRect.w;
+        outCanvas.height = cropRect.h;
+        const outCtx = outCanvas.getContext('2d');
+        outCtx.drawImage(img, cropRect.x, cropRect.y, cropRect.w, cropRect.h, 0, 0, cropRect.w, cropRect.h);
+
+        outCanvas.toBlob((blob) => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'cropped-photo.jpg';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, 'image/jpeg', 0.95);
+      });
+
+      resetBtn.addEventListener('click', () => {
+        fileInput.value = '';
+        dropZone.style.display = 'block';
+        controlsSection.style.display = 'none';
+      });
+    </script>
+  </main>
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+</body>
+</html>

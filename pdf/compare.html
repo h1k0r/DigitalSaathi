@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare PDF Documents Online Free — Visual Diff Viewer | DigitalSaathi</title>
+  <meta name="description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .compare-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    @media (max-width: 900px) {
+      .compare-dual-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .compare-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .compare-canvas-box {
+      max-width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+    .compare-canvas-box canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Compare PDF Documents Online Free — Visual Diff Viewer | DigitalSaathi",
+        "url": "https://digitalsaathi.com/pdf/compare.html",
+        "description": "Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to use Compare PDF on DigitalSaathi",
+        "description": "Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload original document and revised version.",
+            "text": "Upload original document and revised version."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Navigate pages in synchronized side-by-side viewer.",
+            "text": "Navigate pages in synchronized side-by-side viewer."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Spot modifications and text differences easily.",
+            "text": "Spot modifications and text differences easily."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.com/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Compare PDF",
+            "item": "https://digitalsaathi.com/pdf/compare.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/compare.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/compare.html">
+  <meta property="og:title" content="Compare PDF Documents Online Free — Visual Diff Viewer | DigitalSaathi">
+  <meta property="og:description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Compare PDF Documents Online Free — Visual Diff Viewer | DigitalSaathi">
+  <meta name="twitter:description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
+</head>
+<body class="tool-page">
+
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <a href="index.html">PDF Tools</a>
+      <span>›</span>
+      <span>Compare PDF</span>
+    </div></nav>
+
+        <div class="tool-hero">
+      <h1 class="tool-hero-title">Compare PDF</h1>
+      <p class="tool-hero-subtitle">Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.</p>
+    </div>
+
+    <!-- Dual Upload Box -->
+    <div class="compare-dual-grid" id="dualUploadBoxes">
+      <div class="upload-zone" id="uploadZone1">
+        <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+        <h3 class="upload-title">Document 1 (Original)</h3>
+        <p class="upload-subtitle" id="labelDoc1">Click to select original PDF</p>
+        <button class="btn btn-outline btn-sm" type="button">Choose PDF 1</button>
+        <input type="file" id="fileInput1" accept="application/pdf" style="display:none;">
+      </div>
+
+      <div class="upload-zone" id="uploadZone2">
+        <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+        <h3 class="upload-title">Document 2 (Modified)</h3>
+        <p class="upload-subtitle" id="labelDoc2">Click to select revised PDF</p>
+        <button class="btn btn-outline btn-sm" type="button">Choose PDF 2</button>
+        <input type="file" id="fileInput2" accept="application/pdf" style="display:none;">
+      </div>
+    </div>
+
+    <!-- Comparison Workspace -->
+    <div id="compareWorkspace" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:12px 18px;border-radius:8px;border:1px solid #e2e8f0;margin-bottom:16px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
+          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1</span>
+          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-outline" id="resetCompareBtn">Change Files</button>
+        </div>
+      </div>
+
+      <div class="compare-dual-grid">
+        <div class="compare-card">
+          <h4 style="font-size:0.95rem;font-weight:700;color:#1e293b;margin-bottom:10px;" id="titleDoc1">Document 1</h4>
+          <div class="compare-canvas-box">
+            <canvas id="canvasDoc1"></canvas>
+          </div>
+        </div>
+        <div class="compare-card">
+          <h4 style="font-size:0.95rem;font-weight:700;color:#1e293b;margin-bottom:10px;" id="titleDoc2">Document 2</h4>
+          <div class="compare-canvas-box">
+            <canvas id="canvasDoc2"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="guide-card">
+      <h3 class="guide-title">How to Compare PDF Documents</h3>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h4 class="step-title">Upload Both Files</h4>
+          <p class="step-desc">Select the original document and the revised version.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h4 class="step-title">Synchronized View</h4>
+          <p class="step-desc">Pages navigate in lockstep side-by-side.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h4 class="step-title">Identify Differences</h4>
+          <p class="step-desc">Spot alterations, modified paragraphs, or added clauses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    let pdfProxy1 = null;
+    let pdfProxy2 = null;
+    let currentPage = 1;
+    let maxPages = 1;
+
+    const fileInput1 = document.getElementById('fileInput1');
+    const fileInput2 = document.getElementById('fileInput2');
+    const uploadZone1 = document.getElementById('uploadZone1');
+    const uploadZone2 = document.getElementById('uploadZone2');
+    const labelDoc1 = document.getElementById('labelDoc1');
+    const labelDoc2 = document.getElementById('labelDoc2');
+    const titleDoc1 = document.getElementById('titleDoc1');
+    const titleDoc2 = document.getElementById('titleDoc2');
+    const compareWorkspace = document.getElementById('compareWorkspace');
+    const dualUploadBoxes = document.getElementById('dualUploadBoxes');
+    const canvasDoc1 = document.getElementById('canvasDoc1');
+    const canvasDoc2 = document.getElementById('canvasDoc2');
+    const prevPageBtn = document.getElementById('prevPageBtn');
+    const nextPageBtn = document.getElementById('nextPageBtn');
+    const pageIndicator = document.getElementById('pageIndicator');
+    const resetCompareBtn = document.getElementById('resetCompareBtn');
+
+    uploadZone1.addEventListener('click', () => fileInput1.click());
+    uploadZone2.addEventListener('click', () => fileInput2.click());
+
+    fileInput1.addEventListener('change', async (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        labelDoc1.textContent = `✓ ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+        titleDoc1.textContent = `Doc 1: ${file.name}`;
+        const bytes = await file.arrayBuffer();
+        pdfProxy1 = await pdfjsLib.getDocument({ data: new Uint8Array(bytes) }).promise;
+        checkBothLoaded();
+      }
+    });
+
+    fileInput2.addEventListener('change', async (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        labelDoc2.textContent = `✓ ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+        titleDoc2.textContent = `Doc 2: ${file.name}`;
+        const bytes = await file.arrayBuffer();
+        pdfProxy2 = await pdfjsLib.getDocument({ data: new Uint8Array(bytes) }).promise;
+        checkBothLoaded();
+      }
+    });
+
+    function checkBothLoaded() {
+      if (pdfProxy1 && pdfProxy2) {
+        maxPages = Math.max(pdfProxy1.numPages, pdfProxy2.numPages);
+        currentPage = 1;
+        dualUploadBoxes.style.display = 'none';
+        compareWorkspace.style.display = 'block';
+        renderComparePage();
+      }
+    }
+
+    async function renderComparePage() {
+      pageIndicator.textContent = `Page ${currentPage} of ${maxPages}`;
+      prevPageBtn.disabled = currentPage <= 1;
+      nextPageBtn.disabled = currentPage >= maxPages;
+
+      // Render Doc 1
+      if (currentPage <= pdfProxy1.numPages) {
+        const page1 = await pdfProxy1.getPage(currentPage);
+        const vp1 = page1.getViewport({ scale: 0.9 });
+        canvasDoc1.width = vp1.width;
+        canvasDoc1.height = vp1.height;
+        await page1.render({ canvasContext: canvasDoc1.getContext('2d'), viewport: vp1 }).promise;
+      } else {
+        const ctx1 = canvasDoc1.getContext('2d');
+        ctx1.clearRect(0, 0, canvasDoc1.width, canvasDoc1.height);
+        ctx1.fillText('Page not present in Doc 1', 50, 50);
+      }
+
+      // Render Doc 2
+      if (currentPage <= pdfProxy2.numPages) {
+        const page2 = await pdfProxy2.getPage(currentPage);
+        const vp2 = page2.getViewport({ scale: 0.9 });
+        canvasDoc2.width = vp2.width;
+        canvasDoc2.height = vp2.height;
+        await page2.render({ canvasContext: canvasDoc2.getContext('2d'), viewport: vp2 }).promise;
+      } else {
+        const ctx2 = canvasDoc2.getContext('2d');
+        ctx2.clearRect(0, 0, canvasDoc2.width, canvasDoc2.height);
+        ctx2.fillText('Page not present in Doc 2', 50, 50);
+      }
+    }
+
+    prevPageBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderComparePage(); } });
+    nextPageBtn.addEventListener('click', () => { if (currentPage < maxPages) { currentPage++; renderComparePage(); } });
+
+    resetCompareBtn.addEventListener('click', () => {
+      compareWorkspace.style.display = 'none';
+      dualUploadBoxes.style.display = 'grid';
+      pdfProxy1 = null;
+      pdfProxy2 = null;
+      fileInput1.value = '';
+      fileInput2.value = '';
+      labelDoc1.textContent = 'Click to select original PDF';
+      labelDoc2.textContent = 'Click to select revised PDF';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark PDF Online Free — Add Text & Logo Stamps | DigitalSaathi</title>
+  <meta name="description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .watermark-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .wm-tab-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #64748b;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .wm-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary);
+    }
+    .wm-workspace-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      margin: 24px 0;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .wm-workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .wm-preview-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .wm-controls-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    #wmPreviewCanvas {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #ffffff;
+    }
+  </style>
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Watermark PDF Online Free — Add Text & Logo Stamps | DigitalSaathi",
+        "url": "https://digitalsaathi.com/pdf/watermark.html",
+        "description": "Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to use Watermark PDF on DigitalSaathi",
+        "description": "Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select your PDF document.",
+            "text": "Select your PDF document."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter text or upload logo image, set angle and opacity.",
+            "text": "Enter text or upload logo image, set angle and opacity."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Click 'Apply Watermark & Download'.",
+            "text": "Click 'Apply Watermark & Download'."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.com/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Watermark PDF",
+            "item": "https://digitalsaathi.com/pdf/watermark.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/watermark.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/watermark.html">
+  <meta property="og:title" content="Watermark PDF Online Free — Add Text & Logo Stamps | DigitalSaathi">
+  <meta property="og:description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Watermark PDF Online Free — Add Text & Logo Stamps | DigitalSaathi">
+  <meta name="twitter:description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
+</head>
+<body class="tool-page">
+
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <a href="index.html">PDF Tools</a>
+      <span>›</span>
+      <span>Watermark PDF</span>
+    </div></nav>
+
+        <div class="tool-hero">
+      <h1 class="tool-hero-title">Watermark PDF</h1>
+      <p class="tool-hero-subtitle">Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.</p>
+    </div>
+
+    <!-- Upload Box -->
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
+      <p class="drop-hint-text">Add confidential, draft, or branded copyright stamps</p>
+      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
+      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+    </div>
+
+    <!-- File Info Bar -->
+    <div class="file-info-bar" id="fileInfo" style="display: none;">
+      <div class="file-details">
+        <span class="file-name" id="fileName">document.pdf</span>
+        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      </div>
+      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
+    </div>
+
+    <!-- Workspace -->
+    <div id="wmWorkspace" class="wm-workspace-grid" style="display:none;">
+      <!-- Preview -->
+      <div class="wm-preview-card">
+        <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:#334155;">Live Preview (Page 1)</h4>
+        <canvas id="wmPreviewCanvas"></canvas>
+      </div>
+
+      <!-- Controls -->
+      <div class="wm-controls-card">
+        <div class="watermark-tabs">
+          <button class="wm-tab-btn active" id="tabTextBtn">Text Stamp</button>
+          <button class="wm-tab-btn" id="tabImgBtn">Image Logo</button>
+        </div>
+
+        <!-- Text Tab Content -->
+        <div id="textTabContent">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Watermark Text</label>
+            <input type="text" id="wmText" class="form-input" value="CONFIDENTIAL" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Color Preset</label>
+            <select id="wmColor" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
+              <option value="red" selected>Crimson Red (#dc2626)</option>
+              <option value="gray">Slate Gray (#64748b)</option>
+              <option value="blue">Deep Blue (#1d4ed8)</option>
+              <option value="black">Pure Black (#000000)</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Font Size (<span id="fontSizeVal">48</span> pt)</label>
+            <input type="range" id="wmFontSize" min="16" max="96" value="48" style="width:100%;">
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Rotation (<span id="wmRotVal">45</span>°)</label>
+            <input type="range" id="wmRotation" min="-90" max="90" value="45" style="width:100%;">
+          </div>
+        </div>
+
+        <!-- Image Tab Content -->
+        <div id="imgTabContent" style="display:none;">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Upload Watermark Logo (PNG/JPG)</label>
+            <input type="file" id="wmImageInput" accept="image/*" class="form-input" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:6px;">
+          </div>
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label" style="font-weight:600;">Logo Scale (<span id="wmImgScaleVal">50</span>%)</label>
+            <input type="range" id="wmImgScale" min="10" max="100" value="50" style="width:100%;">
+          </div>
+        </div>
+
+        <!-- Common Controls -->
+        <div class="form-group" style="margin-bottom:12px;">
+          <label class="form-label" style="font-weight:600;">Opacity (<span id="wmOpacityVal">30</span>%)</label>
+          <input type="range" id="wmOpacity" min="5" max="90" value="30" style="width:100%;">
+        </div>
+
+        <div class="form-group" style="margin-bottom:18px;">
+          <label class="form-label" style="font-weight:600;">Layout Pattern</label>
+          <select id="wmLayout" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
+            <option value="center" selected>Single Center Stamp</option>
+            <option value="repeat">Tiled 3x3 Repeat Grid</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" id="processWmBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;">Apply Watermark & Download</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-container" id="progressContainer" style="display: none;">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+      <p class="progress-text" id="progressText">Stamping watermark... 0%</p>
+    </div>
+
+    <!-- Result Card -->
+    <div class="result-card" id="resultCard" style="display: none;">
+      <div class="result-icon">🎉</div>
+      <h3 class="result-title">Watermark Applied Successfully!</h3>
+      <p class="result-desc" id="resultDesc">Your document is now stamped and protected.</p>
+      <div class="result-actions">
+        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="watermarked.pdf">⬇️ Download Watermarked PDF</a>
+        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Watermark Another PDF</button>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="guide-card">
+      <h3 class="guide-title">How to Watermark PDF Files</h3>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h4 class="step-title">Upload PDF</h4>
+          <p class="step-desc">Select your PDF document. The first page is rendered with a live preview.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h4 class="step-title">Customize Stamp</h4>
+          <p class="step-desc">Type your text or upload a logo, set angle, opacity, and choose single or repeating pattern.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h4 class="step-title">Download File</h4>
+          <p class="step-desc">Click Apply Watermark to export your protected PDF file instantly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h3 class="faq-heading">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary class="faq-question">Can I use transparent PNG logos?</summary>
+          <div class="faq-answer">Yes, PNG files with transparent backgrounds are fully supported and will blend seamlessly with your document pages.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">Will the watermark be applied to all pages?</summary>
+          <div class="faq-answer">Yes, the watermark is stamped across every single page in the entire document.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    let currentFile = null;
+    let originalPdfBytes = null;
+    let baseCanvasImg = null;
+    let activeMode = 'text'; // 'text' | 'image'
+    let loadedLogoImg = null;
+
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
+    const wmWorkspace = document.getElementById('wmWorkspace');
+    const wmPreviewCanvas = document.getElementById('wmPreviewCanvas');
+    const tabTextBtn = document.getElementById('tabTextBtn');
+    const tabImgBtn = document.getElementById('tabImgBtn');
+    const textTabContent = document.getElementById('textTabContent');
+    const imgTabContent = document.getElementById('imgTabContent');
+    const wmText = document.getElementById('wmText');
+    const wmColor = document.getElementById('wmColor');
+    const wmFontSize = document.getElementById('wmFontSize');
+    const fontSizeVal = document.getElementById('fontSizeVal');
+    const wmRotation = document.getElementById('wmRotation');
+    const wmRotVal = document.getElementById('wmRotVal');
+    const wmOpacity = document.getElementById('wmOpacity');
+    const wmOpacityVal = document.getElementById('wmOpacityVal');
+    const wmLayout = document.getElementById('wmLayout');
+    const wmImageInput = document.getElementById('wmImageInput');
+    const wmImgScale = document.getElementById('wmImgScale');
+    const wmImgScaleVal = document.getElementById('wmImgScaleVal');
+    const processWmBtn = document.getElementById('processWmBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const resultCard = document.getElementById('resultCard');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    tabTextBtn.addEventListener('click', () => {
+      activeMode = 'text';
+      tabTextBtn.classList.add('active');
+      tabImgBtn.classList.remove('active');
+      textTabContent.style.display = 'block';
+      imgTabContent.style.display = 'none';
+      drawPreview();
+    });
+
+    tabImgBtn.addEventListener('click', () => {
+      activeMode = 'image';
+      tabImgBtn.classList.add('active');
+      tabTextBtn.classList.remove('active');
+      imgTabContent.style.display = 'block';
+      textTabContent.style.display = 'none';
+      drawPreview();
+    });
+
+    selectBtn.addEventListener('click', () => fileInput.click());
+    uploadZone.addEventListener('click', (e) => {
+      if (e.target !== selectBtn) fileInput.click();
+    });
+
+    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('drag-over');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    wmImageInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const img = new Image();
+          img.onload = () => {
+            loadedLogoImg = img;
+            drawPreview();
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+
+    [wmText, wmColor, wmLayout].forEach(el => el.addEventListener('input', drawPreview));
+    wmFontSize.addEventListener('input', () => { fontSizeVal.textContent = wmFontSize.value; drawPreview(); });
+    wmRotation.addEventListener('input', () => { wmRotVal.textContent = wmRotation.value; drawPreview(); });
+    wmOpacity.addEventListener('input', () => { wmOpacityVal.textContent = wmOpacity.value; drawPreview(); });
+    wmImgScale.addEventListener('input', () => { wmImgScaleVal.textContent = wmImgScale.value; drawPreview(); });
+
+    async function handleFile(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Please select a valid PDF file.');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      uploadZone.style.display = 'none';
+      fileInfo.style.display = 'flex';
+      resultCard.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '30%';
+      progressText.textContent = 'Rendering preview...';
+
+      try {
+        originalPdfBytes = await file.arrayBuffer();
+        const pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
+        const total = pdfDocProxy.numPages;
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${total} ${total === 1 ? 'Page' : 'Pages'}`;
+
+        const page = await pdfDocProxy.getPage(1);
+        const viewport = page.getViewport({ scale: 0.8 });
+        const offscreen = document.createElement('canvas');
+        offscreen.width = viewport.width;
+        offscreen.height = viewport.height;
+        const offCtx = offscreen.getContext('2d');
+        await page.render({ canvasContext: offCtx, viewport: viewport }).promise;
+
+        baseCanvasImg = offscreen;
+        wmPreviewCanvas.width = viewport.width;
+        wmPreviewCanvas.height = viewport.height;
+
+        progressContainer.style.display = 'none';
+        wmWorkspace.style.display = 'grid';
+        drawPreview();
+      } catch (err) {
+        console.error(err);
+        alert('Failed to load PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        uploadZone.style.display = 'block';
+      }
+    }
+
+    function drawPreview() {
+      if (!baseCanvasImg) return;
+      const ctx = wmPreviewCanvas.getContext('2d');
+      ctx.clearRect(0, 0, wmPreviewCanvas.width, wmPreviewCanvas.height);
+      ctx.drawImage(baseCanvasImg, 0, 0);
+
+      const op = (parseInt(wmOpacity.value, 10) || 30) / 100;
+      const rot = (parseInt(wmRotation.value, 10) || 0) * Math.PI / 180;
+      const isRepeat = wmLayout.value === 'repeat';
+
+      ctx.save();
+      ctx.globalAlpha = op;
+
+      if (activeMode === 'text') {
+        const text = wmText.value || 'WATERMARK';
+        const size = parseInt(wmFontSize.value, 10) || 48;
+        const color = wmColor.value;
+        ctx.font = `bold ${size}px Inter, sans-serif`;
+        ctx.fillStyle = color === 'red' ? '#dc2626' : (color === 'blue' ? '#1d4ed8' : (color === 'gray' ? '#64748b' : '#000000'));
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        if (isRepeat) {
+          const stepX = wmPreviewCanvas.width / 3;
+          const stepY = wmPreviewCanvas.height / 3;
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+              ctx.save();
+              ctx.translate((i + 0.5) * stepX, (j + 0.5) * stepY);
+              ctx.rotate(rot);
+              ctx.fillText(text, 0, 0);
+              ctx.restore();
+            }
+          }
+        } else {
+          ctx.translate(wmPreviewCanvas.width / 2, wmPreviewCanvas.height / 2);
+          ctx.rotate(rot);
+          ctx.fillText(text, 0, 0);
+        }
+      } else if (activeMode === 'image' && loadedLogoImg) {
+        const scale = (parseInt(wmImgScale.value, 10) || 50) / 100;
+        const targetW = (wmPreviewCanvas.width * 0.4) * scale;
+        const targetH = (loadedLogoImg.height / loadedLogoImg.width) * targetW;
+
+        if (isRepeat) {
+          const stepX = wmPreviewCanvas.width / 3;
+          const stepY = wmPreviewCanvas.height / 3;
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+              ctx.drawImage(loadedLogoImg, (i + 0.5) * stepX - targetW / 2, (j + 0.5) * stepY - targetH / 2, targetW, targetH);
+            }
+          }
+        } else {
+          ctx.drawImage(loadedLogoImg, (wmPreviewCanvas.width - targetW) / 2, (wmPreviewCanvas.height - targetH) / 2, targetW, targetH);
+        }
+      }
+      ctx.restore();
+    }
+
+    processWmBtn.addEventListener('click', async () => {
+      wmWorkspace.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Stamping watermark on document...';
+
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+        const pages = pdfDoc.getPages();
+        const total = pages.length;
+
+        const opacity = (parseInt(wmOpacity.value, 10) || 30) / 100;
+        const rotDeg = parseInt(wmRotation.value, 10) || 0;
+        const isRepeat = wmLayout.value === 'repeat';
+
+        let font = null;
+        let embeddedImg = null;
+
+        if (activeMode === 'text') {
+          font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+        } else if (activeMode === 'image' && loadedLogoImg) {
+          const imgBytes = await (await fetch(loadedLogoImg.src)).arrayBuffer();
+          if (loadedLogoImg.src.startsWith('data:image/png')) {
+            embeddedImg = await pdfDoc.embedPng(imgBytes);
+          } else {
+            embeddedImg = await pdfDoc.embedJpg(imgBytes);
+          }
+        }
+
+        for (let idx = 0; idx < total; idx++) {
+          progressFill.style.width = `${Math.round(20 + ((idx + 1) / total) * 60)}%`;
+          const page = pages[idx];
+          const { width, height } = page.getSize();
+
+          if (activeMode === 'text') {
+            const text = wmText.value || 'WATERMARK';
+            const size = parseInt(wmFontSize.value, 10) || 48;
+            const color = wmColor.value;
+            let c = PDFLib.rgb(0.86, 0.15, 0.15);
+            if (color === 'gray') c = PDFLib.rgb(0.39, 0.45, 0.54);
+            else if (color === 'blue') c = PDFLib.rgb(0.11, 0.31, 0.85);
+            else if (color === 'black') c = PDFLib.rgb(0, 0, 0);
+
+            const textWidth = font.widthOfTextAtSize(text, size);
+            const textHeight = font.heightAtSize(size);
+
+            if (isRepeat) {
+              const stepX = width / 3;
+              const stepY = height / 3;
+              for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                  page.drawText(text, {
+                    x: (i + 0.5) * stepX - (textWidth / 2),
+                    y: (j + 0.5) * stepY - (textHeight / 2),
+                    size: size,
+                    font: font,
+                    color: c,
+                    opacity: opacity,
+                    rotate: PDFLib.degrees(rotDeg)
+                  });
+                }
+              }
+            } else {
+              page.drawText(text, {
+                x: (width - textWidth) / 2,
+                y: (height - textHeight) / 2,
+                size: size,
+                font: font,
+                color: c,
+                opacity: opacity,
+                rotate: PDFLib.degrees(rotDeg)
+              });
+            }
+          } else if (embeddedImg) {
+            const scale = (parseInt(wmImgScale.value, 10) || 50) / 100;
+            const targetW = (width * 0.4) * scale;
+            const targetH = (embeddedImg.height / embeddedImg.width) * targetW;
+
+            if (isRepeat) {
+              const stepX = width / 3;
+              const stepY = height / 3;
+              for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                  page.drawImage(embeddedImg, {
+                    x: (i + 0.5) * stepX - targetW / 2,
+                    y: (j + 0.5) * stepY - targetH / 2,
+                    width: targetW,
+                    height: targetH,
+                    opacity: opacity
+                  });
+                }
+              }
+            } else {
+              page.drawImage(embeddedImg, {
+                x: (width - targetW) / 2,
+                y: (height - targetH) / 2,
+                width: targetW,
+                height: targetH,
+                opacity: opacity
+              });
+            }
+          }
+        }
+
+        progressFill.style.width = '90%';
+        progressText.textContent = 'Saving stamped PDF...';
+
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        const outName = currentFile.name.replace(/\.pdf$/i, '') + '_watermarked.pdf';
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+        document.getElementById('resultDesc').textContent = `Watermark stamped on all ${total} pages. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+
+        progressContainer.style.display = 'none';
+        resultCard.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Error applying watermark: ' + err.message);
+        progressContainer.style.display = 'none';
+        wmWorkspace.style.display = 'grid';
+      }
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultCard.style.display = 'none';
+      uploadZone.style.display = 'block';
+      fileInfo.style.display = 'none';
+      wmWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+    });
+  </script>
+</body>
+</html>

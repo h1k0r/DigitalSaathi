@@ -1,0 +1,8 @@
+# DigitalSaathi Robots.txt
+# https://digitalsaathi.com
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://digitalsaathi.com/sitemap.xml

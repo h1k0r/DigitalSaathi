@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redact PDF Online Free — Permanently Blackout Sensitive Data | DigitalSaathi</title>
+  <meta name="description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .redact-workspace {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      margin: 24px 0;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .redact-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+    .redact-stage-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stage-wrapper {
+      position: relative;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+    #redactBgCanvas {
+      display: block;
+    }
+    #redactOverlayCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .redact-list {
+      max-height: 240px;
+      overflow-y: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px;
+      margin: 12px 0;
+    }
+    .redact-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: #f8fafc;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+  </style>
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Redact PDF Online Free — Permanently Blackout Sensitive Data | DigitalSaathi",
+        "url": "https://digitalsaathi.com/pdf/redact.html",
+        "description": "Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to use Redact PDF on DigitalSaathi",
+        "description": "Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select your PDF file.",
+            "text": "Select your PDF file."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Click and drag to draw blackout rectangles over sensitive details.",
+            "text": "Click and drag to draw blackout rectangles over sensitive details."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Click 'Permanently Redact & Download'.",
+            "text": "Click 'Permanently Redact & Download'."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.com/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Redact PDF",
+            "item": "https://digitalsaathi.com/pdf/redact.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/redact.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/redact.html">
+  <meta property="og:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | DigitalSaathi">
+  <meta property="og:description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | DigitalSaathi">
+  <meta name="twitter:description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
+</head>
+<body class="tool-page">
+
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <a href="index.html">PDF Tools</a>
+      <span>›</span>
+      <span>Redact PDF</span>
+    </div></nav>
+
+        <div class="tool-hero">
+      <h1 class="tool-hero-title">Redact PDF</h1>
+      <p class="tool-hero-subtitle">Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.</p>
+    </div>
+
+    <!-- Upload Box -->
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
+      <p class="drop-hint-text">Mask Aadhaar numbers, PAN cards, and sensitive information</p>
+      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
+      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+    </div>
+
+    <!-- File Info Bar -->
+    <div class="file-info-bar" id="fileInfo" style="display: none;">
+      <div class="file-details">
+        <span class="file-name" id="fileName">document.pdf</span>
+        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      </div>
+      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
+    </div>
+
+    <!-- Workspace -->
+    <div id="redactWorkspace" class="redact-workspace" style="display:none;">
+      <!-- Canvas Stage -->
+      <div class="redact-stage-card">
+        <div style="display:flex;justify-content:space-between;width:100%;align-items:center;margin-bottom:12px;">
+          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
+          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1 of 1</span>
+          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
+        </div>
+        <p style="font-size:0.8rem;color:#64748b;margin-bottom:8px;">💡 Click and drag across any text or area to draw a blackout redaction rectangle.</p>
+        <div class="stage-wrapper">
+          <canvas id="redactBgCanvas"></canvas>
+          <canvas id="redactOverlayCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Controls & List -->
+      <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;box-shadow:var(--shadow-sm);">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:12px;">Redaction Color</h3>
+        
+        <div style="display:flex;gap:10px;margin-bottom:16px;">
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.9rem;cursor:pointer;">
+            <input type="radio" name="redactColor" value="black" aria-label="Redact with black blackout rectangle" checked> Solid Black (⬛ Blackout)
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.9rem;cursor:pointer;">
+            <input type="radio" name="redactColor" value="white" aria-label="Redact with white whiteout rectangle"> Solid White (⬜ Whiteout)
+          </label>
+        </div>
+
+        <h4 style="font-size:0.95rem;font-weight:700;color:#334155;margin-bottom:6px;">Redaction Boxes (<span id="boxCount">0</span>)</h4>
+        <div class="redact-list" id="redactList">
+          <div style="text-align:center;color:#94a3b8;padding:16px;font-size:0.85rem;">No areas marked on this page yet. Drag on the preview to redact.</div>
+        </div>
+
+        <button class="btn btn-outline btn-sm" id="clearRedactsBtn" style="width:100%;margin-bottom:16px;">Clear Page Redactions</button>
+
+        <button class="btn btn-primary" id="applyRedactionBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;background:#dc2626;border-color:#dc2626;">Permanently Redact & Download</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-container" id="progressContainer" style="display: none;">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+      <p class="progress-text" id="progressText">Sanitizing and redacting PDF... 0%</p>
+    </div>
+
+    <!-- Result Card -->
+    <div class="result-card" id="resultCard" style="display: none;">
+      <div class="result-icon">🎉</div>
+      <h3 class="result-title">PDF Redacted Successfully!</h3>
+      <p class="result-desc" id="resultDesc">All marked sensitive areas have been permanently sanitized and locked.</p>
+      <div class="result-actions">
+        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="redacted.pdf">⬇️ Download Redacted PDF</a>
+        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Redact Another PDF</button>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="guide-card">
+      <h3 class="guide-title">How to Permanently Redact a PDF</h3>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h4 class="step-title">Upload PDF</h4>
+          <p class="step-desc">Select your document containing private numbers or details.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h4 class="step-title">Mark Blackout Boxes</h4>
+          <p class="step-desc">Click and drag over sensitive lines (Aadhaar, PAN, phone numbers, marks).</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h4 class="step-title">Sanitize & Download</h4>
+          <p class="step-desc">Click Permanently Redact. The boxes are baked directly into the PDF coordinate tree.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    let currentFile = null;
+    let originalPdfBytes = null;
+    let pdfDocProxy = null;
+    let totalPages = 1;
+    let currentPageNum = 1;
+    let isDrawing = false;
+    let startX = 0, startY = 0;
+    let pageRedactions = {}; // { [pageNum]: [ { x, y, w, h, color } ] }
+
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const selectBtn = document.getElementById('selectBtn');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
+    const redactWorkspace = document.getElementById('redactWorkspace');
+    const redactBgCanvas = document.getElementById('redactBgCanvas');
+    const redactOverlayCanvas = document.getElementById('redactOverlayCanvas');
+    const overCtx = redactOverlayCanvas.getContext('2d');
+    const prevPageBtn = document.getElementById('prevPageBtn');
+    const nextPageBtn = document.getElementById('nextPageBtn');
+    const pageIndicator = document.getElementById('pageIndicator');
+    const redactList = document.getElementById('redactList');
+    const boxCount = document.getElementById('boxCount');
+    const clearRedactsBtn = document.getElementById('clearRedactsBtn');
+    const applyRedactionBtn = document.getElementById('applyRedactionBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const resultCard = document.getElementById('resultCard');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    selectBtn.addEventListener('click', () => fileInput.click());
+    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
+    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('drag-over');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+
+    async function handleFile(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Please select a valid PDF file.');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      uploadZone.style.display = 'none';
+      fileInfo.style.display = 'flex';
+      resultCard.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '30%';
+      progressText.textContent = 'Loading pages for redaction...';
+
+      try {
+        originalPdfBytes = await file.arrayBuffer();
+        pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
+        totalPages = pdfDocProxy.numPages;
+        currentPageNum = 1;
+        pageRedactions = {};
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
+
+        progressContainer.style.display = 'none';
+        redactWorkspace.style.display = 'grid';
+        await renderPage();
+      } catch (err) {
+        console.error(err);
+        alert('Failed to load PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        uploadZone.style.display = 'block';
+      }
+    }
+
+    async function renderPage() {
+      if (!pdfDocProxy) return;
+      pageIndicator.textContent = `Page ${currentPageNum} of ${totalPages}`;
+      prevPageBtn.disabled = currentPageNum <= 1;
+      nextPageBtn.disabled = currentPageNum >= totalPages;
+
+      const page = await pdfDocProxy.getPage(currentPageNum);
+      const viewport = page.getViewport({ scale: 1.1 });
+      const bgCtx = redactBgCanvas.getContext('2d');
+
+      redactBgCanvas.width = viewport.width;
+      redactBgCanvas.height = viewport.height;
+      redactOverlayCanvas.width = viewport.width;
+      redactOverlayCanvas.height = viewport.height;
+
+      await page.render({ canvasContext: bgCtx, viewport: viewport }).promise;
+      renderOverlayAndList();
+    }
+
+    function renderOverlayAndList() {
+      overCtx.clearRect(0, 0, redactOverlayCanvas.width, redactOverlayCanvas.height);
+      const list = pageRedactions[currentPageNum] || [];
+      boxCount.textContent = list.length;
+
+      if (list.length === 0) {
+        redactList.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:16px;font-size:0.85rem;">No areas marked on this page yet. Drag on the preview to redact.</div>';
+      } else {
+        redactList.innerHTML = '';
+        list.forEach((box, idx) => {
+          // Draw on overlay
+          overCtx.fillStyle = box.color === 'white' ? '#ffffff' : '#000000';
+          overCtx.fillRect(box.x, box.y, box.w, box.h);
+          overCtx.strokeStyle = '#ef4444';
+          overCtx.lineWidth = 1;
+          overCtx.strokeRect(box.x, box.y, box.w, box.h);
+
+          // Build list item
+          const item = document.createElement('div');
+          item.className = 'redact-item';
+          item.innerHTML = `
+            <span>Box #${idx + 1} (${Math.round(box.w)}x${Math.round(box.h)}px)</span>
+            <button class="btn btn-sm btn-outline" style="padding:2px 6px;font-size:0.75rem;color:#dc2626;" data-del="${idx}">✕ Remove</button>
+          `;
+          item.querySelector('button').addEventListener('click', () => {
+            list.splice(idx, 1);
+            renderOverlayAndList();
+          });
+          redactList.appendChild(item);
+        });
+      }
+    }
+
+    function getCanvasPos(e) {
+      const rect = redactOverlayCanvas.getBoundingClientRect();
+      const scaleX = redactOverlayCanvas.width / rect.width;
+      const scaleY = redactOverlayCanvas.height / rect.height;
+      return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY
+      };
+    }
+
+    redactOverlayCanvas.addEventListener('mousedown', (e) => {
+      const pos = getCanvasPos(e);
+      startX = pos.x;
+      startY = pos.y;
+      isDrawing = true;
+    });
+
+    redactOverlayCanvas.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      const pos = getCanvasPos(e);
+      renderOverlayAndList();
+
+      const colorVal = document.querySelector('input[name="redactColor"]:checked').value;
+      overCtx.fillStyle = colorVal === 'white' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
+      overCtx.fillRect(
+        Math.min(startX, pos.x),
+        Math.min(startY, pos.y),
+        Math.abs(pos.x - startX),
+        Math.abs(pos.y - startY)
+      );
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDrawing) return;
+      isDrawing = false;
+      const pos = getCanvasPos(e);
+      const w = Math.abs(pos.x - startX);
+      const h = Math.abs(pos.y - startY);
+
+      if (w > 5 && h > 5) {
+        if (!pageRedactions[currentPageNum]) pageRedactions[currentPageNum] = [];
+        const colorVal = document.querySelector('input[name="redactColor"]:checked').value;
+        pageRedactions[currentPageNum].push({
+          x: Math.min(startX, pos.x),
+          y: Math.min(startY, pos.y),
+          w: w,
+          h: h,
+          color: colorVal
+        });
+      }
+      renderOverlayAndList();
+    });
+
+    clearRedactsBtn.addEventListener('click', () => {
+      pageRedactions[currentPageNum] = [];
+      renderOverlayAndList();
+    });
+
+    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum--; renderPage(); } });
+    nextPageBtn.addEventListener('click', () => { if (currentPageNum < totalPages) { currentPageNum++; renderPage(); } });
+
+    applyRedactionBtn.addEventListener('click', async () => {
+      const hasAny = Object.values(pageRedactions).some(arr => arr && arr.length > 0);
+      if (!hasAny) {
+        alert('Please draw at least one redaction box on the document first!');
+        return;
+      }
+
+      redactWorkspace.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '25%';
+      progressText.textContent = 'Sanitizing document and applying blackouts...';
+
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+        const pages = pdfDoc.getPages();
+
+        for (let pNum = 1; pNum <= pages.length; pNum++) {
+          const boxes = pageRedactions[pNum];
+          if (!boxes || boxes.length === 0) continue;
+
+          progressFill.style.width = `${Math.round(25 + (pNum / pages.length) * 55)}%`;
+          const page = pages[pNum - 1];
+          const { width: pdfW, height: pdfH } = page.getSize();
+
+          const scaleX = pdfW / redactBgCanvas.width;
+          const scaleY = pdfH / redactBgCanvas.height;
+
+          boxes.forEach(box => {
+            const drawX = box.x * scaleX;
+            const drawY = pdfH - ((box.y + box.h) * scaleY);
+            const drawW = box.w * scaleX;
+            const drawH = box.h * scaleY;
+            const c = box.color === 'white' ? PDFLib.rgb(1, 1, 1) : PDFLib.rgb(0, 0, 0);
+
+            page.drawRectangle({
+              x: drawX,
+              y: drawY,
+              width: drawW,
+              height: drawH,
+              color: c,
+              opacity: 1
+            });
+          });
+        }
+
+        progressFill.style.width = '90%';
+        progressText.textContent = 'Generating sanitized PDF...';
+
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        const outName = currentFile.name.replace(/\.pdf$/i, '') + '_redacted.pdf';
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+        document.getElementById('resultDesc').textContent = `Sensitive data redacted and sanitized permanently. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+
+        progressContainer.style.display = 'none';
+        resultCard.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Error redacting PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        redactWorkspace.style.display = 'grid';
+      }
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultCard.style.display = 'none';
+      uploadZone.style.display = 'block';
+      fileInfo.style.display = 'none';
+      redactWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+      pageRedactions = {};
+    });
+  </script>
+</body>
+</html>

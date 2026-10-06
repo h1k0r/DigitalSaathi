@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Counter &amp; Character Count Tool — Free Text Analyzer | DigitalSaathi</title>
+  <meta name="description" content="Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.">
+  <meta name="keywords" content="word counter, character counter, sentence counter, reading time calculator, text analyzer, count words online">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+    .metric-card.highlight {
+      border-color: var(--primary-300);
+      background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%);
+    }
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      line-height: 1.1;
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 6px;
+    }
+    .text-workspace {
+      width: 100%;
+      height: 320px;
+      padding: 16px;
+      font-size: 1rem;
+      line-height: 1.6;
+      border: 2px solid var(--border-default);
+      border-radius: var(--radius-xl);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      resize: vertical;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .text-workspace:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-glow);
+    }
+    .case-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 1rem 0;
+    }
+    .case-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: var(--text-body);
+      transition: all 0.15s;
+    }
+    .case-btn:hover {
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-200);
+    }
+    .density-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+    }
+    .density-table th, .density-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+    .density-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/text/word-counter.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/text/word-counter.html">
+  <meta property="og:title" content="Word Counter &amp; Character Count Tool — Free Text Analyzer | DigitalSaathi">
+  <meta property="og:description" content="Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word Counter &amp; Character Count Tool — Free Text Analyzer | DigitalSaathi">
+  <meta name="twitter:description" content="Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Word Counter &amp; Character Count Tool \u2014 Free Text Analyzer | DigitalSaathi",
+      "url": "https://digitalsaathi.com/text/word-counter.html",
+      "description": "Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Text Tools",
+          "item": "https://digitalsaathi.com/tools/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Word Counter &amp; Character Count Tool \u2014 Free Text Analyzer",
+          "item": "https://digitalsaathi.com/text/word-counter.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+        <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container page-content" style="max-width: 960px; padding: 2rem 1rem 4rem;">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Text Tools</a>
+      <span>/</span>
+      <span class="current">Word Counter</span>
+    </nav>
+
+    <!-- Tool Hero -->
+    <div class="tool-hero">
+      <h1 class="tool-hero-title">Word Counter &amp; Text Analyzer</h1>
+      <p class="tool-hero-subtitle">Real-time words, characters, sentences, reading time, and keyword frequency counter with 100% browser privacy.</p>
+    </div>
+
+    <!-- Live Counters Grid -->
+    <div class="counter-grid">
+      <div class="metric-card highlight">
+        <div id="statWords" class="metric-value">0</div>
+        <div class="metric-label">Words</div>
+      </div>
+      <div class="metric-card">
+        <div id="statChars" class="metric-value">0</div>
+        <div class="metric-label">Characters</div>
+      </div>
+      <div class="metric-card">
+        <div id="statCharsNoSpace" class="metric-value">0</div>
+        <div class="metric-label">Chars (No Space)</div>
+      </div>
+      <div class="metric-card">
+        <div id="statSentences" class="metric-value">0</div>
+        <div class="metric-label">Sentences</div>
+      </div>
+      <div class="metric-card">
+        <div id="statParagraphs" class="metric-value">0</div>
+        <div class="metric-label">Paragraphs</div>
+      </div>
+      <div class="metric-card">
+        <div id="statReadTime" class="metric-value" style="font-size:1.4rem;">0 min</div>
+        <div class="metric-label">Reading Time</div>
+      </div>
+    </div>
+
+    <!-- Textarea Workspace -->
+    <div style="position:relative; margin-bottom:1rem;">
+      <textarea id="textEditor" class="text-workspace" placeholder="Type or paste your text here to analyze in real time..."></textarea>
+    </div>
+
+    <!-- Case Converters & Actions -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1.5rem;">
+      <div class="case-pills">
+        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); align-self:center;">Transform:</span>
+        <button type="button" id="btnUpper" class="case-btn">UPPERCASE</button>
+        <button type="button" id="btnLower" class="case-btn">lowercase</button>
+        <button type="button" id="btnTitle" class="case-btn">Title Case</button>
+        <button type="button" id="btnSentence" class="case-btn">Sentence case</button>
+        <button type="button" id="btnCleanSpaces" class="case-btn">Clean Extra Spaces</button>
+      </div>
+
+      <div style="display:flex; gap:8px;">
+        <button type="button" id="btnSample" class="btn btn-outline btn-sm">Sample Text</button>
+        <button type="button" id="btnCopy" class="btn btn-primary btn-sm">Copy Text</button>
+        <button type="button" id="btnClear" class="btn btn-outline btn-sm">Clear</button>
+      </div>
+    </div>
+
+    <!-- Keyword Density Section -->
+    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; margin-bottom:2rem;">
+      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.75rem;">Keyword Density (Top 10 Words)</h2>
+      <div id="densityWrap" style="overflow-x:auto;">
+        <p style="color:var(--text-muted); font-size:0.88rem;">Start typing above to see recurring keyword statistics.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem;">
+      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">Frequently Asked Questions</h2>
+      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:0.75rem 0;">
+        <h3 style="font-size:0.95rem; font-weight:600;">How is reading time calculated?</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Reading time is calculated using the international standard speed of 200 words per minute (wpm) for average adult readers.</p>
+      </div>
+      <div class="faq-item" style="padding:0.75rem 0 0;">
+        <h3 style="font-size:0.95rem; font-weight:600;">Is my text secure?</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Yes! DigitalSaathi processes your entire text 100% in your local web browser. Nothing is ever sent to or logged on any external server.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Universal Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const editor = document.getElementById('textEditor');
+      const statWords = document.getElementById('statWords');
+      const statChars = document.getElementById('statChars');
+      const statCharsNoSpace = document.getElementById('statCharsNoSpace');
+      const statSentences = document.getElementById('statSentences');
+      const statParagraphs = document.getElementById('statParagraphs');
+      const statReadTime = document.getElementById('statReadTime');
+      const densityWrap = document.getElementById('densityWrap');
+
+      function analyzeText() {
+        const text = editor.value;
+
+        // Characters
+        const chars = text.length;
+        const charsNoSpace = text.replace(/\s+/g, '').length;
+
+        // Words
+        const wordsArr = text.trim() ? text.trim().match(/\b[\w'-]+\b/g) || [] : [];
+        const words = wordsArr.length;
+
+        // Sentences
+        const sentences = text.trim() ? (text.match(/[.!?]+(?:\s+|$)/g) || []).length : 0;
+
+        // Paragraphs
+        const paragraphs = text.trim() ? text.split(/\n+/).filter(p => p.trim().length > 0).length : 0;
+
+        // Reading time
+        const readMins = Math.ceil(words / 200);
+
+        statWords.textContent = words.toLocaleString();
+        statChars.textContent = chars.toLocaleString();
+        statCharsNoSpace.textContent = charsNoSpace.toLocaleString();
+        statSentences.textContent = sentences.toLocaleString();
+        statParagraphs.textContent = paragraphs.toLocaleString();
+        statReadTime.textContent = readMins + (readMins === 1 ? ' min' : ' mins');
+
+        // Density
+        if (words > 0) {
+          const freqMap = {};
+          const stopWords = new Set(['the','and','to','a','of','in','is','it','you','that','he','was','for','on','are','as','with','his','they','i','at','be','this','have','from','or','one','had','by','word','but','not','what','all','were','we','when','your','can','said','there','use','an','each','which','she','do','how','their','if']);
+          
+          wordsArr.forEach(w => {
+            const clean = w.toLowerCase();
+            if (clean.length > 2 && !stopWords.has(clean)) {
+              freqMap[clean] = (freqMap[clean] || 0) + 1;
+            }
+          });
+
+          const sorted = Object.entries(freqMap).sort((a,b) => b[1] - a[1]).slice(0, 8);
+
+          if (sorted.length > 0) {
+            let html = `
+              <table class="density-table">
+                <thead>
+                  <tr>
+                    <th>Keyword</th>
+                    <th>Count</th>
+                    <th>Density</th>
+                  </tr>
+                </thead>
+                <tbody>
+            `;
+            sorted.forEach(([kw, count]) => {
+              const pct = ((count / words) * 100).toFixed(1);
+              html += `
+                <tr>
+                  <td><strong>${window.escapeHtml(kw)}</strong></td>
+                  <td>${count}</td>
+                  <td><span style="background:var(--primary-50); color:var(--primary-800); padding:2px 8px; border-radius:12px; font-weight:600;">${pct}%</span></td>
+                </tr>
+              `;
+            });
+            html += `</tbody></table>`;
+            densityWrap.innerHTML = html;
+          } else {
+            densityWrap.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">No significant keywords found yet.</p>`;
+          }
+        } else {
+          densityWrap.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">Start typing above to see recurring keyword statistics.</p>`;
+        }
+      }
+
+      editor.addEventListener('input', analyzeText);
+
+      // Case transforms
+      document.getElementById('btnUpper').addEventListener('click', () => {
+        editor.value = editor.value.toUpperCase();
+        analyzeText();
+      });
+
+      document.getElementById('btnLower').addEventListener('click', () => {
+        editor.value = editor.value.toLowerCase();
+        analyzeText();
+      });
+
+      document.getElementById('btnTitle').addEventListener('click', () => {
+        editor.value = editor.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+        analyzeText();
+      });
+
+      document.getElementById('btnSentence').addEventListener('click', () => {
+        editor.value = editor.value.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+        analyzeText();
+      });
+
+      document.getElementById('btnCleanSpaces').addEventListener('click', () => {
+        editor.value = editor.value.replace(/[ \t]+/g, ' ').replace(/\n\s*\n/g, '\n\n').trim();
+        analyzeText();
+        window.showToast('Extra spaces cleaned!', 'info');
+      });
+
+      document.getElementById('btnSample').addEventListener('click', () => {
+        editor.value = `DigitalSaathi is India's leading 100% free, private online tools platform.
+
+Every tool runs directly inside your web browser using modern WebAssembly and Canvas APIs. That means your confidential PDF documents, images, and sensitive text files never leave your device.
+
+Enjoy fast, unlimited, zero-signup productivity with our complete suite of PDF, Image, Developer, Calculator, and Utility tools!`;
+        analyzeText();
+      });
+
+      document.getElementById('btnCopy').addEventListener('click', () => {
+        if (!editor.value) return;
+        window.copyToClipboard(editor.value, 'Text copied to clipboard!');
+      });
+
+      document.getElementById('btnClear').addEventListener('click', () => {
+        editor.value = '';
+        analyzeText();
+      });
+    });
+  </script>
+</body>
+</html>

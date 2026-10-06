@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator — Free Custom High-Resolution QR Codes | DigitalSaathi</title>
+  <meta name="description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
+  <meta name="keywords" content="qr code generator, create qr code, wifi qr code, custom qr code, high res qr code, free qr generator online">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    .qr-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 800px) {
+      .qr-layout { grid-template-columns: 1fr; }
+    }
+    .panel-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-md);
+    }
+    .qr-type-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 1.25rem;
+    }
+    .type-btn {
+      padding: 6px 14px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: #f1f5f9;
+      border: 1px solid transparent;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: var(--text-body);
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .type-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .preview-box {
+      background: #f8fafc;
+      border: 2px dashed var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+    #qrcode-target img, #qrcode-target canvas {
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      max-width: 100%;
+      height: auto;
+    }
+    .color-picker-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    .color-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 6px 10px;
+    }
+    .color-input-wrap input[type="color"] {
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      background: transparent;
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/utilities/qr-generator.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/utilities/qr-generator.html">
+  <meta property="og:title" content="QR Code Generator — Free Custom High-Resolution QR Codes | DigitalSaathi">
+  <meta property="og:description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QR Code Generator — Free Custom High-Resolution QR Codes | DigitalSaathi">
+  <meta name="twitter:description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes | DigitalSaathi",
+      "url": "https://digitalsaathi.com/utilities/qr-generator.html",
+      "description": "Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Utilities Tools",
+          "item": "https://digitalsaathi.com/tools/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes",
+          "item": "https://digitalsaathi.com/utilities/qr-generator.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+        <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container page-content" style="max-width: 960px; padding: 2rem 1rem 4rem;">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Utility Tools</a>
+      <span>/</span>
+      <span class="current">QR Code Generator</span>
+    </nav>
+
+    <!-- Tool Header -->
+    <div class="tool-hero">
+      <h1 class="tool-hero-title">Custom QR Code Generator</h1>
+      <p class="tool-hero-subtitle">Create high-resolution custom QR codes for websites, text, WiFi credentials, and contacts with color styling.</p>
+    </div>
+
+    <!-- Interactive Grid Layout -->
+    <div class="qr-layout">
+      <!-- Left Config Controls -->
+      <div class="panel-card">
+        <label class="form-label" style="font-weight:700; display:block; margin-bottom:8px;">Select Content Type</label>
+        <div class="qr-type-pills">
+          <button type="button" class="type-btn active" data-type="url">🔗 URL</button>
+          <button type="button" class="type-btn" data-type="text">📝 Text</button>
+          <button type="button" class="type-btn" data-type="wifi">📶 WiFi</button>
+          <button type="button" class="type-btn" data-type="vcard">👤 vCard</button>
+          <button type="button" class="type-btn" data-type="email">✉️ Email</button>
+        </div>
+
+        <!-- Dynamic Content Forms -->
+        <div id="form-url" class="type-form">
+          <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Website URL *</label>
+          <input type="url" id="inputUrl" class="form-input" value="https://digitalsaathi.com" placeholder="https://example.com" style="width:100%; padding:10px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+        </div>
+
+        <div id="form-text" class="type-form" style="display:none;">
+          <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Plain Text Content *</label>
+          <textarea id="inputText" class="form-input" placeholder="Type your text here..." style="width:100%; height:80px; padding:10px; border:1px solid var(--border-default); border-radius:var(--radius-md);"></textarea>
+        </div>
+
+        <div id="form-wifi" class="type-form" style="display:none;">
+          <div style="margin-bottom:8px;">
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Network Name (SSID) *</label>
+            <input type="text" id="wifiSsid" class="form-input" placeholder="e.g. MyHomeWiFi" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+          <div style="margin-bottom:8px;">
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">WiFi Password</label>
+            <input type="text" id="wifiPass" class="form-input" placeholder="e.g. SecretPass123" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+          <div>
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Security Type</label>
+            <select id="wifiType" class="form-select" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+              <option value="WPA">WPA / WPA2 (Standard)</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">None (Open)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="form-vcard" class="type-form" style="display:none;">
+          <div style="margin-bottom:8px;">
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Full Name *</label>
+            <input type="text" id="vcardName" class="form-input" placeholder="e.g. Rahul Sharma" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+          <div style="margin-bottom:8px;">
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Phone Number</label>
+            <input type="tel" id="vcardPhone" class="form-input" placeholder="+91 9876543210" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+          <div>
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Email</label>
+            <input type="email" id="vcardEmail" class="form-input" placeholder="rahul@example.com" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+        </div>
+
+        <div id="form-email" class="type-form" style="display:none;">
+          <div style="margin-bottom:8px;">
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Recipient Email *</label>
+            <input type="email" id="emailTo" class="form-input" placeholder="support@example.com" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+          <div>
+            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Subject</label>
+            <input type="text" id="emailSub" class="form-input" placeholder="Inquiry" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          </div>
+        </div>
+
+        <!-- Customization -->
+        <hr style="margin:1.25rem 0; border:none; border-top:1px solid var(--border-subtle);">
+        
+        <div class="color-picker-row">
+          <div>
+            <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">QR Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="fgColor" value="#0f172a">
+              <span id="fgColorHex" style="font-size:0.8rem; font-family:var(--font-mono);">#0f172a</span>
+            </div>
+          </div>
+          <div>
+            <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">Background</label>
+            <div class="color-input-wrap">
+              <input type="color" id="bgColor" value="#ffffff">
+              <span id="bgColorHex" style="font-size:0.8rem; font-family:var(--font-mono);">#ffffff</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">Resolution (Size)</label>
+          <select id="qrSize" class="form-select" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+            <option value="200">200 x 200 px (Standard)</option>
+            <option value="300" selected>300 x 300 px (HD)</option>
+            <option value="500">500 x 500 px (Ultra HD)</option>
+            <option value="1000">1000 x 1000 px (Print Quality)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Right Preview & Download Card -->
+      <div class="panel-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-weight:700; font-size:1.1rem; color:var(--text-main); margin-bottom:1rem; text-align:center;">Live QR Preview</div>
+          <div class="preview-box">
+            <div id="qrcode-target"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <button type="button" id="downloadPngBtn" class="btn btn-primary" style="padding:12px; font-weight:700;">Download PNG</button>
+            <button type="button" id="copyQrBtn" class="btn btn-outline" style="padding:12px;">Copy Image</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem;">
+      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">QR Generator FAQ</h2>
+      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:0.75rem 0;">
+        <h3 style="font-size:0.95rem; font-weight:600;">Do generated QR codes expire?</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">No! These are standard static QR codes containing your direct encoded data. They never expire and have zero scan limits.</p>
+      </div>
+      <div class="faq-item" style="padding:0.75rem 0 0;">
+        <h3 style="font-size:0.95rem; font-weight:600;">Is WiFi connection automatic when scanning?</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Yes! Modern iOS and Android camera apps automatically prompt users with "Join Network" when scanning a WiFi QR code.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentType = 'url';
+      let qrcodeObj = null;
+
+      const targetDiv = document.getElementById('qrcode-target');
+      const fgColorInput = document.getElementById('fgColor');
+      const bgColorInput = document.getElementById('bgColor');
+      const qrSizeSelect = document.getElementById('qrSize');
+      const typeBtns = document.querySelectorAll('.type-btn');
+
+      function getQrPayload() {
+        if (currentType === 'url') {
+          return document.getElementById('inputUrl').value.trim() || 'https://digitalsaathi.com';
+        } else if (currentType === 'text') {
+          return document.getElementById('inputText').value.trim() || 'DigitalSaathi';
+        } else if (currentType === 'wifi') {
+          const ssid = document.getElementById('wifiSsid').value.trim();
+          const pass = document.getElementById('wifiPass').value;
+          const type = document.getElementById('wifiType').value;
+          return `WIFI:T:${type};S:${ssid};P:${pass};;`;
+        } else if (currentType === 'vcard') {
+          const name = document.getElementById('vcardName').value.trim();
+          const phone = document.getElementById('vcardPhone').value.trim();
+          const email = document.getElementById('vcardEmail').value.trim();
+          return `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
+        } else if (currentType === 'email') {
+          const to = document.getElementById('emailTo').value.trim();
+          const sub = encodeURIComponent(document.getElementById('emailSub').value.trim());
+          return `mailto:${to}?subject=${sub}`;
+        }
+        return 'https://digitalsaathi.com';
+      }
+
+      function renderQr() {
+        targetDiv.innerHTML = '';
+        const payload = getQrPayload();
+        const size = parseInt(qrSizeSelect.value, 10) || 250;
+        const fg = fgColorInput.value;
+        const bg = bgColorInput.value;
+
+        try {
+          qrcodeObj = new QRCode(targetDiv, {
+            text: payload,
+            width: Math.min(size, 250), // visual preview max
+            height: Math.min(size, 250),
+            colorDark: fg,
+            colorLight: bg,
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        } catch (err) {
+          console.error('QR Render Error', err);
+        }
+      }
+
+      typeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          typeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentType = btn.getAttribute('data-type');
+
+          document.querySelectorAll('.type-form').forEach(f => f.style.display = 'none');
+          const targetForm = document.getElementById(`form-${currentType}`);
+          if (targetForm) targetForm.style.display = 'block';
+
+          renderQr();
+        });
+      });
+
+      // Live inputs
+      document.querySelectorAll('.type-form input, .type-form textarea, .type-form select').forEach(input => {
+        input.addEventListener('input', window.debounce(renderQr, 200));
+      });
+
+      fgColorInput.addEventListener('input', () => {
+        document.getElementById('fgColorHex').textContent = fgColorInput.value;
+        renderQr();
+      });
+
+      bgColorInput.addEventListener('input', () => {
+        document.getElementById('bgColorHex').textContent = bgColorInput.value;
+        renderQr();
+      });
+
+      qrSizeSelect.addEventListener('change', renderQr);
+
+      // Download High-Res PNG
+      document.getElementById('downloadPngBtn').addEventListener('click', () => {
+        const fullSize = parseInt(qrSizeSelect.value, 10) || 300;
+        const payload = getQrPayload();
+        const fg = fgColorInput.value;
+        const bg = bgColorInput.value;
+
+        // Create temporary offscreen container for high-res export
+        const offscreen = document.createElement('div');
+        new QRCode(offscreen, {
+          text: payload,
+          width: fullSize,
+          height: fullSize,
+          colorDark: fg,
+          colorLight: bg,
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        setTimeout(() => {
+          const img = offscreen.querySelector('img') || offscreen.querySelector('canvas');
+          if (img) {
+            let dataUrl = img.src;
+            if (img.tagName === 'CANVAS') {
+              dataUrl = img.toDataURL('image/png');
+            }
+            window.downloadDataURL(dataUrl, `qrcode-${currentType}-${fullSize}px.png`);
+            window.showToast('QR Code downloaded successfully!', 'success');
+          }
+        }, 150);
+      });
+
+      // Copy QR
+      document.getElementById('copyQrBtn').addEventListener('click', async () => {
+        const canvas = targetDiv.querySelector('canvas');
+        if (canvas && navigator.clipboard && window.ClipboardItem) {
+          try {
+            canvas.toBlob(async (blob) => {
+              await navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+              ]);
+              window.showToast('QR Image copied to clipboard!', 'success');
+            });
+          } catch (e) {
+            window.showToast('Direct image copy not supported on this browser.', 'warning');
+          }
+        } else {
+          window.showToast('Use Download PNG to save your QR code.', 'info');
+        }
+      });
+
+      // Initial render
+      renderQr();
+    });
+  </script>
+</body>
+</html>

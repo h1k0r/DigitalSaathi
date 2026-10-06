@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Page Counter & Metadata Inspector Free | DigitalSaathi</title>
+  <meta name="description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .counter-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .counter-stat-box {
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .counter-stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .counter-stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+    .meta-table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .meta-table th, .meta-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .meta-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--gray-700);
+    }
+  </style>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/page-counter.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/page-counter.html">
+  <meta property="og:title" content="PDF Page Counter & Metadata Inspector Free | DigitalSaathi">
+  <meta property="og:description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Page Counter & Metadata Inspector Free | DigitalSaathi">
+  <meta name="twitter:description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
+  <!-- Top Ranking Structured Data Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PDF Page Counter & Metadata Inspector Free | DigitalSaathi",
+      "url": "https://digitalsaathi.com/pdf/page-counter.html",
+      "description": "Instantly count pages across single or batch PDF files online. Calculate cyber caf\u00e9 printing costs, inspect metadata, author, and creation dates for free.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://digitalsaathi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pdf Tools",
+          "item": "https://digitalsaathi.com/pdf/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PDF Page Counter & Metadata Inspector Free",
+          "item": "https://digitalsaathi.com/pdf/page-counter.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Navigation -->
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="tool-hero">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
+        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
+        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
+        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
+        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
+        <span style="color:#ffffff;">Page Counter</span>
+      </div>
+      <h1>🔢 PDF Page Counter & Inspector</h1>
+      <p>Instantly count total pages across single or batch PDF files. Calculate printing costs and inspect metadata.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="tool-content">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
+      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+      <span>/</span>
+      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main);font-weight:600;">PDF Page Counter</span>
+    </nav>
+
+    <div class="tool-box">
+
+      <!-- Upload Area -->
+      <div class="upload-zone" id="drop-zone">
+        <span class="upload-icon">🔢</span>
+        <div class="upload-text">Click or Drag & Drop PDF files</div>
+        <div class="upload-hint">Upload one or multiple PDF files for instant page counting and cost estimate (100% private)</div>
+        <input type="file" id="pdf-input" accept="application/pdf" multiple>
+      </div>
+
+      <!-- Results Summary -->
+      <div id="counter-results-section" style="display:none; margin-top:24px;">
+        
+        <div class="counter-stat-grid">
+          <div class="counter-stat-box">
+            <div class="counter-stat-value" id="stat-total-pages">0</div>
+            <div class="counter-stat-label">Total Pages</div>
+          </div>
+          <div class="counter-stat-box">
+            <div class="counter-stat-value" id="stat-total-files">0</div>
+            <div class="counter-stat-label">Total PDF Files</div>
+          </div>
+          <div class="counter-stat-box">
+            <div class="counter-stat-value" id="stat-total-size">0 KB</div>
+            <div class="counter-stat-label">Combined Size</div>
+          </div>
+          <div class="counter-stat-box" style="background:#ecfdf5; border-color:#a7f3d0;">
+            <div class="counter-stat-value" id="stat-print-cost" style="color:#059669;">₹0</div>
+            <div class="counter-stat-label">Print Cost Estimate (@ ₹2/page)</div>
+          </div>
+        </div>
+
+        <!-- Cost Calculator Settings for Cyber Cafes -->
+        <div class="form-row" style="background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; align-items:center;">
+          <div class="form-group" style="margin-bottom:0; flex:1;">
+            <label class="form-label" style="margin-bottom:2px;">Rate per page (₹)</label>
+            <input type="number" id="input-rate-per-page" class="form-input" value="2" min="0" step="0.5">
+          </div>
+          <div class="form-group" style="margin-bottom:0; flex:1;">
+            <label class="form-label" style="margin-bottom:2px;">Copies multiplier</label>
+            <input type="number" id="input-copies-count" class="form-input" value="1" min="1">
+          </div>
+          <div style="flex:1; display:flex; gap:8px; align-items:flex-end;">
+            <button type="button" id="btn-export-summary-csv" class="btn btn-secondary btn-sm" style="height:38px; width:100%;">💾 Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="meta-table-container">
+          <table class="meta-table" id="meta-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>File Name</th>
+                <th>Pages</th>
+                <th>File Size</th>
+                <th>Title / Producer</th>
+              </tr>
+            </thead>
+            <tbody id="meta-table-body"></tbody>
+          </table>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:12px; margin-top:24px;">
+          <button type="button" id="btn-add-more-pdfs" class="btn btn-primary">➕ Add More Files</button>
+          <button type="button" id="btn-clear-counter" class="btn btn-secondary">Clear All</button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      let fileRecords = []; // Array of { name, size, pageCount, title, producer }
+
+      const fileInput = document.getElementById('pdf-input');
+      const resultsSection = document.getElementById('counter-results-section');
+      const statTotalPages = document.getElementById('stat-total-pages');
+      const statTotalFiles = document.getElementById('stat-total-files');
+      const statTotalSize = document.getElementById('stat-total-size');
+      const statPrintCost = document.getElementById('stat-print-cost');
+      const inputRate = document.getElementById('input-rate-per-page');
+      const inputCopies = document.getElementById('input-copies-count');
+      const tableBody = document.getElementById('meta-table-body');
+      const btnAddMore = document.getElementById('btn-add-more-pdfs');
+      const btnClear = document.getElementById('btn-clear-counter');
+      const btnExportCsv = document.getElementById('btn-export-summary-csv');
+
+      fileInput.addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files);
+        if (!files.length) return;
+        await inspectFiles(files);
+        fileInput.value = '';
+      });
+
+      btnAddMore.addEventListener('click', () => fileInput.click());
+
+      btnClear.addEventListener('click', () => {
+        fileRecords = [];
+        renderDashboard();
+      });
+
+      inputRate.addEventListener('input', calculateCost);
+      inputCopies.addEventListener('input', calculateCost);
+
+      async function inspectFiles(files) {
+        for (const file of files) {
+          if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) continue;
+          try {
+            const buffer = await file.arrayBuffer();
+            const pdfDoc = await PDFLib.PDFDocument.load(buffer, { ignoreEncryption: true });
+            const pageCount = pdfDoc.getPageCount();
+            const title = pdfDoc.getTitle() || '—';
+            const producer = pdfDoc.getProducer() || '—';
+
+            fileRecords.push({
+              name: file.name,
+              size: file.size,
+              pageCount: pageCount,
+              title: title,
+              producer: producer
+            });
+          } catch (err) {
+            console.error(err);
+            if (typeof showToast === 'function') showToast(`Could not read ${file.name}`, 'error');
+          }
+        }
+        renderDashboard();
+      }
+
+      function renderDashboard() {
+        if (!fileRecords.length) {
+          resultsSection.style.display = 'none';
+          return;
+        }
+
+        resultsSection.style.display = 'block';
+
+        const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
+        const totalSize = fileRecords.reduce((acc, cur) => acc + cur.size, 0);
+
+        statTotalPages.textContent = totalPages.toLocaleString();
+        statTotalFiles.textContent = fileRecords.length.toLocaleString();
+        statTotalSize.textContent = formatFileSize(totalSize);
+
+        calculateCost();
+
+        tableBody.innerHTML = fileRecords.map((item, idx) => `
+          <tr>
+            <td>${idx + 1}</td>
+            <td style="font-weight:600;">${escapeHTML(item.name)}</td>
+            <td><span class="badge badge-primary">${item.pageCount} pages</span></td>
+            <td>${formatFileSize(item.size)}</td>
+            <td style="color:#6b7280; font-size:0.8rem;">${escapeHTML(item.title !== '—' ? item.title : item.producer)}</td>
+          </tr>
+        `).join('');
+      }
+
+      function calculateCost() {
+        const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
+        const rate = parseFloat(inputRate.value) || 0;
+        const copies = parseInt(inputCopies.value, 10) || 1;
+        const totalCost = totalPages * rate * copies;
+        statPrintCost.textContent = `₹${totalCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+      }
+
+      // Export CSV
+      btnExportCsv.addEventListener('click', () => {
+        if (!fileRecords.length) return;
+        let csvContent = 'File Number,File Name,Page Count,File Size Bytes,Formatted Size,Title,Producer\n';
+
+        fileRecords.forEach((r, idx) => {
+          csvContent += `"${idx + 1}","${r.name.replace(/"/g, '""')}","${r.pageCount}","${r.size}","${formatFileSize(r.size)}","${(r.title || '').replace(/"/g, '""')}","${(r.producer || '').replace(/"/g, '""')}"\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        if (typeof downloadBlob === 'function') {
+          downloadBlob(blob, 'pdf_pages_summary.csv');
+        } else {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'pdf_pages_summary.csv';
+          a.click();
+        }
+      });
+
+      function escapeHTML(str) {
+        return String(str || '').replace(/[&<>'"]/g, tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag));
+      }
+    })();
+  </script>
+</body>
+</html>

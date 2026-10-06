@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merge PDF Online Free — Combine Multiple PDF Files | DigitalSaathi</title>
+  <meta name="description" content="Combine PDFs in the order you want with the easiest PDF merger available. 100% free and client-side secure.">
+  <meta name="keywords" content="merge pdf, combine pdf files, join pdf documents, concatenate pdf, merge marksheets pdf, free pdf merger">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Client-Side Libraries -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <style>
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .breadcrumb-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .breadcrumb-nav a:hover {
+      color: var(--primary);
+    }
+
+    .tool-header-block {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 2rem;
+    }
+
+    .merge-workspace {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    .file-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-xs);
+      transition: all var(--transition-fast);
+    }
+    .file-item-card:hover {
+      border-color: var(--primary-300);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .file-item-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .file-thumb-preview {
+      width: 42px;
+      height: 54px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .file-thumb-preview canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .file-item-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .file-item-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+    .file-item-details {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .file-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action-icon {
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-body);
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+    }
+    .btn-action-icon:hover {
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-300);
+    }
+    .btn-action-icon.delete:hover {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: var(--danger-border);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-surface-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin: 1rem 0;
+      display: none;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent-emerald) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .result-banner {
+      display: none;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Merge PDF Online Free — Combine Multiple PDF Files | DigitalSaathi",
+        "url": "https://digitalsaathi.com/pdf/merge.html",
+        "description": "Combine PDFs in the order you want with the easiest PDF merger available. 100% free and client-side secure.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to use Merge PDF on DigitalSaathi",
+        "description": "Combine PDFs in the order you want with the easiest PDF merger available. 100% free and client-side secure.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select or drop your PDF files into the merger.",
+            "text": "Select or drop your PDF files into the merger."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Reorder files or pages into your desired sequence.",
+            "text": "Reorder files or pages into your desired sequence."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Click 'Merge PDF' and download your combined document.",
+            "text": "Click 'Merge PDF' and download your combined document."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.com/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Merge PDF",
+            "item": "https://digitalsaathi.com/pdf/merge.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/merge.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/merge.html">
+  <meta property="og:title" content="Merge PDF Online Free — Combine Multiple PDF Files | DigitalSaathi">
+  <meta property="og:description" content="Combine PDFs in the order you want with the easiest PDF merger available. 100% free and client-side secure.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Merge PDF Online Free — Combine Multiple PDF Files | DigitalSaathi">
+  <meta name="twitter:description" content="Combine PDFs in the order you want with the easiest PDF merger available. 100% free and client-side secure.">
+</head>
+<body>
+
+  <!-- Navigation -->
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container" style="max-width: 900px; padding: 2.5rem var(--space-4) 5rem;">
+
+    <!-- 1. Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">PDF Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Merge PDF</span>
+    </nav>
+
+    <!-- 2 & 3. Header Block -->
+    <div class="tool-header-block">
+      <div class="pill-badge" style="background:var(--color-pdf-bg);color:var(--color-pdf);border-color:var(--color-pdf-border);">
+        <span>📑</span> PDF Organization Suite
+      </div>
+      <h1 style="font-size: clamp(1.8rem, 3vw + 0.5rem, 2.4rem); font-weight: 800; margin-bottom: 0.5rem;">
+        Merge PDF Files Online
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;">
+        Combine multiple PDF marksheets, certificates, and documents into a single organized file in seconds.
+      </p>
+    </div>
+
+    <!-- 4. Upload Dropzone -->
+    <div class="upload-zone" id="merge-dropzone" style="max-width: 720px; margin: 0 auto;">
+      <input type="file" id="merge-file-input" accept="application/pdf" multiple aria-label="Upload PDF files to merge">
+      <div class="upload-zone-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+      <div class="upload-zone-title">Select 2 or more PDF files, or drag & drop here</div>
+      <div class="upload-zone-hint">Upload multiple marksheets, certificates, or scan reports (Supports PDF files up to 100MB)</div>
+      <span class="upload-privacy-pill">🔒 Processed 100% locally in your browser</span>
+    </div>
+
+    <!-- 5 & 6 & 7. Workspace & Order Manager -->
+    <div class="merge-workspace card" id="merge-workspace">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h3 style="font-size:1.15rem; font-weight:700;">Files to Merge (<span id="file-count-badge">0</span>)</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Use the Up/Down arrows to set your preferred page sequence</p>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-add-more-files">
+            + Add More Files
+          </button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-clear-all" style="color:var(--danger);">
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- File List Container -->
+      <div id="file-list-container" style="margin-bottom:1.5rem;"></div>
+
+      <!-- Output Settings -->
+      <div class="form-group" style="border-top:1px solid var(--border-subtle); padding-top:1rem;">
+        <label class="form-label" for="output-filename">Merged PDF File Name</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="output-filename" class="form-input" value="DigitalSaathi_Merged.pdf" style="max-width:380px;">
+        </div>
+      </div>
+
+      <!-- Processing Progress Bar -->
+      <div class="progress-bar-container" id="merge-progress-bar">
+        <div class="progress-bar-fill" id="merge-progress-fill"></div>
+      </div>
+      <div id="merge-status-text" style="text-align:center; font-size:0.85rem; color:var(--text-muted); display:none; margin-bottom:1rem;"></div>
+
+      <!-- Merge Action Button -->
+      <button type="button" class="btn btn-primary btn-lg btn-full" id="btn-execute-merge">
+        Merge <span id="btn-merge-count-label">0</span> PDF Files →
+      </button>
+    </div>
+
+    <!-- 8. Result State Banner -->
+    <div class="result-banner" id="merge-result-banner">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:var(--success-text); margin-bottom:4px;">
+        PDFs Successfully Merged!
+      </h2>
+      <p style="font-size:0.9rem; color:var(--text-body); margin-bottom:1.25rem;">
+        Total Pages: <strong id="res-total-pages">0</strong> • Final Size: <strong id="res-total-size">0 KB</strong>
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-success btn-lg" id="btn-download-merged">
+          📥 Download Merged PDF
+        </button>
+        <button type="button" class="btn btn-secondary btn-lg" id="btn-reset-tool">
+          🔄 Merge More Files
+        </button>
+      </div>
+    </div>
+
+    <!-- 9. Step-by-Step Instructions -->
+    <section style="margin-top: 4.5rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">
+        How to Merge PDF Files Online in 3 Simple Steps
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">1️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Select PDF Files</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Choose documents, marksheets, or scan attachments from your device.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">2️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Arrange the Order</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Use the Up and Down controls to sort pages in your required sequence.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">3️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Download Combined PDF</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Click Merge and instantly download your unified PDF without watermark overlays.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ Accordion -->
+    <section style="margin-top: 4rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">
+        Frequently Asked Questions
+      </h2>
+      <div class="accordion accordion-exclusive" style="display:flex; flex-direction:column; gap:12px;">
+        <div class="accordion-item card active" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>Is there a limit on how many PDF files I can merge?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            No! You can combine 2, 5, 10, or more PDF files at once. Because the merging happens inside your local browser RAM via WebAssembly, there are no artificial file limits.
+          </div>
+        </div>
+        <div class="accordion-item card" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>Are my confidential certificates safe when merging?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            Yes, 100%. DigitalSaathi processes your PDF byte streams entirely on your computer or phone. Your files are never uploaded across the internet or stored on remote servers.
+          </div>
+        </div>
+        <div class="accordion-item card" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>Will merging reduce the print quality of my certificates?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            No. Our PDF engine copies the underlying vector paths, text objects, and embedded images directly without lossy recompression, preserving 100% of original visual sharpness.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Related Tools -->
+    <section style="margin-top: 4rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem;">Related PDF Tools</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+        <a href="split.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">✂️</div>
+            <h3 class="tool-card-title">Split PDF</h3>
+            <p class="tool-card-desc">Extract specific pages or separate documents.</p>
+          </div>
+          <div class="tool-card-footer"><span>Split Document →</span></div>
+        </a>
+        <a href="compress.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">🗜️</div>
+            <h3 class="tool-card-title">Compress PDF</h3>
+            <p class="tool-card-desc">Reduce PDF size for government portal uploads.</p>
+          </div>
+          <div class="tool-card-footer"><span>Compress PDF →</span></div>
+        </a>
+        <a href="pdf-to-jpg.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">🖼️</div>
+            <h3 class="tool-card-title">PDF to JPG</h3>
+            <p class="tool-card-desc">Convert PDF pages into clear JPEG images.</p>
+          </div>
+          <div class="tool-card-footer"><span>Convert to JPG →</span></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SaaS Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Master & Tool Scripts -->
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    let filesList = []; // { file, buffer, pageCount, thumbCanvas }
+    let mergedPdfBlob = null;
+
+    const fileInput = document.getElementById('merge-file-input');
+    const dropzone = document.getElementById('merge-dropzone');
+    const workspace = document.getElementById('merge-workspace');
+    const fileListContainer = document.getElementById('file-list-container');
+    const fileCountBadge = document.getElementById('file-count-badge');
+    const btnMergeCountLabel = document.getElementById('btn-merge-count-label');
+    const btnExecuteMerge = document.getElementById('btn-execute-merge');
+    const btnAddMore = document.getElementById('btn-add-more-files');
+    const btnClearAll = document.getElementById('btn-clear-all');
+    const progressBar = document.getElementById('merge-progress-bar');
+    const progressFill = document.getElementById('merge-progress-fill');
+    const statusText = document.getElementById('merge-status-text');
+    const resultBanner = document.getElementById('merge-result-banner');
+    const btnDownload = document.getElementById('btn-download-merged');
+    const btnReset = document.getElementById('btn-reset-tool');
+    const outputFilenameInput = document.getElementById('output-filename');
+
+    // Handle File Selection
+    async function handleFilesSelected(newFiles) {
+      if (!newFiles || newFiles.length === 0) return;
+
+      const validPdfs = Array.from(newFiles).filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+      if (validPdfs.length === 0) {
+        dsToast.error('Please select valid PDF files.');
+        return;
+      }
+
+      dsToast.info(`Loading ${validPdfs.length} PDF file(s)...`);
+
+      for (const file of validPdfs) {
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          let pageCount = 1;
+          let thumbDataUrl = null;
+
+          // Inspect page count with PDFLib
+          try {
+            const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            pageCount = pdfDoc.getPageCount();
+          } catch (e) {
+            console.warn('PDF-Lib inspect warning:', e);
+          }
+
+          // Generate thumbnail with pdf.js if available
+          try {
+            if (typeof pdfjsLib !== 'undefined') {
+              const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) });
+              const pdf = await loadingTask.promise;
+              const page = await pdf.getPage(1);
+              const viewport = page.getViewport({ scale: 0.3 });
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              canvas.width = viewport.width;
+              canvas.height = viewport.height;
+              await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+              thumbDataUrl = canvas.toDataURL();
+            }
+          } catch (e) {
+            console.warn('Thumbnail generation warning:', e);
+          }
+
+          filesList.push({
+            id: 'file_' + Math.random().toString(36).substr(2, 9),
+            file: file,
+            buffer: arrayBuffer,
+            pageCount: pageCount,
+            thumbUrl: thumbDataUrl
+          });
+        } catch (err) {
+          dsToast.error(`Could not read "${file.name}": ` + err.message);
+        }
+      }
+
+      renderFileList();
+      dropzone.style.display = 'none';
+      workspace.style.display = 'block';
+      resultBanner.style.display = 'none';
+    }
+
+    // Render list of files with reorder controls
+    function renderFileList() {
+      fileListContainer.innerHTML = '';
+      fileCountBadge.textContent = filesList.length;
+      btnMergeCountLabel.textContent = filesList.length;
+
+      if (filesList.length === 0) {
+        dropzone.style.display = 'block';
+        workspace.style.display = 'none';
+        return;
+      }
+
+      filesList.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'file-item-card';
+
+        const thumbHtml = item.thumbUrl
+          ? `<img src="${item.thumbUrl}" alt="Thumbnail" style="width:100%;height:100%;object-fit:cover;">`
+          : '📄';
+
+        card.innerHTML = `
+          <div class="file-item-info">
+            <div class="file-thumb-preview">${thumbHtml}</div>
+            <div class="file-item-meta">
+              <div class="file-item-name" title="${escapeHtml(item.file.name)}">${index + 1}. ${escapeHtml(item.file.name)}</div>
+              <div class="file-item-details">${item.pageCount} page(s) • ${formatFileSize(item.file.size)}</div>
+            </div>
+          </div>
+          <div class="file-item-actions">
+            <button type="button" class="btn-action-icon" onclick="moveFile(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3;cursor:not-allowed;"' : ''} title="Move Up">↑</button>
+            <button type="button" class="btn-action-icon" onclick="moveFile(${index}, 1)" ${index === filesList.length - 1 ? 'disabled style="opacity:0.3;cursor:not-allowed;"' : ''} title="Move Down">↓</button>
+            <button type="button" class="btn-action-icon delete" onclick="removeFile(${index})" title="Remove File">✕</button>
+          </div>
+        `;
+        fileListContainer.appendChild(card);
+      });
+    }
+
+    // Reorder & Remove Helpers
+    window.moveFile = function(index, direction) {
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= filesList.length) return;
+      const temp = filesList[index];
+      filesList[index] = filesList[newIndex];
+      filesList[newIndex] = temp;
+      renderFileList();
+    };
+
+    window.removeFile = function(index) {
+      filesList.splice(index, 1);
+      renderFileList();
+      dsToast.info('File removed.');
+    };
+
+    // Add more files trigger
+    btnAddMore.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    // Clear all
+    btnClearAll.addEventListener('click', () => {
+      filesList = [];
+      renderFileList();
+      dsToast.info('All files cleared.');
+    });
+
+    // Execute Merge
+    btnExecuteMerge.addEventListener('click', async () => {
+      if (filesList.length < 2) {
+        dsToast.warning('Please add at least 2 PDF files to merge.');
+        return;
+      }
+
+      btnExecuteMerge.disabled = true;
+      btnExecuteMerge.classList.add('is-loading');
+      progressBar.style.display = 'block';
+      progressFill.style.width = '15%';
+      statusText.style.display = 'block';
+      statusText.textContent = 'Initializing PDF-Lib engine...';
+
+      try {
+        const mergedDoc = await PDFLib.PDFDocument.create();
+        let totalPagesMerged = 0;
+
+        for (let i = 0; i < filesList.length; i++) {
+          const item = filesList[i];
+          statusText.textContent = `Merging file ${i + 1} of ${filesList.length}: ${item.file.name}...`;
+          progressFill.style.width = `${Math.round(((i + 1) / filesList.length) * 80)}%`;
+
+          const srcDoc = await PDFLib.PDFDocument.load(item.buffer, { ignoreEncryption: true });
+          const copiedPages = await mergedDoc.copyPages(srcDoc, srcDoc.getPageIndices());
+          copiedPages.forEach((page) => mergedDoc.addPage(page));
+          totalPagesMerged += copiedPages.length;
+        }
+
+        statusText.textContent = 'Finalizing and serializing PDF bytes...';
+        progressFill.style.width = '95%';
+
+        const mergedBytes = await mergedDoc.save();
+        mergedPdfBlob = new Blob([mergedBytes], { type: 'application/pdf' });
+
+        progressFill.style.width = '100%';
+        statusText.textContent = 'Done!';
+
+        setTimeout(() => {
+          workspace.style.display = 'none';
+          resultBanner.style.display = 'block';
+          document.getElementById('res-total-pages').textContent = totalPagesMerged;
+          document.getElementById('res-total-size').textContent = formatFileSize(mergedPdfBlob.size);
+          dsToast.success('PDFs merged successfully!');
+        }, 400);
+
+      } catch (err) {
+        console.error('Merge error:', err);
+        dsToast.error('Failed to merge PDFs: ' + err.message);
+      } finally {
+        btnExecuteMerge.disabled = false;
+        btnExecuteMerge.classList.remove('is-loading');
+        progressBar.style.display = 'none';
+        statusText.style.display = 'none';
+      }
+    });
+
+    // Download Merged PDF
+    btnDownload.addEventListener('click', () => {
+      if (!mergedPdfBlob) return;
+      let filename = outputFilenameInput.value.trim() || 'DigitalSaathi_Merged.pdf';
+      if (!filename.toLowerCase().endsWith('.pdf')) filename += '.pdf';
+      downloadBlob(mergedPdfBlob, filename);
+      dsToast.success('Download started!');
+    });
+
+    // Reset Tool
+    btnReset.addEventListener('click', () => {
+      filesList = [];
+      mergedPdfBlob = null;
+      renderFileList();
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+    });
+
+    // Init Dropzone
+    fileInput.addEventListener('change', (e) => {
+      handleFilesSelected(e.target.files);
+    });
+
+    initDropZone(dropzone, {
+      onFiles: (files) => handleFilesSelected(files)
+    });
+  </script>
+</body>
+</html>

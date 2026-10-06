@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split PDF Online Free — Extract Custom PDF Pages | DigitalSaathi</title>
+  <meta name="description" content="Separate one page or a whole set for easy conversion into independent PDF files in seconds.">
+  <meta name="keywords" content="split pdf, extract pages from pdf, separate pdf pages, split pdf into single pages, split pdf online free">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Client-Side Libraries -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <style>
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .breadcrumb-nav a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb-nav a:hover { color: var(--primary); }
+
+    .tool-header-block {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 2rem;
+    }
+
+    .split-workspace {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    .page-grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 14px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 12px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      margin: 1.25rem 0;
+    }
+
+    .page-thumb-card {
+      background: #ffffff;
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .page-thumb-card:hover {
+      border-color: var(--primary-400);
+      transform: translateY(-2px);
+    }
+    .page-thumb-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-50);
+      box-shadow: 0 0 0 2px var(--primary-glow);
+    }
+
+    .page-thumb-canvas-box {
+      width: 100%;
+      height: 140px;
+      background: #f8fafc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .page-thumb-canvas-box canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .page-num-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 6px;
+    }
+
+    .page-check-indicator {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: transparent;
+      font-weight: bold;
+    }
+    .page-thumb-card.selected .page-check-indicator {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-surface-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin: 1rem 0;
+      display: none;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent-emerald) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .result-banner {
+      display: none;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Split PDF Online Free — Extract Custom PDF Pages | DigitalSaathi",
+        "url": "https://digitalsaathi.com/pdf/split.html",
+        "description": "Separate one page or a whole set for easy conversion into independent PDF files in seconds.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to use Split PDF on DigitalSaathi",
+        "description": "Separate one page or a whole set for easy conversion into independent PDF files in seconds.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload your multi-page PDF document.",
+            "text": "Upload your multi-page PDF document."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select page range or individual pages to extract.",
+            "text": "Select page range or individual pages to extract."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Click 'Split PDF' to download individual pages or a ZIP archive.",
+            "text": "Click 'Split PDF' to download individual pages or a ZIP archive."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.com/pdf/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Split PDF",
+            "item": "https://digitalsaathi.com/pdf/split.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://digitalsaathi.com/pdf/split.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.com/pdf/split.html">
+  <meta property="og:title" content="Split PDF Online Free — Extract Custom PDF Pages | DigitalSaathi">
+  <meta property="og:description" content="Separate one page or a whole set for easy conversion into independent PDF files in seconds.">
+  <meta property="og:site_name" content="DigitalSaathi">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Split PDF Online Free — Extract Custom PDF Pages | DigitalSaathi">
+  <meta name="twitter:description" content="Separate one page or a whole set for easy conversion into independent PDF files in seconds.">
+</head>
+<body>
+
+  <!-- Navigation -->
+          <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../developer/json.html" class="nav-link">
+            Developer
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
+            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
+            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../tools/index.html" class="nav-link">
+            All Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
+            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
+            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
+            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="search-placeholder">Search tools...</span>
+          <kbd class="nav-search-key">Ctrl K</kbd>
+        </button>
+        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container" style="max-width: 960px; padding: 2.5rem var(--space-4) 5rem;">
+
+    <!-- 1. Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">PDF Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Split PDF</span>
+    </nav>
+
+    <!-- 2 & 3. Header Block -->
+    <div class="tool-header-block">
+      <div class="pill-badge" style="background:var(--color-pdf-bg);color:var(--color-pdf);border-color:var(--color-pdf-border);">
+        <span>✂️</span> PDF Organization Suite
+      </div>
+      <h1 style="font-size: clamp(1.8rem, 3vw + 0.5rem, 2.4rem); font-weight: 800; margin-bottom: 0.5rem;">
+        Split PDF Pages Online
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;">
+        Extract specific pages or separate your PDF into multiple standalone documents with visual page selection.
+      </p>
+    </div>
+
+    <!-- 4. Upload Dropzone -->
+    <div class="upload-zone" id="split-dropzone" style="max-width: 720px; margin: 0 auto;">
+      <input type="file" id="split-file-input" accept="application/pdf" aria-label="Upload PDF file to split">
+      <div class="upload-zone-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
+      <div class="upload-zone-title">Select a PDF file, or drag & drop here</div>
+      <div class="upload-zone-hint">Upload any multi-page PDF document (Marksheets, ebooks, notifications)</div>
+      <span class="upload-privacy-pill">🔒 Processed 100% locally in your browser</span>
+    </div>
+
+    <!-- 5 & 6 & 7. Workspace & Page Selector -->
+    <div class="split-workspace card" id="split-workspace">
+      <!-- File Metadata Strip -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:12px; border-bottom:1px solid var(--border-subtle);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.6rem;">📄</span>
+          <div>
+            <div style="font-weight:700; color:var(--text-main); font-size:1rem;" id="doc-name-label">Document.pdf</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);" id="doc-meta-label">0 Pages • 0 KB</div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-change-file">
+          🔄 Change File
+        </button>
+      </div>
+
+      <!-- Split Mode Tabs -->
+      <div style="margin-top:1.25rem;">
+        <div class="tabs" style="display:flex; gap:8px; margin-bottom:1rem;">
+          <button type="button" class="tab-btn category-pill-btn active" data-tab="mode-range">📌 Extract Selected Pages</button>
+          <button type="button" class="tab-btn category-pill-btn" data-tab="mode-all-single">📦 Split Every Page (ZIP)</button>
+        </div>
+
+        <!-- Mode 1: Visual Grid & Custom Range -->
+        <div class="tab-content active" id="mode-range">
+          <!-- Selection Toolbar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-select-all">Select All</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-deselect-all">Deselect All</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-select-odd">Odd Pages</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-select-even">Even Pages</button>
+            </div>
+            <div style="font-size:0.85rem; font-weight:600; color:var(--primary);">
+              Selected: <span id="selected-count-badge">0</span> pages
+            </div>
+          </div>
+
+          <!-- Page Range Text Input -->
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label" for="custom-range-input">Or Type Page Range</label>
+            <input type="text" id="custom-range-input" class="form-input" placeholder="e.g. 1-3, 5, 8-10" style="font-family:var(--font-mono); font-size:0.9rem;">
+            <div class="form-hint">Type comma-separated page numbers or ranges. Grid selections update automatically.</div>
+          </div>
+
+          <!-- Visual Page Thumbnails Grid -->
+          <div class="page-grid-container" id="page-grid-box">
+            <div style="text-align:center; padding:2rem; width:100%; color:var(--text-muted);">
+              Rendering page previews...
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="split-output-filename">Output PDF Name</label>
+            <input type="text" id="split-output-filename" class="form-input" value="DigitalSaathi_Extracted.pdf" style="max-width:380px;">
+          </div>
+        </div>
+
+        <!-- Mode 2: Split Every Page to Individual PDFs -->
+        <div class="tab-content" id="mode-all-single">
+          <div class="alert alert-info">
+            <span>ℹ️</span>
+            <div>Every single page of this document will be separated into its own individual PDF file and downloaded together in a convenient <strong>.ZIP archive</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Processing Progress Bar -->
+      <div class="progress-bar-container" id="split-progress-bar">
+        <div class="progress-bar-fill" id="split-progress-fill"></div>
+      </div>
+      <div id="split-status-text" style="text-align:center; font-size:0.85rem; color:var(--text-muted); display:none; margin-bottom:1rem;"></div>
+
+      <!-- Split Action Button -->
+      <button type="button" class="btn btn-primary btn-lg btn-full" id="btn-execute-split" style="margin-top:1rem;">
+        Split & Download PDF →
+      </button>
+    </div>
+
+    <!-- 8. Result State Banner -->
+    <div class="result-banner" id="split-result-banner">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:var(--success-text); margin-bottom:4px;">
+        PDF Successfully Split!
+      </h2>
+      <p style="font-size:0.9rem; color:var(--text-body); margin-bottom:1.25rem;">
+        Extracted Pages: <strong id="res-split-pages">0</strong> • Output Size: <strong id="res-split-size">0 KB</strong>
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-success btn-lg" id="btn-download-split">
+          📥 Download Split PDF
+        </button>
+        <button type="button" class="btn btn-secondary btn-lg" id="btn-reset-tool">
+          🔄 Split Another File
+        </button>
+      </div>
+    </div>
+
+    <!-- 9. Step-by-Step Instructions -->
+    <section style="margin-top: 4.5rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">
+        How to Split PDF Pages Online in 3 Simple Steps
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">1️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Upload PDF Document</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Drop your multi-page document to instantly render live page previews.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">2️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Select Required Pages</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Click page cards or enter ranges like 1-3, 5 to choose pages to extract.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">3️⃣</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 6px;">Save & Download</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Click Split to download your cleanly separated new PDF file or ZIP archive.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ Accordion -->
+    <section style="margin-top: 4rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">
+        Frequently Asked Questions
+      </h2>
+      <div class="accordion accordion-exclusive" style="display:flex; flex-direction:column; gap:12px;">
+        <div class="accordion-item card active" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>Can I extract non-consecutive pages (e.g. Page 1, 4, and 7)?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            Yes! You can either click on thumbnail cards 1, 4, and 7 directly on the visual grid or type "1, 4, 7" in the range box. All selected pages will be merged into a single clean PDF file.
+          </div>
+        </div>
+        <div class="accordion-item card" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>How does "Split Every Page into ZIP" work?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            When choosing the "Split Every Page (ZIP)" mode, our client-side engine generates independent 1-page PDF files for every page in your document and packages them into a compressed `.zip` archive for immediate download.
+          </div>
+        </div>
+        <div class="accordion-item card" style="padding:0; overflow:hidden;">
+          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between;">
+            <span>Does splitting delete the original file on my device?</span>
+            <span>▼</span>
+          </button>
+          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem;">
+            No. Your original PDF document remains completely untouched on your device. We create a new independent PDF containing only the pages you selected.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Related Tools -->
+    <section style="margin-top: 4rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem;">Related PDF Tools</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+        <a href="merge.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">📑</div>
+            <h3 class="tool-card-title">Merge PDF</h3>
+            <p class="tool-card-desc">Combine multiple PDF files into one.</p>
+          </div>
+          <div class="tool-card-footer"><span>Merge Files →</span></div>
+        </a>
+        <a href="compress.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">🗜️</div>
+            <h3 class="tool-card-title">Compress PDF</h3>
+            <p class="tool-card-desc">Reduce PDF size for government portal uploads.</p>
+          </div>
+          <div class="tool-card-footer"><span>Compress PDF →</span></div>
+        </a>
+        <a href="pdf-to-jpg.html" class="tool-card">
+          <div>
+            <div class="tool-card-icon-box" style="background:var(--color-pdf-bg);color:var(--color-pdf);">🖼️</div>
+            <h3 class="tool-card-title">PDF to JPG</h3>
+            <p class="tool-card-desc">Convert PDF pages into clear JPEG images.</p>
+          </div>
+          <div class="tool-card-footer"><span>Convert to JPG →</span></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SaaS Footer -->
+    <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo" style="color:#ffffff;">
+          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../developer/json.html">Developer Tools</a></li>
+          <li><a href="../calculators/percentage.html">Calculators</a></li>
+          <li><a href="../text/word-counter.html">Text Tools</a></li>
+          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="../developer/json.html">JSON Formatter</a></li>
+          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="../calculators/age.html">Age Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About DigitalSaathi</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+          <li><a href="../tools/index.html">Tools Directory</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../data/tools.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    let currentFile = null;
+    let currentArrayBuffer = null;
+    let totalPageCount = 0;
+    let selectedPageIndices = new Set(); // 0-indexed
+    let splitResultBlob = null;
+    let splitResultFilename = 'DigitalSaathi_Split.pdf';
+    let currentMode = 'mode-range';
+
+    const fileInput = document.getElementById('split-file-input');
+    const dropzone = document.getElementById('split-dropzone');
+    const workspace = document.getElementById('split-workspace');
+    const pageGridBox = document.getElementById('page-grid-box');
+    const docNameLabel = document.getElementById('doc-name-label');
+    const docMetaLabel = document.getElementById('doc-meta-label');
+    const customRangeInput = document.getElementById('custom-range-input');
+    const selectedCountBadge = document.getElementById('selected-count-badge');
+    const outputFilenameInput = document.getElementById('split-output-filename');
+    const progressBar = document.getElementById('split-progress-bar');
+    const progressFill = document.getElementById('split-progress-fill');
+    const statusText = document.getElementById('split-status-text');
+    const resultBanner = document.getElementById('split-result-banner');
+    const btnExecuteSplit = document.getElementById('btn-execute-split');
+    const btnDownload = document.getElementById('btn-download-split');
+    const btnReset = document.getElementById('btn-reset-tool');
+    const btnChangeFile = document.getElementById('btn-change-file');
+
+    // Handle File Upload
+    async function loadPdfFile(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        dsToast.error('Please select a valid PDF file.');
+        return;
+      }
+
+      currentFile = file;
+      docNameLabel.textContent = file.name;
+      docMetaLabel.textContent = `Loading file (${formatFileSize(file.size)})...`;
+      dsToast.info('Loading PDF and rendering page previews...');
+
+      try {
+        currentArrayBuffer = await file.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(currentArrayBuffer, { ignoreEncryption: true });
+        totalPageCount = pdfDoc.getPageCount();
+
+        docMetaLabel.textContent = `${totalPageCount} Page(s) • ${formatFileSize(file.size)}`;
+        dropzone.style.display = 'none';
+        workspace.style.display = 'block';
+        resultBanner.style.display = 'none';
+
+        // Select all by default
+        selectedPageIndices.clear();
+        for (let i = 0; i < totalPageCount; i++) selectedPageIndices.add(i);
+
+        updateRangeInputFromSet();
+        updateSelectedCount();
+        await renderPageThumbnails();
+
+      } catch (err) {
+        console.error('Split load error:', err);
+        dsToast.error('Failed to open PDF: ' + err.message);
+      }
+    }
+
+    // Render Page Thumbnails using pdf.js
+    async function renderPageThumbnails() {
+      pageGridBox.innerHTML = '';
+
+      if (typeof pdfjsLib === 'undefined') {
+        pageGridBox.innerHTML = '<div style="padding:1rem;color:var(--text-muted);">PDF preview library loading...</div>';
+        return;
+      }
+
+      try {
+        const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(currentArrayBuffer) });
+        const pdf = await loadingTask.promise;
+
+        for (let i = 1; i <= totalPageCount; i++) {
+          const card = document.createElement('div');
+          card.className = `page-thumb-card ${selectedPageIndices.has(i - 1) ? 'selected' : ''}`;
+          card.dataset.pageIndex = (i - 1);
+
+          const canvasBox = document.createElement('div');
+          canvasBox.className = 'page-thumb-canvas-box';
+
+          const canvas = document.createElement('canvas');
+          canvasBox.appendChild(canvas);
+
+          card.innerHTML = `
+            <div class="page-check-indicator">✓</div>
+            <div class="page-thumb-canvas-box"></div>
+            <span class="page-num-badge">Page ${i}</span>
+          `;
+          card.querySelector('.page-thumb-canvas-box').replaceWith(canvasBox);
+
+          // Click handler to toggle selection
+          card.addEventListener('click', () => {
+            togglePageSelection(i - 1, card);
+          });
+
+          pageGridBox.appendChild(card);
+
+          // Render canvas asynchronously
+          pdf.getPage(i).then(page => {
+            const viewport = page.getViewport({ scale: 0.25 });
+            const ctx = canvas.getContext('2d');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            page.render({ canvasContext: ctx, viewport: viewport });
+          }).catch(e => console.warn(`Thumbnail render page ${i} error:`, e));
+        }
+      } catch (err) {
+        console.warn('Preview render warning:', err);
+      }
+    }
+
+    function togglePageSelection(pageIndex, cardElement) {
+      if (selectedPageIndices.has(pageIndex)) {
+        selectedPageIndices.delete(pageIndex);
+        cardElement.classList.remove('selected');
+      } else {
+        selectedPageIndices.add(pageIndex);
+        cardElement.classList.add('selected');
+      }
+      updateRangeInputFromSet();
+      updateSelectedCount();
+    }
+
+    function updateSelectedCount() {
+      selectedCountBadge.textContent = selectedPageIndices.size;
+    }
+
+    function updateRangeInputFromSet() {
+      if (selectedPageIndices.size === 0) {
+        customRangeInput.value = '';
+        return;
+      }
+      const sorted = Array.from(selectedPageIndices).map(i => i + 1).sort((a, b) => a - b);
+      const ranges = [];
+      let start = sorted[0];
+      let end = start;
+
+      for (let i = 1; i < sorted.length; i++) {
+        if (sorted[i] === end + 1) {
+          end = sorted[i];
+        } else {
+          ranges.push(start === end ? `${start}` : `${start}-${end}`);
+          start = sorted[i];
+          end = start;
+        }
+      }
+      ranges.push(start === end ? `${start}` : `${start}-${end}`);
+      customRangeInput.value = ranges.join(', ');
+    }
+
+    // Parse Range Input (e.g. "1-3, 5, 7-10")
+    customRangeInput.addEventListener('input', () => {
+      const text = customRangeInput.value.trim();
+      selectedPageIndices.clear();
+
+      if (text) {
+        const parts = text.split(',');
+        parts.forEach(part => {
+          const clean = part.trim();
+          if (clean.includes('-')) {
+            const [startStr, endStr] = clean.split('-');
+            const s = parseInt(startStr);
+            const e = parseInt(endStr);
+            if (!isNaN(s) && !isNaN(e)) {
+              for (let p = Math.min(s, e); p <= Math.max(s, e); p++) {
+                if (p >= 1 && p <= totalPageCount) selectedPageIndices.add(p - 1);
+              }
+            }
+          } else {
+            const p = parseInt(clean);
+            if (!isNaN(p) && p >= 1 && p <= totalPageCount) {
+              selectedPageIndices.add(p - 1);
+            }
+          }
+        });
+      }
+
+      // Update grid UI
+      document.querySelectorAll('.page-thumb-card').forEach(card => {
+        const idx = parseInt(card.dataset.pageIndex);
+        if (selectedPageIndices.has(idx)) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+      updateSelectedCount();
+    });
+
+    // Quick Select Buttons
+    document.getElementById('btn-select-all').addEventListener('click', () => {
+      for (let i = 0; i < totalPageCount; i++) selectedPageIndices.add(i);
+      refreshSelectionUI();
+    });
+    document.getElementById('btn-deselect-all').addEventListener('click', () => {
+      selectedPageIndices.clear();
+      refreshSelectionUI();
+    });
+    document.getElementById('btn-select-odd').addEventListener('click', () => {
+      selectedPageIndices.clear();
+      for (let i = 0; i < totalPageCount; i++) {
+        if ((i + 1) % 2 !== 0) selectedPageIndices.add(i);
+      }
+      refreshSelectionUI();
+    });
+    document.getElementById('btn-select-even').addEventListener('click', () => {
+      selectedPageIndices.clear();
+      for (let i = 0; i < totalPageCount; i++) {
+        if ((i + 1) % 2 === 0) selectedPageIndices.add(i);
+      }
+      refreshSelectionUI();
+    });
+
+    function refreshSelectionUI() {
+      document.querySelectorAll('.page-thumb-card').forEach(card => {
+        const idx = parseInt(card.dataset.pageIndex);
+        if (selectedPageIndices.has(idx)) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+      updateRangeInputFromSet();
+      updateSelectedCount();
+    }
+
+    // Tab Mode Switcher
+    document.querySelectorAll('.split-workspace .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentMode = btn.dataset.tab;
+      });
+    });
+
+    // Execute Split
+    btnExecuteSplit.addEventListener('click', async () => {
+      if (!currentArrayBuffer) return;
+
+      btnExecuteSplit.disabled = true;
+      btnExecuteSplit.classList.add('is-loading');
+      progressBar.style.display = 'block';
+      progressFill.style.width = '20%';
+      statusText.style.display = 'block';
+
+      try {
+        if (currentMode === 'mode-range') {
+          // Extract specific pages to a single PDF
+          if (selectedPageIndices.size === 0) {
+            dsToast.warning('Please select at least 1 page to extract.');
+            btnExecuteSplit.disabled = false;
+            btnExecuteSplit.classList.remove('is-loading');
+            progressBar.style.display = 'none';
+            statusText.style.display = 'none';
+            return;
+          }
+
+          statusText.textContent = `Extracting ${selectedPageIndices.size} pages...`;
+          progressFill.style.width = '50%';
+
+          const srcDoc = await PDFLib.PDFDocument.load(currentArrayBuffer, { ignoreEncryption: true });
+          const newDoc = await PDFLib.PDFDocument.create();
+
+          const sortedIndices = Array.from(selectedPageIndices).sort((a, b) => a - b);
+          const copiedPages = await newDoc.copyPages(srcDoc, sortedIndices);
+          copiedPages.forEach(p => newDoc.addPage(p));
+
+          statusText.textContent = 'Saving extracted PDF...';
+          progressFill.style.width = '90%';
+
+          const pdfBytes = await newDoc.save();
+          splitResultBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+          splitResultFilename = outputFilenameInput.value.trim() || 'DigitalSaathi_Extracted.pdf';
+
+          document.getElementById('res-split-pages').textContent = sortedIndices.length;
+          document.getElementById('res-split-size').textContent = formatFileSize(splitResultBlob.size);
+
+        } else {
+          // Split every page into separate PDFs inside a ZIP archive
+          statusText.textContent = `Splitting ${totalPageCount} individual pages...`;
+          progressFill.style.width = '30%';
+
+          const zip = new JSZip();
+          const srcDoc = await PDFLib.PDFDocument.load(currentArrayBuffer, { ignoreEncryption: true });
+          const baseName = currentFile.name.replace(/\.[^/.]+$/, '');
+
+          for (let i = 0; i < totalPageCount; i++) {
+            statusText.textContent = `Splitting page ${i + 1} of ${totalPageCount}...`;
+            progressFill.style.width = `${30 + Math.round(((i + 1) / totalPageCount) * 50)}%`;
+
+            const pageDoc = await PDFLib.PDFDocument.create();
+            const [copiedPage] = await pageDoc.copyPages(srcDoc, [i]);
+            pageDoc.addPage(copiedPage);
+
+            const pageBytes = await pageDoc.save();
+            const pageFileName = `${baseName}_Page_${String(i + 1).padStart(2, '0')}.pdf`;
+            zip.file(pageFileName, pageBytes);
+          }
+
+          statusText.textContent = 'Compressing into ZIP archive...';
+          progressFill.style.width = '90%';
+
+          splitResultBlob = await zip.generateAsync({ type: 'blob' });
+          splitResultFilename = `${baseName}_Pages_Split.zip`;
+
+          document.getElementById('res-split-pages').textContent = `${totalPageCount} (All Pages)`;
+          document.getElementById('res-split-size').textContent = formatFileSize(splitResultBlob.size);
+        }
+
+        progressFill.style.width = '100%';
+        statusText.textContent = 'Done!';
+
+        setTimeout(() => {
+          workspace.style.display = 'none';
+          resultBanner.style.display = 'block';
+          dsToast.success('PDF split successfully!');
+        }, 400);
+
+      } catch (err) {
+        console.error('Split error:', err);
+        dsToast.error('Failed to split PDF: ' + err.message);
+      } finally {
+        btnExecuteSplit.disabled = false;
+        btnExecuteSplit.classList.remove('is-loading');
+        progressBar.style.display = 'none';
+        statusText.style.display = 'none';
+      }
+    });
+
+    // Download Result
+    btnDownload.addEventListener('click', () => {
+      if (!splitResultBlob) return;
+      downloadBlob(splitResultBlob, splitResultFilename);
+      dsToast.success('Download started!');
+    });
+
+    // Reset Tool
+    btnReset.addEventListener('click', () => {
+      currentFile = null;
+      currentArrayBuffer = null;
+      splitResultBlob = null;
+      selectedPageIndices.clear();
+      resultBanner.style.display = 'none';
+      workspace.style.display = 'none';
+      dropzone.style.display = 'block';
+    });
+
+    btnChangeFile.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    // Init Dropzone
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        loadPdfFile(e.target.files[0]);
+      }
+    });
+
+    initDropZone(dropzone, {
+      onFiles: (files) => {
+        if (files && files.length > 0) loadPdfFile(files[0]);
+      }
+    });
+  </script>
+</body>
+</html>
