@@ -17,3 +17,4 @@ seo/seo_keywords_master.csv
 
 # Logs & Temporary Files
 *.log
+*.zip
