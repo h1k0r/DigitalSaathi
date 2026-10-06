@@ -1,6 +1,6 @@
 # Google AdSense Activation & Operational Guide
 
-**Website:** [DigitalSaathi](https://digitalsaathi.vytra.in/)  
+**Website:** [Vytra](https://digitalsaathi.vytra.in/)  
 **Hosting Architecture:** 100% Static HTML/CSS/JavaScript on GitHub Pages  
 **Target Ad Platform:** Google AdSense (Auto Ads & Non-Intrusive Responsive Units)  
 **Configuration File:** [`config/ads-config.js`](file:///config/ads-config.js)  
@@ -10,7 +10,7 @@
 
 ## Overview
 
-The DigitalSaathi codebase is pre-configured and architecturally hardened for Google AdSense site approval and monetization. All policy requirements have been satisfied:
+The Vytra codebase is pre-configured and architecturally hardened for Google AdSense site approval and monetization. All policy requirements have been satisfied:
 - **Dedicated Legal Pages:** Up-to-date Privacy Policy, Cookie Policy, Terms of Service, About Us, and Contact Us.
 - **In-Browser Processing Transparency:** Disclosures confirming files are never uploaded to servers.
 - **Root `ads.txt` File:** Formatted per IAB standard and ready for your publisher ID.
@@ -28,7 +28,7 @@ The DigitalSaathi codebase is pre-configured and architecturally hardened for Go
 
 ---
 
-### Step 2: Add DigitalSaathi to Your AdSense Sites List
+### Step 2: Add Vytra to Your AdSense Sites List
 1. In the left navigation menu of the AdSense console, click **Sites**.
 2. Click the **+ New site** (or **Add site**) button.
 3. Enter your custom domain:
@@ -68,7 +68,7 @@ Google crawlers verify domain ownership and ad fraud prevention using `/ads.txt`
 ---
 
 ### Step 5: Update Central Configuration (`config/ads-config.js`)
-DigitalSaathi uses a single central script to manage all ad initialization and consent.
+Vytra uses a single central script to manage all ad initialization and consent.
 
 1. Open `config/ads-config.js`.
 2. Locate the `ADSENSE_CONFIG` object:
@@ -143,7 +143,7 @@ If placing manual AdSense ad units (`<ins class="adsbygoogle">`):
 > [!CAUTION]
 > **AdSense Policy Strictness:**
 > - Never place ad units immediately adjacent to file download buttons or dropzones.
-> - Never label an ad with misleading text such as "Click here to download" or "Sponsored Link". DigitalSaathi includes standardized `.ad-label` ("ADVERTISEMENT").
+> - Never label an ad with misleading text such as "Click here to download" or "Sponsored Link". Vytra includes standardized `.ad-label` ("ADVERTISEMENT").
 > - Never click on your own live advertisements or encourage others to click them.
 
 ---
@@ -156,5 +156,5 @@ Once monetizing:
    - In Google Search Console, verify **Cumulative Layout Shift (CLS)** remains `< 0.1`.
    - The `.adsense-slot` and `.ad-container` CSS classes enforce fixed minimum heights to guarantee zero layout shifts when ads render.
 3. **Monitor Privacy / Consent:**
-   - DigitalSaathi's built-in consent banner handles GDPR/CCPA storage preferences.
+   - Vytra's built-in consent banner handles GDPR/CCPA storage preferences.
    - Users who click "Essential Only" will have ad containers collapsed automatically.

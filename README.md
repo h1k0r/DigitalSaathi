@@ -1,4 +1,4 @@
-# DigitalSaathi — Free Online Tools for Everyday Digital Work
+# Vytra — Free Online Tools for Everyday Digital Work
 
 > **100% Free, Client-Side Online Tools Suite.** Convert, compress, edit, calculate, and manage files securely in your web browser with zero server uploads.
 
@@ -10,7 +10,7 @@
 
 ## 🚀 Overview
 
-**DigitalSaathi** is an enterprise-grade, privacy-first online tools platform designed as a modern alternative to traditional tools suites (like iLovePDF and Smallpdf). Unlike traditional platforms that require uploading private documents to external cloud servers with daily file quotas, DigitalSaathi runs **100% in your browser** using **WebAssembly, HTML5 Canvas, and modern Web APIs**.
+**Vytra** is an enterprise-grade, privacy-first online tools platform designed as a modern alternative to traditional tools suites (like iLovePDF and Smallpdf). Unlike traditional platforms that require uploading private documents to external cloud servers with daily file quotas, Vytra runs **100% in your browser** using **WebAssembly, HTML5 Canvas, and modern Web APIs**.
 
 - **Zero Server Uploads**: Your files never leave your device.
 - **Truly Unlimited**: No daily usage caps, no artificial queues, no paywalls.
@@ -69,10 +69,10 @@ All document manipulations happen inside your browser sandbox:
 ## 📁 Repository Structure
 
 ```
-DigitalSaathi/
+Vytra/
 │
 ├── index.html                   # High-converting tools directory homepage
-├── about.html                   # About DigitalSaathi
+├── about.html                   # About Vytra
 ├── contact.html                 # Contact & support page
 ├── privacy.html                 # Client-side privacy guarantee
 ├── terms.html                   # Terms of service
@@ -105,14 +105,14 @@ DigitalSaathi/
 
 ## 🛠️ Local Development
 
-To run DigitalSaathi locally:
+To run Vytra locally:
 
 ```bash
 # Clone the repository
 git clone https://github.com/h1k0r/DigitalSaathi.git
 
 # Navigate to project folder
-cd DigitalSaathi
+cd Vytra
 
 # Start any static HTTP server (e.g., Python 3)
 python -m http.server 8080

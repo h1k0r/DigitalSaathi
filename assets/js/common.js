@@ -1,6 +1,6 @@
 /* ==========================================================================
-   DIGITALSAATHI — MASTER JAVASCRIPT SYSTEM (v2.0 Production)
-   "Your Digital Companion for Students, Job Seekers & Cyber Cafés"
+   VYTRA — MASTER JAVASCRIPT SYSTEM (v2.0 Production)
+   "Your Digital Tools Suite for Everyone"
    ========================================================================== */
 
 (function () {
@@ -783,12 +783,14 @@
       if (!status) {
         this.renderBanner();
       } else if (status === 'accepted') {
-        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.init === 'function') {
-          window.DIGITALSAATHI_ADS.init();
+        const adsManager = window.VYTRA_ADS || window.DIGITALSAATHI_ADS;
+        if (adsManager && typeof adsManager.init === 'function') {
+          adsManager.init();
         }
       } else {
-        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.collapse === 'function') {
-          window.DIGITALSAATHI_ADS.collapse();
+        const adsManager = window.VYTRA_ADS || window.DIGITALSAATHI_ADS;
+        if (adsManager && typeof adsManager.collapse === 'function') {
+          adsManager.collapse();
         }
       }
     }
@@ -854,13 +856,14 @@
         this.banner.style.display = 'none';
       }
 
+      const adsManager = window.VYTRA_ADS || window.DIGITALSAATHI_ADS;
       if (val === 'accepted') {
-        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.init === 'function') {
-          window.DIGITALSAATHI_ADS.init();
+        if (adsManager && typeof adsManager.init === 'function') {
+          adsManager.init();
         }
       } else {
-        if (window.DIGITALSAATHI_ADS && typeof window.DIGITALSAATHI_ADS.collapse === 'function') {
-          window.DIGITALSAATHI_ADS.collapse();
+        if (adsManager && typeof adsManager.collapse === 'function') {
+          adsManager.collapse();
         }
       }
     }
@@ -875,6 +878,7 @@
   }
 
   const dsConsent = new ConsentController();
+  window.VYTRA_CONSENT = dsConsent;
   window.DIGITALSAATHI_CONSENT = dsConsent;
 
   // ==========================================================================

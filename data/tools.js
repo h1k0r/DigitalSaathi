@@ -1,5 +1,5 @@
 /**
- * DIGITALSAATHI — MASTER TOOLS REGISTRY (data/tools.js)
+ * VYTRA — MASTER TOOLS REGISTRY (data/tools.js)
  * Central structured data registry powering directory, search, category filters, and related tools.
  * Complete 67 Functional Client-Side Tools.
  */
@@ -1362,7 +1362,8 @@
     return `<div class="tool-icon-tile" style="background:${fallback.bg};color:${fallback.color};">${fallback.svg}</div>`;
   }
 
-  // Global object export
+  // Global object export (Vytra primary + backward compatible alias)
+  window.VYTRA_TOOLS = TOOLS_DATA;
   window.DIGITALSAATHI_TOOLS = TOOLS_DATA;
   window.resolveToolUrl = resolveToolUrl;
   window.getToolSvgIcon = getToolSvgIcon;

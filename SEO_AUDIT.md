@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-DigitalSaathi is a 100% client-side online tools platform designed to compete with industry giants like iLovePDF, Smallpdf, and TinyPNG. This audit analyzes the current state of **76 HTML pages**, the asset pipeline, schema implementations, indexing health, and keyword opportunities to formulate a roadmap capable of capturing **5,000+ legitimate search intents**.
+Vytra is a 100% client-side online tools platform designed to compete with industry giants like iLovePDF, Smallpdf, and TinyPNG. This audit analyzes the current state of **76 HTML pages**, the asset pipeline, schema implementations, indexing health, and keyword opportunities to formulate a roadmap capable of capturing **5,000+ legitimate search intents**.
 
 ### High-Level Audit Scorecard
 
@@ -29,7 +29,7 @@ DigitalSaathi is a 100% client-side online tools platform designed to compete wi
 
 ### File Distribution (76 Pages)
 ```
-DigitalSaathi/
+Vytra/
 │
 ├── index.html                   # Central tools directory homepage
 ├── about.html                   # Company & mission overview

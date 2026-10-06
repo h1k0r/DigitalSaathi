@@ -1,5 +1,5 @@
 # ==============================================================================
-# DIGITALSAATHI AUTHORIZED DIGITAL SELLERS (ADS.TXT)
+# VYTRA AUTHORIZED DIGITAL SELLERS (ADS.TXT)
 # Website: https://digitalsaathi.vytra.in
 # Standard: IAB OpenRTB / Google AdSense Specification
 #

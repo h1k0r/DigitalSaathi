@@ -1,5 +1,5 @@
 """
-Sitemap Generator for DigitalSaathi
+Sitemap Generator for Vytra
 Domain: https://digitalsaathi.vytra.in
 """
 

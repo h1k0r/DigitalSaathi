@@ -1,6 +1,6 @@
 # DIGITALSAATHI TECHNICAL SEO & PROGRAMMATIC ACQUISITION STRATEGY
 
-> **Platform:** DigitalSaathi (`https://digitalsaathi.vytra.in/`)  
+> **Platform:** Vytra (`https://digitalsaathi.vytra.in/`)  
 > **Architecture:** 100% Client-Side Web Application (GitHub Pages Compatible)  
 > **Total Legitimate Keywords Targeted:** 6,700  
 > **Total Functional Tools Mapped:** 67 Tools across 6 Categories  
@@ -10,9 +10,9 @@
 
 ## 1. Executive Strategy & Vision
 
-DigitalSaathi is positioned to disrupt server-dependent document utilities (such as iLovePDF, Smallpdf, and TinyPNG) by providing an **air-gapped, zero-upload, client-side web utility platform**.
+Vytra is positioned to disrupt server-dependent document utilities (such as iLovePDF, Smallpdf, and TinyPNG) by providing an **air-gapped, zero-upload, client-side web utility platform**.
 
-Rather than flooding the search index with low-quality, automated "doorway" pages that risk algorithmic Google penalties (Helpful Content Update & SpamBrain), DigitalSaathi employs a **High-Density Canonical Topic Cluster Architecture**.
+Rather than flooding the search index with low-quality, automated "doorway" pages that risk algorithmic Google penalties (Helpful Content Update & SpamBrain), Vytra employs a **High-Density Canonical Topic Cluster Architecture**.
 
 ### The Core Principle: 1 High-Authority Tool Page per 80+ Search Intents
 In this architecture:

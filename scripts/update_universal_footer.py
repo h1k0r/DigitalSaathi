@@ -11,7 +11,7 @@ def build_footer_html(prefix):
       <div class="footer-brand">
         <a href="{prefix}index.html" class="logo" style="color:#ffffff;">
           <span class="logo-badge">🌐</span>
-          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+          <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
           Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
@@ -42,16 +42,17 @@ def build_footer_html(prefix):
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
         <ul class="footer-links">
-          <li><a href="{prefix}about.html">About DigitalSaathi</a></li>
+          <li><a href="{prefix}about.html">About Vytra</a></li>
           <li><a href="{prefix}privacy.html">Privacy Policy</a></li>
           <li><a href="{prefix}terms.html">Terms of Service</a></li>
+          <li><a href="{prefix}cookie-policy.html">Cookie Policy</a></li>
           <li><a href="{prefix}contact.html">Contact Us</a></li>
           <li><a href="{prefix}tools/index.html">Tools Directory</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+      <div>&copy; 2026 Vytra. 100% Free Client-Side Tools.</div>
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>'''

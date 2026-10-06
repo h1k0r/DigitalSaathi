@@ -1,5 +1,5 @@
 /**
- * DIGITALSAATHI — GOOGLE ADSENSE CENTRAL CONFIGURATION & LOADER
+ * VYTRA — GOOGLE ADSENSE CENTRAL CONFIGURATION & LOADER
  * File: config/ads-config.js
  * Production Domain: https://digitalsaathi.vytra.in
  *
@@ -71,7 +71,7 @@
         adScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CONFIG.publisherId}`;
         adScript.crossOrigin = 'anonymous';
         document.head.appendChild(adScript);
-        console.info('[DigitalSaathi] Google AdSense initialized.');
+        console.info('[Vytra] Google AdSense initialized.');
       }
     } else {
       // AdSense disabled or placeholder active
@@ -118,12 +118,14 @@
     });
   }
 
-  // Global object export
-  window.DIGITALSAATHI_ADS = {
+  // Global object export (Vytra primary + backward compatible alias)
+  const adsController = {
     config: ADSENSE_CONFIG,
     init: initAdSense,
     collapse: collapseAdSlots
   };
+  window.VYTRA_ADS = adsController;
+  window.DIGITALSAATHI_ADS = adsController;
 
   // Run initialization on DOMContentLoaded
   if (document.readyState === 'loading') {

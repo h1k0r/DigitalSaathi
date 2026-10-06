@@ -18,7 +18,7 @@ def build_navbar_html(prefix, current_dir, current_file):
     <div class="container nav-container">
       <a href="{prefix}index.html" class="logo">
         <span class="logo-badge">🌐</span>
-        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
       </a>
 
       <ul class="nav-links" id="navLinks">
