@@ -1,0 +1,515 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-10-06",
+  "domain": "https://digitalsaathi.vytra.in",
+  "totalCategories": 6,
+  "categories": {
+    "pdf": {
+      "name": "PDF Tools",
+      "hubUrl": "/pdf/",
+      "description": "Client-side PDF management, conversion, editing, and security.",
+      "toolCount": 37
+    },
+    "image": {
+      "name": "Image Tools",
+      "hubUrl": "/image/",
+      "description": "Browser-based photo compression, dimension resizing, background editing, and formatting.",
+      "toolCount": 19
+    },
+    "calculators": {
+      "name": "Calculators",
+      "hubUrl": "/calculators/",
+      "description": "Instant financial, academic, and chronological age calculators.",
+      "toolCount": 5
+    },
+    "developer": {
+      "name": "Developer Tools",
+      "hubUrl": "/developer/",
+      "description": "Essential web development, syntax formatting, and encoding utilities.",
+      "toolCount": 3
+    },
+    "text": {
+      "name": "Text Tools",
+      "hubUrl": "/text/",
+      "description": "Client-side text analytics, character counter, and reading time estimation.",
+      "toolCount": 1
+    },
+    "utilities": {
+      "name": "Utility Tools",
+      "hubUrl": "/utilities/",
+      "description": "Everyday security, QR generation, and cryptographic utilities.",
+      "toolCount": 2
+    }
+  },
+  "clusters": [
+    {
+      "id": "merge-pdf",
+      "name": "Merge PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/merge.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "split-pdf",
+      "name": "Split PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/split.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "compress-pdf",
+      "name": "Compress PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/compress.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "jpg-to-pdf",
+      "name": "JPG to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/jpg-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "pdf-to-jpg",
+      "name": "PDF to JPG",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-to-jpg.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "edit-pdf",
+      "name": "Edit PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/edit.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "sign-pdf",
+      "name": "Sign PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/sign.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "protect-pdf",
+      "name": "Protect PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/protect.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "unlock-pdf",
+      "name": "Unlock PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/unlock.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "rotate-pdf",
+      "name": "Rotate PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/rotate.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "organize-pdf",
+      "name": "Organize PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/organize.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "pdf-to-word",
+      "name": "PDF to Word",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-to-word.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "word-to-pdf",
+      "name": "Word to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/word-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "pdf-to-excel",
+      "name": "PDF to Excel",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-to-excel.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "excel-to-pdf",
+      "name": "Excel to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/excel-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "pdf-to-ppt",
+      "name": "PDF to PowerPoint",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-to-ppt.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "ppt-to-pdf",
+      "name": "PowerPoint to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/ppt-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "pdf-a",
+      "name": "PDF/A Archival Converter",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-a.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "repair-pdf",
+      "name": "Repair PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/repair.html",
+      "coreIntent": "troubleshooting"
+    },
+    {
+      "id": "page-numbers",
+      "name": "Add Page Numbers to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/page-numbers.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "scan-to-pdf",
+      "name": "Scan to PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/scan-to-pdf.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "ocr-pdf",
+      "name": "OCR PDF Text Recognition",
+      "category": "pdf",
+      "primaryUrl": "/pdf/ocr.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "compare-pdf",
+      "name": "Compare PDF Documents",
+      "category": "pdf",
+      "primaryUrl": "/pdf/compare.html",
+      "coreIntent": "comparison"
+    },
+    {
+      "id": "redact-pdf",
+      "name": "Redact PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/redact.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "crop-pdf",
+      "name": "Crop PDF Margins",
+      "category": "pdf",
+      "primaryUrl": "/pdf/crop.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "forms-pdf",
+      "name": "PDF Form Filler",
+      "category": "pdf",
+      "primaryUrl": "/pdf/forms.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "ai-summarizer",
+      "name": "AI PDF Summarizer",
+      "category": "pdf",
+      "primaryUrl": "/pdf/ai-summarizer.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "translate-pdf",
+      "name": "Translate PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/translate.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "pdf-to-markdown",
+      "name": "PDF to Markdown",
+      "category": "pdf",
+      "primaryUrl": "/pdf/pdf-to-markdown.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "pdf-info",
+      "name": "PDF Metadata Inspector",
+      "category": "pdf",
+      "primaryUrl": "/pdf/info.html",
+      "coreIntent": "informational"
+    },
+    {
+      "id": "page-counter",
+      "name": "PDF Page Counter & Cost Calculator",
+      "category": "pdf",
+      "primaryUrl": "/pdf/page-counter.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "pdf-viewer",
+      "name": "In-Browser PDF Viewer",
+      "category": "pdf",
+      "primaryUrl": "/pdf/viewer.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "extract-pdf",
+      "name": "Extract PDF Pages",
+      "category": "pdf",
+      "primaryUrl": "/pdf/extract.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "reorder-pdf",
+      "name": "Reorder PDF Pages",
+      "category": "pdf",
+      "primaryUrl": "/pdf/reorder.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "watermark-pdf",
+      "name": "Watermark PDF",
+      "category": "pdf",
+      "primaryUrl": "/pdf/watermark.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "pdf-workflow",
+      "name": "PDF Workflow Automation",
+      "category": "pdf",
+      "primaryUrl": "/pdf/workflow.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "html-to-pdf",
+      "name": "HTML to PDF Converter",
+      "category": "pdf",
+      "primaryUrl": "/pdf/html-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "image-compressor",
+      "name": "Image Compressor",
+      "category": "image",
+      "primaryUrl": "/image/compress.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "image-resizer",
+      "name": "Image Resizer",
+      "category": "image",
+      "primaryUrl": "/image/resize.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "image-cropper",
+      "name": "Photo Cropper",
+      "category": "image",
+      "primaryUrl": "/image/crop.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "image-converter",
+      "name": "Universal Image Converter",
+      "category": "image",
+      "primaryUrl": "/image/convert.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "passport-photo",
+      "name": "Passport Photo Maker",
+      "category": "image",
+      "primaryUrl": "/image/passport-photo.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "signature-resizer",
+      "name": "Signature Resizer",
+      "category": "image",
+      "primaryUrl": "/image/signature.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "remove-bg",
+      "name": "Passport BG Color Replacer",
+      "category": "image",
+      "primaryUrl": "/image/remove-bg.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "blur-face",
+      "name": "Face Blur & Redact Privacy Tool",
+      "category": "image",
+      "primaryUrl": "/image/blur-face.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "bulk-resize",
+      "name": "Bulk Image Resizer",
+      "category": "image",
+      "primaryUrl": "/image/bulk-resize.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "color-picker",
+      "name": "Image Color Picker & Palette",
+      "category": "image",
+      "primaryUrl": "/image/color-picker.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "dpi-converter",
+      "name": "300 DPI Converter",
+      "category": "image",
+      "primaryUrl": "/image/dpi-converter.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "jpg-to-png",
+      "name": "JPG to PNG Converter",
+      "category": "image",
+      "primaryUrl": "/image/jpg-to-png.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "png-to-jpg",
+      "name": "PNG to JPG Converter",
+      "category": "image",
+      "primaryUrl": "/image/png-to-jpg.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "webp-converter",
+      "name": "WebP Converter",
+      "category": "image",
+      "primaryUrl": "/image/webp-converter.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "rotate-image",
+      "name": "Rotate & Flip Image",
+      "category": "image",
+      "primaryUrl": "/image/rotate.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "image-watermark",
+      "name": "Photo Watermark Tool",
+      "category": "image",
+      "primaryUrl": "/image/watermark.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "photo-enhancer",
+      "name": "Scan & Xerox Enhancer",
+      "category": "image",
+      "primaryUrl": "/image/photo-enhancer.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "image-base64",
+      "name": "Image to Base64 Encoder",
+      "category": "image",
+      "primaryUrl": "/image/base64.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "image-jpg-to-pdf",
+      "name": "Image to PDF Converter",
+      "category": "image",
+      "primaryUrl": "/image/jpg-to-pdf.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "emi-calculator",
+      "name": "Loan EMI Calculator",
+      "category": "calculators",
+      "primaryUrl": "/calculators/emi.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "percentage-calculator",
+      "name": "Percentage Calculator",
+      "category": "calculators",
+      "primaryUrl": "/calculators/percentage.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "age-calculator",
+      "name": "Age Calculator",
+      "category": "calculators",
+      "primaryUrl": "/calculators/age.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "cgpa-calculator",
+      "name": "CGPA to Percentage Calculator",
+      "category": "calculators",
+      "primaryUrl": "/calculators/cgpa.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "attendance-calculator",
+      "name": "College Attendance Calculator",
+      "category": "calculators",
+      "primaryUrl": "/calculators/attendance.html",
+      "coreIntent": "calculator"
+    },
+    {
+      "id": "json-formatter",
+      "name": "JSON Formatter & Validator",
+      "category": "developer",
+      "primaryUrl": "/developer/json.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "sql-formatter",
+      "name": "SQL Query Formatter",
+      "category": "developer",
+      "primaryUrl": "/developer/sql.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "base64-converter",
+      "name": "Base64 Encoder & Decoder",
+      "category": "developer",
+      "primaryUrl": "/developer/base64.html",
+      "coreIntent": "converter"
+    },
+    {
+      "id": "word-counter",
+      "name": "Word Counter & Text Analyzer",
+      "category": "text",
+      "primaryUrl": "/text/word-counter.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "qr-generator",
+      "name": "QR Code Generator",
+      "category": "utilities",
+      "primaryUrl": "/utilities/qr-generator.html",
+      "coreIntent": "tool"
+    },
+    {
+      "id": "password-generator",
+      "name": "Secure Password Generator",
+      "category": "utilities",
+      "primaryUrl": "/utilities/password-generator.html",
+      "coreIntent": "tool"
+    }
+  ]
+}

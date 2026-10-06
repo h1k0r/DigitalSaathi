@@ -95,10 +95,10 @@
       background: transparent;
     }
   </style>
-  <link rel="canonical" href="https://digitalsaathi.com/utilities/qr-generator.html">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/utilities/qr-generator.html">
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.com/utilities/qr-generator.html">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/utilities/qr-generator.html">
   <meta property="og:title" content="QR Code Generator — Free Custom High-Resolution QR Codes | DigitalSaathi">
   <meta property="og:description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
   <meta property="og:site_name" content="DigitalSaathi">
@@ -115,7 +115,7 @@
     {
       "@type": "WebApplication",
       "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes | DigitalSaathi",
-      "url": "https://digitalsaathi.com/utilities/qr-generator.html",
+      "url": "https://digitalsaathi.vytra.in/utilities/qr-generator.html",
       "description": "Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "All (Web Browser)",
@@ -132,19 +132,19 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://digitalsaathi.com/"
+          "item": "https://digitalsaathi.vytra.in/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Utilities Tools",
-          "item": "https://digitalsaathi.com/tools/index.html"
+          "item": "https://digitalsaathi.vytra.in/tools/index.html"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes",
-          "item": "https://digitalsaathi.com/utilities/qr-generator.html"
+          "item": "https://digitalsaathi.vytra.in/utilities/qr-generator.html"
         }
       ]
     }
@@ -288,7 +288,7 @@
         <!-- Dynamic Content Forms -->
         <div id="form-url" class="type-form">
           <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Website URL *</label>
-          <input type="url" id="inputUrl" class="form-input" value="https://digitalsaathi.com" placeholder="https://example.com" style="width:100%; padding:10px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
+          <input type="url" id="inputUrl" class="form-input" value="https://digitalsaathi.vytra.in" placeholder="https://example.com" style="width:100%; padding:10px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
         </div>
 
         <div id="form-text" class="type-form" style="display:none;">
@@ -473,7 +473,7 @@
 
       function getQrPayload() {
         if (currentType === 'url') {
-          return document.getElementById('inputUrl').value.trim() || 'https://digitalsaathi.com';
+          return document.getElementById('inputUrl').value.trim() || 'https://digitalsaathi.vytra.in';
         } else if (currentType === 'text') {
           return document.getElementById('inputText').value.trim() || 'DigitalSaathi';
         } else if (currentType === 'wifi') {
@@ -491,7 +491,7 @@
           const sub = encodeURIComponent(document.getElementById('emailSub').value.trim());
           return `mailto:${to}?subject=${sub}`;
         }
-        return 'https://digitalsaathi.com';
+        return 'https://digitalsaathi.vytra.in';
       }
 
       function renderQr() {

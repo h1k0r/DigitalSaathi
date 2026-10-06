@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-10-06",
+  "intentTypes": [
+    "tool",
+    "informational",
+    "how-to",
+    "comparison",
+    "calculator",
+    "converter",
+    "troubleshooting",
+    "educational"
+  ],
+  "canonicalDomain": "https://digitalsaathi.vytra.in",
+  "maxKeywordsPerTool": 100,
+  "generationRules": {
+    "action_patterns": [
+      "{verb} {noun}",
+      "{verb} {noun} online free",
+      "{verb} {noun} without software"
+    ],
+    "how_to_patterns": [
+      "how to {verb} {noun}",
+      "how can i {verb} {noun}",
+      "steps to {verb} {noun}"
+    ],
+    "troubleshooting_patterns": [
+      "fix {noun} error",
+      "{noun} file size too large fix",
+      "portal rejected {noun}"
+    ],
+    "comparison_patterns": [
+      "best alternative to ilovepdf to {verb} {noun}",
+      "digitalsaathi vs smallpdf for {noun}"
+    ]
+  }
+}

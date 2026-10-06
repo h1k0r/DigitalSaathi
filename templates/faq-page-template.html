@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{FAQ_PAGE_TITLE}} — Help &amp; Knowledge Base | DigitalSaathi</title>
+  <meta name="description" content="{{FAQ_PAGE_META_DESCRIPTION}}">
+  <meta name="keywords" content="{{FAQ_PAGE_KEYWORDS}}">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/{{FAQ_PATH}}">
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{FAQ_PAGE_TITLE}} — DigitalSaathi">
+  <meta property="og:description" content="{{FAQ_PAGE_META_DESCRIPTION}}">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/{{FAQ_PATH}}">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- JSON-LD Schema (FAQPage + BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Help & FAQs",
+            "item": "https://digitalsaathi.vytra.in/{{FAQ_PATH}}"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "{{FAQ_ITEM_1_Q}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{FAQ_ITEM_1_A}}"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "{{FAQ_ITEM_2_Q}}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{FAQ_ITEM_2_A}}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item"><a href="../pdf/index.html" class="nav-link">PDF Tools</a></li>
+        <li class="nav-item"><a href="../image/index.html" class="nav-link">Image Tools</a></li>
+        <li class="nav-item"><a href="../calculators/index.html" class="nav-link">Calculators</a></li>
+        <li class="nav-item"><a href="../developer/index.html" class="nav-link">Developer</a></li>
+        <li class="nav-item"><a href="../tools/index.html" class="nav-link">All Tools</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div class="container" style="padding-top: 1.5rem;">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Frequently Asked Questions</span>
+    </nav>
+  </div>
+
+  <main class="container" style="max-width: 840px; margin-top: 2rem; margin-bottom: 4rem;">
+    <header style="text-align: center; margin-bottom: 2.5rem;">
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">
+        {{FAQ_PAGE_H1}}
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 640px; margin: 0 auto 1.5rem;">
+        {{FAQ_PAGE_SUBTITLE}}
+      </p>
+
+      <!-- Instant Filter Search Input -->
+      <div style="max-width: 500px; margin: 0 auto;">
+        <input type="text" id="faqSearchInput" placeholder="Search questions (e.g. compress, privacy, ssc, pdf)..." 
+               style="width: 100%; padding: 12px 18px; border: 1.5px solid var(--border-default); border-radius: var(--radius-full); font-size: 0.95rem; outline: none;">
+      </div>
+    </header>
+
+    <!-- FAQ Accordion Container -->
+    <div class="faq-list" id="faqList">
+      <div class="faq-item" style="border: 1px solid var(--border-default); border-radius: var(--radius-md); margin-bottom: 12px; overflow: hidden; background: #ffffff;">
+        <div class="faq-question" style="padding: 16px 20px; font-weight: 600; cursor: pointer; background: #f8fafc; display: flex; justify-content: space-between; align-items: center;">
+          <span>{{FAQ_ITEM_1_Q}}</span>
+          <span style="font-size: 1.25rem; color: var(--text-muted);">&plus;</span>
+        </div>
+        <div class="faq-answer" style="padding: 16px 20px; border-top: 1px solid var(--border-default); color: var(--text-body); font-size: 0.95rem; line-height: 1.6;">
+          {{FAQ_ITEM_1_A}}
+        </div>
+      </div>
+
+      <div class="faq-item" style="border: 1px solid var(--border-default); border-radius: var(--radius-md); margin-bottom: 12px; overflow: hidden; background: #ffffff;">
+        <div class="faq-question" style="padding: 16px 20px; font-weight: 600; cursor: pointer; background: #f8fafc; display: flex; justify-content: space-between; align-items: center;">
+          <span>{{FAQ_ITEM_2_Q}}</span>
+          <span style="font-size: 1.25rem; color: var(--text-muted);">&plus;</span>
+        </div>
+        <div class="faq-answer" style="padding: 16px 20px; border-top: 1px solid var(--border-default); color: var(--text-body); font-size: 0.95rem; line-height: 1.6;">
+          {{FAQ_ITEM_2_A}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Categories Direct Access -->
+    <div style="margin-top: 3.5rem; text-align: center; background: #f8fafc; border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 2rem;">
+      <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Still Need Help With a File?</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">Explore our comprehensive tool suite to solve your file challenges instantly.</p>
+      <a href="../tools/index.html" class="btn btn-primary">Browse All 67 Tools Directory &rarr;</a>
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col footer-about">
+        <a href="../index.html" class="logo">
+          <span class="logo-text">Digital<span class="logo-highlight">Saathi</span></span>
+        </a>
+        <p class="footer-desc">
+          100% Free, Private &amp; Secure Client-Side Web Tools Suite. Zero server uploads.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-title">Tools Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="../calculators/index.html">Calculators</a></li>
+          <li><a href="../developer/index.html">Developer Tools</a></li>
+          <li><a href="../utilities/index.html">Utilities</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 DigitalSaathi. 100% Free Client-Side Tools.</div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/common.js"></script>
+</body>
+</html>

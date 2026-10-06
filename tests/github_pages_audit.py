@@ -49,8 +49,8 @@ for filepath in source_files:
         # Check all static HTML relative href/src targets exist on disk (exclude JS template string expressions ${...})
         link_matches = re.findall(r'(?:href|src)=["\']([^"\'#]+)["\']', content)
         for link in link_matches:
-            # Skip CDNs, mailto, javascript, tel, data URIs, and JS template expressions ${...}
-            if link.startswith(('http://', 'https://', '//', 'mailto:', 'javascript:', 'tel:', 'data:', '${')) or '${' in link:
+            # Skip CDNs, mailto, javascript, tel, data URIs, and template expressions ${...} or {{...}}
+            if link.startswith(('http://', 'https://', '//', 'mailto:', 'javascript:', 'tel:', 'data:', '${', '{{')) or '${' in link or '{{' in link:
                 continue
             # Remove query string / hash if any
             clean_link = link.split('?')[0].split('#')[0]

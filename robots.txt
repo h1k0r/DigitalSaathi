@@ -1,8 +1,9 @@
 # DigitalSaathi Robots.txt
-# https://digitalsaathi.com
+# https://digitalsaathi.vytra.in
 
 User-agent: *
 Allow: /
+Disallow: /design-system.html
 
 # Sitemap Location
-Sitemap: https://digitalsaathi.com/sitemap.xml
+Sitemap: https://digitalsaathi.vytra.in/sitemap.xml
