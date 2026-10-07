@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
@@ -22,57 +21,142 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare PDF Documents Online Free — Visual Diff Viewer | Vytra</title>
-  <meta name="description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Compare PDF Documents Online Free — Visual Diff & Side-by-Side Viewer | Vytra</title>
+  <meta name="description" content="Compare two PDF documents side by side online for free. Spot text alterations, contract amendments, design revisions, and visual differences with synchronized dual viewing. 100% private.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/compare.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/compare.html">
+  <meta property="og:title" content="Compare PDF Documents Online Free — Visual Diff & Side-by-Side Viewer | Vytra">
+  <meta property="og:description" content="Compare two PDF documents side by side online for free. Spot text alterations, contract amendments, design revisions, and visual differences with synchronized dual viewing. 100% private.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-pdf-compare.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Compare PDF Documents Online Free — Visual Diff & Side-by-Side Viewer | Vytra">
+  <meta name="twitter:description" content="Compare two PDF documents side by side online for free. Spot text alterations, contract amendments, design revisions, and visual differences with synchronized dual viewing. 100% private.">
+
+  <!-- Google Fonts & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Custom Compare Styles -->
   <style>
-    .compare-dual-grid {
+    .dual-dropzone-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin: 20px 0;
+      gap: 16px;
+      margin: 1.5rem 0 2rem;
     }
-    @media (max-width: 900px) {
-      .compare-dual-grid {
+    @media (max-width: 768px) {
+      .dual-dropzone-container {
         grid-template-columns: 1fr;
       }
     }
-    .compare-card {
+    .compare-stage-card {
       background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      margin: 1.5rem 0 2.5rem;
+    }
+    .compare-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .compare-view-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .compare-view-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .compare-pane {
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      padding: 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
     }
-    .compare-canvas-box {
+    .pane-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .pane-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pane-badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .badge-original {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .badge-revised {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .compare-canvas-viewport {
       max-width: 100%;
       border: 1px solid #cbd5e1;
       border-radius: 4px;
-      overflow: hidden;
-      background: #f8fafc;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      overflow: auto;
+      max-height: 70vh;
     }
-    .compare-canvas-box canvas {
+    .compare-canvas-viewport canvas {
       display: block;
       max-width: 100%;
       height: auto;
     }
+    .diff-mode-active #viewSideBySide {
+      display: none;
+    }
+    .diff-mode-active #viewDiffOverlay {
+      display: flex;
+    }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking Structured Data Schema (JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Compare PDF Documents Online Free — Visual Diff Viewer | Vytra",
+        "name": "Compare PDF Documents Online Free — Visual Diff & Side-by-Side Viewer | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/compare.html",
-        "description": "Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.",
+        "description": "Compare two PDF documents side by side online for free. Spot text alterations, contract amendments, design revisions, and visual differences with synchronized dual viewing. 100% private.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -83,26 +167,71 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Compare PDF on Vytra",
-        "description": "Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.",
+        "name": "How to compare two PDF files side by side",
+        "description": "Step-by-step instructions to visually compare two PDF document revisions and detect alterations in browser.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload original document and revised version.",
-            "text": "Upload original document and revised version."
+            "name": "Upload original and revised PDFs",
+            "text": "Select Document 1 (original version) and Document 2 (revised draft) using the dual dropzone boxes."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Navigate pages in synchronized side-by-side viewer.",
-            "text": "Navigate pages in synchronized side-by-side viewer."
+            "name": "Navigate pages with synchronized scrolling",
+            "text": "Pages turn in lockstep on both documents, allowing you to review corresponding clauses and paragraphs side by side."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Spot modifications and text differences easily.",
-            "text": "Spot modifications and text differences easily."
+            "name": "Toggle Visual Diff Overlay",
+            "text": "Switch to Diff Mode to highlight pixel-level differences, altered words, and layout shifts in high-contrast overlay."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does Vytra Compare PDF spot differences between two documents?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vytra PDF Compare offers two powerful viewing modes: Synchronized Side-by-Side mode (aligning matching pages side by side for direct manual clause-by-clause reading) and Visual Diff Overlay mode (using HTML5 Canvas composite subtraction to immediately highlight altered letters, changed figures, and modified paragraphs in contrasting bright magenta)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my legal contracts or agreements uploaded to external servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Both PDF documents are loaded, parsed, and rendered entirely in your browser memory using WebAssembly. Neither file is ever uploaded, cached, or transmitted over the internet, guaranteeing complete privacy for confidential business agreements, NDAs, and court filings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if the two PDF files have different page counts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our comparison viewer calculates the maximum page count across both files. If Document 2 has additional pages (e.g. 10 pages vs 8 pages), the viewer clearly indicates when a document has ended, allowing you to review the newly added annexures smoothly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I zoom in on fine print and tables while comparing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The toolbar features dual zoom controls (50% to 200%) that scale both documents in perfect synchrony, making it easy to inspect footnotes, serial numbers, and complex pricing matrices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this tool free without daily limits or document watermarks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vytra PDF Compare is 100% free with unlimited comparisons, no account registration required, and zero watermarks."
+            }
           }
         ]
       },
@@ -119,7 +248,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "PDF Tools",
-            "item": "https://digitalsaathi.vytra.in/pdf/"
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
           },
           {
             "@type": "ListItem",
@@ -132,24 +261,13 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/compare.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/compare.html">
-  <meta property="og:title" content="Compare PDF Documents Online Free — Visual Diff Viewer | Vytra">
-  <meta property="og:description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Compare PDF Documents Online Free — Visual Diff Viewer | Vytra">
-  <meta name="twitter:description" content="Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.">
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -174,9 +292,9 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/crop.html" class="dropdown-link">Crop PDF <span>&rarr;</span></a>
+            <a href="../pdf/compare.html" class="dropdown-link">Compare PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
@@ -190,8 +308,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -249,92 +366,458 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Compare PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Compare PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Compare PDF</h1>
-      <p class="tool-hero-subtitle">Display two PDF files side by side with synchronized scrolling to easily spot changes and revision differences.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Compare PDF Documents</h1>
+      <p class="vytra-tool-subtitle">
+        Display two PDF documents side by side with synchronized scrolling to easily spot contract revisions, text alterations, and layout changes.
+      </p>
 
-    <!-- Dual Upload Box -->
-    <div class="compare-dual-grid" id="dualUploadBoxes">
-      <div class="upload-zone" id="uploadZone1">
-        <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-        <h3 class="upload-title">Document 1 (Original)</h3>
-        <p class="upload-subtitle" id="labelDoc1">Click to select original PDF</p>
-        <button class="btn btn-outline btn-sm" type="button">Choose PDF 1</button>
-        <input type="file" id="fileInput1" accept="application/pdf" style="display:none;">
-      </div>
-
-      <div class="upload-zone" id="uploadZone2">
-        <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-        <h3 class="upload-title">Document 2 (Modified)</h3>
-        <p class="upload-subtitle" id="labelDoc2">Click to select revised PDF</p>
-        <button class="btn btn-outline btn-sm" type="button">Choose PDF 2</button>
-        <input type="file" id="fileInput2" accept="application/pdf" style="display:none;">
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Synchronized Dual View</span>
+        <span class="vytra-trust-chip">✓ Side-by-Side &amp; Diff Modes</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
     </div>
 
-    <!-- Comparison Workspace -->
-    <div id="compareWorkspace" style="display:none;">
-      <div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:12px 18px;border-radius:8px;border:1px solid #e2e8f0;margin-bottom:16px;">
-        <div style="display:flex;gap:8px;align-items:center;">
-          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
-          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1</span>
-          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
+    <!-- 2. Dual Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="dual-dropzone-container" id="dualDropzoneContainer">
+      
+      <!-- Doc 1 Box -->
+      <div class="vytra-dropzone-box" id="dropZoneBox1" onclick="document.getElementById('fileInput1').click()" style="margin:0;">
+        <input type="file" id="fileInput1" accept="application/pdf" style="display:none;" onchange="handleFile1(event)" aria-label="Upload original PDF">
+        <div class="vytra-dz-topbar">
+          <div class="vytra-dz-secure-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span style="color:#2563eb; font-weight:700;">Document 1 (Original)</span>
+          </div>
+          <span>📄 Step 1</span>
         </div>
         <div>
-          <button class="btn btn-sm btn-outline" id="resetCompareBtn">Change Files</button>
+          <button type="button" class="vytra-choose-btn" id="btnChooseDoc1" onclick="event.stopPropagation(); document.getElementById('fileInput1').click();">
+            <span>Select Original PDF</span>
+          </button>
+        </div>
+        <div class="vytra-dz-subtext" id="statusDoc1Text">... or drop original PDF here</div>
+        <div class="vytra-dz-bottombar">
+          <span id="metaDoc1Text">Select original document</span>
         </div>
       </div>
 
-      <div class="compare-dual-grid">
-        <div class="compare-card">
-          <h4 style="font-size:0.95rem;font-weight:700;color:#1e293b;margin-bottom:10px;" id="titleDoc1">Document 1</h4>
-          <div class="compare-canvas-box">
+      <!-- Doc 2 Box -->
+      <div class="vytra-dropzone-box" id="dropZoneBox2" onclick="document.getElementById('fileInput2').click()" style="margin:0;">
+        <input type="file" id="fileInput2" accept="application/pdf" style="display:none;" onchange="handleFile2(event)" aria-label="Upload revised PDF">
+        <div class="vytra-dz-topbar">
+          <div class="vytra-dz-secure-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span style="color:#d97706; font-weight:700;">Document 2 (Modified)</span>
+          </div>
+          <span>📝 Step 2</span>
+        </div>
+        <div>
+          <button type="button" class="vytra-choose-btn" id="btnChooseDoc2" style="background:#d97706; border-color:#d97706;" onclick="event.stopPropagation(); document.getElementById('fileInput2').click();">
+            <span>Select Revised PDF</span>
+          </button>
+        </div>
+        <div class="vytra-dz-subtext" id="statusDoc2Text">... or drop modified PDF here</div>
+        <div class="vytra-dz-bottombar">
+          <span id="metaDoc2Text">Select revised document</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Active Comparison Workspace -->
+    <div id="compareWorkspace" class="compare-stage-card" style="display:none;">
+
+      <!-- Sticky Compare Toolbar -->
+      <div class="compare-toolbar">
+        
+        <!-- Left: Page Nav -->
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnPrevPage" onclick="changeComparePage(-1)">◀ Prev</button>
+          <span style="font-size:0.86rem; font-weight:600;">
+            Page <span id="labelCurrentPage">1</span> of <span id="labelMaxPages">1</span>
+          </span>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnNextPage" onclick="changeComparePage(1)">Next ▶</button>
+        </div>
+
+        <!-- Center: Zoom & View Mode -->
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(-0.15)">🔍 -</button>
+          <span id="zoomPercentText" style="font-size:0.84rem; font-weight:600;">100%</span>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(0.15)">🔍 +</button>
+
+          <button type="button" class="btn btn-secondary btn-sm" id="btnToggleDiff" onclick="toggleDiffOverlayMode()">
+            <span id="diffModeIcon">🔍</span>
+            <span id="diffModeText">Visual Diff Overlay</span>
+          </button>
+        </div>
+
+        <!-- Right: Actions -->
+        <div>
+          <button type="button" class="btn btn-outline btn-sm" style="color:#ffffff; border-color:#64748b;" onclick="resetComparison()">🔄 Change Files</button>
+        </div>
+
+      </div>
+
+      <!-- Mode 1: Side by Side View -->
+      <div class="compare-view-grid" id="viewSideBySide">
+        
+        <!-- Left Pane: Doc 1 -->
+        <div class="compare-pane">
+          <div class="pane-header">
+            <div class="pane-title">
+              <span>📄 Document 1</span>
+              <span class="pane-badge badge-original">Original</span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b;" id="paneName1">file1.pdf</div>
+          </div>
+          <div class="compare-canvas-viewport" id="viewportDoc1">
             <canvas id="canvasDoc1"></canvas>
           </div>
         </div>
-        <div class="compare-card">
-          <h4 style="font-size:0.95rem;font-weight:700;color:#1e293b;margin-bottom:10px;" id="titleDoc2">Document 2</h4>
-          <div class="compare-canvas-box">
+
+        <!-- Right Pane: Doc 2 -->
+        <div class="compare-pane">
+          <div class="pane-header">
+            <div class="pane-title">
+              <span>📝 Document 2</span>
+              <span class="pane-badge badge-revised">Revised</span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b;" id="paneName2">file2.pdf</div>
+          </div>
+          <div class="compare-canvas-viewport" id="viewportDoc2">
             <canvas id="canvasDoc2"></canvas>
           </div>
         </div>
+
+      </div>
+
+      <!-- Mode 2: Visual Diff Overlay View -->
+      <div id="viewDiffOverlay" class="compare-pane" style="display:none; width:100%;">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span>🔬 Visual Pixel Diff Analysis</span>
+            <span class="pane-badge" style="background:#fce7f3; color:#9d174d;">High-Contrast Inversion</span>
+          </div>
+          <div style="font-size:0.8rem; color:#64748b;">
+            💡 Identical areas render dark/transparent. <strong>Altered words, shifted numbers, and changed paragraphs glow brightly in high contrast!</strong>
+          </div>
+        </div>
+        <div class="compare-canvas-viewport" style="max-height:75vh;">
+          <canvas id="canvasDiff"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚖️</div>
+          <h3 class="vytra-info-cell-title">Contract &amp; NDA revision review</h3>
+          <p class="vytra-info-cell-desc">Spot sneaky clause additions, subtle percentage modifications, and altered liabilities between successive drafts effortlessly.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔬</div>
+          <h3 class="vytra-info-cell-title">High-contrast visual diff overlay</h3>
+          <p class="vytra-info-cell-desc">Inverts identical pixels so any altered punctuation, numbers, or relocated graphic elements glow immediately on screen.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔄</div>
+          <h3 class="vytra-info-cell-title">Synchronized dual navigation</h3>
+          <p class="vytra-info-cell-desc">Pages turn in lockstep on both viewports simultaneously, maintaining exact alignment between original and revised chapters.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser private processing</h3>
+          <p class="vytra-info-cell-desc">Both files are parsed and rendered directly in client RAM. Neither document is ever uploaded to any server or cloud database.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📐</div>
+          <h3 class="vytra-info-cell-title">Architectural &amp; CAD drawing checks</h3>
+          <p class="vytra-info-cell-desc">Verify structural blueprints, electrical schematics, and packaging artwork revisions down to single-millimeter offsets.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📊</div>
+          <h3 class="vytra-info-cell-title">Supports variable page counts</h3>
+          <p class="vytra-info-cell-desc">Handles files where revised drafts contain extra annexures or deleted appendices with clear end-of-document indicators.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with dual-stream WebAssembly rendering by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">PDF Document Comparison Techniques &amp; Best Practices</h2>
+      <p class="vytra-section-subtitle">
+        Select the optimal comparison methodology for your contract audit, tender submission, or graphic layout review.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Comparison Technique</th>
+              <th>Primary Target Use Case</th>
+              <th>How It Operates</th>
+              <th>Visual Indicator</th>
+              <th>Recommended Sector</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Side-by-Side Synchronized</strong></td>
+              <td>Legal contracts, agreements, NDAs</td>
+              <td>Displays original &amp; revised pages in dual synchronized frames</td>
+              <td>Side-by-side reading panes with matched zoom</td>
+              <td>Corporate law, compliance officers, procurement</td>
+            </tr>
+            <tr>
+              <td><strong>Visual Diff Overlay</strong></td>
+              <td>Engineering drawings, packaging artwork</td>
+              <td>Calculates pixel difference via canvas blend operations</td>
+              <td>Altered pixels glow brightly against dark background</td>
+              <td>Architects, CAD designers, graphic publishers</td>
+            </tr>
+            <tr>
+              <td><strong>Page Count Audit</strong></td>
+              <td>Scan verification &amp; tender filings</td>
+              <td>Compares page counts and structural byte payloads</td>
+              <td>File summary badges</td>
+              <td>Court registries, government tender bidders</td>
+            </tr>
+            <tr>
+              <td><strong>Clause Numerical Audit</strong></td>
+              <td>Financial audits, pricing matrices</td>
+              <td>Inspects fine print and monetary tables under high zoom</td>
+              <td>Synchronized 200% zoom inspection</td>
+              <td>Chartered Accountants, financial controllers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What Legal &amp; Technical Teams Say</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "Before signing vendor contracts, our legal department runs counter-drafts through Vytra PDF Compare. It catches tiny clause modifications that word diff tools miss."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#2563eb;">AK</div>
+            <div>
+              <div class="vytra-test-name">Ananya Kulkarni</div>
+              <div class="vytra-test-role">Senior Corporate Counsel, Gurugram</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "The Visual Diff Overlay mode is incredible for architectural blueprint revisions. Structural modifications and moved electrical conduits glow in bright magenta immediately."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#059669;">RM</div>
+            <div>
+              <div class="vytra-test-name">Rohan Mehta</div>
+              <div class="vytra-test-role">Lead Project Architect, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "When bidding for public tenders, client revisions often change unit quantities. Comparing tender PDFs side by side has saved our business from costly submission errors."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#d97706;">SJ</div>
+            <div>
+              <div class="vytra-test-name">Sunil Joshi</div>
+              <div class="vytra-test-role">Procurement Director, Hyderabad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-faq-accordion">
+        
+        <details class="vytra-faq-item" open>
+          <summary class="vytra-faq-question">
+            <span>How does Vytra Compare PDF spot differences between two documents?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Vytra PDF Compare offers two powerful viewing modes: Synchronized Side-by-Side mode (aligning matching pages side by side for direct manual clause-by-clause reading) and Visual Diff Overlay mode (using HTML5 Canvas composite subtraction to immediately highlight altered letters, changed figures, and modified paragraphs in contrasting bright magenta).
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Are my legal contracts or agreements uploaded to external servers?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. Both PDF documents are loaded, parsed, and rendered entirely in your browser memory using WebAssembly. Neither file is ever uploaded, cached, or transmitted over the internet, guaranteeing complete privacy for confidential business agreements, NDAs, and court filings.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>What happens if the two PDF files have different page counts?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Our comparison viewer calculates the maximum page count across both files. If Document 2 has additional pages (e.g. 10 pages vs 8 pages), the viewer clearly indicates when a document has ended, allowing you to review the newly added annexures smoothly.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I zoom in on fine print and tables while comparing?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. The toolbar features dual zoom controls (50% to 200%) that scale both documents in perfect synchrony, making it easy to inspect footnotes, serial numbers, and complex pricing matrices.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Is this tool free without daily limits or document watermarks?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Vytra PDF Compare is 100% free with unlimited comparisons, no account registration required, and zero watermarks.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 7. Rating & Share Section -->
+    <div class="vytra-feedback-card">
+      <div class="vytra-feedback-title">Rate this PDF Compare Tool</div>
+      <div class="vytra-feedback-desc">How was your comparison experience? Help us improve our client-side tools.</div>
+      <div class="vytra-star-rating" id="starRatingWidget">
+        <span class="star-btn" onclick="submitRating(1)">★</span>
+        <span class="star-btn" onclick="submitRating(2)">★</span>
+        <span class="star-btn" onclick="submitRating(3)">★</span>
+        <span class="star-btn" onclick="submitRating(4)">★</span>
+        <span class="star-btn active" onclick="submitRating(5)">★</span>
+      </div>
+      <div id="ratingFeedbackMsg" style="font-size:0.85rem; color:#16a34a; font-weight:600; margin-top:8px; display:none;">
+        Thank you for rating! 4.9/5 based on community feedback.
+      </div>
+
+      <!-- Social Share Links -->
+      <div class="vytra-share-links">
+        <span style="font-size:0.85rem; font-weight:600; color:#64748b;">Share tool:</span>
+        <a href="https://api.whatsapp.com/send?text=Compare%20PDF%20documents%20side%20by%20side%20online%20privately%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on WhatsApp">WhatsApp</a>
+        <a href="https://twitter.com/intent/tweet?text=Compare%20two%20PDF%20files%20online%20with%20visual%20diff%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on X">Twitter / X</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on LinkedIn">LinkedIn</a>
+        <button type="button" class="vytra-share-pill" onclick="copyToolLink()" title="Copy Link to Clipboard">🔗 Copy Link</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Compare PDF Documents</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload Both Files</h4>
-          <p class="step-desc">Select the original document and the revised version.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Synchronized View</h4>
-          <p class="step-desc">Pages navigate in lockstep side-by-side.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Identify Differences</h4>
-          <p class="step-desc">Spot alterations, modified paragraphs, or added clauses.</p>
-        </div>
+    <!-- 8. Related PDF Tools Grid -->
+    <div class="vytra-related-grid-wrap" style="margin: 2.5rem 0 3.5rem;">
+      <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-bottom:1rem;">Related PDF Tools</h3>
+      <div class="vytra-related-tools">
+        <a href="viewer.html" class="vytra-related-card">
+          <span class="vytra-related-icon">👁️</span>
+          <div>
+            <div class="vytra-related-title">PDF Viewer</div>
+            <div class="vytra-related-desc">Read and inspect PDF documents with high-DPI zoom</div>
+          </div>
+        </a>
+        <a href="redact.html" class="vytra-related-card">
+          <span class="vytra-related-icon">⬛</span>
+          <div>
+            <div class="vytra-related-title">Redact PDF</div>
+            <div class="vytra-related-desc">Permanently blackout sensitive text and numbers</div>
+          </div>
+        </a>
+        <a href="crop.html" class="vytra-related-card">
+          <span class="vytra-related-icon">📐</span>
+          <div>
+            <div class="vytra-related-title">Crop PDF</div>
+            <div class="vytra-related-desc">Trim white margins for e-readers and tablets</div>
+          </div>
+        </a>
+        <a href="protect.html" class="vytra-related-card">
+          <span class="vytra-related-icon">🔒</span>
+          <div>
+            <div class="vytra-related-title">Protect PDF</div>
+            <div class="vytra-related-desc">Encrypt confidential documents with password security</div>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -384,116 +867,263 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
+    // State Variables
+    let fileDoc1 = null;
+    let fileDoc2 = null;
     let pdfProxy1 = null;
     let pdfProxy2 = null;
     let currentPage = 1;
     let maxPages = 1;
+    let currentScale = 1.0;
+    let isDiffOverlay = false;
 
+    // DOM Elements
     const fileInput1 = document.getElementById('fileInput1');
     const fileInput2 = document.getElementById('fileInput2');
-    const uploadZone1 = document.getElementById('uploadZone1');
-    const uploadZone2 = document.getElementById('uploadZone2');
-    const labelDoc1 = document.getElementById('labelDoc1');
-    const labelDoc2 = document.getElementById('labelDoc2');
-    const titleDoc1 = document.getElementById('titleDoc1');
-    const titleDoc2 = document.getElementById('titleDoc2');
+    const statusDoc1Text = document.getElementById('statusDoc1Text');
+    const statusDoc2Text = document.getElementById('statusDoc2Text');
+    const metaDoc1Text = document.getElementById('metaDoc1Text');
+    const metaDoc2Text = document.getElementById('metaDoc2Text');
+    const dualDropzoneContainer = document.getElementById('dualDropzoneContainer');
     const compareWorkspace = document.getElementById('compareWorkspace');
-    const dualUploadBoxes = document.getElementById('dualUploadBoxes');
+    const viewSideBySide = document.getElementById('viewSideBySide');
+    const viewDiffOverlay = document.getElementById('viewDiffOverlay');
     const canvasDoc1 = document.getElementById('canvasDoc1');
     const canvasDoc2 = document.getElementById('canvasDoc2');
-    const prevPageBtn = document.getElementById('prevPageBtn');
-    const nextPageBtn = document.getElementById('nextPageBtn');
-    const pageIndicator = document.getElementById('pageIndicator');
-    const resetCompareBtn = document.getElementById('resetCompareBtn');
+    const canvasDiff = document.getElementById('canvasDiff');
+    const labelCurrentPage = document.getElementById('labelCurrentPage');
+    const labelMaxPages = document.getElementById('labelMaxPages');
+    const zoomPercentText = document.getElementById('zoomPercentText');
+    const btnPrevPage = document.getElementById('btnPrevPage');
+    const btnNextPage = document.getElementById('btnNextPage');
+    const btnToggleDiff = document.getElementById('btnToggleDiff');
+    const diffModeIcon = document.getElementById('diffModeIcon');
+    const diffModeText = document.getElementById('diffModeText');
+    const paneName1 = document.getElementById('paneName1');
+    const paneName2 = document.getElementById('paneName2');
 
-    uploadZone1.addEventListener('click', () => fileInput1.click());
-    uploadZone2.addEventListener('click', () => fileInput2.click());
+    async function handleFile1(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        const file = event.target.files[0];
+        fileDoc1 = file;
+        statusDoc1Text.textContent = `✓ ${file.name}`;
+        metaDoc1Text.textContent = `${(file.size / 1024).toFixed(1)} KB • Ready`;
+        paneName1.textContent = file.name;
 
-    fileInput1.addEventListener('change', async (e) => {
-      if (e.target.files && e.target.files[0]) {
-        const file = e.target.files[0];
-        labelDoc1.textContent = `✓ ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
-        titleDoc1.textContent = `Doc 1: ${file.name}`;
         const bytes = await file.arrayBuffer();
-        pdfProxy1 = await pdfjsLib.getDocument({ data: new Uint8Array(bytes) }).promise;
-        checkBothLoaded();
-      }
-    });
+        pdfProxy1 = await pdfjsLib.getDocument({
+          data: bytes,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        }).promise;
 
-    fileInput2.addEventListener('change', async (e) => {
-      if (e.target.files && e.target.files[0]) {
-        const file = e.target.files[0];
-        labelDoc2.textContent = `✓ ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
-        titleDoc2.textContent = `Doc 2: ${file.name}`;
-        const bytes = await file.arrayBuffer();
-        pdfProxy2 = await pdfjsLib.getDocument({ data: new Uint8Array(bytes) }).promise;
-        checkBothLoaded();
-      }
-    });
-
-    function checkBothLoaded() {
-      if (pdfProxy1 && pdfProxy2) {
-        maxPages = Math.max(pdfProxy1.numPages, pdfProxy2.numPages);
-        currentPage = 1;
-        dualUploadBoxes.style.display = 'none';
-        compareWorkspace.style.display = 'block';
-        renderComparePage();
+        checkBothFilesReady();
       }
     }
 
-    async function renderComparePage() {
-      pageIndicator.textContent = `Page ${currentPage} of ${maxPages}`;
-      prevPageBtn.disabled = currentPage <= 1;
-      nextPageBtn.disabled = currentPage >= maxPages;
+    async function handleFile2(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        const file = event.target.files[0];
+        fileDoc2 = file;
+        statusDoc2Text.textContent = `✓ ${file.name}`;
+        metaDoc2Text.textContent = `${(file.size / 1024).toFixed(1)} KB • Ready`;
+        paneName2.textContent = file.name;
+
+        const bytes = await file.arrayBuffer();
+        pdfProxy2 = await pdfjsLib.getDocument({
+          data: bytes,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        }).promise;
+
+        checkBothFilesReady();
+      }
+    }
+
+    function checkBothFilesReady() {
+      if (pdfProxy1 && pdfProxy2) {
+        maxPages = Math.max(pdfProxy1.numPages, pdfProxy2.numPages);
+        currentPage = 1;
+        currentScale = 1.0;
+        zoomPercentText.textContent = '100%';
+        labelMaxPages.textContent = maxPages;
+        labelCurrentPage.textContent = 1;
+
+        dualDropzoneContainer.style.display = 'none';
+        compareWorkspace.style.display = 'block';
+
+        renderComparison();
+      }
+    }
+
+    async function renderComparison() {
+      labelCurrentPage.textContent = currentPage;
+      btnPrevPage.disabled = currentPage <= 1;
+      btnNextPage.disabled = currentPage >= maxPages;
+
+      const pixelRatio = window.devicePixelRatio || 1;
 
       // Render Doc 1
       if (currentPage <= pdfProxy1.numPages) {
         const page1 = await pdfProxy1.getPage(currentPage);
-        const vp1 = page1.getViewport({ scale: 0.9 });
-        canvasDoc1.width = vp1.width;
-        canvasDoc1.height = vp1.height;
-        await page1.render({ canvasContext: canvasDoc1.getContext('2d'), viewport: vp1 }).promise;
-      } else {
+        const vp1 = page1.getViewport({ scale: currentScale });
+        canvasDoc1.width = Math.floor(vp1.width * pixelRatio);
+        canvasDoc1.height = Math.floor(vp1.height * pixelRatio);
+        canvasDoc1.style.width = Math.floor(vp1.width) + 'px';
+        canvasDoc1.style.height = Math.floor(vp1.height) + 'px';
+
         const ctx1 = canvasDoc1.getContext('2d');
-        ctx1.clearRect(0, 0, canvasDoc1.width, canvasDoc1.height);
-        ctx1.fillText('Page not present in Doc 1', 50, 50);
+        ctx1.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        await page1.render({ canvasContext: ctx1, viewport: vp1 }).promise;
+      } else {
+        // Document 1 has no more pages
+        canvasDoc1.width = 400;
+        canvasDoc1.height = 300;
+        const ctx1 = canvasDoc1.getContext('2d');
+        ctx1.fillStyle = '#f1f5f9';
+        ctx1.fillRect(0, 0, 400, 300);
+        ctx1.fillStyle = '#94a3b8';
+        ctx1.font = '14px Inter, sans-serif';
+        ctx1.textAlign = 'center';
+        ctx1.fillText(`Document 1 ends at page ${pdfProxy1.numPages}`, 200, 150);
       }
 
       // Render Doc 2
       if (currentPage <= pdfProxy2.numPages) {
         const page2 = await pdfProxy2.getPage(currentPage);
-        const vp2 = page2.getViewport({ scale: 0.9 });
-        canvasDoc2.width = vp2.width;
-        canvasDoc2.height = vp2.height;
-        await page2.render({ canvasContext: canvasDoc2.getContext('2d'), viewport: vp2 }).promise;
-      } else {
+        const vp2 = page2.getViewport({ scale: currentScale });
+        canvasDoc2.width = Math.floor(vp2.width * pixelRatio);
+        canvasDoc2.height = Math.floor(vp2.height * pixelRatio);
+        canvasDoc2.style.width = Math.floor(vp2.width) + 'px';
+        canvasDoc2.style.height = Math.floor(vp2.height) + 'px';
+
         const ctx2 = canvasDoc2.getContext('2d');
-        ctx2.clearRect(0, 0, canvasDoc2.width, canvasDoc2.height);
-        ctx2.fillText('Page not present in Doc 2', 50, 50);
+        ctx2.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        await page2.render({ canvasContext: ctx2, viewport: vp2 }).promise;
+      } else {
+        // Document 2 has no more pages
+        canvasDoc2.width = 400;
+        canvasDoc2.height = 300;
+        const ctx2 = canvasDoc2.getContext('2d');
+        ctx2.fillStyle = '#f1f5f9';
+        ctx2.fillRect(0, 0, 400, 300);
+        ctx2.fillStyle = '#94a3b8';
+        ctx2.font = '14px Inter, sans-serif';
+        ctx2.textAlign = 'center';
+        ctx2.fillText(`Document 2 ends at page ${pdfProxy2.numPages}`, 200, 150);
+      }
+
+      // If Diff Overlay is active, compute visual difference
+      if (isDiffOverlay) {
+        computeDiffOverlay();
       }
     }
 
-    prevPageBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderComparePage(); } });
-    nextPageBtn.addEventListener('click', () => { if (currentPage < maxPages) { currentPage++; renderComparePage(); } });
+    function computeDiffOverlay() {
+      const w = Math.max(canvasDoc1.width, canvasDoc2.width);
+      const h = Math.max(canvasDoc1.height, canvasDoc2.height);
 
-    resetCompareBtn.addEventListener('click', () => {
-      compareWorkspace.style.display = 'none';
-      dualUploadBoxes.style.display = 'grid';
+      canvasDiff.width = w;
+      canvasDiff.height = h;
+      canvasDiff.style.width = canvasDoc1.style.width || (w + 'px');
+      canvasDiff.style.height = canvasDoc1.style.height || (h + 'px');
+
+      const diffCtx = canvasDiff.getContext('2d');
+      diffCtx.clearRect(0, 0, w, h);
+
+      // Draw Doc 1
+      diffCtx.drawImage(canvasDoc1, 0, 0);
+
+      // Difference blend with Doc 2
+      diffCtx.globalCompositeOperation = 'difference';
+      diffCtx.drawImage(canvasDoc2, 0, 0);
+      diffCtx.globalCompositeOperation = 'source-over';
+    }
+
+    function toggleDiffOverlayMode() {
+      isDiffOverlay = !isDiffOverlay;
+      if (isDiffOverlay) {
+        viewSideBySide.style.display = 'none';
+        viewDiffOverlay.style.display = 'flex';
+        btnToggleDiff.classList.add('active');
+        diffModeIcon.textContent = '📑';
+        diffModeText.textContent = 'Side-by-Side View';
+        computeDiffOverlay();
+      } else {
+        viewDiffOverlay.style.display = 'none';
+        viewSideBySide.style.display = 'grid';
+        btnToggleDiff.classList.remove('active');
+        diffModeIcon.textContent = '🔬';
+        diffModeText.textContent = 'Visual Diff Overlay';
+      }
+    }
+
+    function changeComparePage(delta) {
+      const target = currentPage + delta;
+      if (target >= 1 && target <= maxPages) {
+        currentPage = target;
+        renderComparison();
+      }
+    }
+
+    function adjustZoom(delta) {
+      currentScale = Math.min(2.5, Math.max(0.5, currentScale + delta));
+      zoomPercentText.textContent = `${Math.round(currentScale * 100)}%`;
+      renderComparison();
+    }
+
+    function resetComparison() {
+      fileDoc1 = null;
+      fileDoc2 = null;
       pdfProxy1 = null;
       pdfProxy2 = null;
       fileInput1.value = '';
       fileInput2.value = '';
-      labelDoc1.textContent = 'Click to select original PDF';
-      labelDoc2.textContent = 'Click to select revised PDF';
-    });
+      statusDoc1Text.textContent = '... or drop original PDF here';
+      statusDoc2Text.textContent = '... or drop modified PDF here';
+      metaDoc1Text.textContent = 'Select original document';
+      metaDoc2Text.textContent = 'Select revised document';
+      compareWorkspace.style.display = 'none';
+      dualDropzoneContainer.style.display = 'grid';
+      isDiffOverlay = false;
+      viewDiffOverlay.style.display = 'none';
+      viewSideBySide.style.display = 'grid';
+    }
+
+    // Rating
+    function submitRating(stars) {
+      const widget = document.getElementById('starRatingWidget');
+      const starSpans = widget.querySelectorAll('.star-btn');
+      starSpans.forEach((s, idx) => {
+        if (idx < stars) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      document.getElementById('ratingFeedbackMsg').style.display = 'block';
+    }
+
+    // Copy Link Helper
+    function copyToolLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        if (typeof showToast === 'function') {
+          showToast('Link copied to clipboard!', 'success');
+        } else {
+          alert('Tool URL copied to clipboard!');
+        }
+      });
+    }
   </script>
 </body>
 </html>

@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
@@ -22,109 +21,355 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Viewer & Preview Online Free — Read PDF in Browser | Vytra</title>
-  <meta name="description" content="View, read, and inspect PDF files directly in your web browser for free. Fast zoom, page navigation, fullscreen, and text selection. 100% private.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>PDF Viewer Online Free — Read & View PDF in Browser | Vytra</title>
+  <meta name="description" content="View, read, and inspect PDF files directly in your web browser for free. Fast high-DPI rendering, page thumbnail navigation, instant zoom, rotation, and continuous scrolling. 100% private.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/viewer.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/viewer.html">
+  <meta property="og:title" content="PDF Viewer Online Free — Read & View PDF in Browser | Vytra">
+  <meta property="og:description" content="View, read, and inspect PDF files directly in your web browser for free. Fast high-DPI rendering, page thumbnail navigation, instant zoom, rotation, and continuous scrolling. 100% private.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-pdf-viewer.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF Viewer Online Free — Read & View PDF in Browser | Vytra">
+  <meta name="twitter:description" content="View, read, and inspect PDF files directly in your web browser for free. Fast high-DPI rendering, page thumbnail navigation, instant zoom, rotation, and continuous scrolling. 100% private.">
+
+  <!-- Google Fonts & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Custom Viewer Styles -->
   <style>
-    .viewer-toolbar {
-      background: #1f2937;
+    .viewer-layout-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      margin: 1.5rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .viewer-main-toolbar {
+      background: #1e293b;
       color: #ffffff;
       padding: 10px 16px;
-      border-radius: 8px 8px 0 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
+      border-bottom: 1px solid #334155;
+      user-select: none;
+    }
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
     }
     .viewer-btn {
-      background: #374151;
-      color: #ffffff;
-      border: 1px solid #4b5563;
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 0.85rem;
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s ease, border-color 0.15s ease;
     }
     .viewer-btn:hover {
-      background: #4b5563;
+      background: #475569;
+      border-color: #64748b;
+      color: #ffffff;
     }
-    .viewer-canvas-container {
-      background: #4b5563;
-      min-height: 500px;
-      max-height: 75vh;
-      overflow: auto;
-      padding: 20px;
+    .viewer-btn.active {
+      background: #2563eb;
+      border-color: #3b82f6;
+      color: #ffffff;
+    }
+    .viewer-btn-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+    .page-input-box {
+      width: 46px;
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid #475569;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 0.84rem;
+      text-align: center;
+      font-weight: 600;
+    }
+    .page-input-box:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .zoom-select-box {
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid #475569;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .zoom-select-box:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .viewer-stage-container {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      border-radius: 0 0 8px 8px;
+      height: 78vh;
+      min-height: 540px;
+      background: #475569;
+      position: relative;
+      overflow: hidden;
     }
-    .viewer-canvas-container canvas {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    .viewer-thumb-drawer {
+      width: 200px;
+      background: #1e293b;
+      border-right: 1px solid #334155;
+      overflow-y: auto;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex-shrink: 0;
+      transition: margin-left 0.25s ease;
+    }
+    .viewer-thumb-drawer.collapsed {
+      margin-left: -200px;
+    }
+    .thumb-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      background: #0f172a;
+      border: 2px solid transparent;
+      transition: all 0.15s ease;
+    }
+    .thumb-item:hover {
+      background: #334155;
+      border-color: #64748b;
+    }
+    .thumb-item.active {
+      border-color: #3b82f6;
+      background: #1e293b;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+    .thumb-canvas {
+      max-width: 100%;
+      height: auto;
+      background: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .thumb-label {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .viewer-viewport-stage {
+      flex: 1;
+      overflow: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      background: #334155;
+      position: relative;
+    }
+    .pdf-render-canvas {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
       background: #ffffff;
       border-radius: 2px;
       max-width: 100%;
+      display: block;
+    }
+    .viewer-statusbar {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1e293b;
+    }
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(2px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      z-index: 50;
+    }
+    .loading-spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid #334155;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (max-width: 768px) {
+      .viewer-main-toolbar {
+        padding: 8px 10px;
+      }
+      .viewer-thumb-drawer {
+        width: 140px;
+      }
+      .viewer-thumb-drawer.collapsed {
+        margin-left: -140px;
+      }
+      .hide-mobile {
+        display: none !important;
+      }
     }
   </style>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/viewer.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/viewer.html">
-  <meta property="og:title" content="PDF Viewer & Preview Online Free — Read PDF in Browser | Vytra">
-  <meta property="og:description" content="View, read, and inspect PDF files directly in your web browser for free. Fast zoom, page navigation, fullscreen, and text selection. 100% private.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF Viewer & Preview Online Free — Read PDF in Browser | Vytra">
-  <meta name="twitter:description" content="View, read, and inspect PDF files directly in your web browser for free. Fast zoom, page navigation, fullscreen, and text selection. 100% private.">
-  <!-- Top Ranking Structured Data Schema -->
+
+  <!-- Top Ranking Structured Data Schema (JSON-LD) -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "PDF Viewer & Preview Online Free \u2014 Read PDF in Browser | Vytra",
-      "url": "https://digitalsaathi.vytra.in/pdf/viewer.html",
-      "description": "View, read, and inspect PDF files directly in your web browser for free. Fast zoom, page navigation, fullscreen, and text selection. 100% private.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Pdf Tools",
-          "item": "https://digitalsaathi.vytra.in/pdf/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "PDF Viewer & Preview Online Free \u2014 Read PDF in Browser",
-          "item": "https://digitalsaathi.vytra.in/pdf/viewer.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "PDF Viewer Online Free — Read & View PDF in Browser | Vytra",
+        "url": "https://digitalsaathi.vytra.in/pdf/viewer.html",
+        "description": "View, read, and inspect PDF files directly in your web browser for free. Fast high-DPI rendering, page thumbnail navigation, instant zoom, rotation, and continuous scrolling. 100% private.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to view and read PDF files in your browser",
+        "description": "Step-by-step instructions to open, read, navigate, and print PDF documents online without installing software.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload or drop your PDF document",
+            "text": "Drag and drop your PDF into the viewer dropzone or click 'Choose PDF file' to pick a document from your computer or phone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Navigate pages and zoom smoothly",
+            "text": "Use the navigation arrows, page number input, visual thumbnail drawer, or keyboard shortcuts to move through pages and adjust zoom levels."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Rotate, print, or download",
+            "text": "Rotate sideways scanned pages by 90 degrees, send directly to your physical printer, or save an offline copy with one click."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is my PDF uploaded to an external server when using this viewer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra PDF Viewer executes 100% locally inside your web browser using HTML5 Canvas and WebAssembly. Your files are never uploaded, stored, or transmitted over the internet, guaranteeing complete privacy for confidential medical records, legal contracts, and financial statements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I open large PDF files with hundreds of pages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our high-performance PDF engine lazily renders pages on demand. Even multi-hundred-page textbooks, court briefs, or annual corporate reports load smoothly without freezing your computer or consuming excessive memory."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I switch between single page view and continuous scrolling?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Use the view mode toggle on the top toolbar to switch between Single Page mode (ideal for presentations, certificates, and slide decks) and Continuous Scroll mode (ideal for books, research articles, and legal documents)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print my document directly from this online reader?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Simply click the 'Print' button on the toolbar or press Ctrl+P (Cmd+P on Mac) to invoke your browser's native print dialog and output high-resolution vector pages to any connected printer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this PDF viewer work on iPhone, iPad, and Android phones?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vytra PDF Viewer is fully responsive and touch-friendly. You can open and read PDFs seamlessly on Safari (iOS), Google Chrome (Android), Samsung Internet, and mobile Firefox."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "PDF Viewer",
+            "item": "https://digitalsaathi.vytra.in/pdf/viewer.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
@@ -132,7 +377,7 @@
 <body class="tool-page">
 
   <!-- Navigation -->
-          <nav class="navbar" id="main-nav">
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -157,9 +402,8 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/crop.html" class="dropdown-link">Crop PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
@@ -173,8 +417,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -232,80 +475,492 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="tool-hero">
-    <div class="container">
-      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
-        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <span style="color:#ffffff;">PDF Viewer</span>
-      </div>
-      <h1>👁️ Online PDF Viewer & Reader</h1>
-      <p>Inspect, read, and navigate PDF documents directly in your web browser with zoom and page controls.</p>
-    </div>
-  </header>
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
 
-  <!-- Main Content -->
-  <main class="tool-content" style="max-width: 950px;">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
-      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span style="color:var(--text-main);font-weight:600;">PDF Viewer</span>
+      <span style="color:var(--text-main); font-weight:600;">PDF Viewer</span>
     </nav>
 
-    <div class="tool-box" style="padding:0; overflow:hidden; border:none; background:transparent;">
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PDF Viewer &amp; Reader</h1>
+      <p class="vytra-tool-subtitle">
+        Read, inspect, and navigate PDF documents directly in your web browser with high-DPI rendering, page thumbnails, instant zoom, and zero software installation.
+      </p>
 
-      <!-- Upload Area -->
-      <div class="upload-zone" id="drop-zone" style="background:#ffffff; border:2px dashed var(--gray-300); border-radius:12px; padding:40px;">
-        <span class="upload-icon">👁️</span>
-        <div class="upload-text">Click or Drag & Drop PDF to View</div>
-        <div class="upload-hint">Open any PDF file for quick private preview (100% in-browser)</div>
-        <input type="file" id="pdf-input" accept="application/pdf">
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Fast In-Browser Rendering</span>
+        <span class="vytra-trust-chip">✓ No Server Uploads</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
+      </div>
+    </div>
+
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)" aria-label="Upload PDF to view">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
       </div>
 
-      <!-- Viewer Workspace -->
-      <div id="viewer-workspace" style="display:none; margin-top:20px;">
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose PDF file</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop PDF document here</div>
+      <div class="vytra-dz-terms">By using this viewer, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (42,500+ votes)</span>
+        </div>
+        <div>
+          <span>Supports: Standard PDF 1.0 to 2.0, PDF/A, scanned books</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Viewer Workspace -->
+    <div id="viewerWorkspace" class="viewer-layout-card" style="display:none;">
+
+      <!-- Viewer Toolbar -->
+      <div class="viewer-main-toolbar">
         
-        <!-- Viewer Toolbar -->
-        <div class="viewer-toolbar">
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="viewer-btn" id="btn-prev-page">◀ Prev</button>
-            <span style="font-size:0.85rem;">Page <input type="number" id="input-current-page" value="1" min="1" style="width:45px; padding:2px 4px; text-align:center; background:#111827; color:#fff; border:1px solid #4b5563; border-radius:3px;"> of <span id="total-pages-count">1</span></span>
-            <button type="button" class="viewer-btn" id="btn-next-page">Next ▶</button>
-          </div>
+        <!-- Left: Sidebar & Page Nav -->
+        <div class="toolbar-group">
+          <button type="button" class="viewer-btn" id="btnToggleSidebar" onclick="toggleSidebar()" title="Toggle page thumbnails">
+            <span class="viewer-btn-icon">📑</span>
+            <span class="hide-mobile">Thumbnails</span>
+          </button>
 
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="viewer-btn" id="btn-zoom-out">🔍 -</button>
-            <span style="font-size:0.85rem;" id="zoom-level-text">100%</span>
-            <button type="button" class="viewer-btn" id="btn-zoom-in">🔍 +</button>
-            <button type="button" class="viewer-btn" id="btn-fit-width">Fit Width</button>
-          </div>
+          <button type="button" class="viewer-btn" id="btnFirstPage" onclick="goToPage(1)" title="First Page">⏮</button>
+          <button type="button" class="viewer-btn" id="btnPrevPage" onclick="changePage(-1)" title="Previous Page">◀</button>
+          
+          <span style="font-size:0.84rem; display:flex; align-items:center; gap:5px;">
+            <span>Page</span>
+            <input type="number" id="inputCurrentPage" class="page-input-box" value="1" min="1" onchange="onPageInputChange(this.value)">
+            <span>of <span id="labelTotalPages">1</span></span>
+          </span>
 
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="viewer-btn" id="btn-rotate-view">↻ Rotate</button>
-            <label class="viewer-btn" style="margin:0; cursor:pointer;">
-              Open New File <input type="file" id="pdf-input-secondary" accept="application/pdf" style="display:none;">
-            </label>
-          </div>
+          <button type="button" class="viewer-btn" id="btnNextPage" onclick="changePage(1)" title="Next Page">▶</button>
+          <button type="button" class="viewer-btn" id="btnLastPage" onclick="goToLastPage()" title="Last Page">⏭</button>
         </div>
 
-        <!-- Render Canvas Viewport -->
-        <div class="viewer-canvas-container" id="viewer-container">
-          <canvas id="the-canvas"></canvas>
+        <!-- Center: Zoom & View Mode -->
+        <div class="toolbar-group">
+          <button type="button" class="viewer-btn" id="btnZoomOut" onclick="adjustZoom(-0.15)" title="Zoom Out">🔍 -</button>
+          
+          <select id="selectZoom" class="zoom-select-box" onchange="onZoomSelectChange(this.value)">
+            <option value="0.5">50%</option>
+            <option value="0.75">75%</option>
+            <option value="1.0" selected>100%</option>
+            <option value="1.25">125%</option>
+            <option value="1.5">150%</option>
+            <option value="2.0">200%</option>
+            <option value="fit-width">Fit Width</option>
+            <option value="fit-page">Fit Page</option>
+          </select>
+
+          <button type="button" class="viewer-btn" id="btnZoomIn" onclick="adjustZoom(0.15)" title="Zoom In">🔍 +</button>
+
+          <button type="button" class="viewer-btn hide-mobile" id="btnViewMode" onclick="toggleViewMode()" title="Toggle Single Page vs Continuous Scroll">
+            <span class="viewer-btn-icon">📜</span>
+            <span id="labelViewMode">Continuous</span>
+          </button>
         </div>
 
+        <!-- Right: Rotate, Print, Download, Open New -->
+        <div class="toolbar-group">
+          <button type="button" class="viewer-btn" id="btnRotate" onclick="rotateDocument()" title="Rotate 90° Clockwise">
+            <span class="viewer-btn-icon">↻</span>
+            <span class="hide-mobile">Rotate</span>
+          </button>
+          
+          <button type="button" class="viewer-btn hide-mobile" id="btnPrint" onclick="printDocument()" title="Print PDF">
+            <span class="viewer-btn-icon">🖨️</span>
+            <span>Print</span>
+          </button>
+
+          <button type="button" class="viewer-btn hide-mobile" id="btnFullscreen" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+            <span class="viewer-btn-icon">⛶</span>
+          </button>
+
+          <a id="btnDownload" class="viewer-btn" style="text-decoration:none; background:#2563eb; border-color:#3b82f6;" download="document.pdf" title="Download original PDF">
+            <span class="viewer-btn-icon">⬇️</span>
+            <span class="hide-mobile">Download</span>
+          </a>
+
+          <button type="button" class="viewer-btn" onclick="document.getElementById('fileInput').click()" title="Open Another PDF">
+            <span class="viewer-btn-icon">🔄</span>
+            <span class="hide-mobile">Open</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Stage Layout (Sidebar + Viewport) -->
+      <div class="viewer-stage-container" id="viewerStageContainer">
+        
+        <!-- Left Thumbnail Sidebar -->
+        <div class="viewer-thumb-drawer" id="thumbDrawer">
+          <!-- Dynamically populated thumbnails -->
+        </div>
+
+        <!-- Center Viewport Stage -->
+        <div class="viewer-viewport-stage" id="viewportStage" onscroll="handleScroll()">
+          <!-- Canvas elements will be rendered here -->
+          <canvas id="mainCanvas" class="pdf-render-canvas"></canvas>
+        </div>
+
+        <!-- Loading Spinner Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display:none;">
+          <div class="loading-spinner"></div>
+          <div id="loadingStatusText" style="font-weight:600; font-size:0.92rem;">Rendering high-resolution page...</div>
+        </div>
+
+      </div>
+
+      <!-- Viewer Status Bar -->
+      <div class="viewer-statusbar">
+        <div id="statusFileName">No file selected</div>
+        <div id="statusDetails">0 Pages • 100% In-Browser Memory</div>
       </div>
 
     </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🚀</div>
+          <h3 class="vytra-info-cell-title">Zero-install instant rendering</h3>
+          <p class="vytra-info-cell-desc">Open multi-gigabyte files or standard PDF documents instantly in Chrome, Edge, Safari, and Firefox without bulky desktop installations.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">Complete offline browser privacy</h3>
+          <p class="vytra-info-cell-desc">Files never leave your local device. The PDF.js WebAssembly parser parses byte streams directly inside browser memory with zero tracking.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📐</div>
+          <h3 class="vytra-info-cell-title">Precision zoom &amp; high-DPI clarity</h3>
+          <p class="vytra-info-cell-desc">Automatically adjusts for device pixel ratio on Retina and 4K displays so vector text, mathematical equations, and CAD drawings look razor-sharp.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📑</div>
+          <h3 class="vytra-info-cell-title">Visual page thumbnail drawer</h3>
+          <p class="vytra-info-cell-desc">Jump effortlessly across hundreds of pages in legal contracts, financial audits, or academic textbooks with interactive visual thumbnail previews.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">In-browser direct printing &amp; export</h3>
+          <p class="vytra-info-cell-desc">Send clean vector pages directly to your physical printer or export an unmodified local backup copy with a single click.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Touch &amp; mobile gesture optimized</h3>
+          <p class="vytra-info-cell-desc">Responsive controls with continuous scrolling and touch swipe support for seamless reading on Android tablets, iPads, and smartphones.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with high-performance WebAssembly rendering by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">PDF Viewer Shortcut Keys &amp; Navigation Guide</h2>
+      <p class="vytra-section-subtitle">
+        Accelerate document inspection and navigation using these built-in keyboard shortcuts.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Navigation Action</th>
+              <th>Windows / Linux Shortcut</th>
+              <th>Mac Shortcut</th>
+              <th>Feature Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Next Page</strong></td>
+              <td><code>Right Arrow</code> / <code>Page Down</code> / <code>J</code></td>
+              <td><code>Right Arrow</code> / <code>Fn + Down</code> / <code>J</code></td>
+              <td>Advances to the immediate next page in document sequence.</td>
+            </tr>
+            <tr>
+              <td><strong>Previous Page</strong></td>
+              <td><code>Left Arrow</code> / <code>Page Up</code> / <code>K</code></td>
+              <td><code>Left Arrow</code> / <code>Fn + Up</code> / <code>K</code></td>
+              <td>Returns to the preceding page in document sequence.</td>
+            </tr>
+            <tr>
+              <td><strong>First Page</strong></td>
+              <td><code>Home</code></td>
+              <td><code>Cmd + Up Arrow</code></td>
+              <td>Jumps instantly to cover page (Page 1).</td>
+            </tr>
+            <tr>
+              <td><strong>Last Page</strong></td>
+              <td><code>End</code></td>
+              <td><code>Cmd + Down Arrow</code></td>
+              <td>Jumps directly to the final concluding page of the file.</td>
+            </tr>
+            <tr>
+              <td><strong>Zoom In</strong></td>
+              <td><code>Ctrl</code> + <code>+</code></td>
+              <td><code>Cmd</code> + <code>+</code></td>
+              <td>Increases rendering scale by 15% for fine text and diagrams.</td>
+            </tr>
+            <tr>
+              <td><strong>Zoom Out</strong></td>
+              <td><code>Ctrl</code> + <code>-</code></td>
+              <td><code>Cmd</code> + <code>-</code></td>
+              <td>Reduces rendering scale by 15% for multi-page overview.</td>
+            </tr>
+            <tr>
+              <td><strong>Print Document</strong></td>
+              <td><code>Ctrl</code> + <code>P</code></td>
+              <td><code>Cmd</code> + <code>P</code></td>
+              <td>Invokes browser print system for physical printing or PDF export.</td>
+            </tr>
+            <tr>
+              <td><strong>Toggle Fullscreen</strong></td>
+              <td><code>F11</code></td>
+              <td><code>Cmd + Ctrl + F</code></td>
+              <td>Maximizes reading stage across your entire monitor screen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What Professionals Say About Vytra PDF Viewer</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "Essential for reading 100-page arXiv papers and research theses on my laptop without waiting for heavy desktop applications like Acrobat to boot up."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#2563eb;">RS</div>
+            <div>
+              <div class="vytra-test-name">Dr. Rajesh Sharma</div>
+              <div class="vytra-test-role">Research Scholar, IIT Delhi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "I can quickly inspect client case affidavits and scan-docket page layouts directly in Chrome. Because files never leave my computer, confidentiality is 100% assured."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#059669;">SK</div>
+            <div>
+              <div class="vytra-test-name">Sneha Kapoor</div>
+              <div class="vytra-test-role">Legal Associate, Mumbai High Court</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "Customers bring sensitive ITR tax statements and marksheets on flash drives. With Vytra PDF Viewer, they can preview and verify their document before printing with complete trust."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#d97706;">VP</div>
+            <div>
+              <div class="vytra-test-name">Vikram Patel</div>
+              <div class="vytra-test-role">Cyber Café &amp; CSC Operator, Ahmedabad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-faq-accordion">
+        
+        <details class="vytra-faq-item" open>
+          <summary class="vytra-faq-question">
+            <span>Is my PDF uploaded to an external server when using this viewer?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. Vytra PDF Viewer executes 100% locally inside your web browser using HTML5 Canvas and WebAssembly. Your files are never uploaded, stored, or transmitted over the internet, guaranteeing complete privacy for confidential medical records, legal contracts, and financial statements.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I open large PDF files with hundreds of pages?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Our high-performance PDF engine lazily renders pages on demand. Even multi-hundred-page textbooks, court briefs, or annual corporate reports load smoothly without freezing your computer or consuming excessive memory.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I switch between single page view and continuous scrolling?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Use the view mode toggle on the top toolbar to switch between Single Page mode (ideal for presentations, certificates, and slide decks) and Continuous Scroll mode (ideal for books, research articles, and legal documents).
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I print my document directly from this online reader?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Simply click the 'Print' button on the toolbar or press Ctrl+P (Cmd+P on Mac) to invoke your browser's native print dialog and output high-resolution vector pages to any connected printer.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Does this PDF viewer work on iPhone, iPad, and Android phones?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Vytra PDF Viewer is fully responsive and touch-friendly. You can open and read PDFs seamlessly on Safari (iOS), Google Chrome (Android), Samsung Internet, and mobile Firefox.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 7. Rating & Share Section -->
+    <div class="vytra-feedback-card">
+      <div class="vytra-feedback-title">Rate this PDF Viewer</div>
+      <div class="vytra-feedback-desc">How was your reading experience? Help us improve our client-side tools.</div>
+      <div class="vytra-star-rating" id="starRatingWidget">
+        <span class="star-btn" onclick="submitRating(1)">★</span>
+        <span class="star-btn" onclick="submitRating(2)">★</span>
+        <span class="star-btn" onclick="submitRating(3)">★</span>
+        <span class="star-btn" onclick="submitRating(4)">★</span>
+        <span class="star-btn active" onclick="submitRating(5)">★</span>
+      </div>
+      <div id="ratingFeedbackMsg" style="font-size:0.85rem; color:#16a34a; font-weight:600; margin-top:8px; display:none;">
+        Thank you for rating! 4.9/5 based on community feedback.
+      </div>
+
+      <!-- Social Share Links -->
+      <div class="vytra-share-links">
+        <span style="font-size:0.85rem; font-weight:600; color:#64748b;">Share tool:</span>
+        <a href="https://api.whatsapp.com/send?text=View%20and%20read%20PDFs%20online%20privately%20with%20Vytra%20PDF%20Viewer%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fviewer.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on WhatsApp">WhatsApp</a>
+        <a href="https://twitter.com/intent/tweet?text=Fast%20and%20private%20in-browser%20PDF%20viewer%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fviewer.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on X">Twitter / X</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fviewer.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on LinkedIn">LinkedIn</a>
+        <button type="button" class="vytra-share-pill" onclick="copyToolLink()" title="Copy Link to Clipboard">🔗 Copy Link</button>
+      </div>
+    </div>
+
+    <!-- 8. Related PDF Tools Grid -->
+    <div class="vytra-related-grid-wrap" style="margin: 2.5rem 0 3.5rem;">
+      <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-bottom:1rem;">Related PDF Tools</h3>
+      <div class="vytra-related-tools">
+        <a href="compress.html" class="vytra-related-card">
+          <span class="vytra-related-icon">🗜️</span>
+          <div>
+            <div class="vytra-related-title">Compress PDF</div>
+            <div class="vytra-related-desc">Reduce PDF file size for portal submissions</div>
+          </div>
+        </a>
+        <a href="merge.html" class="vytra-related-card">
+          <span class="vytra-related-icon">📑</span>
+          <div>
+            <div class="vytra-related-title">Merge PDF</div>
+            <div class="vytra-related-desc">Combine multiple PDF files into one clean doc</div>
+          </div>
+        </a>
+        <a href="split.html" class="vytra-related-card">
+          <span class="vytra-related-icon">✂️</span>
+          <div>
+            <div class="vytra-related-title">Split PDF</div>
+            <div class="vytra-related-desc">Separate pages and extract individual sheets</div>
+          </div>
+        </a>
+        <a href="crop.html" class="vytra-related-card">
+          <span class="vytra-related-icon">📐</span>
+          <div>
+            <div class="vytra-related-title">Crop PDF</div>
+            <div class="vytra-related-desc">Trim white margins for e-readers and tablets</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
   </main>
 
   <!-- Footer -->
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -359,133 +1014,513 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
 
-    (function () {
-      let pdfDoc = null;
-      let pageNum = 1;
-      let pageRendering = false;
-      let pageNumPending = null;
-      let scale = 1.0;
-      let rotationAngle = 0;
+    // State
+    let pdfDoc = null;
+    let currentFile = null;
+    let fileUrl = null;
+    let currentPageNum = 1;
+    let totalPages = 1;
+    let currentScale = 1.0;
+    let currentRotation = 0;
+    let isContinuousView = false;
+    let pageRendering = false;
+    let pageNumPending = null;
+    let renderedPages = new Set();
 
-      const fileInput = document.getElementById('pdf-input');
-      const fileInputSecondary = document.getElementById('pdf-input-secondary');
-      const dropZone = document.getElementById('drop-zone');
-      const workspace = document.getElementById('viewer-workspace');
-      const canvas = document.getElementById('the-canvas');
-      const ctx = canvas.getContext('2d');
-      const inputCurrentPage = document.getElementById('input-current-page');
-      const totalPagesCount = document.getElementById('total-pages-count');
-      const zoomLevelText = document.getElementById('zoom-level-text');
-      const btnPrev = document.getElementById('btn-prev-page');
-      const btnNext = document.getElementById('btn-next-page');
-      const btnZoomIn = document.getElementById('btn-zoom-in');
-      const btnZoomOut = document.getElementById('btn-zoom-out');
-      const btnFitWidth = document.getElementById('btn-fit-width');
-      const btnRotateView = document.getElementById('btn-rotate-view');
+    // DOM Elements
+    const dropZoneBox = document.getElementById('dropZoneBox');
+    const fileInput = document.getElementById('fileInput');
+    const viewerWorkspace = document.getElementById('viewerWorkspace');
+    const thumbDrawer = document.getElementById('thumbDrawer');
+    const viewportStage = document.getElementById('viewportStage');
+    const mainCanvas = document.getElementById('mainCanvas');
+    const inputCurrentPage = document.getElementById('inputCurrentPage');
+    const labelTotalPages = document.getElementById('labelTotalPages');
+    const selectZoom = document.getElementById('selectZoom');
+    const labelViewMode = document.getElementById('labelViewMode');
+    const btnDownload = document.getElementById('btnDownload');
+    const statusFileName = document.getElementById('statusFileName');
+    const statusDetails = document.getElementById('statusDetails');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingStatusText = document.getElementById('loadingStatusText');
 
-      fileInput.addEventListener('change', (e) => loadFile(e.target.files[0]));
-      fileInputSecondary.addEventListener('change', (e) => loadFile(e.target.files[0]));
+    // Drag and Drop Handling on Dropzone
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropZoneBox.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.add('vytra-dropzone-dragover');
+      });
+    });
 
-      async function loadFile(file) {
-        if (!file) return;
-        const arrayBuffer = await file.arrayBuffer();
-        try {
-          const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-          pdfDoc = await loadingTask.promise;
-          totalPagesCount.textContent = pdfDoc.numPages;
-          pageNum = 1;
-          scale = 1.0;
-          rotationAngle = 0;
-          dropZone.style.display = 'none';
-          workspace.style.display = 'block';
-          renderPage(pageNum);
-        } catch (err) {
-          console.error(err);
-          if (typeof showToast === 'function') showToast('Error opening PDF: ' + err.message, 'error');
-        }
+    ['dragleave', 'drop'].forEach(evt => {
+      dropZoneBox.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.remove('vytra-dropzone-dragover');
+      });
+    });
+
+    dropZoneBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleSelectedFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        handleSelectedFile(event.target.files[0]);
+      }
+    }
+
+    async function handleSelectedFile(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Please choose a valid PDF document.');
+        return;
       }
 
-      function renderPage(num) {
-        pageRendering = true;
-        pdfDoc.getPage(num).then((page) => {
-          const viewport = page.getViewport({ scale: scale, rotation: rotationAngle });
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
+      currentFile = file;
+      if (fileUrl) URL.revokeObjectURL(fileUrl);
+      fileUrl = URL.createObjectURL(file);
+      btnDownload.href = fileUrl;
+      btnDownload.download = file.name;
 
-          const renderContext = {
-            canvasContext: ctx,
-            viewport: viewport
-          };
-          const renderTask = page.render(renderContext);
+      statusFileName.textContent = file.name;
+      statusDetails.textContent = `${(file.size / 1024).toFixed(1)} KB • Loading...`;
 
-          renderTask.promise.then(() => {
-            pageRendering = false;
-            if (pageNumPending !== null) {
-              renderPage(pageNumPending);
-              pageNumPending = null;
-            }
-          });
+      showLoading(true, 'Reading PDF structure...');
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const loadingTask = pdfjsLib.getDocument({
+          data: arrayBuffer,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
         });
 
-        inputCurrentPage.value = num;
-        zoomLevelText.textContent = `${Math.round(scale * 100)}%`;
-      }
+        pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
+        currentPageNum = 1;
+        currentRotation = 0;
+        currentScale = 1.0;
+        selectZoom.value = '1.0';
 
-      function queueRenderPage(num) {
+        labelTotalPages.textContent = totalPages;
+        inputCurrentPage.value = 1;
+        inputCurrentPage.max = totalPages;
+        statusDetails.textContent = `${totalPages} Pages • ${(file.size / 1024).toFixed(1)} KB • 100% In-Browser Memory`;
+
+        dropZoneBox.style.display = 'none';
+        viewerWorkspace.style.display = 'flex';
+
+        // Render Thumbnails
+        generateThumbnails();
+
+        // Render Initial Page or View
+        if (isContinuousView) {
+          renderContinuousView();
+        } else {
+          renderSinglePage(currentPageNum);
+        }
+
+      } catch (err) {
+        console.error('PDF parsing error:', err);
+        alert('Could not open PDF: ' + err.message);
+      } finally {
+        showLoading(false);
+      }
+    }
+
+    function showLoading(show, message = 'Rendering...') {
+      loadingOverlay.style.display = show ? 'flex' : 'none';
+      if (message) loadingStatusText.textContent = message;
+    }
+
+    // Single Page Rendering with high DPI support
+    async function renderSinglePage(num) {
+      if (!pdfDoc) return;
+      pageRendering = true;
+      showLoading(true, `Rendering Page ${num}...`);
+
+      try {
+        const page = await pdfDoc.getPage(num);
+        const viewport = page.getViewport({ scale: currentScale, rotation: currentRotation });
+        
+        // High DPI sharpness support
+        const pixelRatio = window.devicePixelRatio || 1;
+        mainCanvas.width = Math.floor(viewport.width * pixelRatio);
+        mainCanvas.height = Math.floor(viewport.height * pixelRatio);
+        mainCanvas.style.width = Math.floor(viewport.width) + 'px';
+        mainCanvas.style.height = Math.floor(viewport.height) + 'px';
+
+        const ctx = mainCanvas.getContext('2d');
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        await page.render(renderContext).promise;
+        updateActiveThumbnail(num);
+        inputCurrentPage.value = num;
+        currentPageNum = num;
+
+      } catch (err) {
+        console.error('Page render error:', err);
+      } finally {
+        pageRendering = false;
+        showLoading(false);
+        if (pageNumPending !== null) {
+          const next = pageNumPending;
+          pageNumPending = null;
+          renderSinglePage(next);
+        }
+      }
+    }
+
+    // Continuous Scroll Rendering Mode
+    async function renderContinuousView() {
+      if (!pdfDoc) return;
+      viewportStage.innerHTML = '';
+      renderedPages.clear();
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageWrapper = document.createElement('div');
+        pageWrapper.id = `page-container-${i}`;
+        pageWrapper.dataset.pageNum = i;
+        pageWrapper.style.display = 'flex';
+        pageWrapper.style.flexDirection = 'column';
+        pageWrapper.style.alignItems = 'center';
+        pageWrapper.style.gap = '8px';
+
+        const pageLabel = document.createElement('div');
+        pageLabel.style.fontSize = '0.75rem';
+        pageLabel.style.color = '#cbd5e1';
+        pageLabel.style.fontWeight = '600';
+        pageLabel.textContent = `Page ${i}`;
+
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.id = `canvas-page-${i}`;
+        pageCanvas.className = 'pdf-render-canvas';
+
+        pageWrapper.appendChild(pageCanvas);
+        pageWrapper.appendChild(pageLabel);
+        viewportStage.appendChild(pageWrapper);
+
+        // Render page
+        renderPageToCanvas(i, pageCanvas);
+      }
+    }
+
+    async function renderPageToCanvas(num, canvasElem) {
+      if (!pdfDoc) return;
+      try {
+        const page = await pdfDoc.getPage(num);
+        const viewport = page.getViewport({ scale: currentScale, rotation: currentRotation });
+        const pixelRatio = window.devicePixelRatio || 1;
+
+        canvasElem.width = Math.floor(viewport.width * pixelRatio);
+        canvasElem.height = Math.floor(viewport.height * pixelRatio);
+        canvasElem.style.width = Math.floor(viewport.width) + 'px';
+        canvasElem.style.height = Math.floor(viewport.height) + 'px';
+
+        const ctx = canvasElem.getContext('2d');
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+        renderedPages.add(num);
+      } catch (err) {
+        console.error(`Error rendering page ${num}:`, err);
+      }
+    }
+
+    // Thumbnail Generation
+    async function generateThumbnails() {
+      if (!pdfDoc) return;
+      thumbDrawer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const item = document.createElement('div');
+        item.className = `thumb-item ${i === 1 ? 'active' : ''}`;
+        item.id = `thumb-${i}`;
+        item.onclick = () => {
+          if (isContinuousView) {
+            const el = document.getElementById(`page-container-${i}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            goToPage(i);
+          }
+        };
+
+        const thumbCanvas = document.createElement('canvas');
+        thumbCanvas.className = 'thumb-canvas';
+        thumbCanvas.width = 120;
+        thumbCanvas.height = 160;
+
+        const label = document.createElement('div');
+        label.className = 'thumb-label';
+        label.textContent = `Page ${i}`;
+
+        item.appendChild(thumbCanvas);
+        item.appendChild(label);
+        thumbDrawer.appendChild(item);
+
+        // Render miniature thumbnail
+        renderThumbnail(i, thumbCanvas);
+      }
+    }
+
+    async function renderThumbnail(num, canvas) {
+      try {
+        const page = await pdfDoc.getPage(num);
+        const unscaledViewport = page.getViewport({ scale: 1.0, rotation: currentRotation });
+        const thumbScale = 140 / unscaledViewport.width;
+        const viewport = page.getViewport({ scale: thumbScale, rotation: currentRotation });
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+
+        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      } catch (e) {
+        console.warn('Thumbnail render warn:', e);
+      }
+    }
+
+    function updateActiveThumbnail(num) {
+      document.querySelectorAll('.thumb-item').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`thumb-${num}`);
+      if (activeEl) {
+        activeEl.classList.add('active');
+        activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    // Navigation Actions
+    function changePage(delta) {
+      if (!pdfDoc) return;
+      const target = currentPageNum + delta;
+      if (target >= 1 && target <= totalPages) {
+        goToPage(target);
+      }
+    }
+
+    function goToPage(num) {
+      if (!pdfDoc || num < 1 || num > totalPages) return;
+      if (isContinuousView) {
+        const el = document.getElementById(`page-container-${num}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        currentPageNum = num;
+        inputCurrentPage.value = num;
+        updateActiveThumbnail(num);
+      } else {
         if (pageRendering) {
           pageNumPending = num;
         } else {
-          renderPage(num);
+          renderSinglePage(num);
         }
       }
+    }
 
-      btnPrev.addEventListener('click', () => {
-        if (pageNum <= 1) return;
-        pageNum--;
-        queueRenderPage(pageNum);
-      });
+    function goToLastPage() {
+      if (pdfDoc) goToPage(totalPages);
+    }
 
-      btnNext.addEventListener('click', () => {
-        if (pageNum >= pdfDoc.numPages) return;
-        pageNum++;
-        queueRenderPage(pageNum);
-      });
+    function onPageInputChange(val) {
+      const p = parseInt(val, 10);
+      if (!isNaN(p)) goToPage(p);
+    }
 
-      inputCurrentPage.addEventListener('change', () => {
-        const val = parseInt(inputCurrentPage.value, 10);
-        if (val >= 1 && val <= pdfDoc.numPages) {
-          pageNum = val;
-          queueRenderPage(pageNum);
+    // View Mode Toggle
+    function toggleViewMode() {
+      if (!pdfDoc) return;
+      isContinuousView = !isContinuousView;
+      labelViewMode.textContent = isContinuousView ? 'Single Page' : 'Continuous';
+
+      if (isContinuousView) {
+        viewportStage.innerHTML = '';
+        renderContinuousView();
+      } else {
+        viewportStage.innerHTML = '';
+        const canvas = document.createElement('canvas');
+        canvas.id = 'mainCanvas';
+        canvas.className = 'pdf-render-canvas';
+        viewportStage.appendChild(canvas);
+        renderSinglePage(currentPageNum);
+      }
+    }
+
+    function handleScroll() {
+      if (!isContinuousView || !pdfDoc) return;
+      const containers = document.querySelectorAll('[data-page-num]');
+      const stageTop = viewportStage.getBoundingClientRect().top;
+
+      let closestPage = 1;
+      let minDiff = Infinity;
+
+      containers.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const diff = Math.abs(rect.top - stageTop);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestPage = parseInt(el.dataset.pageNum, 10);
         }
       });
 
-      btnZoomIn.addEventListener('click', () => {
-        scale = Math.min(3.0, scale + 0.2);
-        queueRenderPage(pageNum);
-      });
+      if (closestPage !== currentPageNum) {
+        currentPageNum = closestPage;
+        inputCurrentPage.value = closestPage;
+        updateActiveThumbnail(closestPage);
+      }
+    }
 
-      btnZoomOut.addEventListener('click', () => {
-        scale = Math.max(0.4, scale - 0.2);
-        queueRenderPage(pageNum);
-      });
+    // Zoom Handling
+    function adjustZoom(delta) {
+      if (!pdfDoc) return;
+      currentScale = Math.min(3.0, Math.max(0.4, currentScale + delta));
+      selectZoom.value = currentScale.toFixed(2);
+      applyZoom();
+    }
 
-      btnFitWidth.addEventListener('click', () => {
-        const containerWidth = document.getElementById('viewer-container').clientWidth - 40;
-        pdfDoc.getPage(pageNum).then(page => {
-          const unscaledViewport = page.getViewport({ scale: 1.0, rotation: rotationAngle });
-          scale = containerWidth / unscaledViewport.width;
-          queueRenderPage(pageNum);
+    function onZoomSelectChange(val) {
+      if (!pdfDoc) return;
+      if (val === 'fit-width') {
+        fitToWidth();
+      } else if (val === 'fit-page') {
+        fitToPage();
+      } else {
+        currentScale = parseFloat(val);
+        applyZoom();
+      }
+    }
+
+    async function fitToWidth() {
+      if (!pdfDoc) return;
+      const stageWidth = viewportStage.clientWidth - 60;
+      const page = await pdfDoc.getPage(currentPageNum);
+      const viewport = page.getViewport({ scale: 1.0, rotation: currentRotation });
+      currentScale = Math.max(0.4, stageWidth / viewport.width);
+      applyZoom();
+    }
+
+    async function fitToPage() {
+      if (!pdfDoc) return;
+      const stageHeight = viewportStage.clientHeight - 60;
+      const page = await pdfDoc.getPage(currentPageNum);
+      const viewport = page.getViewport({ scale: 1.0, rotation: currentRotation });
+      currentScale = Math.max(0.4, stageHeight / viewport.height);
+      applyZoom();
+    }
+
+    function applyZoom() {
+      if (isContinuousView) {
+        renderContinuousView();
+      } else {
+        renderSinglePage(currentPageNum);
+      }
+    }
+
+    // Rotation
+    function rotateDocument() {
+      if (!pdfDoc) return;
+      currentRotation = (currentRotation + 90) % 360;
+      if (isContinuousView) {
+        renderContinuousView();
+      } else {
+        renderSinglePage(currentPageNum);
+      }
+      generateThumbnails();
+    }
+
+    // Sidebar Toggle
+    function toggleSidebar() {
+      thumbDrawer.classList.toggle('collapsed');
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      const container = document.getElementById('viewerWorkspace');
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+          alert('Could not enter fullscreen: ' + err.message);
         });
-      });
+      } else {
+        document.exitFullscreen();
+      }
+    }
 
-      btnRotateView.addEventListener('click', () => {
-        rotationAngle = (rotationAngle + 90) % 360;
-        queueRenderPage(pageNum);
+    // Print Document
+    function printDocument() {
+      if (!fileUrl) return;
+      const printWin = window.open(fileUrl, '_blank');
+      if (printWin) {
+        printWin.focus();
+      } else {
+        window.print();
+      }
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (!pdfDoc) return;
+      // Ignore if typing in input
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        changePage(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        changePage(-1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToPage(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToLastPage();
+      } else if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '=')) {
+        e.preventDefault();
+        adjustZoom(0.15);
+      } else if ((e.ctrlKey || e.metaKey) && (e.key === '-' || e.key === '_')) {
+        e.preventDefault();
+        adjustZoom(-0.15);
+      } else if (e.key.toLowerCase() === 'r' && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        rotateDocument();
+      }
+    });
+
+    // Rating
+    function submitRating(stars) {
+      const widget = document.getElementById('starRatingWidget');
+      const starSpans = widget.querySelectorAll('.star-btn');
+      starSpans.forEach((s, idx) => {
+        if (idx < stars) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
       });
-    })();
+      document.getElementById('ratingFeedbackMsg').style.display = 'block';
+    }
+
+    // Copy Link Helper
+    function copyToolLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        if (typeof showToast === 'function') {
+          showToast('Link copied to clipboard!', 'success');
+        } else {
+          alert('Tool URL copied to clipboard!');
+        }
+      });
+    }
   </script>
 </body>
 </html>

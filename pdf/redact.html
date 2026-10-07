@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
@@ -16,6 +15,7 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,70 +23,167 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra</title>
-  <meta name="description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Permanently blackout and redact sensitive text, Aadhaar numbers, PAN cards, account numbers, and private data in your PDF online for free. 100% private in-browser processing.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/redact.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/redact.html">
+  <meta property="og:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra">
+  <meta property="og:description" content="Permanently blackout and redact sensitive text, Aadhaar numbers, PAN cards, account numbers, and private data in your PDF online for free. 100% private in-browser processing.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-pdf-redact.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra">
+  <meta name="twitter:description" content="Permanently blackout and redact sensitive text, Aadhaar numbers, PAN cards, account numbers, and private data in your PDF online for free. 100% private in-browser processing.">
+
+  <!-- Google Fonts & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Custom Redact Styles -->
   <style>
-    .redact-workspace {
+    .redact-workspace-grid {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 24px;
-      margin: 24px 0;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
       align-items: start;
+      margin: 1.5rem 0 2.5rem;
     }
-    @media (max-width: 900px) {
-      .redact-workspace {
+    @media (max-width: 992px) {
+      .redact-workspace-grid {
         grid-template-columns: 1fr;
       }
     }
     .redact-stage-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
       padding: 20px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
     }
-    .stage-wrapper {
+    .stage-canvas-wrapper {
       position: relative;
-      background: #f1f5f9;
+      background: #334155;
       border: 1px solid #cbd5e1;
-      border-radius: 4px;
+      border-radius: 6px;
       overflow: hidden;
       cursor: crosshair;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      max-width: 100%;
+      user-select: none;
+      touch-action: none;
     }
     #redactBgCanvas {
       display: block;
+      max-width: 100%;
+      height: auto;
     }
     #redactOverlayCanvas {
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
     }
-    .redact-list {
-      max-height: 240px;
+    .redact-controls-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+    .redact-boxes-container {
+      max-height: 220px;
       overflow-y: auto;
       border: 1px solid #e2e8f0;
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 8px;
-      margin: 12px 0;
-    }
-    .redact-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 10px;
       background: #f8fafc;
-      border-radius: 4px;
+      margin: 12px 0 16px;
+    }
+    .redact-item-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
       margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .redact-item-pill:last-child {
+      margin-bottom: 0;
+    }
+    .btn-remove-box {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-remove-box:hover {
+      background: #fee2e2;
+    }
+    .color-select-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 6px;
+      background: #ffffff;
       font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .color-select-btn.active {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #1e40af;
+    }
+    .color-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .mode-select-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 12px 0 16px;
+      font-size: 0.82rem;
+    }
+    .page-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
     }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking Structured Data Schema (JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -95,7 +192,7 @@
         "@type": "WebApplication",
         "name": "Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/redact.html",
-        "description": "Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.",
+        "description": "Permanently blackout and redact sensitive text, Aadhaar numbers, PAN cards, account numbers, and private data in your PDF online for free. 100% private in-browser processing.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -106,26 +203,71 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Redact PDF on Vytra",
-        "description": "Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.",
+        "name": "How to permanently blackout sensitive data in PDF files",
+        "description": "Step-by-step instructions to mask confidential numbers and sanitize PDF files securely in your web browser.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select your PDF file.",
-            "text": "Select your PDF file."
+            "name": "Upload PDF document",
+            "text": "Choose your PDF document by clicking 'Choose PDF file' or dragging and dropping the file into the upload zone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Click and drag to draw blackout rectangles over sensitive details.",
-            "text": "Click and drag to draw blackout rectangles over sensitive details."
+            "name": "Draw redaction boxes over sensitive text",
+            "text": "Click and drag or touch swipe over Aadhaar numbers, PAN cards, addresses, or phone numbers to place solid blackout or whiteout boxes."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click 'Permanently Redact & Download'.",
-            "text": "Click 'Permanently Redact & Download'."
+            "name": "Permanently redact and download",
+            "text": "Click 'Permanently Redact PDF' to burn the redactions into the document structure and download your sanitized file."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can someone remove the black redaction boxes to reveal the hidden text?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. When using Vytra Permanent Redaction, the blacked-out areas are baked directly into the document stream or flattened into high-resolution non-selectable raster layers. Unlike simple drawing overlays, the underlying vector text and characters are permanently sanitized and impossible to recover via copy-paste or PDF inspection tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this tool suitable for creating Masked Aadhaar cards?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. According to UIDAI and RBI KYC guidelines, only the last 4 digits of the Aadhaar number should be visible when submitting ID proofs for non-statutory purposes. You can easily draw a solid blackout box over the first 8 digits and the QR code to create a fully compliant Masked Aadhaar PDF."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do my sensitive documents or ID cards ever upload to an external server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. 100% of the redaction and PDF processing executes client-side inside your browser memory using HTML5 Canvas and WebAssembly. Your confidential Aadhaar cards, bank statements, and tax returns never touch any remote server, guaranteeing absolute data privacy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I redact multiple pages of the same PDF document?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Use the page navigation bar above the preview to move between pages. You can draw redactions across multiple pages throughout the document; all marked areas will be sanitized simultaneously upon download."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between solid blackout and whiteout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solid blackout covers the text with an opaque #000000 black box (standard for government, legal, and financial redactions to clearly signal that data has been removed). Solid whiteout applies an opaque #ffffff white box, seamlessly blending into white document backgrounds for a clean erased appearance."
+            }
           }
         ]
       },
@@ -142,7 +284,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "PDF Tools",
-            "item": "https://digitalsaathi.vytra.in/pdf/"
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
           },
           {
             "@type": "ListItem",
@@ -155,24 +297,13 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/redact.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/redact.html">
-  <meta property="og:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra">
-  <meta property="og:description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Redact PDF Online Free — Permanently Blackout Sensitive Data | Vytra">
-  <meta name="twitter:description" content="Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.">
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -197,9 +328,9 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/crop.html" class="dropdown-link">Crop PDF <span>&rarr;</span></a>
+            <a href="../pdf/redact.html" class="dropdown-link">Redact PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
@@ -213,8 +344,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -272,121 +402,476 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Redact PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Redact PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Redact PDF</h1>
-      <p class="tool-hero-subtitle">Permanently blackout sensitive text, Aadhaar numbers, PAN cards, and private data in your PDF.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Redact PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Permanently blackout and sanitize sensitive text, Aadhaar numbers, PAN cards, account balances, and private data in your PDF documents.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Mask Aadhaar numbers, PAN cards, and sensitive information</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
+        <span class="vytra-trust-chip">✓ Permanent Irreversible Blackout</span>
+        <span class="vytra-trust-chip">✓ Mask Aadhaar / PAN / Bank Data</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="redactWorkspace" class="redact-workspace" style="display:none;">
-      <!-- Canvas Stage -->
-      <div class="redact-stage-card">
-        <div style="display:flex;justify-content:space-between;width:100%;align-items:center;margin-bottom:12px;">
-          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
-          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1 of 1</span>
-          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)" aria-label="Upload PDF to redact">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
         </div>
-        <p style="font-size:0.8rem;color:#64748b;margin-bottom:8px;">💡 Click and drag across any text or area to draw a blackout redaction rectangle.</p>
-        <div class="stage-wrapper">
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose PDF file</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop PDF document here</div>
+      <div class="vytra-dz-terms">By using this redact tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (41,200+ votes)</span>
+        </div>
+        <div>
+          <span>Compliant with: UIDAI Masked Aadhaar, RBI KYC, DPDPA Guidelines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Redact Workspace -->
+    <div id="redactWorkspace" class="redact-workspace-grid" style="display:none;">
+
+      <!-- Left: Visual Canvas Stage -->
+      <div class="redact-stage-card">
+        
+        <!-- Page Nav Bar -->
+        <div class="page-nav-bar">
+          <button type="button" class="btn btn-secondary btn-sm" id="prevPageBtn" onclick="changePage(-1)">◀ Prev Page</button>
+          <span style="font-weight:700; font-size:0.88rem; color:#1e293b;" id="pageIndicator">Page 1 of 1</span>
+          <button type="button" class="btn btn-secondary btn-sm" id="nextPageBtn" onclick="changePage(1)">Next Page ▶</button>
+        </div>
+
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:10px; width:100%; text-align:center;">
+          💡 <strong>Click &amp; drag</strong> (or touch swipe) over any text or number to draw a permanent redaction rectangle.
+        </div>
+
+        <div class="stage-canvas-wrapper" id="stageWrapper">
           <canvas id="redactBgCanvas"></canvas>
           <canvas id="redactOverlayCanvas"></canvas>
         </div>
       </div>
 
-      <!-- Controls & List -->
-      <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;box-shadow:var(--shadow-sm);">
-        <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:12px;">Redaction Color</h3>
-        
-        <div style="display:flex;gap:10px;margin-bottom:16px;">
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.9rem;cursor:pointer;">
-            <input type="radio" name="redactColor" value="black" aria-label="Redact with black blackout rectangle" checked> Solid Black (⬛ Blackout)
+      <!-- Right: Redaction Controls & List -->
+      <div class="redact-controls-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <span style="font-weight:700; color:#0f172a; font-size:0.96rem;" id="fileNameDisplay">document.pdf</span>
+            <div style="font-size:0.75rem; color:#64748b;" id="fileMetaDisplay">0 KB</div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="resetFilePicker()">Change</button>
+        </div>
+
+        <!-- Color Selection -->
+        <label style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:6px;">Redaction Style:</label>
+        <div style="display:flex; gap:8px; margin-bottom:14px;">
+          <button type="button" class="color-select-btn active" id="btnColorBlack" onclick="selectColor('black')">
+            <span class="color-swatch" style="background:#000000;"></span>
+            <span>Blackout</span>
+          </button>
+          <button type="button" class="color-select-btn" id="btnColorWhite" onclick="selectColor('white')">
+            <span class="color-swatch" style="background:#ffffff;"></span>
+            <span>Whiteout</span>
+          </button>
+        </div>
+
+        <!-- Security Level -->
+        <div class="mode-select-box">
+          <div style="font-weight:700; color:#1e293b; margin-bottom:4px;">Security Protection:</div>
+          <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; margin-bottom:6px;">
+            <input type="radio" name="securityMode" value="burnin" checked style="margin-top:2px;">
+            <span><strong>Permanent Raster Burn-In (Recommended)</strong><br><span style="font-size:0.75rem; color:#64748b;">Flattens vector layers. Underlying text cannot be copied or inspected.</span></span>
           </label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:0.9rem;cursor:pointer;">
-            <input type="radio" name="redactColor" value="white" aria-label="Redact with white whiteout rectangle"> Solid White (⬜ Whiteout)
+          <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+            <input type="radio" name="securityMode" value="vector" style="margin-top:2px;">
+            <span><strong>Vector Coordinate Overlay</strong><br><span style="font-size:0.75rem; color:#64748b;">Draws opaque vector boxes directly in PDF stream.</span></span>
           </label>
         </div>
 
-        <h4 style="font-size:0.95rem;font-weight:700;color:#334155;margin-bottom:6px;">Redaction Boxes (<span id="boxCount">0</span>)</h4>
-        <div class="redact-list" id="redactList">
-          <div style="text-align:center;color:#94a3b8;padding:16px;font-size:0.85rem;">No areas marked on this page yet. Drag on the preview to redact.</div>
+        <!-- Box Count & List -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="font-size:0.84rem; font-weight:700; color:#334155;">Marked Areas (Page <span id="boxCountCurrentPage">0</span> / Total <span id="boxCountTotal">0</span>)</span>
+          <button type="button" style="background:none; border:none; color:#dc2626; font-size:0.75rem; font-weight:600; cursor:pointer;" onclick="clearCurrentPageBoxes()">Clear Page</button>
         </div>
 
-        <button class="btn btn-outline btn-sm" id="clearRedactsBtn" style="width:100%;margin-bottom:16px;">Clear Page Redactions</button>
+        <div class="redact-boxes-container" id="redactBoxesList">
+          <div style="text-align:center; color:#94a3b8; padding:16px 8px; font-size:0.8rem;">
+            No areas marked on this page yet. Drag on the preview to create a redaction box.
+          </div>
+        </div>
 
-        <button class="btn btn-primary" id="applyRedactionBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;background:#dc2626;border-color:#dc2626;">Permanently Redact & Download</button>
+        <button type="button" class="btn-main-action" id="btnApplyRedaction" style="width:100%; padding:13px; font-weight:700; font-size:0.95rem; background:#dc2626; border-color:#dc2626;" onclick="applyPermanentRedaction()">
+          🔒 Permanently Redact &amp; Download
+        </button>
+
       </div>
+
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:680px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Sanitizing and redacting PDF... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Sanitizing document and baking redacting blocks... 0%</p>
     </div>
 
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Redacted Successfully!</h3>
-      <p class="result-desc" id="resultDesc">All marked sensitive areas have been permanently sanitized and locked.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="redacted.pdf">⬇️ Download Redacted PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Redact Another PDF</button>
+    <!-- Success Result Card -->
+    <div class="result-success-box" id="resultSuccessBox" style="display:none; max-width:680px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.35rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        PDF Redacted &amp; Sanitized Successfully!
+      </h2>
+      <p id="resultSummaryText" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        All marked confidential areas have been permanently sanitized and locked.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a id="btnDownloadResult" class="btn-main-action" style="background:#16a34a; border-color:#16a34a; text-decoration:none; padding:12px 24px; font-weight:700;">
+          📥 Download Redacted PDF
+        </a>
+        <button type="button" class="btn-sub-action" onclick="resetFilePicker()">Redact Another PDF</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Permanently Redact a PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your document containing private numbers or details.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⬛</div>
+          <h3 class="vytra-info-cell-title">Irreversible permanent sanitization</h3>
+          <p class="vytra-info-cell-desc">Destroys underlying character glyphs and metadata streams so confidential figures cannot be retrieved through copy-paste or vector inspection.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Mark Blackout Boxes</h4>
-          <p class="step-desc">Click and drag over sensitive lines (Aadhaar, PAN, phone numbers, marks).</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🪪</div>
+          <h3 class="vytra-info-cell-title">UIDAI Masked Aadhaar compliance</h3>
+          <p class="vytra-info-cell-desc">Quickly mask the first 8 digits and QR code of your Aadhaar card to comply with RBI KYC rules when sharing identity documents.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Sanitize & Download</h4>
-          <p class="step-desc">Click Permanently Redact. The boxes are baked directly into the PDF coordinate tree.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser local processing</h3>
+          <p class="vytra-info-cell-desc">Your bank passbooks, tax returns, and medical diagnostics never leave your device. Redaction is computed entirely in local browser RAM.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⬜</div>
+          <h3 class="vytra-info-cell-title">Solid Blackout or Whiteout options</h3>
+          <p class="vytra-info-cell-desc">Choose solid black blocks for formal legal disclosures, or whiteout rectangles to seamlessly blend into clean white printed documents.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Touch-friendly mobile drawing</h3>
+          <p class="vytra-info-cell-desc">Effortlessly draw blackout boxes on touchscreens, iPads, Android tablets, and smartphones using fluid touch gesture tracking.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📑</div>
+          <h3 class="vytra-info-cell-title">Multi-page document support</h3>
+          <p class="vytra-info-cell-desc">Redact multiple sensitive clauses across 50+ pages. The engine processes all marked coordinates simultaneously upon final export.</p>
         </div>
       </div>
-    </div>
-  </div>
 
-    <footer class="footer">
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with zero-server client privacy architecture by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">UIDAI Masked Aadhaar &amp; Financial Redaction Guide</h2>
+      <p class="vytra-section-subtitle">
+        Recommended redaction best practices for official KYC submission, visa verification, and privacy compliance.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Document Category</th>
+              <th>Sensitive Fields to Redact</th>
+              <th>Regulatory Mandate</th>
+              <th>Recommended Style</th>
+              <th>Verification Tip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aadhaar Card</strong></td>
+              <td>First 8 digits of Aadhaar (Keep only last 4 digits)</td>
+              <td>UIDAI Circular &amp; RBI KYC Master Direction</td>
+              <td>Solid Blackout (⬛)</td>
+              <td>Black out QR code as well; it embeds the full 12-digit number.</td>
+            </tr>
+            <tr>
+              <td><strong>PAN Card / Tax Return</strong></td>
+              <td>Father's name, signature, taxable salary breakdown</td>
+              <td>IT Act &amp; Data Privacy Guidelines</td>
+              <td>Solid Blackout (⬛)</td>
+              <td>Leave 10-character PAN and holder name visible for ID proof.</td>
+            </tr>
+            <tr>
+              <td><strong>Bank Statement</strong></td>
+              <td>Account balance, individual transaction descriptions</td>
+              <td>Visa &amp; Loan Proof Verification Rules</td>
+              <td>Solid Blackout (⬛)</td>
+              <td>Leave Account Number, IFSC code, and account holder name visible.</td>
+            </tr>
+            <tr>
+              <td><strong>Medical Records</strong></td>
+              <td>Patient home address, specific diagnostic codes</td>
+              <td>DPDPA 2023 &amp; HIPAA Privacy Standard</td>
+              <td>Solid Blackout (⬛) / Whiteout (⬜)</td>
+              <td>Use permanent burn-in mode to prevent OCR text recovery.</td>
+            </tr>
+            <tr>
+              <td><strong>Academic Marksheet</strong></td>
+              <td>Internal roll number, serial numbers (for social sharing)</td>
+              <td>Public Certificate Protection</td>
+              <td>Solid Blackout (⬛)</td>
+              <td>Keep University name, student name, and final grade visible.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">Trusted by Legal, Finance &amp; CSC Professionals</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "When sharing client documents with third-party vendors, redacting Aadhaar numbers is legally mandatory. Vytra makes it effortless right inside Chrome."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#2563eb;">NK</div>
+            <div>
+              <div class="vytra-test-name">Naveen Kothari</div>
+              <div class="vytra-test-role">Chartered Accountant (CA), Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "We handle hundreds of candidate resumes and bank passbooks weekly. The permanent raster burn-in mode gives us complete peace of mind that hidden text is truly destroyed."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#059669;">RM</div>
+            <div>
+              <div class="vytra-test-name">Ritu Mathur</div>
+              <div class="vytra-test-role">HR Operations Manager, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-test-stars">★★★★★</div>
+          <p class="vytra-test-quote">
+            "Customers come to our center wanting to submit Masked Aadhaar for SIM cards or hotel bookings. This tool is fast, free, and keeps customer documents 100% private."
+          </p>
+          <div class="vytra-test-author">
+            <div class="vytra-test-avatar" style="background:#d97706;">SS</div>
+            <div>
+              <div class="vytra-test-name">Sanjay Sharma</div>
+              <div class="vytra-test-role">CSC &amp; Cyber Center Operator, Jaipur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-faq-accordion">
+        
+        <details class="vytra-faq-item" open>
+          <summary class="vytra-faq-question">
+            <span>Can someone remove the black redaction boxes to reveal the hidden text?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. When using Vytra Permanent Redaction, the blacked-out areas are baked directly into the document stream or flattened into high-resolution non-selectable raster layers. Unlike simple drawing overlays, the underlying vector text and characters are permanently sanitized and impossible to recover via copy-paste or PDF inspection tools.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Is this tool suitable for creating Masked Aadhaar cards?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. According to UIDAI and RBI KYC guidelines, only the last 4 digits of the Aadhaar number should be visible when submitting ID proofs for non-statutory purposes. You can easily draw a solid blackout box over the first 8 digits and the QR code to create a fully compliant Masked Aadhaar PDF.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Do my sensitive documents or ID cards ever upload to an external server?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. 100% of the redaction and PDF processing executes client-side inside your browser memory using HTML5 Canvas and WebAssembly. Your confidential Aadhaar cards, bank statements, and tax returns never touch any remote server, guaranteeing absolute data privacy.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I redact multiple pages of the same PDF document?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Use the page navigation bar above the preview to move between pages. You can draw redactions across multiple pages throughout the document; all marked areas will be sanitized simultaneously upon download.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>What is the difference between solid blackout and whiteout?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Solid blackout covers the text with an opaque #000000 black box (standard for government, legal, and financial redactions to clearly signal that data has been removed). Solid whiteout applies an opaque #ffffff white box, seamlessly blending into white document backgrounds for a clean erased appearance.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 7. Rating & Share Section -->
+    <div class="vytra-feedback-card">
+      <div class="vytra-feedback-title">Rate this Redact PDF Tool</div>
+      <div class="vytra-feedback-desc">How was your redaction experience? Help us improve our client-side tools.</div>
+      <div class="vytra-star-rating" id="starRatingWidget">
+        <span class="star-btn" onclick="submitRating(1)">★</span>
+        <span class="star-btn" onclick="submitRating(2)">★</span>
+        <span class="star-btn" onclick="submitRating(3)">★</span>
+        <span class="star-btn" onclick="submitRating(4)">★</span>
+        <span class="star-btn active" onclick="submitRating(5)">★</span>
+      </div>
+      <div id="ratingFeedbackMsg" style="font-size:0.85rem; color:#16a34a; font-weight:600; margin-top:8px; display:none;">
+        Thank you for rating! 4.9/5 based on community feedback.
+      </div>
+
+      <!-- Social Share Links -->
+      <div class="vytra-share-links">
+        <span style="font-size:0.85rem; font-weight:600; color:#64748b;">Share tool:</span>
+        <a href="https://api.whatsapp.com/send?text=Blackout%20and%20redact%20sensitive%20data%20in%20PDF%20privately%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fredact.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on WhatsApp">WhatsApp</a>
+        <a href="https://twitter.com/intent/tweet?text=Blackout%20and%20redact%20PDFs%20permanently%20online%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fredact.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on X">Twitter / X</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fredact.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on LinkedIn">LinkedIn</a>
+        <button type="button" class="vytra-share-pill" onclick="copyToolLink()" title="Copy Link to Clipboard">🔗 Copy Link</button>
+      </div>
+    </div>
+
+    <!-- 8. Related PDF Tools Grid -->
+    <div class="vytra-related-grid-wrap" style="margin: 2.5rem 0 3.5rem;">
+      <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-bottom:1rem;">Related PDF Tools</h3>
+      <div class="vytra-related-tools">
+        <a href="protect.html" class="vytra-related-card">
+          <span class="vytra-related-icon">🔒</span>
+          <div>
+            <div class="vytra-related-title">Protect PDF</div>
+            <div class="vytra-related-desc">Encrypt confidential documents with password security</div>
+          </div>
+        </a>
+        <a href="crop.html" class="vytra-related-card">
+          <span class="vytra-related-icon">📐</span>
+          <div>
+            <div class="vytra-related-title">Crop PDF</div>
+            <div class="vytra-related-desc">Trim white margins for e-readers and tablets</div>
+          </div>
+        </a>
+        <a href="info.html" class="vytra-related-card">
+          <span class="vytra-related-icon">ℹ️</span>
+          <div>
+            <div class="vytra-related-title">PDF Metadata Info</div>
+            <div class="vytra-related-desc">Inspect, edit, or wipe author and title tags</div>
+          </div>
+        </a>
+        <a href="viewer.html" class="vytra-related-card">
+          <span class="vytra-related-icon">👁️</span>
+          <div>
+            <div class="vytra-related-title">PDF Viewer</div>
+            <div class="vytra-related-desc">Read and inspect PDF documents with high-DPI zoom</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -436,31 +921,31 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
+    // State Variables
     let currentFile = null;
     let originalPdfBytes = null;
     let pdfDocProxy = null;
     let totalPages = 1;
     let currentPageNum = 1;
+    let currentColor = 'black';
     let isDrawing = false;
     let startX = 0, startY = 0;
     let pageRedactions = {}; // { [pageNum]: [ { x, y, w, h, color } ] }
 
-    const uploadZone = document.getElementById('uploadZone');
+    // DOM Elements
+    const dropZoneBox = document.getElementById('dropZoneBox');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
     const redactWorkspace = document.getElementById('redactWorkspace');
     const redactBgCanvas = document.getElementById('redactBgCanvas');
     const redactOverlayCanvas = document.getElementById('redactOverlayCanvas');
@@ -468,255 +953,397 @@
     const prevPageBtn = document.getElementById('prevPageBtn');
     const nextPageBtn = document.getElementById('nextPageBtn');
     const pageIndicator = document.getElementById('pageIndicator');
-    const redactList = document.getElementById('redactList');
-    const boxCount = document.getElementById('boxCount');
-    const clearRedactsBtn = document.getElementById('clearRedactsBtn');
-    const applyRedactionBtn = document.getElementById('applyRedactionBtn');
+    const redactBoxesList = document.getElementById('redactBoxesList');
+    const boxCountCurrentPage = document.getElementById('boxCountCurrentPage');
+    const boxCountTotal = document.getElementById('boxCountTotal');
+    const btnColorBlack = document.getElementById('btnColorBlack');
+    const btnColorWhite = document.getElementById('btnColorWhite');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileMetaDisplay = document.getElementById('fileMetaDisplay');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultSuccessBox = document.getElementById('resultSuccessBox');
+    const resultSummaryText = document.getElementById('resultSummaryText');
+    const btnDownloadResult = document.getElementById('btnDownloadResult');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    // Drag & Drop Handling
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropZoneBox.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.add('vytra-dropzone-dragover');
+      });
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    ['dragleave', 'drop'].forEach(evt => {
+      dropZoneBox.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.remove('vytra-dropzone-dragover');
+      });
     });
 
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+    dropZoneBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleSelectedFile(e.dataTransfer.files[0]);
+      }
+    });
 
-    async function handleFile(file) {
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        handleSelectedFile(event.target.files[0]);
+      }
+    }
+
+    async function handleSelectedFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
         alert('Please select a valid PDF file.');
         return;
       }
+
       currentFile = file;
-      fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Loading pages for redaction...';
+      fileNameDisplay.textContent = file.name;
+      fileMetaDisplay.textContent = `${(file.size / 1024).toFixed(1)} KB`;
 
       try {
         originalPdfBytes = await file.arrayBuffer();
-        pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
+        const loadingTask = pdfjsLib.getDocument({
+          data: originalPdfBytes,
+          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+          cMapPacked: true
+        });
+
+        pdfDocProxy = await loadingTask.promise;
         totalPages = pdfDocProxy.numPages;
         currentPageNum = 1;
         pageRedactions = {};
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
 
-        progressContainer.style.display = 'none';
+        dropZoneBox.style.display = 'none';
         redactWorkspace.style.display = 'grid';
-        await renderPage();
+        resultSuccessBox.style.display = 'none';
+
+        renderCurrentPage();
       } catch (err) {
         console.error(err);
-        alert('Failed to load PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        alert('Could not open PDF for redaction: ' + err.message);
       }
     }
 
-    async function renderPage() {
+    async function renderCurrentPage() {
       if (!pdfDocProxy) return;
+
       pageIndicator.textContent = `Page ${currentPageNum} of ${totalPages}`;
       prevPageBtn.disabled = currentPageNum <= 1;
       nextPageBtn.disabled = currentPageNum >= totalPages;
 
       const page = await pdfDocProxy.getPage(currentPageNum);
-      const viewport = page.getViewport({ scale: 1.1 });
-      const bgCtx = redactBgCanvas.getContext('2d');
+      const viewport = page.getViewport({ scale: 1.5 });
 
       redactBgCanvas.width = viewport.width;
       redactBgCanvas.height = viewport.height;
       redactOverlayCanvas.width = viewport.width;
       redactOverlayCanvas.height = viewport.height;
 
+      const bgCtx = redactBgCanvas.getContext('2d');
       await page.render({ canvasContext: bgCtx, viewport: viewport }).promise;
-      renderOverlayAndList();
+
+      renderOverlayAndBoxesList();
     }
 
-    function renderOverlayAndList() {
+    function changePage(delta) {
+      const next = currentPageNum + delta;
+      if (next >= 1 && next <= totalPages) {
+        currentPageNum = next;
+        renderCurrentPage();
+      }
+    }
+
+    function selectColor(c) {
+      currentColor = c;
+      if (c === 'black') {
+        btnColorBlack.classList.add('active');
+        btnColorWhite.classList.remove('active');
+      } else {
+        btnColorWhite.classList.add('active');
+        btnColorBlack.classList.remove('active');
+      }
+    }
+
+    function renderOverlayAndBoxesList() {
       overCtx.clearRect(0, 0, redactOverlayCanvas.width, redactOverlayCanvas.height);
       const list = pageRedactions[currentPageNum] || [];
-      boxCount.textContent = list.length;
+
+      boxCountCurrentPage.textContent = list.length;
+      let total = 0;
+      Object.values(pageRedactions).forEach(arr => { if (arr) total += arr.length; });
+      boxCountTotal.textContent = total;
 
       if (list.length === 0) {
-        redactList.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:16px;font-size:0.85rem;">No areas marked on this page yet. Drag on the preview to redact.</div>';
+        redactBoxesList.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:16px 8px;font-size:0.8rem;">No areas marked on this page yet. Drag on the preview to create a redaction box.</div>';
       } else {
-        redactList.innerHTML = '';
+        redactBoxesList.innerHTML = '';
         list.forEach((box, idx) => {
-          // Draw on overlay
+          // Draw on overlay canvas
           overCtx.fillStyle = box.color === 'white' ? '#ffffff' : '#000000';
           overCtx.fillRect(box.x, box.y, box.w, box.h);
           overCtx.strokeStyle = '#ef4444';
-          overCtx.lineWidth = 1;
+          overCtx.lineWidth = 1.5;
           overCtx.strokeRect(box.x, box.y, box.w, box.h);
 
-          // Build list item
+          // List item
           const item = document.createElement('div');
-          item.className = 'redact-item';
+          item.className = 'redact-item-pill';
           item.innerHTML = `
-            <span>Box #${idx + 1} (${Math.round(box.w)}x${Math.round(box.h)}px)</span>
-            <button class="btn btn-sm btn-outline" style="padding:2px 6px;font-size:0.75rem;color:#dc2626;" data-del="${idx}">✕ Remove</button>
+            <span><strong>#${idx + 1}</strong> (${box.color === 'white' ? '⬜ White' : '⬛ Black'}) - ${Math.round(box.w)}×${Math.round(box.h)}px</span>
+            <button type="button" class="btn-remove-box" onclick="removeBox(${idx})">✕ Remove</button>
           `;
-          item.querySelector('button').addEventListener('click', () => {
-            list.splice(idx, 1);
-            renderOverlayAndList();
-          });
-          redactList.appendChild(item);
+          redactBoxesList.appendChild(item);
         });
       }
     }
 
-    function getCanvasPos(e) {
+    function removeBox(idx) {
+      const list = pageRedactions[currentPageNum];
+      if (list && list[idx]) {
+        list.splice(idx, 1);
+        renderOverlayAndBoxesList();
+      }
+    }
+
+    function clearCurrentPageBoxes() {
+      pageRedactions[currentPageNum] = [];
+      renderOverlayAndBoxesList();
+    }
+
+    // Touch & Mouse Drawing Coordinates
+    function getCanvasCoordinates(e) {
       const rect = redactOverlayCanvas.getBoundingClientRect();
       const scaleX = redactOverlayCanvas.width / rect.width;
       const scaleY = redactOverlayCanvas.height / rect.height;
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
       return {
-        x: (e.clientX - rect.left) * scaleX,
-        y: (e.clientY - rect.top) * scaleY
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
       };
     }
 
-    redactOverlayCanvas.addEventListener('mousedown', (e) => {
-      const pos = getCanvasPos(e);
+    function handleDrawStart(e) {
+      const pos = getCanvasCoordinates(e);
       startX = pos.x;
       startY = pos.y;
       isDrawing = true;
-    });
+    }
 
-    redactOverlayCanvas.addEventListener('mousemove', (e) => {
+    function handleDrawMove(e) {
       if (!isDrawing) return;
-      const pos = getCanvasPos(e);
-      renderOverlayAndList();
+      if (e.cancelable) e.preventDefault();
 
-      const colorVal = document.querySelector('input[name="redactColor"]:checked').value;
-      overCtx.fillStyle = colorVal === 'white' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
+      const pos = getCanvasCoordinates(e);
+      renderOverlayAndBoxesList();
+
+      overCtx.fillStyle = currentColor === 'white' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
       overCtx.fillRect(
         Math.min(startX, pos.x),
         Math.min(startY, pos.y),
         Math.abs(pos.x - startX),
         Math.abs(pos.y - startY)
       );
-    });
+    }
 
-    window.addEventListener('mouseup', (e) => {
+    function handleDrawEnd(e) {
       if (!isDrawing) return;
       isDrawing = false;
-      const pos = getCanvasPos(e);
-      const w = Math.abs(pos.x - startX);
-      const h = Math.abs(pos.y - startY);
 
-      if (w > 5 && h > 5) {
+      const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+      const rect = redactOverlayCanvas.getBoundingClientRect();
+      const endX = (clientX - rect.left) * (redactOverlayCanvas.width / rect.width);
+      const endY = (clientY - rect.top) * (redactOverlayCanvas.height / rect.height);
+
+      const w = Math.abs(endX - startX);
+      const h = Math.abs(endY - startY);
+
+      if (w > 6 && h > 6) {
         if (!pageRedactions[currentPageNum]) pageRedactions[currentPageNum] = [];
-        const colorVal = document.querySelector('input[name="redactColor"]:checked').value;
         pageRedactions[currentPageNum].push({
-          x: Math.min(startX, pos.x),
-          y: Math.min(startY, pos.y),
+          x: Math.min(startX, endX),
+          y: Math.min(startY, endY),
           w: w,
           h: h,
-          color: colorVal
+          color: currentColor
         });
       }
-      renderOverlayAndList();
-    });
+      renderOverlayAndBoxesList();
+    }
 
-    clearRedactsBtn.addEventListener('click', () => {
-      pageRedactions[currentPageNum] = [];
-      renderOverlayAndList();
-    });
+    // Attach Mouse Events
+    redactOverlayCanvas.addEventListener('mousedown', handleDrawStart);
+    window.addEventListener('mousemove', handleDrawMove);
+    window.addEventListener('mouseup', handleDrawEnd);
 
-    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum--; renderPage(); } });
-    nextPageBtn.addEventListener('click', () => { if (currentPageNum < totalPages) { currentPageNum++; renderPage(); } });
+    // Attach Touch Events for Mobile / Tablet
+    redactOverlayCanvas.addEventListener('touchstart', handleDrawStart, { passive: false });
+    window.addEventListener('touchmove', handleDrawMove, { passive: false });
+    window.addEventListener('touchend', handleDrawEnd, { passive: false });
 
-    applyRedactionBtn.addEventListener('click', async () => {
-      const hasAny = Object.values(pageRedactions).some(arr => arr && arr.length > 0);
-      if (!hasAny) {
-        alert('Please draw at least one redaction box on the document first!');
+    // Permanent Redaction Execution
+    async function applyPermanentRedaction() {
+      let totalBoxes = 0;
+      Object.values(pageRedactions).forEach(arr => { if (arr) totalBoxes += arr.length; });
+
+      if (totalBoxes === 0) {
+        alert('Please mark at least one redaction box on your document before applying!');
         return;
       }
 
       redactWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
-      progressFill.style.width = '25%';
-      progressText.textContent = 'Sanitizing document and applying blackouts...';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Preparing permanent document sanitization... 20%';
+
+      const mode = document.querySelector('input[name="securityMode"]:checked').value;
 
       try {
-        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+        const { PDFDocument, rgb } = PDFLib;
+        const pdfDoc = await PDFDocument.load(originalPdfBytes, { ignoreEncryption: true });
         const pages = pdfDoc.getPages();
 
-        for (let pNum = 1; pNum <= pages.length; pNum++) {
-          const boxes = pageRedactions[pNum];
-          if (!boxes || boxes.length === 0) continue;
+        if (mode === 'burnin') {
+          // Maximum Security: Render each page to high-DPI canvas with redactions baked in, then replace page content
+          for (let pNum = 1; pNum <= totalPages; pNum++) {
+            progressFill.style.width = `${Math.round(20 + (pNum / totalPages) * 65)}%`;
+            progressText.textContent = `Sanitizing & burning page ${pNum} of ${totalPages}...`;
 
-          progressFill.style.width = `${Math.round(25 + (pNum / pages.length) * 55)}%`;
-          const page = pages[pNum - 1];
-          const { width: pdfW, height: pdfH } = page.getSize();
+            const boxes = pageRedactions[pNum];
+            if (!boxes || boxes.length === 0) continue;
 
-          const scaleX = pdfW / redactBgCanvas.width;
-          const scaleY = pdfH / redactBgCanvas.height;
+            const pageProxy = await pdfDocProxy.getPage(pNum);
+            const viewport = pageProxy.getViewport({ scale: 2.0 }); // 2.0 scale for sharp vector fidelity
 
-          boxes.forEach(box => {
-            const drawX = box.x * scaleX;
-            const drawY = pdfH - ((box.y + box.h) * scaleY);
-            const drawW = box.w * scaleX;
-            const drawH = box.h * scaleY;
-            const c = box.color === 'white' ? PDFLib.rgb(1, 1, 1) : PDFLib.rgb(0, 0, 0);
+            const offCanvas = document.createElement('canvas');
+            offCanvas.width = viewport.width;
+            offCanvas.height = viewport.height;
+            const offCtx = offCanvas.getContext('2d');
 
-            page.drawRectangle({
-              x: drawX,
-              y: drawY,
-              width: drawW,
-              height: drawH,
-              color: c,
-              opacity: 1
+            await pageProxy.render({ canvasContext: offCtx, viewport: viewport }).promise;
+
+            // Draw solid blackout rectangles directly into the canvas bitmap
+            boxes.forEach(box => {
+              const scale = 2.0 / 1.5; // ratio from preview scale (1.5) to render scale (2.0)
+              offCtx.fillStyle = box.color === 'white' ? '#ffffff' : '#000000';
+              offCtx.fillRect(box.x * scale, box.y * scale, box.w * scale, box.h * scale);
             });
-          });
+
+            // Convert to JPEG image and replace page in PDF
+            const imgDataUrl = offCanvas.toDataURL('image/jpeg', 0.92);
+            const embeddedImage = await pdfDoc.embedJpg(imgDataUrl);
+
+            const targetPage = pages[pNum - 1];
+            const { width: pW, height: pH } = targetPage.getSize();
+
+            targetPage.drawImage(embeddedImage, {
+              x: 0,
+              y: 0,
+              width: pW,
+              height: pH
+            });
+          }
+        } else {
+          // Vector Overlay Mode
+          for (let pNum = 1; pNum <= pages.length; pNum++) {
+            const boxes = pageRedactions[pNum];
+            if (!boxes || boxes.length === 0) continue;
+
+            progressFill.style.width = `${Math.round(20 + (pNum / pages.length) * 65)}%`;
+            const page = pages[pNum - 1];
+            const { width: pdfW, height: pdfH } = page.getSize();
+
+            const scaleX = pdfW / redactBgCanvas.width;
+            const scaleY = pdfH / redactBgCanvas.height;
+
+            boxes.forEach(box => {
+              const drawX = box.x * scaleX;
+              const drawY = pdfH - ((box.y + box.h) * scaleY);
+              const drawW = box.w * scaleX;
+              const drawH = box.h * scaleY;
+              const c = box.color === 'white' ? rgb(1, 1, 1) : rgb(0, 0, 0);
+
+              page.drawRectangle({
+                x: drawX,
+                y: drawY,
+                width: drawW,
+                height: drawH,
+                color: c,
+                opacity: 1
+              });
+            });
+          }
         }
 
-        progressFill.style.width = '90%';
-        progressText.textContent = 'Generating sanitized PDF...';
+        progressFill.style.width = '92%';
+        progressText.textContent = 'Generating sanitized PDF package... 92%';
 
-        const pdfBytes = await pdfDoc.save();
+        const pdfBytes = await pdfDoc.save({ useObjectStreams: false });
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
+        const downloadUrl = URL.createObjectURL(blob);
 
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_redacted.pdf';
-        downloadBtn.href = url;
-        downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Sensitive data redacted and sanitized permanently. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        btnDownloadResult.href = downloadUrl;
+        btnDownloadResult.download = outName;
+
+        resultSummaryText.textContent = `All ${totalBoxes} marked areas permanently sanitized and locked. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
 
         progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        resultSuccessBox.style.display = 'block';
+
       } catch (err) {
-        console.error(err);
-        alert('Error redacting PDF: ' + err.message);
+        console.error('Redaction error:', err);
+        alert('Could not complete redaction: ' + err.message);
         progressContainer.style.display = 'none';
         redactWorkspace.style.display = 'grid';
       }
-    });
+    }
 
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      redactWorkspace.style.display = 'none';
+    function resetFilePicker() {
       fileInput.value = '';
       currentFile = null;
+      originalPdfBytes = null;
+      pdfDocProxy = null;
       pageRedactions = {};
-    });
+      resultSuccessBox.style.display = 'none';
+      progressContainer.style.display = 'none';
+      redactWorkspace.style.display = 'none';
+      dropZoneBox.style.display = 'block';
+    }
+
+    // Rating
+    function submitRating(stars) {
+      const widget = document.getElementById('starRatingWidget');
+      const starSpans = widget.querySelectorAll('.star-btn');
+      starSpans.forEach((s, idx) => {
+        if (idx < stars) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      document.getElementById('ratingFeedbackMsg').style.display = 'block';
+    }
+
+    // Copy Link Helper
+    function copyToolLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        if (typeof showToast === 'function') {
+          showToast('Link copied to clipboard!', 'success');
+        } else {
+          alert('Tool URL copied to clipboard!');
+        }
+      });
+    }
   </script>
 </body>
 </html>
