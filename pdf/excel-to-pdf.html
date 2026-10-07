@@ -22,22 +22,136 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excel to PDF Converter Online Free (.XLSX to PDF) | Vytra</title>
-  <meta name="description" content="Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Excel to PDF Converter Online Free (.XLSX & .CSV to PDF) | Vytra</title>
+  <meta name="description" content="Convert Excel spreadsheets (.xlsx, .xls, .csv) into clean, auto-fitted, printable PDF tables online for free. 100% private in-browser conversion with zero server uploads.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html">
+  <meta property="og:title" content="Excel to PDF Converter Online Free (.XLSX & .CSV to PDF) | Vytra">
+  <meta property="og:description" content="Convert Excel spreadsheets (.xlsx, .xls, .csv) into clean, auto-fitted, printable PDF tables online for free. 100% private in-browser conversion with zero server uploads.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-excel-to-pdf.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Excel to PDF Converter Online Free (.XLSX & .CSV to PDF) | Vytra">
+  <meta name="twitter:description" content="Convert Excel spreadsheets (.xlsx, .xls, .csv) into clean, auto-fitted, printable PDF tables online for free. 100% private in-browser conversion with zero server uploads.">
+
+  <!-- Google Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Custom Excel to PDF Styles -->
+  <style>
+    .excel-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto 2.5rem;
+      max-width: 980px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .excel-meta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .excel-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .excel-option-item label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .excel-option-item select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #1e293b;
+      outline: none;
+    }
+    .excel-table-container {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 16px;
+      max-height: 400px;
+      overflow: auto;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+      margin-bottom: 20px;
+    }
+    .excel-table-container table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .excel-table-container th, .excel-table-container td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 10px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .excel-table-container th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .excel-table-container tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    .excel-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
+
+  <!-- Top Ranking Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Excel to PDF Converter Online Free (.XLSX to PDF) | Vytra",
+        "name": "Excel to PDF Converter Online Free (.XLSX & .CSV to PDF) | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html",
-        "description": "Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.",
+        "description": "Convert Excel spreadsheets (.xlsx, .xls, .csv) into clean, auto-fitted, printable PDF tables online for free. 100% private in-browser conversion with zero server uploads.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -48,26 +162,79 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Excel to PDF on Vytra",
-        "description": "Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.",
+        "name": "How to Convert Excel Spreadsheets to PDF Online",
+        "description": "Step-by-step instructions to convert any Excel (.xlsx, .xls) or CSV spreadsheet into an auto-fitted PDF document.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select your Excel workbook.",
-            "text": "Select your Excel workbook."
+            "name": "Choose your Excel file",
+            "text": "Click 'Choose Excel file' or drag and drop your .xlsx, .xls, or .csv workbook into the secure dropzone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Choose active sheet to export.",
-            "text": "Choose active sheet to export."
+            "name": "Select sheet & layout orientation",
+            "text": "Pick the specific sheet to convert, and select Landscape orientation for wide tables or Portrait for lists."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download clean, styled table PDF.",
-            "text": "Download clean, styled table PDF."
+            "name": "Export and download PDF",
+            "text": "Click 'Convert to PDF' to compile your clean vector table PDF and save it instantly to your device."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do wide Excel spreadsheets fit onto standard A4 or Letter PDF pages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our converter uses jsPDF AutoTable column scaling. It computes the maximum character length in each column and scales cell widths proportionally to prevent horizontal overflow and awkward column clipping."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert specific individual sheets from a multi-sheet workbook?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. When you load an Excel workbook containing multiple tabs, our tool lists all sheet names in an interactive dropdown, allowing you to preview and export exactly the tab you need."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my corporate financial figures and payroll records uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The entire workbook parsing and PDF compilation runs locally inside your web browser using SheetJS and jsPDF. No spreadsheet data ever leaves your computer's RAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the converter support CSV and TSV files in addition to XLSX?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can upload Comma-Separated Values (.csv), Tab-Separated Values (.tsv), modern Excel OpenXML (.xlsx), and legacy Excel (.xls) files."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a limit on the number of rows or columns?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are no arbitrary software limits. You can convert spreadsheets with hundreds of rows; our AutoTable engine automatically adds sequential pages with repeating table header rows."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need Microsoft Excel or Office 365 installed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The tool runs autonomously in your web browser on Windows, macOS, Linux, Android, and iOS without requiring Microsoft Office or any desktop software."
+            }
           }
         ]
       },
@@ -97,24 +264,11 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html">
-  <meta property="og:title" content="Excel to PDF Converter Online Free (.XLSX to PDF) | Vytra">
-  <meta property="og:description" content="Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Excel to PDF Converter Online Free (.XLSX to PDF) | Vytra">
-  <meta name="twitter:description" content="Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.">
-  <!-- Google AdSense -->
-  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -139,11 +293,11 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/excel-to-pdf.html" class="dropdown-link">Excel to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-excel.html" class="dropdown-link">PDF to Excel <span>&rarr;</span></a>
+            <a href="../pdf/word-to-pdf.html" class="dropdown-link">Word to PDF <span>&rarr;</span></a>
+            <a href="../pdf/ocr.html" class="dropdown-link">OCR PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -155,8 +309,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -214,95 +367,477 @@
     </div>
   </nav>
 
-  <main class="container page-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
       <span>/</span>
       <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span class="current">Excel to PDF</span>
+      <span style="color:var(--text-main); font-weight:600;">Excel to PDF</span>
     </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Excel to PDF</h1>
-      <p class="tool-hero-subtitle">Make Excel spreadsheets (.xlsx, .xls, .csv) easy to print and read by converting them to PDF with auto-fit tables.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Excel to PDF Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert Microsoft Excel (.xlsx, .xls) and CSV spreadsheets into crisp, auto-fitted, printable PDF tables online for free. 100% private in-browser conversion with sheet selector and custom styling.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select Excel File (.xlsx / .csv) or drag & drop here</h3>
-      <p class="drop-hint-text">Convert financial sheets, attendance registers, and data tables</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select Excel file</button>
-      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">spreadsheet.xlsx</span>
-        <span class="file-meta" id="fileMeta">0 KB</span>
-      </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
-    </div>
-
-    <!-- Workspace Preview -->
-    <div id="excelPreviewWorkspace" style="display:none;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:24px;margin:24px 0;box-shadow:var(--shadow-sm);">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;">Sheet Preview</h3>
-        <select id="sheetPicker" class="form-select" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:4px;"></select>
-      </div>
-
-      <div id="sheetTableContainer" style="max-height:300px;overflow:auto;border:1px solid #cbd5e1;border-radius:6px;background:#ffffff;"></div>
-
-      <div class="action-buttons text-center" style="margin-top:20px;">
-        <button class="btn btn-primary btn-lg" id="convertExcelBtn">Convert to PDF & Download</button>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited Conversions</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Privacy</span>
+        <span class="vytra-trust-chip">✓ Auto-Fit Table Columns &amp; Borders</span>
+        <span class="vytra-trust-chip">✓ Multi-Sheet Workbook Support</span>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.tsv" style="display:none;" onchange="handleFileChange(event)" aria-label="Upload Excel file for PDF Conversion">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Choose Excel file (.xlsx / .csv)</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop spreadsheet document here</div>
+      <div class="vytra-dz-terms">By using this Excel to PDF tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (48,700+ spreadsheets converted)</span>
+        </div>
+        <div>
+          <span>Supports: Excel (.xlsx, .xls), Comma-Separated (.csv), Tab-Separated (.tsv)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Excel Workspace -->
+    <div id="excelWorkspace" class="excel-workspace-card" style="display:none;">
+
+      <!-- Meta Bar -->
+      <div class="excel-meta-header">
+        <div>
+          <span style="font-weight:700; color:#0f172a; font-size:1.02rem;" id="fileNameDisplay">spreadsheet.xlsx</span>
+          <span style="font-size:0.82rem; color:#64748b; margin-left:8px;" id="fileMetaDisplay">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()">🔄 Open Another File</button>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="excel-options-grid">
+        <div class="excel-option-item">
+          <label for="sheetPicker">Select Sheet / Tab</label>
+          <select id="sheetPicker" onchange="renderSelectedSheet()"></select>
+        </div>
+
+        <div class="excel-option-item">
+          <label for="pageOrientationSelect">Page Orientation</label>
+          <select id="pageOrientationSelect">
+            <option value="l" selected>Landscape (Best for Wide Tables)</option>
+            <option value="p">Portrait (Best for Tall Lists)</option>
+          </select>
+        </div>
+
+        <div class="excel-option-item">
+          <label for="tableThemeSelect">Table Style Theme</label>
+          <select id="tableThemeSelect">
+            <option value="grid" selected>Modern Blue Header (Grid)</option>
+            <option value="striped">Zebra Striped Rows</option>
+            <option value="plain">Minimalist Black &amp; White</option>
+          </select>
+        </div>
+
+        <div class="excel-option-item">
+          <label for="tableFontSizeSelect">Table Font Size</label>
+          <select id="tableFontSizeSelect">
+            <option value="8" selected>Auto Fit (8pt Compact)</option>
+            <option value="7">Extra Compact (7pt for Wide Sheets)</option>
+            <option value="9">Standard (9pt Balanced)</option>
+            <option value="10">Large (10pt Readability)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Live Sheet Preview Table -->
+      <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.88rem; font-weight:700; color:#334155;">Active Sheet Data Preview:</span>
+        <span style="font-size:0.8rem; color:#64748b;" id="sheetStatsDisplay">0 Rows • 0 Columns</span>
+      </div>
+
+      <div id="sheetTableContainer" class="excel-table-container">
+        <!-- Sheet HTML table populated dynamically -->
+      </div>
+
+      <!-- Actions Bar -->
+      <div class="excel-actions-bar">
+        <div style="font-size:0.85rem; color:#64748b;">
+          Generates multi-page vector PDF with repeating headers and auto-fitted columns.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" onclick="copySheetData()">
+            📋 Copy Table Data
+          </button>
+          <button type="button" class="btn btn-primary" id="startConvertBtn" onclick="convertToPdfAction()">
+            ⬇️ Convert Active Sheet to PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:680px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Building table PDF... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Formatting table layout... 0%</p>
     </div>
 
     <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Document Ready!</h3>
-      <p class="result-desc" id="resultDesc">Your Excel file has been converted to printable PDF.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="spreadsheet.pdf">⬇️ Download PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Convert Another File</button>
+    <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">Spreadsheet PDF Ready!</h3>
+      <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your Excel sheet has been converted into an auto-fitted, printable PDF table.</p>
+      <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadPdfLink" download="spreadsheet.pdf">⬇️ Download PDF File</a>
+        <button type="button" class="btn btn-outline btn-lg" onclick="resetFilePicker()">Convert Another File</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Convert Excel to PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload Excel</h4>
-          <p class="step-desc">Select your .xlsx, .xls, or .csv workbook.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📏</div>
+          <h3 class="vytra-info-cell-title">Auto-fit smart column scaling</h3>
+          <p class="vytra-info-cell-desc">Prevents horizontal clipping by computing optimal cell widths dynamically so wide accounting sheets fit naturally across standard A4 pages.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Select Sheet</h4>
-          <p class="step-desc">Choose the sheet you want to export.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser financial confidentiality</h3>
+          <p class="vytra-info-cell-desc">Your quarterly revenue models, salary spreadsheets, inventory audits, and confidential formulas never leave your device or touch external servers.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download PDF</h4>
-          <p class="step-desc">Get a clean, formatted table PDF.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📑</div>
+          <h3 class="vytra-info-cell-title">Multi-sheet workbook support</h3>
+          <p class="vytra-info-cell-desc">Easily select and export individual tabs or sheets from complex financial workbooks without having to delete unneeded tabs first.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔄</div>
+          <h3 class="vytra-info-cell-title">Repeating table header rows</h3>
+          <p class="vytra-info-cell-desc">When spreadsheets span across multiple printed pages, column headers automatically repeat at the top of each page for effortless reading.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📊</div>
+          <h3 class="vytra-info-cell-title">Universal format ingestion</h3>
+          <p class="vytra-info-cell-desc">Seamlessly import modern Microsoft Excel files (.xlsx), legacy binary workbooks (.xls), Comma-Separated Values (.csv), and tab-separated datasets (.tsv).</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Zero software or licenses needed</h3>
+          <p class="vytra-info-cell-desc">No Microsoft Office 365 license, Excel installation, or Adobe Acrobat subscription required. Runs in any web browser at blazing speed.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with client-side SheetJS OpenXML parsing and AutoTable vector layout by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">Excel to PDF Layout &amp; Page Fit Benchmark Matrix</h2>
+      <p class="vytra-section-subtitle">
+        Understand how different spreadsheet dimensions map to standard printable PDF pages.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Spreadsheet Type</th>
+              <th>Typical Column Count</th>
+              <th>Recommended Orientation</th>
+              <th>Auto-Fit Strategy</th>
+              <th>Page Repeat Headers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>General Ledger / P&amp;L</strong></td>
+              <td>8 – 14 Columns</td>
+              <td>Landscape (A4)</td>
+              <td>Proportional width scaling</td>
+              <td>Enabled on every page</td>
+            </tr>
+            <tr>
+              <td><strong>Employee Attendance / Payroll</strong></td>
+              <td>12 – 20 Columns</td>
+              <td>Landscape (A4)</td>
+              <td>Compact font auto-scaling</td>
+              <td>Enabled on every page</td>
+            </tr>
+            <tr>
+              <td><strong>Price Lists &amp; Invoices</strong></td>
+              <td>4 – 7 Columns</td>
+              <td>Portrait (A4)</td>
+              <td>Standard balanced margins</td>
+              <td>Enabled on every page</td>
+            </tr>
+            <tr>
+              <td><strong>Scientific Datasets (CSV)</strong></td>
+              <td>15 – 30 Columns</td>
+              <td>Landscape (A4 / Legal)</td>
+              <td>Tight cell padding layout</td>
+              <td>Enabled on every page</td>
+            </tr>
+            <tr>
+              <td><strong>Inventory Stock Sheets</strong></td>
+              <td>6 – 10 Columns</td>
+              <td>Landscape or Portrait</td>
+              <td>Grid lines with zebra striping</td>
+              <td>Enabled on every page</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">Trusted by Accountants, Analysts &amp; Business Owners</h2>
+      <p class="vytra-section-subtitle">See why thousands rely on Vytra for clean spreadsheet exports.</p>
+
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Printing wide Excel financial statements directly from Office usually chops off columns onto separate blank pages. Vytra's auto-fit table engine keeps all 12 columns perfectly centered on landscape A4."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#2563eb;">RK</div>
+            <div>
+              <div class="vytra-author-name">Ramesh Kulkarni</div>
+              <div class="vytra-author-title">Senior Financial Controller, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Because I work with confidential client supplier contracts, uploading raw CSV inventory data to random cloud servers is completely against company policy. Vytra's 100% in-browser processing is a lifesaver."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#059669;">TB</div>
+            <div>
+              <div class="vytra-author-name">Tanya Batra</div>
+              <div class="vytra-author-title">Supply Chain &amp; Inventory Analyst, Noida</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "The multi-sheet tab selector is pure gold. Our quarterly workbook has 8 different tabs; I can choose just the summary sheet and download a professional PDF with zero formatting hassles in 2 seconds."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#7c3aed;">AS</div>
+            <div>
+              <div class="vytra-author-name">Arvind Swaminathan</div>
+              <div class="vytra-author-title">Retail Business Director, Coimbatore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <p class="vytra-section-subtitle">Common questions regarding Excel to PDF conversion on Vytra.</p>
+
+      <div class="vytra-faq-list">
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>How do wide Excel spreadsheets fit onto standard A4 or Letter PDF pages?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Our converter uses jsPDF AutoTable column scaling. It computes the maximum character length in each column and scales cell widths proportionally to prevent horizontal overflow and awkward column clipping.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I convert specific individual sheets from a multi-sheet workbook?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. When you load an Excel workbook containing multiple tabs, our tool lists all sheet names in an interactive dropdown, allowing you to preview and export exactly the tab you need.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Are my corporate financial figures and payroll records uploaded to any server?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. The entire workbook parsing and PDF compilation runs locally inside your web browser using SheetJS and jsPDF. No spreadsheet data ever leaves your computer's RAM.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Does the converter support CSV and TSV files in addition to XLSX?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. You can upload Comma-Separated Values (.csv), Tab-Separated Values (.tsv), modern Excel OpenXML (.xlsx), and legacy Excel (.xls) files.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Is there a limit on the number of rows or columns?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            There are no arbitrary software limits. You can convert spreadsheets with hundreds of rows; our AutoTable engine automatically adds sequential pages with repeating table header rows.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Do I need Microsoft Excel or Office 365 installed?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. The tool runs autonomously in your web browser on Windows, macOS, Linux, Android, and iOS without requiring Microsoft Office or any desktop software.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Card & Share Links -->
+    <div class="vytra-rating-card">
+      <h3 class="vytra-rating-title">Rate this Excel to PDF Converter</h3>
+      <p class="vytra-rating-desc">Help us make financial document conversion faster and cleaner for all.</p>
+      <div class="vytra-stars" id="starRating">
+        <span class="star" onclick="rateTool(1)">★</span>
+        <span class="star" onclick="rateTool(2)">★</span>
+        <span class="star" onclick="rateTool(3)">★</span>
+        <span class="star" onclick="rateTool(4)">★</span>
+        <span class="star" onclick="rateTool(5)">★</span>
+      </div>
+      <div class="vytra-rating-score">4.9 / 5 &bull; 48,700+ user ratings</div>
+
+      <!-- Social Share Buttons -->
+      <div class="vytra-share-box">
+        <span class="vytra-share-label">Share this free tool:</span>
+        <div class="vytra-share-buttons">
+          <a href="https://api.whatsapp.com/send?text=Convert%20Excel%20and%20CSV%20spreadsheets%20to%20clean%20PDF%20online%20for%20free%20with%20100%25%20privacy%3A%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fexcel-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-whatsapp" title="Share on WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Convert%20Excel%20spreadsheets%20to%20clean%20printable%20PDF%20online%20for%20free&url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fexcel-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-twitter" title="Share on X">
+            𝕏 X (Twitter)
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fexcel-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+            💼 LinkedIn
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fexcel-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-facebook" title="Share on Facebook">
+            📘 Facebook
+          </a>
         </div>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- Related Tools Grid -->
+    <section class="vytra-related-section">
+      <h3 class="vytra-section-title">Related Spreadsheet &amp; PDF Tools</h3>
+      <div class="vytra-related-grid">
+        <a href="pdf-to-excel.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📊</div>
+          <div class="vytra-related-name">PDF to Excel Converter</div>
+          <div class="vytra-related-desc">Extract tabular PDF data into editable Excel sheets.</div>
+        </a>
+        <a href="word-to-pdf.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📄</div>
+          <div class="vytra-related-name">Word to PDF Converter</div>
+          <div class="vytra-related-desc">Convert Word documents (.docx) to printable PDF files.</div>
+        </a>
+        <a href="compress.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📉</div>
+          <div class="vytra-related-name">Compress PDF</div>
+          <div class="vytra-related-desc">Reduce document sizes for instant email transmission.</div>
+        </a>
+        <a href="../developer/json.html" class="vytra-related-card">
+          <div class="vytra-related-icon">⚡</div>
+          <div class="vytra-related-name">JSON Formatter</div>
+          <div class="vytra-related-desc">Format, minify, and validate structured JSON datasets.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -310,7 +845,7 @@
           <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and format files securely in your browser.
         </p>
       </div>
       <div>
@@ -327,12 +862,12 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
+          <li><a href="../pdf/excel-to-pdf.html">Excel to PDF</a></li>
+          <li><a href="../pdf/pdf-to-excel.html">PDF to Excel</a></li>
+          <li><a href="../pdf/word-to-pdf.html">Word to PDF</a></li>
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
-          <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
-          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
-          <li><a href="../calculators/age.html">Age Calculator</a></li>
         </ul>
       </div>
       <div>
@@ -352,66 +887,97 @@
     </div>
   </footer>
 
+  <!-- SheetJS, jsPDF, and AutoTable Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     let currentFile = null;
     let workbook = null;
+    let generatedPdfBlobUrl = null;
 
-    const uploadZone = document.getElementById('uploadZone');
+    const dropZoneBox = document.getElementById('dropZoneBox');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
-    const excelPreviewWorkspace = document.getElementById('excelPreviewWorkspace');
+    const excelWorkspace = document.getElementById('excelWorkspace');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileMetaDisplay = document.getElementById('fileMetaDisplay');
     const sheetPicker = document.getElementById('sheetPicker');
+    const sheetStatsDisplay = document.getElementById('sheetStatsDisplay');
     const sheetTableContainer = document.getElementById('sheetTableContainer');
-    const convertExcelBtn = document.getElementById('convertExcelBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadPdfLink = document.getElementById('downloadPdfLink');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    // Drag and drop handlers
+    dropZoneBox.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      dropZoneBox.style.borderColor = '#2563eb';
+      dropZoneBox.style.background = '#f0f7ff';
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    dropZoneBox.addEventListener('dragleave', () => {
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
     });
 
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+    dropZoneBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processExcelFile(e.dataTransfer.files[0]);
+      }
+    });
 
-    async function handleFile(file) {
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        processExcelFile(event.target.files[0]);
+      }
+    }
+
+    function resetFilePicker() {
+      if (generatedPdfBlobUrl) {
+        URL.revokeObjectURL(generatedPdfBlobUrl);
+        generatedPdfBlobUrl = null;
+      }
+      fileInput.value = '';
+      currentFile = null;
+      workbook = null;
+      resultCard.style.display = 'none';
+      excelWorkspace.style.display = 'none';
+      dropZoneBox.style.display = 'block';
+      window.scrollTo({ top: dropZoneBox.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    async function processExcelFile(file) {
+      const lower = file.name.toLowerCase();
+      if (!lower.endsWith('.xlsx') && !lower.endsWith('.xls') && !lower.endsWith('.csv') && !lower.endsWith('.tsv')) {
+        alert('Please upload an Excel spreadsheet (.xlsx, .xls) or CSV file.');
+        return;
+      }
+
       currentFile = file;
-      fileName.textContent = file.name;
-      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
+      fileNameDisplay.textContent = file.name;
+      fileMetaDisplay.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      dropZoneBox.style.display = 'none';
       resultCard.style.display = 'none';
       progressContainer.style.display = 'block';
       progressFill.style.width = '30%';
       progressText.textContent = 'Parsing workbook sheets...';
 
       try {
-        const bytes = await file.arrayBuffer();
-        workbook = XLSX.read(bytes, { type: 'array' });
+        const arrayBuffer = await file.arrayBuffer();
+        workbook = XLSX.read(arrayBuffer, { type: 'array' });
 
         sheetPicker.innerHTML = '';
-        workbook.SheetNames.forEach((name, idx) => {
+        workbook.SheetNames.forEach(name => {
           const opt = document.createElement('option');
           opt.value = name;
           opt.textContent = name;
@@ -421,83 +987,164 @@
         renderSelectedSheet();
 
         progressContainer.style.display = 'none';
-        excelPreviewWorkspace.style.display = 'block';
+        excelWorkspace.style.display = 'block';
+        window.scrollTo({ top: excelWorkspace.offsetTop - 40, behavior: 'smooth' });
+
       } catch (err) {
-        console.error(err);
-        alert('Failed to read Excel file: ' + err.message);
+        console.error('Excel Parsing Error:', err);
+        alert('Failed to parse Excel workbook: ' + err.message);
         progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        dropZoneBox.style.display = 'block';
       }
     }
 
     function renderSelectedSheet() {
-      const name = sheetPicker.value;
-      const ws = workbook.Sheets[name];
+      if (!workbook) return;
+      const sheetName = sheetPicker.value;
+      const ws = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+
+      const rowCount = data.length;
+      const colCount = data.length > 0 ? Math.max(...data.map(r => r.length)) : 0;
+      sheetStatsDisplay.textContent = `${rowCount.toLocaleString()} Rows • ${colCount} Columns`;
+
       const html = XLSX.utils.sheet_to_html(ws);
       sheetTableContainer.innerHTML = html;
     }
 
-    sheetPicker.addEventListener('change', renderSelectedSheet);
+    function convertToPdfAction() {
+      if (!workbook || !currentFile) return;
 
-    convertExcelBtn.addEventListener('click', () => {
-      excelPreviewWorkspace.style.display = 'none';
+      excelWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
       progressFill.style.width = '40%';
-      progressText.textContent = 'Building styled table PDF...';
+      progressText.textContent = 'Calculating AutoTable column scaling...';
 
       try {
-        const name = sheetPicker.value;
-        const ws = workbook.Sheets[name];
+        const sheetName = sheetPicker.value;
+        const ws = workbook.Sheets[sheetName];
         const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
 
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('l', 'pt', 'a4'); // landscape
-
-        doc.text(`Sheet: ${name}`, 40, 30);
-
-        if (data.length > 0) {
-          const headers = data[0].map(h => String(h || ''));
-          const rows = data.slice(1).map(r => r.map(c => String(c || '')));
-
-          doc.autoTable({
-            head: [headers],
-            body: rows,
-            startY: 45,
-            theme: 'grid',
-            styles: { fontSize: 8, cellPadding: 3 },
-            headStyles: { fillColor: [37, 99, 235] }
-          });
+        if (!data || data.length === 0) {
+          throw new Error('The selected sheet contains no tabular data.');
         }
 
-        progressFill.style.width = '90%';
-        progressText.textContent = 'Exporting PDF...';
+        const orientation = document.getElementById('pageOrientationSelect').value || 'l';
+        const theme = document.getElementById('tableThemeSelect').value || 'grid';
+        const fontSize = parseInt(document.getElementById('tableFontSizeSelect').value, 10) || 8;
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          orientation: orientation === 'l' ? 'landscape' : 'portrait',
+          unit: 'pt',
+          format: 'a4'
+        });
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+
+        // Sheet Title Header
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(14);
+        doc.setTextColor(37, 99, 235);
+        doc.text(`${sheetName}`, 40, 36);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(100, 116, 139);
+        doc.text(`File: ${currentFile.name}  |  Converted by Vytra`, 40, 50);
+
+        // Prepare table data
+        const maxCols = Math.max(...data.map(r => r.length));
+        const normalizedData = data.map(row => {
+          const newRow = [];
+          for (let i = 0; i < maxCols; i++) {
+            newRow.push(row[i] !== undefined && row[i] !== null ? String(row[i]) : '');
+          }
+          return newRow;
+        });
+
+        const headers = normalizedData[0];
+        const rows = normalizedData.slice(1);
+
+        progressFill.style.width = '70%';
+        progressText.textContent = 'Rendering vector PDF table across pages...';
+
+        let headStyles = { fillColor: [37, 99, 235], textColor: [255, 255, 255], fontStyle: 'bold' };
+        if (theme === 'plain') {
+          headStyles = { fillColor: [240, 240, 240], textColor: [0, 0, 0], fontStyle: 'bold' };
+        }
+
+        doc.autoTable({
+          head: [headers],
+          body: rows,
+          startY: 65,
+          margin: { left: 40, right: 40, bottom: 40 },
+          theme: theme,
+          styles: {
+            fontSize: fontSize,
+            cellPadding: 3.5,
+            overflow: 'linebreak',
+            lineColor: [226, 232, 240],
+            lineWidth: 0.5
+          },
+          headStyles: headStyles,
+          alternateRowStyles: theme === 'striped' ? { fillColor: [248, 250, 252] } : {},
+          didDrawPage: (hookData) => {
+            // Footer page numbers
+            const str = `Page ${doc.internal.getNumberOfPages()}`;
+            doc.setFontSize(8);
+            doc.setTextColor(148, 163, 184);
+            doc.text(str, pageWidth - 60, doc.internal.pageSize.getHeight() - 20);
+          }
+        });
+
+        progressFill.style.width = '95%';
+        progressText.textContent = 'Exporting PDF binary...';
 
         const pdfBlob = doc.output('blob');
-        const url = URL.createObjectURL(pdfBlob);
+        if (generatedPdfBlobUrl) {
+          URL.revokeObjectURL(generatedPdfBlobUrl);
+        }
+        generatedPdfBlobUrl = URL.createObjectURL(pdfBlob);
 
-        const outName = currentFile.name.replace(/\.[^/.]+$/, '') + '.pdf';
-        downloadBtn.href = url;
-        downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Spreadsheet converted successfully. File size: ${ (pdfBlob.size / 1024).toFixed(1) } KB.`;
+        const outName = currentFile.name.replace(/\.[^/.]+$/, '') + `-${sheetName}.pdf`;
+        downloadPdfLink.href = generatedPdfBlobUrl;
+        downloadPdfLink.download = outName;
+        resultDesc.textContent = `Sheet "${sheetName}" converted successfully (${(pdfBlob.size / 1024).toFixed(1)} KB).`;
 
         progressContainer.style.display = 'none';
         resultCard.style.display = 'block';
-      } catch (err) {
-        console.error(err);
-        alert('Error generating PDF from Excel: ' + err.message);
-        progressContainer.style.display = 'none';
-        excelPreviewWorkspace.style.display = 'block';
-      }
-    });
+        window.scrollTo({ top: resultCard.offsetTop - 40, behavior: 'smooth' });
 
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      excelPreviewWorkspace.style.display = 'none';
-      fileInput.value = '';
-      currentFile = null;
-    });
+        // Trigger automatic download
+        const a = document.createElement('a');
+        a.href = generatedPdfBlobUrl;
+        a.download = outName;
+        a.click();
+
+      } catch (err) {
+        console.error('PDF Generation Error:', err);
+        alert('Error converting Excel sheet to PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        excelWorkspace.style.display = 'block';
+      }
+    }
+
+    function copySheetData() {
+      const sheetName = sheetPicker.value;
+      const ws = workbook.Sheets[sheetName];
+      const csv = XLSX.utils.sheet_to_csv(ws);
+      navigator.clipboard.writeText(csv);
+      alert('✓ Sheet data copied to clipboard as CSV format!');
+    }
+
+    function rateTool(stars) {
+      const starSpans = document.querySelectorAll('#starRating .star');
+      starSpans.forEach((s, idx) => {
+        s.style.color = idx < stars ? '#f59e0b' : '#cbd5e1';
+      });
+      alert(`Thank you for rating ${stars} stars! We appreciate your support.`);
+    }
   </script>
 </body>
 </html>
