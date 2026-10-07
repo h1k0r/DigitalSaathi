@@ -10,7 +10,7 @@
 
     gtag('config', 'G-R2EMRPEG70');
   </script>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -20,90 +20,318 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Calculator - Vytra</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .calculator-container { max-width: 600px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; background: #2563eb; color: white; width: 100%; margin-bottom: 10px; }
-        .result-box { margin-top: 20px; padding: 20px; background: #f3f4f6; border-radius: 8px; text-align: center; }
-        .progress-bar { width: 100%; height: 25px; background: #e5e7eb; border-radius: 12px; overflow: hidden; margin-top: 10px; border: 1px solid #d1d5db; }
-        .progress-fill { height: 100%; transition: width 0.3s; line-height: 25px; color: white; font-weight: bold; font-size: 12px; }
-        .text-green { color: #059669; }
-        .text-yellow { color: #d97706; }
-        .text-red { color: #dc2626; }
-        .bg-green { background-color: #059669; }
-        .bg-yellow { background-color: #f59e0b; }
-        .bg-red { background-color: #ef4444; }
-        .insight-card { background: white; border-left: 4px solid #2563eb; padding: 10px; margin-top: 15px; text-align: left; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    </style>
-  <meta name="description" content="Free online College Attendance Calculator. Track the 75% attendance rule, calculate allowed bunks, and find out classes needed to reach eligibility.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Calculator Online Free (75% Criteria & Bunk Planner) | Vytra</title>
+  <meta name="description" content="Free online College Attendance Calculator. Track 75% and 80% attendance criteria, calculate how many classes you can safely miss (bunk), and classes needed to reach eligibility.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <style>
+    .calc-center-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 800px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .calc-tab-strip {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .calc-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+    }
+    .calc-tab-pane {
+      display: none;
+    }
+    .calc-tab-pane.active {
+      display: block;
+    }
+    .pill-select-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 16px;
+    }
+    .target-pill {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .target-pill.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .result-display-card {
+      margin-top: 24px;
+      padding: 24px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .result-val-big {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: #e2e8f0;
+      border-radius: 7px;
+      overflow: hidden;
+      margin: 14px 0 12px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .status-alert-box {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .status-alert-safe {
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #166534;
+    }
+    .status-alert-warn {
+      background: #fef9c3;
+      border: 1px solid #fde047;
+      color: #854d0e;
+    }
+    .status-alert-danger {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+    }
+    .stats-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .metric-cell {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 10px;
+    }
+    .metric-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .metric-label {
+      font-size: 0.72rem;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .sub-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      .sub-row {
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        padding-bottom: 12px;
+      }
+      .sub-row input:first-child {
+        grid-column: span 2;
+      }
+      .delete-sub-btn {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+      }
+    }
+    .delete-sub-btn {
+      background: #fee2e2;
+      border: none;
+      color: #ef4444;
+      font-size: 1.1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Attendance Calculator Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/calculators/attendance.html",
+        "description": "Calculate college and school attendance percentage, track the 75% rule, find classes needed to attend, and calculate allowed bunks.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to calculate attendance percentage and required classes for 75%",
+        "description": "Step-by-step instructions to calculate attendance and determine how many classes you must attend or can safely miss.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter Total Classes Held",
+            "text": "Input the total number of lectures or lab sessions conducted so far in the semester."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter Classes Attended",
+            "text": "Type the number of classes you were physically present for."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Check Status & Safe Bunks",
+            "text": "View your percentage and find out how many classes you can miss or how many consecutive classes you must attend to maintain 75%."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I calculate how many classes I need to reach 75% attendance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The formula to calculate consecutive classes (x) needed to reach 75% is: x = (0.75 × Total - Attended) / 0.25 = 3 × Total - 4 × Attended. If your target is T%, the formula is: x = Math.ceil((T × Total - 100 × Attended) / (100 - T))."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I calculate how many classes I can safely bunk?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If your attendance is currently above 75%, the formula for allowed bunks (y) without dropping below 75% is: y = Math.floor((Attended - 0.75 × Total) / 0.75)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is 75% attendance mandatory in Indian colleges and universities?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The University Grants Commission (UGC), All India Council for Technical Education (AICTE), and Bar Council of India (BCI) mandate a minimum 75% attendance for students to be eligible to appear in end-semester examinations and receive admit cards / hall tickets."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if my attendance is between 65% and 75%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most universities permit condonation of attendance shortage up to 10% (i.e. between 65% and 75%) upon submitting valid registered medical certificates or on-duty (OD) sport/cultural participation approval, usually subject to a condonation fee."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculators",
+            "item": "https://digitalsaathi.vytra.in/tools/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Attendance Calculator",
+            "item": "https://digitalsaathi.vytra.in/calculators/attendance.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/calculators/attendance.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/calculators/attendance.html">
-  <meta property="og:title" content="Attendance Calculator - Vytra">
-  <meta property="og:description" content="Free online College Attendance Calculator. Track the 75% attendance rule, calculate allowed bunks, and find out classes needed to reach eligibility.">
+  <meta property="og:title" content="Attendance Calculator Online Free (75% Criteria & Bunk Planner) | Vytra">
+  <meta property="og:description" content="Calculate college attendance percentage, track the 75% rule, find classes needed to attend, and calculate allowed bunks.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Attendance Calculator - Vytra">
-  <meta name="twitter:description" content="Free online College Attendance Calculator. Track the 75% attendance rule, calculate allowed bunks, and find out classes needed to reach eligibility.">
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Attendance Calculator - Vytra",
-      "url": "https://digitalsaathi.vytra.in/calculators/attendance.html",
-      "description": "Free online College Attendance Calculator. Track the 75% attendance rule, calculate allowed bunks, and find out classes needed to reach eligibility.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Calculators Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Attendance Calculator",
-          "item": "https://digitalsaathi.vytra.in/calculators/attendance.html"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <meta name="twitter:title" content="Attendance Calculator Online Free (75% Criteria & Bunk Planner) | Vytra">
+  <meta name="twitter:description" content="Calculate college attendance percentage, track the 75% rule, find classes needed to attend, and calculate allowed bunks.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-            <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -133,6 +361,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -152,7 +381,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../calculators/percentage.html" class="nav-link">
+          <a href="../calculators/percentage.html" class="nav-link active">
             Calculators
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -203,33 +432,471 @@
     </div>
   </nav>
 
-    <main class="container">
-        <div class="calculator-container">
-            <h1>Attendance Calculator</h1>
-            
-            <div class="form-group">
-                <label>Total Classes Held</label>
-                <input type="number" id="totalClasses" placeholder="e.g. 50">
-            </div>
-            <div class="form-group">
-                <label>Classes Attended</label>
-                <input type="number" id="attendedClasses" placeholder="e.g. 35">
-            </div>
-            
-            <button class="btn" onclick="calculateAttendance()">Check Attendance</button>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-            <div class="result-box" id="resultBox" style="display:none;">
-                <h2 id="percResult">0%</h2>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill">0%</div>
-                </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Calculators</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Attendance Calculator</span>
+    </nav>
 
-                <div id="insights"></div>
-            </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Attendance Calculator</h1>
+      <p class="vytra-tool-subtitle">
+        Calculate your college attendance percentage, check mandatory 75% eligibility, find how many classes you must attend, and plan safe bunks.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Instant</span>
+        <span class="vytra-trust-chip">✓ 75% Rule Checker</span>
+        <span class="vytra-trust-chip">✓ Safe Bunk Planner</span>
+        <span class="vytra-trust-chip">✓ Multi-Subject Mode</span>
+      </div>
+    </div>
+
+    <!-- 2. Interactive Calculator Container -->
+    <div class="calc-center-box">
+      
+      <!-- Tab Header Strip -->
+      <div class="calc-tab-strip">
+        <button type="button" class="calc-tab-btn active" data-tab="tabSingle">📊 Quick Attendance &amp; 75% Rule</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabMulti">📚 Subject-Wise Timetable</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabPredictor">🎯 Semester Predictor</button>
+      </div>
+
+      <!-- Tab 1: Single Subject / Overall Quick Attendance -->
+      <div class="calc-tab-pane active" id="tabSingle">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px;">
+          <div class="form-group">
+            <label for="totalClasses" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Total Classes Held *</label>
+            <input type="number" id="totalClasses" class="form-input" placeholder="e.g. 60" min="1" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+          <div class="form-group">
+            <label for="attendedClasses" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Classes Attended *</label>
+            <input type="number" id="attendedClasses" class="form-input" placeholder="e.g. 48" min="0" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
         </div>
-    </main>
 
-      <footer class="footer">
+        <div>
+          <label style="font-weight:600; font-size:0.85rem; color:#475569;">Target Attendance Criteria:</label>
+          <div class="pill-select-group">
+            <button type="button" class="target-pill active" onclick="setTargetPercentage(75, this)">75% (UGC Standard)</button>
+            <button type="button" class="target-pill" onclick="setTargetPercentage(80, this)">80% (Strict Colleges)</button>
+            <button type="button" class="target-pill" onclick="setTargetPercentage(85, this)">85% (Scholarship / Honors)</button>
+            <button type="button" class="target-pill" onclick="setTargetPercentage(65, this)">65% (With Medical)</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateSingleAttendance()" style="width:100%; background:#2563eb; color:#ffffff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;">
+          Calculate Attendance &amp; Safe Bunks
+        </button>
+
+        <!-- Result Box -->
+        <div class="result-display-card" id="singleResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600; letter-spacing:0.04em;">CURRENT ATTENDANCE</div>
+          <div class="result-val-big" id="percResult">0.00%</div>
+          
+          <div class="progress-track">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+          </div>
+
+          <!-- Dynamic Advice Box -->
+          <div id="statusAlertBox" class="status-alert-box"></div>
+
+          <div class="stats-metric-grid">
+            <div class="metric-cell">
+              <div class="metric-val" id="metricAttended">0</div>
+              <div class="metric-label">Attended</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricMissed">0</div>
+              <div class="metric-label">Missed</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricTotal">0</div>
+              <div class="metric-label">Total Held</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricTarget">75%</div>
+              <div class="metric-label">Target Criteria</div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:10px; margin-top:18px;">
+            <button type="button" class="btn" onclick="copyAttendanceSummary()" style="padding:8px 16px; font-size:0.85rem; background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; cursor:pointer; font-weight:600;">
+              📋 Copy Summary
+            </button>
+          </div>
+          <div id="copyAttNotice" style="display:none; color:#16a34a; font-size:0.85rem; font-weight:600; margin-top:8px;">Attendance summary copied to clipboard!</div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Multi-Subject Timetable -->
+      <div class="calc-tab-pane" id="tabMulti">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Track attendance across all your semester subjects in one unified dashboard to ensure no single subject falls below 75%.
+        </p>
+
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:6px; display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 40px; gap:8px; padding:0 12px; font-weight:700;">
+          <span>Subject Name</span>
+          <span>Held</span>
+          <span>Attended</span>
+          <span>Percentage</span>
+          <span></span>
+        </div>
+
+        <div id="multiSubjectsContainer">
+          <div class="sub-row">
+            <input type="text" class="m-sub-name" value="Mathematics - III" placeholder="Subject name" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-held" value="30" min="1" placeholder="Held" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-attended" value="24" min="0" placeholder="Attended" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <span class="m-sub-perc" style="font-weight:700; color:#16a34a; font-size:0.95rem; text-align:center;">80.0%</span>
+            <button type="button" class="delete-sub-btn" onclick="removeMultiRow(this)">&times;</button>
+          </div>
+
+          <div class="sub-row">
+            <input type="text" class="m-sub-name" value="Operating Systems" placeholder="Subject name" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-held" value="32" min="1" placeholder="Held" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-attended" value="22" min="0" placeholder="Attended" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <span class="m-sub-perc" style="font-weight:700; color:#ef4444; font-size:0.95rem; text-align:center;">68.8%</span>
+            <button type="button" class="delete-sub-btn" onclick="removeMultiRow(this)">&times;</button>
+          </div>
+
+          <div class="sub-row">
+            <input type="text" class="m-sub-name" value="Computer Networks" placeholder="Subject name" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-held" value="28" min="1" placeholder="Held" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <input type="number" class="m-sub-attended" value="25" min="0" placeholder="Attended" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <span class="m-sub-perc" style="font-weight:700; color:#16a34a; font-size:0.95rem; text-align:center;">89.3%</span>
+            <button type="button" class="delete-sub-btn" onclick="removeMultiRow(this)">&times;</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+          <button type="button" class="btn" onclick="addMultiSubjectRow()" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#334155; padding:8px 16px; border-radius:6px; font-weight:600; cursor:pointer;">
+            + Add Subject
+          </button>
+          <button type="button" class="btn btn-primary" onclick="calculateAggregateAttendance()" style="background:#2563eb; color:#ffffff; border:none; padding:10px 24px; border-radius:6px; font-weight:700; cursor:pointer;">
+            Calculate Overall Aggregate
+          </button>
+        </div>
+
+        <div class="result-display-card" id="multiAggregateResult" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">SEMESTER AGGREGATE ATTENDANCE</div>
+          <div class="result-val-big" id="aggregatePercVal" style="color:#2563eb;">0.00%</div>
+          <div id="aggregateSummaryText" style="font-size:0.95rem; color:#1e293b; font-weight:600; margin-top:4px;">Total Classes: 0 | Attended: 0</div>
+          <div id="detainedSubjectsAlert" style="font-size:0.85rem; margin-top:8px;"></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Semester Predictor -->
+      <div class="calc-tab-pane" id="tabPredictor">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Find out what your final attendance will be by the end of the term based on how many more classes remain in the semester.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px;">
+          <div class="form-group">
+            <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Current Classes Attended</label>
+            <input type="number" id="predCurrentAttended" class="form-input" placeholder="e.g. 30" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+          <div class="form-group">
+            <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Current Classes Held</label>
+            <input type="number" id="predCurrentHeld" class="form-input" placeholder="e.g. 45" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Estimated Remaining Classes in Semester</label>
+          <input type="number" id="predRemainingClasses" class="form-input" placeholder="e.g. 25" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="predictFinalAttendance()" style="width:100%; background:#2563eb; color:#ffffff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;">
+          Generate Attendance Forecast
+        </button>
+
+        <div class="result-display-card" id="predResultCard" style="display:none; text-align:left;">
+          <h4 style="font-size:1.05rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">End-of-Semester Attendance Projections</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1px solid #86efac; border-radius:8px; padding:14px; text-align:center;">
+              <div style="font-size:0.78rem; font-weight:700; color:#15803d; text-transform:uppercase;">If you attend 100% remaining</div>
+              <div id="predPerc100" style="font-size:1.8rem; font-weight:800; color:#16a34a; margin:6px 0;">0%</div>
+              <div style="font-size:0.75rem; color:#64748b;">Best case scenario</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fde047; border-radius:8px; padding:14px; text-align:center;">
+              <div style="font-size:0.78rem; font-weight:700; color:#854d0e; text-transform:uppercase;">If you attend 75% remaining</div>
+              <div id="predPerc75" style="font-size:1.8rem; font-weight:800; color:#d97706; margin:6px 0;">0%</div>
+              <div style="font-size:0.75rem; color:#64748b;">Moderate attendance</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fca5a5; border-radius:8px; padding:14px; text-align:center;">
+              <div style="font-size:0.78rem; font-weight:700; color:#991b1b; text-transform:uppercase;">If you attend 50% remaining</div>
+              <div id="predPerc50" style="font-size:1.8rem; font-weight:800; color:#ef4444; margin:6px 0;">0%</div>
+              <div style="font-size:0.75rem; color:#64748b;">Frequent absenteeism</div>
+            </div>
+          </div>
+
+          <div id="predMinimumNeededBox" style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; margin-top:14px; font-weight:600; color:#1e40af; font-size:0.9rem;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎯</div>
+          <h3 class="vytra-info-cell-title">UGC 75% rule compliance</h3>
+          <p class="vytra-info-cell-desc">Complies with University Grants Commission (UGC) and AICTE norms requiring a minimum 75% aggregate to qualify for semester hall tickets.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🏖️</div>
+          <h3 class="vytra-info-cell-title">Safe bunk calculations</h3>
+          <p class="vytra-info-cell-desc">Accurately tells you how many future classes you can safely miss without dipping below your university's minimum mandatory threshold.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🚨</div>
+          <h3 class="vytra-info-cell-title">Shortage recovery formula</h3>
+          <p class="vytra-info-cell-desc">If your attendance is in the danger zone, the tool calculates the exact number of consecutive lectures you must attend to escape detention.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📚</div>
+          <h3 class="vytra-info-cell-title">Multi-subject timetable tracking</h3>
+          <p class="vytra-info-cell-desc">Keep individual track of each theory paper and lab practical so you never get detained in a single subject despite high overall attendance.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔮</div>
+          <h3 class="vytra-info-cell-title">End-term semester forecast</h3>
+          <p class="vytra-info-cell-desc">Predicts your final semester percentage under 100%, 75%, and 50% future attendance scenarios to help you plan exam preparations.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private in-browser tool</h3>
+          <p class="vytra-info-cell-desc">Your class attendance logs run completely within your browser. No college roll numbers, subjects, or data are ever saved on our servers.</p>
+        </div>
+      </div>
+
+      <!-- Attendance Bracket Reference Table -->
+      <div style="max-width:800px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Standard Indian College Attendance Classification Criteria
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Attendance Range</th>
+              <th>Status</th>
+              <th>Exam Hall Ticket Eligibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>85% – 100%</strong></td><td><span style="color:#15803d; font-weight:700;">Safe / Honors</span></td><td>Unconditional eligibility + internal bonus marks</td></tr>
+            <tr><td><strong>75% – 84.9%</strong></td><td><span style="color:#16a34a; font-weight:700;">Eligible</span></td><td>Meets standard UGC/AICTE minimum criteria</td></tr>
+            <tr><td><strong>65% – 74.9%</strong></td><td><span style="color:#d97706; font-weight:700;">Condonation Zone</span></td><td>Permitted only with registered medical certificate / condonation fee</td></tr>
+            <tr><td><strong>Below 65%</strong></td><td><span style="color:#dc2626; font-weight:700;">Detained / Debarred</span></td><td>Debarred from semester exams (Must repeat or re-register)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What college students are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Our college has a strict 75% rule for exams. This tool showed me that I needed to attend 7 more lectures in Mathematics to be safe. Super helpful!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AP</div>
+            <div>
+              <div class="vytra-author-name">Ankit Pandey</div>
+              <div class="vytra-author-role">Engineering Student (AKTU)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The safe bunk calculator is brilliant! I had 84% attendance and wanted to go home for a festival; it showed me I could safely miss 4 classes without dropping below 75%.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RD</div>
+            <div>
+              <div class="vytra-author-name">Riya Das</div>
+              <div class="vytra-author-role">B.Sc Delhi University</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The multi-subject timetable tab helped me realize that while my overall attendance was 78%, my Networks lab was only 68%. Avoided detention just in time!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SK</div>
+            <div>
+              <div class="vytra-author-name">Siddharth K.</div>
+              <div class="vytra-author-role">B.Tech 3rd Year (VTU)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How do you calculate classes needed to reach 75%?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Let 'A' be classes attended, 'T' be total classes held, and 'x' be consecutive classes you must attend. To reach 75%: (A + x) / (T + x) = 0.75. Solving for x yields: x = (0.75 × T - A) / 0.25 = 3T - 4A.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How do you calculate safe bunks?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            If your current percentage is above 75%, let 'y' be the number of classes you can miss: A / (T + y) = 0.75. Solving for y yields: y = (A - 0.75 × T) / 0.75 = Math.floor((4A - 3T) / 3).
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Do practical laboratory sessions count the same as theory lectures?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            In many universities (like VTU and Anna University), lab sessions carry 2 or 3 contact hours per session. Missing one 3-hour lab counts as missing 3 classes in your attendance log. Always verify your department's hour accounting policy.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I get an admit card with 72% attendance?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Most universities have a provision for condonation of attendance for shortages between 65% and 75% on genuine medical grounds (hospitalization, contagious illness) or official university duty (NSS, NCC, sports tournaments), usually accompanied by a nominal condonation fee.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Attendance Calculator</h3>
+        <p class="vytra-rate-subtitle">How helpful was this tool for planning your semester?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Attendance Calculator!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with classmates &amp; college friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Calculate%20college%20attendance%20and%20safe%20bunks%20for%20free:%20https://digitalsaathi.vytra.in/calculators/attendance.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Calculate%20college%20attendance%20and%2075%25%20safe%20bunks%20online%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/calculators/attendance.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/calculators/attendance.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/calculators/attendance.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Academic Calculators
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="percentage.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📊</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Percentage Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate marks percentage and exam division rankings</div>
+        </a>
+        <a href="cgpa.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎓</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">CGPA Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate semester SGPA and cumulative credits</div>
+        </a>
+        <a href="age.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎂</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Age Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Exact age in years, months, and days for exam forms</div>
+        </a>
+        <a href="emi.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">💰</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Loan EMI Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate loan interest and monthly payments</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -279,69 +946,267 @@
     </div>
   </footer>
 
-    <script defer src="../data/tools.js"></script>
+  <!-- Scripts -->
+  <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
-    <script>
-        function calculateAttendance() {
-            let total = parseInt(document.getElementById('totalClasses').value);
-            let attended = parseInt(document.getElementById('attendedClasses').value);
-            
-            if(isNaN(total) || isNaN(attended) || total < attended || total <= 0) {
-                alert("Please enter valid numbers. Attended classes cannot exceed total classes.");
-                return;
-            }
 
-            let percentage = (attended / total) * 100;
-            let pFill = document.getElementById('progressFill');
-            let pResult = document.getElementById('percResult');
-            let insights = document.getElementById('insights');
-            
-            pResult.textContent = percentage.toFixed(2) + '%';
-            pFill.style.width = percentage + '%';
-            pFill.textContent = percentage.toFixed(0) + '%';
-            
-            pFill.className = 'progress-fill';
-            pResult.className = '';
-            
-            if(percentage >= 75) {
-                pFill.classList.add('bg-green');
-                pResult.classList.add('text-green');
-            } else if(percentage >= 65) {
-                pFill.classList.add('bg-yellow');
-                pResult.classList.add('text-yellow');
-            } else {
-                pFill.classList.add('bg-red');
-                pResult.classList.add('text-red');
-            }
+  <script>
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.calc-tab-btn');
+    const tabPanes = document.querySelectorAll('.calc-tab-pane');
 
-            // Calculations
-            let html = '';
-            let targetPerc = 75;
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
 
-            if(percentage < targetPerc) {
-                // How many more classes to attend consecutively to reach 75%
-                // (attended + x) / (total + x) = 0.75
-                // attended + x = 0.75*total + 0.75*x
-                // 0.25*x = 0.75*total - attended
-                // x = 3*total - 4*attended
-                let req = Math.ceil((targetPerc * total - 100 * attended) / (100 - targetPerc));
-                html += `<div class="insight-card">⚠️ You need to attend <strong>${req}</strong> more consecutive classes to reach 75%.</div>`;
-            } else {
-                // How many can I miss
-                // attended / (total + x) = 0.75
-                // attended = 0.75*total + 0.75*x
-                // x = (attended - 0.75*total) / 0.75
-                let canMiss = Math.floor((100 * attended - targetPerc * total) / targetPerc);
-                if (canMiss > 0) {
-                    html += `<div class="insight-card">✅ You can safely miss <strong>${canMiss}</strong> consecutive classes and still maintain 75%.</div>`;
-                } else {
-                    html += `<div class="insight-card">✅ You are exactly at or slightly above 75%. You cannot miss the next class.</div>`;
-                }
-            }
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        const targetPane = document.getElementById(target);
+        if (targetPane) targetPane.classList.add('active');
+      });
+    });
 
-            insights.innerHTML = html;
-            document.getElementById('resultBox').style.display = 'block';
+    let currentTarget = 75;
+
+    function setTargetPercentage(val, btn) {
+      currentTarget = val;
+      document.querySelectorAll('.target-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const total = parseInt(document.getElementById('totalClasses').value);
+      const attended = parseInt(document.getElementById('attendedClasses').value);
+      if (!isNaN(total) && !isNaN(attended) && total > 0) {
+        calculateSingleAttendance();
+      }
+    }
+
+    // Tab 1: Single Attendance Calculation
+    function calculateSingleAttendance() {
+      const total = parseInt(document.getElementById('totalClasses').value);
+      const attended = parseInt(document.getElementById('attendedClasses').value);
+
+      if (isNaN(total) || isNaN(attended) || total <= 0 || attended < 0) {
+        alert('Please enter valid positive numbers for total and attended classes.');
+        return;
+      }
+
+      if (attended > total) {
+        alert('Attended classes cannot be greater than total classes held.');
+        return;
+      }
+
+      const percentage = (attended / total) * 100;
+      const missed = total - attended;
+
+      const pResult = document.getElementById('percResult');
+      const pFill = document.getElementById('progressBarFill');
+      const alertBox = document.getElementById('statusAlertBox');
+
+      pResult.textContent = percentage.toFixed(2) + '%';
+      pFill.style.width = Math.min(percentage, 100) + '%';
+
+      document.getElementById('metricAttended').textContent = attended;
+      document.getElementById('metricMissed').textContent = missed;
+      document.getElementById('metricTotal').textContent = total;
+      document.getElementById('metricTarget').textContent = currentTarget + '%';
+
+      if (percentage >= currentTarget) {
+        pResult.style.color = '#15803d';
+        pFill.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+
+        // Can miss calculation: attended / (total + y) = target / 100
+        // attended * 100 = target * (total + y)
+        // y = (100 * attended - target * total) / target
+        const canMiss = Math.floor((100 * attended - currentTarget * total) / currentTarget);
+
+        alertBox.className = 'status-alert-box status-alert-safe';
+        if (canMiss > 0) {
+          alertBox.innerHTML = `🎉 <strong>Safe Zone!</strong> Your attendance is above ${currentTarget}%. You can safely miss / bunk <strong>${canMiss}</strong> upcoming classes and still maintain ${currentTarget}% eligibility.`;
+        } else {
+          alertBox.innerHTML = `⚠️ <strong>Borderline Safe!</strong> You are exactly at or slightly above ${currentTarget}%. You cannot miss the next class without dropping below the threshold.`;
         }
-    </script>
+      } else {
+        // Need to attend: (attended + x) / (total + x) = target / 100
+        // (attended + x) * 100 = target * (total + x)
+        // 100*attended + 100*x = target*total + target*x
+        // (100 - target)*x = target*total - 100*attended
+        // x = (target*total - 100*attended) / (100 - target)
+        const req = Math.ceil((currentTarget * total - 100 * attended) / (100 - currentTarget));
+
+        if (percentage >= 65) {
+          pResult.style.color = '#d97706';
+          pFill.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+          alertBox.className = 'status-alert-box status-alert-warn';
+          alertBox.innerHTML = `⚠️ <strong>Shortage Warning:</strong> You are currently at ${percentage.toFixed(2)}%. You need to attend <strong>${req}</strong> more consecutive classes without missing to reach your ${currentTarget}% target.`;
+        } else {
+          pResult.style.color = '#dc2626';
+          pFill.style.background = 'linear-gradient(90deg, #f87171, #ef4444)';
+          alertBox.className = 'status-alert-box status-alert-danger';
+          alertBox.innerHTML = `🚨 <strong>Detention Danger!</strong> You have critical attendance shortage. You must attend <strong>${req}</strong> consecutive classes without a single absence to reach ${currentTarget}%.`;
+        }
+      }
+
+      document.getElementById('singleResultCard').style.display = 'block';
+    }
+
+    function copyAttendanceSummary() {
+      const perc = document.getElementById('percResult').textContent;
+      const alertText = document.getElementById('statusAlertBox').innerText;
+      const attended = document.getElementById('metricAttended').textContent;
+      const total = document.getElementById('metricTotal').textContent;
+
+      const summary = `College Attendance Report:
+- Current Attendance: ${perc} (${attended}/${total} Classes)
+- Target: ${currentTarget}%
+- Status: ${alertText}
+Calculated via Vytra: https://digitalsaathi.vytra.in/calculators/attendance.html`;
+
+      navigator.clipboard.writeText(summary).then(() => {
+        const notice = document.getElementById('copyAttNotice');
+        notice.style.display = 'block';
+        setTimeout(() => { notice.style.display = 'none'; }, 3000);
+      });
+    }
+
+    // Tab 2: Multi-Subject
+    function updateMultiSubjectRow(input) {
+      const row = input.closest('.sub-row');
+      const held = parseInt(row.querySelector('.m-sub-held').value) || 0;
+      const attended = parseInt(row.querySelector('.m-sub-attended').value) || 0;
+      const percSpan = row.querySelector('.m-sub-perc');
+
+      if (held > 0 && attended <= held) {
+        const perc = (attended / held) * 100;
+        percSpan.textContent = perc.toFixed(1) + '%';
+        if (perc >= 75) {
+          percSpan.style.color = '#16a34a';
+        } else if (perc >= 65) {
+          percSpan.style.color = '#d97706';
+        } else {
+          percSpan.style.color = '#ef4444';
+        }
+      } else {
+        percSpan.textContent = '--%';
+        percSpan.style.color = '#64748b';
+      }
+    }
+
+    function addMultiSubjectRow() {
+      const container = document.getElementById('multiSubjectsContainer');
+      const count = container.querySelectorAll('.sub-row').length + 1;
+      const row = document.createElement('div');
+      row.className = 'sub-row';
+      row.innerHTML = `
+        <input type="text" class="m-sub-name" value="Subject ${count}" placeholder="Subject name" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+        <input type="number" class="m-sub-held" value="30" min="1" placeholder="Held" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+        <input type="number" class="m-sub-attended" value="23" min="0" placeholder="Attended" oninput="updateMultiSubjectRow(this)" style="padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+        <span class="m-sub-perc" style="font-weight:700; color:#16a34a; font-size:0.95rem; text-align:center;">76.7%</span>
+        <button type="button" class="delete-sub-btn" onclick="removeMultiRow(this)">&times;</button>
+      `;
+      container.appendChild(row);
+      updateMultiSubjectRow(row.querySelector('.m-sub-held'));
+    }
+
+    function removeMultiRow(btn) {
+      const row = btn.closest('.sub-row');
+      const container = row.parentElement;
+      if (container.querySelectorAll('.sub-row').length > 1) {
+        row.remove();
+      } else {
+        alert('At least one subject is required.');
+      }
+    }
+
+    function calculateAggregateAttendance() {
+      const rows = document.querySelectorAll('.sub-row');
+      let totalHeld = 0;
+      let totalAttended = 0;
+      let shortSubjects = [];
+
+      rows.forEach(r => {
+        const name = r.querySelector('.m-sub-name').value || 'Subject';
+        const held = parseInt(r.querySelector('.m-sub-held').value) || 0;
+        const attended = parseInt(r.querySelector('.m-sub-attended').value) || 0;
+
+        if (held > 0 && attended <= held) {
+          totalHeld += held;
+          totalAttended += attended;
+          const p = (attended / held) * 100;
+          if (p < 75) {
+            shortSubjects.push(`${name} (${p.toFixed(1)}%)`);
+          }
+        }
+      });
+
+      if (totalHeld === 0) {
+        alert('Please enter valid attendance numbers for your subjects.');
+        return;
+      }
+
+      const aggPerc = (totalAttended / totalHeld) * 100;
+      document.getElementById('aggregatePercVal').textContent = aggPerc.toFixed(2) + '%';
+      document.getElementById('aggregateSummaryText').textContent = `Total Semester Classes: ${totalHeld} | Total Attended: ${totalAttended} (${totalHeld - totalAttended} Missed)`;
+
+      const alertEl = document.getElementById('detainedSubjectsAlert');
+      if (shortSubjects.length > 0) {
+        alertEl.style.color = '#dc2626';
+        alertEl.innerHTML = `⚠️ <strong>Attention:</strong> You have attendance shortage (<75%) in ${shortSubjects.length} subject(s): <strong>${shortSubjects.join(', ')}</strong>. Attend extra classes to avoid subject-wise detention.`;
+      } else {
+        alertEl.style.color = '#15803d';
+        alertEl.innerHTML = `🎉 <strong>All clear!</strong> You have 75%+ attendance in every single registered subject.`;
+      }
+
+      document.getElementById('multiAggregateResult').style.display = 'block';
+    }
+
+    // Tab 3: Predictor
+    function predictFinalAttendance() {
+      const currentAttended = parseInt(document.getElementById('predCurrentAttended').value);
+      const currentHeld = parseInt(document.getElementById('predCurrentHeld').value);
+      const remaining = parseInt(document.getElementById('predRemainingClasses').value);
+
+      if (isNaN(currentAttended) || isNaN(currentHeld) || isNaN(remaining) || currentHeld <= 0 || remaining < 0) {
+        alert('Please fill in all predictor fields with positive numbers.');
+        return;
+      }
+
+      const totalFinalClasses = currentHeld + remaining;
+      const finalIf100 = ((currentAttended + remaining) / totalFinalClasses) * 100;
+      const finalIf75 = ((currentAttended + Math.round(remaining * 0.75)) / totalFinalClasses) * 100;
+      const finalIf50 = ((currentAttended + Math.round(remaining * 0.50)) / totalFinalClasses) * 100;
+
+      document.getElementById('predPerc100').textContent = finalIf100.toFixed(1) + '%';
+      document.getElementById('predPerc75').textContent = finalIf75.toFixed(1) + '%';
+      document.getElementById('predPerc50').textContent = finalIf50.toFixed(1) + '%';
+
+      // Minimum classes needed out of remaining to finish with 75%
+      // (currentAttended + r_att) / totalFinalClasses = 0.75
+      // r_att = 0.75 * totalFinalClasses - currentAttended
+      const minRequired = Math.ceil(0.75 * totalFinalClasses - currentAttended);
+      const minBox = document.getElementById('predMinimumNeededBox');
+
+      if (minRequired <= 0) {
+        minBox.innerHTML = `🎉 <strong>Congratulations!</strong> You have already secured 75% overall for the entire semester. Even if you miss all ${remaining} remaining classes, your final attendance will remain above 75%!`;
+      } else if (minRequired > remaining) {
+        minBox.innerHTML = `🚨 <strong>Notice:</strong> Even if you attend 100% of the remaining ${remaining} classes, your maximum possible final attendance will be <strong>${finalIf100.toFixed(1)}%</strong>. Apply for condonation on medical grounds.`;
+      } else {
+        minBox.innerHTML = `💡 To finish the semester with at least 75% overall, you must attend at least <strong>${minRequired}</strong> out of the remaining <strong>${remaining}</strong> classes. You can miss at most <strong>${remaining - minRequired}</strong> more classes.`;
+      }
+
+      document.getElementById('predResultCard').style.display = 'block';
+    }
+
+    // Rating star handler
+    const ratingBtns = document.querySelectorAll('.vytra-star-btn');
+    ratingBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.dataset.val);
+        ratingBtns.forEach((b, idx) => {
+          b.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
+      });
+    });
+  </script>
 </body>
 </html>
