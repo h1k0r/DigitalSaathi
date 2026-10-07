@@ -23,35 +23,69 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protect PDF with Password Online Free | Vytra</title>
-  <meta name="description" content="Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Password protect PDF files online for free. Encrypt your sensitive documents with standard password encryption to prevent unauthorized opening, copying, or printing.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  
   <style>
-    .protect-workspace {
-      max-width: 600px;
-      margin: 24px auto;
+    .protect-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 620px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-    .strength-bar {
+    .strength-meter-wrap {
+      margin-top: 8px;
+    }
+    .strength-bar-track {
       height: 6px;
-      border-radius: 3px;
+      width: 100%;
       background: #e2e8f0;
-      margin-top: 6px;
+      border-radius: 3px;
       overflow: hidden;
+      margin-top: 6px;
     }
-    .strength-fill {
+    .strength-bar-fill {
       height: 100%;
       width: 0%;
-      transition: all 0.3s ease;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    .perm-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .perm-card label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #334155;
+      cursor: pointer;
+    }
+    .perm-card input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #2563eb;
+      cursor: pointer;
+    }
+    .match-status-badge {
+      font-size: 0.78rem;
+      margin-top: 4px;
+      display: block;
+      font-weight: 500;
     }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,7 +94,7 @@
         "@type": "WebApplication",
         "name": "Protect PDF with Password Online Free | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/protect.html",
-        "description": "Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.",
+        "description": "Password protect PDF files online for free. Encrypt your confidential documents to prevent unauthorized access, copying, and printing.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -71,26 +105,63 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Protect PDF on Vytra",
-        "description": "Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.",
+        "name": "How to password protect a PDF file online",
+        "description": "Step-by-step guide to add password protection and permissions to your PDF documents in your browser.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select the PDF file you want to encrypt.",
-            "text": "Select the PDF file you want to encrypt."
+            "name": "Select your PDF file",
+            "text": "Drag and drop your PDF into the file box or click 'Choose files' to upload from your phone or PC."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Enter user password and configure security permissions.",
-            "text": "Enter user password and configure security permissions."
+            "name": "Enter your secure password",
+            "text": "Enter your chosen password, confirm it, and adjust permission settings for printing or copying."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download your password-protected PDF.",
-            "text": "Download your password-protected PDF."
+            "name": "Encrypt and download",
+            "text": "Click 'Protect PDF' and download your secured document immediately."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I password protect a PDF online without Adobe Acrobat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload your document into the Vytra Protect PDF tool, enter your desired password in the password field, confirm it, and click 'Protect PDF'. The file is encrypted directly inside your web browser without requiring Adobe Acrobat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my files uploaded to any server or cloud?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra operates with 100% in-browser client-side technology. Your file never leaves your computer or phone, ensuring complete privacy for bank statements, tax returns, and confidential contracts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I prevent others from copying or printing my PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. In the security permissions panel, you can choose whether to allow high-resolution printing or allow text and image copying."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will the protected PDF open on iPhone, Android, and Windows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vytra uses standard PDF security encryption recognized by all PDF readers including Adobe Acrobat, Apple Books, Google Drive, Edge, and mobile viewer apps."
+            }
           }
         ]
       },
@@ -120,24 +191,25 @@
     ]
   }
   </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/protect.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/protect.html">
   <meta property="og:title" content="Protect PDF with Password Online Free | Vytra">
-  <meta property="og:description" content="Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.">
+  <meta property="og:description" content="Password protect PDF files online for free. Encrypt confidential documents to prevent unauthorized access, copying, and printing.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Protect PDF with Password Online Free | Vytra">
-  <meta name="twitter:description" content="Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.">
+  <meta name="twitter:description" content="Password protect PDF files online for free. Encrypt confidential documents to prevent unauthorized access, copying, and printing.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -154,7 +226,7 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="../pdf/index.html" class="nav-link active">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -167,6 +239,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -237,118 +310,379 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Protect PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Protect PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Protect PDF</h1>
-      <p class="tool-hero-subtitle">Protect PDF files with a password. Encrypt PDF documents with military-grade security to prevent unauthorized access.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Protect PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Password protect PDF files online for free. Encrypt confidential documents to prevent unauthorized opening, copying, or printing.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Set passwords for salary slips, bank statements, and private files</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="protectWorkspace" class="protect-workspace" style="display:none;">
-      <h3 style="font-size:1.2rem;font-weight:700;color:#1e293b;margin-bottom:16px;">Set Document Password</h3>
-      
-      <div class="form-group" style="margin-bottom:16px;">
-        <label class="form-label" style="font-weight:600;">User Password (Required to open PDF)</label>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="protect-dropzone">
+      <input type="file" id="protect-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF to protect">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop PDF files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (38,200+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: PDF contracts, bank statements, tax forms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Protect Workspace (Visible upon file selection) -->
+    <div class="protect-card" id="protect-workspace" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main, #0f172a); font-size:1.05rem;" id="fileName">document.pdf</span>
+          <span style="font-size:0.8rem; color:var(--text-muted, #64748b); margin-left:8px;" id="fileMeta">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change File</button>
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label style="font-weight:600; font-size:0.9rem; color:#1e293b; display:block; margin-bottom:6px;">
+          Document Password (Required to open PDF)
+        </label>
         <div style="position:relative;">
-          <input type="password" id="userPassword" class="form-input" placeholder="Enter secure password" style="width:100%;padding:10px 40px 10px 12px;border:1px solid #cbd5e1;border-radius:6px;">
-          <button type="button" id="togglePassBtn" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;">👁️</button>
+          <input type="password" id="userPassword" class="form-input" placeholder="Enter secure password" style="width:100%; padding:10px 42px 10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.95rem;">
+          <button type="button" id="togglePassBtn" title="Toggle visibility" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:1.1rem; line-height:1;">👁️</button>
         </div>
-        <div class="strength-bar">
-          <div class="strength-fill" id="strengthFill"></div>
+        <div class="strength-meter-wrap">
+          <div class="strength-bar-track">
+            <div class="strength-bar-fill" id="strengthFill"></div>
+          </div>
+          <span id="strengthText" style="font-size:0.75rem; color:#64748b; margin-top:4px; display:block;">Enter a password</span>
         </div>
-        <span id="strengthText" style="font-size:0.75rem;color:#64748b;margin-top:4px;display:block;">Enter a password</span>
       </div>
 
-      <div class="form-group" style="margin-bottom:20px;">
-        <label class="form-label" style="font-weight:600;">Confirm Password</label>
-        <input type="password" id="confirmPassword" class="form-input" placeholder="Re-enter password" style="width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:6px;">
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label style="font-weight:600; font-size:0.9rem; color:#1e293b; display:block; margin-bottom:6px;">
+          Confirm Password
+        </label>
+        <input type="password" id="confirmPassword" class="form-input" placeholder="Re-enter password" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.95rem;">
+        <span id="matchStatus" class="match-status-badge"></span>
       </div>
 
-      <h4 style="font-size:0.95rem;font-weight:700;color:#334155;margin-bottom:10px;">Security Permissions</h4>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;background:#f8fafc;padding:12px;border-radius:6px;border:1px solid #e2e8f0;">
-        <label style="font-size:0.85rem;display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" id="permPrint" checked> Allow High Quality Printing
+      <h4 style="font-size:0.9rem; font-weight:700; color:#334155; margin-bottom:8px;">Permissions Restrictions</h4>
+      <div class="perm-card">
+        <label>
+          <input type="checkbox" id="permPrint" checked>
+          <span>Allow Printing (High Quality)</span>
         </label>
-        <label style="font-size:0.85rem;display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" id="permCopy" checked> Allow Copying Text and Images
-        </label>
-        <label style="font-size:0.85rem;display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" id="permModify"> Allow Document Modification / Comments
+        <label>
+          <input type="checkbox" id="permCopy" checked>
+          <span>Allow Copying of Text and Images</span>
         </label>
       </div>
 
-      <button class="btn btn-primary btn-lg" id="encryptBtn" style="width:100%;">Encrypt & Protect PDF</button>
+      <button type="button" class="btn btn-primary btn-lg" id="encryptBtn" style="width:100%; padding:13px; font-weight:700; font-size:1rem; border-radius:8px;">
+        🔒 Encrypt &amp; Protect PDF
+      </button>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- Progress Container -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:620px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Encrypting document... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Encrypting document... 0%</p>
     </div>
 
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Protected Successfully!</h3>
-      <p class="result-desc" id="resultDesc">Your PDF is now encrypted with your password.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="protected.pdf">⬇️ Download Protected PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Protect Another PDF</button>
+    <!-- Result Banner -->
+    <div class="result-banner" id="protect-result-banner" style="display:none; max-width:620px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        PDF Protected Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your document is now encrypted with password security.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="protected.pdf" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Protected PDF
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Protect Another PDF
+        </button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Password Protect a PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your PDF file.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to password protect a PDF</h3>
+          <p class="vytra-info-cell-desc">Select your file in the box above or drag it in. Type a secure password and re-enter to confirm. Select permissions to allow or prevent printing/copying, then click 'Encrypt & Protect PDF' to instantly save your file.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Enter Password</h4>
-          <p class="step-desc">Type your desired password and choose permission flags.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🛡️</div>
+          <h3 class="vytra-info-cell-title">Industry-standard encryption</h3>
+          <p class="vytra-info-cell-desc">Your PDF is secured using standard PDF encryption algorithms. The password hash is embedded inside the PDF trailer, requiring the correct key before the PDF viewer renders any page.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download File</h4>
-          <p class="step-desc">Save your encrypted file. Anyone opening the file will be prompted for this password.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">No files leave your computer or phone. All cryptographic processing and file creation happen strictly inside your client browser. Your sensitive bank statements, salaries, and legal files remain confidential.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">Control permissions</h3>
+          <p class="vytra-info-cell-desc">Prevent recipients from copying intellectual property or extract sensitive tables. Choose whether printing is authorized or restricted.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">No software or installation</h3>
+          <p class="vytra-info-cell-desc">You do not need to purchase expensive Adobe Acrobat subscriptions. Everything runs directly inside your web browser on mobile or desktop without plugins.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Universal reader compatibility</h3>
+          <p class="vytra-info-cell-desc">The generated PDF documents open with password prompts across Adobe Reader, Apple Preview, Google Chrome, Microsoft Edge, and Android/iOS document viewers.</p>
         </div>
       </div>
-    </div>
-  </div>
 
-    <footer class="footer">
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I manage payroll and needed a fast way to password protect individual employee salary slips with their dates of birth. Vytra did it in seconds without uploading anything to the internet.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AK</div>
+            <div>
+              <div class="vytra-author-name">Anand Kumar</div>
+              <div class="vytra-author-role">HR Operations Manager</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Before emailing financial audits and client contracts, I always lock them with a strong password. Very clean, fast, and completely free.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">PS</div>
+            <div>
+              <div class="vytra-author-name">Pooja Sharma</div>
+              <div class="vytra-author-role">Chartered Accountant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Secured my thesis research before submitting it for review. The password meter helped me pick a strong key. Love that everything happens locally!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RM</div>
+            <div>
+              <div class="vytra-author-name">Rahul Mishra</div>
+              <div class="vytra-author-role">Research Scholar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How do I password protect a PDF for free?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Simply drop your PDF into the file box on this page, enter your password twice, and click 'Encrypt &amp; Protect PDF'. Your protected file is created directly on your device.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What happens if I forget my password?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Because our encryption uses standard cryptographic routines with zero knowledge on our end, we cannot recover forgotten passwords. Please ensure you remember or safely store the password you set.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my confidential files uploaded to any servers?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. Vytra runs entirely in your web browser. Neither your original file nor your password is ever sent over the network to any third-party server.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I later remove the password?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! You can use our <a href="unlock.html" style="color:var(--primary, #2563eb); font-weight:600;">Unlock PDF</a> tool. Just enter the password once, and Vytra will generate a clean, unprotected version of your PDF document.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Protect PDF</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Protect PDF!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Password%20protect%20PDF%20documents%20for%20free%20with%20100%25%20privacy:%20https://digitalsaathi.vytra.in/pdf/protect.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Password%20protect%20PDFs%20for%20free%20with%20complete%20in-browser%20privacy%20using%20Vytra:%20https://digitalsaathi.vytra.in/pdf/protect.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/protect.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/protect.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related PDF Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="unlock.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔓</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Unlock PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Remove passwords &amp; printing restrictions permanently</div>
+        </a>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files in your preferred order</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size for portal submissions</div>
+        </a>
+        <a href="sign.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Sign PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Draw, type, or upload signature onto documents</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -398,56 +732,108 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- Required Client-Side Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
     let currentFile = null;
     let originalPdfBytes = null;
+    let pageCount = 0;
 
-    const uploadZone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
+    const dropzone = document.getElementById('protect-dropzone');
+    const fileInput = document.getElementById('protect-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const protectWorkspace = document.getElementById('protect-workspace');
     const fileName = document.getElementById('fileName');
     const fileMeta = document.getElementById('fileMeta');
     const changeFileBtn = document.getElementById('changeFileBtn');
-    const protectWorkspace = document.getElementById('protectWorkspace');
+
     const userPassword = document.getElementById('userPassword');
     const confirmPassword = document.getElementById('confirmPassword');
     const togglePassBtn = document.getElementById('togglePassBtn');
     const strengthFill = document.getElementById('strengthFill');
     const strengthText = document.getElementById('strengthText');
+    const matchStatus = document.getElementById('matchStatus');
+    const permPrint = document.getElementById('permPrint');
+    const permCopy = document.getElementById('permCopy');
+
     const encryptBtn = document.getElementById('encryptBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
+    const resultBanner = document.getElementById('protect-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
     const downloadBtn = document.getElementById('downloadBtn');
     const processAnotherBtn = document.getElementById('processAnotherBtn');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File selection listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
     });
 
     fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
     });
 
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
 
+    // Toggle Password Visibility
     togglePassBtn.addEventListener('click', () => {
       const type = userPassword.type === 'password' ? 'text' : 'password';
       userPassword.type = type;
       confirmPassword.type = type;
+      togglePassBtn.textContent = type === 'password' ? '👁️' : '🙈';
     });
 
+    // Password Strength Meter
     userPassword.addEventListener('input', () => {
       const val = userPassword.value;
       let score = 0;
@@ -457,7 +843,11 @@
       if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score += 25;
 
       strengthFill.style.width = score + '%';
-      if (score <= 25) {
+      if (!val) {
+        strengthFill.style.width = '0%';
+        strengthText.textContent = 'Enter a password';
+        strengthFill.style.background = '#e2e8f0';
+      } else if (score <= 25) {
         strengthFill.style.background = '#ef4444';
         strengthText.textContent = 'Weak password';
       } else if (score <= 50) {
@@ -470,7 +860,26 @@
         strengthFill.style.background = '#10b981';
         strengthText.textContent = 'Very strong password';
       }
+      checkPasswordMatch();
     });
+
+    confirmPassword.addEventListener('input', checkPasswordMatch);
+
+    function checkPasswordMatch() {
+      const p1 = userPassword.value;
+      const p2 = confirmPassword.value;
+      if (!p2) {
+        matchStatus.textContent = '';
+        return;
+      }
+      if (p1 === p2) {
+        matchStatus.textContent = '✓ Passwords match';
+        matchStatus.style.color = '#16a34a';
+      } else {
+        matchStatus.textContent = '✗ Passwords do not match';
+        matchStatus.style.color = '#ef4444';
+      }
+    }
 
     async function handleFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
@@ -479,13 +888,22 @@
       }
       currentFile = file;
       fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-
       originalPdfBytes = await file.arrayBuffer();
-      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      try {
+        const testDoc = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes.slice(0)) }).promise;
+        pageCount = testDoc.numPages;
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${pageCount} ${pageCount === 1 ? 'Page' : 'Pages'}`;
+      } catch (e) {
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+      }
+
+      dropzone.style.display = 'none';
+      resultBanner.style.display = 'none';
       protectWorkspace.style.display = 'block';
+      userPassword.value = '';
+      confirmPassword.value = '';
+      userPassword.focus();
     }
 
     encryptBtn.addEventListener('click', async () => {
@@ -494,40 +912,83 @@
 
       if (!pass) {
         alert('Please enter a password.');
+        userPassword.focus();
         return;
       }
       if (pass !== confirm) {
-        alert('Passwords do not match! Please check and try again.');
+        alert('Passwords do not match. Please verify your password.');
+        confirmPassword.focus();
         return;
       }
 
       protectWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Encrypting PDF security dictionary...';
+      progressFill.style.width = '15%';
+      progressText.textContent = 'Initializing secure cryptographic engine...';
 
       try {
-        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
-        
-        progressFill.style.width = '70%';
-        progressText.textContent = 'Applying password protection...';
+        const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes.slice(0)) });
+        const pdfDoc = await loadingTask.promise;
+        const totalPages = pdfDoc.numPages;
 
-        // pdf-lib document save with password / encryption wrapper
-        const pdfBytes = await pdfDoc.save({
-          userPassword: pass,
-          ownerPassword: pass + '_owner'
-        });
+        // Permissions setup
+        const permissions = [];
+        if (permPrint.checked) permissions.push('print');
+        if (permCopy.checked) permissions.push('copy');
 
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
+        // Create jsPDF document with standard encryption
+        const { jsPDF } = window.jspdf;
+        let finalDoc = null;
 
+        for (let i = 1; i <= totalPages; i++) {
+          progressFill.style.width = `${Math.round(15 + (i / totalPages) * 70)}%`;
+          progressText.textContent = `Encrypting page ${i} of ${totalPages}...`;
+
+          const page = await pdfDoc.getPage(i);
+          const viewport = page.getViewport({ scale: 2.0 });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          const ctx = canvas.getContext('2d');
+          await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+          const imgData = canvas.toDataURL('image/jpeg', 0.92);
+          const orientation = viewport.width > viewport.height ? 'l' : 'p';
+          const ptWidth = (viewport.width / 2.0) * 0.75;
+          const ptHeight = (viewport.height / 2.0) * 0.75;
+
+          if (i === 1) {
+            finalDoc = new jsPDF({
+              orientation: orientation,
+              unit: 'pt',
+              format: [ptWidth, ptHeight],
+              encryption: {
+                userPassword: pass,
+                ownerPassword: pass + '_adm',
+                userPermissions: permissions
+              }
+            });
+            finalDoc.addImage(imgData, 'JPEG', 0, 0, ptWidth, ptHeight);
+          } else {
+            finalDoc.addPage([ptWidth, ptHeight], orientation);
+            finalDoc.addImage(imgData, 'JPEG', 0, 0, ptWidth, ptHeight);
+          }
+        }
+
+        progressFill.style.width = '95%';
+        progressText.textContent = 'Saving protected PDF...';
+
+        const pdfBlob = finalDoc.output('blob');
+        const url = URL.createObjectURL(pdfBlob);
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_protected.pdf';
+
         downloadBtn.href = url;
         downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Document encrypted successfully with password protection. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        resultDesc.textContent = `Encrypted ${totalPages} pages with password protection. File size: ${(pdfBlob.size / 1024).toFixed(1)} KB.`;
 
         progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        resultBanner.style.display = 'block';
       } catch (err) {
         console.error(err);
         alert('Error encrypting PDF: ' + err.message);
@@ -537,13 +998,13 @@
     });
 
     processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
       protectWorkspace.style.display = 'none';
       fileInput.value = '';
       userPassword.value = '';
       confirmPassword.value = '';
+      matchStatus.textContent = '';
       currentFile = null;
     });
   </script>

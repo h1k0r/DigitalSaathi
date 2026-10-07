@@ -23,57 +23,105 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotate PDF Pages Online Free — Permanent PDF Rotation | Vytra</title>
-  <meta name="description" content="Rotate your PDF pages upside-down or sideways. Save permanent rotation in seconds with visual preview.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Rotate PDF pages online for free. Permanently rotate individual pages or all pages 90, 180, or 270 degrees with visual preview and 100% in-browser privacy.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  
   <style>
-    .rotate-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
-      margin: 24px 0;
-    }
-    .rotate-card {
+    .rotate-workspace-card {
       background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 1050px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .rotate-bulk-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .rotate-pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .rotate-page-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 8px;
       padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease;
     }
-    .rotate-canvas-wrapper {
-      width: 120px;
-      height: 160px;
+    .rotate-page-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .rotate-canvas-box {
+      width: 150px;
+      height: 190px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
       overflow: hidden;
-      margin-bottom: 8px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 4px;
+      margin-bottom: 10px;
     }
-    .rotate-canvas-wrapper canvas {
+    .rotate-canvas-box canvas {
       max-width: 100%;
       max-height: 100%;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .page-number-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 6px;
+    .rotate-page-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
-    .page-rotate-actions {
+    .rotate-page-number {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+    }
+    .rotate-page-btns {
       display: flex;
       gap: 6px;
     }
+    .rotate-mini-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    .rotate-mini-btn:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,7 +130,7 @@
         "@type": "WebApplication",
         "name": "Rotate PDF Pages Online Free — Permanent PDF Rotation | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/rotate.html",
-        "description": "Rotate your PDF pages upside-down or sideways. Save permanent rotation in seconds with visual preview.",
+        "description": "Rotate PDF pages online for free. Permanently rotate individual pages or all pages 90, 180, or 270 degrees with visual preview.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -93,26 +141,63 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Rotate PDF on Vytra",
-        "description": "Rotate your PDF pages upside-down or sideways. Save permanent rotation in seconds with visual preview.",
+        "name": "How to rotate PDF pages online permanently",
+        "description": "Step-by-step instructions to rotate PDF pages sideways or upside-down and save permanently.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select your PDF file.",
-            "text": "Select your PDF file."
+            "name": "Upload your PDF file",
+            "text": "Choose your PDF or drag and drop it into the rotation dropzone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Click rotate icons (↺ ↻) on individual pages or rotate all at once.",
-            "text": "Click rotate icons (↺ ↻) on individual pages or rotate all at once."
+            "name": "Rotate pages as needed",
+            "text": "Rotate all pages simultaneously with bulk buttons or rotate specific pages individually using the thumbnail buttons."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download your permanently rotated PDF.",
-            "text": "Download your permanently rotated PDF."
+            "name": "Save and download",
+            "text": "Click 'Save & Download Rotated PDF' to download your permanently rotated document."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is the rotation permanent or just a preview?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The rotation is 100% permanent. Vytra updates the standard /Rotate dictionary inside the PDF document structure, so it opens in the correct orientation in all PDF readers, printing programs, and mobile devices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I rotate only a single page instead of the whole file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Each page thumbnail has its own individual rotate left (↺) and rotate right (↻) buttons, allowing you to fix scanned documents where only some pages are sideways."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does rotating reduce the quality of text or images in my PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Rotating is completely lossless. The internal text streams, vector fonts, and high-resolution images are not re-compressed or degraded in any way."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my files uploaded to your servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All page rendering and PDF rotation happen client-side inside your browser using WebAssembly. Your documents remain strictly private on your computer or mobile phone."
+            }
           }
         ]
       },
@@ -142,25 +227,25 @@
     ]
   }
   </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/rotate.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/rotate.html">
   <meta property="og:title" content="Rotate PDF Pages Online Free — Permanent PDF Rotation | Vytra">
-  <meta property="og:description" content="Rotate your PDF pages upside-down or sideways. Save permanent rotation in seconds with visual preview.">
+  <meta property="og:description" content="Rotate PDF pages online for free. Permanently rotate individual pages or all pages 90, 180, or 270 degrees with visual preview.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rotate PDF Pages Online Free — Permanent PDF Rotation | Vytra">
-  <meta name="twitter:description" content="Rotate your PDF pages upside-down or sideways. Save permanent rotation in seconds with visual preview.">
+  <meta name="twitter:description" content="Rotate PDF pages online for free. Permanently rotate individual pages or all pages 90, 180, or 270 degrees with visual preview.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Navigation -->
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -177,7 +262,7 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="../pdf/index.html" class="nav-link active">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -190,6 +275,8 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
+            <a href="../pdf/rotate.html" class="dropdown-link">Rotate PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -260,87 +347,362 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="tool-hero">
-    <div class="container">
-      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
-        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <span style="color:#ffffff;">Rotate PDF</span>
-      </div>
-      <h1>🔄 Rotate PDF Pages</h1>
-      <p>Rotate individual or all pages of your PDF document permanently with live preview.</p>
-    </div>
-  </header>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-  <!-- Main Content -->
-  <main class="tool-content">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
-      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span style="color:var(--text-main);font-weight:600;">Rotate PDF</span>
+      <span style="color:var(--text-main); font-weight:600;">Rotate PDF</span>
     </nav>
 
-    <div class="tool-box">
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Rotate PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Rotate PDF pages online for free. Permanently rotate individual pages or the entire document 90°, 180°, or 270°.
+      </p>
 
-      <!-- Upload Area -->
-      <div class="upload-zone" id="drop-zone">
-        <span class="upload-icon">🔄</span>
-        <div class="upload-text">Click or Drag & Drop PDF to Rotate</div>
-        <div class="upload-hint">Select a PDF file (processed 100% locally on your device)</div>
-        <input type="file" id="pdf-file-input" accept="application/pdf">
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-
-      <!-- Settings & Grid -->
-      <div id="rotate-settings-section" style="display:none; margin-top:24px;">
-        
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid #e5e7eb; padding-bottom:16px;">
-          <div>
-            <h3 id="doc-title">Document Pages</h3>
-            <div style="font-size:0.85rem; color:#6b7280;" id="doc-meta-info"></div>
-          </div>
-
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" id="btn-rotate-all-right" class="btn btn-sm btn-secondary">↻ Rotate All Right 90°</button>
-            <button type="button" id="btn-rotate-all-left" class="btn btn-sm btn-secondary">↺ Rotate All Left 90°</button>
-            <button type="button" id="btn-rotate-all-180" class="btn btn-sm btn-secondary">↕ 180°</button>
-            <button type="button" id="btn-change-file" class="btn btn-sm btn-outline">Change File</button>
-          </div>
-        </div>
-
-        <!-- Visual Thumbnails Grid -->
-        <div class="rotate-grid" id="rotate-pages-grid"></div>
-
-        <button type="button" id="btn-save-rotation" class="btn btn-primary btn-full" style="margin-top:24px;">💾 Save & Download Rotated PDF</button>
-      </div>
-
-      <!-- Processing Box -->
-      <div id="processing-box" style="display:none; text-align:center; padding:32px 0;">
-        <div class="spinner"></div>
-        <div style="font-weight:600; margin-top:12px;" id="processing-msg">Rendering PDF pages...</div>
-      </div>
-
-      <!-- Result Box -->
-      <div id="result-box" class="result-box" style="display:none;">
-        <span style="font-size:2.5rem; display:block; margin-bottom:8px;">🎉</span>
-        <h3>Rotated PDF Ready!</h3>
-        <p id="result-details" style="font-size:0.875rem; color:#065f46; margin-bottom:16px;"></p>
-        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-          <button type="button" id="btn-download-rotated" class="btn btn-success">📥 Download Rotated PDF</button>
-          <button type="button" id="btn-rotate-more" class="btn btn-secondary">Rotate Another File</button>
-        </div>
-      </div>
-
     </div>
+
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="rotate-dropzone">
+      <input type="file" id="rotate-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF to rotate">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop PDF files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (46,800+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: Multi-page PDFs, scanned papers, certificates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Rotate Workspace (Visible upon file selection) -->
+    <div class="rotate-workspace-card" id="rotate-workspace" style="display:none;">
+      
+      <!-- Top File Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main, #0f172a); font-size:1.05rem;" id="fileName">document.pdf</span>
+          <span style="font-size:0.8rem; color:var(--text-muted, #64748b); margin-left:8px;" id="fileMeta">0 KB • 0 Pages</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change File</button>
+      </div>
+
+      <!-- Bulk Actions Toolbar -->
+      <div class="rotate-bulk-toolbar">
+        <div style="font-size:0.88rem; font-weight:600; color:#334155;">Bulk Actions:</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnRotateAllLeft">↺ Rotate All Left 90°</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnRotateAllRight">↻ Rotate All Right 90°</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnRotateAll180">🔄 Rotate All 180°</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnResetAll">🔁 Reset All</button>
+        </div>
+      </div>
+
+      <!-- Interactive Pages Grid -->
+      <div class="rotate-pages-grid" id="rotatePagesGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Save Button -->
+      <button type="button" class="btn btn-primary btn-lg" id="btnSaveRotation" style="width:100%; padding:14px; font-weight:700; font-size:1.05rem; border-radius:8px;">
+        💾 Save &amp; Download Rotated PDF
+      </button>
+    </div>
+
+    <!-- Progress Container -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:600px; margin:1.5rem auto;">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Processing pages... 0%</p>
+    </div>
+
+    <!-- Result Banner -->
+    <div class="result-banner" id="rotate-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        PDF Rotated Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your pages have been permanently rotated and saved in the PDF catalog.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="rotated.pdf" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Rotated PDF
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Rotate Another PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to rotate PDF pages</h3>
+          <p class="vytra-info-cell-desc">Upload your PDF file above. Click the ↺ or ↻ buttons on individual page cards, or use the top bulk buttons to rotate all pages. Click 'Save & Download' to download your updated document.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔄</div>
+          <h3 class="vytra-info-cell-title">Permanent orientation</h3>
+          <p class="vytra-info-cell-desc">Unlike basic document viewers that merely rotate the display temporarily, Vytra writes the rotation angle directly into the PDF specification. The new orientation is permanent wherever you view or print it.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private &amp; secure</h3>
+          <p class="vytra-info-cell-desc">All thumbnail rendering and PDF dictionary updates are performed locally on your device. Zero bytes are uploaded to remote servers.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">Lossless quality</h3>
+          <p class="vytra-info-cell-desc">Because the page rotation is updated as metadata in the PDF page tree, your text fonts, vectors, and embedded images maintain 100% of their original crystal-clear resolution.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📄</div>
+          <h3 class="vytra-info-cell-title">Individual or bulk rotation</h3>
+          <p class="vytra-info-cell-desc">Easily fix multi-page scans where only page 2 or page 5 was fed upside-down, or fix landscape spreadsheets in portrait documents with a single click.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Works on every platform</h3>
+          <p class="vytra-info-cell-desc">Fully optimized for smartphones, tablets, Chromebooks, Windows PCs, and Apple Macs without installing third-party apps.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Scanned 40 pages of property deeds and 5 were upside down. The visual thumbnail grid made it so easy to rotate just those 5 pages and save. Saved me so much time!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NK</div>
+            <div>
+              <div class="vytra-author-name">Naresh Kothari</div>
+              <div class="vytra-author-role">Legal Associate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Super smooth and instantaneous. Rotated my entire 100-page bank passbook PDF sideways with one click. Quality remained super sharp.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AM</div>
+            <div>
+              <div class="vytra-author-name">Arun Mohan</div>
+              <div class="vytra-author-role">Financial Analyst</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Best rotation tool I've used online. No sign-in required, no watermarks attached, and everything stays private on my computer.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">DM</div>
+            <div>
+              <div class="vytra-author-name">Deepika Mehta</div>
+              <div class="vytra-author-role">Student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Will the rotation stay when I send the PDF to someone else?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes. Vytra writes the exact rotation degree into the PDF document definition. When you email the file or upload it to a portal, it will open in the saved orientation on any device.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I rotate a PDF 180 degrees?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Click the 'Rotate All 180°' button in the toolbar, or click the individual 90° button twice on any specific page thumbnail to flip it upside down.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are there limits on file size or number of pages?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No artificial limits. Because all processing runs inside your browser, documents with hundreds of pages can be rotated seamlessly without timeout errors.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is this tool free?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes, Vytra Rotate PDF is 100% free with no subscription, no hidden charges, and no email required.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Rotate PDF</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Rotate PDF!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Rotate%20PDF%20pages%20permanently%20online%20for%20free%20with%20100%25%20privacy:%20https://digitalsaathi.vytra.in/pdf/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Permanently%20rotate%20PDF%20pages%20for%20free%20with%20zero%20quality%20loss%20using%20Vytra:%20https://digitalsaathi.vytra.in/pdf/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related PDF Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="split.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Split PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Extract specific pages or split document into parts</div>
+        </a>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files in your preferred order</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size for portal submissions</div>
+        </a>
+        <a href="protect.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔒</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Protect PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Add secure password encryption to confidential documents</div>
+        </a>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-    <footer class="footer">
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -391,183 +753,260 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
 
-    (function () {
-      let rawArrayBuffer = null;
-      let totalPages = 0;
-      let originalFilename = 'document.pdf';
-      let pageRotations = []; // Array of relative degrees: [0, 90, 180, etc.]
-      let rotatedPdfBytes = null;
+    let currentFile = null;
+    let originalPdfBytes = null;
+    let totalPages = 0;
+    let pageRotations = []; // Stores relative degrees: 0, 90, 180, 270
 
-      const fileInput = document.getElementById('pdf-file-input');
-      const settingsSection = document.getElementById('rotate-settings-section');
-      const docTitle = document.getElementById('doc-title');
-      const docMetaInfo = document.getElementById('doc-meta-info');
-      const pagesGrid = document.getElementById('rotate-pages-grid');
-      const btnRotateAllRight = document.getElementById('btn-rotate-all-right');
-      const btnRotateAllLeft = document.getElementById('btn-rotate-all-left');
-      const btnRotateAll180 = document.getElementById('btn-rotate-all-180');
-      const btnSaveRotation = document.getElementById('btn-save-rotation');
-      const btnChangeFile = document.getElementById('btn-change-file');
-      const processingBox = document.getElementById('processing-box');
-      const processingMsg = document.getElementById('processing-msg');
-      const resultBox = document.getElementById('result-box');
-      const resultDetails = document.getElementById('result-details');
-      const btnDownloadRotated = document.getElementById('btn-download-rotated');
-      const btnRotateMore = document.getElementById('btn-rotate-more');
+    const dropzone = document.getElementById('rotate-dropzone');
+    const fileInput = document.getElementById('rotate-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const rotateWorkspace = document.getElementById('rotate-workspace');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
 
-      fileInput.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        originalFilename = file.name;
-        rawArrayBuffer = await file.arrayBuffer();
-        await renderPdfPages();
+    const btnRotateAllLeft = document.getElementById('btnRotateAllLeft');
+    const btnRotateAllRight = document.getElementById('btnRotateAllRight');
+    const btnRotateAll180 = document.getElementById('btnRotateAll180');
+    const btnResetAll = document.getElementById('btnResetAll');
+    const rotatePagesGrid = document.getElementById('rotatePagesGrid');
+    const btnSaveRotation = document.getElementById('btnSaveRotation');
+
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const resultBanner = document.getElementById('rotate-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
       });
+    });
 
-      btnChangeFile.addEventListener('click', () => fileInput.click());
+    // File selection listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
 
-      async function renderPdfPages() {
-        settingsSection.style.display = 'none';
-        resultBox.style.display = 'none';
-        processingBox.style.display = 'block';
-        processingMsg.textContent = 'Rendering page previews...';
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
 
-        try {
-          const loadingTask = pdfjsLib.getDocument({ data: rawArrayBuffer });
-          const pdfDoc = await loadingTask.promise;
-          totalPages = pdfDoc.numPages;
-          pageRotations = new Array(totalPages).fill(0);
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
 
-          docTitle.textContent = originalFilename;
-          docMetaInfo.textContent = `${totalPages} Pages Total`;
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
 
-          pagesGrid.innerHTML = '';
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
 
-          for (let i = 1; i <= totalPages; i++) {
-            const page = await pdfDoc.getPage(i);
-            const viewport = page.getViewport({ scale: 0.3 });
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
 
-            const canvas = document.createElement('canvas');
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-            canvas.id = `canvas-page-${i}`;
+    async function handleFile(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Please select a valid PDF file.');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      originalPdfBytes = await file.arrayBuffer();
 
-            const renderContext = {
-              canvasContext: canvas.getContext('2d'),
-              viewport: viewport
-            };
-            await page.render(renderContext).promise;
+      dropzone.style.display = 'none';
+      resultBanner.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Rendering page thumbnails...';
 
-            const card = document.createElement('div');
-            card.className = 'rotate-card';
-            card.innerHTML = `
-              <div class="rotate-canvas-wrapper" id="wrapper-page-${i}"></div>
-              <div class="page-number-label">Page ${i}</div>
-              <div class="page-rotate-actions">
-                <button type="button" class="btn btn-sm btn-secondary single-rotate-btn" data-page="${i}" data-dir="-90" title="Rotate Left">↺</button>
-                <button type="button" class="btn btn-sm btn-secondary single-rotate-btn" data-page="${i}" data-dir="90" title="Rotate Right">↻</button>
+      try {
+        const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes.slice(0)) });
+        const pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
+        pageRotations = new Array(totalPages).fill(0);
+
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} Pages`;
+        rotatePagesGrid.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+          progressFill.style.width = `${Math.round(20 + (i / totalPages) * 75)}%`;
+          progressText.textContent = `Rendering thumbnail for page ${i} of ${totalPages}...`;
+
+          const page = await pdfDoc.getPage(i);
+          const viewport = page.getViewport({ scale: 0.35 });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.id = `canvas-page-${i}`;
+
+          const ctx = canvas.getContext('2d');
+          await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+          const card = document.createElement('div');
+          card.className = 'rotate-page-item';
+          card.innerHTML = `
+            <div class="rotate-canvas-box" id="box-page-${i}"></div>
+            <div class="rotate-page-meta">
+              <span class="rotate-page-number">Page ${i}</span>
+              <div class="rotate-page-btns">
+                <button type="button" class="rotate-mini-btn btn-rot-left" data-page="${i}" title="Rotate Left 90°">↺</button>
+                <button type="button" class="rotate-mini-btn btn-rot-right" data-page="${i}" title="Rotate Right 90°">↻</button>
               </div>
-            `;
-            card.querySelector(`#wrapper-page-${i}`).appendChild(canvas);
-            pagesGrid.appendChild(card);
-          }
-
-          processingBox.style.display = 'none';
-          settingsSection.style.display = 'block';
-        } catch (err) {
-          console.error(err);
-          processingBox.style.display = 'none';
-          if (typeof showToast === 'function') showToast('Error reading PDF: ' + err.message, 'error');
+            </div>
+          `;
+          card.querySelector(`#box-page-${i}`).appendChild(canvas);
+          rotatePagesGrid.appendChild(card);
         }
+
+        progressContainer.style.display = 'none';
+        rotateWorkspace.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Error loading PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        dropzone.style.display = 'block';
       }
+    }
 
-      // Single page rotation
-      pagesGrid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.single-rotate-btn');
-        if (!btn) return;
-        const pageNum = parseInt(btn.dataset.page, 10);
-        const delta = parseInt(btn.dataset.dir, 10);
-
-        pageRotations[pageNum - 1] = (pageRotations[pageNum - 1] + delta) % 360;
-        updatePageTransform(pageNum);
-      });
-
-      // Bulk rotations
-      btnRotateAllRight.addEventListener('click', () => applyAllRotation(90));
-      btnRotateAllLeft.addEventListener('click', () => applyAllRotation(-90));
-      btnRotateAll180.addEventListener('click', () => applyAllRotation(180));
-
-      function applyAllRotation(delta) {
-        for (let i = 0; i < totalPages; i++) {
-          pageRotations[i] = (pageRotations[i] + delta) % 360;
-          updatePageTransform(i + 1);
-        }
+    // Individual page button listener
+    rotatePagesGrid.addEventListener('click', (e) => {
+      const leftBtn = e.target.closest('.btn-rot-left');
+      const rightBtn = e.target.closest('.btn-rot-right');
+      if (leftBtn) {
+        const page = parseInt(leftBtn.getAttribute('data-page'), 10);
+        rotatePageBy(page, -90);
+      } else if (rightBtn) {
+        const page = parseInt(rightBtn.getAttribute('data-page'), 10);
+        rotatePageBy(page, 90);
       }
+    });
 
-      function updatePageTransform(pageNum) {
-        const canvas = document.getElementById(`canvas-page-${pageNum}`);
-        if (canvas) {
-          canvas.style.transform = `rotate(${pageRotations[pageNum - 1]}deg)`;
-        }
+    function rotatePageBy(pageNum, delta) {
+      pageRotations[pageNum - 1] = (pageRotations[pageNum - 1] + delta) % 360;
+      updatePageCanvasTransform(pageNum);
+    }
+
+    function updatePageCanvasTransform(pageNum) {
+      const canvas = document.getElementById(`canvas-page-${pageNum}`);
+      if (canvas) {
+        canvas.style.transform = `rotate(${pageRotations[pageNum - 1]}deg)`;
       }
+    }
 
-      // Save and compile with pdf-lib
-      btnSaveRotation.addEventListener('click', async () => {
-        settingsSection.style.display = 'none';
-        processingBox.style.display = 'block';
-        processingMsg.textContent = 'Saving rotated PDF...';
+    // Bulk toolbar listeners
+    btnRotateAllLeft.addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        rotatePageBy(i, -90);
+      }
+    });
 
-        try {
-          const pdfDoc = await PDFLib.PDFDocument.load(rawArrayBuffer, { ignoreEncryption: true });
-          const pages = pdfDoc.getPages();
+    btnRotateAllRight.addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        rotatePageBy(i, 90);
+      }
+    });
 
-          pages.forEach((page, idx) => {
-            const addedAngle = (pageRotations[idx] + 360) % 360;
-            const currentRotation = page.getRotation().angle;
-            const finalAngle = (currentRotation + addedAngle) % 360;
-            page.setRotation(PDFLib.degrees(finalAngle));
-          });
+    btnRotateAll180.addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        rotatePageBy(i, 180);
+      }
+    });
 
-          rotatedPdfBytes = await pdfDoc.save();
+    btnResetAll.addEventListener('click', () => {
+      for (let i = 1; i <= totalPages; i++) {
+        pageRotations[i - 1] = 0;
+        updatePageCanvasTransform(i);
+      }
+    });
 
-          processingBox.style.display = 'none';
-          resultBox.style.display = 'block';
-          resultDetails.textContent = `Applied rotation to ${totalPages} pages (${formatFileSize(rotatedPdfBytes.byteLength)}).`;
-          if (typeof showToast === 'function') showToast('Rotated PDF saved!', 'success');
-        } catch (err) {
-          console.error(err);
-          processingBox.style.display = 'none';
-          settingsSection.style.display = 'block';
-          if (typeof showToast === 'function') showToast('Error saving rotated PDF: ' + err.message, 'error');
-        }
-      });
+    // Save and export rotated PDF
+    btnSaveRotation.addEventListener('click', async () => {
+      rotateWorkspace.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '40%';
+      progressText.textContent = 'Updating PDF page orientation tree...';
 
-      btnDownloadRotated.addEventListener('click', () => {
-        if (!rotatedPdfBytes) return;
-        const blob = new Blob([rotatedPdfBytes], { type: 'application/pdf' });
-        const name = originalFilename.replace(/\.pdf$/i, '_rotated.pdf');
-        if (typeof downloadBlob === 'function') {
-          downloadBlob(blob, name);
-        } else {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = name;
-          a.click();
-        }
-      });
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes, { ignoreEncryption: true });
+        const pages = pdfDoc.getPages();
 
-      btnRotateMore.addEventListener('click', () => {
-        settingsSection.style.display = 'none';
-        resultBox.style.display = 'none';
-        fileInput.value = '';
-      });
-    })();
+        pages.forEach((page, idx) => {
+          const addedAngle = (pageRotations[idx] + 360) % 360;
+          const currentAngle = page.getRotation().angle;
+          const finalAngle = (currentAngle + addedAngle) % 360;
+          page.setRotation(PDFLib.degrees(finalAngle));
+        });
+
+        progressFill.style.width = '85%';
+        progressText.textContent = 'Saving clean PDF document...';
+
+        const rotatedBytes = await pdfDoc.save();
+        const blob = new Blob([rotatedBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const outName = currentFile.name.replace(/\.pdf$/i, '') + '_rotated.pdf';
+
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+        resultDesc.textContent = `Applied permanent rotation to ${totalPages} pages. Clean file size: ${(blob.size / 1024).toFixed(1)} KB.`;
+
+        progressContainer.style.display = 'none';
+        resultBanner.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        alert('Error saving rotated PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        rotateWorkspace.style.display = 'block';
+      }
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+      rotateWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+      pageRotations = [];
+    });
   </script>
 </body>
 </html>

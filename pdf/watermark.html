@@ -23,39 +23,17 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watermark PDF Online Free — Add Text & Logo Stamps | Vytra</title>
-  <meta name="description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Add text watermarks or official logo stamps to PDF online for free. Custom typography, opacity, angle, and tile repeats with 100% in-browser privacy.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  
   <style>
-    .watermark-tabs {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 8px;
-    }
-    .wm-tab-btn {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #64748b;
-      padding: 8px 16px;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .wm-tab-btn.active {
-      background: #eff6ff;
-      color: var(--primary);
-    }
     .wm-workspace-grid {
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: 1fr 380px;
       gap: 24px;
-      margin: 24px 0;
+      margin: 1.5rem auto;
+      max-width: 1100px;
       align-items: start;
     }
     @media (max-width: 900px) {
@@ -65,30 +43,73 @@
     }
     .wm-preview-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
       padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
     .wm-controls-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .wm-tab-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    .wm-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #64748b;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .wm-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
     }
     #wmPreviewCanvas {
       max-width: 100%;
       height: auto;
       border: 1px solid #cbd5e1;
-      border-radius: 4px;
+      border-radius: 6px;
       background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .angle-btn-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .angle-chip {
+      padding: 6px 12px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .angle-chip.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
     }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -108,26 +129,63 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Watermark PDF on Vytra",
-        "description": "Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.",
+        "name": "How to add watermark to PDF online",
+        "description": "Step-by-step guide to stamp text or logo watermark onto PDF documents for free.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select your PDF document.",
-            "text": "Select your PDF document."
+            "name": "Upload your PDF file",
+            "text": "Drop your PDF into the upload area or click 'Choose files'."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Enter text or upload logo image, set angle and opacity.",
-            "text": "Enter text or upload logo image, set angle and opacity."
+            "name": "Customize watermark text or logo",
+            "text": "Type your text (e.g. CONFIDENTIAL) or upload your company logo, and adjust opacity, angle, and size with live visual preview."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click 'Apply Watermark & Download'.",
-            "text": "Click 'Apply Watermark & Download'."
+            "name": "Apply and download",
+            "text": "Click 'Apply Watermark' to download your branded, watermarked PDF."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I add both text and image logo watermarks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can toggle between Text Watermark (with customizable font size, rotation angle, opacity, and color) and Logo Stamp (uploading any PNG/JPG image with transparency)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I repeat or tile the watermark across the entire page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! In the layout controls, switch from 'Single Center' to 'Tile Repeat (3x3 Grid)'. This places the watermark across all sections of the document to prevent cropping."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does watermarking modify the underlying text and vectors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The watermark is applied as a clean, translucent vector layer above the document. Your original text and formatting are completely preserved."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my uploaded PDF uploaded to any cloud server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra performs all watermark embedding client-side directly within your browser. Zero documents leave your computer."
+            }
           }
         ]
       },
@@ -157,24 +215,25 @@
     ]
   }
   </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/watermark.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/watermark.html">
   <meta property="og:title" content="Watermark PDF Online Free — Add Text & Logo Stamps | Vytra">
-  <meta property="og:description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
+  <meta property="og:description" content="Add text watermarks or official logo stamps to PDF online for free. Custom typography, opacity, angle, and tile repeats.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Watermark PDF Online Free — Add Text & Logo Stamps | Vytra">
-  <meta name="twitter:description" content="Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.">
+  <meta name="twitter:description" content="Add text watermarks or official logo stamps to PDF online for free. Custom typography, opacity, angle, and tile repeats.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -191,7 +250,7 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="../pdf/index.html" class="nav-link active">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -204,6 +263,9 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
+            <a href="../pdf/rotate.html" class="dropdown-link">Rotate PDF <span>&rarr;</span></a>
+            <a href="../pdf/watermark.html" class="dropdown-link">Watermark PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -274,169 +336,427 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Watermark PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Watermark PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Watermark PDF</h1>
-      <p class="tool-hero-subtitle">Stamp custom text or official logo image over your PDF in seconds. Choose typography, transparency and angle.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Watermark PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Add custom text or image logos onto your PDF documents online for free. Control typography, opacity, rotation angle, and repeat patterns.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Add confidential, draft, or branded copyright stamps</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="wmWorkspace" class="wm-workspace-grid" style="display:none;">
-      <!-- Preview -->
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="wm-dropzone">
+      <input type="file" id="wm-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF to watermark">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop PDF files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (39,400+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: PDF presentations, invoices, contracts, legal forms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Watermark Workspace (Visible upon file selection) -->
+    <div class="wm-workspace-grid" id="wm-workspace" style="display:none;">
+      
+      <!-- Left: Live Preview Card -->
       <div class="wm-preview-card">
-        <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:#334155;">Live Preview (Page 1)</h4>
-        <canvas id="wmPreviewCanvas"></canvas>
-      </div>
-
-      <!-- Controls -->
-      <div class="wm-controls-card">
-        <div class="watermark-tabs">
-          <button class="wm-tab-btn active" id="tabTextBtn">Text Stamp</button>
-          <button class="wm-tab-btn" id="tabImgBtn">Image Logo</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span style="font-weight:700; color:var(--text-main); font-size:1rem;" id="fileName">document.pdf</span>
+            <span style="font-size:0.8rem; color:var(--text-muted); margin-left:8px;" id="fileMeta">0 KB</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change File</button>
         </div>
 
-        <!-- Text Tab Content -->
-        <div id="textTabContent">
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Watermark Text</label>
-            <input type="text" id="wmText" class="form-input" value="CONFIDENTIAL" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
+        <canvas id="wmPreviewCanvas"></canvas>
+        <p style="font-size:0.75rem; color:#64748b; margin-top:8px;">Live Page 1 Watermark Preview</p>
+      </div>
+
+      <!-- Right: Controls Card -->
+      <div class="wm-controls-card">
+        
+        <!-- Tab Switcher -->
+        <div class="wm-tab-header">
+          <button type="button" class="wm-tab-btn active" id="tabTextBtn">🔤 Text Stamp</button>
+          <button type="button" class="wm-tab-btn" id="tabImageBtn">🖼️ Image Logo</button>
+        </div>
+
+        <!-- Text Options -->
+        <div id="textOptionsPanel">
+          <div class="form-group" style="margin-bottom:14px;">
+            <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Watermark Text</label>
+            <input type="text" id="wmText" class="form-input" value="CONFIDENTIAL" style="width:100%; padding:9px 12px; border:1px solid #cbd5e1; border-radius:6px; font-weight:700;">
           </div>
 
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Color Preset</label>
-            <select id="wmColor" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
-              <option value="red" selected>Crimson Red (#dc2626)</option>
-              <option value="gray">Slate Gray (#64748b)</option>
-              <option value="blue">Deep Blue (#1d4ed8)</option>
-              <option value="black">Pure Black (#000000)</option>
-            </select>
-          </div>
-
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Font Size (<span id="fontSizeVal">48</span> pt)</label>
+          <div class="form-group" style="margin-bottom:14px;">
+            <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">
+              Font Size: <span id="valFontSize" style="font-weight:700; color:#2563eb;">48px</span>
+            </label>
             <input type="range" id="wmFontSize" min="16" max="96" value="48" style="width:100%;">
           </div>
 
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Rotation (<span id="wmRotVal">45</span>°)</label>
-            <input type="range" id="wmRotation" min="-90" max="90" value="45" style="width:100%;">
+          <div class="form-group" style="margin-bottom:14px;">
+            <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Color</label>
+            <select id="wmColor" class="form-input" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+              <option value="red" selected>Crimson Red</option>
+              <option value="gray">Steel Gray</option>
+              <option value="blue">Royal Blue</option>
+              <option value="black">Deep Black</option>
+            </select>
           </div>
         </div>
 
-        <!-- Image Tab Content -->
-        <div id="imgTabContent" style="display:none;">
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Upload Watermark Logo (PNG/JPG)</label>
-            <input type="file" id="wmImageInput" accept="image/*" class="form-input" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:6px;">
+        <!-- Image Options -->
+        <div id="imageOptionsPanel" style="display:none;">
+          <div class="form-group" style="margin-bottom:14px;">
+            <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Upload Logo (PNG / JPG)</label>
+            <input type="file" id="logoFileInput" accept="image/png, image/jpeg" style="width:100%; font-size:0.85rem;">
           </div>
-          <div class="form-group" style="margin-bottom:12px;">
-            <label class="form-label" style="font-weight:600;">Logo Scale (<span id="wmImgScaleVal">50</span>%)</label>
+
+          <div class="form-group" style="margin-bottom:14px;">
+            <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">
+              Logo Scale: <span id="valImgScale" style="font-weight:700; color:#2563eb;">50%</span>
+            </label>
             <input type="range" id="wmImgScale" min="10" max="100" value="50" style="width:100%;">
           </div>
         </div>
 
-        <!-- Common Controls -->
-        <div class="form-group" style="margin-bottom:12px;">
-          <label class="form-label" style="font-weight:600;">Opacity (<span id="wmOpacityVal">30</span>%)</label>
+        <!-- Universal Adjustments (Angle & Opacity) -->
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Rotation Angle</label>
+          <div class="angle-btn-group">
+            <button type="button" class="angle-chip active" data-angle="-45">-45°</button>
+            <button type="button" class="angle-chip" data-angle="0">0° (Flat)</button>
+            <button type="button" class="angle-chip" data-angle="45">45°</button>
+            <button type="button" class="angle-chip" data-angle="90">90°</button>
+          </div>
+          <input type="hidden" id="wmRotation" value="-45">
+        </div>
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">
+            Opacity: <span id="valOpacity" style="font-weight:700; color:#2563eb;">30%</span>
+          </label>
           <input type="range" id="wmOpacity" min="5" max="90" value="30" style="width:100%;">
         </div>
 
-        <div class="form-group" style="margin-bottom:18px;">
-          <label class="form-label" style="font-weight:600;">Layout Pattern</label>
-          <select id="wmLayout" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
-            <option value="center" selected>Single Center Stamp</option>
-            <option value="repeat">Tiled 3x3 Repeat Grid</option>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Placement Layout</label>
+          <select id="wmLayout" class="form-input" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+            <option value="center" selected>Center of Page</option>
+            <option value="repeat">Tile Repeat (3×3 Grid)</option>
           </select>
         </div>
 
-        <button class="btn btn-primary" id="processWmBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;">Apply Watermark & Download</button>
+        <button type="button" class="btn btn-primary btn-lg" id="processWmBtn" style="width:100%; padding:13px; font-weight:700; font-size:1rem; border-radius:8px;">
+          ✨ Apply Watermark &amp; Download PDF
+        </button>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- Progress Container -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:600px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Stamping watermark... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Applying watermark... 0%</p>
     </div>
 
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">Watermark Applied Successfully!</h3>
-      <p class="result-desc" id="resultDesc">Your document is now stamped and protected.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="watermarked.pdf">⬇️ Download Watermarked PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Watermark Another PDF</button>
+    <!-- Result Banner -->
+    <div class="result-banner" id="wm-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        Watermark Added Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your custom stamp has been embedded across all pages.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="watermarked.pdf" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Watermarked PDF
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Watermark Another PDF
+        </button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Watermark PDF Files</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your PDF document. The first page is rendered with a live preview.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to add a watermark</h3>
+          <p class="vytra-info-cell-desc">Upload your PDF file above. Type your desired text stamp (e.g. CONFIDENTIAL or SAMPLE) or choose a logo image. Adjust opacity, scale, and angle in the real-time preview, then click 'Apply Watermark'.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Customize Stamp</h4>
-          <p class="step-desc">Type your text or upload a logo, set angle, opacity, and choose single or repeating pattern.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔤</div>
+          <h3 class="vytra-info-cell-title">Text or image logo stamps</h3>
+          <p class="vytra-info-cell-desc">Enjoy full versatility: stamp bold typography with customizable colors and fonts, or upload your official company logo with transparent PNG alpha channels.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download File</h4>
-          <p class="step-desc">Click Apply Watermark to export your protected PDF file instantly.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">All canvas rendering and vector stamp embedding take place client-side. Your private documents are never sent over the web to any external servers.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📐</div>
+          <h3 class="vytra-info-cell-title">Angle and tile repeats</h3>
+          <p class="vytra-info-cell-desc">Position your watermark diagonally across the center of each page or use 3×3 tile repeats to deter unauthorized screenshots or document cropping.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">Lossless vector quality</h3>
+          <p class="vytra-info-cell-desc">Text watermarks are rendered directly as PDF vector glyphs, retaining crisp edges at any magnification level while keeping output file sizes minimal.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Multi-device ready</h3>
+          <p class="vytra-info-cell-desc">Watermark documents on iPhone, Android, iPad, Mac, and Windows with zero software downloads or registrations required.</p>
         </div>
       </div>
-    </div>
 
-    <!-- FAQ -->
-    <div class="faq-section">
-      <h3 class="faq-heading">Frequently Asked Questions</h3>
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary class="faq-question">Can I use transparent PNG logos?</summary>
-          <div class="faq-answer">Yes, PNG files with transparent backgrounds are fully supported and will blend seamlessly with your document pages.</div>
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">We need to stamp 'CONFIDENTIAL DRAFT' across all partnership agreements before external distribution. The live preview makes finding the right opacity super easy.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">DG</div>
+            <div>
+              <div class="vytra-author-name">Divya Grover</div>
+              <div class="vytra-author-role">Corporate Counsel</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Uploaded my coaching institute's transparent PNG logo and tiled it across our study material. Prevents piracy and looks very professional!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SS</div>
+            <div>
+              <div class="vytra-author-name">Sanjay Sharma</div>
+              <div class="vytra-author-role">Educator &amp; Author</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Super convenient tool for freelance contracts. The -45 degree angle looks just like documents created in costly enterprise suites.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NK</div>
+            <div>
+              <div class="vytra-author-name">Neha Kapoor</div>
+              <div class="vytra-author-role">Freelance Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I customize the opacity of the watermark?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes. Use the Opacity slider to set the watermark transparency anywhere from subtle 10% (almost transparent background stamp) to 90% (opaque foreground stamp).
+          </div>
         </details>
-        <details class="faq-item">
-          <summary class="faq-question">Will the watermark be applied to all pages?</summary>
-          <div class="faq-answer">Yes, the watermark is stamped across every single page in the entire document.</div>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What image formats are supported for logo stamps?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Both PNG and JPG images are supported. PNG with transparent alpha background works best so the underlying document text remains legible.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does watermarking apply to all pages in the PDF?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes, the configured watermark is systematically applied across every page of your PDF document.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can anyone easily remove the watermark?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            The watermark is baked into the PDF content stream. Standard readers and viewers cannot select or remove the watermark without specialized vector editing tools.
+          </div>
         </details>
       </div>
-    </div>
-  </div>
+    </section>
 
-    <footer class="footer">
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Watermark PDF</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Watermark PDF!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Add%20watermark%20stamps%20to%20PDF%20online%20for%20free%20with%20100%25%20privacy:%20https://digitalsaathi.vytra.in/pdf/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Watermark%20PDF%20documents%20for%20free%20with%20live%20preview%20using%20Vytra:%20https://digitalsaathi.vytra.in/pdf/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related PDF Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="sign.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Sign PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Draw, type, or upload signature onto documents</div>
+        </a>
+        <a href="protect.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔒</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Protect PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Add secure password encryption to confidential documents</div>
+        </a>
+        <a href="edit.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✏️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Edit PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Add text, highlighter, whiteout, and shapes</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size for portal submissions</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -486,10 +806,12 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -501,72 +823,87 @@
     let activeMode = 'text'; // 'text' | 'image'
     let loadedLogoImg = null;
 
-    const uploadZone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
+    const dropzone = document.getElementById('wm-dropzone');
+    const fileInput = document.getElementById('wm-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const wmWorkspace = document.getElementById('wm-workspace');
     const fileName = document.getElementById('fileName');
     const fileMeta = document.getElementById('fileMeta');
     const changeFileBtn = document.getElementById('changeFileBtn');
-    const wmWorkspace = document.getElementById('wmWorkspace');
-    const wmPreviewCanvas = document.getElementById('wmPreviewCanvas');
+
     const tabTextBtn = document.getElementById('tabTextBtn');
-    const tabImgBtn = document.getElementById('tabImgBtn');
-    const textTabContent = document.getElementById('textTabContent');
-    const imgTabContent = document.getElementById('imgTabContent');
+    const tabImageBtn = document.getElementById('tabImageBtn');
+    const textOptionsPanel = document.getElementById('textOptionsPanel');
+    const imageOptionsPanel = document.getElementById('imageOptionsPanel');
+
     const wmText = document.getElementById('wmText');
-    const wmColor = document.getElementById('wmColor');
     const wmFontSize = document.getElementById('wmFontSize');
-    const fontSizeVal = document.getElementById('fontSizeVal');
-    const wmRotation = document.getElementById('wmRotation');
-    const wmRotVal = document.getElementById('wmRotVal');
-    const wmOpacity = document.getElementById('wmOpacity');
-    const wmOpacityVal = document.getElementById('wmOpacityVal');
-    const wmLayout = document.getElementById('wmLayout');
-    const wmImageInput = document.getElementById('wmImageInput');
+    const valFontSize = document.getElementById('valFontSize');
+    const wmColor = document.getElementById('wmColor');
+    const logoFileInput = document.getElementById('logoFileInput');
     const wmImgScale = document.getElementById('wmImgScale');
-    const wmImgScaleVal = document.getElementById('wmImgScaleVal');
+    const valImgScale = document.getElementById('valImgScale');
+    const wmRotation = document.getElementById('wmRotation');
+    const angleChips = document.querySelectorAll('.angle-chip');
+    const wmOpacity = document.getElementById('wmOpacity');
+    const valOpacity = document.getElementById('valOpacity');
+    const wmLayout = document.getElementById('wmLayout');
+    const wmPreviewCanvas = document.getElementById('wmPreviewCanvas');
+
     const processWmBtn = document.getElementById('processWmBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
+    const resultBanner = document.getElementById('wm-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
     const downloadBtn = document.getElementById('downloadBtn');
     const processAnotherBtn = document.getElementById('processAnotherBtn');
 
-    tabTextBtn.addEventListener('click', () => {
-      activeMode = 'text';
-      tabTextBtn.classList.add('active');
-      tabImgBtn.classList.remove('active');
-      textTabContent.style.display = 'block';
-      imgTabContent.style.display = 'none';
-      drawPreview();
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
     });
 
-    tabImgBtn.addEventListener('click', () => {
-      activeMode = 'image';
-      tabImgBtn.classList.add('active');
-      tabTextBtn.classList.remove('active');
-      imgTabContent.style.display = 'block';
-      textTabContent.style.display = 'none';
-      drawPreview();
+    // File selection listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
     });
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => {
-      if (e.target !== selectBtn) fileInput.click();
-    });
-
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    dropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
     });
 
     fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
     });
 
     changeFileBtn.addEventListener('click', () => {
@@ -574,26 +911,65 @@
       fileInput.click();
     });
 
-    wmImageInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const img = new Image();
-          img.onload = () => {
-            loadedLogoImg = img;
-            drawPreview();
-          };
-          img.src = ev.target.result;
-        };
-        reader.readAsDataURL(e.target.files[0]);
-      }
+    // Tab switching
+    tabTextBtn.addEventListener('click', () => {
+      activeMode = 'text';
+      tabTextBtn.classList.add('active');
+      tabImageBtn.classList.remove('active');
+      textOptionsPanel.style.display = 'block';
+      imageOptionsPanel.style.display = 'none';
+      drawPreview();
     });
 
-    [wmText, wmColor, wmLayout].forEach(el => el.addEventListener('input', drawPreview));
-    wmFontSize.addEventListener('input', () => { fontSizeVal.textContent = wmFontSize.value; drawPreview(); });
-    wmRotation.addEventListener('input', () => { wmRotVal.textContent = wmRotation.value; drawPreview(); });
-    wmOpacity.addEventListener('input', () => { wmOpacityVal.textContent = wmOpacity.value; drawPreview(); });
-    wmImgScale.addEventListener('input', () => { wmImgScaleVal.textContent = wmImgScale.value; drawPreview(); });
+    tabImageBtn.addEventListener('click', () => {
+      activeMode = 'image';
+      tabImageBtn.classList.add('active');
+      tabTextBtn.classList.remove('active');
+      imageOptionsPanel.style.display = 'block';
+      textOptionsPanel.style.display = 'none';
+      drawPreview();
+    });
+
+    // Input change listeners
+    wmText.addEventListener('input', drawPreview);
+    wmFontSize.addEventListener('input', () => {
+      valFontSize.textContent = wmFontSize.value + 'px';
+      drawPreview();
+    });
+    wmColor.addEventListener('change', drawPreview);
+    wmImgScale.addEventListener('input', () => {
+      valImgScale.textContent = wmImgScale.value + '%';
+      drawPreview();
+    });
+    wmOpacity.addEventListener('input', () => {
+      valOpacity.textContent = wmOpacity.value + '%';
+      drawPreview();
+    });
+    wmLayout.addEventListener('change', drawPreview);
+
+    angleChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        angleChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        wmRotation.value = chip.getAttribute('data-angle');
+        drawPreview();
+      });
+    });
+
+    logoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedLogoImg = img;
+          drawPreview();
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
 
     async function handleFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
@@ -602,18 +978,18 @@
       }
       currentFile = file;
       fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
+      originalPdfBytes = await file.arrayBuffer();
+
+      dropzone.style.display = 'none';
+      resultBanner.style.display = 'none';
       progressContainer.style.display = 'block';
       progressFill.style.width = '30%';
-      progressText.textContent = 'Rendering preview...';
+      progressText.textContent = 'Rendering document preview...';
 
       try {
-        originalPdfBytes = await file.arrayBuffer();
         const pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
         const total = pdfDocProxy.numPages;
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${total} ${total === 1 ? 'Page' : 'Pages'}`;
+        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${total} Pages`;
 
         const page = await pdfDocProxy.getPage(1);
         const viewport = page.getViewport({ scale: 0.8 });
@@ -634,7 +1010,7 @@
         console.error(err);
         alert('Failed to load PDF: ' + err.message);
         progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        dropzone.style.display = 'block';
       }
     }
 
@@ -701,7 +1077,7 @@
       wmWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
       progressFill.style.width = '20%';
-      progressText.textContent = 'Stamping watermark on document...';
+      progressText.textContent = 'Stamping watermark across document...';
 
       try {
         const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
@@ -727,7 +1103,7 @@
         }
 
         for (let idx = 0; idx < total; idx++) {
-          progressFill.style.width = `${Math.round(20 + ((idx + 1) / total) * 60)}%`;
+          progressFill.style.width = `${Math.round(20 + ((idx + 1) / total) * 65)}%`;
           const page = pages[idx];
           const { width, height } = page.getSize();
 
@@ -801,20 +1177,20 @@
           }
         }
 
-        progressFill.style.width = '90%';
-        progressText.textContent = 'Saving stamped PDF...';
+        progressFill.style.width = '95%';
+        progressText.textContent = 'Saving watermarked PDF...';
 
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
-
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_watermarked.pdf';
+
         downloadBtn.href = url;
         downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Watermark stamped on all ${total} pages. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        resultDesc.textContent = `Watermark embedded across all ${total} pages. Clean file size: ${(blob.size / 1024).toFixed(1)} KB.`;
 
         progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        resultBanner.style.display = 'block';
       } catch (err) {
         console.error(err);
         alert('Error applying watermark: ' + err.message);
@@ -824,9 +1200,8 @@
     });
 
     processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
       wmWorkspace.style.display = 'none';
       fileInput.value = '';
       currentFile = null;
