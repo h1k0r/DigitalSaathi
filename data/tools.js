@@ -1188,6 +1188,83 @@
         ],
         "popular": false,
         "badge": ""
+    },
+    {
+        "id": "create-invoice",
+        "name": "Create Invoice",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "Create professional GST-compliant tax invoices with automatic CGST, SGST, IGST, and instant PDF download.",
+        "url": "pdf/create-invoice.html",
+        "tags": ["invoice", "create invoice", "gst invoice", "tax invoice", "billing", "bill", "receipt", "pdf invoice"],
+        "popular": true,
+        "badge": "GST Ready"
+    },
+    {
+        "id": "create-invoice-visually",
+        "name": "Create Invoice Visually",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "WYSIWYG visual invoice editor with live editable A4 paper sheet, custom logo upload, and 1-click vector PDF.",
+        "url": "pdf/create-invoice-visually.html",
+        "tags": ["visual invoice", "wysiwyg invoice", "live editor", "a4 sheet", "printable invoice", "invoice designer"],
+        "popular": true,
+        "badge": "WYSIWYG"
+    },
+    {
+        "id": "create-electronic-invoice",
+        "name": "Create Electronic Invoice",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "Generate European standard ZUGFeRD 2.2 / Factur-X XML, UBL 2.1 OASIS XML, and Indian GST e-Invoice JSON.",
+        "url": "pdf/create-electronic-invoice.html",
+        "tags": ["electronic invoice", "e-invoice", "zugferd", "factur-x", "ubl", "xml", "gst json", "b2b"],
+        "popular": false,
+        "badge": "ZUGFeRD / UBL"
+    },
+    {
+        "id": "pdf-invoice-to-e-invoice",
+        "name": "PDF Invoice to E-Invoice",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "Extract structured data from standard PDF invoices and convert to ZUGFeRD XML and Indian GST e-Invoice JSON.",
+        "url": "pdf/pdf-invoice-to-e-invoice.html",
+        "tags": ["pdf to e-invoice", "extract invoice", "invoice parser", "pdf.js", "xml converter", "zugferd"],
+        "popular": false,
+        "badge": "Smart Parser"
+    },
+    {
+        "id": "xml-e-invoice-to-pdf",
+        "name": "XML E-Invoice to PDF",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "Upload any ZUGFeRD, XRechnung, UBL XML, or GST JSON electronic invoice and render into a beautiful printable PDF.",
+        "url": "pdf/xml-e-invoice-to-pdf.html",
+        "tags": ["xml to pdf", "e-invoice visualizer", "xrechnung to pdf", "ubl visualizer", "zugferd to pdf"],
+        "popular": false,
+        "badge": "Visualizer"
+    },
+    {
+        "id": "validate-e-invoice",
+        "name": "Validate E-Invoice",
+        "category": "invoices",
+        "categoryName": "Invoices",
+        "description": "Validate electronic invoice compliance against EN 16931 rules, syntax schema, and tax math with compliance certificate.",
+        "url": "pdf/validate-e-invoice.html",
+        "tags": ["validate invoice", "e-invoice validator", "en 16931", "audit invoice", "compliance certificate"],
+        "popular": false,
+        "badge": "Compliance"
+    },
+    {
+        "id": "image-hd-converter",
+        "name": "Image HD Converter",
+        "category": "images",
+        "categoryName": "Image Tools",
+        "description": "Upscale low-resolution blurry photos to Full HD (1080p), 2K, or 4K Ultra HD with edge sharpening and 300 DPI support.",
+        "url": "image/hd-converter.html",
+        "tags": ["image hd", "hd converter", "upscale", "4k converter", "1080p", "sharpen", "clarify", "unsharp mask"],
+        "popular": true,
+        "badge": "4K Ultra HD"
     }
 ];
 
@@ -1341,6 +1418,34 @@
     'password-generator': {
       bg: '#faf5ff', color: '#7c3aed',
       svg: '<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>'
+    },
+    'create-invoice': {
+      bg: '#eff6ff', color: '#2563eb',
+      svg: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>'
+    },
+    'create-invoice-visually': {
+      bg: '#fdf4ff', color: '#a855f7',
+      svg: '<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>'
+    },
+    'create-electronic-invoice': {
+      bg: '#ecfdf5', color: '#059669',
+      svg: '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
+    },
+    'pdf-invoice-to-e-invoice': {
+      bg: '#fffbeb', color: '#d97706',
+      svg: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
+    },
+    'xml-e-invoice-to-pdf': {
+      bg: '#eef2ff', color: '#4f46e5',
+      svg: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>'
+    },
+    'validate-e-invoice': {
+      bg: '#f0fdf4', color: '#16a34a',
+      svg: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>'
+    },
+    'image-hd-converter': {
+      bg: '#eff6ff', color: '#2563eb',
+      svg: '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
     }
   };
 
@@ -1353,6 +1458,7 @@
     // Category Fallbacks with crisp vector SVGs
     const catFallbacks = {
       pdf: { bg: '#ffefe8', color: '#ea580c', svg: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' },
+      invoices: { bg: '#eff6ff', color: '#2563eb', svg: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>' },
       image: { bg: '#f5f3ff', color: '#6366f1', svg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
       images: { bg: '#f5f3ff', color: '#6366f1', svg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
       developer: { bg: '#eff6ff', color: '#2563eb', svg: '<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>' },

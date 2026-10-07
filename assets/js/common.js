@@ -67,12 +67,13 @@
     { title: 'All PDF Tools Suite', category: 'PDF Tools', icon: '✨', url: 'pdf/index.html', keywords: 'all 38 pdf tools online free client side' },
 
     // Image Tools
+    { title: 'Image HD Converter (4K & 1080p)', category: 'Image Tools', icon: '✨', url: 'image/hd-converter.html', keywords: 'image hd converter 1080p 2k 4k ultra hd upscale sharpen unsharp mask blur resolution' },
     { title: 'Image Compressor (Under 20KB/50KB/100KB)', category: 'Image Tools', icon: '🗜️', url: 'image/compress.html', keywords: 'compress photo reduce size quality slider webp jpg png ssc upsc kb' },
     { title: 'Image Resizer (Pixel & Exam Scale)', category: 'Image Tools', icon: '📐', url: 'image/resize.html', keywords: 'resize image dimensions width height aspect ratio ssc upsc custom' },
     { title: 'Image Cropper', category: 'Image Tools', icon: '✂️', url: 'image/crop.html', keywords: 'crop photo passport 3.5x4.5 ratio square 1:1 circular avatar landscape' },
     { title: 'Universal Image Converter', category: 'Image Tools', icon: '🔄', url: 'image/convert.html', keywords: 'convert image format batch zip jpg png webp gif bmp' },
     { title: 'JPG to PDF Converter', category: 'Image Tools', icon: '📄', url: 'image/jpg-to-pdf.html', keywords: 'convert jpg images to pdf combine multiple photos a4 document' },
-    { title: 'Passport Photo Background Changer', category: 'Image Tools', icon: '🎭', url: 'image/remove-bg.html', keywords: 'remove background change white blue red passport photo seva exam' },
+    { title: 'Remove Background in HD Quality', category: 'Image Tools', icon: '✂️', url: 'image/remove-bg.html', keywords: 'remove background hd transparent png cutout photo eraser pure white passport seva exam' },
     { title: 'Blur & Redact Censor Tool', category: 'Image Tools', icon: '🔒', url: 'image/blur-face.html', keywords: 'blur redact pixelate censor aadhaar pan card number face identity' },
     { title: 'Image Watermark Tool', category: 'Image Tools', icon: '💧', url: 'image/watermark.html', keywords: 'watermark stamp copyright protection diagonal tile logo text photo' },
     { title: 'Photo Enhancer & Scan Optimizer', category: 'Image Tools', icon: '✨', url: 'image/photo-enhancer.html', keywords: 'enhance clarify scan xerox marksheet text boost contrast filter' },
@@ -94,6 +95,14 @@
     { title: 'Loan EMI Calculator', category: 'Calculators', icon: '💰', url: 'calculators/emi.html', keywords: 'emi loan interest principal monthly payment amortization' },
     { title: 'CGPA Calculator', category: 'Calculators', icon: '🎓', url: 'calculators/cgpa.html', keywords: 'cgpa sgpa semester credits percentage 10 point 4 point university' },
     { title: 'Attendance Calculator', category: 'Calculators', icon: '📅', url: 'calculators/attendance.html', keywords: 'attendance 75 percent target bunks classes bunk balance tracker' },
+
+    // Invoice Tools Suite
+    { title: 'Create Invoice (GST & Standard)', category: 'Invoices', icon: '🧾', url: 'pdf/create-invoice.html', keywords: 'create invoice gst bill billing tax invoice maker hsn sac cgst sgst igst' },
+    { title: 'Create Invoice Visually (WYSIWYG)', category: 'Invoices', icon: '🎨', url: 'pdf/create-invoice-visually.html', keywords: 'visual invoice editor a4 wysiwyg live edit invoice print logo design' },
+    { title: 'Create Electronic Invoice (ZUGFeRD / UBL)', category: 'Invoices', icon: '⚡', url: 'pdf/create-electronic-invoice.html', keywords: 'electronic invoice e-invoice zugferd factur-x ubl xml gst json b2b' },
+    { title: 'PDF Invoice to E-Invoice Converter', category: 'Invoices', icon: '🔍', url: 'pdf/pdf-invoice-to-e-invoice.html', keywords: 'pdf to e-invoice extract invoice text parser xml json zugferd' },
+    { title: 'XML E-Invoice to PDF Visualizer', category: 'Invoices', icon: '📄', url: 'pdf/xml-e-invoice-to-pdf.html', keywords: 'xml invoice to pdf render electronic invoice visualizer print' },
+    { title: 'Validate E-Invoice Compliance', category: 'Invoices', icon: '🛡️', url: 'pdf/validate-e-invoice.html', keywords: 'validate e-invoice en 16931 rules audit syntax check certificate' },
 
     // Developer & Data Tools
     { title: 'JSON Formatter & Validator', category: 'Developer', icon: '💻', url: 'developer/json.html', keywords: 'json formatter validator beautify minify tree syntax json' },
@@ -453,51 +462,76 @@
   function initGlobalSearch() {
     initCommandPalette();
 
-    const searchInputs = document.querySelectorAll('#global-search, .search-bar, .nav-search-input, #toolSearchInput');
-    const searchResultsBoxes = document.querySelectorAll('#search-results, .search-results-dropdown, .search-results');
-
+    const searchInputs = document.querySelectorAll('#homeSearchInput, #global-search, .search-bar, .hero-search-input, .nav-search-input, #toolSearchInput, #pdf-tool-search, #image-tool-search');
     if (searchInputs.length === 0) return;
 
     searchInputs.forEach(input => {
-      const parent = input.closest('.hero-search-box, .search-container, .search-filter-wrap') || input.parentElement;
-      const resultsContainer = parent ? parent.querySelector('#search-results, .search-results-dropdown, .search-results') : searchResultsBoxes[0];
+      const parent = input.closest('.hero-search-container, .hero-search-box, .search-container, .search-filter-wrap') || input.parentElement;
+      let resultsContainer = parent ? parent.querySelector('#homeSearchResults, #search-results, .search-results-dropdown, .search-results') : null;
+
+      if (!resultsContainer && parent) {
+        resultsContainer = document.createElement('div');
+        resultsContainer.className = 'search-results-dropdown hero-search-dropdown';
+        resultsContainer.id = 'searchResults_' + Math.random().toString(36).substr(2, 6);
+        parent.appendChild(resultsContainer);
+      }
 
       if (!resultsContainer) return;
 
-      input.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
+      let selectedIndex = -1;
+      let currentMatches = [];
 
-        if (query.length < 2) {
+      function updateActiveSelection() {
+        const items = resultsContainer.querySelectorAll('.search-result-item');
+        items.forEach((item, idx) => {
+          if (idx === selectedIndex) {
+            item.classList.add('selected');
+            item.scrollIntoView({ block: 'nearest' });
+          } else {
+            item.classList.remove('selected');
+          }
+        });
+      }
+
+      function doSearch() {
+        const query = input.value.toLowerCase().trim();
+
+        if (query.length < 1) {
           resultsContainer.innerHTML = '';
           resultsContainer.classList.remove('active');
           resultsContainer.style.display = 'none';
+          selectedIndex = -1;
+          currentMatches = [];
+          window.dispatchEvent(new CustomEvent('vytra:search', { detail: { query: '', count: SEARCH_REGISTRY.length } }));
           return;
         }
 
-        const matches = SEARCH_REGISTRY.filter(item => {
+        currentMatches = SEARCH_REGISTRY.filter(item => {
           return item.title.toLowerCase().includes(query) ||
                  item.category.toLowerCase().includes(query) ||
                  (item.keywords && item.keywords.toLowerCase().includes(query));
         });
 
-        if (matches.length === 0) {
+        selectedIndex = currentMatches.length > 0 ? 0 : -1;
+
+        if (currentMatches.length === 0) {
           resultsContainer.innerHTML = `
-            <div style="padding: 16px; text-align: center; color: var(--text-muted);">
-              <span style="font-size: 1.5rem; display:block; margin-bottom:4px;">🔍</span>
-              No matching tools found for "<strong>${escapeHtml(query)}</strong>".
+            <div style="padding: 16px; text-align: center; color: var(--text-muted, #64748b);">
+              <span style="font-size: 1.4rem; display:block; margin-bottom:4px;">🔍</span>
+              No tools matching "<strong>${escapeHtml(query)}</strong>"
             </div>
           `;
         } else {
-          resultsContainer.innerHTML = matches.map(item => {
+          resultsContainer.innerHTML = currentMatches.slice(0, 8).map((item, idx) => {
             const finalUrl = resolveRelativeUrl(item.url);
             return `
-              <a href="${finalUrl}" class="search-result-item" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-subtle);text-decoration:none;color:var(--text-main);">
-                <span style="font-size:1.4rem;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--bg-surface-subtle);border-radius:8px;">${item.icon}</span>
-                <div style="flex:1;">
-                  <div style="font-weight:600;font-size:0.95rem;color:var(--text-main);">${highlightMatch(item.title, query)}</div>
-                  <div style="font-size:0.75rem;color:var(--text-muted);">${item.category}</div>
+              <a href="${finalUrl}" class="search-result-item ${idx === 0 ? 'selected' : ''}" data-idx="${idx}" style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border-subtle, #f1f5f9);text-decoration:none;color:var(--text-main, #0f172a);transition:background 0.15s ease;">
+                <span class="search-result-icon" style="font-size:1.3rem;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--bg-surface-subtle, #f8fafc);border-radius:8px;border:1px solid var(--border-subtle, #e2e8f0);">${item.icon}</span>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-weight:600;font-size:0.92rem;color:var(--text-main, #0f172a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${highlightMatch(item.title, query)}</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted, #64748b);">${escapeHtml(item.category)}</div>
                 </div>
-                <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">Open →</span>
+                <span style="font-size:0.78rem;color:var(--primary, #2563eb);font-weight:700;display:inline-flex;align-items:center;gap:3px;">Open &rarr;</span>
               </a>
             `;
           }).join('');
@@ -505,8 +539,43 @@
 
         resultsContainer.classList.add('active');
         resultsContainer.style.display = 'block';
+
+        window.dispatchEvent(new CustomEvent('vytra:search', { detail: { query, count: currentMatches.length } }));
+      }
+
+      input.addEventListener('input', doSearch);
+      input.addEventListener('focus', () => {
+        if (input.value.trim().length >= 1) {
+          doSearch();
+        }
       });
 
+      // Full Keyboard Navigation: ArrowDown, ArrowUp, Enter, Escape
+      input.addEventListener('keydown', (e) => {
+        const items = resultsContainer.querySelectorAll('.search-result-item');
+        if (!resultsContainer.classList.contains('active') || items.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex + 1) % items.length;
+          updateActiveSelection();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+          updateActiveSelection();
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          const targetIndex = selectedIndex >= 0 ? selectedIndex : 0;
+          if (items[targetIndex]) {
+            items[targetIndex].click();
+          }
+        } else if (e.key === 'Escape') {
+          resultsContainer.classList.remove('active');
+          resultsContainer.style.display = 'none';
+        }
+      });
+
+      // Close on outside click
       document.addEventListener('click', (e) => {
         if (!input.contains(e.target) && !resultsContainer.contains(e.target)) {
           resultsContainer.classList.remove('active');
@@ -588,11 +657,31 @@
         toggle.setAttribute('aria-expanded', isOpen);
       });
 
-      // Close menu on link click
-      links.querySelectorAll('a').forEach(link => {
+      // Mobile dropdown accordion handling (<= 1100px)
+      const dropdownItems = links.querySelectorAll('.nav-item.has-dropdown');
+      dropdownItems.forEach(item => {
+        const topLink = item.querySelector('.nav-link');
+        if (topLink) {
+          topLink.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1100) {
+              e.preventDefault();
+              const wasOpen = item.classList.contains('open');
+              dropdownItems.forEach(i => i.classList.remove('open'));
+              if (!wasOpen) {
+                item.classList.add('open');
+              }
+            }
+          });
+        }
+      });
+
+      // Close menu on tool / dropdown link click
+      links.querySelectorAll('.dropdown-link, .nav-item:not(.has-dropdown) .nav-link').forEach(link => {
         link.addEventListener('click', () => {
           links.classList.remove('active');
+          dropdownItems.forEach(i => i.classList.remove('open'));
           toggle.textContent = '☰';
+          toggle.setAttribute('aria-expanded', 'false');
         });
       });
 
@@ -600,9 +689,30 @@
       document.addEventListener('click', (e) => {
         if (!toggle.contains(e.target) && !links.contains(e.target)) {
           links.classList.remove('active');
+          dropdownItems.forEach(i => i.classList.remove('open'));
           toggle.textContent = '☰';
+          toggle.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Automatically highlight active nav item based on current URL
+      try {
+        const currentPath = window.location.pathname.replace(/\\/g, '/');
+        links.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href');
+          if (href && !href.startsWith('#') && !href.startsWith('http')) {
+            const cleanHref = href.replace(/^\.\.\//, '').replace(/^\.\//, '');
+            if (cleanHref && (currentPath.endsWith('/' + cleanHref) || currentPath.endsWith(cleanHref))) {
+              a.classList.add('active');
+              const parentItem = a.closest('.nav-item');
+              if (parentItem) {
+                const parentLink = parentItem.querySelector('.nav-link');
+                if (parentLink) parentLink.classList.add('active');
+              }
+            }
+          }
+        });
+      } catch (err) {}
     }
 
     // Navbar elevation on scroll
