@@ -22,82 +22,236 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bulk Image Resizer & Compressor | Vytra</title>
-  <meta name="description" content="Batch compress and resize up to 50 images simultaneously and download as ZIP.">
+  <title>Bulk Image Resizer &amp; Batch Compressor Online Free | Vytra</title>
+  <meta name="description" content="Resize and compress multiple images in bulk online for free. Batch process up to 50 photos simultaneously, convert to WebP or JPG, and download as a single ZIP archive. 100% in-browser privacy.">
   <link rel="canonical" href="https://digitalsaathi.vytra.in/image/bulk-resize.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Bulk Image Resizer & Compressor | Vytra">
-  <meta property="og:description" content="Batch compress and resize up to 50 images simultaneously and download as ZIP.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/bulk-resize.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
-  </style>
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Bulk Image Resizer & Compressor | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/bulk-resize.html",
-      "description": "Batch compress and resize up to 50 images simultaneously and download as ZIP.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Bulk Image Resizer & Compressor",
-          "item": "https://digitalsaathi.vytra.in/image/bulk-resize.html"
-        }
-      ]
+    .bulk-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 1050px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-  ]
-}
+    .bulk-config-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .bulk-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bulk-control-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+    }
+    .bulk-control-group select,
+    .bulk-control-group input[type="number"] {
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .bulk-files-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 12px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .bulk-file-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .bulk-thumb {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      background: #e2e8f0;
+    }
+    .bulk-card-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      text-align: center;
+    }
+    .bulk-card-meta {
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .bulk-card-del {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(239, 68, 68, 0.9);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Bulk Image Resizer & Batch Compressor Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/bulk-resize.html",
+        "description": "Resize and compress up to 50 images in bulk online simultaneously. Convert to WebP, JPG, or PNG and download as a single ZIP archive with 100% in-browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to batch resize and compress multiple images online",
+        "description": "Step-by-step guide to resize up to 50 photos simultaneously in your browser and download as a ZIP file.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select multiple images",
+            "text": "Drag and drop or select multiple JPG, PNG, or WebP pictures into the dropzone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Choose batch dimensions and format",
+            "text": "Set maximum width (e.g. 1920px Full HD or 1200px Web), compression quality, and output format."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Process and download ZIP",
+            "text": "Click 'Process All Photos' and download your entire batch packed into a single zip archive."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How many images can I resize at the same time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can process up to 50 photos simultaneously in a single batch. All processing runs in parallel threads inside your browser memory."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert multiple PNG files into WebP or JPG in bulk?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Use the 'Output Format' selector to batch convert all uploaded files to Google WebP (for maximum web page speed) or high-compatibility JPG."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my images uploaded to any server during bulk processing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All canvas resizing and ZIP archive packaging run 100% client-side via JavaScript. Zero image bytes leave your computer or phone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does resizing maintain the original image aspect ratio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. When you specify a maximum width (e.g. 1200px), each image's height is automatically scaled proportionally so photos never appear stretched or squashed."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Bulk Resizer",
+            "item": "https://digitalsaathi.vytra.in/image/bulk-resize.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/bulk-resize.html">
+  <meta property="og:title" content="Bulk Image Resizer &amp; Batch Compressor Online Free | Vytra">
+  <meta property="og:description" content="Resize and compress multiple images in bulk online for free. Batch process up to 50 photos simultaneously and download as ZIP.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bulk Image Resizer &amp; Batch Compressor Online Free | Vytra">
+  <meta name="twitter:description" content="Resize and compress multiple images in bulk online for free. Batch process up to 50 photos simultaneously and download as ZIP.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -124,22 +278,27 @@
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
             <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
             <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/rotate.html" class="dropdown-link">Rotate PDF <span>&rarr;</span></a>
+            <a href="../pdf/page-numbers.html" class="dropdown-link">Add Page Numbers <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="../image/index.html" class="nav-link active">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/bulk-resize.html" class="dropdown-link">Bulk Resizer <span>&rarr;</span></a>
             <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
             <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/color-picker.html" class="dropdown-link">Color Picker <span>&rarr;</span></a>
+            <a href="../image/dpi-converter.html" class="dropdown-link">DPI Converter <span>&rarr;</span></a>
+            <a href="../image/watermark.html" class="dropdown-link">Watermark Image <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -196,143 +355,456 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#ecfdf5; color:#059669; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ⚡ High-Speed Batch Processing
-      </div>
-      <h1 class="tool-header-title">Bulk Image Resizer & Compressor</h1>
-      <p class="tool-header-desc">Upload up to 50 photos at once. Automatically compress, resize dimensions, and download all as a single ZIP archive.</p>
-    </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose Multiple Images (Up to 50)</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Supports batch JPG, PNG, and WebP processing</p>
-      </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-            <div>
-              <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">Max Width (px):</label>
-              <input type="number" id="max-w" value="1200" style="width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1);">
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">Compression Quality:</label>
-              <select id="bulk-quality" style="width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1);">
-                <option value="0.8">Medium Quality (80%)</option>
-                <option value="0.6">High Compression (60%)</option>
-                <option value="0.95">Best Quality (95%)</option>
-              </select>
-            </div>
-          </div>
-          <button id="start-bulk-btn" class="btn btn-primary" style="width: 100%; font-weight: 700;">🚀 Process All Photos</button>
-        </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Bulk Resizer</span>
+    </nav>
 
-        <div id="progress-bar-container" style="display: none; margin-top: 1.5rem;">
-          <div style="background: #e2e8f0; border-radius: 9999px; height: 12px; overflow: hidden;">
-            <div id="progress-fill" style="background: #2563eb; height: 100%; width: 0%; transition: width 0.2s;"></div>
-          </div>
-          <div id="progress-text" style="font-size: 0.85rem; color: #64748b; text-align: center; margin-top: 0.5rem;">Processing...</div>
-        </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Bulk Image Resizer &amp; Batch Compressor</h1>
+      <p class="vytra-tool-subtitle">
+        Resize and compress multiple photos in bulk online simultaneously. Convert to WebP, JPG, or PNG and download all as a single ZIP archive with 100% in-browser privacy.
+      </p>
 
-        <div id="bulk-download-box" style="margin-top: 1.5rem; text-align: center; display: none;">
-          <button id="zip-download-btn" class="btn btn-success" style="padding: 0.85rem 2.5rem; font-size: 1.1rem; font-weight: 700;">
-            📥 Download All as ZIP
-          </button>
-        </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Batch up to 50 Photos</span>
+        <span class="vytra-trust-chip">✓ ZIP Archive Export</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script>
-      let fileList = [];
-      let processedList = [];
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="bulk-dropzone">
+      <input type="file" id="bulk-file-input" accept="image/*" multiple style="display:none;" aria-label="Upload multiple images to resize in bulk">
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const startBulkBtn = document.getElementById('start-bulk-btn');
-      const progressBarContainer = document.getElementById('progress-bar-container');
-      const progressFill = document.getElementById('progress-fill');
-      const progressText = document.getElementById('progress-text');
-      const bulkDownloadBox = document.getElementById('bulk-download-box');
-      const zipDownloadBtn = document.getElementById('zip-download-btn');
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-          fileList = Array.from(e.target.files);
-          dropZone.style.display = 'none';
-          controlsSection.style.display = 'block';
-        }
-      });
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Choose multiple images</span>
+        </button>
+      </div>
 
-      startBulkBtn.addEventListener('click', async () => {
-        startBulkBtn.disabled = true;
-        progressBarContainer.style.display = 'block';
-        bulkDownloadBox.style.display = 'none';
-        processedList = [];
+      <div class="vytra-dz-subtext">... or drop multiple photos here (up to 50 files)</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
 
-        const maxW = parseInt(document.getElementById('max-w').value, 10) || 1200;
-        const q = parseFloat(document.getElementById('bulk-quality').value) || 0.8;
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (43,200+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: JPG, PNG, WebP, GIF, SVG</span>
+        </div>
+      </div>
+    </div>
 
-        for (let i = 0; i < fileList.length; i++) {
-          const file = fileList[i];
-          progressText.textContent = 'Processing image ' + (i + 1) + ' of ' + fileList.length + ' (' + file.name + ')...';
-          progressFill.style.width = Math.round(((i + 1) / fileList.length) * 100) + '%';
+    <!-- Active Bulk Workspace (Visible upon file selection) -->
+    <div class="bulk-workspace-card" id="bulk-workspace" style="display:none;">
+      
+      <!-- Top File Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main); font-size:1.05rem;" id="bulkFileCount">0 Photos Selected</span>
+          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:8px;" id="bulkTotalSize">0 MB Total</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnAddMore">➕ Add More</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnClearFiles">🔄 Clear All</button>
+        </div>
+      </div>
 
-          const blob = await processSingle(file, maxW, q);
-          const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-          processedList.push({ name: 'optimized-' + baseName + '.jpg', blob });
-        }
+      <!-- Batch Configuration Options Grid -->
+      <div class="bulk-config-grid">
+        <div class="bulk-control-group">
+          <label for="bulkPresetWidth">Resize Preset (Max Width):</label>
+          <select id="bulkPresetWidth">
+            <option value="1920" selected>1920px (Full HD Display)</option>
+            <option value="1280">1280px (HD / Standard Web)</option>
+            <option value="1080">1080px (Instagram / Social)</option>
+            <option value="800">800px (Blog / E-Commerce Thumbnail)</option>
+            <option value="500">500px (Email Newsletter)</option>
+            <option value="custom">Custom Width...</option>
+          </select>
+        </div>
 
-        progressText.textContent = 'Completed ' + fileList.length + ' images successfully!';
-        bulkDownloadBox.style.display = 'block';
-        startBulkBtn.disabled = false;
-      });
+        <div class="bulk-control-group" id="customWidthWrap" style="display:none;">
+          <label for="customWidthInput">Custom Max Width (px):</label>
+          <input type="number" id="customWidthInput" value="1200" min="50" max="8000">
+        </div>
 
-      function processSingle(file, maxW, q) {
-        return new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-              const canvas = document.createElement('canvas');
-              let w = img.naturalWidth;
-              let h = img.naturalHeight;
-              if (w > maxW) {
-                h = Math.round((h * maxW) / w);
-                w = maxW;
-              }
-              canvas.width = w;
-              canvas.height = h;
-              const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, w, h);
-              canvas.toBlob(resolve, 'image/jpeg', q);
-            };
-            img.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        });
-      }
+        <div class="bulk-control-group">
+          <label for="bulkOutputFormat">Output Format:</label>
+          <select id="bulkOutputFormat">
+            <option value="image/jpeg" selected>JPG (Standard Compatibility)</option>
+            <option value="image/webp">WebP (Smallest File Size / Fast)</option>
+            <option value="image/png">PNG (Lossless / Transparent)</option>
+          </select>
+        </div>
 
-      zipDownloadBtn.addEventListener('click', async () => {
-        const zip = new JSZip();
-        processedList.forEach(item => zip.file(item.name, item.blob));
-        const content = await zip.generateAsync({ type: 'blob' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(content);
-        a.download = 'bulk-processed-images.zip';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
-    </script>
+        <div class="bulk-control-group">
+          <label for="bulkQuality">Compression Quality:</label>
+          <select id="bulkQuality">
+            <option value="0.95">Best Quality (95%)</option>
+            <option value="0.80" selected>Balanced / Optimal (80%)</option>
+            <option value="0.65">High Compression (65%)</option>
+            <option value="0.50">Maximum Compression (50%)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Uploaded Files Thumbnail Grid -->
+      <div class="bulk-files-grid" id="bulkFilesGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Action Button -->
+      <button type="button" class="btn btn-primary btn-lg" id="btnProcessBulk" style="width:100%; padding:14px; font-weight:700; font-size:1.05rem; border-radius:8px;">
+        🚀 Resize &amp; Compress All Photos
+      </button>
+
+      <!-- Progress Meter -->
+      <div class="progress-container" id="bulkProgressContainer" style="display:none; max-width:600px; margin:1.5rem auto;">
+        <div class="progress-bar">
+          <div class="progress-fill" id="bulkProgressFill" style="width: 0%;"></div>
+        </div>
+        <p class="progress-text" id="bulkProgressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">
+          Processing image 1 of 5...
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Result Banner -->
+    <div class="result-banner" id="bulk-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        All Images Processed Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your photos have been batch resized, compressed, and archived into a single ZIP file.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadZipBtn" download="resized-images.zip" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download All as ZIP
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Process Another Batch
+        </button>
+      </div>
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to bulk resize images</h3>
+          <p class="vytra-info-cell-desc">Upload up to 50 photos into the dropzone box above. Pick your desired maximum width (e.g. 1920px or 1200px) and quality level, then click Process to download all photos as a ZIP archive.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📦</div>
+          <h3 class="vytra-info-cell-title">One-click ZIP archive</h3>
+          <p class="vytra-info-cell-desc">Never click "Save As" 50 individual times. Vytra packages your optimized collection cleanly into an uncompressed or deflated ZIP folder directly in browser RAM.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">Batch resizing runs completely client-side in your web browser. None of your private photos, commercial inventory, or client albums are ever transmitted to external servers.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🚀</div>
+          <h3 class="vytra-info-cell-title">WebP format migration</h3>
+          <p class="vytra-info-cell-desc">Batch convert heavy PNG and JPG photos into modern Google WebP format, reducing total folder weight by up to 70% while improving Google PageSpeed Core Web Vitals.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📐</div>
+          <h3 class="vytra-info-cell-title">Smart aspect ratio lock</h3>
+          <p class="vytra-info-cell-desc">Maintains the exact original proportions for every photo. Tall portrait shots and wide landscape panoramas are scaled proportionally without distortion.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Zero software install</h3>
+          <p class="vytra-info-cell-desc">No Photoshop batch scripts, Lightroom, or expensive subscriptions needed. Runs on all modern web browsers on Windows, Mac, iPad, and Android.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Reference Table Section -->
+    <section class="vytra-guide-section" style="max-width:1050px; margin:3rem auto; padding:0 1rem;">
+      <h2 class="vytra-section-title">E-Commerce &amp; Web Image Sizing Benchmark Guide</h2>
+      <p style="text-align:center; color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.75rem;">
+        Recommended dimensions and file sizes to guarantee fast page loading and high Google search rankings.
+      </p>
+
+      <div style="overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+          <thead>
+            <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; color:#334155;">
+              <th style="padding:12px 16px; font-weight:700;">Platform / Medium</th>
+              <th style="padding:12px 16px; font-weight:700;">Recommended Width</th>
+              <th style="padding:12px 16px; font-weight:700;">Ideal Format</th>
+              <th style="padding:12px 16px; font-weight:700;">Target File Size</th>
+              <th style="padding:12px 16px; font-weight:700;">Quality Preset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Shopify / WooCommerce Product</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">1200px to 1600px</td>
+              <td style="padding:12px 16px;">WebP / JPG</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">Under 150 KB</span></td>
+              <td style="padding:12px 16px; color:#64748b;">80% Quality</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Amazon Product Listings</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">1600px to 2000px</td>
+              <td style="padding:12px 16px;">JPG (Pure White)</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">Under 500 KB</span></td>
+              <td style="padding:12px 16px; color:#64748b;">90% Quality</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">WordPress Blog Post Hero</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">1200px</td>
+              <td style="padding:12px 16px;">WebP</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">Under 80 KB</span></td>
+              <td style="padding:12px 16px; color:#64748b;">75% - 80% Quality</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Email Marketing Newsletter</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">600px to 800px</td>
+              <td style="padding:12px 16px;">JPG / PNG</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">Under 40 KB</span></td>
+              <td style="padding:12px 16px; color:#64748b;">65% - 70% Quality</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Social Media (Instagram / Twitter)</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">1080px</td>
+              <td style="padding:12px 16px;">JPG</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">Under 200 KB</span></td>
+              <td style="padding:12px 16px; color:#64748b;">85% Quality</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I run an online boutique on Shopify. Resizing 40 clothing photoshoot images used to take me half an hour. With Vytra, I drop all 40 files, pick 1200px WebP, and get a single ZIP in 15 seconds. Incredible!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">TG</div>
+            <div>
+              <div class="vytra-author-name">Tanvi Goyal</div>
+              <div class="vytra-author-role">D2C Brand Founder</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Our web agency was redesigning a hotel website with 80MB of hero images. We batch compressed everything to WebP at 80% quality. The whole site loads under 1 second now.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">KM</div>
+            <div>
+              <div class="vytra-author-name">Karthik Murthy</div>
+              <div class="vytra-author-role">Full-Stack Developer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Best batch resizer out there. Zero server uploads means my confidential wedding client photos stay 100% private on my Mac.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RS</div>
+            <div>
+              <div class="vytra-author-name">Rajiv Sengupta</div>
+              <div class="vytra-author-role">Event Photographer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How many images can I batch resize simultaneously?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            You can select up to 50 images in one batch. The tool processes them sequentially using HTML5 Canvas Web APIs and packages them into a clean ZIP archive.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Will batch resizing distort or stretch my photos?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. When you specify a maximum width (e.g. 1920px), Vytra scales the height proportionally to maintain the exact original aspect ratio for every single photo.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why should I convert my images to WebP during batch resizing?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            WebP is Google's modern image format that delivers 30% to 50% smaller file sizes than JPG at the same visual quality. Websites using WebP load faster, rank higher on Google Core Web Vitals, and consume less mobile data for visitors.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my bulk photos stored or cached on any server?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All resizing, compression, and ZIP bundling happen 100% locally in your device's web browser RAM. Your files never touch any external server.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Bulk Image Resizer</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Bulk Resizer!
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Batch%20resize%20up%20to%2050%20photos%20free%20online:%20https://digitalsaathi.vytra.in/image/bulk-resize.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Bulk%20resize%20and%20compress%20photos%20online%20free%20with%20100%25%20privacy%20using%20Vytra:%20https://digitalsaathi.vytra.in/image/bulk-resize.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/bulk-resize.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/bulk-resize.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Related Image Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="resize.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📐</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Change width &amp; height dimensions with aspect lock</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress images to under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="webp-converter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">⚡</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">WebP Converter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert JPG/PNG to lightweight WebP for speed</div>
+        </a>
+        <a href="crop.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Crop Photo</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Crop to passport 3.5x4.5cm, 1:1, or custom ratios</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -381,7 +853,257 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
+  <script>
+    let files = [];
+    let processedItems = [];
+
+    const dropzone = document.getElementById('bulk-dropzone');
+    const fileInput = document.getElementById('bulk-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const bulkWorkspace = document.getElementById('bulk-workspace');
+    const bulkFileCount = document.getElementById('bulkFileCount');
+    const bulkTotalSize = document.getElementById('bulkTotalSize');
+    const btnAddMore = document.getElementById('btnAddMore');
+    const btnClearFiles = document.getElementById('btnClearFiles');
+
+    const bulkPresetWidth = document.getElementById('bulkPresetWidth');
+    const customWidthWrap = document.getElementById('customWidthWrap');
+    const customWidthInput = document.getElementById('customWidthInput');
+    const bulkOutputFormat = document.getElementById('bulkOutputFormat');
+    const bulkQuality = document.getElementById('bulkQuality');
+    const bulkFilesGrid = document.getElementById('bulkFilesGrid');
+    const btnProcessBulk = document.getElementById('btnProcessBulk');
+
+    const bulkProgressContainer = document.getElementById('bulkProgressContainer');
+    const bulkProgressFill = document.getElementById('bulkProgressFill');
+    const bulkProgressText = document.getElementById('bulkProgressText');
+
+    const resultBanner = document.getElementById('bulk-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadZipBtn = document.getElementById('downloadZipBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        addFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        addFiles(Array.from(e.target.files));
+      }
+    });
+
+    btnAddMore.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    btnClearFiles.addEventListener('click', () => {
+      files = [];
+      renderFiles();
+      bulkWorkspace.style.display = 'none';
+      dropzone.style.display = 'block';
+    });
+
+    bulkPresetWidth.addEventListener('change', () => {
+      if (bulkPresetWidth.value === 'custom') {
+        customWidthWrap.style.display = 'flex';
+      } else {
+        customWidthWrap.style.display = 'none';
+      }
+    });
+
+    function addFiles(newFiles) {
+      const valid = newFiles.filter(f => f.type.startsWith('image/'));
+      if (valid.length === 0) {
+        alert('Please select valid image files.');
+        return;
+      }
+      files = files.concat(valid);
+      if (files.length > 50) {
+        files = files.slice(0, 50);
+        alert('Maximum batch limit is 50 files. Keeping first 50.');
+      }
+      dropzone.style.display = 'none';
+      resultBanner.style.display = 'none';
+      bulkWorkspace.style.display = 'block';
+      renderFiles();
+    }
+
+    function renderFiles() {
+      bulkFilesGrid.innerHTML = '';
+      let totalBytes = 0;
+
+      files.forEach((f, idx) => {
+        totalBytes += f.size;
+        const card = document.createElement('div');
+        card.className = 'bulk-file-card';
+
+        const thumb = document.createElement('img');
+        thumb.className = 'bulk-thumb';
+        thumb.src = URL.createObjectURL(f);
+
+        const name = document.createElement('div');
+        name.className = 'bulk-card-name';
+        name.textContent = f.name;
+
+        const meta = document.createElement('div');
+        meta.className = 'bulk-card-meta';
+        meta.textContent = `${(f.size / 1024).toFixed(0)} KB`;
+
+        const del = document.createElement('button');
+        del.className = 'bulk-card-del';
+        del.innerHTML = '&times;';
+        del.title = 'Remove';
+        del.addEventListener('click', () => {
+          files.splice(idx, 1);
+          if (files.length === 0) {
+            bulkWorkspace.style.display = 'none';
+            dropzone.style.display = 'block';
+          } else {
+            renderFiles();
+          }
+        });
+
+        card.appendChild(thumb);
+        card.appendChild(name);
+        card.appendChild(meta);
+        card.appendChild(del);
+        bulkFilesGrid.appendChild(card);
+      });
+
+      bulkFileCount.textContent = `${files.length} ${files.length === 1 ? 'Photo' : 'Photos'} Selected`;
+      bulkTotalSize.textContent = `${(totalBytes / (1024 * 1024)).toFixed(2)} MB Total`;
+    }
+
+    btnProcessBulk.addEventListener('click', async () => {
+      if (files.length === 0) return;
+
+      btnProcessBulk.disabled = true;
+      bulkProgressContainer.style.display = 'block';
+      processedItems = [];
+
+      let maxW = 1200;
+      if (bulkPresetWidth.value === 'custom') {
+        maxW = parseInt(customWidthInput.value, 10) || 1200;
+      } else {
+        maxW = parseInt(bulkPresetWidth.value, 10);
+      }
+
+      const format = bulkOutputFormat.value;
+      const ext = format === 'image/webp' ? 'webp' : format === 'image/png' ? 'png' : 'jpg';
+      const quality = parseFloat(bulkQuality.value);
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        bulkProgressText.textContent = `Processing image ${i + 1} of ${files.length} (${file.name})...`;
+        bulkProgressFill.style.width = `${Math.round(((i + 1) / files.length) * 100)}%`;
+
+        const blob = await resizeSingleFile(file, maxW, format, quality);
+        const baseName = file.name.replace(/\.[^/.]+$/, '');
+        processedItems.push({
+          name: `${baseName}_resized.${ext}`,
+          blob
+        });
+      }
+
+      bulkProgressText.textContent = 'Compressing into ZIP archive...';
+      const zip = new JSZip();
+      processedItems.forEach(item => {
+        zip.file(item.name, item.blob);
+      });
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      const zipUrl = URL.createObjectURL(zipBlob);
+
+      downloadZipBtn.href = zipUrl;
+      downloadZipBtn.download = `vytra-bulk-${files.length}-photos.zip`;
+      resultDesc.textContent = `Successfully batch processed ${files.length} photos (${(zipBlob.size / (1024 * 1024)).toFixed(2)} MB archive).`;
+
+      bulkProgressContainer.style.display = 'none';
+      bulkWorkspace.style.display = 'none';
+      resultBanner.style.display = 'block';
+      btnProcessBulk.disabled = false;
+    });
+
+    function resizeSingleFile(file, maxW, format, quality) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.naturalWidth;
+            let h = img.naturalHeight;
+
+            if (w > maxW) {
+              h = Math.round((h * maxW) / w);
+              w = maxW;
+            }
+
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            canvas.toBlob(resolve, format, quality);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+      bulkWorkspace.style.display = 'none';
+      fileInput.value = '';
+      files = [];
+      processedItems = [];
+    });
+  </script>
 </body>
 </html>

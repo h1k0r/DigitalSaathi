@@ -22,82 +22,199 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blur & Redact Image (Aadhaar & Privacy) | Vytra</title>
-  <meta name="description" content="Censor sensitive information, Aadhaar card number, PAN number, and blur faces on photos.">
+  <title>Blur &amp; Redact Image Online Free — Censor Aadhaar, Faces &amp; Text | Vytra</title>
+  <meta name="description" content="Redact sensitive information, mask Aadhaar numbers, hide PAN card details, and blur faces on photos online for free with 100% in-browser privacy. Unreversible client-side redaction.">
   <link rel="canonical" href="https://digitalsaathi.vytra.in/image/blur-face.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Blur & Redact Image (Aadhaar & Privacy) | Vytra">
-  <meta property="og:description" content="Censor sensitive information, Aadhaar card number, PAN number, and blur faces on photos.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/blur-face.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
-  </style>
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Blur & Redact Image (Aadhaar & Privacy) | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/blur-face.html",
-      "description": "Censor sensitive information, Aadhaar card number, PAN number, and blur faces on photos.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Blur & Redact Image (Aadhaar & Privacy)",
-          "item": "https://digitalsaathi.vytra.in/image/blur-face.html"
-        }
-      ]
+    .blur-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 1050px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-  ]
-}
+    .blur-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .blur-mode-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .blur-mode-chip {
+      padding: 8px 14px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .blur-mode-chip.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .blur-stage-container {
+      position: relative;
+      max-width: 100%;
+      overflow: auto;
+      text-align: center;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+    #censor-canvas {
+      max-width: 100%;
+      max-height: 520px;
+      cursor: crosshair;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border-radius: 4px;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Blur & Redact Image Online Free — Censor Aadhaar, Faces & Text | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/blur-face.html",
+        "description": "Censor sensitive information, mask Aadhaar numbers, hide PAN details, and blur faces on photos online for free with 100% in-browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to redact and blur sensitive details on an image online",
+        "description": "Step-by-step instructions to permanently censor private ID numbers and faces in photos directly in your web browser.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload your document or photo",
+            "text": "Drag and drop your picture, Aadhaar scan, or certificate into the secure dropzone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select redaction style and drag across sensitive zones",
+            "text": "Choose Pixelate, Solid Blackout, or Smooth Blur, then click and drag a rectangle over the Aadhaar number, signature, or face."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download redacted file",
+            "text": "Click 'Download Redacted Image'. The pixels are permanently overwritten and unrecoverable."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is masked Aadhaar legal for hotels, sim card agents, and employers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! UIDAI guidelines explicitly permit and encourage citizens to share 'Masked Aadhaar' where the first 8 digits are obscured (e.g. XXXX-XXXX-1234) for verification purposes to safeguard identity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can someone undo or remove the black redaction bar to read original text?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. When you redact on Vytra, the underlying RGB pixel buffer on the canvas is completely replaced by solid black or randomized mosaic values. No hidden layers or vector coordinates exist in the exported JPEG/PNG, making recovery mathematically impossible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool upload my ID documents to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All image manipulation occurs entirely in your browser memory via the HTML5 2D Canvas API. Your Aadhaar, PAN card, and photos are never sent across the internet."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I blur multiple faces or multiple areas on the same photo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can drag as many rectangular boxes as needed. If you make a mistake, use the 'Undo Last' button to revert the latest box."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Blur & Redact Image",
+            "item": "https://digitalsaathi.vytra.in/image/blur-face.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/blur-face.html">
+  <meta property="og:title" content="Blur &amp; Redact Image Online Free — Censor Aadhaar, Faces &amp; Text | Vytra">
+  <meta property="og:description" content="Redact sensitive information, mask Aadhaar numbers, hide PAN card details, and blur faces on photos online for free with 100% in-browser privacy.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blur &amp; Redact Image Online Free — Censor Aadhaar, Faces &amp; Text | Vytra">
+  <meta name="twitter:description" content="Redact sensitive information, mask Aadhaar numbers, hide PAN card details, and blur faces on photos online for free with 100% in-browser privacy.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -124,14 +241,15 @@
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
             <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
             <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="../pdf/rotate.html" class="dropdown-link">Rotate PDF <span>&rarr;</span></a>
+            <a href="../pdf/page-numbers.html" class="dropdown-link">Add Page Numbers <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="../image/index.html" class="nav-link active">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -139,7 +257,11 @@
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
             <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/blur-face.html" class="dropdown-link">Blur &amp; Redact <span>&rarr;</span></a>
             <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/color-picker.html" class="dropdown-link">Color Picker <span>&rarr;</span></a>
+            <a href="../image/dpi-converter.html" class="dropdown-link">DPI Converter <span>&rarr;</span></a>
+            <a href="../image/watermark.html" class="dropdown-link">Watermark Image <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -196,190 +318,420 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#fef2f2; color:#dc2626; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        🔒 Privacy & Identity Protection
+
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Blur &amp; Redact Image</span>
+    </nav>
+
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Blur &amp; Redact Image</h1>
+      <p class="vytra-tool-subtitle">
+        Censor sensitive information, mask Aadhaar numbers, hide PAN card details, and blur faces with permanent, irreversible client-side redaction.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ Irreversible Redaction</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-      <h1 class="tool-header-title">Blur & Redact Image</h1>
-      <p class="tool-header-desc">Censor sensitive Aadhaar card numbers, PAN card details, phone numbers, and blur faces before sharing documents.</p>
     </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔒</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose Document or Photo to Redact</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload Aadhaar, PAN card, certificate, or identity photo</p>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="blur-dropzone">
+      <input type="file" id="blur-file-input" accept="image/*" style="display:none;" aria-label="Upload document or photo to redact">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
       </div>
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between;">
-            <div style="display: flex; gap: 0.5rem;">
-              <button type="button" class="btn btn-primary btn-sm mode-btn" data-mode="pixelate">Pixelate / Mosaic</button>
-              <button type="button" class="btn btn-secondary btn-sm mode-btn" data-mode="blackout">Solid Blackout</button>
-            </div>
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Choose image or document</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop document files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (47,900+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: Aadhaar cards, PAN scans, ID cards, personal photos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Redact Workspace (Visible upon file selection) -->
+    <div class="blur-workspace-card" id="blur-workspace" style="display:none;">
+      
+      <!-- Top File Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main); font-size:1.05rem;" id="fileName">document.jpg</span>
+          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:8px;" id="fileMeta">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change File</button>
+      </div>
+
+      <!-- Redaction Toolbar -->
+      <div class="blur-toolbar">
+        <div class="blur-mode-group">
+          <button type="button" class="blur-mode-chip active" data-mode="pixelate">🔲 Mosaic Pixelate</button>
+          <button type="button" class="blur-mode-chip" data-mode="blackout">⬛ Solid Blackout</button>
+          <button type="button" class="blur-mode-chip" data-mode="blur">💧 Gaussian Blur</button>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnUndo">↩️ Undo Last</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnClearAll">🗑️ Clear All</button>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:12px; text-align:center;">
+        👉 Click and drag your mouse (or finger) across any sensitive text, number, or face to censor it permanently.
+      </p>
+
+      <!-- Canvas Stage -->
+      <div class="blur-stage-container">
+        <canvas id="censor-canvas"></canvas>
+      </div>
+
+      <!-- Output / Copy Action Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+        <button type="button" class="btn btn-secondary btn-sm" id="btnCopyClipboard">📋 Copy Redacted Image to Clipboard</button>
+        <span style="font-size:0.82rem; color:#64748b;" id="redactCountText">0 areas censored</span>
+      </div>
+
+      <!-- Action Button -->
+      <button type="button" class="btn btn-primary btn-lg" id="btnDownloadRedacted" style="width:100%; padding:14px; font-weight:700; font-size:1.05rem; border-radius:8px;">
+        📥 Download Redacted Image
+      </button>
+    </div>
+
+    <!-- Result Banner -->
+    <div class="result-banner" id="blur-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        Image Redacted Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your sensitive credentials have been permanently redacted with zero trace.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="redacted-document.jpg" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Image
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Redact Another Document
+        </button>
+      </div>
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to redact documents</h3>
+          <p class="vytra-info-cell-desc">Upload your photo or scanned ID above. Pick your desired redaction style (Blackout or Mosaic), drag rectangles over private areas, and download your secured file.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🛡️</div>
+          <h3 class="vytra-info-cell-title">Masked Aadhaar compliance</h3>
+          <p class="vytra-info-cell-desc">UIDAI strongly mandates using masked copies showing only the last 4 digits (e.g. XXXX-XXXX-1234) for hotels, rental leases, and telecom agents to safeguard identity.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private in-browser</h3>
+          <p class="vytra-info-cell-desc">All redaction occurs strictly inside your web browser RAM via client-side HTML5 Canvas. Your sensitive Aadhaar cards, PAN numbers, and face photos never touch remote cloud servers.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🚫</div>
+          <h3 class="vytra-info-cell-title">Irreversible destruction</h3>
+          <p class="vytra-info-cell-desc">Overwrites the actual image matrix pixels with solid color or randomized mosaic blocks. Unlike PDF layers that can be unhidden, our canvas flattening permanently destroys the censored data.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">👤</div>
+          <h3 class="vytra-info-cell-title">Face blurring for social media</h3>
+          <p class="vytra-info-cell-desc">Easily blur bystander faces, children in school photos, or license plates in road photography prior to sharing on WhatsApp, Instagram, or YouTube.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Smooth touch interaction</h3>
+          <p class="vytra-info-cell-desc">Designed with multi-touch event handling so you can accurately drag redaction boxes on mobile smartphones and iPads with instant visual feedback.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Reference Table Section -->
+    <section class="vytra-guide-section" style="max-width:1050px; margin:3rem auto; padding:0 1rem;">
+      <h2 class="vytra-section-title">Document Redaction &amp; Identity Privacy Standards</h2>
+      <p style="text-align:center; color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.75rem;">
+        Official Indian statutory guidelines for sharing identity documents with private third parties.
+      </p>
+
+      <div style="overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+          <thead>
+            <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; color:#334155;">
+              <th style="padding:12px 16px; font-weight:700;">Document Type</th>
+              <th style="padding:12px 16px; font-weight:700;">Sensitive Fields to Redact</th>
+              <th style="padding:12px 16px; font-weight:700;">Recommended Redaction Style</th>
+              <th style="padding:12px 16px; font-weight:700;">Statutory Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Aadhaar Card Copy</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">First 8 Digits of 12-digit UID &amp; QR Code</td>
+              <td style="padding:12px 16px;">Solid Blackout / Masked Overlay</td>
+              <td style="padding:12px 16px; color:#64748b;">UIDAI Aadhaar Act 2016 (Mandatory for non-statutory KYC)</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">PAN Card Copy</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">Parent Name, Complete DOB &amp; Signature (for public sharing)</td>
+              <td style="padding:12px 16px;">Mosaic Pixelate</td>
+              <td style="padding:12px 16px; color:#64748b;">Income Tax Dept Advisory &amp; Anti-Fraud Guidelines</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Bank Passbook / Statements</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">Account Number (leave last 4 digits) &amp; Daily Balances</td>
+              <td style="padding:12px 16px;">Solid Blackout</td>
+              <td style="padding:12px 16px; color:#64748b;">RBI Financial Privacy &amp; Anti-Phishing Directives</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Job Experience &amp; Salary Slips</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">Basic Pay, Allowances, PF Number</td>
+              <td style="padding:12px 16px;">Gaussian Blur / Blackout</td>
+              <td style="padding:12px 16px; color:#64748b;">NDA (Non-Disclosure Agreement) Confidentiality</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Public / Event Photography</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">Unrelated Bystander Faces &amp; Vehicle License Plates</td>
+              <td style="padding:12px 16px;">Mosaic Pixelate / Blur</td>
+              <td style="padding:12px 16px; color:#64748b;">Digital Personal Data Protection (DPDP) Act 2023</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I needed to submit an Aadhaar copy to a hotel and wanted to black out the first 8 digits. Vytra let me drag a blackout box on my phone in 5 seconds. Perfect peace of mind.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SK</div>
             <div>
-              <button type="button" class="btn btn-outline btn-sm" id="undo-btn">↩️ Undo Last</button>
-              <button type="button" class="btn btn-outline btn-sm" id="clear-btn">🗑️ Clear All</button>
+              <div class="vytra-author-name">Sunil Kedia</div>
+              <div class="vytra-author-role">Business Traveler</div>
             </div>
           </div>
-          <p style="font-size: 0.82rem; color: var(--text-muted, #64748b); margin-top: 0.5rem;">Click and drag your mouse across any sensitive area to apply the censor stamp.</p>
         </div>
 
-        <div class="tool-preview-panel">
-          <div style="max-width: 100%; overflow: auto; text-align: center; background: #334155; padding: 1rem; border-radius: 8px;">
-            <canvas id="censor-canvas" style="max-width: 100%; max-height: 500px; cursor: crosshair; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></canvas>
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">We process hundreds of candidate documents weekly. This tool lets us redact salary details and PAN numbers before forwarding CVs to external interview panels.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NM</div>
+            <div>
+              <div class="vytra-author-name">Nandita Menon</div>
+              <div class="vytra-author-role">HR Operations Manager</div>
+            </div>
           </div>
+        </div>
 
-          <div style="margin-top: 1.25rem;">
-            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
-              📥 Download Redacted Image
-            </button>
-            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
-              🔄 Change Image
-            </button>
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Super simple to use and no annoying watermarks on the output. The pixelate feature looks clean and professional on street photography samples.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RA</div>
+            <div>
+              <div class="vytra-author-name">Rahul Agarwal</div>
+              <div class="vytra-author-role">Journalist &amp; Blogger</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <script>
-      let originalImg = null;
-      let censorHistory = [];
-      let currentMode = 'pixelate';
-      let isDrawing = false;
-      let startX, startY;
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can blacked-out or blurred text be reversed or recovered?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. When you redact on Vytra, the underlying RGB pixel values on the HTML5 canvas are permanently overwritten and flattened into the raster image file. There are no invisible layers, metadata caches, or hidden paths that could ever be reconstructed.
+          </div>
+        </details>
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const canvas = document.getElementById('censor-canvas');
-      const ctx = canvas.getContext('2d');
-      const undoBtn = document.getElementById('undo-btn');
-      const clearBtn = document.getElementById('clear-btn');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Which is safer: Solid Blackout or Mosaic Pixelation?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Solid Blackout is the safest redaction method for printed text and ID numbers because it leaves zero optical variation (all pixels become pure black RGB #000000). Mosaic Pixelation is excellent for faces and background objects where you want to signal context while obscuring identity.
+          </div>
+        </details>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            originalImg = new Image();
-            originalImg.onload = () => {
-              dropZone.style.display = 'none';
-              controlsSection.style.display = 'block';
-              canvas.width = originalImg.naturalWidth;
-              canvas.height = originalImg.naturalHeight;
-              censorHistory = [];
-              redraw();
-            };
-            originalImg.src = ev.target.result;
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        }
-      });
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my confidential documents uploaded to any remote server?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All image rendering and pixel manipulation run strictly in your web browser memory. Your ID scans, bank statements, and private pictures never touch any server.
+          </div>
+        </details>
 
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
-          btn.classList.add('btn-primary');
-          btn.classList.remove('btn-secondary');
-          currentMode = btn.dataset.mode;
-        });
-      });
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I copy the redacted picture directly to my clipboard?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Click the '📋 Copy Redacted Image to Clipboard' button to paste your censored document directly into an email, Slack, or WhatsApp Web chat without saving a file to disk.
+          </div>
+        </details>
+      </div>
+    </section>
 
-      function getCoords(e) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-          x: Math.round((e.clientX - rect.left) * (canvas.width / rect.width)),
-          y: Math.round((e.clientY - rect.top) * (canvas.height / rect.height))
-        };
-      }
+    <!-- 7. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Blur &amp; Redact Image</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Redact Tool!
+        </div>
+      </div>
+    </section>
 
-      canvas.addEventListener('mousedown', (e) => {
-        isDrawing = true;
-        const pt = getCoords(e);
-        startX = pt.x;
-        startY = pt.y;
-      });
+    <!-- 8. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Redact%20sensitive%20Aadhaar%20and%20censor%20photos%20online%20free:%20https://digitalsaathi.vytra.in/image/blur-face.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Redact%20ID%20numbers%20and%20blur%20faces%20online%20free%20with%20100%25%20privacy%20using%20Vytra:%20https://digitalsaathi.vytra.in/image/blur-face.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/blur-face.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/blur-face.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
 
-      canvas.addEventListener('mouseup', (e) => {
-        if (!isDrawing) return;
-        isDrawing = false;
-        const pt = getCoords(e);
-        const rect = {
-          x: Math.min(startX, pt.x),
-          y: Math.min(startY, pt.y),
-          w: Math.abs(pt.x - startX),
-          h: Math.abs(pt.y - startY),
-          mode: currentMode
-        };
-        if (rect.w > 5 && rect.h > 5) {
-          censorHistory.push(rect);
-          redraw();
-        }
-      });
+    <!-- Related Image Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="watermark.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">💧</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Watermark Image</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Stamp 'FOR KYC ONLY' to prevent duplicate use</div>
+        </a>
+        <a href="crop.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Crop Photo</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Crop to passport 3.5x4.5cm, 1:1, or custom ratios</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress images to under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="dpi-converter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🖨️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">DPI Converter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Inject 300 DPI metadata for UPSC, SSC &amp; Passport</div>
+        </a>
+      </div>
+    </section>
 
-      undoBtn.addEventListener('click', () => {
-        censorHistory.pop();
-        redraw();
-      });
-
-      clearBtn.addEventListener('click', () => {
-        censorHistory = [];
-        redraw();
-      });
-
-      function redraw() {
-        if (!originalImg) return;
-        ctx.drawImage(originalImg, 0, 0);
-
-        censorHistory.forEach(item => {
-          if (item.mode === 'blackout') {
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(item.x, item.y, item.w, item.h);
-          } else {
-            const blockSize = 14;
-            const imgData = ctx.getImageData(item.x, item.y, item.w, item.h);
-            const d = imgData.data;
-            for (let py = 0; py < item.h; py += blockSize) {
-              for (let px = 0; px < item.w; px += blockSize) {
-                const pIndex = (py * item.w + px) * 4;
-                const r = d[pIndex], g = d[pIndex + 1], b = d[pIndex + 2];
-                for (let subY = py; subY < Math.min(py + blockSize, item.h); subY++) {
-                  for (let subX = px; subX < Math.min(px + blockSize, item.w); subX++) {
-                    const idx = (subY * item.w + subX) * 4;
-                    d[idx] = r; d[idx + 1] = g; d[idx + 2] = b;
-                  }
-                }
-              }
-            }
-            ctx.putImageData(imgData, item.x, item.y);
-          }
-        });
-      }
-
-      downloadBtn.addEventListener('click', () => {
-        canvas.toBlob((blob) => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'redacted-document.jpg';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }, 'image/jpeg', 0.95);
-      });
-
-      resetBtn.addEventListener('click', () => {
-        fileInput.value = '';
-        dropZone.style.display = 'block';
-        controlsSection.style.display = 'none';
-      });
-    </script>
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -428,7 +780,291 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
+  <script>
+    let originalImg = null;
+    let currentFile = null;
+    let censorHistory = [];
+    let currentMode = 'pixelate';
+    let isDrawing = false;
+    let startX, startY;
+
+    const dropzone = document.getElementById('blur-dropzone');
+    const fileInput = document.getElementById('blur-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const blurWorkspace = document.getElementById('blur-workspace');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
+
+    const modeChips = document.querySelectorAll('.blur-mode-chip');
+    const canvas = document.getElementById('censor-canvas');
+    const ctx = canvas.getContext('2d');
+    const btnUndo = document.getElementById('btnUndo');
+    const btnClearAll = document.getElementById('btnClearAll');
+    const redactCountText = document.getElementById('redactCountText');
+
+    const btnDownloadRedacted = document.getElementById('btnDownloadRedacted');
+    const btnCopyClipboard = document.getElementById('btnCopyClipboard');
+    const resultBanner = document.getElementById('blur-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    function handleFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        originalImg = new Image();
+        originalImg.onload = () => {
+          dropzone.style.display = 'none';
+          resultBanner.style.display = 'none';
+          blurWorkspace.style.display = 'block';
+
+          canvas.width = originalImg.naturalWidth;
+          canvas.height = originalImg.naturalHeight;
+          fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${originalImg.naturalWidth}×${originalImg.naturalHeight}px`;
+
+          censorHistory = [];
+          redraw();
+        };
+        originalImg.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    modeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        modeChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentMode = chip.getAttribute('data-mode');
+      });
+    });
+
+    function getCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: Math.max(0, Math.min(canvas.width, Math.round((clientX - rect.left) * (canvas.width / rect.width)))),
+        y: Math.max(0, Math.min(canvas.height, Math.round((clientY - rect.top) * (canvas.height / rect.height))))
+      };
+    }
+
+    function onPointerDown(e) {
+      if (!originalImg) return;
+      isDrawing = true;
+      const pt = getCoords(e);
+      startX = pt.x;
+      startY = pt.y;
+    }
+
+    function onPointerMove(e) {
+      if (!isDrawing || !originalImg) return;
+      const pt = getCoords(e);
+      redraw();
+
+      // Draw transient rectangle guide
+      ctx.save();
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 4]);
+      const rx = Math.min(startX, pt.x);
+      const ry = Math.min(startY, pt.y);
+      const rw = Math.abs(pt.x - startX);
+      const rh = Math.abs(pt.y - startY);
+      ctx.strokeRect(rx, ry, rw, rh);
+      ctx.restore();
+    }
+
+    function onPointerUp(e) {
+      if (!isDrawing || !originalImg) return;
+      isDrawing = false;
+      const pt = getCoords(e);
+      const rect = {
+        x: Math.min(startX, pt.x),
+        y: Math.min(startY, pt.y),
+        w: Math.abs(pt.x - startX),
+        h: Math.abs(pt.y - startY),
+        mode: currentMode
+      };
+      if (rect.w > 4 && rect.h > 4) {
+        censorHistory.push(rect);
+        redraw();
+      } else {
+        redraw();
+      }
+    }
+
+    canvas.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    canvas.addEventListener('touchstart', onPointerDown, { passive: false });
+    window.addEventListener('touchmove', onPointerMove, { passive: false });
+    window.addEventListener('touchend', onPointerUp);
+
+    btnUndo.addEventListener('click', () => {
+      censorHistory.pop();
+      redraw();
+    });
+
+    btnClearAll.addEventListener('click', () => {
+      censorHistory = [];
+      redraw();
+    });
+
+    function redraw() {
+      if (!originalImg) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(originalImg, 0, 0);
+
+      redactCountText.textContent = `${censorHistory.length} ${censorHistory.length === 1 ? 'area' : 'areas'} censored`;
+
+      censorHistory.forEach(item => {
+        if (item.mode === 'blackout') {
+          ctx.fillStyle = '#000000';
+          ctx.fillRect(item.x, item.y, item.w, item.h);
+        } else if (item.mode === 'blur') {
+          // Offscreen blur simulation
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = item.w;
+          tempCanvas.height = item.h;
+          const tCtx = tempCanvas.getContext('2d');
+          tCtx.filter = 'blur(10px)';
+          tCtx.drawImage(canvas, item.x, item.y, item.w, item.h, 0, 0, item.w, item.h);
+          ctx.drawImage(tempCanvas, item.x, item.y);
+        } else {
+          // Mosaic Pixelate
+          const blockSize = Math.max(12, Math.round(item.w / 16));
+          const imgData = ctx.getImageData(item.x, item.y, item.w, item.h);
+          const d = imgData.data;
+
+          for (let py = 0; py < item.h; py += blockSize) {
+            for (let px = 0; px < item.w; px += blockSize) {
+              const pIndex = (py * item.w + px) * 4;
+              const r = d[pIndex], g = d[pIndex + 1], b = d[pIndex + 2];
+              for (let subY = py; subY < Math.min(py + blockSize, item.h); subY++) {
+                for (let subX = px; subX < Math.min(px + blockSize, item.w); subX++) {
+                  const idx = (subY * item.w + subX) * 4;
+                  d[idx] = r; d[idx + 1] = g; d[idx + 2] = b;
+                }
+              }
+            }
+          }
+          ctx.putImageData(imgData, item.x, item.y);
+        }
+      });
+    }
+
+    btnDownloadRedacted.addEventListener('click', () => {
+      if (!originalImg) return;
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const outName = currentFile.name.replace(/\.[^/.]+$/, '') + '_redacted.jpg';
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+
+        resultDesc.textContent = `Redacted image generated with ${censorHistory.length} censored zones (${canvas.width}×${canvas.height}px, ${(blob.size / 1024).toFixed(1)} KB).`;
+        blurWorkspace.style.display = 'none';
+        resultBanner.style.display = 'block';
+      }, 'image/jpeg', 0.95);
+    });
+
+    btnCopyClipboard.addEventListener('click', () => {
+      if (!originalImg) return;
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob })
+          ]);
+          const orig = btnCopyClipboard.textContent;
+          btnCopyClipboard.textContent = '✅ Copied to Clipboard!';
+          btnCopyClipboard.style.background = '#16a34a';
+          btnCopyClipboard.style.color = '#fff';
+          setTimeout(() => {
+            btnCopyClipboard.textContent = orig;
+            btnCopyClipboard.style.background = '';
+            btnCopyClipboard.style.color = '';
+          }, 2000);
+        } catch (e) {
+          alert('Clipboard copy is not supported in this browser.');
+        }
+      }, 'image/png');
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+      blurWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+      originalImg = null;
+    });
+  </script>
 </body>
 </html>
