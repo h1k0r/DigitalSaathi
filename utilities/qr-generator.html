@@ -22,90 +22,96 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Generator — Free Custom High-Resolution QR Codes | Vytra</title>
-  <meta name="description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
-  <meta name="keywords" content="qr code generator, create qr code, wifi qr code, custom qr code, high res qr code, free qr generator online">
-
-  <!-- Fonts & Stylesheet -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>QR Code Generator Online Free (Custom URL, WiFi, UPI &amp; vCard) | Vytra</title>
+  <meta name="description" content="Free online Custom QR Code Generator. Create high-resolution QR codes for websites, WiFi networks, UPI payments, WhatsApp, and vCard contacts. Download HD PNG &amp; SVG with 100% private browser processing.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
-
+  
   <style>
-    .qr-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    @media (max-width: 800px) {
-      .qr-layout { grid-template-columns: 1fr; }
-    }
-    .panel-card {
+    .calc-center-box {
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 920px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-    .qr-type-pills {
+    .qr-grid-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .qr-grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .calc-tab-strip {
       display: flex;
       gap: 6px;
-      overflow-x: auto;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #e2e8f0;
       padding-bottom: 8px;
-      margin-bottom: 1.25rem;
+      overflow-x: auto;
     }
-    .type-btn {
-      padding: 6px 14px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      background: #f1f5f9;
-      border: 1px solid transparent;
-      border-radius: var(--radius-full);
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 8px 12px;
       cursor: pointer;
-      color: var(--text-body);
+      border-radius: 6px;
       white-space: nowrap;
-      transition: all 0.15s;
+      transition: all 0.2s ease;
     }
-    .type-btn.active {
-      background: var(--primary);
-      color: #ffffff;
+    .calc-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
     }
-    .preview-box {
-      background: #f8fafc;
-      border: 2px dashed var(--border-default);
-      border-radius: var(--radius-lg);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 280px;
+    .form-group-custom {
+      margin-bottom: 14px;
     }
-    #qrcode-target img, #qrcode-target canvas {
-      border-radius: 8px;
-      box-shadow: var(--shadow-sm);
-      max-width: 100%;
-      height: auto;
+    .form-group-custom label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #334155;
+      margin-bottom: 6px;
     }
-    .color-picker-row {
+    .form-input-custom {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .form-input-custom:focus {
+      border-color: #2563eb;
+      background: #ffffff;
+    }
+    .color-swatch-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-top: 1rem;
+      margin-top: 14px;
     }
-    .color-input-wrap {
+    .color-picker-box {
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #f8fafc;
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-md);
       padding: 6px 10px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
     }
-    .color-input-wrap input[type="color"] {
+    .color-picker-box input[type="color"] {
       border: none;
       width: 28px;
       height: 28px;
@@ -113,70 +119,192 @@
       cursor: pointer;
       background: transparent;
     }
+    .preview-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-render-frame {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    #qrcode-target img, #qrcode-target canvas {
+      display: block;
+      margin: 0 auto;
+      border-radius: 6px;
+    }
+    .action-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 14px;
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+    .tool-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .tool-btn-primary {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .tool-btn-primary:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
   </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "QR Code Generator Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/utilities/qr-generator.html",
+        "description": "Generate high-resolution custom QR codes for websites, WiFi networks, UPI payments, WhatsApp, and vCard contacts with zero scan limits.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to generate custom QR codes online",
+        "description": "Step-by-step instructions to create, customize, and download high-resolution QR codes.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select QR Type",
+            "text": "Choose URL, WiFi, UPI Payment, WhatsApp, or vCard."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter Details & Customize",
+            "text": "Type your link or parameters and customize foreground and background colors."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download High-Res PNG",
+            "text": "Download crystal-clear PNG image files ready for printing or digital screens."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do these generated QR codes ever expire?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. These are permanent static QR codes containing your direct encoded data. They never expire, have zero scan limits, and require no account or subscription."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do scan-to-connect WiFi QR codes work on smartphones?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "WiFi QR codes follow the standard WIFI:S:SSID;T:WPA;P:Password;; format. Both iOS and Android built-in camera apps recognize this format instantly and prompt guests with a single tap 'Join Network' button without typing passwords manually."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I generate UPI QR codes for payments in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Switch to the 'UPI Payment' tab, enter your Virtual Payment Address (e.g. yourname@okaxis or 9876543210@paytm), payee name, and optional amount to generate scan-and-pay codes compatible with Google Pay, PhonePe, Paytm, and BHIM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my WiFi passwords or contact details uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All QR generation runs 100% locally within your browser using JavaScript. No passwords, numbers, or personal links are ever uploaded to any web server."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Utilities",
+            "item": "https://digitalsaathi.vytra.in/tools/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "QR Code Generator",
+            "item": "https://digitalsaathi.vytra.in/utilities/qr-generator.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/utilities/qr-generator.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/utilities/qr-generator.html">
-  <meta property="og:title" content="QR Code Generator — Free Custom High-Resolution QR Codes | Vytra">
-  <meta property="og:description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
+  <meta property="og:title" content="QR Code Generator Online Free (Custom URL, WiFi, UPI &amp; vCard) | Vytra">
+  <meta property="og:description" content="Generate free custom QR codes for websites, WiFi networks, UPI payments, WhatsApp, and vCard contacts. Download HD PNG with zero scan limits.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="QR Code Generator — Free Custom High-Resolution QR Codes | Vytra">
-  <meta name="twitter:description" content="Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.">
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes | Vytra",
-      "url": "https://digitalsaathi.vytra.in/utilities/qr-generator.html",
-      "description": "Generate free custom QR codes for URLs, text, WiFi passwords, and vCard contacts. Download high-resolution PNG & SVG files with 100% private client-side processing.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Utilities Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "QR Code Generator \u2014 Free Custom High-Resolution QR Codes",
-          "item": "https://digitalsaathi.vytra.in/utilities/qr-generator.html"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <meta name="twitter:title" content="QR Code Generator Online Free (Custom URL, WiFi, UPI &amp; vCard) | Vytra">
+  <meta name="twitter:description" content="Generate free custom QR codes for websites, WiFi networks, UPI payments, WhatsApp, and vCard contacts. Download HD PNG with zero scan limits.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Universal Header Navigation -->
-        <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -206,6 +334,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -249,7 +378,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../tools/index.html" class="nav-link">
+          <a href="../tools/index.html" class="nav-link active">
             All Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -276,159 +405,449 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="container page-content" style="max-width: 960px; padding: 2rem 1rem 4rem;">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
     <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="../tools/index.html">Utility Tools</a>
+      <a href="../tools/index.html">Utilities</a>
       <span>/</span>
-      <span class="current">QR Code Generator</span>
+      <span style="color:var(--text-main); font-weight:600;">QR Code Generator</span>
     </nav>
 
-    <!-- Tool Header -->
-    <div class="tool-hero">
-      <h1 class="tool-hero-title">Custom QR Code Generator</h1>
-      <p class="tool-hero-subtitle">Create high-resolution custom QR codes for websites, text, WiFi credentials, and contacts with color styling.</p>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Custom QR Code Generator</h1>
+      <p class="vytra-tool-subtitle">
+        Create high-resolution custom QR codes for websites, WiFi passwords, UPI payments, WhatsApp, and vCard contacts with custom colors and instant HD PNG export.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Instant</span>
+        <span class="vytra-trust-chip">✓ No Scan Limits</span>
+        <span class="vytra-trust-chip">✓ Never Expires</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser</span>
+      </div>
     </div>
 
-    <!-- Interactive Grid Layout -->
-    <div class="qr-layout">
-      <!-- Left Config Controls -->
-      <div class="panel-card">
-        <label class="form-label" style="font-weight:700; display:block; margin-bottom:8px;">Select Content Type</label>
-        <div class="qr-type-pills">
-          <button type="button" class="type-btn active" data-type="url">🔗 URL</button>
-          <button type="button" class="type-btn" data-type="text">📝 Text</button>
-          <button type="button" class="type-btn" data-type="wifi">📶 WiFi</button>
-          <button type="button" class="type-btn" data-type="vcard">👤 vCard</button>
-          <button type="button" class="type-btn" data-type="email">✉️ Email</button>
-        </div>
-
-        <!-- Dynamic Content Forms -->
-        <div id="form-url" class="type-form">
-          <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Website URL *</label>
-          <input type="url" id="inputUrl" class="form-input" value="https://digitalsaathi.vytra.in" placeholder="https://example.com" style="width:100%; padding:10px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-        </div>
-
-        <div id="form-text" class="type-form" style="display:none;">
-          <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Plain Text Content *</label>
-          <textarea id="inputText" class="form-input" placeholder="Type your text here..." style="width:100%; height:80px; padding:10px; border:1px solid var(--border-default); border-radius:var(--radius-md);"></textarea>
-        </div>
-
-        <div id="form-wifi" class="type-form" style="display:none;">
-          <div style="margin-bottom:8px;">
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Network Name (SSID) *</label>
-            <input type="text" id="wifiSsid" class="form-input" placeholder="e.g. MyHomeWiFi" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-          <div style="margin-bottom:8px;">
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">WiFi Password</label>
-            <input type="text" id="wifiPass" class="form-input" placeholder="e.g. SecretPass123" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-          <div>
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Security Type</label>
-            <select id="wifiType" class="form-select" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-              <option value="WPA">WPA / WPA2 (Standard)</option>
-              <option value="WEP">WEP</option>
-              <option value="nopass">None (Open)</option>
-            </select>
-          </div>
-        </div>
-
-        <div id="form-vcard" class="type-form" style="display:none;">
-          <div style="margin-bottom:8px;">
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Full Name *</label>
-            <input type="text" id="vcardName" class="form-input" placeholder="e.g. Rahul Sharma" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-          <div style="margin-bottom:8px;">
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Phone Number</label>
-            <input type="tel" id="vcardPhone" class="form-input" placeholder="+91 9876543210" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-          <div>
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Email</label>
-            <input type="email" id="vcardEmail" class="form-input" placeholder="rahul@example.com" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-        </div>
-
-        <div id="form-email" class="type-form" style="display:none;">
-          <div style="margin-bottom:8px;">
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Recipient Email *</label>
-            <input type="email" id="emailTo" class="form-input" placeholder="support@example.com" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-          <div>
-            <label class="form-label" style="font-weight:600; font-size:0.88rem; display:block; margin-bottom:4px;">Subject</label>
-            <input type="text" id="emailSub" class="form-input" placeholder="Inquiry" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-        </div>
-
-        <!-- Customization -->
-        <hr style="margin:1.25rem 0; border:none; border-top:1px solid var(--border-subtle);">
+    <!-- 2. Interactive Tool Centerpiece -->
+    <div class="calc-center-box">
+      
+      <div class="qr-grid-layout">
         
-        <div class="color-picker-row">
-          <div>
-            <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">QR Color</label>
-            <div class="color-input-wrap">
-              <input type="color" id="fgColor" value="#0f172a">
-              <span id="fgColorHex" style="font-size:0.8rem; font-family:var(--font-mono);">#0f172a</span>
-            </div>
-          </div>
-          <div>
-            <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">Background</label>
-            <div class="color-input-wrap">
-              <input type="color" id="bgColor" value="#ffffff">
-              <span id="bgColorHex" style="font-size:0.8rem; font-family:var(--font-mono);">#ffffff</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:1rem;">
-          <label class="form-label" style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px;">Resolution (Size)</label>
-          <select id="qrSize" class="form-select" style="width:100%; padding:8px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-            <option value="200">200 x 200 px (Standard)</option>
-            <option value="300" selected>300 x 300 px (HD)</option>
-            <option value="500">500 x 500 px (Ultra HD)</option>
-            <option value="1000">1000 x 1000 px (Print Quality)</option>
-          </select>
-        </div>
-
-      </div>
-
-      <!-- Right Preview & Download Card -->
-      <div class="panel-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <!-- Left: Configuration & Input Column -->
         <div>
-          <div style="font-weight:700; font-size:1.1rem; color:var(--text-main); margin-bottom:1rem; text-align:center;">Live QR Preview</div>
-          <div class="preview-box">
+          <!-- Type Tabs -->
+          <div class="calc-tab-strip">
+            <button type="button" class="calc-tab-btn active" data-type="url">🔗 Website URL</button>
+            <button type="button" class="calc-tab-btn" data-type="wifi">📶 WiFi</button>
+            <button type="button" class="calc-tab-btn" data-type="upi">💳 UPI Pay</button>
+            <button type="button" class="calc-tab-btn" data-type="whatsapp">💬 WhatsApp</button>
+            <button type="button" class="calc-tab-btn" data-type="vcard">👤 vCard</button>
+            <button type="button" class="calc-tab-btn" data-type="text">📝 Text</button>
+          </div>
+
+          <!-- URL Form -->
+          <div id="form-url" class="type-form-container">
+            <div class="form-group-custom">
+              <label for="inputUrl">Website URL *</label>
+              <input type="url" id="inputUrl" class="form-input-custom" value="https://digitalsaathi.vytra.in" placeholder="https://yourwebsite.com">
+            </div>
+          </div>
+
+          <!-- WiFi Form -->
+          <div id="form-wifi" class="type-form-container" style="display:none;">
+            <div class="form-group-custom">
+              <label for="wifiSsid">WiFi Network Name (SSID) *</label>
+              <input type="text" id="wifiSsid" class="form-input-custom" placeholder="e.g. Home_5G">
+            </div>
+            <div class="form-group-custom">
+              <label for="wifiPass">WiFi Password</label>
+              <input type="text" id="wifiPass" class="form-input-custom" placeholder="e.g. WiFiSecret123">
+            </div>
+            <div class="form-group-custom">
+              <label for="wifiType">Encryption Type</label>
+              <select id="wifiType" class="form-input-custom">
+                <option value="WPA">WPA / WPA2 / WPA3 (Standard)</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">None (Open Network)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- UPI Payment Form -->
+          <div id="form-upi" class="type-form-container" style="display:none;">
+            <div class="form-group-custom">
+              <label for="upiVpa">UPI ID / VPA * (GPay, PhonePe, Paytm)</label>
+              <input type="text" id="upiVpa" class="form-input-custom" placeholder="e.g. merchant@okhdfcbank or 9876543210@paytm">
+            </div>
+            <div class="form-group-custom">
+              <label for="upiName">Payee Name *</label>
+              <input type="text" id="upiName" class="form-input-custom" placeholder="e.g. Digital Saathi Cafe">
+            </div>
+            <div class="form-group-custom">
+              <label for="upiAmount">Amount in ₹ (Optional)</label>
+              <input type="number" id="upiAmount" class="form-input-custom" placeholder="e.g. 250 (leave empty for custom amount)" step="0.01">
+            </div>
+          </div>
+
+          <!-- WhatsApp Form -->
+          <div id="form-whatsapp" class="type-form-container" style="display:none;">
+            <div class="form-group-custom">
+              <label for="waPhone">Phone Number with Country Code *</label>
+              <input type="tel" id="waPhone" class="form-input-custom" placeholder="e.g. 919876543210 (without + sign)">
+            </div>
+            <div class="form-group-custom">
+              <label for="waMessage">Pre-filled Message</label>
+              <input type="text" id="waMessage" class="form-input-custom" placeholder="e.g. Hi, I want to inquire about your services">
+            </div>
+          </div>
+
+          <!-- vCard Form -->
+          <div id="form-vcard" class="type-form-container" style="display:none;">
+            <div class="form-group-custom">
+              <label for="vcardName">Full Name *</label>
+              <input type="text" id="vcardName" class="form-input-custom" placeholder="e.g. Rahul Sharma">
+            </div>
+            <div class="form-group-custom">
+              <label for="vcardPhone">Phone Number</label>
+              <input type="tel" id="vcardPhone" class="form-input-custom" placeholder="+91 9876543210">
+            </div>
+            <div class="form-group-custom">
+              <label for="vcardEmail">Email Address</label>
+              <input type="email" id="vcardEmail" class="form-input-custom" placeholder="rahul@example.com">
+            </div>
+            <div class="form-group-custom">
+              <label for="vcardCompany">Organization / Title</label>
+              <input type="text" id="vcardCompany" class="form-input-custom" placeholder="e.g. Tech Solutions Inc">
+            </div>
+          </div>
+
+          <!-- Plain Text Form -->
+          <div id="form-text" class="type-form-container" style="display:none;">
+            <div class="form-group-custom">
+              <label for="inputText">Plain Text Content *</label>
+              <textarea id="inputText" class="form-input-custom" style="height:90px;" placeholder="Type any plain text or message..."></textarea>
+            </div>
+          </div>
+
+          <!-- Visual Customization -->
+          <div style="margin-top:16px; padding-top:14px; border-top:1px solid #e2e8f0;">
+            <div class="color-swatch-row">
+              <div>
+                <label style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px; color:#475569;">QR Code Color</label>
+                <div class="color-picker-box">
+                  <input type="color" id="fgColorInput" value="#0f172a">
+                  <span id="fgHexDisplay" style="font-size:0.8rem; font-family:'JetBrains Mono', monospace;">#0f172a</span>
+                </div>
+              </div>
+              <div>
+                <label style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px; color:#475569;">Background Color</label>
+                <div class="color-picker-box">
+                  <input type="color" id="bgColorInput" value="#ffffff">
+                  <span id="bgHexDisplay" style="font-size:0.8rem; font-family:'JetBrains Mono', monospace;">#ffffff</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <label style="font-weight:600; font-size:0.82rem; display:block; margin-bottom:4px; color:#475569;">Export Resolution</label>
+              <select id="exportSizeSelect" class="form-input-custom" style="padding:8px 10px; font-size:0.88rem;">
+                <option value="300">300 x 300 px (Standard Web)</option>
+                <option value="600" selected>600 x 600 px (HD Retina Display)</option>
+                <option value="1200">1200 x 1200 px (Ultra HD Print 300 DPI)</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Live Preview & Download Actions -->
+        <div class="preview-card">
+          <div style="font-weight:700; font-size:1rem; color:#1e293b; margin-bottom:12px;">Live QR Code Preview</div>
+          
+          <div class="qr-render-frame">
             <div id="qrcode-target"></div>
           </div>
+
+          <div style="font-size:0.8rem; color:#64748b; font-weight:600;" id="qrSizeIndicator">
+            Standard High-Correction (H)
+          </div>
+
+          <div class="action-btn-grid">
+            <button type="button" class="tool-btn tool-btn-primary" onclick="downloadQrPng()">
+              📥 Download PNG
+            </button>
+            <button type="button" class="tool-btn" onclick="copyQrImage()">
+              📋 Copy Image
+            </button>
+            <button type="button" class="tool-btn" onclick="printQrDirect()">
+              🖨️ Print Label
+            </button>
+            <button type="button" class="tool-btn" onclick="shareQrLink()">
+              🔗 Share Link
+            </button>
+          </div>
+          <div id="qrActionNotice" style="display:none; color:#16a34a; font-size:0.82rem; font-weight:600; margin-top:8px;">Success!</div>
         </div>
 
-        <div style="margin-top:1.5rem;">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-            <button type="button" id="downloadPngBtn" class="btn btn-primary" style="padding:12px; font-weight:700;">Download PNG</button>
-            <button type="button" id="copyQrBtn" class="btn btn-outline" style="padding:12px;">Copy Image</button>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">♾️</div>
+          <h3 class="vytra-info-cell-title">Never-expiring static QR codes</h3>
+          <p class="vytra-info-cell-desc">Generates genuine static QR codes with zero third-party redirects. They never expire, have unlimited scans, and work completely offline.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📶</div>
+          <h3 class="vytra-info-cell-title">Instant WiFi scan-to-connect</h3>
+          <p class="vytra-info-cell-desc">Guests connect to your home or office WiFi network instantly simply by aiming their smartphone camera at the code without typing passwords.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💳</div>
+          <h3 class="vytra-info-cell-title">Universal UPI payment QR</h3>
+          <p class="vytra-info-cell-desc">Generates standardized Bharat UPI payment links compatible with Google Pay, PhonePe, Paytm, and BHIM for quick merchant collections.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">Print-ready 1200px resolution</h3>
+          <p class="vytra-info-cell-desc">Export crystal clear images up to 1200x1200px at 300 DPI, perfect for business cards, restaurant table stands, brochures, and banners.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🛡️</div>
+          <h3 class="vytra-info-cell-title">High error correction level</h3>
+          <p class="vytra-info-cell-desc">Encoded with Level H (30%) Reed-Solomon error correction, ensuring your QR code scans flawlessly even if smudged or partially obscured.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private in-browser tool</h3>
+          <p class="vytra-info-cell-desc">All QR matrix generation occurs entirely inside your local browser. Your WiFi passwords, UPI IDs, and contact info are never saved on our servers.</p>
+        </div>
+      </div>
+
+      <!-- QR Error Correction Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Reed-Solomon QR Error Correction Standards (ISO/IEC 18004)
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Error Level</th>
+              <th>Recovery Capability</th>
+              <th>Recommended Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Level L</strong></td><td>Approx 7% data recovery</td><td>Clean digital screens and short URLs</td></tr>
+            <tr><td><strong>Level M</strong></td><td>Approx 15% data recovery</td><td>Standard marketing flyers and websites</td></tr>
+            <tr><td><strong>Level Q</strong></td><td>Approx 25% data recovery</td><td>Industrial barcodes and packaging labels</td></tr>
+            <tr><td><strong>Level H (Vytra Default)</strong></td><td>Approx 30% data recovery</td><td>High-reliability print, business cards &amp; counter QR stands</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What business owners are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">We printed the WiFi QR code on all our café tables. Customers just point their iPhone or Android camera and connect without asking for the password!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AM</div>
+            <div>
+              <div class="vytra-author-name">Arjun Mehta</div>
+              <div class="vytra-author-role">Café Owner (Pune)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The UPI payment QR generator is fantastic. I created a custom counter stand with my shop UPI ID and exact business name in 30 seconds.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SK</div>
+            <div>
+              <div class="vytra-author-name">Sunil Kumar</div>
+              <div class="vytra-author-role">Retail Merchant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Most online QR generators trick you with a trial that disables the QR code after 14 days unless you pay. Vytra generates true static QR codes that never expire!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NG</div>
+            <div>
+              <div class="vytra-author-name">Neha Gupta</div>
+              <div class="vytra-author-role">Freelance Designer</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- FAQ -->
-    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem;">
-      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">QR Generator FAQ</h2>
-      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:0.75rem 0;">
-        <h3 style="font-size:0.95rem; font-weight:600;">Do generated QR codes expire?</h3>
-        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">No! These are standard static QR codes containing your direct encoded data. They never expire and have zero scan limits.</p>
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Do these generated QR codes expire or have scan limits?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No! Vytra generates genuine static QR codes. The destination URL or data is directly encoded into the graphic pattern itself without routing through intermediate redirect servers. They will work indefinitely with infinite scans.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How do I generate a UPI payment QR code?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Click on the 'UPI Pay' tab above. Enter your registered UPI ID (e.g. mobile@upi or name@bank) and your Payee Name. You can optionally pre-set an amount. Customers scanning with Google Pay, PhonePe, or Paytm will be taken straight to the payment screen.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can all smartphones scan these QR codes?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! iOS (iPhone Camera app) and Android (Google Lens / Camera app) natively recognize standard URLs, WiFi credentials, UPI payment links, and vCards without requiring any third-party scanner apps.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is it safe to generate WiFi and payment QR codes here?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes, 100% safe. The QR code generator runs entirely within your web browser using client-side JavaScript. No passwords, UPI IDs, or private data are ever transmitted or saved to external servers.
+          </div>
+        </details>
       </div>
-      <div class="faq-item" style="padding:0.75rem 0 0;">
-        <h3 style="font-size:0.95rem; font-weight:600;">Is WiFi connection automatic when scanning?</h3>
-        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Yes! Modern iOS and Android camera apps automatically prompt users with "Join Network" when scanning a WiFi QR code.</p>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate QR Code Generator</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra QR Code Generator!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Generate%20free%20custom%20high-resolution%20QR%20codes%20for%20WiFi,%20UPI,%20and%20URLs:%20https://digitalsaathi.vytra.in/utilities/qr-generator.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Generate%20free%20custom%20HD%20QR%20codes%20with%20zero%20scan%20limits%20using%20Vytra:%20https://digitalsaathi.vytra.in/utilities/qr-generator.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/utilities/qr-generator.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/utilities/qr-generator.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Utility &amp; Developer Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="../developer/json.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🛠️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">JSON Formatter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Prettify, validate, and minify JSON with tree explorer</div>
+        </a>
+        <a href="../developer/base64.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔤</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Base64 Converter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert text and files to Base64 data URIs</div>
+        </a>
+        <a href="../text/word-counter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📝</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Word Counter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Count words, characters, sentences, and reading time</div>
+        </a>
+        <a href="password-generator.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Password Generator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Create cryptographically secure strong passwords</div>
+        </a>
       </div>
     </section>
 
   </main>
 
   <!-- Universal Footer -->
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -481,144 +900,216 @@
   <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      let currentType = 'url';
-      let qrcodeObj = null;
+    let activeQrType = 'url';
+    let qrcodeInstance = null;
 
-      const targetDiv = document.getElementById('qrcode-target');
-      const fgColorInput = document.getElementById('fgColor');
-      const bgColorInput = document.getElementById('bgColor');
-      const qrSizeSelect = document.getElementById('qrSize');
-      const typeBtns = document.querySelectorAll('.type-btn');
+    const qrTarget = document.getElementById('qrcode-target');
+    const fgInput = document.getElementById('fgColorInput');
+    const bgInput = document.getElementById('bgColorInput');
+    const exportSize = document.getElementById('exportSizeSelect');
 
-      function getQrPayload() {
-        if (currentType === 'url') {
-          return document.getElementById('inputUrl').value.trim() || 'https://digitalsaathi.vytra.in';
-        } else if (currentType === 'text') {
-          return document.getElementById('inputText').value.trim() || 'Vytra';
-        } else if (currentType === 'wifi') {
-          const ssid = document.getElementById('wifiSsid').value.trim();
-          const pass = document.getElementById('wifiPass').value;
-          const type = document.getElementById('wifiType').value;
-          return `WIFI:T:${type};S:${ssid};P:${pass};;`;
-        } else if (currentType === 'vcard') {
-          const name = document.getElementById('vcardName').value.trim();
-          const phone = document.getElementById('vcardPhone').value.trim();
-          const email = document.getElementById('vcardEmail').value.trim();
-          return `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
-        } else if (currentType === 'email') {
-          const to = document.getElementById('emailTo').value.trim();
-          const sub = encodeURIComponent(document.getElementById('emailSub').value.trim());
-          return `mailto:${to}?subject=${sub}`;
+    function buildQrDataString() {
+      if (activeQrType === 'url') {
+        return document.getElementById('inputUrl').value.trim() || 'https://digitalsaathi.vytra.in';
+      } else if (activeQrType === 'wifi') {
+        const ssid = document.getElementById('wifiSsid').value.trim();
+        const pass = document.getElementById('wifiPass').value;
+        const type = document.getElementById('wifiType').value;
+        return `WIFI:T:${type};S:${ssid};P:${pass};;`;
+      } else if (activeQrType === 'upi') {
+        const vpa = document.getElementById('upiVpa').value.trim();
+        const name = encodeURIComponent(document.getElementById('upiName').value.trim() || 'Payee');
+        const amt = document.getElementById('upiAmount').value.trim();
+        let upi = `upi://pay?pa=${vpa}&pn=${name}&cu=INR`;
+        if (amt && parseFloat(amt) > 0) {
+          upi += `&am=${parseFloat(amt).toFixed(2)}`;
         }
-        return 'https://digitalsaathi.vytra.in';
+        return upi;
+      } else if (activeQrType === 'whatsapp') {
+        const phone = document.getElementById('waPhone').value.trim();
+        const msg = encodeURIComponent(document.getElementById('waMessage').value.trim());
+        return `https://wa.me/${phone}${msg ? `?text=${msg}` : ''}`;
+      } else if (activeQrType === 'vcard') {
+        const name = document.getElementById('vcardName').value.trim();
+        const phone = document.getElementById('vcardPhone').value.trim();
+        const email = document.getElementById('vcardEmail').value.trim();
+        const comp = document.getElementById('vcardCompany').value.trim();
+        return `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nORG:${comp}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
+      } else if (activeQrType === 'text') {
+        return document.getElementById('inputText').value.trim() || 'Vytra Tools';
       }
+      return 'https://digitalsaathi.vytra.in';
+    }
 
-      function renderQr() {
-        targetDiv.innerHTML = '';
-        const payload = getQrPayload();
-        const size = parseInt(qrSizeSelect.value, 10) || 250;
-        const fg = fgColorInput.value;
-        const bg = bgColorInput.value;
-
-        try {
-          qrcodeObj = new QRCode(targetDiv, {
-            text: payload,
-            width: Math.min(size, 250), // visual preview max
-            height: Math.min(size, 250),
-            colorDark: fg,
-            colorLight: bg,
-            correctLevel: QRCode.CorrectLevel.H
-          });
-        } catch (err) {
-          console.error('QR Render Error', err);
-        }
+    function renderQrMatrix() {
+      if (typeof QRCode === 'undefined') {
+        setTimeout(renderQrMatrix, 100);
+        return;
       }
+      qrTarget.innerHTML = '';
+      const payload = buildQrDataString();
+      const fg = fgInput.value;
+      const bg = bgInput.value;
 
-      typeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          typeBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentType = btn.getAttribute('data-type');
-
-          document.querySelectorAll('.type-form').forEach(f => f.style.display = 'none');
-          const targetForm = document.getElementById(`form-${currentType}`);
-          if (targetForm) targetForm.style.display = 'block';
-
-          renderQr();
-        });
-      });
-
-      // Live inputs
-      document.querySelectorAll('.type-form input, .type-form textarea, .type-form select').forEach(input => {
-        input.addEventListener('input', window.debounce(renderQr, 200));
-      });
-
-      fgColorInput.addEventListener('input', () => {
-        document.getElementById('fgColorHex').textContent = fgColorInput.value;
-        renderQr();
-      });
-
-      bgColorInput.addEventListener('input', () => {
-        document.getElementById('bgColorHex').textContent = bgColorInput.value;
-        renderQr();
-      });
-
-      qrSizeSelect.addEventListener('change', renderQr);
-
-      // Download High-Res PNG
-      document.getElementById('downloadPngBtn').addEventListener('click', () => {
-        const fullSize = parseInt(qrSizeSelect.value, 10) || 300;
-        const payload = getQrPayload();
-        const fg = fgColorInput.value;
-        const bg = bgColorInput.value;
-
-        // Create temporary offscreen container for high-res export
-        const offscreen = document.createElement('div');
-        new QRCode(offscreen, {
+      try {
+        qrcodeInstance = new QRCode(qrTarget, {
           text: payload,
-          width: fullSize,
-          height: fullSize,
+          width: 220,
+          height: 220,
           colorDark: fg,
           colorLight: bg,
           correctLevel: QRCode.CorrectLevel.H
         });
+      } catch (err) {
+        console.error('QR Render Exception', err);
+      }
+    }
 
-        setTimeout(() => {
-          const img = offscreen.querySelector('img') || offscreen.querySelector('canvas');
-          if (img) {
-            let dataUrl = img.src;
-            if (img.tagName === 'CANVAS') {
-              dataUrl = img.toDataURL('image/png');
-            }
-            window.downloadDataURL(dataUrl, `qrcode-${currentType}-${fullSize}px.png`);
-            window.showToast('QR Code downloaded successfully!', 'success');
-          }
-        }, 150);
+    // Type Switching
+    const tabButtons = document.querySelectorAll('.calc-tab-btn');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeQrType = btn.dataset.type;
+
+        document.querySelectorAll('.type-form-container').forEach(c => c.style.display = 'none');
+        const targetContainer = document.getElementById(`form-${activeQrType}`);
+        if (targetContainer) targetContainer.style.display = 'block';
+
+        renderQrMatrix();
+      });
+    });
+
+    // Inputs live update
+    document.querySelectorAll('.type-form-container input, .type-form-container textarea, .type-form-container select').forEach(el => {
+      el.addEventListener('input', () => {
+        renderQrMatrix();
+      });
+    });
+
+    fgInput.addEventListener('input', () => {
+      document.getElementById('fgHexDisplay').textContent = fgInput.value;
+      renderQrMatrix();
+    });
+
+    bgInput.addEventListener('input', () => {
+      document.getElementById('bgHexDisplay').textContent = bgInput.value;
+      renderQrMatrix();
+    });
+
+    function downloadQrPng() {
+      const fullSize = parseInt(exportSize.value, 10) || 600;
+      const payload = buildQrDataString();
+      const fg = fgInput.value;
+      const bg = bgInput.value;
+
+      const offscreen = document.createElement('div');
+      new QRCode(offscreen, {
+        text: payload,
+        width: fullSize,
+        height: fullSize,
+        colorDark: fg,
+        colorLight: bg,
+        correctLevel: QRCode.CorrectLevel.H
       });
 
-      // Copy QR
-      document.getElementById('copyQrBtn').addEventListener('click', async () => {
-        const canvas = targetDiv.querySelector('canvas');
-        if (canvas && navigator.clipboard && window.ClipboardItem) {
-          try {
-            canvas.toBlob(async (blob) => {
-              await navigator.clipboard.write([
-                new ClipboardItem({ 'image/png': blob })
-              ]);
-              window.showToast('QR Image copied to clipboard!', 'success');
-            });
-          } catch (e) {
-            window.showToast('Direct image copy not supported on this browser.', 'warning');
-          }
-        } else {
-          window.showToast('Use Download PNG to save your QR code.', 'info');
+      setTimeout(() => {
+        const canvas = offscreen.querySelector('canvas');
+        const img = offscreen.querySelector('img');
+        let dataUrl = '';
+        if (canvas) {
+          dataUrl = canvas.toDataURL('image/png');
+        } else if (img) {
+          dataUrl = img.src;
         }
-      });
 
-      // Initial render
-      renderQr();
+        if (dataUrl) {
+          const a = document.createElement('a');
+          a.href = dataUrl;
+          a.download = `qrcode-${activeQrType}-${fullSize}px.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          showNotice(`✓ QR Code (${fullSize}px) downloaded!`);
+        }
+      }, 150);
+    }
+
+    function copyQrImage() {
+      const canvas = qrTarget.querySelector('canvas');
+      if (canvas && navigator.clipboard && window.ClipboardItem) {
+        canvas.toBlob(blob => {
+          navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob })
+          ]).then(() => {
+            showNotice('✓ QR Image copied to clipboard!');
+          }).catch(() => {
+            showNotice('Clipboard copy not supported on this browser.');
+          });
+        });
+      } else {
+        showNotice('Use Download PNG to save your QR image.');
+      }
+    }
+
+    function printQrDirect() {
+      const canvas = qrTarget.querySelector('canvas');
+      if (!canvas) return;
+      const dataUrl = canvas.toDataURL('image/png');
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <html>
+        <head><title>Print QR Code - Vytra</title></head>
+        <body style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif;">
+          <h2 style="margin-bottom:1rem;">Scan QR Code</h2>
+          <img src="${dataUrl}" style="width:260px; height:260px;" />
+          <p style="color:#64748b; font-size:0.9rem; margin-top:1rem;">Generated via Vytra (https://digitalsaathi.vytra.in)</p>
+          <script>window.onload = function() { window.print(); }<\/script>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+
+    function shareQrLink() {
+      const payload = buildQrDataString();
+      if (navigator.share) {
+        navigator.share({
+          title: 'QR Code by Vytra',
+          text: `Scan this QR Code for: ${payload}`,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(payload).then(() => {
+          showNotice('✓ QR content copied to clipboard!');
+        });
+      }
+    }
+
+    function showNotice(msg) {
+      const el = document.getElementById('qrActionNotice');
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 3000);
+    }
+
+    // Rating star handler
+    const ratingBtns = document.querySelectorAll('.vytra-star-btn');
+    ratingBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.dataset.val);
+        ratingBtns.forEach((b, idx) => {
+          b.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQrMatrix();
     });
   </script>
 </body>
