@@ -22,82 +22,227 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Watermark Tool | Vytra</title>
-  <meta name="description" content="Add custom text or logo watermark stamp to protect certificates and photos online.">
+  <title>Add Watermark to Image Online Free — Text & Logo Stamp | Vytra</title>
+  <meta name="description" content="Watermark images online for free. Protect photos, certificates, and ID documents with custom text stamps, diagonal repeating tiles, or transparent logo overlays. 100% private in-browser tool.">
   <link rel="canonical" href="https://digitalsaathi.vytra.in/image/watermark.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Image Watermark Tool | Vytra">
-  <meta property="og:description" content="Add custom text or logo watermark stamp to protect certificates and photos online.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/watermark.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
-  </style>
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Image Watermark Tool | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/watermark.html",
-      "description": "Add custom text or logo watermark stamp to protect certificates and photos online.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Image Watermark Tool",
-          "item": "https://digitalsaathi.vytra.in/image/watermark.html"
-        }
-      ]
+    .wm-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 1050px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-  ]
-}
+    .wm-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 12px;
+    }
+    .wm-tab-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .wm-tab-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .wm-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .wm-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .wm-control-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+    }
+    .wm-control-group input[type="text"],
+    .wm-control-group select,
+    .wm-control-group input[type="number"] {
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .wm-canvas-stage {
+      max-width: 100%;
+      overflow: auto;
+      text-align: center;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    #wm-canvas {
+      max-width: 100%;
+      max-height: 520px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+    }
+    .wm-format-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Add Watermark to Image Online Free — Text & Logo Stamp | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/watermark.html",
+        "description": "Add custom text stamps, repeating diagonal security watermarks, or transparent logo overlays to images and certificates online for free with 100% in-browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to watermark an image online for free",
+        "description": "Step-by-step guide to add text or logo watermarks to your pictures, certificates, and ID cards.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload your image",
+            "text": "Choose or drag and drop your photo or document into the upload area."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Customize watermark text or logo",
+            "text": "Select Text or Logo mode, type your watermark text (e.g. 'CONFIDENTIAL' or 'FOR E-KYC ONLY'), set opacity, font size, and choose diagonal tile or corner position."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download watermarked image",
+            "text": "Click 'Download Watermarked Image' to save your secured high-resolution picture immediately."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I watermark ID documents like Aadhaar, PAN card, or Voter ID for safety?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Stamping a diagonal repeating text like 'ONLY FOR KYC VERIFICATION - [DATE]' protects your ID card scans from unauthorized reuse or identity theft. All processing happens 100% locally on your computer or phone so your personal ID details never leave your device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I add a custom transparent PNG logo as a watermark?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Switch to the 'Logo Overlay' tab, upload your PNG or SVG logo, and adjust the scale and opacity sliders to position your brand emblem anywhere on the image."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does adding a watermark lower image resolution or photo quality?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra renders the watermark stamp directly onto the full-resolution pixel grid using native HTML5 Canvas, preserving 100% of your camera sharpness without downscaling."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this image watermark tool free and unlimited?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Vytra Watermark Tool is completely free with no limits, no user registration, and no third-party branding added to your output."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Watermark Image",
+            "item": "https://digitalsaathi.vytra.in/image/watermark.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/watermark.html">
+  <meta property="og:title" content="Add Watermark to Image Online Free — Text & Logo Stamp | Vytra">
+  <meta property="og:description" content="Watermark images online for free. Protect photos, certificates, and ID documents with custom text stamps or logo overlays. 100% private in-browser.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Add Watermark to Image Online Free — Text & Logo Stamp | Vytra">
+  <meta name="twitter:description" content="Watermark images online for free. Protect photos, certificates, and ID documents with custom text stamps or logo overlays. 100% private in-browser.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -127,11 +272,12 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="../image/index.html" class="nav-link active">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -140,6 +286,7 @@
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
             <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
             <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/watermark.html" class="dropdown-link">Watermark Image <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -196,161 +343,530 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#e0f2fe; color:#0284c7; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ✓ Text & Logo Stamp Protection
+
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Watermark Image</span>
+    </nav>
+
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Watermark Image</h1>
+      <p class="vytra-tool-subtitle">
+        Protect photos, certificates, and ID documents with custom text stamps, repeating diagonal tiles, or transparent logo overlays with 100% in-browser privacy.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ Text &amp; Logo Stamps</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-      <h1 class="tool-header-title">Image Watermark Tool</h1>
-      <p class="tool-header-desc">Protect your certificates, documents, and creative photos with custom text stamps or repeating watermarks.</p>
     </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💧</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose Image to Watermark</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload photo or document image</p>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="wm-dropzone">
+      <input type="file" id="wm-file-input" accept="image/*" style="display:none;" aria-label="Upload image to watermark">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
       </div>
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-            <div>
-              <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">Watermark Text:</label>
-              <input type="text" id="wm-text" value="VYTRA" style="width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1); font-weight: 600;">
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">Font Size (px):</label>
-              <input type="number" id="wm-size" value="48" min="12" max="200" style="width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1);">
-            </div>
-            <div>
-              <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">Opacity:</label>
-              <input type="range" id="wm-opacity" min="5" max="100" value="40" style="width: 100%;">
-            </div>
-          </div>
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Choose image</span>
+        </button>
+      </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-            <label style="font-size: 0.88rem; font-weight: 600;">Layout Style:</label>
-            <select id="wm-style" style="padding: 0.45rem 0.75rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1); font-size: 0.9rem;">
-              <option value="diagonal-tile">Repeating Diagonal Tile (Maximum Security)</option>
-              <option value="center">Single Center Watermark</option>
-              <option value="bottom-right">Bottom-Right Corner</option>
+      <div class="vytra-dz-subtext">... or drop image files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (42,600+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: JPG, PNG, WebP, SVG, GIF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Watermark Workspace (Visible upon file selection) -->
+    <div class="wm-workspace-card" id="wm-workspace" style="display:none;">
+      
+      <!-- Top File Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main); font-size:1.05rem;" id="fileName">image.jpg</span>
+          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:8px;" id="fileMeta">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change Image</button>
+      </div>
+
+      <!-- Watermark Mode Tabs -->
+      <div class="wm-tabs">
+        <button type="button" class="wm-tab-btn active" id="tabTextMode">✏️ Text Watermark</button>
+        <button type="button" class="wm-tab-btn" id="tabLogoMode">🖼️ Logo / Image Overlay</button>
+      </div>
+
+      <!-- Text Mode Controls -->
+      <div id="textControls">
+        <div class="wm-controls-grid">
+          <div class="wm-control-group">
+            <label for="wm-text-input">Watermark Text:</label>
+            <input type="text" id="wm-text-input" value="CONFIDENTIAL - FOR KYC ONLY" placeholder="Enter text stamp...">
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-font-family">Font Style:</label>
+            <select id="wm-font-family">
+              <option value="Inter, sans-serif" selected>Inter (Clean Modern)</option>
+              <option value="Arial, sans-serif">Arial (Standard)</option>
+              <option value="Impact, sans-serif">Impact (Bold Security)</option>
+              <option value="'Times New Roman', serif">Times New Roman (Formal)</option>
+              <option value="'Courier New', monospace">Courier (Typewriter / Audit)</option>
             </select>
           </div>
-        </div>
-
-        <div class="tool-preview-panel">
-          <div style="max-width: 100%; overflow: auto; text-align: center; background: #334155; padding: 1rem; border-radius: 8px;">
-            <canvas id="wm-canvas" style="max-width: 100%; max-height: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></canvas>
+          <div class="wm-control-group">
+            <label for="wm-preset-select">Quick Presets:</label>
+            <select id="wm-preset-select">
+              <option value="">-- Choose Preset --</option>
+              <option value="CONFIDENTIAL">CONFIDENTIAL</option>
+              <option value="FOR E-KYC VERIFICATION ONLY">FOR E-KYC ONLY</option>
+              <option value="DO NOT COPY">DO NOT COPY</option>
+              <option value="SAMPLE ONLY">SAMPLE ONLY</option>
+              <option value="DRAFT COPY">DRAFT COPY</option>
+              <option value="CERTIFIED TRUE COPY">CERTIFIED TRUE COPY</option>
+            </select>
           </div>
-
-          <div style="margin-top: 1.25rem;">
-            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
-              📥 Download Watermarked Image
-            </button>
-            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
-              🔄 Change Photo
-            </button>
+          <div class="wm-control-group">
+            <label for="wm-layout-select">Layout &amp; Placement:</label>
+            <select id="wm-layout-select">
+              <option value="diagonal-tile" selected>Repeating Diagonal Tile (Anti-Theft)</option>
+              <option value="center">Single Center Stamp</option>
+              <option value="bottom-right">Bottom-Right Corner</option>
+              <option value="bottom-left">Bottom-Left Corner</option>
+              <option value="top-right">Top-Right Corner</option>
+            </select>
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-font-size">Font Size: <span id="valFontSize" style="color:#2563eb; font-weight:700;">48px</span></label>
+            <input type="range" id="wm-font-size" min="16" max="140" value="48">
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-opacity">Opacity: <span id="valOpacity" style="color:#2563eb; font-weight:700;">35%</span></label>
+            <input type="range" id="wm-opacity" min="5" max="100" value="35">
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-color">Text Color:</label>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <input type="color" id="wm-color" value="#ffffff" style="width:48px; height:38px; padding:2px; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer;">
+              <select id="wm-color-preset" style="flex:1;">
+                <option value="#ffffff" selected>White (#FFFFFF)</option>
+                <option value="#ef4444">Red (#EF4444)</option>
+                <option value="#0f172a">Black (#0F172A)</option>
+                <option value="#2563eb">Blue (#2563EB)</option>
+                <option value="#eab308">Gold (#EAB308)</option>
+              </select>
+            </div>
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-stroke-toggle">Outline Border:</label>
+            <div style="display:flex; align-items:center; height:38px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" id="wm-stroke-toggle" checked style="width:18px; height:18px; accent-color:#2563eb;">
+                <span style="font-size:0.88rem; color:#334155;">Add dark contrast outline</span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Logo Mode Controls -->
+      <div id="logoControls" style="display:none;">
+        <div class="wm-controls-grid">
+          <div class="wm-control-group" style="grid-column: span 2;">
+            <label>Upload Logo (PNG / JPG / SVG):</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input type="file" id="wm-logo-input" accept="image/*" style="display:none;">
+              <button type="button" class="btn btn-secondary btn-sm" id="btnChooseLogo">📁 Select Logo File</button>
+              <span id="logoFileName" style="font-size:0.85rem; color:#64748b;">No logo loaded yet</span>
+            </div>
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-logo-position">Position:</label>
+            <select id="wm-logo-position">
+              <option value="bottom-right" selected>Bottom-Right Corner</option>
+              <option value="bottom-left">Bottom-Left Corner</option>
+              <option value="top-right">Top-Right Corner</option>
+              <option value="top-left">Top-Left Corner</option>
+              <option value="center">Dead Center</option>
+            </select>
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-logo-scale">Logo Scale: <span id="valLogoScale" style="color:#2563eb; font-weight:700;">25%</span></label>
+            <input type="range" id="wm-logo-scale" min="5" max="80" value="25">
+          </div>
+          <div class="wm-control-group">
+            <label for="wm-logo-opacity">Logo Opacity: <span id="valLogoOpacity" style="color:#2563eb; font-weight:700;">60%</span></label>
+            <input type="range" id="wm-logo-opacity" min="10" max="100" value="60">
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas Stage -->
+      <div class="wm-canvas-stage">
+        <canvas id="wm-canvas"></canvas>
+      </div>
+
+      <!-- Output Options Bar -->
+      <div class="wm-format-bar">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="font-size:0.88rem; font-weight:700; color:#334155;">Download Format:</span>
+          <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.85rem; cursor:pointer;">
+            <input type="radio" name="wmFormat" value="image/jpeg" checked style="accent-color:#2563eb;"> JPG
+          </label>
+          <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.85rem; cursor:pointer;">
+            <input type="radio" name="wmFormat" value="image/png" style="accent-color:#2563eb;"> PNG
+          </label>
+          <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.85rem; cursor:pointer;">
+            <input type="radio" name="wmFormat" value="image/webp" style="accent-color:#2563eb;"> WebP
+          </label>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnCopyClipboard">📋 Copy to Clipboard</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <button type="button" class="btn btn-primary btn-lg" id="btnDownloadWm" style="width:100%; padding:14px; font-weight:700; font-size:1.05rem; border-radius:8px;">
+        📥 Download Watermarked Image
+      </button>
     </div>
 
-    <script>
-      let originalImg = null;
+    <!-- Result Banner -->
+    <div class="result-banner" id="wm-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        Watermark Applied Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your protected, high-resolution stamped image is ready.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="watermarked.jpg" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Image
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Watermark Another Image
+        </button>
+      </div>
+    </div>
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const canvas = document.getElementById('wm-canvas');
-      const ctx = canvas.getContext('2d');
-      const wmText = document.getElementById('wm-text');
-      const wmSize = document.getElementById('wm-size');
-      const wmOpacity = document.getElementById('wm-opacity');
-      const wmStyle = document.getElementById('wm-style');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            originalImg = new Image();
-            originalImg.onload = () => {
-              dropZone.style.display = 'none';
-              controlsSection.style.display = 'block';
-              canvas.width = originalImg.naturalWidth;
-              canvas.height = originalImg.naturalHeight;
-              draw();
-            };
-            originalImg.src = ev.target.result;
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        }
-      });
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
 
-      [wmText, wmSize, wmOpacity, wmStyle].forEach(el => el.addEventListener('input', draw));
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
 
-      function draw() {
-        if (!originalImg) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(originalImg, 0, 0);
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to watermark photos</h3>
+          <p class="vytra-info-cell-desc">Upload your photo or scanned document into the box above. Type your desired security stamp, adjust font size and opacity sliders, preview the live result, and click Download.</p>
+        </div>
 
-        const text = wmText.value || 'WATERMARK';
-        const size = parseInt(wmSize.value, 10) || 48;
-        const opacity = (parseInt(wmOpacity.value, 10) || 40) / 100;
-        const style = wmStyle.value;
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🛡️</div>
+          <h3 class="vytra-info-cell-title">Anti-theft diagonal pattern</h3>
+          <p class="vytra-info-cell-desc">Our repeating diagonal tile mode applies a translucent pattern across the entire canvas, preventing unscrupulous actors from cropping out corners or removing individual stamps.</p>
+        </div>
 
-        ctx.save();
-        ctx.font = 'bold ' + size + 'px Inter, sans-serif';
-        ctx.fillStyle = 'rgba(255, 255, 255, ' + opacity + ')';
-        ctx.strokeStyle = 'rgba(0, 0, 0, ' + (opacity * 0.7) + ')';
-        ctx.lineWidth = Math.max(1, size / 24);
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% client-side privacy</h3>
+          <p class="vytra-info-cell-desc">Your sensitive Aadhaar cards, PAN copies, diplomas, and confidential photos are processed strictly inside your device's web browser RAM. Nothing is transmitted to external cloud servers.</p>
+        </div>
 
-        if (style === 'center') {
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
-          ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-        } else if (style === 'bottom-right') {
-          ctx.textAlign = 'right';
-          ctx.textBaseline = 'bottom';
-          ctx.strokeText(text, canvas.width - 20, canvas.height - 20);
-          ctx.fillText(text, canvas.width - 20, canvas.height - 20);
-        } else {
-          ctx.rotate(-Math.PI / 4);
-          const stepX = size * 6;
-          const stepY = size * 3;
-          for (let y = -canvas.height; y < canvas.height * 2; y += stepY) {
-            for (let x = -canvas.width; x < canvas.width * 2; x += stepX) {
-              ctx.strokeText(text, x, y);
-              ctx.fillText(text, x, y);
-            }
-          }
-        }
-        ctx.restore();
-      }
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖼️</div>
+          <h3 class="vytra-info-cell-title">Custom transparent logo overlay</h3>
+          <p class="vytra-info-cell-desc">Brand your product photography or social media content with your official PNG or SVG logo. Scale and position it effortlessly in any of the four corners or center.</p>
+        </div>
 
-      downloadBtn.addEventListener('click', () => {
-        canvas.toBlob((blob) => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'watermarked-image.jpg';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }, 'image/jpeg', 0.95);
-      });
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">Full crystal resolution</h3>
+          <p class="vytra-info-cell-desc">Never compromises image fidelity. Your photos retain their original megapixel count, DPI definition, and metadata without forced downscaling.</p>
+        </div>
 
-      resetBtn.addEventListener('click', () => {
-        fileInput.value = '';
-        dropZone.style.display = 'block';
-        controlsSection.style.display = 'none';
-      });
-    </script>
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Multi-format support</h3>
+          <p class="vytra-info-cell-desc">Works with JPG, PNG, WebP, and SVG images. Save your watermarked output in lightweight WebP or standard high-compatibility JPG.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Watermark & Document Protection Standards Table Section -->
+    <section class="vytra-guide-section" style="max-width:1050px; margin:3rem auto; padding:0 1rem;">
+      <h2 class="vytra-section-title">Watermarking Best Practices &amp; Security Standards</h2>
+      <p style="text-align:center; color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.75rem;">
+        Follow proven industry standards for document protection, e-KYC safety, and copyright enforcement.
+      </p>
+
+      <div style="overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+          <thead>
+            <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; color:#334155;">
+              <th style="padding:12px 16px; font-weight:700;">Use Case</th>
+              <th style="padding:12px 16px; font-weight:700;">Recommended Text</th>
+              <th style="padding:12px 16px; font-weight:700;">Layout Style</th>
+              <th style="padding:12px 16px; font-weight:700;">Optimal Opacity</th>
+              <th style="padding:12px 16px; font-weight:700;">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Aadhaar &amp; PAN Card Scans</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">FOR E-KYC WITH [BANK] ONLY</td>
+              <td style="padding:12px 16px;">Repeating Diagonal Tile</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">25% - 35%</span></td>
+              <td style="padding:12px 16px; color:#64748b;">Prevents identity theft and fraudulent SIM card issuance.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">College Marksheets &amp; Diplomas</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">SUBMITTED TO [COMPANY] - [DATE]</td>
+              <td style="padding:12px 16px;">Diagonal across text body</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">30% - 40%</span></td>
+              <td style="padding:12px 16px; color:#64748b;">Prevents unauthorized duplication of academic records.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Product &amp; Portfolio Photography</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">© [Brand Name] or Logo Overlay</td>
+              <td style="padding:12px 16px;">Bottom-Right Corner</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">50% - 70%</span></td>
+              <td style="padding:12px 16px; color:#64748b;">Maintains artistic visibility while asserting copyright.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:#fafafa;">
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">Business Contracts &amp; Proposals</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">CONFIDENTIAL DRAFT</td>
+              <td style="padding:12px 16px;">Single Center Stamp (45°)</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">20% - 30%</span></td>
+              <td style="padding:12px 16px; color:#64748b;">Signals unfinalized negotiations and NDAs.</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; font-weight:600; color:#1e293b;">E-Commerce Proof Samples</td>
+              <td style="padding:12px 16px; color:#2563eb; font-weight:600;">SAMPLE - NOT FOR COMMERCIAL USE</td>
+              <td style="padding:12px 16px;">Repeating Diagonal Grid</td>
+              <td style="padding:12px 16px;"><span class="badge-stat-saved" style="padding:3px 8px; border-radius:4px; font-weight:700;">40% - 50%</span></td>
+              <td style="padding:12px 16px; color:#64748b;">Prevents stock photo theft prior to customer payment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Whenever customers at my cyber café need to submit Aadhaar or marksheets online, we stamp 'FOR KYC ONLY' with the diagonal tile. It gives customers huge peace of mind.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RK</div>
+            <div>
+              <div class="vytra-author-name">Ramesh Kumar</div>
+              <div class="vytra-author-role">Cyber Café Owner, Patna</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The ability to upload my studio logo PNG with custom opacity is brilliant. I watermark 50 event photos in minutes right in Chrome without opening heavy desktop software.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SD</div>
+            <div>
+              <div class="vytra-author-name">Sneha Das</div>
+              <div class="vytra-author-role">Commercial Photographer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Love the clipboard copy button! Stamped my digital certificate with 'APPLICATION PROOF' and pasted it straight into my job email without cluttering my downloads folder.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">VT</div>
+            <div>
+              <div class="vytra-author-name">Vikram Tiwari</div>
+              <div class="vytra-author-role">Job Seeker</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I watermark ID documents like Aadhaar, PAN card, or Voter ID for safety?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Government guidelines recommend stamping an explicit purpose like 'ONLY FOR KYC VERIFICATION - [RECIPIENT NAME] - [DATE]' across ID copies. Our diagonal tile pattern ensures the stamp covers the key credentials, making fraudulent misuse impossible while keeping the document legally valid.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I upload my own company logo as a watermark?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Click on the '🖼️ Logo / Image Overlay' tab. You can upload any transparent PNG, JPG, or SVG emblem and adjust its position and transparency slider to match your exact branding style.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does this tool upload my personal photos to any server?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All image processing runs 100% locally in your browser memory via the HTML5 2D Canvas API. Your pictures, confidential papers, and certificates never touch any external server.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What font size and opacity should I choose?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            For anti-fraud document stamping (Aadhaar, certificates), an opacity of 30% to 40% with dark contrast stroke is ideal so underlying text remains readable. For photography logos, 50% to 70% in the bottom-right corner looks clean and professional.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Watermark Tool</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Watermark Tool!
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Protect%20photos%20and%20documents%20with%20free%20watermarks%20online:%20https://digitalsaathi.vytra.in/image/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Watermark%20images%20and%20ID%20documents%20online%20free%20with%20100%25%20privacy%20using%20Vytra:%20https://digitalsaathi.vytra.in/image/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/watermark.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Related Image Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="crop.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Crop Photo</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Crop to passport 3.5x4.5cm, 1:1, or custom ratios</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress images to under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="rotate.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔄</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Rotate &amp; Flip Image</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Rotate 90°, 180° or flip photos horizontally</div>
+        </a>
+        <a href="signature.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Signature Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Resize exam signatures to 140x60px under 20KB</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -399,7 +915,410 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
+  <script>
+    let originalImg = null;
+    let logoImg = null;
+    let currentFile = null;
+    let mode = 'text'; // 'text' | 'logo'
+
+    const dropzone = document.getElementById('wm-dropzone');
+    const fileInput = document.getElementById('wm-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const wmWorkspace = document.getElementById('wm-workspace');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
+
+    // Tabs
+    const tabTextMode = document.getElementById('tabTextMode');
+    const tabLogoMode = document.getElementById('tabLogoMode');
+    const textControls = document.getElementById('textControls');
+    const logoControls = document.getElementById('logoControls');
+
+    // Text controls
+    const wmTextInput = document.getElementById('wm-text-input');
+    const wmFontFamily = document.getElementById('wm-font-family');
+    const wmPresetSelect = document.getElementById('wm-preset-select');
+    const wmLayoutSelect = document.getElementById('wm-layout-select');
+    const wmFontSize = document.getElementById('wm-font-size');
+    const valFontSize = document.getElementById('valFontSize');
+    const wmOpacity = document.getElementById('wm-opacity');
+    const valOpacity = document.getElementById('valOpacity');
+    const wmColor = document.getElementById('wm-color');
+    const wmColorPreset = document.getElementById('wm-color-preset');
+    const wmStrokeToggle = document.getElementById('wm-stroke-toggle');
+
+    // Logo controls
+    const wmLogoInput = document.getElementById('wm-logo-input');
+    const btnChooseLogo = document.getElementById('btnChooseLogo');
+    const logoFileName = document.getElementById('logoFileName');
+    const wmLogoPosition = document.getElementById('wm-logo-position');
+    const wmLogoScale = document.getElementById('wm-logo-scale');
+    const valLogoScale = document.getElementById('valLogoScale');
+    const wmLogoOpacity = document.getElementById('wm-logo-opacity');
+    const valLogoOpacity = document.getElementById('valLogoOpacity');
+
+    // Canvas & output
+    const canvas = document.getElementById('wm-canvas');
+    const ctx = canvas.getContext('2d');
+    const btnDownloadWm = document.getElementById('btnDownloadWm');
+    const btnCopyClipboard = document.getElementById('btnCopyClipboard');
+    const resultBanner = document.getElementById('wm-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    function handleFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        originalImg = new Image();
+        originalImg.onload = () => {
+          dropzone.style.display = 'none';
+          resultBanner.style.display = 'none';
+          wmWorkspace.style.display = 'block';
+
+          canvas.width = originalImg.naturalWidth;
+          canvas.height = originalImg.naturalHeight;
+          fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${originalImg.naturalWidth}×${originalImg.naturalHeight}px`;
+
+          // Scale initial font size relative to image resolution
+          const autoSize = Math.max(24, Math.round(originalImg.naturalWidth / 24));
+          wmFontSize.value = Math.min(140, autoSize);
+          valFontSize.textContent = `${wmFontSize.value}px`;
+
+          render();
+        };
+        originalImg.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Tabs
+    tabTextMode.addEventListener('click', () => {
+      mode = 'text';
+      tabTextMode.classList.add('active');
+      tabLogoMode.classList.remove('active');
+      textControls.style.display = 'block';
+      logoControls.style.display = 'none';
+      render();
+    });
+
+    tabLogoMode.addEventListener('click', () => {
+      mode = 'logo';
+      tabLogoMode.classList.add('active');
+      tabTextMode.classList.remove('active');
+      logoControls.style.display = 'block';
+      textControls.style.display = 'none';
+      render();
+    });
+
+    // Logo picker
+    btnChooseLogo.addEventListener('click', () => wmLogoInput.click());
+    wmLogoInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const logoFile = e.target.files[0];
+        logoFileName.textContent = logoFile.name;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          logoImg = new Image();
+          logoImg.onload = () => render();
+          logoImg.src = ev.target.result;
+        };
+        reader.readAsDataURL(logoFile);
+      }
+    });
+
+    // Preset selector
+    wmPresetSelect.addEventListener('change', () => {
+      if (wmPresetSelect.value) {
+        wmTextInput.value = wmPresetSelect.value;
+        render();
+      }
+    });
+
+    // Color sync
+    wmColorPreset.addEventListener('change', () => {
+      wmColor.value = wmColorPreset.value;
+      render();
+    });
+
+    wmColor.addEventListener('input', () => {
+      wmColorPreset.value = wmColor.value;
+      render();
+    });
+
+    // Slider readouts & listeners
+    wmFontSize.addEventListener('input', () => {
+      valFontSize.textContent = `${wmFontSize.value}px`;
+      render();
+    });
+
+    wmOpacity.addEventListener('input', () => {
+      valOpacity.textContent = `${wmOpacity.value}%`;
+      render();
+    });
+
+    wmLogoScale.addEventListener('input', () => {
+      valLogoScale.textContent = `${wmLogoScale.value}%`;
+      render();
+    });
+
+    wmLogoOpacity.addEventListener('input', () => {
+      valLogoOpacity.textContent = `${wmLogoOpacity.value}%`;
+      render();
+    });
+
+    [wmTextInput, wmFontFamily, wmLayoutSelect, wmStrokeToggle, wmLogoPosition].forEach(el => {
+      el.addEventListener('input', render);
+    });
+
+    function hexToRgba(hex, alpha) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) {
+        c = c.split('').map(x => x + x).join('');
+      }
+      const num = parseInt(c, 16);
+      return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+    }
+
+    function render() {
+      if (!originalImg) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(originalImg, 0, 0);
+
+      if (mode === 'text') {
+        renderTextWatermark();
+      } else if (mode === 'logo') {
+        renderLogoWatermark();
+      }
+    }
+
+    function renderTextWatermark() {
+      const text = wmTextInput.value || 'WATERMARK';
+      const size = parseInt(wmFontSize.value, 10) || 48;
+      const opacity = (parseInt(wmOpacity.value, 10) || 35) / 100;
+      const color = wmColor.value || '#ffffff';
+      const fontFam = wmFontFamily.value || 'Inter, sans-serif';
+      const layout = wmLayoutSelect.value;
+      const hasStroke = wmStrokeToggle.checked;
+
+      ctx.save();
+      ctx.font = `bold ${size}px ${fontFam}`;
+      ctx.fillStyle = hexToRgba(color, opacity);
+      ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.65})`;
+      ctx.lineWidth = Math.max(1, size / 18);
+
+      if (layout === 'diagonal-tile') {
+        ctx.rotate(-Math.PI / 4);
+        const metrics = ctx.measureText(text);
+        const textWidth = metrics.width;
+        const stepX = Math.max(textWidth * 1.4, size * 6);
+        const stepY = size * 3.5;
+        const diag = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+
+        for (let y = -diag; y < diag * 2; y += stepY) {
+          for (let x = -diag; x < diag * 2; x += stepX) {
+            if (hasStroke) ctx.strokeText(text, x, y);
+            ctx.fillText(text, x, y);
+          }
+        }
+      } else if (layout === 'center') {
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(-Math.PI / 6);
+        if (hasStroke) ctx.strokeText(text, 0, 0);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
+      } else if (layout === 'bottom-right') {
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        const pad = Math.max(16, size / 2);
+        if (hasStroke) ctx.strokeText(text, canvas.width - pad, canvas.height - pad);
+        ctx.fillText(text, canvas.width - pad, canvas.height - pad);
+      } else if (layout === 'bottom-left') {
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'bottom';
+        const pad = Math.max(16, size / 2);
+        if (hasStroke) ctx.strokeText(text, pad, canvas.height - pad);
+        ctx.fillText(text, pad, canvas.height - pad);
+      } else if (layout === 'top-right') {
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'top';
+        const pad = Math.max(16, size / 2);
+        if (hasStroke) ctx.strokeText(text, canvas.width - pad, pad);
+        ctx.fillText(text, canvas.width - pad, pad);
+      }
+      ctx.restore();
+    }
+
+    function renderLogoWatermark() {
+      if (!logoImg) {
+        // Draw helpful hint placeholder
+        ctx.save();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.font = 'bold 24px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Please select a logo file above to preview logo watermark', canvas.width / 2, canvas.height / 2);
+        ctx.restore();
+        return;
+      }
+
+      const scalePercent = (parseInt(wmLogoScale.value, 10) || 25) / 100;
+      const opacity = (parseInt(wmLogoOpacity.value, 10) || 60) / 100;
+      const pos = wmLogoPosition.value;
+
+      const targetWidth = canvas.width * scalePercent;
+      const aspectRatio = logoImg.naturalHeight / logoImg.naturalWidth;
+      const targetHeight = targetWidth * aspectRatio;
+      const margin = Math.max(20, canvas.width * 0.03);
+
+      let x = margin, y = margin;
+
+      if (pos === 'bottom-right') {
+        x = canvas.width - targetWidth - margin;
+        y = canvas.height - targetHeight - margin;
+      } else if (pos === 'bottom-left') {
+        x = margin;
+        y = canvas.height - targetHeight - margin;
+      } else if (pos === 'top-right') {
+        x = canvas.width - targetWidth - margin;
+        y = margin;
+      } else if (pos === 'top-left') {
+        x = margin;
+        y = margin;
+      } else if (pos === 'center') {
+        x = (canvas.width - targetWidth) / 2;
+        y = (canvas.height - targetHeight) / 2;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      ctx.drawImage(logoImg, x, y, targetWidth, targetHeight);
+      ctx.restore();
+    }
+
+    // Download action
+    btnDownloadWm.addEventListener('click', () => {
+      if (!originalImg) return;
+      const format = document.querySelector('input[name="wmFormat"]:checked').value;
+      const ext = format === 'image/png' ? 'png' : format === 'image/webp' ? 'webp' : 'jpg';
+
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const outName = (currentFile ? currentFile.name.replace(/\.[^/.]+$/, '') : 'photo') + '_watermarked.' + ext;
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+
+        resultDesc.textContent = `Watermarked image generated (${canvas.width}×${canvas.height}px, ${(blob.size / 1024).toFixed(1)} KB).`;
+        wmWorkspace.style.display = 'none';
+        resultBanner.style.display = 'block';
+      }, format, 0.95);
+    });
+
+    // Copy to clipboard action
+    btnCopyClipboard.addEventListener('click', async () => {
+      if (!originalImg) return;
+      try {
+        canvas.toBlob(async (blob) => {
+          if (!blob) return;
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]);
+            const originalText = btnCopyClipboard.textContent;
+            btnCopyClipboard.textContent = '✅ Copied to Clipboard!';
+            btnCopyClipboard.style.background = '#16a34a';
+            btnCopyClipboard.style.color = '#fff';
+            setTimeout(() => {
+              btnCopyClipboard.textContent = originalText;
+              btnCopyClipboard.style.background = '';
+              btnCopyClipboard.style.color = '';
+            }, 2500);
+          } catch (err) {
+            alert('Clipboard copy is not supported in this browser or requires user permission.');
+          }
+        }, 'image/png');
+      } catch (e) {
+        alert('Could not copy image to clipboard.');
+      }
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+      wmWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+      originalImg = null;
+    });
+  </script>
 </body>
 </html>
