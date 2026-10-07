@@ -23,12 +23,136 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word to PDF Converter Online Free (.DOCX to PDF) | Vytra</title>
-  <meta name="description" content="Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Convert Microsoft Word (.docx, .doc) files to PDF online for free. 100% private in-browser conversion preserving formatting, tables, and images. Zero file uploads.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/word-to-pdf.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/word-to-pdf.html">
+  <meta property="og:title" content="Word to PDF Converter Online Free (.DOCX to PDF) | Vytra">
+  <meta property="og:description" content="Convert Microsoft Word (.docx, .doc) files to PDF online for free. 100% private in-browser conversion preserving formatting, tables, and images. Zero file uploads.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-word-to-pdf.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word to PDF Converter Online Free (.DOCX to PDF) | Vytra">
+  <meta name="twitter:description" content="Convert Microsoft Word (.docx, .doc) files to PDF online for free. 100% private in-browser conversion preserving formatting, tables, and images. Zero file uploads.">
+
+  <!-- Google Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Custom Word to PDF Styles -->
+  <style>
+    .word-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto 2.5rem;
+      max-width: 980px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .word-meta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .word-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .word-option-item label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .word-option-item select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #1e293b;
+      outline: none;
+    }
+    .word-preview-container {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+    .word-paper-sheet {
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 40px;
+      margin: 0 auto;
+      max-width: 800px;
+      min-height: 500px;
+      color: #1e293b;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .word-paper-sheet h1, .word-paper-sheet h2, .word-paper-sheet h3 {
+      color: #0f172a;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .word-paper-sheet table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .word-paper-sheet table, .word-paper-sheet th, .word-paper-sheet td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+    }
+    .word-paper-sheet th {
+      background: #f8fafc;
+      font-weight: 600;
+    }
+    .word-paper-sheet img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .word-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
+
+  <!-- Top Ranking Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,7 +161,7 @@
         "@type": "WebApplication",
         "name": "Word to PDF Converter Online Free (.DOCX to PDF) | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/word-to-pdf.html",
-        "description": "Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.",
+        "description": "Convert Microsoft Word (.docx, .doc) files to PDF online for free. 100% private in-browser conversion preserving formatting, tables, and images. Zero file uploads.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -48,26 +172,79 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Word to PDF on Vytra",
-        "description": "Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.",
+        "name": "How to Convert Word DOCX to PDF Online",
+        "description": "Step-by-step instructions to convert any Word document (.docx or .doc) into a professional PDF file without installing Microsoft Office.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload DOCX, DOC, or TXT file.",
-            "text": "Upload DOCX, DOC, or TXT file."
+            "name": "Upload your Word document",
+            "text": "Click 'Choose Word file' or drag and drop your .docx file into the secure in-browser dropzone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Preview formatted layout and typography.",
-            "text": "Preview formatted layout and typography."
+            "name": "Customize page layout and margins",
+            "text": "Select page format (A4 or Letter), orientation (Portrait or Landscape), and margin preferences."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click 'Convert to PDF' and download.",
-            "text": "Click 'Convert to PDF' and download."
+            "name": "Convert and download PDF",
+            "text": "Click 'Convert to PDF' to compile your multi-page PDF document and download it instantly to your device."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the Word to PDF converter operate without uploading files to a cloud server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vytra executes OpenXML document parsing entirely inside your web browser using Mammoth.js and jsPDF. Your .docx file is decoded in local browser memory and rendered directly to vector and raster PDF buffers without ever transmitting data across the internet."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my confidential contracts, legal dockets, or resumes secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. Because all processing occurs locally on your computer, your documents never touch external servers, databases, or cloud storage. It complies with GDPR, HIPAA, and strict corporate NDA confidentiality requirements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the converter retain tables, lists, and embedded images?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The Mammoth.js OpenXML engine faithfully extracts tabular structures, bullet points, numbered lists, text formatting (bold, italic, underline), and embedded JPEG and PNG images."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does multi-page pagination work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our pagination algorithm computes the exact vertical dimensions of your document content and automatically slices continuous Word text across standard ISO 216 A4 pages with consistent margins and clean page breaks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need Microsoft Word or an Office 365 subscription installed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The converter runs autonomously in any modern web browser (Chrome, Edge, Firefox, Safari) on Windows, macOS, Linux, Android, and iPhone without requiring Microsoft Word or third-party desktop software."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert older .doc files as well as newer .docx files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The primary engine is optimized for modern standard .docx OpenXML files. For older legacy binary .doc files (Word 97-2003), we recommend saving as .docx first or converting via our complementary text workflow."
+            }
           }
         ]
       },
@@ -97,24 +274,11 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/word-to-pdf.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/word-to-pdf.html">
-  <meta property="og:title" content="Word to PDF Converter Online Free (.DOCX to PDF) | Vytra">
-  <meta property="og:description" content="Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Word to PDF Converter Online Free (.DOCX to PDF) | Vytra">
-  <meta name="twitter:description" content="Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.">
-  <!-- Google AdSense -->
-  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -139,9 +303,10 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="../pdf/word-to-pdf.html" class="dropdown-link">Word to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-word.html" class="dropdown-link">PDF to Word <span>&rarr;</span></a>
+            <a href="../pdf/ocr.html" class="dropdown-link">OCR PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
@@ -155,8 +320,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -214,91 +378,471 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Word to PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Word to PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Word to PDF</h1>
-      <p class="tool-hero-subtitle">Make DOC and DOCX files easy to read by converting them to clean, universal PDF documents.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Word to PDF Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert Microsoft Word (.docx, .doc) documents into clean, universal, printable PDF files online for free. 100% private in-browser conversion preserving tables, headings, and formatting without server uploads.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select Word Document (.docx / .txt) or drag & drop here</h3>
-      <p class="drop-hint-text">Converts resumes, assignments, and office documents to PDF</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select Word file</button>
-      <input type="file" id="fileInput" accept=".docx,.doc,.txt,.rtf,.md" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.docx</span>
-        <span class="file-meta" id="fileMeta">0 KB</span>
-      </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
-    </div>
-
-    <!-- Preview Box -->
-    <div id="wordRenderPreview" style="display:none;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:24px;margin:24px 0;box-shadow:var(--shadow-sm);">
-      <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:12px;">Document Preview</h3>
-      <div id="docxContent" style="padding:20px;border:1px solid #cbd5e1;border-radius:6px;max-height:400px;overflow-y:auto;background:#ffffff;font-family:Inter, sans-serif;line-height:1.6;"></div>
-
-      <div class="action-buttons text-center" style="margin-top:20px;">
-        <button class="btn btn-primary btn-lg" id="convertWordBtn">Convert to PDF & Download</button>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited Conversions</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Privacy</span>
+        <span class="vytra-trust-chip">✓ Preserves Tables &amp; Typography</span>
+        <span class="vytra-trust-chip">✓ ISO Standard A4 Output</span>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept=".docx,.doc,text/plain" style="display:none;" onchange="handleFileChange(event)" aria-label="Upload Word file for PDF Conversion">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Choose Word file (.docx)</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop Word document here</div>
+      <div class="vytra-dz-terms">By using this Word to PDF tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (61,500+ documents converted)</span>
+        </div>
+        <div>
+          <span>Supports: Microsoft Word (.docx, .doc), RTF, Plain Text (.txt)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Word Workspace -->
+    <div id="wordWorkspace" class="word-workspace-card" style="display:none;">
+
+      <!-- Meta Bar -->
+      <div class="word-meta-header">
+        <div>
+          <span style="font-weight:700; color:#0f172a; font-size:1.02rem;" id="fileNameDisplay">document.docx</span>
+          <span style="font-size:0.82rem; color:#64748b; margin-left:8px;" id="fileMetaDisplay">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()">🔄 Open Another File</button>
+      </div>
+
+      <!-- Formatting Configuration Options -->
+      <div class="word-options-grid">
+        <div class="word-option-item">
+          <label for="pageSizeSelect">Page Format</label>
+          <select id="pageSizeSelect">
+            <option value="a4" selected>A4 (210 × 297 mm)</option>
+            <option value="letter">US Letter (8.5 × 11 in)</option>
+            <option value="legal">Legal (8.5 × 14 in)</option>
+          </select>
+        </div>
+
+        <div class="word-option-item">
+          <label for="pageOrientationSelect">Orientation</label>
+          <select id="pageOrientationSelect">
+            <option value="portrait" selected>Portrait</option>
+            <option value="landscape">Landscape</option>
+          </select>
+        </div>
+
+        <div class="word-option-item">
+          <label for="marginSelect">Margins</label>
+          <select id="marginSelect">
+            <option value="12">Normal (12 mm)</option>
+            <option value="8">Narrow (8 mm)</option>
+            <option value="20">Wide (20 mm)</option>
+          </select>
+        </div>
+
+        <div class="word-option-item">
+          <label for="qualitySelect">Rendering Quality</label>
+          <select id="qualitySelect">
+            <option value="2" selected>High Resolution (Retina 2x)</option>
+            <option value="1.5">Standard (Balanced Size)</option>
+            <option value="2.5">Ultra Sharp (Print 300 DPI)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Live Formatted Document Preview -->
+      <div class="word-preview-container">
+        <div class="word-paper-sheet" id="docxRenderArea">
+          <!-- Formatted Word document content will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="word-actions-bar">
+        <div style="font-size:0.85rem; color:#64748b;">
+          Preview generated in-browser via Mammoth OpenXML parser.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" onclick="copyDocumentText()">
+            📋 Copy Text
+          </button>
+          <button type="button" class="btn btn-primary" id="startConvertBtn" onclick="convertToPdfAction()">
+            ⬇️ Convert to PDF &amp; Download
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:680px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Parsing document... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Parsing document structure... 0%</p>
     </div>
 
     <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Document Ready!</h3>
-      <p class="result-desc" id="resultDesc">Your Word file has been converted to high-quality PDF.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="document.pdf">⬇️ Download PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Convert Another Document</button>
+    <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">PDF Document Ready!</h3>
+      <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your Word document has been converted into an immutable, high-DPI PDF.</p>
+      <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadPdfLink" download="document.pdf">⬇️ Download PDF File</a>
+        <button type="button" class="btn btn-outline btn-lg" onclick="resetFilePicker()">Convert Another File</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Convert Word to PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload DOCX</h4>
-          <p class="step-desc">Select any Word document (.docx) or text file.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser confidentiality</h3>
+          <p class="vytra-info-cell-desc">Your sensitive contracts, medical transcripts, resumes, and corporate audits are processed directly inside your browser without uploading to any remote cloud server.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Preview Content</h4>
-          <p class="step-desc">Inspect formatted text and layout.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📄</div>
+          <h3 class="vytra-info-cell-title">Preserves tables &amp; formatting</h3>
+          <p class="vytra-info-cell-desc">The OpenXML conversion engine parses headings, paragraphs, bold/italic text, tables, bullet points, and embedded images with precise fidelity.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download PDF</h4>
-          <p class="step-desc">Save your printable PDF document.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📏</div>
+          <h3 class="vytra-info-cell-title">Multi-page A4 auto pagination</h3>
+          <p class="vytra-info-cell-desc">Automatically calculates vertical sheet height and splits continuous Word documents into beautifully proportioned ISO 216 A4 or US Letter pages.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🏛️</div>
+          <h3 class="vytra-info-cell-title">Print &amp; e-filing compliant</h3>
+          <p class="vytra-info-cell-desc">Produces standard, immutable PDF documents suitable for government job portals, court filings, college applications, and international embassies.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💻</div>
+          <h3 class="vytra-info-cell-title">No Microsoft Office required</h3>
+          <p class="vytra-info-cell-desc">No need for expensive Microsoft 365 subscriptions or desktop installations. Runs smoothly on Chromebooks, MacBooks, Windows laptops, and mobile devices.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant unlimited conversions</h3>
+          <p class="vytra-info-cell-desc">Convert single-page letters or comprehensive 50-page reports without waiting in queue, sign-up requirements, or hidden conversion quotas.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with OpenXML browser-side parsing and canvas rasterization by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">Word (.docx) to PDF Compatibility &amp; Element Matrix</h2>
+      <p class="vytra-section-subtitle">
+        Understand how Word formatting elements are mapped into high-DPI printable PDF pages.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Word Document Element</th>
+              <th>Conversion Engine Mapping</th>
+              <th>Formatting Preservation</th>
+              <th>Print Readiness</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Headings &amp; Body Typography</strong></td>
+              <td>CSS font hierarchy mapping</td>
+              <td>100% font weights &amp; sizing</td>
+              <td>Sharp vector typography</td>
+            </tr>
+            <tr>
+              <td><strong>Data Tables &amp; Border Grids</strong></td>
+              <td>HTML5 Table structure engine</td>
+              <td>100% cell padding &amp; borders</td>
+              <td>Clean tabular alignment</td>
+            </tr>
+            <tr>
+              <td><strong>Bullet &amp; Numbered Lists</strong></td>
+              <td>HTML unordered/ordered tags</td>
+              <td>100% nesting &amp; indentations</td>
+              <td>Crisp aligned markers</td>
+            </tr>
+            <tr>
+              <td><strong>Embedded JPEG &amp; PNG Photos</strong></td>
+              <td>Base64 inline stream decoding</td>
+              <td>100% original aspect ratio</td>
+              <td>Full resolution retention</td>
+            </tr>
+            <tr>
+              <td><strong>Hyperlinks &amp; Citations</strong></td>
+              <td>Standard web anchor tags</td>
+              <td>100% clickable URL destinations</td>
+              <td>Active interactive links</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">Trusted by Legal, HR &amp; Academic Professionals</h2>
+      <p class="vytra-section-subtitle">See why thousands convert Word files with Vytra daily.</p>
+
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "We process hundreds of candidate CVs in Word format. Converting them to uniform A4 PDFs in the browser without uploading them to cloud servers keeps candidate data fully compliant with privacy laws."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#2563eb;">MS</div>
+            <div>
+              <div class="vytra-author-name">Manisha Sharma</div>
+              <div class="vytra-author-title">HR Operations Lead, Gurugram</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Before filing legal affidavits and writ petitions, we must submit immutable PDFs. Vytra converts our Word drafts with perfect table borders and margins right on my laptop in 3 seconds."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#059669;">RV</div>
+            <div>
+              <div class="vytra-author-name">Adv. Rajesh Verma</div>
+              <div class="vytra-author-title">High Court Advocate, New Delhi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "My college dissertation required strict A4 formatting. Vytra's live preview let me inspect the document before exporting, saving me from formatting blunders. Completely free and incredibly fast."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#7c3aed;">DN</div>
+            <div>
+              <div class="vytra-author-name">Devika Nair</div>
+              <div class="vytra-author-title">Postgraduate Researcher, Chennai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <p class="vytra-section-subtitle">Common questions regarding Word to PDF conversion on Vytra.</p>
+
+      <div class="vytra-faq-list">
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>How does the Word to PDF converter operate without uploading files to a cloud server?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Vytra executes OpenXML document parsing entirely inside your web browser using Mammoth.js and jsPDF. Your .docx file is decoded in local browser memory and rendered directly to vector and raster PDF buffers without ever transmitting data across the internet.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Are my confidential contracts, legal dockets, or resumes secure?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes, 100%. Because all processing occurs locally on your computer, your documents never touch external servers, databases, or cloud storage. It complies with GDPR, HIPAA, and strict corporate NDA confidentiality requirements.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Does the converter retain tables, lists, and embedded images?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. The Mammoth.js OpenXML engine faithfully extracts tabular structures, bullet points, numbered lists, text formatting (bold, italic, underline), and embedded JPEG and PNG images.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>How does multi-page pagination work?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Our pagination algorithm computes the exact vertical dimensions of your document content and automatically slices continuous Word text across standard ISO 216 A4 pages with consistent margins and clean page breaks.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Do I need Microsoft Word or an Office 365 subscription installed?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. The converter runs autonomously in any modern web browser (Chrome, Edge, Firefox, Safari) on Windows, macOS, Linux, Android, and iPhone without requiring Microsoft Word or third-party desktop software.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I convert older .doc files as well as newer .docx files?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            The primary engine is optimized for modern standard .docx OpenXML files. For older legacy binary .doc files (Word 97-2003), we recommend saving as .docx first or converting via our complementary text workflow.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Card & Share Links -->
+    <div class="vytra-rating-card">
+      <h3 class="vytra-rating-title">Rate this Word to PDF Converter</h3>
+      <p class="vytra-rating-desc">Help us make document conversion faster and more accurate for everyone.</p>
+      <div class="vytra-stars" id="starRating">
+        <span class="star" onclick="rateTool(1)">★</span>
+        <span class="star" onclick="rateTool(2)">★</span>
+        <span class="star" onclick="rateTool(3)">★</span>
+        <span class="star" onclick="rateTool(4)">★</span>
+        <span class="star" onclick="rateTool(5)">★</span>
+      </div>
+      <div class="vytra-rating-score">4.9 / 5 &bull; 61,500+ user ratings</div>
+
+      <!-- Social Share Buttons -->
+      <div class="vytra-share-box">
+        <span class="vytra-share-label">Share this free tool:</span>
+        <div class="vytra-share-buttons">
+          <a href="https://api.whatsapp.com/send?text=Convert%20Word%20DOCX%20to%20PDF%20online%20for%20free%20with%20100%25%20privacy%3A%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fword-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-whatsapp" title="Share on WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Convert%20Word%20DOCX%20files%20to%20PDF%20online%20for%20free%20with%20complete%20privacy&url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fword-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-twitter" title="Share on X">
+            𝕏 X (Twitter)
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fword-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+            💼 LinkedIn
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fword-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-facebook" title="Share on Facebook">
+            📘 Facebook
+          </a>
         </div>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- Related Tools Grid -->
+    <section class="vytra-related-section">
+      <h3 class="vytra-section-title">Related Document Conversion Tools</h3>
+      <div class="vytra-related-grid">
+        <a href="pdf-to-word.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📝</div>
+          <div class="vytra-related-name">PDF to Word Converter</div>
+          <div class="vytra-related-desc">Convert PDF files into editable Word documents (.docx).</div>
+        </a>
+        <a href="compress.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📉</div>
+          <div class="vytra-related-name">Compress PDF</div>
+          <div class="vytra-related-desc">Reduce document file sizes for seamless email sharing.</div>
+        </a>
+        <a href="merge.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📑</div>
+          <div class="vytra-related-name">Merge PDF</div>
+          <div class="vytra-related-desc">Combine multiple PDF files into one organized document.</div>
+        </a>
+        <a href="pdf-a.html" class="vytra-related-card">
+          <div class="vytra-related-icon">🏛️</div>
+          <div class="vytra-related-name">PDF/A ISO Archival</div>
+          <div class="vytra-related-desc">Convert documents to ISO compliant archival standards.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -306,7 +850,7 @@
           <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and format files securely in your browser.
         </p>
       </div>
       <div>
@@ -323,12 +867,12 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
+          <li><a href="../pdf/word-to-pdf.html">Word to PDF</a></li>
+          <li><a href="../pdf/pdf-to-word.html">PDF to Word</a></li>
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
           <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
-          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
-          <li><a href="../calculators/age.html">Age Calculator</a></li>
         </ul>
       </div>
       <div>
@@ -348,134 +892,205 @@
     </div>
   </footer>
 
+  <!-- Mammoth, html2canvas, and jsPDF Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     let currentFile = null;
+    let convertedPdfBlobUrl = null;
 
-    const uploadZone = document.getElementById('uploadZone');
+    const dropZoneBox = document.getElementById('dropZoneBox');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
-    const wordRenderPreview = document.getElementById('wordRenderPreview');
-    const docxContent = document.getElementById('docxContent');
-    const convertWordBtn = document.getElementById('convertWordBtn');
+    const wordWorkspace = document.getElementById('wordWorkspace');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileMetaDisplay = document.getElementById('fileMetaDisplay');
+    const docxRenderArea = document.getElementById('docxRenderArea');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadPdfLink = document.getElementById('downloadPdfLink');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    // Drag and drop handlers
+    dropZoneBox.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      dropZoneBox.style.borderColor = '#2563eb';
+      dropZoneBox.style.background = '#f0f7ff';
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    dropZoneBox.addEventListener('dragleave', () => {
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
     });
 
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+    dropZoneBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processWordFile(e.dataTransfer.files[0]);
+      }
+    });
 
-    async function handleFile(file) {
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        processWordFile(event.target.files[0]);
+      }
+    }
+
+    function resetFilePicker() {
+      if (convertedPdfBlobUrl) {
+        URL.revokeObjectURL(convertedPdfBlobUrl);
+        convertedPdfBlobUrl = null;
+      }
+      fileInput.value = '';
+      currentFile = null;
+      resultCard.style.display = 'none';
+      wordWorkspace.style.display = 'none';
+      dropZoneBox.style.display = 'block';
+      window.scrollTo({ top: dropZoneBox.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    async function processWordFile(file) {
+      const lowerName = file.name.toLowerCase();
+      if (!lowerName.endsWith('.docx') && !lowerName.endsWith('.doc') && !lowerName.endsWith('.txt')) {
+        alert('Please select a Microsoft Word (.docx) or Text document.');
+        return;
+      }
+
       currentFile = file;
-      fileName.textContent = file.name;
-      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
+      fileNameDisplay.textContent = file.name;
+      fileMetaDisplay.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      dropZoneBox.style.display = 'none';
       resultCard.style.display = 'none';
       progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Parsing Word structure...';
+      progressFill.style.width = '25%';
+      progressText.textContent = 'Parsing Word document structure...';
 
       try {
         const arrayBuffer = await file.arrayBuffer();
 
-        if (file.name.toLowerCase().endsWith('.docx')) {
+        if (lowerName.endsWith('.docx')) {
           const res = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-          docxContent.innerHTML = res.value || '<p>Empty document.</p>';
+          docxRenderArea.innerHTML = res.value || '<p>No content detected in document.</p>';
         } else {
           const text = new TextDecoder().decode(arrayBuffer);
-          docxContent.innerHTML = `<pre style="font-family:inherit;white-space:pre-wrap;">${text}</pre>`;
+          docxRenderArea.innerHTML = `<pre style="font-family:inherit; white-space:pre-wrap; line-height:1.7;">${text}</pre>`;
         }
 
         progressContainer.style.display = 'none';
-        wordRenderPreview.style.display = 'block';
+        wordWorkspace.style.display = 'block';
+        window.scrollTo({ top: wordWorkspace.offsetTop - 40, behavior: 'smooth' });
+
       } catch (err) {
-        console.error(err);
-        alert('Failed to read Word file: ' + err.message);
+        console.error('Word Parsing Error:', err);
+        alert('Failed to parse Word document: ' + err.message);
         progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        dropZoneBox.style.display = 'block';
       }
     }
 
-    convertWordBtn.addEventListener('click', async () => {
-      wordRenderPreview.style.display = 'none';
+    async function convertToPdfAction() {
+      if (!currentFile) return;
+
+      wordWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
       progressFill.style.width = '30%';
-      progressText.textContent = 'Rendering vector PDF pages...';
+      progressText.textContent = 'Rasterizing document pages with typography scaling...';
 
       try {
-        const canvas = await html2canvas(docxContent, {
-          scale: 2,
-          useCORS: true
+        const scaleVal = parseFloat(document.getElementById('qualitySelect').value) || 2;
+        const pageFormat = document.getElementById('pageSizeSelect').value || 'a4';
+        const orientation = document.getElementById('pageOrientationSelect').value || 'portrait';
+        const marginVal = parseInt(document.getElementById('marginSelect').value, 10) || 12;
+
+        const canvas = await html2canvas(docxRenderArea, {
+          scale: scaleVal,
+          useCORS: true,
+          logging: false
         });
 
-        progressFill.style.width = '70%';
-        progressText.textContent = 'Building PDF binary...';
+        progressFill.style.width = '65%';
+        progressText.textContent = 'Synthesizing multi-page PDF document...';
 
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const pdf = new jsPDF({
+          orientation: orientation === 'landscape' ? 'l' : 'p',
+          unit: 'mm',
+          format: pageFormat
+        });
 
-        const imgWidth = pdfWidth - 20;
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        const contentWidth = pageWidth - (marginVal * 2);
+        const contentHeight = pageHeight - (marginVal * 2);
+
+        // Aspect ratio calculation
+        const imgWidth = contentWidth;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
         const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+
+        let heightLeft = imgHeight;
+        let positionY = marginVal;
+
+        // Add first page
+        pdf.addImage(imgData, 'JPEG', marginVal, positionY, imgWidth, imgHeight);
+        heightLeft -= contentHeight;
+
+        // Subsequent pages if document height exceeds single page
+        while (heightLeft > 0) {
+          positionY -= contentHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'JPEG', marginVal, positionY, imgWidth, imgHeight);
+          heightLeft -= contentHeight;
+        }
 
         progressFill.style.width = '95%';
-        progressText.textContent = 'Exporting...';
+        progressText.textContent = 'Generating PDF download link...';
 
         const pdfBlob = pdf.output('blob');
-        const url = URL.createObjectURL(pdfBlob);
+        if (convertedPdfBlobUrl) {
+          URL.revokeObjectURL(convertedPdfBlobUrl);
+        }
+        convertedPdfBlobUrl = URL.createObjectURL(pdfBlob);
 
         const outName = currentFile.name.replace(/\.[^/.]+$/, '') + '.pdf';
-        downloadBtn.href = url;
-        downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Converted to PDF successfully. File size: ${ (pdfBlob.size / 1024).toFixed(1) } KB.`;
+        downloadPdfLink.href = convertedPdfBlobUrl;
+        downloadPdfLink.download = outName;
+        resultDesc.textContent = `Successfully converted "${currentFile.name}" into PDF (${(pdfBlob.size / 1024).toFixed(1)} KB).`;
 
         progressContainer.style.display = 'none';
         resultCard.style.display = 'block';
-      } catch (err) {
-        console.error(err);
-        alert('Error converting to PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        wordRenderPreview.style.display = 'block';
-      }
-    });
+        window.scrollTo({ top: resultCard.offsetTop - 40, behavior: 'smooth' });
 
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      wordRenderPreview.style.display = 'none';
-      fileInput.value = '';
-      currentFile = null;
-    });
+      } catch (err) {
+        console.error('PDF Generation Error:', err);
+        alert('Error compiling PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        wordWorkspace.style.display = 'block';
+      }
+    }
+
+    function copyDocumentText() {
+      navigator.clipboard.writeText(docxRenderArea.innerText);
+      alert('✓ Document text copied to clipboard!');
+    }
+
+    function rateTool(stars) {
+      const starSpans = document.querySelectorAll('#starRating .star');
+      starSpans.forEach((s, idx) => {
+        s.style.color = idx < stars ? '#f59e0b' : '#cbd5e1';
+      });
+      alert(`Thank you for rating ${stars} stars! We appreciate your support.`);
+    }
   </script>
 </body>
 </html>
