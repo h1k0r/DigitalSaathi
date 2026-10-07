@@ -93,6 +93,10 @@
         "tags": [
             "pdf to jpg",
             "pdf to image",
+            "pdf to images",
+            "pdf to png",
+            "pdf to webp",
+            "pdf24 alternative",
             "convert",
             "pages to jpg",
             "extract images",
