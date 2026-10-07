@@ -993,149 +993,6 @@
         "badge": ""
     },
     {
-        "id": "emi-calculator",
-        "name": "Loan EMI Calculator",
-        "category": "calculators",
-        "categoryName": "Calculators",
-        "description": "Calculate monthly loan EMI, total interest payable, and month-by-month amortization schedule.",
-        "url": "calculators/emi.html",
-        "tags": [
-            "emi",
-            "loan",
-            "interest",
-            "amortization",
-            "home loan",
-            "car loan",
-            "monthly"
-        ],
-        "popular": true,
-        "badge": "Popular"
-    },
-    {
-        "id": "percentage-calculator",
-        "name": "Percentage Calculator",
-        "category": "calculators",
-        "categoryName": "Calculators",
-        "description": "4-in-1 marks percentage, percentage change, grade evaluator, and reverse percentage calculation.",
-        "url": "calculators/percentage.html",
-        "tags": [
-            "percentage",
-            "marks",
-            "exam",
-            "grade",
-            "cgpa",
-            "multiplier"
-        ],
-        "popular": true,
-        "badge": "Popular"
-    },
-    {
-        "id": "age-calculator",
-        "name": "Age Calculator",
-        "category": "calculators",
-        "categoryName": "Calculators",
-        "description": "Calculate chronological age in years, months, days, hours, and minutes with upcoming birthday countdown.",
-        "url": "calculators/age.html",
-        "tags": [
-            "age",
-            "dob",
-            "birthday",
-            "date of birth",
-            "exam age limit"
-        ],
-        "popular": true,
-        "badge": "Popular"
-    },
-    {
-        "id": "cgpa-calculator",
-        "name": "CGPA to Percentage Calculator",
-        "category": "calculators",
-        "categoryName": "Calculators",
-        "description": "Convert university CGPA to marks percentage with custom multipliers (9.5 for CBSE/colleges).",
-        "url": "calculators/cgpa.html",
-        "tags": [
-            "cgpa",
-            "sgpa",
-            "percentage",
-            "university",
-            "cbse",
-            "credits"
-        ],
-        "popular": false,
-        "badge": ""
-    },
-    {
-        "id": "attendance-calculator",
-        "name": "College Attendance Calculator",
-        "category": "calculators",
-        "categoryName": "Calculators",
-        "description": "Calculate college attendance percentage, bunk balance, and classes needed to reach 75%.",
-        "url": "calculators/attendance.html",
-        "tags": [
-            "attendance",
-            "75 percent",
-            "bunks",
-            "classes",
-            "college tracker"
-        ],
-        "popular": false,
-        "badge": ""
-    },
-    {
-        "id": "json-formatter",
-        "name": "JSON Formatter & Validator",
-        "category": "developer",
-        "categoryName": "Developer Tools",
-        "description": "Format, indent, validate, minify, and inspect JSON with collapsible tree view and error lines.",
-        "url": "developer/json.html",
-        "tags": [
-            "json",
-            "formatter",
-            "validator",
-            "beautify",
-            "minify",
-            "tree view"
-        ],
-        "popular": true,
-        "badge": "Popular"
-    },
-    {
-        "id": "sql-formatter",
-        "name": "SQL Query Formatter",
-        "category": "developer",
-        "categoryName": "Developer Tools",
-        "description": "Beautify and indent complex SQL queries with uppercase keyword capitalization.",
-        "url": "developer/sql.html",
-        "tags": [
-            "sql",
-            "formatter",
-            "beautify",
-            "database",
-            "query",
-            "indent"
-        ],
-        "popular": false,
-        "badge": ""
-    },
-    {
-        "id": "base64-converter",
-        "name": "Base64 Encoder & Decoder",
-        "category": "developer",
-        "categoryName": "Developer Tools",
-        "description": "Encode UTF-8 text strings to Base64 or decode Base64 data with zero network transmission.",
-        "url": "developer/base64.html",
-        "tags": [
-            "base64",
-            "encoder",
-            "decoder",
-            "string",
-            "crypto",
-            "token"
-        ],
-        "popular": false,
-        "badge": ""
-    },
-    {
         "id": "word-counter",
         "name": "Word Counter & Text Analyzer",
         "category": "text",
@@ -1196,7 +1053,16 @@
         "categoryName": "Invoices",
         "description": "Create professional GST-compliant tax invoices with automatic CGST, SGST, IGST, and instant PDF download.",
         "url": "pdf/create-invoice.html",
-        "tags": ["invoice", "create invoice", "gst invoice", "tax invoice", "billing", "bill", "receipt", "pdf invoice"],
+        "tags": [
+            "invoice",
+            "create invoice",
+            "gst invoice",
+            "tax invoice",
+            "billing",
+            "bill",
+            "receipt",
+            "pdf invoice"
+        ],
         "popular": true,
         "badge": "GST Ready"
     },
@@ -1207,7 +1073,14 @@
         "categoryName": "Invoices",
         "description": "WYSIWYG visual invoice editor with live editable A4 paper sheet, custom logo upload, and 1-click vector PDF.",
         "url": "pdf/create-invoice-visually.html",
-        "tags": ["visual invoice", "wysiwyg invoice", "live editor", "a4 sheet", "printable invoice", "invoice designer"],
+        "tags": [
+            "visual invoice",
+            "wysiwyg invoice",
+            "live editor",
+            "a4 sheet",
+            "printable invoice",
+            "invoice designer"
+        ],
         "popular": true,
         "badge": "WYSIWYG"
     },
@@ -1218,7 +1091,16 @@
         "categoryName": "Invoices",
         "description": "Generate European standard ZUGFeRD 2.2 / Factur-X XML, UBL 2.1 OASIS XML, and Indian GST e-Invoice JSON.",
         "url": "pdf/create-electronic-invoice.html",
-        "tags": ["electronic invoice", "e-invoice", "zugferd", "factur-x", "ubl", "xml", "gst json", "b2b"],
+        "tags": [
+            "electronic invoice",
+            "e-invoice",
+            "zugferd",
+            "factur-x",
+            "ubl",
+            "xml",
+            "gst json",
+            "b2b"
+        ],
         "popular": false,
         "badge": "ZUGFeRD / UBL"
     },
@@ -1229,7 +1111,14 @@
         "categoryName": "Invoices",
         "description": "Extract structured data from standard PDF invoices and convert to ZUGFeRD XML and Indian GST e-Invoice JSON.",
         "url": "pdf/pdf-invoice-to-e-invoice.html",
-        "tags": ["pdf to e-invoice", "extract invoice", "invoice parser", "pdf.js", "xml converter", "zugferd"],
+        "tags": [
+            "pdf to e-invoice",
+            "extract invoice",
+            "invoice parser",
+            "pdf.js",
+            "xml converter",
+            "zugferd"
+        ],
         "popular": false,
         "badge": "Smart Parser"
     },
@@ -1240,7 +1129,13 @@
         "categoryName": "Invoices",
         "description": "Upload any ZUGFeRD, XRechnung, UBL XML, or GST JSON electronic invoice and render into a beautiful printable PDF.",
         "url": "pdf/xml-e-invoice-to-pdf.html",
-        "tags": ["xml to pdf", "e-invoice visualizer", "xrechnung to pdf", "ubl visualizer", "zugferd to pdf"],
+        "tags": [
+            "xml to pdf",
+            "e-invoice visualizer",
+            "xrechnung to pdf",
+            "ubl visualizer",
+            "zugferd to pdf"
+        ],
         "popular": false,
         "badge": "Visualizer"
     },
@@ -1251,7 +1146,13 @@
         "categoryName": "Invoices",
         "description": "Validate electronic invoice compliance against EN 16931 rules, syntax schema, and tax math with compliance certificate.",
         "url": "pdf/validate-e-invoice.html",
-        "tags": ["validate invoice", "e-invoice validator", "en 16931", "audit invoice", "compliance certificate"],
+        "tags": [
+            "validate invoice",
+            "e-invoice validator",
+            "en 16931",
+            "audit invoice",
+            "compliance certificate"
+        ],
         "popular": false,
         "badge": "Compliance"
     },
@@ -1262,7 +1163,16 @@
         "categoryName": "Image Tools",
         "description": "Upscale low-resolution blurry photos to Full HD (1080p), 2K, or 4K Ultra HD with edge sharpening and 300 DPI support.",
         "url": "image/hd-converter.html",
-        "tags": ["image hd", "hd converter", "upscale", "4k converter", "1080p", "sharpen", "clarify", "unsharp mask"],
+        "tags": [
+            "image hd",
+            "hd converter",
+            "upscale",
+            "4k converter",
+            "1080p",
+            "sharpen",
+            "clarify",
+            "unsharp mask"
+        ],
         "popular": true,
         "badge": "4K Ultra HD"
     }

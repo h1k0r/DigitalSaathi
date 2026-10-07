@@ -330,7 +330,7 @@
 <body class="home-page">
 
   <! - Universal Header Navigation (SaaS Professional Standard: No Emojis, Crisp Typography) - >
-    <nav class="navbar" id="main-nav">
+      <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="index.html" class="logo">
         <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
@@ -348,11 +348,9 @@
           <div class="nav-dropdown">
             <a href="pdf/index.html" class="dropdown-link">PDF Tools <span>&rarr;</span></a>
             <a href="image/index.html" class="dropdown-link">Image Tools <span>&rarr;</span></a>
-            <a href="calculators/index.html" class="dropdown-link">Calculators <span>&rarr;</span></a>
-            <a href="developer/index.html" class="dropdown-link">Developer Tools <span>&rarr;</span></a>
             <a href="text/index.html" class="dropdown-link">Text Tools <span>&rarr;</span></a>
             <a href="utilities/index.html" class="dropdown-link">Utility Tools <span>&rarr;</span></a>
-            <a href="tools/index.html" class="dropdown-link dropdown-view-all">All 76+ Tools Directory &rarr;</a>
+            <a href="tools/index.html" class="dropdown-link dropdown-view-all">All Tools Directory &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -389,7 +387,7 @@
     <section class="home-hero">
       <h1 class="hero-title" style="margin-bottom: 0.75rem;">Everyday Digital Tools, Made Simple.</h1>
       <p class="hero-subtitle" style="max-width: 680px; margin: 0 auto 2rem;">
-        Powerful, fast and easy-to-use online tools for PDFs, images, documents, calculations and everyday digital tasks.
+        Powerful, fast and easy-to-use online tools for PDFs, images, documents, and everyday digital tasks.
       </p>
 
       <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 2.5rem;">
@@ -402,7 +400,7 @@
         <div class="hero-search-icon-pos">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
-        <input type="text" id="homeSearchInput" class="hero-search-input" placeholder="Search any tool (e.g., Compress PDF, Remove BG, EMI)..." aria-label="Search tools" autocomplete="off">
+        <input type="text" id="homeSearchInput" class="hero-search-input" placeholder="Search any tool (e.g., Compress PDF, Remove BG, JPG to PDF)..." aria-label="Search tools" autocomplete="off">
         <div class="search-results-dropdown hero-search-dropdown" id="homeSearchResults" style="display:none;"></div>
       </div>
     </section>
@@ -483,20 +481,7 @@
         </a>
 
         <! - JSON Formatter - >
-        <a href="developer/json.html" class="tool-card">
-          <div class="tool-card-top">
-            <div class="tool-icon-tile" style="background:#eff6ff;color:#2563eb;">
-              <svg viewBox="0 0 24 24"><polyline points="8 3 4 8 4 12 2 12 4 12 4 16 8 21"/><polyline points="16 3 20 8 20 12 22 12 20 12 20 16 16 21"/></svg>
-            </div>
-            <span class="tool-badge">Popular</span>
-          </div>
-          <h3 class="tool-title">JSON Formatter</h3>
-          <p class="tool-desc">Beautify, validate, minify, and inspect JSON with interactive tree view.</p>
-          <div class="tool-footer">
-            <span>Developer Tools</span>
-            <span>Open Tool &rarr;</span>
-          </div>
-        </a>
+        
 
         <! - QR Code Generator - >
         <a href="utilities/qr-generator.html" class="tool-card">
@@ -514,37 +499,11 @@
           </div>
         </a>
 
-        <! - EMI Calculator - >
-        <a href="calculators/emi.html" class="tool-card">
-          <div class="tool-card-top">
-            <div class="tool-icon-tile" style="background:#ecfdf5;color:#059669;">
-              <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-            </div>
-            <span class="tool-badge">Popular</span>
-          </div>
-          <h3 class="tool-title">EMI Calculator</h3>
-          <p class="tool-desc">Calculate monthly loan EMI, total interest, and amortization schedule.</p>
-          <div class="tool-footer">
-            <span>Calculators</span>
-            <span>Open Tool &rarr;</span>
-          </div>
-        </a>
+        <! - JPG to PDF Calculator - >
+        
 
         <! - Age Calculator - >
-        <a href="calculators/age.html" class="tool-card">
-          <div class="tool-card-top">
-            <div class="tool-icon-tile" style="background:#fffbeb;color:#d97706;">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="16" r="3"/><polyline points="12 15 12 16 13 16"/></svg>
-            </div>
-            <span class="tool-badge">Popular</span>
-          </div>
-          <h3 class="tool-title">Age Calculator</h3>
-          <p class="tool-desc">Calculate exact age in years, months, days, and birthday countdown.</p>
-          <div class="tool-footer">
-            <span>Calculators</span>
-            <span>Open Tool &rarr;</span>
-          </div>
-        </a>
+        
       </div>
     </section>
 
@@ -563,8 +522,6 @@
         <button type="button" class="cat-pill" data-cat="invoices">Invoices</button>
         <button type="button" class="cat-pill" data-cat="pdf">PDF Tools</button>
         <button type="button" class="cat-pill" data-cat="images">Image Tools</button>
-        <button type="button" class="cat-pill" data-cat="developer">Developer</button>
-        <button type="button" class="cat-pill" data-cat="calculators">Calculators</button>
         <button type="button" class="cat-pill" data-cat="text">Text Tools</button>
         <button type="button" class="cat-pill" data-cat="utilities">Utilities</button>
       </div>
@@ -691,14 +648,14 @@
   </main>
 
   <! - Universal Footer - >
-    <footer class="footer">
+      <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo" style="color:#ffffff;">
           <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+          Free online tools for everyday digital work. Convert, compress, edit, and manage files securely in your browser.
         </p>
       </div>
 
@@ -707,8 +664,6 @@
         <ul class="footer-links">
           <li><a href="pdf/index.html">PDF Tools</a></li>
           <li><a href="image/index.html">Image Tools</a></li>
-          <li><a href="calculators/index.html">Calculators</a></li>
-          <li><a href="developer/index.html">Developer Tools</a></li>
           <li><a href="text/index.html">Text Tools</a></li>
           <li><a href="utilities/index.html">Utility Tools</a></li>
         </ul>
@@ -718,7 +673,7 @@
         <ul class="footer-links">
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="tools/index.html">All 76+ Tools Directory</a></li>
+          <li><a href="tools/index.html">All Tools Directory</a></li>
         </ul>
       </div>
       <div>
