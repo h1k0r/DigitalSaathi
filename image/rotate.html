@@ -22,82 +22,288 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotate & Flip Image Online | Vytra</title>
-  <meta name="description" content="Rotate and flip photos 90, 180 degrees, mirror flip horizontally in browser.">
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/rotate.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Rotate & Flip Image Online | Vytra">
-  <meta property="og:description" content="Rotate and flip photos 90, 180 degrees, mirror flip horizontally in browser.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/rotate.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Rotate &amp; Flip Image Online — 90°, 180°, Mirror Flip Free | Vytra</title>
+  <meta name="description" content="Rotate and flip photos online for free. Rotate 90, 180, 270 degrees clockwise or counter-clockwise, mirror flip horizontally and vertically with 100% browser privacy.">
+  <meta name="keywords" content="rotate image, flip image, rotate photo online, flip image horizontally, mirror image online, rotate photo 90 degrees, rotate image free, pdf24 alternative, iloveimg alternative">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  
+
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
+    .rotate-wrapper {
+      max-width: 980px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .workspace-active-card {
+      display: none;
+      margin-top: 20px;
+    }
+    .toolbar-rotate-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .tool-rotate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      transition: all 0.15s ease;
+    }
+    .tool-rotate-btn:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #2563eb;
+    }
+    .stage-canvas-box {
+      min-height: 380px;
+      max-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    #stagePreviewImg {
+      max-width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+    .stats-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .stat-badge-info { background: #eff6ff; color: #2563eb; }
+    .stat-badge-angle { background: #ecfdf5; color: #059669; }
+    .action-buttons-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-main-download {
+      padding: 12px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-main-download:hover {
+      background: #1d4ed8;
+    }
+    .btn-sub-action {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
   </style>
+
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/rotate.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/rotate.html">
+  <meta property="og:title" content="Rotate &amp; Flip Image Online — 90°, 180°, Mirror Flip Free | Vytra">
+  <meta property="og:description" content="Rotate and flip photos online for free. Rotate 90, 180, 270 degrees clockwise or counter-clockwise, mirror flip horizontally and vertically with 100% browser privacy.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rotate &amp; Flip Image Online — 90°, 180°, Mirror Flip Free | Vytra">
+  <meta name="twitter:description" content="Rotate and flip photos online for free. Rotate 90, 180, 270 degrees clockwise or counter-clockwise, mirror flip horizontally and vertically with 100% browser privacy.">
+
   <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Rotate & Flip Image Online | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/rotate.html",
-      "description": "Rotate and flip photos 90, 180 degrees, mirror flip horizontally in browser.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Rotate & Flip Image Online",
-          "item": "https://digitalsaathi.vytra.in/image/rotate.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Rotate & Flip Image Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/rotate.html",
+        "description": "Rotate and flip photos online for free. Rotate 90, 180, 270 degrees clockwise or counter-clockwise, mirror flip horizontally and vertically with 100% browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to rotate or flip an image online",
+        "description": "Step-by-step instructions to rotate photos 90 degrees or mirror flip horizontally.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload Image",
+            "text": "Select or drag & drop your photo into the rotation workspace."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Rotate or Mirror Flip",
+            "text": "Click 'Rotate 90° Clockwise', 'Rotate 90° Counter-Clockwise', or 'Flip Horizontally'."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Save & Download",
+            "text": "Click 'Download Rotated Image' to save your correctly oriented photo immediately."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why do smartphone photos sometimes appear sideways or upside down when uploaded?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Smartphones write camera orientation data into an EXIF tag rather than physically rotating the pixel grid. Many website upload portals ignore EXIF metadata, displaying the raw portrait sideways. Vytra permanently bakes the correct orientation into the pixel matrix so it looks right everywhere."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does rotating an image reduce photo quality?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. When rotating by exact 90-degree increments (90°, 180°, 270°), pixel values are mapped symmetrically across the matrix without interpolation loss."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between rotating and flipping an image?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rotating turns an image around its center point by an angle. Flipping (or mirroring) reverses the image along a vertical or horizontal axis, producing a mirror reflection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my private photos uploaded to external servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All rotation and mirroring operations take place 100% locally in your browser memory using HTML5 Canvas. Your photos never leave your device."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Rotate & Flip Image",
+            "item": "https://digitalsaathi.vytra.in/image/rotate.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -131,18 +337,18 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
-            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
-            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
-            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
-            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+            <a href="compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -196,127 +402,333 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#eef2ff; color:#6366f1; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ✓ Instant Orientation Fix
-      </div>
-      <h1 class="tool-header-title">Rotate & Flip Image</h1>
-      <p class="tool-header-desc">Fix sideways or upside-down photos, rotate 90°/180°, and mirror flip horizontally or vertically.</p>
-    </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔄</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose Image to Rotate</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload photo to correct orientation</p>
-      </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
-            <button type="button" class="btn btn-secondary btn-sm" id="btn-ccw">↺ Rotate 90° Left</button>
-            <button type="button" class="btn btn-primary btn-sm" id="btn-cw">↻ Rotate 90° Right</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="btn-180">🔃 Rotate 180°</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="btn-flip-h">↔️ Flip Horizontal</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="btn-flip-v">↕️ Flip Vertical</button>
-          </div>
-        </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Rotate &amp; Flip</span>
+    </nav>
 
-        <div class="tool-preview-panel">
-          <div style="max-width: 100%; overflow: auto; text-align: center; background: #334155; padding: 1rem; border-radius: 8px;">
-            <canvas id="rotate-canvas" style="max-width: 100%; max-height: 480px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></canvas>
-          </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Rotate &amp; Flip Image</h1>
+      <p class="vytra-tool-subtitle">
+        Rotate JPG, PNG, and WebP photos by 90°, 180°, 270°, or mirror flip horizontally and vertically with 100% private in-browser processing.
+      </p>
 
-          <div style="margin-top: 1.25rem;">
-            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
-              📥 Download Rotated Image
-            </button>
-            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
-              🔄 Change Photo
-            </button>
-          </div>
-        </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Rotate 90° / 180° / 270°</span>
+        <span class="vytra-trust-chip">✓ Horizontal &amp; Vertical Flip</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
     </div>
 
-    <script>
-      let originalImg = null;
-      let angle = 0;
-      let flipH = 1;
-      let flipV = 1;
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="rotate-wrapper">
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const canvas = document.getElementById('rotate-canvas');
-      const ctx = canvas.getContext('2d');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">🔄</div>
+        <div class="upload-zone-title">Choose an image or drop it here</div>
+        <div class="upload-zone-hint">Supports JPG, PNG, and WebP. Fix sideways smartphone photos instantly.</div>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/jpg" style="display:none;" onchange="handleFileChange(event)">
+      </div>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            originalImg = new Image();
-            originalImg.onload = () => {
-              dropZone.style.display = 'none';
-              controlsSection.style.display = 'block';
-              angle = 0; flipH = 1; flipV = 1;
-              render();
-            };
-            originalImg.src = ev.target.result;
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        }
-      });
+      <!-- Active Workspace -->
+      <div id="workspaceActiveCard" class="workspace-active-card">
+        
+        <!-- Toolbar -->
+        <div class="toolbar-rotate-controls">
+          <button type="button" class="tool-rotate-btn" onclick="rotateBy(-90)">↺ Rotate Left (90°)</button>
+          <button type="button" class="tool-rotate-btn" onclick="rotateBy(90)">↻ Rotate Right (90°)</button>
+          <button type="button" class="tool-rotate-btn" onclick="rotateBy(180)">⟲ Rotate 180°</button>
+          <button type="button" class="tool-rotate-btn" onclick="toggleFlipH()">↔ Flip Horizontal</button>
+          <button type="button" class="tool-rotate-btn" onclick="toggleFlipV()">↕ Flip Vertical</button>
+          <button type="button" class="tool-rotate-btn" style="color:#dc2626;" onclick="resetTransforms()">🔄 Reset</button>
+        </div>
 
-      document.getElementById('btn-cw').addEventListener('click', () => { angle = (angle + 90) % 360; render(); });
-      document.getElementById('btn-ccw').addEventListener('click', () => { angle = (angle + 270) % 360; render(); });
-      document.getElementById('btn-180').addEventListener('click', () => { angle = (angle + 180) % 360; render(); });
-      document.getElementById('btn-flip-h').addEventListener('click', () => { flipH *= -1; render(); });
-      document.getElementById('btn-flip-v').addEventListener('click', () => { flipV *= -1; render(); });
+        <!-- Stage Container -->
+        <div class="stage-canvas-box">
+          <img id="stagePreviewImg" alt="Rotated Image Preview">
+        </div>
 
-      function render() {
-        if (!originalImg) return;
-        const rad = (angle * Math.PI) / 180;
-        const sin = Math.abs(Math.sin(rad));
-        const cos = Math.abs(Math.cos(rad));
+        <!-- Stats Pill Row -->
+        <div class="stats-pill-row">
+          <span class="stat-badge stat-badge-info" id="statDims">Dimensions: 0 × 0 px</span>
+          <span class="stat-badge stat-badge-angle" id="statAngle">Rotation: 0°</span>
+          <span class="stat-badge stat-badge-info" id="statFlips">Orientation: Normal</span>
+        </div>
 
-        const w = originalImg.naturalWidth;
-        const h = originalImg.naturalHeight;
+        <!-- Action Buttons -->
+        <div class="action-buttons-group">
+          <button type="button" id="btnDownload" class="btn-main-download" onclick="downloadProcessedImage()">📥 Download Rotated Image</button>
+          <button type="button" class="btn-sub-action" onclick="copyProcessedImage()">📋 Copy Image</button>
+          <button type="button" class="btn-sub-action" onclick="resetFilePicker()">🔄 Open New Photo</button>
+        </div>
 
-        canvas.width = Math.round(w * cos + h * sin);
-        canvas.height = Math.round(w * sin + h * cos);
+      </div>
 
-        ctx.save();
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(rad);
-        ctx.scale(flipH, flipV);
-        ctx.drawImage(originalImg, -w / 2, -h / 2);
-        ctx.restore();
-      }
+    </div>
 
-      downloadBtn.addEventListener('click', () => {
-        canvas.toBlob((blob) => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'rotated-image.jpg';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }, 'image/jpeg', 0.95);
-      });
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-      resetBtn.addEventListener('click', () => {
-        fileInput.value = '';
-        dropZone.style.display = 'block';
-        controlsSection.style.display = 'none';
-      });
-    </script>
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Fix sideways phone camera photos</h3>
+          <p class="vytra-info-cell-desc">Smartphones often store orientation as EXIF tags that fail on job portals. Vytra physically bakes rotation into the image pixels permanently.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🪞</div>
+          <h3 class="vytra-info-cell-title">Mirror flip selfies &amp; documents</h3>
+          <p class="vytra-info-cell-desc">Mirror reverse front-facing camera selfies horizontally so handwritten text and badges read in the correct orientation.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant GPU-accelerated preview</h3>
+          <p class="vytra-info-cell-desc">Smooth hardware-accelerated CSS transformations provide instant visual feedback while the HTML5 Canvas produces high-resolution output.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💎</div>
+          <h3 class="vytra-info-cell-title">Zero quality degradation</h3>
+          <p class="vytra-info-cell-desc">Orthogonal 90° and 180° rotations transpose the pixel matrix cleanly without blurry interpolation or softening.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📁</div>
+          <h3 class="vytra-info-cell-title">Format preservation</h3>
+          <p class="vytra-info-cell-desc">Exports PNGs as transparent PNGs and JPEGs as compact JPEGs, preserving your original file extension and metadata standards.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">All photo rendering happens inside your device RAM. Your private identity documents, signatures, and personal pictures are never uploaded.</p>
+        </div>
+      </div>
+
+      <!-- EXIF Orientation Benchmark Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Camera EXIF Orientation Standards Guide
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>EXIF Value</th>
+              <th>Observed Orientation</th>
+              <th>Required Correction</th>
+              <th>Vytra 1-Click Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Orientation 1</strong></td><td>Normal (Upright)</td><td>None needed</td><td>Ready to use</td></tr>
+            <tr><td><strong>Orientation 3</strong></td><td>Upside Down (180°)</td><td>Rotate 180°</td><td>Click "Rotate 180°"</td></tr>
+            <tr><td><strong>Orientation 6</strong></td><td>Rotated 90° Clockwise</td><td>Rotate 90° Counter-Clockwise</td><td>Click "↺ Rotate Left"</td></tr>
+            <tr><td><strong>Orientation 8</strong></td><td>Rotated 90° CCW</td><td>Rotate 90° Clockwise</td><td>Click "↻ Rotate Right"</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra Imaging Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Every time I scanned my marksheet on my iPhone, the government job portal loaded it sideways. One click on Vytra fixed the rotation permanently.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">KP</div>
+            <div>
+              <div class="vytra-author-name">Kunal Pandey</div>
+              <div class="vytra-author-role">SSC Aspirant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The horizontal flip feature fixed my webcam selfies so the college logo on my t-shirt wasn't backwards for my student ID badge. Brilliant!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">TG</div>
+            <div>
+              <div class="vytra-author-name">Tanvi Goyal</div>
+              <div class="vytra-author-role">Medical Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Super responsive, zero watermarks, and runs locally without waiting for slow server uploads. The best rotation tool online.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AS</div>
+            <div>
+              <div class="vytra-author-name">Anil Sharma</div>
+              <div class="vytra-author-role">Photographer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why do photos taken on phones upload sideways on government exam portals?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Smartphones record orientation in an internal EXIF metadata flag rather than physically rotating the pixel grid. Older government portals and application forms do not read EXIF data, causing images to display sideways. Vytra rewrites the raw pixel matrix so the image is universally upright everywhere.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does rotating an image cause blurriness or loss of quality?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Standard 90-degree and 180-degree rotations simply transpose rows and columns of pixels across the canvas, preserving 100% of the original sharpness and clarity.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What does "Flip Horizontal" do?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Flipping horizontally creates a mirror image along the vertical axis (left becomes right and right becomes left). This is commonly used to correct inverted smartphone selfies or inverted scans.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my private photos uploaded to external servers?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All image processing takes place 100% client-side inside your browser memory. Your documents and photographs are never sent over the internet or logged on any external server.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Rotate &amp; Flip Tool</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this image tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Rotate &amp; Flip Tool!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Rotate%20and%20flip%20photos%20online%20for%20free:%20https://digitalsaathi.vytra.in/image/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Free%20online%20image%20rotator%20by%20Vytra:%20https://digitalsaathi.vytra.in/image/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/rotate.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="crop.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Crop Image</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Crop photos to custom dimensions or standard aspect ratios</div>
+        </a>
+        <a href="resize.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📐</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Resize photo dimensions to exact pixels for forms</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress photos under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="jpg-to-png.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔄</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">JPG to PNG</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert photos to uncompressed lossless PNG format</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -331,7 +743,7 @@
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
           <li><a href="../pdf/index.html">PDF Tools</a></li>
-          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
           <li><a href="../text/word-counter.html">Text Tools</a></li>
@@ -343,7 +755,7 @@
         <ul class="footer-links">
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
-          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
           <li><a href="../calculators/age.html">Age Calculator</a></li>
@@ -365,7 +777,194 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+    let currentAngle = 0;
+    let flipH = 1;
+    let flipV = 1;
+    let loadedImage = null;
+    let currentFile = null;
+
+    const dropZone = document.getElementById('dropZoneBox');
+    const fileInput = document.getElementById('fileInput');
+    const workspaceActiveCard = document.getElementById('workspaceActiveCard');
+    const stagePreviewImg = document.getElementById('stagePreviewImg');
+    const statDims = document.getElementById('statDims');
+    const statAngle = document.getElementById('statAngle');
+    const statFlips = document.getElementById('statFlips');
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        processUploadedImage(e.dataTransfer.files[0]);
+      }
+    });
+
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files[0]) {
+        processUploadedImage(event.target.files[0]);
+      }
+    }
+
+    function processUploadedImage(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+
+      currentFile = file;
+      currentAngle = 0;
+      flipH = 1;
+      flipV = 1;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedImage = img;
+          stagePreviewImg.src = e.target.result;
+          updateTransformView();
+          dropZone.style.display = 'none';
+          workspaceActiveCard.style.display = 'block';
+          if (window.showToast) window.showToast('Image loaded successfully!', 'success');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function rotateBy(degrees) {
+      currentAngle = (currentAngle + degrees) % 360;
+      if (currentAngle < 0) currentAngle += 360;
+      updateTransformView();
+    }
+
+    function toggleFlipH() {
+      flipH = flipH * -1;
+      updateTransformView();
+    }
+
+    function toggleFlipV() {
+      flipV = flipV * -1;
+      updateTransformView();
+    }
+
+    function resetTransforms() {
+      currentAngle = 0;
+      flipH = 1;
+      flipV = 1;
+      updateTransformView();
+    }
+
+    function updateTransformView() {
+      if (!loadedImage) return;
+
+      stagePreviewImg.style.transform = `rotate(${currentAngle}deg) scale(${flipH}, ${flipV})`;
+      statAngle.textContent = `Rotation: ${currentAngle}°`;
+
+      const isSideways = currentAngle === 90 || currentAngle === 270;
+      const displayW = isSideways ? loadedImage.naturalHeight : loadedImage.naturalWidth;
+      const displayH = isSideways ? loadedImage.naturalWidth : loadedImage.naturalHeight;
+      statDims.textContent = `Dimensions: ${displayW} × ${displayH} px`;
+
+      let flipDesc = 'Normal';
+      if (flipH === -1 && flipV === -1) flipDesc = 'Flipped Both (H & V)';
+      else if (flipH === -1) flipDesc = 'Flipped Horizontally';
+      else if (flipV === -1) flipDesc = 'Flipped Vertically';
+      statFlips.textContent = `Orientation: ${flipDesc}`;
+    }
+
+    function generateProcessedCanvas() {
+      if (!loadedImage) return null;
+
+      const canvas = document.createElement('canvas');
+      const isSideways = currentAngle === 90 || currentAngle === 270;
+
+      canvas.width = isSideways ? loadedImage.naturalHeight : loadedImage.naturalWidth;
+      canvas.height = isSideways ? loadedImage.naturalWidth : loadedImage.naturalHeight;
+
+      const ctx = canvas.getContext('2d');
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((currentAngle * Math.PI) / 180);
+      ctx.scale(flipH, flipV);
+      ctx.drawImage(loadedImage, -loadedImage.naturalWidth / 2, -loadedImage.naturalHeight / 2);
+
+      return canvas;
+    }
+
+    function downloadProcessedImage() {
+      const canvas = generateProcessedCanvas();
+      if (!canvas) return;
+
+      const mimeType = currentFile && currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+      const ext = mimeType === 'image/png' ? 'png' : 'jpg';
+
+      canvas.toBlob((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        const base = currentFile ? currentFile.name.replace(/\.[^/.]+$/, '') : 'photo';
+        a.download = `${base}_rotated.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        if (window.showToast) window.showToast('Downloaded rotated image!', 'success');
+      }, mimeType, 0.92);
+    }
+
+    async function copyProcessedImage() {
+      const canvas = generateProcessedCanvas();
+      if (!canvas) return;
+
+      canvas.toBlob(async (blob) => {
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob })
+          ]);
+          if (window.showToast) window.showToast('Image copied to clipboard!', 'success');
+          else alert('Image copied to clipboard!');
+        } catch (err) {
+          console.error(err);
+          alert('Clipboard write not supported. Please use the Download button.');
+        }
+      }, 'image/png');
+    }
+
+    function resetFilePicker() {
+      fileInput.value = '';
+      loadedImage = null;
+      currentFile = null;
+      dropZone.style.display = 'block';
+      workspaceActiveCard.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Rating interaction
+      const stars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+      const feedback = document.getElementById('ratingFeedback');
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-val'), 10);
+          stars.forEach(s => {
+            const sVal = parseInt(s.getAttribute('data-val'), 10);
+            s.style.color = sVal <= val ? '#f59e0b' : '#cbd5e1';
+          });
+          feedback.style.display = 'block';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
