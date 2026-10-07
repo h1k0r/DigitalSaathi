@@ -10,7 +10,7 @@
 
     gtag('config', 'G-R2EMRPEG70');
   </script>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -20,91 +20,215 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Percentage Calculator - Vytra</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .calculator-container { max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .tabs { display: flex; border-bottom: 1px solid #ccc; margin-bottom: 20px; overflow-x: auto; }
-        .tab { padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; }
-        .tab.active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; background: #2563eb; color: white; width: 100%; }
-        .result-box { margin-top: 20px; padding: 20px; background: #f3f4f6; border-radius: 8px; text-align: center; }
-        .progress-bar { width: 100%; height: 20px; background: #e5e7eb; border-radius: 10px; overflow: hidden; margin-top: 10px; }
-        .progress-fill { height: 100%; background: #059669; width: 0%; transition: width 0.3s; }
-        .grade-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .grade-table th, .grade-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        .grade-table th { background: #f3f4f6; }
-    </style>
-  <meta name="description" content="Marks and Percentage Calculator with university grade division calculator, CGPA conversions, and visual progress indicators.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator Online Free (Marks, CGPA to %, Grades) | Vytra</title>
+  <meta name="description" content="Calculate exam marks percentage, convert CGPA to percentage (CBSE & university multiplier 9.5), calculate percentage to CGPA, and find grade divisions online for free.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <style>
+    .calc-center-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 720px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .calc-tab-strip {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .calc-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+    }
+    .calc-tab-pane {
+      display: none;
+    }
+    .calc-tab-pane.active {
+      display: block;
+    }
+    .result-display-card {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .result-val-big {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #2563eb;
+      margin-bottom: 4px;
+    }
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 12px 0 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .grade-table-wrap {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.88rem;
+    }
+    .grade-table-wrap th, .grade-table-wrap td {
+      border: 1px solid #e2e8f0;
+      padding: 10px;
+      text-align: center;
+    }
+    .grade-table-wrap th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Percentage Calculator Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/calculators/percentage.html",
+        "description": "Calculate exam marks percentage, convert CGPA to percentage, percentage to CGPA, and find grade divisions online for free.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to calculate percentage of marks",
+        "description": "Step-by-step instructions to calculate percentage from total and obtained marks.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter marks obtained",
+            "text": "Type the total marks you scored across subjects."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter maximum marks",
+            "text": "Type the maximum total possible marks (e.g. 500 or 600)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "View percentage and division",
+            "text": "Get instant calculated percentage, progress bar, and division classification."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is CGPA converted to percentage in CBSE and Indian universities?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For CBSE and most Indian universities (like Delhi University, AKTU, Mumbai University), percentage is calculated using the official formula: Percentage = CGPA × 9.5. For example, an 8.0 CGPA equals 8.0 × 9.5 = 76.0%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What percentage qualifies for First Division with Distinction?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typically, 75% and above is First Division with Distinction. 60% to 74.9% is First Division, 50% to 59.9% is Second Division, and 40% to 49.9% is Third / Pass Division."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use custom multipliers for autonomous colleges?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Our CGPA converter lets you customize the multiplier (e.g. 10.0 for VTU or IITs, 9.5 for CBSE/DU, or custom factors specified on your marksheet)."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculators",
+            "item": "https://digitalsaathi.vytra.in/calculators/percentage.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Percentage Calculator",
+            "item": "https://digitalsaathi.vytra.in/calculators/percentage.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/calculators/percentage.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/calculators/percentage.html">
-  <meta property="og:title" content="Percentage Calculator - Vytra">
-  <meta property="og:description" content="Marks and Percentage Calculator with university grade division calculator, CGPA conversions, and visual progress indicators.">
+  <meta property="og:title" content="Percentage Calculator Online Free | Vytra">
+  <meta property="og:description" content="Calculate exam marks percentage, convert CGPA to percentage, and calculate grade divisions online for free.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Percentage Calculator - Vytra">
-  <meta name="twitter:description" content="Marks and Percentage Calculator with university grade division calculator, CGPA conversions, and visual progress indicators.">
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Percentage Calculator - Vytra",
-      "url": "https://digitalsaathi.vytra.in/calculators/percentage.html",
-      "description": "Marks and Percentage Calculator with university grade division calculator, CGPA conversions, and visual progress indicators.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Calculators Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Percentage Calculator",
-          "item": "https://digitalsaathi.vytra.in/calculators/percentage.html"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <meta name="twitter:title" content="Percentage Calculator Online Free | Vytra">
+  <meta name="twitter:description" content="Calculate exam marks percentage, convert CGPA to percentage, and calculate grade divisions online for free.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-            <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -134,6 +258,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -153,7 +278,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../calculators/percentage.html" class="nav-link">
+          <a href="../calculators/percentage.html" class="nav-link active">
             Calculators
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -204,98 +329,369 @@
     </div>
   </nav>
 
-    <main class="container">
-        <div class="calculator-container">
-            <h1>Percentage Calculator</h1>
-            
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('basic')">Basic</div>
-                <div class="tab" onclick="switchTab('cgpaToPerc')">CGPA to %</div>
-                <div class="tab" onclick="switchTab('percToCgpa')">% to CGPA</div>
-                <div class="tab" onclick="switchTab('gradeCalc')">Grade Calc</div>
-            </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-            <!-- Basic Percentage -->
-            <div id="basic" class="tab-content active">
-                <div class="form-group">
-                    <label>Obtained Marks</label>
-                    <input type="number" id="obtainedMarks" placeholder="e.g. 450">
-                </div>
-                <div class="form-group">
-                    <label>Total Marks</label>
-                    <input type="number" id="totalMarks" placeholder="e.g. 500">
-                </div>
-                <button class="btn" onclick="calcBasic()">Calculate Percentage</button>
-                
-                <div class="result-box" id="basicResultBox" style="display:none;">
-                    <h2><span id="basicResult">0</span>%</h2>
-                    <div class="progress-bar"><div class="progress-fill" id="basicProgress"></div></div>
-                </div>
-            </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Calculators</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Percentage Calculator</span>
+    </nav>
 
-            <!-- CGPA to Percentage -->
-            <div id="cgpaToPerc" class="tab-content">
-                <div class="form-group">
-                    <label>CGPA</label>
-                    <input type="number" id="cgpaInput" placeholder="e.g. 8.5" step="0.01">
-                </div>
-                <div class="form-group">
-                    <label>Multiplier (Default: 9.5)</label>
-                    <input type="number" id="multiplierInput1" value="9.5" step="0.1">
-                </div>
-                <button class="btn" onclick="calcCgpaToPerc()">Calculate</button>
-                
-                <div class="result-box" id="cgpaResultBox" style="display:none;">
-                    <h2><span id="cgpaToPercResult">0</span>%</h2>
-                    <div class="progress-bar"><div class="progress-fill" id="cgpaProgress"></div></div>
-                </div>
-            </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Percentage Calculator</h1>
+      <p class="vytra-tool-subtitle">
+        Calculate exam marks percentage, convert CGPA to percentage, and calculate grade divisions online for free with instant visual progress indicators.
+      </p>
 
-            <!-- Percentage to CGPA -->
-            <div id="percToCgpa" class="tab-content">
-                <div class="form-group">
-                    <label>Percentage (%)</label>
-                    <input type="number" id="percInput" placeholder="e.g. 85">
-                </div>
-                <div class="form-group">
-                    <label>Multiplier (Default: 9.5)</label>
-                    <input type="number" id="multiplierInput2" value="9.5" step="0.1">
-                </div>
-                <button class="btn" onclick="calcPercToCgpa()">Calculate</button>
-                
-                <div class="result-box" id="percCgpaResultBox" style="display:none;">
-                    <h2><span id="percToCgpaResult">0</span> CGPA</h2>
-                </div>
-            </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ Multi-mode</span>
+        <span class="vytra-trust-chip">✓ 100% Accurate</span>
+      </div>
+    </div>
 
-            <!-- Grade Calculator -->
-            <div id="gradeCalc" class="tab-content">
-                <div class="form-group">
-                    <label>Percentage / Marks (Out of 100)</label>
-                    <input type="number" id="gradeMarks" placeholder="e.g. 88">
-                </div>
-                <button class="btn" onclick="calcGrade()">Get Grade</button>
-                
-                <div class="result-box" id="gradeResultBox" style="display:none;">
-                    <h2>Grade: <span id="gradeResult" style="color: #7c3aed;">A</span></h2>
-                </div>
+    <!-- 2. Interactive Calculator Container -->
+    <div class="calc-center-box">
+      
+      <!-- Tab Header Strip -->
+      <div class="calc-tab-strip">
+        <button type="button" class="calc-tab-btn active" data-tab="tabBasic">📊 Marks Percentage</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabCgpaToPerc">🎓 CGPA to %</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabPercToCgpa">🔄 % to CGPA</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabGrade">🏆 Grade Calculator</button>
+      </div>
 
-                <table class="grade-table">
-                    <tr><th>Percentage</th><th>Grade</th><th>Meaning</th></tr>
-                    <tr><td>90% - 100%</td><td>A+</td><td>Outstanding</td></tr>
-                    <tr><td>80% - 89%</td><td>A</td><td>Excellent</td></tr>
-                    <tr><td>70% - 79%</td><td>B+</td><td>Very Good</td></tr>
-                    <tr><td>60% - 69%</td><td>B</td><td>Good</td></tr>
-                    <tr><td>50% - 59%</td><td>C</td><td>Average</td></tr>
-                    <tr><td>40% - 49%</td><td>D</td><td>Pass</td></tr>
-                    <tr><td>Below 40%</td><td>F</td><td>Fail</td></tr>
-                </table>
-            </div>
-
+      <!-- Tab 1: Basic Marks Percentage -->
+      <div class="calc-tab-pane active" id="tabBasic">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Obtained Marks</label>
+          <input type="number" id="obtainedMarks" class="form-input" placeholder="e.g. 468" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
         </div>
-    </main>
 
-      <footer class="footer">
+        <div class="form-group" style="margin-bottom:18px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Total / Maximum Marks</label>
+          <input type="number" id="totalMarks" class="form-input" placeholder="e.g. 500" value="500" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg" id="btnCalcBasic" style="width:100%; padding:12px; font-weight:700; border-radius:8px;">
+          Calculate Percentage
+        </button>
+
+        <div class="result-display-card" id="basicResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">CALCULATED SCORE</div>
+          <div class="result-val-big"><span id="basicPercVal">0.00</span>%</div>
+          <div class="progress-track"><div class="progress-bar-fill" id="basicProgressBar"></div></div>
+          <div id="basicDivisionText" style="font-weight:700; font-size:0.95rem; margin-top:8px;"></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: CGPA to Percentage -->
+      <div class="calc-tab-pane" id="tabCgpaToPerc">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Cumulative Grade Point Average (CGPA)</label>
+          <input type="number" id="cgpaInput" class="form-input" placeholder="e.g. 8.4" step="0.01" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <div class="form-group" style="margin-bottom:18px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Multiplier (Default 9.5 for CBSE &amp; Most Universities)</label>
+          <input type="number" id="multInput1" class="form-input" value="9.5" step="0.1" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg" id="btnCalcCgpaToPerc" style="width:100%; padding:12px; font-weight:700; border-radius:8px;">
+          Convert CGPA to %
+        </button>
+
+        <div class="result-display-card" id="cgpaResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">EQUIVALENT PERCENTAGE</div>
+          <div class="result-val-big"><span id="cgpaPercVal">0.00</span>%</div>
+          <div class="progress-track"><div class="progress-bar-fill" id="cgpaProgressBar"></div></div>
+          <p style="font-size:0.85rem; color:#64748b; margin-top:6px;">Formula: CGPA × Multiplier = Percentage</p>
+        </div>
+      </div>
+
+      <!-- Tab 3: Percentage to CGPA -->
+      <div class="calc-tab-pane" id="tabPercToCgpa">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Percentage Score (%)</label>
+          <input type="number" id="percInput" class="form-input" placeholder="e.g. 82.5" step="0.1" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <div class="form-group" style="margin-bottom:18px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Multiplier (Default 9.5)</label>
+          <input type="number" id="multInput2" class="form-input" value="9.5" step="0.1" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg" id="btnCalcPercToCgpa" style="width:100%; padding:12px; font-weight:700; border-radius:8px;">
+          Convert % to CGPA
+        </button>
+
+        <div class="result-display-card" id="percToCgpaCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">ESTIMATED CGPA SCORE</div>
+          <div class="result-val-big"><span id="percToCgpaVal">0.00</span> / 10</div>
+          <p style="font-size:0.85rem; color:#64748b; margin-top:6px;">Formula: Percentage ÷ Multiplier = CGPA</p>
+        </div>
+      </div>
+
+      <!-- Tab 4: Grade Calculator -->
+      <div class="calc-tab-pane" id="tabGrade">
+        <div class="form-group" style="margin-bottom:18px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Percentage or Marks (Out of 100)</label>
+          <input type="number" id="gradeMarksInput" class="form-input" placeholder="e.g. 87" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg" id="btnCalcGrade" style="width:100%; padding:12px; font-weight:700; border-radius:8px;">
+          Find Grade &amp; Classification
+        </button>
+
+        <div class="result-display-card" id="gradeResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">GRADE AWARDED</div>
+          <div class="result-val-big" id="gradeLetterVal">A</div>
+          <div id="gradeMeaningVal" style="font-weight:700; color:#16a34a; font-size:1rem;">Excellent Performance</div>
+        </div>
+
+        <table class="grade-table-wrap">
+          <thead>
+            <tr><th>Percentage</th><th>Grade</th><th>Classification</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>90% – 100%</td><td><strong>A+</strong></td><td>Outstanding (Distinction)</td></tr>
+            <tr><td>80% – 89%</td><td><strong>A</strong></td><td>Excellent (1st Division)</td></tr>
+            <tr><td>70% – 79%</td><td><strong>B+</strong></td><td>Very Good (1st Division)</td></tr>
+            <tr><td>60% – 69%</td><td><strong>B</strong></td><td>Good (1st Division)</td></tr>
+            <tr><td>50% – 59%</td><td><strong>C</strong></td><td>Average (2nd Division)</td></tr>
+            <tr><td>40% – 49%</td><td><strong>D</strong></td><td>Pass (3rd Division)</td></tr>
+            <tr><td>Below 40%</td><td><strong style="color:#ef4444;">F</strong></td><td>Fail / Remedial</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to calculate percentages</h3>
+          <p class="vytra-info-cell-desc">Divide the marks obtained by the total maximum marks, then multiply the result by 100. Our tool automates this with instant real-time progress bars and division brackets.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎓</div>
+          <h3 class="vytra-info-cell-title">CBSE 9.5 conversion formula</h3>
+          <p class="vytra-info-cell-desc">The official Central Board of Secondary Education (CBSE) conversion multiplier is 9.5. Simply enter your CGPA to find the verified percentage required on job applications.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant result calculations</h3>
+          <p class="vytra-info-cell-desc">Get instant calculations without reloading the webpage. Perfect for college admission counseling, scholarship submissions, and SSC registration.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📊</div>
+          <h3 class="vytra-info-cell-title">Visual progress feedback</h3>
+          <p class="vytra-info-cell-desc">Dynamic dual-color progress bars provide intuitive visual representation of performance relative to academic benchmarks.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🏆</div>
+          <h3 class="vytra-info-cell-title">Standard university grading</h3>
+          <p class="vytra-info-cell-desc">Includes the 10-point UGC scale (A+, A, B+, B, C, D, F) used across central and state universities throughout India.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private calculations</h3>
+          <p class="vytra-info-cell-desc">Your academic marks are computed locally on your device with zero data transmission or logging.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Needed to convert my engineering 8.65 CGPA to percentage for the TCS campus drive. The 9.5 multiplier gave the exact number accepted by HR.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AM</div>
+            <div>
+              <div class="vytra-author-name">Aditya Malik</div>
+              <div class="vytra-author-role">B.Tech Graduate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Very simple and easy to use. The visual progress bar and division classification helped me quickly verify my class 12th board marks.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">ST</div>
+            <div>
+              <div class="vytra-author-name">Sneha Tiwari</div>
+              <div class="vytra-author-role">CBSE Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Having marks percentage, CGPA converter, and grading tables in one tabbed clean page is super handy. Highly recommended!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">VG</div>
+            <div>
+              <div class="vytra-author-name">Varun Goel</div>
+              <div class="vytra-author-role">Academic Counselor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why is the CGPA multiplier 9.5 used by CBSE?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            CBSE analyzed past board examination data and calculated that candidates scoring between 91 and 100 had an average percentage of 95. Dividing 95 by 10 yields the official statistical multiplier of 9.5.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I calculate percentage for 6 subjects?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Sum your marks across all 6 subjects and enter that into 'Obtained Marks', and set 'Total Marks' to 600.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How do I convert percentage back into CGPA?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Click the '% to CGPA' tab, type your percentage score, and click convert. The tool divides your percentage by 9.5 to determine your estimated CGPA on a 10-point scale.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Percentage Calculator</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Percentage Calculator!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with classmates &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Calculate%20exam%20percentages%20and%20CGPA%20conversions%20for%20free:%20https://digitalsaathi.vytra.in/calculators/percentage.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Calculate%20percentages%20and%20CGPA%20to%20percentage%20conversions%20online%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/calculators/percentage.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/calculators/percentage.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/calculators/percentage.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Academic Calculators
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="cgpa.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎓</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">CGPA Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Semester-wise SGPA and cumulative credits calculator</div>
+        </a>
+        <a href="age.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎂</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Age Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Exact age in years, months, and days for exam forms</div>
+        </a>
+        <a href="attendance.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📅</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Attendance Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate classes needed to maintain 75% attendance</div>
+        </a>
+        <a href="emi.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">💰</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Loan EMI Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate student loan interest and monthly payments</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -345,61 +741,161 @@
     </div>
   </footer>
 
-    <script defer src="../data/tools.js"></script>
+  <!-- Scripts -->
+  <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
 
-        function calcBasic() {
-            let obt = parseFloat(document.getElementById('obtainedMarks').value);
-            let tot = parseFloat(document.getElementById('totalMarks').value);
-            if(tot > 0) {
-                let perc = ((obt / tot) * 100).toFixed(2);
-                document.getElementById('basicResult').textContent = perc;
-                document.getElementById('basicProgress').style.width = perc + '%';
-                document.getElementById('basicResultBox').style.display = 'block';
-            }
-        }
+  <script>
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.calc-tab-btn');
+    const tabPanes = document.querySelectorAll('.calc-tab-pane');
 
-        function calcCgpaToPerc() {
-            let cgpa = parseFloat(document.getElementById('cgpaInput').value);
-            let mult = parseFloat(document.getElementById('multiplierInput1').value);
-            if(cgpa && mult) {
-                let perc = Math.min((cgpa * mult), 100).toFixed(2);
-                document.getElementById('cgpaToPercResult').textContent = perc;
-                document.getElementById('cgpaProgress').style.width = perc + '%';
-                document.getElementById('cgpaResultBox').style.display = 'block';
-            }
-        }
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+      });
+    });
 
-        function calcPercToCgpa() {
-            let perc = parseFloat(document.getElementById('percInput').value);
-            let mult = parseFloat(document.getElementById('multiplierInput2').value);
-            if(perc && mult) {
-                let cgpa = (perc / mult).toFixed(2);
-                document.getElementById('percToCgpaResult').textContent = cgpa;
-                document.getElementById('percCgpaResultBox').style.display = 'block';
-            }
-        }
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
 
-        function calcGrade() {
-            let marks = parseFloat(document.getElementById('gradeMarks').value);
-            let grade = 'F';
-            if(marks >= 90) grade = 'A+';
-            else if(marks >= 80) grade = 'A';
-            else if(marks >= 70) grade = 'B+';
-            else if(marks >= 60) grade = 'B';
-            else if(marks >= 50) grade = 'C';
-            else if(marks >= 40) grade = 'D';
+    // 1. Basic Calculation
+    const btnCalcBasic = document.getElementById('btnCalcBasic');
+    const obtainedMarks = document.getElementById('obtainedMarks');
+    const totalMarks = document.getElementById('totalMarks');
+    const basicResultCard = document.getElementById('basicResultCard');
+    const basicPercVal = document.getElementById('basicPercVal');
+    const basicProgressBar = document.getElementById('basicProgressBar');
+    const basicDivisionText = document.getElementById('basicDivisionText');
 
-            document.getElementById('gradeResult').textContent = grade;
-            document.getElementById('gradeResultBox').style.display = 'block';
-        }
-    </script>
+    function calcBasic() {
+      const obt = parseFloat(obtainedMarks.value);
+      const tot = parseFloat(totalMarks.value);
+      if (isNaN(obt) || isNaN(tot) || tot <= 0) {
+        alert('Please enter valid positive numbers for obtained and total marks.');
+        return;
+      }
+      const perc = ((obt / tot) * 100).toFixed(2);
+      basicPercVal.textContent = perc;
+      basicProgressBar.style.width = Math.min(perc, 100) + '%';
+
+      let divName = '';
+      let divColor = '';
+      if (perc >= 75) {
+        divName = '🌟 1st Division with Distinction';
+        divColor = '#16a34a';
+      } else if (perc >= 60) {
+        divName = '🥇 First Division';
+        divColor = '#2563eb';
+      } else if (perc >= 50) {
+        divName = '🥈 Second Division';
+        divColor = '#d97706';
+      } else if (perc >= 40) {
+        divName = '🥉 Third / Pass Division';
+        divColor = '#64748b';
+      } else {
+        divName = '❌ Needs Improvement';
+        divColor = '#ef4444';
+      }
+
+      basicDivisionText.textContent = divName;
+      basicDivisionText.style.color = divColor;
+      basicResultCard.style.display = 'block';
+    }
+    btnCalcBasic.addEventListener('click', calcBasic);
+
+    // 2. CGPA to %
+    const btnCalcCgpaToPerc = document.getElementById('btnCalcCgpaToPerc');
+    const cgpaInput = document.getElementById('cgpaInput');
+    const multInput1 = document.getElementById('multInput1');
+    const cgpaResultCard = document.getElementById('cgpaResultCard');
+    const cgpaPercVal = document.getElementById('cgpaPercVal');
+    const cgpaProgressBar = document.getElementById('cgpaProgressBar');
+
+    function calcCgpaToPerc() {
+      const cgpa = parseFloat(cgpaInput.value);
+      const mult = parseFloat(multInput1.value) || 9.5;
+      if (isNaN(cgpa) || cgpa < 0) {
+        alert('Please enter a valid CGPA.');
+        return;
+      }
+      const perc = Math.min(cgpa * mult, 100).toFixed(2);
+      cgpaPercVal.textContent = perc;
+      cgpaProgressBar.style.width = Math.min(perc, 100) + '%';
+      cgpaResultCard.style.display = 'block';
+    }
+    btnCalcCgpaToPerc.addEventListener('click', calcCgpaToPerc);
+
+    // 3. % to CGPA
+    const btnCalcPercToCgpa = document.getElementById('btnCalcPercToCgpa');
+    const percInput = document.getElementById('percInput');
+    const multInput2 = document.getElementById('multInput2');
+    const percToCgpaCard = document.getElementById('percToCgpaCard');
+    const percToCgpaVal = document.getElementById('percToCgpaVal');
+
+    function calcPercToCgpa() {
+      const perc = parseFloat(percInput.value);
+      const mult = parseFloat(multInput2.value) || 9.5;
+      if (isNaN(perc) || perc < 0) {
+        alert('Please enter a valid percentage score.');
+        return;
+      }
+      const cgpa = (perc / mult).toFixed(2);
+      percToCgpaVal.textContent = cgpa;
+      percToCgpaCard.style.display = 'block';
+    }
+    btnCalcPercToCgpa.addEventListener('click', calcPercToCgpa);
+
+    // 4. Grade Calculator
+    const btnCalcGrade = document.getElementById('btnCalcGrade');
+    const gradeMarksInput = document.getElementById('gradeMarksInput');
+    const gradeResultCard = document.getElementById('gradeResultCard');
+    const gradeLetterVal = document.getElementById('gradeLetterVal');
+    const gradeMeaningVal = document.getElementById('gradeMeaningVal');
+
+    function calcGrade() {
+      const marks = parseFloat(gradeMarksInput.value);
+      if (isNaN(marks) || marks < 0 || marks > 100) {
+        alert('Please enter a score between 0 and 100.');
+        return;
+      }
+      let grade = 'F';
+      let meaning = 'Fail / Re-evaluation Required';
+      let color = '#ef4444';
+
+      if (marks >= 90) {
+        grade = 'A+'; meaning = 'Outstanding (Grade Point 10)'; color = '#16a34a';
+      } else if (marks >= 80) {
+        grade = 'A'; meaning = 'Excellent (Grade Point 9)'; color = '#2563eb';
+      } else if (marks >= 70) {
+        grade = 'B+'; meaning = 'Very Good (Grade Point 8)'; color = '#2563eb';
+      } else if (marks >= 60) {
+        grade = 'B'; meaning = 'Good (Grade Point 7)'; color = '#0284c7';
+      } else if (marks >= 50) {
+        grade = 'C'; meaning = 'Average (Grade Point 6)'; color = '#d97706';
+      } else if (marks >= 40) {
+        grade = 'D'; meaning = 'Pass (Grade Point 4)'; color = '#64748b';
+      }
+
+      gradeLetterVal.textContent = grade;
+      gradeMeaningVal.textContent = meaning;
+      gradeMeaningVal.style.color = color;
+      gradeResultCard.style.display = 'block';
+    }
+    btnCalcGrade.addEventListener('click', calcGrade);
+  </script>
 </body>
 </html>
