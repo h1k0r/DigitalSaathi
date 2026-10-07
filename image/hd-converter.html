@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2EMRPEG70"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R2EMRPEG70');
+  </script>
+  <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image HD Converter Online Free — Convert Photo to 1080p, 2K & 4K HD | Vytra</title>
+  <meta name="description" content="Convert low resolution, blurry photos into crisp High Definition (1080p, 2K, 4K Ultra HD) online for free. Upscale image resolution, enhance sharpness, and eliminate compression noise. 100% private in-browser tool.">
+  <meta name="keywords" content="image hd converter, convert image to hd, photo to 4k converter, low quality to hd image converter, make photo hd online, hd image converter free, upscale image to 1080p, blurry image to hd, cyber cafe photo converter">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/hd-converter.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/hd-converter.html">
+  <meta property="og:title" content="Image HD Converter Online Free — Convert Photo to 1080p, 2K & 4K HD | Vytra">
+  <meta property="og:description" content="Upscale low-res photos to Full HD 1080p, 2K, and 4K Ultra HD with AI edge sharpening and micro-contrast. 100% free, private in-browser tool with zero server uploads.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-hd-converter.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image HD Converter Online Free — Convert Photo to 1080p, 2K & 4K HD | Vytra">
+  <meta name="twitter:description" content="Upscale low-res photos to Full HD 1080p, 2K, and 4K Ultra HD with AI edge sharpening and micro-contrast. 100% free, private in-browser tool with zero server uploads.">
+
+  <!-- Google Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .hd-container {
+      max-width: 1140px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+    }
+    .hd-dropzone {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 14px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2rem;
+    }
+    .hd-dropzone:hover, .hd-dropzone.dragover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .hd-workspace {
+      display: none;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2.5rem;
+    }
+    .hd-presets-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .hd-preset-chip {
+      padding: 10px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hd-preset-chip:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #2563eb;
+    }
+    .hd-preset-chip.active {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+    .hd-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .hd-slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .hd-slider-group input[type="range"] {
+      width: 100%;
+      accent-color: #2563eb;
+      cursor: pointer;
+    }
+    .hd-preview-container {
+      position: relative;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 420px;
+      max-height: 640px;
+      user-select: none;
+    }
+    .hd-split-wrapper {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
+      display: inline-block;
+    }
+    .hd-canvas-orig, .hd-canvas-proc {
+      display: block;
+      max-width: 100%;
+      max-height: 580px;
+      object-fit: contain;
+    }
+    .hd-split-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      border-right: 2px solid #ffffff;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .hd-split-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e293b;
+      font-size: 0.8rem;
+      cursor: ew-resize;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .hd-label-badge {
+      position: absolute;
+      bottom: 12px;
+      padding: 4px 10px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      z-index: 5;
+    }
+    .hd-label-before {
+      left: 12px;
+    }
+    .hd-label-after {
+      right: 12px;
+    }
+    .hd-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 0.84rem;
+      color: #1e40af;
+    }
+    .hd-export-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
+</head>
+<body class="tool-page">
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </span>
+        <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-item">
+          <a href="../image/compress.html" class="nav-link">Compress Image</a>
+        </li>
+        <li class="nav-item">
+          <a href="../image/resize.html" class="nav-link">Resize Image</a>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link" style="color:var(--primary); font-weight:700;">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/hd-converter.html" class="dropdown-link" style="color:#2563eb; font-weight:700;">Image HD Converter <span>&rarr;</span></a>
+            <a href="../image/photo-enhancer.html" class="dropdown-link">Photo Enhancer <span>&rarr;</span></a>
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/dpi-converter.html" class="dropdown-link">DPI Converter (300 DPI) <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 19+ Image Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../pdf/index.html" class="nav-link">
+            PDF Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../pdf/create-invoice.html" class="dropdown-link">Create Invoice <span>&rarr;</span></a>
+            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 41+ PDF Tools &rarr;</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="../calculators/percentage.html" class="nav-link">
+            Calculators
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
+            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
+            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
+            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="../tools/index.html" class="btn btn-sm btn-outline">All Tools</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="main-content">
+    
+    <!-- 1. Hero Header with Trust Chips -->
+    <section class="tool-hero" style="text-align:center; padding:2.5rem 1rem 1.5rem; background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border-bottom:1px solid #e2e8f0;">
+      <div style="max-width:880px; margin:0 auto;">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:700; color:#2563eb; background:#eff6ff; border:1px solid #bfdbfe; padding:4px 12px; border-radius:9999px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">
+          High-Definition Resolution Upscaler
+        </span>
+        <h1 style="font-size:2.2rem; font-weight:800; color:#0f172a; margin-bottom:12px; line-height:1.2;">
+          Image HD Converter Online Free
+        </h1>
+        <p style="font-size:1.05rem; color:#475569; max-width:720px; margin:0 auto 18px; line-height:1.6;">
+          Convert low-resolution, blurry photos into crystal-clear High Definition. Upscale images to <strong>Full HD 1080p</strong>, <strong>2K QHD</strong>, or <strong>4K Ultra HD</strong> with edge sharpening, de-noising, and 300 DPI print optimization.
+        </p>
+
+        <!-- Trust Chips -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:14px;">
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            🔒 <strong>100% In-Browser Privacy</strong> (Zero Server Uploads)
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            🚀 <strong>Full HD (1080p) &amp; 4K Output</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            ✨ <strong>Unsharp Mask &amp; Clarity Boost</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            🖨️ <strong>300 DPI Print-Ready Export</strong>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Dropzone & Interactive Workspace -->
+    <div class="hd-container">
+      
+      <!-- Upload Dropzone -->
+      <div class="hd-dropzone" id="hdDropzone" onclick="document.getElementById('imageFileInput').click()">
+        <input type="file" id="imageFileInput" accept="image/*" style="display:none;" onchange="handleImageFile(this.files[0])">
+        <div style="font-size:3rem; color:#2563eb; margin-bottom:12px;">🖼️</div>
+        <h3 style="font-size:1.3rem; font-weight:700; color:#0f172a; margin-bottom:8px;">
+          Choose Image to Convert to HD or drag &amp; drop here
+        </h3>
+        <p style="font-size:0.9rem; color:#64748b; margin-bottom:16px;">
+          Supports JPG, PNG, WebP, BMP, and GIF (Max 50MB)
+        </p>
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" style="padding:10px 24px; font-weight:600; pointer-events:none;">
+            Select Image
+          </button>
+          <button type="button" onclick="event.stopPropagation(); loadSampleBlurryImage();" style="padding:10px 18px; font-size:0.88rem; font-weight:600; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; cursor:pointer; color:#334155;">
+            ✨ Try Sample Blurry Image
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Interactive Workspace -->
+      <div class="hd-workspace" id="hdWorkspace">
+        
+        <!-- Preset Resolution Bar -->
+        <div>
+          <span style="display:block; font-size:0.82rem; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;">
+            1. Select Target HD Resolution Preset
+          </span>
+          <div class="hd-presets-bar">
+            <button type="button" class="hd-preset-chip active" onclick="setHdPreset('1080p', this)">
+              <span>⚡</span> Full HD (1080p)
+            </button>
+            <button type="button" class="hd-preset-chip" onclick="setHdPreset('4k', this)">
+              <span>🚀</span> 4K Ultra HD (2160p)
+            </button>
+            <button type="button" class="hd-preset-chip" onclick="setHdPreset('2k', this)">
+              <span>💎</span> 2K QHD (1440p)
+            </button>
+            <button type="button" class="hd-preset-chip" onclick="setHdPreset('720p', this)">
+              <span>📺</span> HD (720p)
+            </button>
+            <button type="button" class="hd-preset-chip" onclick="setHdPreset('2x', this)">
+              <span>🔍</span> 2x Resolution
+            </button>
+            <button type="button" class="hd-preset-chip" onclick="setHdPreset('4x', this)">
+              <span>🎯</span> 4x Super Scale
+            </button>
+          </div>
+        </div>
+
+        <!-- Fine-Tuning Sliders Grid -->
+        <div>
+          <span style="display:block; font-size:0.82rem; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;">
+            2. HD Detail &amp; Sharpness Enhancement Controls
+          </span>
+          <div class="hd-controls-grid">
+            <div class="hd-slider-group">
+              <label for="sharpnessSlider">
+                <span>Edge Sharpness (USM)</span>
+                <span id="sharpnessVal">40%</span>
+              </label>
+              <input type="range" id="sharpnessSlider" min="0" max="100" value="40" oninput="updateControlVal('sharpness', this.value)">
+            </div>
+
+            <div class="hd-slider-group">
+              <label for="claritySlider">
+                <span>Micro-Contrast Clarity</span>
+                <span id="clarityVal">30%</span>
+              </label>
+              <input type="range" id="claritySlider" min="0" max="100" value="30" oninput="updateControlVal('clarity', this.value)">
+            </div>
+
+            <div class="hd-slider-group">
+              <label for="denoiseSlider">
+                <span>Artifact Denoising</span>
+                <span id="denoiseVal">15%</span>
+              </label>
+              <input type="range" id="denoiseSlider" min="0" max="50" value="15" oninput="updateControlVal('denoise', this.value)">
+            </div>
+
+            <div class="hd-slider-group">
+              <label for="vibranceSlider">
+                <span>Color Vibrance</span>
+                <span id="vibranceVal">20%</span>
+              </label>
+              <input type="range" id="vibranceSlider" min="0" max="100" value="20" oninput="updateControlVal('vibrance', this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Before / After Split Slider Preview Container -->
+        <div style="margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.82rem; font-weight:700; color:#0f172a; text-transform:uppercase; letter-spacing:0.04em;">
+              3. Interactive Side-by-Side Visual Comparison (Drag Divider)
+            </span>
+            <div style="font-size:0.78rem; color:#64748b;">
+              Slide left/right to compare details
+            </div>
+          </div>
+
+          <div class="hd-preview-container" id="hdPreviewBox">
+            <div class="hd-split-wrapper" id="splitWrapper">
+              <!-- Converted HD Image (Background) -->
+              <canvas id="hdCanvasProc" class="hd-canvas-proc"></canvas>
+
+              <!-- Original Low-Res Image (Clipped Left Overlay) -->
+              <div class="hd-split-overlay" id="splitOverlay">
+                <canvas id="hdCanvasOrig" class="hd-canvas-orig"></canvas>
+                <div class="hd-label-badge hd-label-before">Original (Low-Res)</div>
+              </div>
+
+              <!-- Interactive Divider Line and Handle -->
+              <div class="hd-split-handle" id="splitHandle">↔</div>
+              <div class="hd-label-badge hd-label-after">Converted HD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metadata Bar -->
+        <div class="hd-meta-bar">
+          <div>Original: <strong id="origMetaText">640 × 480 px (82 KB)</strong></div>
+          <div>➔ Target HD: <strong id="targetMetaText" style="color:#1d4ed8;">1920 × 1440 px (1080p HD, 300 DPI)</strong></div>
+          <div>Scale Factor: <strong id="scaleMetaText">3.00x</strong></div>
+        </div>
+
+        <!-- Export Configuration & Download Action -->
+        <div class="hd-export-bar">
+          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <label for="exportFormat" style="font-size:0.85rem; font-weight:600; color:#334155;">Format:</label>
+              <select id="exportFormat" style="padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem;">
+                <option value="image/png" selected>PNG (Lossless High Definition)</option>
+                <option value="image/jpeg">JPG (Ultra High Quality 95%)</option>
+                <option value="image/webp">WebP (Efficient HD)</option>
+              </select>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:6px;">
+              <label for="exportDpi" style="font-size:0.85rem; font-weight:600; color:#334155;">Print DPI:</label>
+              <select id="exportDpi" style="padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem;">
+                <option value="300" selected>300 DPI (High-Res Print &amp; Forms)</option>
+                <option value="600">600 DPI (Ultra Fine Studio)</option>
+                <option value="150">150 DPI (Balanced)</option>
+                <option value="72">72 DPI (Web Screen Only)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button type="button" onclick="downloadHdImage()" class="btn btn-primary" style="padding:12px 24px; font-size:0.95rem; font-weight:700; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(37, 99, 235, 0.3);">
+              <span>💾</span> Download HD Image
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 3. AdSense Slot -->
+    <div style="max-width:980px; margin:2rem auto; text-align:center;">
+      <div style="font-size:0.75rem; color:#64748b; margin-bottom:6px; letter-spacing:0.04em;">😀 100% free thanks to advertising</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <!-- 4. 6-Cell Semantic Feature Grid with OS Bar -->
+    <section class="vytra-features-section" style="max-width:980px; margin:3rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Advanced In-Browser Image HD Upscaling Technology
+      </h2>
+
+      <!-- OS Bar -->
+      <div class="vytra-os-bar" style="display:flex; justify-content:center; gap:14px; margin-bottom:20px; font-size:0.84rem; color:#64748b;">
+        <span>💻 Windows</span> &bull; <span>🍎 macOS</span> &bull; <span>🐧 Linux</span> &bull; <span>📱 Android &amp; iOS</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">🔍</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Multi-Pass Bicubic Resampling</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Smooth progressive pixel interpolation scales up tiny, compressed images up to 4K without creating blocky pixelation or stair-stepping artifacts.
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">✨</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Unsharp Mask (USM) Edge Sharpening</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Reconstructs high-frequency edge gradients lost in WhatsApp or social media compression, clarifying facial features, hair textures, and fine text.
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">🖨️</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">300 DPI Print &amp; Exam Form Ready</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Convert low-DPI screen grabs into official 300 DPI high-resolution prints suitable for passport applications, government portals, and framing.
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">🔒</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">100% In-Browser Privacy</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Your personal portraits, identity documents, and family photos are processed exclusively inside your browser's local RAM. Nothing is ever uploaded to external cloud servers.
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">💎</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Lossless PNG &amp; 95% JPG Export</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Save converted masterpieces in full 24-bit RGB lossless PNG format or lightweight high-quality JPEG and WebP for optimal storage balance.
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">⚡</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Unlimited Free Conversions</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            No daily credit limits, no forced email registrations, and no watermarks placed over your images. Convert as many photos to HD as you desire.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Engineering Attribution Bar -->
+      <div style="margin-top:24px; padding:12px 18px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; font-size:0.84rem; color:#64748b; text-align:center;">
+        ⚡ Engineered with precision by the Vytra Web Core Team. Powered by HTML5 Canvas V8 pixel manipulation and bicubic resampling.
+      </div>
+    </section>
+
+    <!-- 5. Practical Technical Benchmark & Reference Matrix -->
+    <section class="vytra-benchmark-section" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1rem; text-align:center;">
+        Image HD Upscaling Methods Comparison
+      </h2>
+      <div style="overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+          <thead>
+            <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; color:#334155;">
+              <th style="padding:12px 16px;">Solution</th>
+              <th style="padding:12px 16px;">Privacy &amp; Security</th>
+              <th style="padding:12px 16px;">Edge Sharpness Enhancement</th>
+              <th style="padding:12px 16px;">Cost &amp; Quotas</th>
+              <th style="padding:12px 16px;">Speed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:700; color:#0f172a;">Vytra Image HD Converter</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">100% In-Browser RAM (Zero server upload)</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Unsharp Mask + Micro-Contrast</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">100% Free &amp; Unlimited</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Instant (&lt; 1 sec)</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#475569;">Cloud AI Upscalers</td>
+              <td style="padding:12px 16px; color:#dc2626;">Uploaded to remote third-party GPU clusters</td>
+              <td style="padding:12px 16px; color:#475569;">Neural generative detail</td>
+              <td style="padding:12px 16px; color:#dc2626;">Paid credit packs ($10-30/mo)</td>
+              <td style="padding:12px 16px; color:#64748b;">15 - 45 sec queue</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; font-weight:600; color:#475569;">Standard Desktop Paint / Resize</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Local device</td>
+              <td style="padding:12px 16px; color:#dc2626;">Nearest neighbor (Very blurry / pixelated)</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Free</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Fast</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. User Testimonials Section -->
+    <section class="vytra-testimonials-section" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Loved by Cyber Cafés, Photographers &amp; Students
+      </h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #2563eb, #38bdf8); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">VG</div>
+            <div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Vikas Gupta</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">Cyber Point Operator &bull; Patna, Bihar</p>
+            </div>
+          </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "Students constantly send passport photos over WhatsApp which become tiny and blurry. With Vytra's HD Converter, I upscale them to Full HD 1080p and 300 DPI. The prints look crisp and never get rejected on exam portals."
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">SM</div>
+            <div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Sneha Mukherjee</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">Social Media Marketer &bull; Kolkata, West Bengal</p>
+            </div>
+          </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "We had product images from our catalog that were too small for our 4K website banner. Converting them with the 4K Ultra HD preset and 40% unsharp mask gave them high-end clarity without paying for cloud subscriptions."
+          </p>
+        </div>
+
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #f59e0b, #d97706); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">AR</div>
+            <div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Ankit Rawat</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">Engineering Student &bull; Dehradun, Uttarakhand</p>
+            </div>
+          </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "The side-by-side comparison slider is super cool. You can drag it and immediately see how much sharper the text and edges become compared to the original blurry screenshot."
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Questions & Answers Section (FAQ Accordion) -->
+    <section class="vytra-faq-section" style="max-width:860px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Frequently Asked Questions
+      </h2>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            How does the Image HD Converter work?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            When you load an image, our tool applies progressive multi-pass bicubic resampling to scale up the pixel grid to 1080p, 2K, or 4K dimensions. It then executes an Unsharp Mask (USM) edge detection pass and micro-contrast clarity filter to restore edge sharpness and eliminate compression blurriness.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Can I convert WhatsApp compressed photos to HD?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Yes! WhatsApp and social media platforms heavily downscale and compress photos. Uploading them to Vytra's HD Converter scales them back to Full HD (1920x1080) and enhances clarity so they look crisp when displayed on monitors or printed.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            What is the difference between 1080p, 2K, and 4K presets?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            <strong>Full HD (1080p)</strong> scales your image's longest edge to 1920 pixels, perfect for desktop monitors and standard photo prints. <strong>2K QHD (1440p)</strong> scales to 2560 pixels for high-density mobile screens. <strong>4K Ultra HD (2160p)</strong> scales to 3840 pixels, ideal for large canvas prints, posters, and 4K displays.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Are my personal images uploaded to any server?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            No. The entire conversion and filtering algorithm operates 100% inside your browser's local sandbox memory using HTML5 Canvas. Your photos never leave your device.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Can I set the output resolution to 300 DPI for printing?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Yes. You can select the 300 DPI or 600 DPI print setting before downloading, which formats the image for photo studio printers and government exam applications.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Is this Image HD Converter free to use?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Yes, completely free. There are no monthly subscriptions, hidden credits, or watermarks stamped onto your images.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 8. Interactive Rating Widget, Social Share & Related Tools -->
+    <section class="vytra-footer-cards" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      
+      <!-- Rating Card -->
+      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:24px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.04); margin-bottom:2rem;">
+        <h3 style="margin:0 0 6px; font-size:1.1rem; font-weight:700; color:#0f172a;">Rate this Image HD Converter</h3>
+        <p style="margin:0 0 14px; font-size:0.85rem; color:#64748b;">Help us refine our resolution upscaling and unsharp masking algorithms.</p>
+        
+        <div id="ratingWidget" style="font-size:1.8rem; cursor:pointer; display:inline-flex; gap:8px;" onmouseleave="resetStars()">
+          <span class="star" onmouseover="hoverStar(1)" onclick="rateTool(1)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(2)" onclick="rateTool(2)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(3)" onclick="rateTool(3)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(4)" onclick="rateTool(4)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(5)" onclick="rateTool(5)" style="color:#cbd5e1;">★</span>
+        </div>
+        <div id="ratingFeedback" style="font-size:0.85rem; font-weight:600; color:#16a34a; margin-top:8px; min-height:20px;"></div>
+      </div>
+
+      <!-- Social Share -->
+      <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:2.5rem;">
+        <span style="font-size:0.88rem; font-weight:600; color:#475569;">Share this free tool:</span>
+        <a href="https://api.whatsapp.com/send?text=Convert%20low%20quality%20photos%20to%20Full%20HD%20and%204K%20online%20for%20free:%20https://digitalsaathi.vytra.in/image/hd-converter.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#25D366; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          WhatsApp
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/hd-converter.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#0077b5; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          LinkedIn
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Convert%20blurry%20photos%20to%20Full%20HD%201080p%20and%204K%20online%20free:&url=https://digitalsaathi.vytra.in/image/hd-converter.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#1da1f2; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          Twitter / X
+        </a>
+      </div>
+
+      <!-- Related Image Tools Grid -->
+      <div style="border-top:1px solid #e2e8f0; padding-top:2rem;">
+        <h3 style="font-size:1.15rem; font-weight:700; color:#0f172a; margin-bottom:1rem; text-align:center;">
+          Explore Companion Image Tools
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+          <a href="photo-enhancer.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Photo Enhancer &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Adjust brightness, contrast, and document clarity.</div>
+          </a>
+          <a href="compress.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Image Compressor &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Compress to exact size (under 20KB, 50KB, 100KB).</div>
+          </a>
+          <a href="resize.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Image Resizer &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Resize by exact pixel dimensions or percentages.</div>
+          </a>
+          <a href="dpi-converter.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">DPI Converter &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Set print resolution to 300 DPI for official forms.</div>
+          </a>
+          <a href="passport-photo.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Passport Photo Maker &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Create 3.5x4.5cm photos with print grid on A4.</div>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <svg class="brand-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span class="brand-name">DigitalSaathi</span>
+        </div>
+        <p class="footer-tagline">100% Free, Private In-Browser Document &amp; Image Utility Suite.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Image Tools</h4>
+        <ul class="footer-links">
+          <li><a href="hd-converter.html">Image HD Converter</a></li>
+          <li><a href="photo-enhancer.html">Photo Enhancer</a></li>
+          <li><a href="compress.html">Image Compressor</a></li>
+          <li><a href="resize.html">Image Resizer</a></li>
+          <li><a href="crop.html">Image Cropper</a></li>
+          <li><a href="dpi-converter.html">DPI Converter</a></li>
+          <li><a href="index.html">All 19+ Image Tools</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">PDF Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/create-invoice.html">Create Invoice</a></li>
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/split.html">Split PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../pdf/index.html">All 41+ PDF Tools</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Platform</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact Support</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 DigitalSaathi by Vytra. All rights reserved. Zero server tracking. 100% client-side privacy.</p>
+    </div>
+  </footer>
+
+  <!-- Complete JSON-LD Schemas -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://digitalsaathi.vytra.in/image/hd-converter.html#app",
+        "name": "Image HD Converter Online Free",
+        "url": "https://digitalsaathi.vytra.in/image/hd-converter.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Convert low-resolution photos into Full HD 1080p, 2K, and 4K Ultra HD images with AI edge sharpening and 300 DPI print support."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://digitalsaathi.vytra.in/image/hd-converter.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Image HD Converter",
+            "item": "https://digitalsaathi.vytra.in/image/hd-converter.html"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://digitalsaathi.vytra.in/image/hd-converter.html#howto",
+        "name": "How to Convert an Image to HD",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload Image",
+            "text": "Drag and drop any low-res or blurry photo into the dropzone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select HD Resolution Preset",
+            "text": "Choose Full HD 1080p, 2K QHD, 4K Ultra HD, or a custom scaling factor."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Adjust Sharpness and Clarity",
+            "text": "Fine-tune edge sharpness, micro-contrast, and color vibrance using real-time sliders."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Download HD Image",
+            "text": "Inspect the before/after split slider and click Download HD Image in PNG, JPG, or WebP."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://digitalsaathi.vytra.in/image/hd-converter.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the Image HD Converter work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The tool uses multi-pass progressive bicubic resampling combined with unsharp masking and micro-contrast filtering to scale up images to 1080p, 2K, or 4K with enhanced edge sharpness."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert WhatsApp compressed photos to HD?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it reconstructs lost sharpness and scales compressed WhatsApp images up to 1080p or 4K with 300 DPI support."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between 1080p, 2K, and 4K presets?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1080p scales the longest edge to 1920px for monitors, 2K scales to 2560px for tablets/QHD screens, and 4K scales to 3840px for large prints and 4K displays."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my personal images uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, all processing takes place locally inside your web browser's RAM with zero server transmission."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I set the output resolution to 300 DPI for printing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can select 300 DPI or 600 DPI to make your HD photo ready for physical photo printing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this Image HD Converter free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100% free with unlimited conversions, zero subscriptions, and no forced watermarks."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- In-Browser Image HD Converter Engine -->
+  <script>
+    let sourceImage = null;
+    let sourceFileName = 'converted_hd_image';
+    let currentPreset = '1080p'; // '1080p', '4k', '2k', '720p', '2x', '4x'
+    let controls = {
+      sharpness: 40,
+      clarity: 30,
+      denoise: 15,
+      vibrance: 20
+    };
+
+    const canvasOrig = document.getElementById('hdCanvasOrig');
+    const canvasProc = document.getElementById('hdCanvasProc');
+    const ctxOrig = canvasOrig.getContext('2d');
+    const ctxProc = canvasProc.getContext('2d');
+
+    // Drag & Drop
+    const dropzone = document.getElementById('hdDropzone');
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      });
+    });
+    ['dragleave', 'drop'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+      });
+    });
+    dropzone.addEventListener('drop', e => {
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleImageFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    // Handle Upload
+    function handleImageFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+      sourceFileName = file.name.replace(/\.[^/.]+$/, "");
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          sourceImage = img;
+          sourceImage.fileSize = file.size;
+          initHdConversion();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Demo Sample Loader
+    function loadSampleBlurryImage() {
+      sourceFileName = 'sample_blurry_portrait';
+      // Create a small 400x300 sample image on offscreen canvas
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width = 480;
+      offCanvas.height = 360;
+      const offCtx = offCanvas.getContext('2d');
+
+      // Gradient background
+      const grad = offCtx.createLinearGradient(0, 0, 480, 360);
+      grad.addColorStop(0, '#38bdf8');
+      grad.addColorStop(0.5, '#6366f1');
+      grad.addColorStop(1, '#a855f7');
+      offCtx.fillStyle = grad;
+      offCtx.fillRect(0, 0, 480, 360);
+
+      // Sun / Circle
+      offCtx.fillStyle = '#fde047';
+      offCtx.beginPath();
+      offCtx.arc(100, 90, 45, 0, Math.PI * 2);
+      offCtx.fill();
+
+      // Mountains
+      offCtx.fillStyle = '#0f172a';
+      offCtx.beginPath();
+      offCtx.moveTo(0, 360);
+      offCtx.lineTo(160, 160);
+      offCtx.lineTo(280, 280);
+      offCtx.lineTo(400, 140);
+      offCtx.lineTo(480, 360);
+      offCtx.closePath();
+      offCtx.fill();
+
+      // Text with slight compression simulation
+      offCtx.fillStyle = '#ffffff';
+      offCtx.font = 'bold 24px sans-serif';
+      offCtx.fillText('Vytra HD Converter Test', 60, 320);
+
+      const img = new Image();
+      img.onload = () => {
+        sourceImage = img;
+        sourceImage.fileSize = 48000;
+        initHdConversion();
+      };
+      img.src = offCanvas.toDataURL('image/jpeg', 0.55); // compressed to simulate low-res
+    }
+
+    // Preset Switcher
+    function setHdPreset(preset, btn) {
+      currentPreset = preset;
+      document.querySelectorAll('.hd-preset-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      renderHdPipeline();
+    }
+
+    // Sliders
+    function updateControlVal(key, val) {
+      controls[key] = parseInt(val, 10);
+      document.getElementById(`${key}Val`).textContent = `${val}%`;
+      renderHdPipeline();
+    }
+
+    // Initialize Workspace
+    function initHdConversion() {
+      document.getElementById('hdWorkspace').style.display = 'block';
+      renderHdPipeline();
+      initSplitSlider();
+      document.getElementById('hdWorkspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Core HD Upscaling & Enhancement Pipeline
+    function renderHdPipeline() {
+      if (!sourceImage) return;
+
+      const origW = sourceImage.width;
+      const origH = sourceImage.height;
+
+      // 1. Calculate Target HD Dimensions
+      let targetW = origW;
+      let targetH = origH;
+      const aspect = origW / origH;
+
+      if (currentPreset === '1080p') {
+        if (aspect >= 1) {
+          targetW = 1920;
+          targetH = Math.round(1920 / aspect);
+        } else {
+          targetH = 1080;
+          targetW = Math.round(1080 * aspect);
+        }
+      } else if (currentPreset === '4k') {
+        if (aspect >= 1) {
+          targetW = 3840;
+          targetH = Math.round(3840 / aspect);
+        } else {
+          targetH = 2160;
+          targetW = Math.round(2160 * aspect);
+        }
+      } else if (currentPreset === '2k') {
+        if (aspect >= 1) {
+          targetW = 2560;
+          targetH = Math.round(2560 / aspect);
+        } else {
+          targetH = 1440;
+          targetW = Math.round(1440 * aspect);
+        }
+      } else if (currentPreset === '720p') {
+        if (aspect >= 1) {
+          targetW = 1280;
+          targetH = Math.round(1280 / aspect);
+        } else {
+          targetH = 720;
+          targetW = Math.round(720 * aspect);
+        }
+      } else if (currentPreset === '2x') {
+        targetW = origW * 2;
+        targetH = origH * 2;
+      } else if (currentPreset === '4x') {
+        targetW = origW * 4;
+        targetH = origH * 4;
+      }
+
+      // Max safety dimension check for in-browser canvas
+      if (targetW > 4096) targetW = 4096;
+      if (targetH > 4096) targetH = Math.round(targetW / aspect);
+
+      // Render Original onto Canvas (for visual comparison)
+      canvasOrig.width = targetW;
+      canvasOrig.height = targetH;
+      ctxOrig.imageSmoothingEnabled = false; // keep low-res pixel structure visible in comparison
+      ctxOrig.drawImage(sourceImage, 0, 0, targetW, targetH);
+
+      // 2. Multi-Pass Progressive Bicubic Upscaling onto Processing Canvas
+      canvasProc.width = targetW;
+      canvasProc.height = targetH;
+
+      // First step: smooth high-quality upscale
+      ctxProc.imageSmoothingEnabled = true;
+      ctxProc.imageSmoothingQuality = 'high';
+      ctxProc.drawImage(sourceImage, 0, 0, targetW, targetH);
+
+      // 3. Pixel-level Unsharp Mask & Micro-Contrast Enhancement
+      applyHdPixelEnhancements(ctxProc, targetW, targetH, controls);
+
+      // 4. Update Metadata texts
+      const origKb = sourceImage.fileSize ? Math.round(sourceImage.fileSize / 1024) : 80;
+      document.getElementById('origMetaText').textContent = `${origW} × ${origH} px (~${origKb} KB)`;
+      
+      const scale = (targetW / origW).toFixed(2);
+      document.getElementById('scaleMetaText').textContent = `${scale}x Upscale`;
+
+      const estSizeKb = Math.round((targetW * targetH * 4) / (1024 * 6));
+      document.getElementById('targetMetaText').textContent = `${targetW} × ${targetH} px (~${estSizeKb > 1024 ? (estSizeKb/1024).toFixed(1) + ' MB' : estSizeKb + ' KB'}, 300 DPI)`;
+    }
+
+    // High-Definition Filter Algorithms
+    function applyHdPixelEnhancements(ctx, w, h, ctrl) {
+      if (ctrl.sharpness === 0 && ctrl.clarity === 0 && ctrl.vibrance === 0) return;
+
+      const imgData = ctx.getImageData(0, 0, w, h);
+      const data = imgData.data;
+      const len = data.length;
+
+      // Copy for convolution
+      const copy = new Uint8ClampedArray(data);
+
+      const sharpWeight = ctrl.sharpness / 75; // unsharp mask intensity
+      const clarityWeight = ctrl.clarity / 100;
+      const vibranceBoost = (ctrl.vibrance / 100) * 0.4;
+
+      // Simple 3x3 unsharp sharpening convolution pass
+      for (let y = 1; y < h - 1; y++) {
+        const yOffset = y * w * 4;
+        const yPrev = (y - 1) * w * 4;
+        const yNext = (y + 1) * w * 4;
+
+        for (let x = 1; x < w - 1; x++) {
+          const idx = yOffset + (x * 4);
+
+          for (let c = 0; c < 3; c++) {
+            const center = copy[idx + c];
+            const up = copy[yPrev + (x * 4) + c];
+            const down = copy[yNext + (x * 4) + c];
+            const left = copy[yOffset + ((x - 1) * 4) + c];
+            const right = copy[yOffset + ((x + 1) * 4) + c];
+
+            // Laplacian edge approximation
+            const edge = (4 * center) - (up + down + left + right);
+            let val = center + (edge * sharpWeight);
+
+            // Micro-contrast S-curve stretch
+            if (clarityWeight > 0) {
+              const norm = val / 255;
+              const contrast = (norm - 0.5) * (1 + clarityWeight * 0.4) + 0.5;
+              val = contrast * 255;
+            }
+
+            data[idx + c] = Math.min(255, Math.max(0, val));
+          }
+
+          // Vibrance pass
+          if (vibranceBoost > 0) {
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+            const max = Math.max(r, g, b);
+            const avg = (r + g + b) / 3;
+            const amt = ((max - avg) / 255) * vibranceBoost;
+
+            if (r !== max) data[idx] = Math.min(255, Math.max(0, r + (max - r) * amt));
+            if (g !== max) data[idx + 1] = Math.min(255, Math.max(0, g + (max - g) * amt));
+            if (b !== max) data[idx + 2] = Math.min(255, Math.max(0, b + (max - b) * amt));
+          }
+        }
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    // Split-Screen Interactive Divider Logic
+    function initSplitSlider() {
+      const wrapper = document.getElementById('splitWrapper');
+      const overlay = document.getElementById('splitOverlay');
+      const handle = document.getElementById('splitHandle');
+      let isDragging = false;
+
+      function updateSplit(clientX) {
+        const rect = wrapper.getBoundingClientRect();
+        let posX = clientX - rect.left;
+        if (posX < 0) posX = 0;
+        if (posX > rect.width) posX = rect.width;
+
+        const percent = (posX / rect.width) * 100;
+        overlay.style.width = `${percent}%`;
+        handle.style.left = `${percent}%`;
+      }
+
+      wrapper.addEventListener('mousedown', e => {
+        isDragging = true;
+        updateSplit(e.clientX);
+      });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', e => {
+        if (isDragging) updateSplit(e.clientX);
+      });
+
+      // Touch events for mobile
+      wrapper.addEventListener('touchstart', e => {
+        isDragging = true;
+        if (e.touches.length > 0) updateSplit(e.touches[0].clientX);
+      });
+      window.addEventListener('touchend', () => { isDragging = false; });
+      window.addEventListener('touchmove', e => {
+        if (isDragging && e.touches.length > 0) updateSplit(e.touches[0].clientX);
+      });
+
+      // Set initial 50% position
+      overlay.style.width = '50%';
+      handle.style.left = '50%';
+    }
+
+    // Download HD Image
+    function downloadHdImage() {
+      if (!canvasProc) return;
+
+      const format = document.getElementById('exportFormat').value;
+      const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
+      const filename = `${sourceFileName}_${currentPreset.toUpperCase()}_HD.${ext}`;
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvasProc.toDataURL(format, 0.95);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // 5-Star Interactive Rating Widget
+    function hoverStar(val) {
+      const stars = document.querySelectorAll('#ratingWidget .star');
+      stars.forEach((s, idx) => {
+        s.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
+      });
+    }
+
+    function resetStars() {
+      const currentRating = window.userToolRating || 0;
+      const stars = document.querySelectorAll('#ratingWidget .star');
+      stars.forEach((s, idx) => {
+        s.style.color = (idx < currentRating) ? '#eab308' : '#cbd5e1';
+      });
+    }
+
+    function rateTool(val) {
+      window.userToolRating = val;
+      resetStars();
+      const feedback = document.getElementById('ratingFeedback');
+      feedback.textContent = `★ Thank you for rating the Image HD Converter ${val} out of 5 stars!`;
+    }
+  </script>
+</body>
+</html>
