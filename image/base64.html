@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image to Base64 Encoder & Decoder | Vytra</title>
   <meta name="description" content="Convert images to Base64 data URI string online with 1-click copy.">
@@ -84,8 +94,7 @@
 }
   </script>
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
           <nav class="navbar" id="main-nav">
@@ -243,8 +252,8 @@
         alert('Copied Base64 string to clipboard!');
       });
       document.getElementById('copy-html-btn').addEventListener('click', () => {
-        navigator.clipboard.writeText('<img src="' + base64String + '" alt="Embedded Image" />');
-        alert('Copied HTML <img> tag!');
+        navigator.clipboard.writeText('<img src="' + base64String + '" alt="Embedded Image" / loading="lazy" decoding="async">');
+        alert('Copied HTML <img loading="lazy" decoding="async"> tag!');
       });
       document.getElementById('copy-css-btn').addEventListener('click', () => {
         navigator.clipboard.writeText("background-image: url('" + base64String + "');");
@@ -301,7 +310,7 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>

@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convert JPG to PDF — Free Image to PDF Converter Online | Vytra</title>
   <meta name="description" content="Convert JPG, PNG, and WebP images to PDF online for free in seconds. Combine multiple photos into a single PDF with custom page orientation, margins, and 100% private in-browser processing.">
@@ -170,8 +180,7 @@
 }
   </script>
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
           <nav class="navbar" id="main-nav">
@@ -385,7 +394,7 @@
           row.innerHTML = `
             <div style="display:flex; align-items:center; gap:0.75rem;">
               <span style="font-weight:700; color:#64748b; font-size:0.85rem; width:20px;">#${index + 1}</span>
-              <img src="${item.src}" style="width:44px; height:44px; object-fit:cover; border-radius:6px; border:1px solid #cbd5e1;">
+              <img src="${item.src}" style="width:44px; height:44px; object-fit:cover; border-radius:6px; border:1px solid #cbd5e1;" loading="lazy" decoding="async">
               <div>
                 <strong style="font-size:0.9rem; color:#0f172a; display:block; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${item.name}</strong>
                 <span style="font-size:0.78rem; color:#64748b;">${item.width} x ${item.height} px</span>
@@ -722,7 +731,7 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>

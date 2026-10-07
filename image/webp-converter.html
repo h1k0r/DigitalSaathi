@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebP Converter (JPG/PNG to WebP) | Vytra</title>
   <meta name="description" content="Convert images to WebP for faster website loading or WebP back to JPG/PNG.">
@@ -84,8 +94,7 @@
 }
   </script>
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
           <nav class="navbar" id="main-nav">
@@ -224,7 +233,7 @@
 
         <div class="tool-preview-panel">
           <div style="max-width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-subtle, #e2e8f0); background: #f8fafc; padding: 0.5rem; margin-bottom: 1.5rem; display: inline-block;">
-            <img id="preview-img" style="max-width: 100%; max-height: 400px;" alt="WebP Preview">
+            <img id="preview-img" style="max-width: 100%; max-height: 400px;" alt="WebP Preview" loading="lazy" decoding="async">
           </div>
 
           <div>
@@ -354,7 +363,7 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>

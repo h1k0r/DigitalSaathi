@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Base64 Encoder &amp; Decoder — Online Text, Image &amp; File Converter | Vytra</title>
   <meta name="description" content="Free online Base64 encoder and decoder. Convert text, strings, images, and files to Base64 data URIs or decode Base64 to original files with 100% private browser processing.">
@@ -145,8 +155,7 @@
 }
   </script>
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
@@ -314,7 +323,7 @@
 
         <div id="fileResultWrap" style="display:none;">
           <div id="imgPreviewWrap" style="text-align:center; margin-bottom:1.5rem; display:none;">
-            <img id="imagePreview" src="" alt="Base64 Preview" style="max-height:180px; max-width:100%; border-radius:8px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm);">
+            <img id="imagePreview" src="" alt="Base64 Preview" style="max-height:180px; max-width:100%; border-radius:8px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm);" loading="lazy" decoding="async">
           </div>
 
           <label class="form-label" style="font-weight:600; display:block; margin-bottom:6px;">Base64 Data URI Output</label>
@@ -416,8 +425,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Tab Switching
@@ -552,8 +561,8 @@
 
       document.getElementById('copyImgTagBtn').addEventListener('click', () => {
         if (!fileDataUriOutput.value) return;
-        const imgTag = `<img src="${fileDataUriOutput.value}" alt="Embedded Image" />`;
-        window.copyToClipboard(imgTag, '<img> tag copied!');
+        const imgTag = `<img src="${fileDataUriOutput.value}" alt="Embedded Image" / loading="lazy" decoding="async">`;
+        window.copyToClipboard(imgTag, '<img loading="lazy" decoding="async"> tag copied!');
       });
 
       // Decode Base64 to File Download

@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign PDF Online Free — Draw, Type or Upload Signature | Vytra</title>
   <meta name="description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.">
@@ -179,8 +189,7 @@
   <meta name="twitter:title" content="Sign PDF Online Free — Draw, Type or Upload Signature | Vytra">
   <meta name="twitter:description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.">
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
@@ -329,7 +338,7 @@
         <div class="pdf-stage-container" id="stageContainer">
           <canvas id="pdfStageCanvas"></canvas>
           <div id="placedSignBox" class="sign-placed-box" style="display:none;">
-            <img id="placedSignImg" src="" alt="Signature">
+            <img id="placedSignImg" src="" alt="Signature" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -479,8 +488,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';

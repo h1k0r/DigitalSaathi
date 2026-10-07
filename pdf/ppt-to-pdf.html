@@ -11,6 +11,16 @@
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra</title>
   <meta name="description" content="Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.">
@@ -100,8 +110,7 @@
   <meta name="twitter:title" content="PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra">
   <meta name="twitter:description" content="Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.">
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
-     crossorigin="anonymous"></script>
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
@@ -348,8 +357,8 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="../data/tools.js"></script>
-  <script src="../assets/js/common.js"></script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
   <script>
     let uploadedSlideData = [];
 
@@ -418,7 +427,7 @@
           card.style.padding = '6px';
           card.style.textAlign = 'center';
           card.innerHTML = `
-            <img src="${s.dataUrl}" style="max-width:100%;height:auto;border-radius:2px;" alt="Slide ${idx + 1}">
+            <img src="${s.dataUrl}" style="max-width:100%;height:auto;border-radius:2px;" alt="Slide ${idx + 1}" loading="lazy" decoding="async">
             <span style="font-size:0.75rem;font-weight:600;color:#64748b;">Slide ${idx + 1}</span>
           `;
           slidesGridContainer.appendChild(card);

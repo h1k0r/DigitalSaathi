@@ -4043,3 +4043,42 @@ main {
   }
 }
 
+/* ==========================================================================
+   HIGH-PERFORMANCE RENDERING ENGINE & CORE WEB VITALS OPTIMIZATIONS
+   ========================================================================== */
+html {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Content-Visibility: Skips layout and paint for offscreen elements until scrolled */
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 360px;
+}
+
+.seo-feature-grid,
+.comparison-table-wrap,
+.faq-section,
+.accordion-exclusive {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Image rendering & CLS protection */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Hardware accelerated transitions */
+.tool-card,
+.matrix-card,
+.detailed-card,
+.btn,
+.filter-pill {
+  will-change: transform;
+}
+
