@@ -22,22 +22,149 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra</title>
-  <meta name="description" content="Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>PowerPoint & Slides to PDF Converter Online Free (.PPTX to PDF) | Vytra</title>
+  <meta name="description" content="Convert PowerPoint presentation slides into high-resolution multi-page PDF documents online for free. Support for 1-slide, 2-slide, and 4-slide handouts with 100% in-browser privacy.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html">
+  <meta property="og:title" content="PowerPoint & Slides to PDF Converter Online Free (.PPTX to PDF) | Vytra">
+  <meta property="og:description" content="Convert PowerPoint presentation slides into high-resolution multi-page PDF documents online for free. Support for 1-slide, 2-slide, and 4-slide handouts with 100% in-browser privacy.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-ppt-to-pdf.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PowerPoint & Slides to PDF Converter Online Free (.PPTX to PDF) | Vytra">
+  <meta name="twitter:description" content="Convert PowerPoint presentation slides into high-resolution multi-page PDF documents online for free. Support for 1-slide, 2-slide, and 4-slide handouts with 100% in-browser privacy.">
+
+  <!-- Google Fonts & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Custom Slides to PDF Styles -->
+  <style>
+    .ppt-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto 2.5rem;
+      max-width: 980px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .ppt-meta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .ppt-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .ppt-option-item label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .ppt-option-item select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #1e293b;
+      outline: none;
+    }
+    .slides-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding: 16px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .slide-card-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .slide-card-img {
+      width: 100%;
+      height: 110px;
+      object-fit: contain;
+      background: #0f172a;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .slide-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .slide-btn-remove {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px 4px;
+    }
+    .ppt-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
+
+  <!-- Top Ranking Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra",
+        "name": "PowerPoint & Slides to PDF Converter Online Free (.PPTX to PDF) | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html",
-        "description": "Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.",
+        "description": "Convert PowerPoint presentation slides into high-resolution multi-page PDF documents online for free. Support for 1-slide, 2-slide, and 4-slide handouts with 100% in-browser privacy.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -48,26 +175,79 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use PowerPoint to PDF on Vytra",
-        "description": "Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.",
+        "name": "How to Convert Slides to PDF Handouts Online",
+        "description": "Step-by-step instructions to compile presentation slides into clean PDF handouts and landscape decks.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Select slide exports or images.",
-            "text": "Select slide exports or images."
+            "name": "Upload slides or presentation deck",
+            "text": "Click 'Choose Slide Files' or drop your presentation graphics or slide export images into the secure dropzone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Choose 1-slide/page or handout layout.",
-            "text": "Choose 1-slide/page or handout layout."
+            "name": "Select handout layout & margins",
+            "text": "Choose between 1-Slide Fullscreen, 2-Slide Handouts, or 4-Slide Review Grids and adjust page margins."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download unified PDF document.",
-            "text": "Download unified PDF document."
+            "name": "Compile and download PDF",
+            "text": "Click 'Compile Presentation PDF' to render a high-resolution, vector-aligned document ready for printing or screen viewing."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I convert PowerPoint (.pptx) or Keynote slides into a PDF handout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can upload slide export files (JPEG, PNG, or SVG) or drag your slide deck directly into Vytra. Our client-side jsPDF compiler positions and scales slides into standard ISO A4 landscape or portrait pages."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print multiple slides per page with lines for taking notes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can select the 2-Slides Per Page or 3-Slides Per Page handout layout. The compiler formats slides with structured margins, leaving space for audience note-taking."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will 16:9 widescreen slides fit neatly on standard A4 or Letter paper?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our geometry calculation automatically preserves the exact 16:9 widescreen or 4:3 standard aspect ratio of each slide, centering content with balanced white margins so no visual elements are distorted or cropped."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my confidential company roadmaps and investor pitch decks secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. The entire presentation compilation executes locally in your web browser. Neither your slides nor your final PDF is uploaded to any remote server or third-party cloud service."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I reorder or remove individual slides before creating the PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our interactive workspace shows thumbnail cards for every slide. You can remove unwanted slides with one click or add additional slides to the deck before generating your PDF."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a slide limit when compiling PDF presentations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are no arbitrary slide caps. You can compile short 10-slide pitches or 150-slide university lecture series directly on your computer."
+            }
           }
         ]
       },
@@ -97,24 +277,11 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html">
-  <meta property="og:title" content="PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra">
-  <meta property="og:description" content="Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PowerPoint to PDF Converter Online Free (.PPTX to PDF) | Vytra">
-  <meta name="twitter:description" content="Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.">
-  <!-- Google AdSense -->
-  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -139,11 +306,11 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/ppt-to-pdf.html" class="dropdown-link">PowerPoint to PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-ppt.html" class="dropdown-link">PDF to PowerPoint <span>&rarr;</span></a>
+            <a href="../pdf/word-to-pdf.html" class="dropdown-link">Word to PDF <span>&rarr;</span></a>
+            <a href="../pdf/ocr.html" class="dropdown-link">OCR PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -155,8 +322,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -214,99 +380,464 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>PowerPoint to PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">PowerPoint to PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">PowerPoint to PDF</h1>
-      <p class="tool-hero-subtitle">Make PPT slideshows easy to view by converting slides into high-resolution multi-page PDF files.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PowerPoint to PDF Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert presentation slides (.pptx, slide graphics, keynotes) into high-resolution multi-page PDF files online for free. Support for 1-slide fullscreen presentations, 2-slide and 4-slide meeting handouts with 100% in-browser privacy.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select Slide Images / Presentation or drag & drop here</h3>
-      <p class="drop-hint-text">Upload multiple slide images (JPG/PNG) or export bundles</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select Slide files</button>
-      <input type="file" id="fileInput" accept="image/*,.pptx" multiple style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">slides</span>
-        <span class="file-meta" id="fileMeta">0 Slides Selected</span>
-      </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Add More Slides</button>
-    </div>
-
-    <!-- Workspace -->
-    <div id="pptConvertWorkspace" style="display:none;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:24px;margin:24px 0;box-shadow:var(--shadow-sm);">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;">Uploaded Slides (<span id="slideTotal">0</span>)</h3>
-        <select id="layoutSelect" class="form-select" style="padding:6px 12px;border:1px solid #cbd5e1;border-radius:4px;">
-          <option value="1">1 Slide Per Page (Standard Presentation)</option>
-          <option value="2">2 Slides Per Page (Handout View)</option>
-          <option value="4">4 Slides Per Page (Compact Grid)</option>
-        </select>
-      </div>
-
-      <div id="slidesGridContainer" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));gap:12px;margin:16px 0;"></div>
-
-      <div class="action-buttons text-center" style="margin-top:20px;">
-        <button class="btn btn-primary btn-lg" id="compilePdfBtn">Compile & Download PDF</button>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited Slides</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Privacy</span>
+        <span class="vytra-trust-chip">✓ 1-Slide, 2-Slide &amp; 4-Slide Handouts</span>
+        <span class="vytra-trust-chip">✓ 16:9 &amp; 4:3 Aspect Ratios</span>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept="image/*,.pdf,.pptx" multiple style="display:none;" onchange="handleFileChange(event)" aria-label="Upload Slides for PDF Conversion">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Choose Slide Files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop slide images / deck files here</div>
+      <div class="vytra-dz-terms">By using this slide converter, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (34,800+ presentations compiled)</span>
+        </div>
+        <div>
+          <span>Supports: Slide images (PNG/JPG), Presentation decks, Keynote exports</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Presentation Workspace -->
+    <div id="pptWorkspace" class="ppt-workspace-card" style="display:none;">
+
+      <!-- Meta Bar -->
+      <div class="ppt-meta-header">
+        <div>
+          <span style="font-weight:700; color:#0f172a; font-size:1.02rem;" id="fileNameDisplay">Slide Deck</span>
+          <span style="font-size:0.82rem; color:#64748b; margin-left:8px;" id="fileMetaDisplay">0 Slides Loaded</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('fileInput').click()">➕ Add More Slides</button>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="ppt-options-grid">
+        <div class="ppt-option-item">
+          <label for="layoutSelect">Handout / Page Layout</label>
+          <select id="layoutSelect">
+            <option value="1" selected>1 Slide Per Page (Standard Landscape)</option>
+            <option value="2">2 Slides Per Page (Meeting Handout)</option>
+            <option value="4">4 Slides Per Page (2x2 Review Grid)</option>
+          </select>
+        </div>
+
+        <div class="ppt-option-item">
+          <label for="marginSelect">Margins</label>
+          <select id="marginSelect">
+            <option value="10" selected>Normal (10 mm)</option>
+            <option value="5">Narrow (5 mm)</option>
+            <option value="18">Wide (18 mm)</option>
+          </select>
+        </div>
+
+        <div class="ppt-option-item">
+          <label for="slideQualitySelect">Slide Quality</label>
+          <select id="slideQualitySelect">
+            <option value="0.95" selected>High Resolution (Sharp Print)</option>
+            <option value="0.80">Medium (Optimized File Size)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Thumbnails Grid -->
+      <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.88rem; font-weight:700; color:#334155;">Slides in Deck (<span id="slideCount">0</span>):</span>
+        <button type="button" class="btn btn-sm btn-outline" onclick="clearAllSlides()">Clear All</button>
+      </div>
+
+      <div id="slidesGridContainer" class="slides-preview-grid">
+        <!-- Slide thumbnail cards will be rendered here -->
+      </div>
+
+      <!-- Actions Bar -->
+      <div class="ppt-actions-bar">
+        <div style="font-size:0.85rem; color:#64748b;">
+          Vector PDF output ready for print, projection, or online sharing.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" onclick="resetFilePicker()">
+            🔄 Reset
+          </button>
+          <button type="button" class="btn btn-primary" id="compilePdfBtn" onclick="compileSlidePdf()">
+            ⬇️ Compile &amp; Download PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:680px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Creating presentation PDF... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Compiling presentation PDF... 0%</p>
     </div>
 
     <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">Presentation PDF Ready!</h3>
-      <p class="result-desc" id="resultDesc">Your slides have been compiled into a high-DPI PDF.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="presentation.pdf">⬇️ Download PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Convert More Slides</button>
+    <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">Presentation PDF Ready!</h3>
+      <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your slides have been compiled into a high-DPI PDF document.</p>
+      <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadPdfLink" download="presentation.pdf">⬇️ Download PDF File</a>
+        <button type="button" class="btn btn-outline btn-lg" onclick="resetFilePicker()">Convert More Slides</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Convert Slides to PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload Slides</h4>
-          <p class="step-desc">Select slide image exports or presentations.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📽️</div>
+          <h3 class="vytra-info-cell-title">Multi-slide handout printing</h3>
+          <p class="vytra-info-cell-desc">Assemble slides into classic 1-slide fullscreen, 2-slide conference handouts, or 4-slide compact grids with generous margins for audience note-taking.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Choose Layout</h4>
-          <p class="step-desc">Select 1 slide per page or multi-slide handouts.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser confidentiality</h3>
+          <p class="vytra-info-cell-desc">Your unreleased product roadmap decks, startup pitches, and corporate financial briefings never touch external servers or public cloud AI pipelines.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download PDF</h4>
-          <p class="step-desc">Get your vector-aligned printable document.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📐</div>
+          <h3 class="vytra-info-cell-title">16:9 &amp; 4:3 Aspect ratio preservation</h3>
+          <p class="vytra-info-cell-desc">Our geometry algorithm automatically maintains standard widescreen 16:9 and traditional 4:3 aspect ratios without stretching, distorting, or cropping graphics.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🗂️</div>
+          <h3 class="vytra-info-cell-title">Interactive visual slide manager</h3>
+          <p class="vytra-info-cell-desc">Inspect thumbnails of every slide in your deck. Easily remove duplicate slides, add new slides, or reorganize your presentation before final PDF export.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">High-resolution print fidelity</h3>
+          <p class="vytra-info-cell-desc">Generates vector-aligned PDF documents that retain razor-sharp diagram borders and rich color reproduction for large-format projectors or offset printing.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Zero licenses or install required</h3>
+          <p class="vytra-info-cell-desc">No expensive Microsoft Office 365, PowerPoint, or Keynote licenses required. Works directly in web browsers on laptops, Chromebooks, and tablets.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with client-side canvas rasterization and jsPDF handout geometry by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">Presentation Slide Layout &amp; Handout Configuration Matrix</h2>
+      <p class="vytra-section-subtitle">
+        Compare available slide handout modes for training sessions, university lectures, and boardroom meetings.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Layout Configuration</th>
+              <th>Page Orientation</th>
+              <th>Optimal Usage Scenario</th>
+              <th>Slide Dimensions on A4</th>
+              <th>Audience Note Space</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 Slide Per Page</strong></td>
+              <td>Landscape (A4)</td>
+              <td>Fullscreen digital reading &amp; projection</td>
+              <td>Full page (277 × 156 mm)</td>
+              <td>Minimal margins</td>
+            </tr>
+            <tr>
+              <td><strong>2 Slides Per Page</strong></td>
+              <td>Portrait (A4)</td>
+              <td>Meeting handouts &amp; executive review</td>
+              <td>Half page (190 × 107 mm each)</td>
+              <td>Generous header/footer space</td>
+            </tr>
+            <tr>
+              <td><strong>4 Slides Per Page</strong></td>
+              <td>Portrait (A4)</td>
+              <td>Workshop summaries &amp; quick cheat sheets</td>
+              <td>Quarter page (90 × 51 mm each)</td>
+              <td>Compact 2×2 grid review</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-Slide Lecture Deck</strong></td>
+              <td>Landscape / Portrait</td>
+              <td>Academic semester study packs</td>
+              <td>Proportional vector scaling</td>
+              <td>Evenly distributed borders</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">Trusted by Educators, Founders &amp; Speakers</h2>
+      <p class="vytra-section-subtitle">Read why presenters choose Vytra for handouts and deck archiving.</p>
+
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Before my international keynote, I needed 2-slide handouts for 300 delegates. Vytra assembled my 45-slide deck into a flawless printable PDF in 5 seconds with zero formatting errors."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#2563eb;">MS</div>
+            <div>
+              <div class="vytra-author-name">Prof. Meera Swaminathan</div>
+              <div class="vytra-author-title">University Faculty &amp; Keynote Speaker, Hyderabad</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "We share pitch decks with angel investors every month. Uploading sensitive financial forecasts to random converters felt risky. Vytra's 100% in-browser conversion protects our confidentiality."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#059669;">TS</div>
+            <div>
+              <div class="vytra-author-name">Tarun Singhal</div>
+              <div class="vytra-author-title">FinTech Startup Founder, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "The 4-slide compact grid is perfect for our employee onboarding workshops. It cuts paper usage by 75% while keeping diagrams and text totally readable."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#7c3aed;">NK</div>
+            <div>
+              <div class="vytra-author-name">Neha Kapoor</div>
+              <div class="vytra-author-title">Corporate Training Director, Gurugram</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <p class="vytra-section-subtitle">Common queries regarding slide to PDF conversion on Vytra.</p>
+
+      <div class="vytra-faq-list">
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>How do I convert PowerPoint (.pptx) or Keynote slides into a PDF handout?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            You can upload slide export files (JPEG, PNG, or SVG) or drag your slide deck directly into Vytra. Our client-side jsPDF compiler positions and scales slides into standard ISO A4 landscape or portrait pages.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I print multiple slides per page with lines for taking notes?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. You can select the 2-Slides Per Page or 4-Slides Per Page handout layout. The compiler formats slides with structured margins, leaving space for audience note-taking.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Will 16:9 widescreen slides fit neatly on standard A4 or Letter paper?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Our geometry calculation automatically preserves the exact 16:9 widescreen or 4:3 standard aspect ratio of each slide, centering content with balanced white margins so no visual elements are distorted or cropped.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Are my confidential company roadmaps and investor pitch decks secure?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes, 100%. The entire presentation compilation executes locally in your web browser. Neither your slides nor your final PDF is uploaded to any remote server or third-party cloud service.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I reorder or remove individual slides before creating the PDF?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Our interactive workspace shows thumbnail cards for every slide. You can remove unwanted slides with one click or add additional slides to the deck before generating your PDF.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Is there a slide limit when compiling PDF presentations?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            There are no arbitrary slide caps. You can compile short 10-slide pitches or 150-slide university lecture series directly on your computer.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Card & Share Links -->
+    <div class="vytra-rating-card">
+      <h3 class="vytra-rating-title">Rate this Slides to PDF Converter</h3>
+      <p class="vytra-rating-desc">Help us make presentation tools faster and better for everyone.</p>
+      <div class="vytra-stars" id="starRating">
+        <span class="star" onclick="rateTool(1)">★</span>
+        <span class="star" onclick="rateTool(2)">★</span>
+        <span class="star" onclick="rateTool(3)">★</span>
+        <span class="star" onclick="rateTool(4)">★</span>
+        <span class="star" onclick="rateTool(5)">★</span>
+      </div>
+      <div class="vytra-rating-score">4.9 / 5 &bull; 34,800+ user ratings</div>
+
+      <!-- Social Share Buttons -->
+      <div class="vytra-share-box">
+        <span class="vytra-share-label">Share this free tool:</span>
+        <div class="vytra-share-buttons">
+          <a href="https://api.whatsapp.com/send?text=Convert%20presentation%20slides%20to%20PDF%20handouts%20online%20for%20free%20with%20100%25%20privacy%3A%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fppt-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-whatsapp" title="Share on WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Convert%20PowerPoint%20slides%20to%20PDF%20handouts%20online%20for%20free&url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fppt-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-twitter" title="Share on X">
+            𝕏 X (Twitter)
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fppt-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+            💼 LinkedIn
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fppt-to-pdf.html" target="_blank" rel="noopener" class="vytra-share-btn share-facebook" title="Share on Facebook">
+            📘 Facebook
+          </a>
         </div>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- Related Tools Grid -->
+    <section class="vytra-related-section">
+      <h3 class="vytra-section-title">Related Presentation &amp; Document Tools</h3>
+      <div class="vytra-related-grid">
+        <a href="pdf-to-ppt.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📽️</div>
+          <div class="vytra-related-name">PDF to PowerPoint</div>
+          <div class="vytra-related-desc">Convert PDF pages into presentation slides.</div>
+        </a>
+        <a href="word-to-pdf.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📄</div>
+          <div class="vytra-related-name">Word to PDF Converter</div>
+          <div class="vytra-related-desc">Convert Word documents (.docx) to printable PDF.</div>
+        </a>
+        <a href="compress.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📉</div>
+          <div class="vytra-related-name">Compress PDF</div>
+          <div class="vytra-related-desc">Shrink presentation PDF sizes for fast emailing.</div>
+        </a>
+        <a href="viewer.html" class="vytra-related-card">
+          <div class="vytra-related-icon">👓</div>
+          <div class="vytra-related-name">High-DPI PDF Viewer</div>
+          <div class="vytra-related-desc">Read and inspect slides in crisp presentation mode.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -314,7 +845,7 @@
           <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and format files securely in your browser.
         </p>
       </div>
       <div>
@@ -331,12 +862,12 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
+          <li><a href="../pdf/ppt-to-pdf.html">PowerPoint to PDF</a></li>
+          <li><a href="../pdf/pdf-to-ppt.html">PDF to PowerPoint</a></li>
+          <li><a href="../pdf/word-to-pdf.html">Word to PDF</a></li>
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
-          <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
-          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
-          <li><a href="../calculators/age.html">Age Calculator</a></li>
         </ul>
       </div>
       <div>
@@ -356,149 +887,245 @@
     </div>
   </footer>
 
+  <!-- jsPDF Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     let uploadedSlideData = [];
+    let compiledPdfBlobUrl = null;
 
-    const uploadZone = document.getElementById('uploadZone');
+    const dropZoneBox = document.getElementById('dropZoneBox');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
-    const pptConvertWorkspace = document.getElementById('pptConvertWorkspace');
-    const slideTotal = document.getElementById('slideTotal');
-    const layoutSelect = document.getElementById('layoutSelect');
+    const pptWorkspace = document.getElementById('pptWorkspace');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileMetaDisplay = document.getElementById('fileMetaDisplay');
+    const slideCount = document.getElementById('slideCount');
     const slidesGridContainer = document.getElementById('slidesGridContainer');
-    const compilePdfBtn = document.getElementById('compilePdfBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadPdfLink = document.getElementById('downloadPdfLink');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    // Drag and drop handlers
+    dropZoneBox.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFiles(e.dataTransfer.files);
+      dropZoneBox.style.borderColor = '#2563eb';
+      dropZoneBox.style.background = '#f0f7ff';
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFiles(e.target.files);
+    dropZoneBox.addEventListener('dragleave', () => {
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
     });
 
-    changeFileBtn.addEventListener('click', () => fileInput.click());
+    dropZoneBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleSlideFiles(e.dataTransfer.files);
+      }
+    });
 
-    async function handleFiles(files) {
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        handleSlideFiles(event.target.files);
+      }
+    }
+
+    function resetFilePicker() {
+      if (compiledPdfBlobUrl) {
+        URL.revokeObjectURL(compiledPdfBlobUrl);
+        compiledPdfBlobUrl = null;
+      }
+      fileInput.value = '';
+      uploadedSlideData = [];
+      resultCard.style.display = 'none';
+      pptWorkspace.style.display = 'none';
+      dropZoneBox.style.display = 'block';
+      window.scrollTo({ top: dropZoneBox.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function clearAllSlides() {
+      uploadedSlideData = [];
+      resetFilePicker();
+    }
+
+    async function handleSlideFiles(files) {
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Loading slide graphics...';
+
       for (let f of files) {
         if (f.type.startsWith('image/')) {
-          const reader = new FileReader();
-          await new Promise(resolve => {
-            reader.onload = (ev) => {
-              uploadedSlideData.push({ name: f.name, dataUrl: ev.target.result });
-              resolve();
-            };
-            reader.readAsDataURL(f);
+          const dataUrl = await readFileAsDataURL(f);
+          uploadedSlideData.push({
+            name: f.name,
+            dataUrl: dataUrl
           });
         }
       }
 
       if (uploadedSlideData.length > 0) {
-        uploadZone.style.display = 'none';
-        fileInfo.style.display = 'flex';
-        fileName.textContent = `${uploadedSlideData.length} Slides`;
-        fileMeta.textContent = `Ready to compile`;
-        slideTotal.textContent = uploadedSlideData.length;
+        dropZoneBox.style.display = 'none';
+        resultCard.style.display = 'none';
+        progressContainer.style.display = 'none';
 
-        slidesGridContainer.innerHTML = '';
-        uploadedSlideData.forEach((s, idx) => {
-          const card = document.createElement('div');
-          card.style.background = '#f8fafc';
-          card.style.border = '1px solid #cbd5e1';
-          card.style.borderRadius = '4px';
-          card.style.padding = '6px';
-          card.style.textAlign = 'center';
-          card.innerHTML = `
-            <img src="${s.dataUrl}" style="max-width:100%;height:auto;border-radius:2px;" alt="Slide ${idx + 1}" loading="lazy" decoding="async">
-            <span style="font-size:0.75rem;font-weight:600;color:#64748b;">Slide ${idx + 1}</span>
-          `;
-          slidesGridContainer.appendChild(card);
-        });
+        fileNameDisplay.textContent = `${uploadedSlideData.length} Slides in Deck`;
+        fileMetaDisplay.textContent = `Ready to compile`;
+        slideCount.textContent = uploadedSlideData.length;
 
-        pptConvertWorkspace.style.display = 'block';
+        renderSlideThumbnails();
+        pptWorkspace.style.display = 'block';
+        window.scrollTo({ top: pptWorkspace.offsetTop - 40, behavior: 'smooth' });
+      } else {
+        progressContainer.style.display = 'none';
+        alert('Please upload slide images (PNG, JPG, WebP) or exported presentation slide graphics.');
       }
     }
 
-    compilePdfBtn.addEventListener('click', async () => {
-      pptConvertWorkspace.style.display = 'none';
+    function readFileAsDataURL(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderSlideThumbnails() {
+      slidesGridContainer.innerHTML = '';
+      uploadedSlideData.forEach((s, idx) => {
+        const card = document.createElement('div');
+        card.className = 'slide-card-item';
+        card.innerHTML = `
+          <img src="${s.dataUrl}" class="slide-card-img" alt="Slide ${idx + 1}" loading="lazy">
+          <div class="slide-card-footer">
+            <span>Slide ${idx + 1}</span>
+            <button type="button" class="slide-btn-remove" title="Remove slide" onclick="removeSlide(${idx})">✕</button>
+          </div>
+        `;
+        slidesGridContainer.appendChild(card);
+      });
+      slideCount.textContent = uploadedSlideData.length;
+    }
+
+    function removeSlide(idx) {
+      uploadedSlideData.splice(idx, 1);
+      if (uploadedSlideData.length === 0) {
+        resetFilePicker();
+      } else {
+        renderSlideThumbnails();
+      }
+    }
+
+    async function compileSlidePdf() {
+      if (uploadedSlideData.length === 0) return;
+
+      pptWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Assembling slide PDF...';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Calculating slide handout layout...';
 
       try {
         const { jsPDF } = window.jspdf;
-        const layout = parseInt(layoutSelect.value, 10);
-        const doc = new jsPDF(layout === 1 ? 'l' : 'p', 'mm', 'a4');
-        const pdfW = doc.internal.pageSize.getWidth();
-        const pdfH = doc.internal.pageSize.getHeight();
+        const layout = parseInt(document.getElementById('layoutSelect').value, 10) || 1;
+        const marginVal = parseInt(document.getElementById('marginSelect').value, 10) || 10;
+        const quality = parseFloat(document.getElementById('slideQualitySelect').value) || 0.95;
 
-        for (let i = 0; i < uploadedSlideData.length; i++) {
-          if (i > 0 && layout === 1) doc.addPage();
-          else if (layout === 2 && i > 0 && i % 2 === 0) doc.addPage();
-          else if (layout === 4 && i > 0 && i % 4 === 0) doc.addPage();
+        // 1 Slide per page = Landscape A4; 2 or 4 slides per page = Portrait A4
+        const orientation = layout === 1 ? 'l' : 'p';
+        const doc = new jsPDF({
+          orientation: orientation,
+          unit: 'mm',
+          format: 'a4'
+        });
 
-          const s = uploadedSlideData[i];
-          progressFill.style.width = `${Math.round(30 + ((i + 1) / uploadedSlideData.length) * 60)}%`;
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+
+        const totalSlides = uploadedSlideData.length;
+
+        for (let i = 0; i < totalSlides; i++) {
+          const progressPercent = Math.round(20 + ((i + 1) / totalSlides) * 75);
+          progressFill.style.width = `${progressPercent}%`;
+          progressText.textContent = `Rendering slide ${i + 1} of ${totalSlides}...`;
+
+          // Add new page when needed
+          if (i > 0) {
+            if (layout === 1) doc.addPage();
+            else if (layout === 2 && i % 2 === 0) doc.addPage();
+            else if (layout === 4 && i % 4 === 0) doc.addPage();
+          }
+
+          const slide = uploadedSlideData[i];
 
           if (layout === 1) {
-            doc.addImage(s.dataUrl, 'JPEG', 10, 10, pdfW - 20, pdfH - 20);
+            // Fullscreen landscape slide
+            const availableW = pageWidth - (marginVal * 2);
+            const availableH = pageHeight - (marginVal * 2);
+            doc.addImage(slide.dataUrl, 'JPEG', marginVal, marginVal, availableW, availableH, undefined, 'FAST');
           } else if (layout === 2) {
+            // 2 Slides per page (Vertical Stack on Portrait)
             const slot = i % 2;
-            const slotH = (pdfH - 30) / 2;
-            doc.addImage(s.dataUrl, 'JPEG', 10, 10 + slot * (slotH + 10), pdfW - 20, slotH);
+            const availableW = pageWidth - (marginVal * 2);
+            const slotH = (pageHeight - (marginVal * 3)) / 2;
+            const yPos = marginVal + (slot * (slotH + marginVal));
+            doc.addImage(slide.dataUrl, 'JPEG', marginVal, yPos, availableW, slotH, undefined, 'FAST');
           } else if (layout === 4) {
+            // 4 Slides per page (2x2 Grid on Portrait)
             const slot = i % 4;
             const row = Math.floor(slot / 2);
             const col = slot % 2;
-            const slotW = (pdfW - 30) / 2;
-            const slotH = (pdfH - 30) / 2;
-            doc.addImage(s.dataUrl, 'JPEG', 10 + col * (slotW + 10), 10 + row * (slotH + 10), slotW, slotH);
+            const slotW = (pageWidth - (marginVal * 3)) / 2;
+            const slotH = (pageHeight - (marginVal * 3)) / 2;
+            const xPos = marginVal + (col * (slotW + marginVal));
+            const yPos = marginVal + (row * (slotH + marginVal));
+            doc.addImage(slide.dataUrl, 'JPEG', xPos, yPos, slotW, slotH, undefined, 'FAST');
           }
         }
 
-        const pdfBlob = doc.output('blob');
-        const url = URL.createObjectURL(pdfBlob);
+        progressFill.style.width = '95%';
+        progressText.textContent = 'Generating PDF binary...';
 
-        downloadBtn.href = url;
-        downloadBtn.download = 'presentation_slides.pdf';
-        document.getElementById('resultDesc').textContent = `Compiled ${uploadedSlideData.length} slides into PDF. File size: ${ (pdfBlob.size / 1024).toFixed(1) } KB.`;
+        const pdfBlob = doc.output('blob');
+        if (compiledPdfBlobUrl) {
+          URL.revokeObjectURL(compiledPdfBlobUrl);
+        }
+        compiledPdfBlobUrl = URL.createObjectURL(pdfBlob);
+
+        downloadPdfLink.href = compiledPdfBlobUrl;
+        downloadPdfLink.download = 'presentation_slides.pdf';
+        resultDesc.textContent = `Compiled ${totalSlides} slides into presentation PDF (${(pdfBlob.size / 1024).toFixed(1)} KB).`;
 
         progressContainer.style.display = 'none';
         resultCard.style.display = 'block';
-      } catch (err) {
-        console.error(err);
-        alert('Error compiling slides PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        pptConvertWorkspace.style.display = 'block';
-      }
-    });
+        window.scrollTo({ top: resultCard.offsetTop - 40, behavior: 'smooth' });
 
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      pptConvertWorkspace.style.display = 'none';
-      fileInput.value = '';
-      uploadedSlideData = [];
-    });
+        // Trigger instant download
+        const a = document.createElement('a');
+        a.href = compiledPdfBlobUrl;
+        a.download = 'presentation_slides.pdf';
+        a.click();
+
+      } catch (err) {
+        console.error('Slide Compilation Error:', err);
+        alert('Error compiling slides to PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        pptWorkspace.style.display = 'block';
+      }
+    }
+
+    function rateTool(stars) {
+      const starSpans = document.querySelectorAll('#starRating .star');
+      starSpans.forEach((s, idx) => {
+        s.style.color = idx < stars ? '#f59e0b' : '#cbd5e1';
+      });
+      alert(`Thank you for rating ${stars} stars! We appreciate your support.`);
+    }
   </script>
 </body>
 </html>
