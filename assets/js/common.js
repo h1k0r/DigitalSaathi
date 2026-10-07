@@ -31,14 +31,14 @@
     { title: 'Reorder Pages', category: 'PDF Tools', icon: '🔀', url: 'pdf/reorder.html', keywords: 'drag reorder sort rearrange pdf pages' },
 
     // PDF Tools - Convert
-    { title: 'PDF to Word Converter', category: 'PDF Tools', icon: '📝', url: 'pdf/pdf-to-word.html', keywords: 'convert pdf to docx word editable document' },
-    { title: 'PDF to PowerPoint', category: 'PDF Tools', icon: '📊', url: 'pdf/pdf-to-ppt.html', keywords: 'convert pdf to pptx powerpoint presentation slides' },
-    { title: 'PDF to Excel', category: 'PDF Tools', icon: '📈', url: 'pdf/pdf-to-excel.html', keywords: 'convert pdf table to xlsx excel spreadsheet csv' },
-    { title: 'Word to PDF', category: 'PDF Tools', icon: '📄', url: 'pdf/word-to-pdf.html', keywords: 'convert docx word document to pdf format' },
-    { title: 'PowerPoint to PDF', category: 'PDF Tools', icon: '📽️', url: 'pdf/ppt-to-pdf.html', keywords: 'convert ppt pptx powerpoint slides to pdf document' },
-    { title: 'Excel to PDF', category: 'PDF Tools', icon: '📊', url: 'pdf/excel-to-pdf.html', keywords: 'convert xls xlsx excel spreadsheet to pdf table' },
-    { title: 'PDF to JPG Converter', category: 'PDF Tools', icon: '🖼️', url: 'pdf/pdf-to-jpg.html', keywords: 'convert pdf pages images jpg png zip download' },
-    { title: 'JPG to PDF Converter', category: 'PDF Tools', icon: '📑', url: 'pdf/jpg-to-pdf.html', keywords: 'convert photos image jpg png to pdf document combine a4' },
+    { title: 'PDF to Word Converter', category: 'PDF Tools', icon: '📝', url: 'pdf/pdf-to-word.html', keywords: 'convert pdf to docx word editable document pdf to word pdf to word converter pdf to word online convert pdf to word pdf to docx convert pdf to docx pdf to word editable extract text from pdf to docx pdf to word online free' },
+    { title: 'PDF to PowerPoint', category: 'PDF Tools', icon: '📊', url: 'pdf/pdf-to-ppt.html', keywords: 'convert pdf to pptx powerpoint presentation slides pdf to powerpoint pdf to ppt pdf to pptx convert pdf to powerpoint pdf slides to pptx' },
+    { title: 'PDF to Excel', category: 'PDF Tools', icon: '📈', url: 'pdf/pdf-to-excel.html', keywords: 'convert pdf table to xlsx excel spreadsheet csv pdf to excel pdf to excel converter pdf to xlsx convert pdf to excel pdf tables to excel' },
+    { title: 'Word to PDF', category: 'PDF Tools', icon: '📄', url: 'pdf/word-to-pdf.html', keywords: 'convert docx word document to pdf format word to pdf word to pdf converter docx to pdf convert docx to pdf convert word to pdf online free' },
+    { title: 'PowerPoint to PDF', category: 'PDF Tools', icon: '📽️', url: 'pdf/ppt-to-pdf.html', keywords: 'convert ppt pptx powerpoint slides to pdf document powerpoint to pdf ppt to pdf pptx to pdf convert powerpoint to pdf' },
+    { title: 'Excel to PDF', category: 'PDF Tools', icon: '📊', url: 'pdf/excel-to-pdf.html', keywords: 'convert xls xlsx excel spreadsheet to pdf table excel to pdf xlsx to pdf convert xlsx to pdf convert excel to pdf online' },
+    { title: 'PDF to JPG Converter', category: 'PDF Tools', icon: '🖼️', url: 'pdf/pdf-to-jpg.html', keywords: 'convert pdf pages images jpg png zip download pdf to jpg pdf to jpg converter pdf to jpg online pdf to jpg online free convert pdf to jpg pdf to jpeg pdf to jpeg converter pdf to png pdf to png converter pdf to png online convert pdf to png pdf to image pdf to image converter convert pdf to image pdf pages to jpg pdf pages to png extract images from pdf save pdf as jpg turn pdf into image convert pdf pages to images' },
+    { title: 'JPG to PDF Converter', category: 'PDF Tools', icon: '📑', url: 'pdf/jpg-to-pdf.html', keywords: 'convert photos image jpg png to pdf document combine a4 image to pdf image to pdf converter convert image to pdf image to pdf online image to pdf online free image to pdf free photo to pdf photo to pdf converter picture to pdf picture to pdf converter convert picture to pdf images to pdf images to pdf converter convert images to pdf image converter to pdf make pdf from image make pdf from photos create pdf from images turn image into pdf turn photos into pdf' },
     { title: 'HTML to PDF Converter', category: 'PDF Tools', icon: '🌐', url: 'pdf/html-to-pdf.html', keywords: 'convert html web page code url to pdf document' },
     { title: 'PDF/A Converter', category: 'PDF Tools', icon: '🏛️', url: 'pdf/pdf-a.html', keywords: 'pdfa pdf a archive standard preservation iso long term' },
     { title: 'PDF to Markdown', category: 'PDF Tools', icon: '📑', url: 'pdf/pdf-to-markdown.html', keywords: 'extract markdown md formatting text headings code' },
@@ -72,8 +72,8 @@
     { title: 'Image Resizer (Pixel & Exam Scale)', category: 'Image Tools', icon: '📐', url: 'image/resize.html', keywords: 'resize image dimensions width height aspect ratio ssc upsc custom' },
     { title: 'Image Cropper', category: 'Image Tools', icon: '✂️', url: 'image/crop.html', keywords: 'crop photo passport 3.5x4.5 ratio square 1:1 circular avatar landscape' },
     { title: 'Universal Image Converter', category: 'Image Tools', icon: '🔄', url: 'image/convert.html', keywords: 'convert image format batch zip jpg png webp gif bmp' },
-    { title: 'JPG to PDF Converter', category: 'Image Tools', icon: '📄', url: 'image/jpg-to-pdf.html', keywords: 'convert jpg images to pdf combine multiple photos a4 document' },
-    { title: 'Remove Background in HD Quality', category: 'Image Tools', icon: '✂️', url: 'image/remove-bg.html', keywords: 'remove background hd transparent png cutout photo eraser pure white passport seva exam' },
+    { title: 'JPG to PDF Converter', category: 'Image Tools', icon: '📄', url: 'image/jpg-to-pdf.html', keywords: 'convert jpg images to pdf combine multiple photos a4 document image to pdf image to pdf converter convert image to pdf image to pdf online image to pdf online free image to pdf free photo to pdf photo to pdf converter picture to pdf picture to pdf converter convert picture to pdf images to pdf images to pdf converter convert images to pdf image converter to pdf make pdf from image make pdf from photos create pdf from images turn image into pdf turn photos into pdf' },
+    { title: 'Remove Background in HD Quality', category: 'Image Tools', icon: '✂️', url: 'image/remove-bg.html', keywords: 'remove background hd transparent png cutout photo eraser pure white passport seva exam remove background hd remove bg in hd quality transparent png maker photo background eraser white background photo maker passport background changer online free' },
     { title: 'Blur & Redact Censor Tool', category: 'Image Tools', icon: '🔒', url: 'image/blur-face.html', keywords: 'blur redact pixelate censor aadhaar pan card number face identity' },
     { title: 'Image Watermark Tool', category: 'Image Tools', icon: '💧', url: 'image/watermark.html', keywords: 'watermark stamp copyright protection diagonal tile logo text photo' },
     { title: 'Photo Enhancer & Scan Optimizer', category: 'Image Tools', icon: '✨', url: 'image/photo-enhancer.html', keywords: 'enhance clarify scan xerox marksheet text boost contrast filter' },
@@ -82,19 +82,12 @@
     { title: 'Image Color Picker & Palette', category: 'Image Tools', icon: '🎨', url: 'image/color-picker.html', keywords: 'color picker eyedropper extract palette hex rgb hsl loupe' },
     { title: 'Image to Base64 Encoder', category: 'Image Tools', icon: '💻', url: 'image/base64.html', keywords: 'image to base64 data uri html img css background string decode' },
     { title: 'DPI / PPI Converter (300 DPI)', category: 'Image Tools', icon: '🖨️', url: 'image/dpi-converter.html', keywords: 'dpi converter 200 300 600 ppi upsc ssc exam print jfif header' },
-    { title: 'PNG to JPG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/png-to-jpg.html', keywords: 'png to jpg convert white background transparent fill quality' },
-    { title: 'JPG to PNG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/jpg-to-png.html', keywords: 'jpg to png convert lossless original quality uncompressed' },
-    { title: 'WebP Converter', category: 'Image Tools', icon: '⚡', url: 'image/webp-converter.html', keywords: 'webp converter convert to webp 70 percent smaller size web optimization' },
+    { title: 'PNG to JPG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/png-to-jpg.html', keywords: 'png to jpg convert white background transparent fill quality png to jpg png to jpg converter convert png to jpg convert png with white background' },
+    { title: 'JPG to PNG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/jpg-to-png.html', keywords: 'jpg to png convert lossless original quality uncompressed jpg to png jpg to png converter jpg to png online convert jpg to png' },
+    { title: 'WebP Converter', category: 'Image Tools', icon: '⚡', url: 'image/webp-converter.html', keywords: 'webp converter convert to webp 70 percent smaller size web optimization webp to jpg webp to png jpg to webp png to webp webp converter convert image to webp heic to jpg heic to png heic converter avif to jpg avif to png' },
     { title: 'Passport Photo Maker (A4 Grid)', category: 'Image Tools', icon: '📸', url: 'image/passport-photo.html', keywords: 'passport photo 3.5x4.5 ssc upsc visa 2x2 a4 print sheet grid' },
     { title: 'Signature Resizer (<20KB)', category: 'Image Tools', icon: '✍️', url: 'image/signature.html', keywords: 'resize signature under 20kb 50kb ibps ssc upsc dimension 140x60' },
     { title: 'All Image Tools Suite', category: 'Image Tools', icon: '✨', url: 'image/index.html', keywords: 'all 18 image photo tools free private browser' },
-
-    // Calculators
-    { title: 'Percentage Calculator', category: 'Calculators', icon: '📊', url: 'calculators/percentage.html', keywords: 'percentage marks calculator grade 9.5 multiplier convert' },
-    { title: 'Age Calculator', category: 'Calculators', icon: '🎂', url: 'calculators/age.html', keywords: 'age calculator dob date of birth birthday countdown' },
-    { title: 'Loan EMI Calculator', category: 'Calculators', icon: '💰', url: 'calculators/emi.html', keywords: 'emi loan interest principal monthly payment amortization' },
-    { title: 'CGPA Calculator', category: 'Calculators', icon: '🎓', url: 'calculators/cgpa.html', keywords: 'cgpa sgpa semester credits percentage 10 point 4 point university' },
-    { title: 'Attendance Calculator', category: 'Calculators', icon: '📅', url: 'calculators/attendance.html', keywords: 'attendance 75 percent target bunks classes bunk balance tracker' },
 
     // Invoice Tools Suite
     { title: 'Create Invoice (GST & Standard)', category: 'Invoices', icon: '🧾', url: 'pdf/create-invoice.html', keywords: 'create invoice gst bill billing tax invoice maker hsn sac cgst sgst igst' },
@@ -105,14 +98,11 @@
     { title: 'Validate E-Invoice Compliance', category: 'Invoices', icon: '🛡️', url: 'pdf/validate-e-invoice.html', keywords: 'validate e-invoice en 16931 rules audit syntax check certificate' },
 
     // Developer & Data Tools
-    { title: 'JSON Formatter & Validator', category: 'Developer', icon: '💻', url: 'developer/json.html', keywords: 'json formatter validator beautify minify tree syntax json' },
-    { title: 'Base64 Encoder & Decoder', category: 'Developer', icon: '🔤', url: 'developer/base64.html', keywords: 'base64 encode decode data uri image to base64 binary' },
-    { title: 'SQL Query Formatter', category: 'Developer', icon: '💾', url: 'developer/sql.html', keywords: 'sql formatter beautify indent uppercase keywords format query' },
-
+            
     // Text & Utility Tools
-    { title: 'Word Counter & Text Analyzer', category: 'Text Tools', icon: '📝', url: 'text/word-counter.html', keywords: 'word counter characters count reading time paragraphs sentences' },
-    { title: 'QR Code Generator', category: 'Utility Tools', icon: '📱', url: 'utilities/qr-generator.html', keywords: 'qr code generator create custom qr wifi url vcard' },
-    { title: 'Password Generator', category: 'Utility Tools', icon: '🔐', url: 'utilities/password-generator.html', keywords: 'password generator secure random password strong passphrase' }
+    { title: 'Word Counter & Text Analyzer', category: 'Text Tools', icon: '📝', url: 'text/word-counter.html', keywords: 'word counter characters count reading time paragraphs sentences word counter character counter sentence counter case converter uppercase to lowercase lowercase to uppercase reading time calculator' },
+    { title: 'QR Code Generator', category: 'Utility Tools', icon: '📱', url: 'utilities/qr-generator.html', keywords: 'qr code generator create custom qr wifi url vcard qr code generator make qr code free qr generator upi qr code generator wifi qr code maker' },
+    { title: 'Password Generator', category: 'Utility Tools', icon: '🔐', url: 'utilities/password-generator.html', keywords: 'password generator secure random password strong passphrase password generator random password generator strong password maker secure password generator' }
   ];
 
   function getBasePrefix() {
