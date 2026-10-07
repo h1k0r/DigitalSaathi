@@ -868,7 +868,17 @@
             "compress photo under 20kb",
             "compress photo under 50kb",
             "compress photo under 100kb",
-            "photo compressor"
+            "photo compressor",
+            "india",
+            "indian form",
+            "ssc",
+            "upsc",
+            "ibps",
+            "govt exam",
+            "passport size",
+            "20kb",
+            "50kb",
+            "100kb"
         ],
         "popular": true,
         "badge": "Popular"
@@ -956,7 +966,17 @@
             "sheet",
             "ssc",
             "upsc",
-            "print"
+            "print",
+            "india",
+            "indian form",
+            "ssc",
+            "upsc",
+            "ibps",
+            "govt exam",
+            "passport size",
+            "20kb",
+            "50kb",
+            "100kb"
         ],
         "popular": true,
         "badge": "Essential"
@@ -975,7 +995,17 @@
             "ibps",
             "upsc",
             "20kb",
-            "140x60"
+            "140x60",
+            "india",
+            "indian form",
+            "ssc",
+            "upsc",
+            "ibps",
+            "govt exam",
+            "passport size",
+            "20kb",
+            "50kb",
+            "100kb"
         ],
         "popular": true,
         "badge": "Essential"
@@ -1069,7 +1099,17 @@
             "ppi",
             "300 dpi",
             "print quality",
-            "resolution"
+            "resolution",
+            "india",
+            "indian form",
+            "ssc",
+            "upsc",
+            "ibps",
+            "govt exam",
+            "passport size",
+            "20kb",
+            "50kb",
+            "100kb"
         ],
         "popular": false,
         "badge": ""
@@ -1186,7 +1226,17 @@
             "xerox",
             "contrast",
             "clarify",
-            "marksheet"
+            "marksheet",
+            "india",
+            "indian form",
+            "ssc",
+            "upsc",
+            "ibps",
+            "govt exam",
+            "passport size",
+            "20kb",
+            "50kb",
+            "100kb"
         ],
         "popular": false,
         "badge": ""
