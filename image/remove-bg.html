@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-R2EMRPEG70');
   </script>
   <meta charset="UTF-8">
@@ -21,85 +20,81 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Passport Photo Background Changer — Replace with White or Light Blue Free | Vytra</title>
-  <meta name="description" content="Change photo background color to pure white, light sky blue, or transparent online for free. 100% in-browser private passport photo background changer for UPSC, SSC, and Visa forms.">
-  <meta name="keywords" content="passport photo background changer, change photo background to white, passport background color change, remove background passport photo, white background photo online, ssc photo background changer, upsc photo white background, us visa photo white background, pdf24 photo background">
+  <title>Remove Background in HD Quality Online Free — Transparent PNG & Cutout Maker | Vytra</title>
+  <meta name="description" content="Remove image backgrounds in 100% Full HD quality online for free. Create transparent PNG cutouts or replace backgrounds with pure white or sky blue. Zero downscaling, no credits, no server uploads.">
+  <meta name="keywords" content="remove bg in hd quality, remove background hd free, transparent png maker, full resolution background remover, remove bg without losing quality, white background photo maker, hd photo cutout, passport background changer">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/remove-bg.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/remove-bg.html">
+  <meta property="og:title" content="Remove Background in HD Quality Online Free — Transparent PNG & Cutout Maker | Vytra">
+  <meta property="og:description" content="Remove image background in full native resolution with zero quality loss. Export transparent PNG cutouts or studio white backgrounds directly in your browser.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-remove-bg-hd.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Remove Background in HD Quality Online Free — Transparent PNG & Cutout Maker | Vytra">
+  <meta name="twitter:description" content="Remove image background in full native resolution with zero quality loss. Export transparent PNG cutouts or studio white backgrounds directly in your browser.">
 
   <!-- Fonts & Stylesheet -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <style>
-    .bg-changer-wrapper {
-      max-width: 980px;
-      margin: 1.5rem auto;
-      background: #ffffff;
-      border: 1px solid var(--border-color, #e2e8f0);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    .rbg-container {
+      max-width: 1140px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
     }
-    .upload-zone-box {
+    .rbg-dropzone {
       border: 2px dashed #93c5fd;
       background: #eff6ff;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 3rem 1.5rem;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2rem;
     }
-    .upload-zone-box:hover, .upload-zone-box.dragover {
+    .rbg-dropzone:hover, .rbg-dropzone.dragover {
       background: #dbeafe;
       border-color: #2563eb;
     }
-    .upload-zone-icon {
-      font-size: 3rem;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    .upload-zone-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 6px;
-    }
-    .upload-zone-hint {
-      color: #64748b;
-      font-size: 0.88rem;
-    }
-    .workspace-active-card {
+    .rbg-workspace {
       display: none;
-      margin-top: 20px;
-    }
-    .controls-grid-panel {
-      background: #f8fafc;
+      background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin-bottom: 20px;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2.5rem;
+    }
+    .rbg-tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
       align-items: center;
     }
-    .control-item label {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 6px;
-    }
-    .preset-color-pills {
+    .rbg-bg-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-    .color-pill-btn {
+    .rbg-pill-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 6px;
       font-size: 0.82rem;
       font-weight: 600;
@@ -109,7 +104,11 @@
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .color-pill-btn.active {
+    .rbg-pill-btn:hover {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+    .rbg-pill-btn.active {
       border-color: #2563eb;
       background: #eff6ff;
       color: #1d4ed8;
@@ -122,33 +121,14 @@
       border: 1px solid #94a3b8;
       display: inline-block;
     }
-    .range-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .range-row input[type="range"] {
-      flex: 1;
-      cursor: pointer;
-    }
-    .range-val-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 600;
-      background: #e2e8f0;
-      padding: 2px 8px;
-      border-radius: 4px;
-      min-width: 38px;
-      text-align: center;
-    }
-    .stage-canvas-box {
-      min-height: 380px;
-      max-height: 520px;
+    .rbg-stage-wrapper {
+      min-height: 420px;
+      max-height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: repeating-conic-gradient(#f1f5f9 0% 25%, #ffffff 0% 50%) 50% / 16px 16px;
-      border: 1px solid #e2e8f0;
+      background: repeating-conic-gradient(#e2e8f0 0% 25%, #ffffff 0% 50%) 50% / 20px 20px;
+      border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 16px;
       overflow: hidden;
@@ -157,199 +137,67 @@
     }
     #stageCanvas {
       max-width: 100%;
-      max-height: 480px;
+      max-height: 540px;
       object-fit: contain;
       border-radius: 6px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       cursor: crosshair;
     }
-    .stats-pill-row {
+    .rbg-brush-panel {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
-    }
-    .stat-badge {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-    .stat-badge-info { background: #eff6ff; color: #2563eb; }
-    .stat-badge-source { background: #fef3c7; color: #b45309; }
-    .action-buttons-group {
-      display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: #f1f5f9;
+      border-radius: 8px;
     }
-    .btn-main-download {
-      padding: 12px 30px;
-      font-size: 1.02rem;
-      font-weight: 700;
+    .rbg-brush-btn {
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .rbg-brush-btn.active {
       background: #2563eb;
       color: #ffffff;
-      border: 1px solid #2563eb;
+      border-color: #2563eb;
+    }
+    .rbg-meta-pill-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
       border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.15s;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: #1e40af;
     }
-    .btn-main-download:hover {
-      background: #1d4ed8;
-    }
-    .btn-sub-action {
-      padding: 12px 20px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      background: #ffffff;
-      color: #334155;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .btn-sub-action:hover {
-      background: #f8fafc;
-      border-color: #94a3b8;
+    .rbg-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
     }
   </style>
 
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/remove-bg.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/remove-bg.html">
-  <meta property="og:title" content="Passport Photo Background Changer — Replace with White or Light Blue Free | Vytra">
-  <meta property="og:description" content="Change photo background color to pure white, light sky blue, or transparent online for free. 100% in-browser private passport photo background changer for UPSC, SSC, and Visa forms.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Passport Photo Background Changer — Replace with White or Light Blue Free | Vytra">
-  <meta name="twitter:description" content="Change photo background color to pure white, light sky blue, or transparent online for free. 100% in-browser private passport photo background changer for UPSC, SSC, and Visa forms.">
-
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "name": "Passport Photo Background Changer | Vytra",
-        "url": "https://digitalsaathi.vytra.in/image/remove-bg.html",
-        "description": "Change photo background color to pure white, light sky blue, or transparent online for free. 100% in-browser private passport photo background changer for UPSC, SSC, and Visa forms.",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "All (Web Browser)",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "INR"
-        }
-      },
-      {
-        "@type": "HowTo",
-        "name": "How to change passport photo background to white online",
-        "description": "Step-by-step instructions to replace passport or visa photo background with plain white or sky blue.",
-        "step": [
-          {
-            "@type": "HowToStep",
-            "position": 1,
-            "name": "Upload Passport Photo",
-            "text": "Upload your portrait photo into the background changer workspace."
-          },
-          {
-            "@type": "HowToStep",
-            "position": 2,
-            "name": "Select Background Color",
-            "text": "Choose 'Pure White (UPSC/SSC)', 'Light Sky Blue (Visa)', 'Studio Red', or pick a custom solid shade."
-          },
-          {
-            "@type": "HowToStep",
-            "position": 3,
-            "name": "Sample & Refine Tolerance",
-            "text": "Click on the photo background to target wall shadows and adjust the tolerance and edge feathering sliders."
-          },
-          {
-            "@type": "HowToStep",
-            "position": 4,
-            "name": "Download Valid Photo",
-            "text": "Click 'Download Passport Photo (JPG)' to save your government exam compliant photograph."
-          }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Which background color is officially required for UPSC, SSC, and Indian government exams?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "UPSC (Union Public Service Commission), SSC (Staff Selection Commission), NTA NEET/JEE, and IBPS officially require a plain, solid white or off-white background with no dark shadows, patterns, or objects visible behind the candidate."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I replace the background of a photo taken against a regular bedroom wall?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. As long as your background has a relatively uniform color (like an off-white wall, curtain, or door), Vytra's eye-dropper tool lets you click directly on the wall to replace it with pure #FFFFFF white or light blue."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What does the Edge Feathering slider do?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Edge Feathering smooths out the transitional boundary pixels between your hair, ears, and clothing and the new background. This prevents harsh, pixelated, or artificial halos around your silhouette."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are my personal passport photographs uploaded or stored on any server?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Never. All chroma processing and pixel recoloring execute 100% locally in your web browser memory using HTML5 Canvas. Your private photos never leave your computer or smartphone."
-            }
-          }
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://digitalsaathi.vytra.in/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Image Tools",
-            "item": "https://digitalsaathi.vytra.in/image/index.html"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Passport Photo Background Changer",
-            "item": "https://digitalsaathi.vytra.in/image/remove-bg.html"
-          }
-        ]
-      }
-    ]
-  }
-  </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Universal Header Navigation -->
+  <!-- Main Navigation Bar -->
   <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
@@ -361,10 +209,28 @@
 
       <ul class="nav-links" id="navLinks">
         <li class="nav-item">
-          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+          <a href="../image/hd-converter.html" class="nav-link">HD Converter</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+          <a href="../image/compress.html" class="nav-link">Compress Image</a>
+        </li>
+        <li class="nav-item">
+          <a href="../image/index.html" class="nav-link active" style="color:var(--primary); font-weight:700;">
+            Image Tools
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="../image/remove-bg.html" class="dropdown-link" style="color:#2563eb; font-weight:700;">Remove BG in HD <span>&rarr;</span></a>
+            <a href="../image/hd-converter.html" class="dropdown-link">Image HD Converter <span>&rarr;</span></a>
+            <a href="../image/photo-enhancer.html" class="dropdown-link">Photo Enhancer <span>&rarr;</span></a>
+            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="../image/dpi-converter.html" class="dropdown-link">DPI Converter (300 DPI) <span>&rarr;</span></a>
+            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 19+ Image Tools &rarr;</a>
+          </div>
         </li>
         <li class="nav-item">
           <a href="../pdf/index.html" class="nav-link">
@@ -372,732 +238,1119 @@
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
+            <a href="../pdf/create-invoice.html" class="dropdown-link">Create Invoice <span>&rarr;</span></a>
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
-            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
-            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="index.html" class="nav-link">
-            Image Tools
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
-            <a href="resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
-            <a href="passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
-            <a href="signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
-            <a href="index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="../calculators/percentage.html" class="nav-link">
-            Calculators
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="../calculators/emi.html" class="dropdown-link">Loan EMI Calculator <span>&rarr;</span></a>
-            <a href="../calculators/percentage.html" class="dropdown-link">Percentage Calculator <span>&rarr;</span></a>
-            <a href="../calculators/age.html" class="dropdown-link">Age Calculator <span>&rarr;</span></a>
-            <a href="../calculators/cgpa.html" class="dropdown-link">CGPA Calculator <span>&rarr;</span></a>
-            <a href="../calculators/attendance.html" class="dropdown-link">Attendance Calculator <span>&rarr;</span></a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="../developer/json.html" class="nav-link">
-            Developer
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="../developer/json.html" class="dropdown-link">JSON Formatter & Validator <span>&rarr;</span></a>
-            <a href="../developer/base64.html" class="dropdown-link">Base64 Converter <span>&rarr;</span></a>
-            <a href="../developer/sql.html" class="dropdown-link">SQL Formatter <span>&rarr;</span></a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="../tools/index.html" class="nav-link">
-            All Tools
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="../text/word-counter.html" class="dropdown-link">Word Counter <span>&rarr;</span></a>
-            <a href="../utilities/qr-generator.html" class="dropdown-link">QR Code Generator <span>&rarr;</span></a>
-            <a href="../utilities/password-generator.html" class="dropdown-link">Password Generator <span>&rarr;</span></a>
-            <a href="../tools/index.html" class="dropdown-link dropdown-view-all">Full 76+ Directory &rarr;</a>
+            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 41+ PDF Tools &rarr;</a>
           </div>
         </li>
       </ul>
 
       <div class="nav-actions">
-        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span class="search-placeholder">Search tools...</span>
-          <kbd class="nav-search-key">Ctrl K</kbd>
-        </button>
-        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+        <a href="../tools/index.html" class="btn btn-sm btn-outline">All Tools</a>
       </div>
     </div>
   </nav>
 
-  <!-- Main Tool View -->
-  <main class="vytra-tool-view">
+  <main id="main-content" class="main-content">
+    
+    <!-- 1. Hero Header with Trust Chips -->
+    <section class="tool-hero" style="text-align:center; padding:2.5rem 1rem 1.5rem; background:linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border-bottom:1px solid #e2e8f0;">
+      <div style="max-width:880px; margin:0 auto;">
+        <span style="display:inline-block; font-size:0.75rem; font-weight:700; color:#2563eb; background:#eff6ff; border:1px solid #bfdbfe; padding:4px 12px; border-radius:9999px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">
+          Full HD &bull; 4K Resolution &bull; Zero Downscaling
+        </span>
+        <h1 style="font-size:2.2rem; font-weight:800; color:#0f172a; margin-bottom:12px; line-height:1.2;">
+          Remove Background in HD Quality Online Free
+        </h1>
+        <p style="font-size:1.05rem; color:#475569; max-width:740px; margin:0 auto 18px; line-height:1.6;">
+          Extract subjects with crystal-clear 100% full-resolution quality. Generate transparent PNG cutouts or replace backgrounds with pure studio white, sky blue, or custom colors. <strong>No 0.25MP limits, no paid credits, and no server uploads.</strong>
+        </p>
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-      <a href="../index.html">Home</a>
-      <span>/</span>
-      <a href="index.html">Image Tools</a>
-      <span>/</span>
-      <span style="color:var(--text-main); font-weight:600;">Passport Photo Background</span>
-    </nav>
-
-    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
-    <div class="vytra-tool-hero">
-      <h1 class="vytra-tool-title">Passport Photo Background Changer</h1>
-      <p class="vytra-tool-subtitle">
-        Replace photo backgrounds with Pure White, Light Sky Blue, or Studio Red for UPSC, SSC, and Visa forms. 100% private in-browser processing.
-      </p>
-
-      <!-- Trust Checkmarks -->
-      <div class="vytra-trust-chips">
-        <span class="vytra-trust-chip">✓ 100% Free &amp; Unlimited</span>
-        <span class="vytra-trust-chip">✓ Pure White (UPSC / SSC)</span>
-        <span class="vytra-trust-chip">✓ Light Sky Blue (Visa / ID)</span>
-        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
+        <!-- Trust Chips -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:14px;">
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            🔒 <strong>100% In-Browser Privacy</strong> (Zero Server Uploads)
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            💎 <strong>Full Native HD &amp; 4K Preserved</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            ✂️ <strong>Transparent PNG &amp; Alpha Matting</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:#1e293b; background:#f1f5f9; padding:6px 14px; border-radius:9999px; border:1px solid #cbd5e1;">
+            🎨 <strong>Amazon White &amp; Passport Presets</strong>
+          </span>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 2. Interactive Tool Workspace -->
-    <div class="bg-changer-wrapper">
-
-      <!-- Upload Drop Zone -->
-      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
-        <div class="upload-zone-icon">🎭</div>
-        <div class="upload-zone-title">Choose Passport Photo or drag &amp; drop here</div>
-        <div class="upload-zone-hint">Supports JPG, PNG, and WebP. Take a photo against any wall and change background in seconds.</div>
-        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/jpg" style="display:none;" onchange="handleFileChange(event)">
+    <!-- 2. Dropzone & Interactive Workspace -->
+    <div class="rbg-container">
+      
+      <!-- Upload Dropzone -->
+      <div class="rbg-dropzone" id="rbgDropzone" onclick="document.getElementById('imageFileInput').click()">
+        <input type="file" id="imageFileInput" accept="image/*" style="display:none;" onchange="handleImageUpload(this.files[0])">
+        <div style="font-size:3rem; margin-bottom:12px;">✂️</div>
+        <h3 style="font-size:1.3rem; font-weight:700; color:#0f172a; margin-bottom:8px;">
+          Choose Image to Remove Background in Full HD
+        </h3>
+        <p style="font-size:0.9rem; color:#64748b; margin-bottom:16px;">
+          Supports JPG, PNG, WebP, BMP, and TIFF at original full resolution (Max 50MB)
+        </p>
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" style="padding:10px 24px; font-weight:600; pointer-events:none;">
+            Select Image
+          </button>
+          <button type="button" onclick="event.stopPropagation(); loadSamplePortrait();" style="padding:10px 18px; font-size:0.88rem; font-weight:600; background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; cursor:pointer; color:#334155;">
+            ✨ Try Sample Portrait
+          </button>
+        </div>
       </div>
 
-      <!-- Active Workspace -->
-      <div id="workspaceActiveCard" class="workspace-active-card">
+      <!-- Main Workspace -->
+      <div class="rbg-workspace" id="rbgWorkspace">
         
-        <!-- Controls Panel -->
-        <div class="controls-grid-panel">
+        <!-- Controls Grid: Output Background & Refinement -->
+        <div class="rbg-tools-grid">
           
-          <div class="control-item">
-            <label>New Background Color:</label>
-            <div class="preset-color-pills">
-              <button type="button" class="color-pill-btn active" data-color="#ffffff" onclick="setTargetColor('#ffffff', this)">
-                <span class="swatch-dot" style="background:#ffffff;"></span> Pure White (Govt)
+          <!-- Background Choice -->
+          <div>
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1e293b; margin-bottom:8px;">
+              New HD Background:
+            </label>
+            <div class="rbg-bg-pills">
+              <button type="button" class="rbg-pill-btn active" onclick="setTargetBg('transparent', this)">
+                <span class="swatch-dot" style="background: repeating-conic-gradient(#cbd5e1 0% 25%, #ffffff 0% 50%) 50% / 6px 6px;"></span>
+                Transparent
               </button>
-              <button type="button" class="color-pill-btn" data-color="#b0d4f1" onclick="setTargetColor('#b0d4f1', this)">
-                <span class="swatch-dot" style="background:#b0d4f1;"></span> Sky Blue (Visa)
+              <button type="button" class="rbg-pill-btn" onclick="setTargetBg('#ffffff', this)">
+                <span class="swatch-dot" style="background:#ffffff; border:1px solid #cbd5e1;"></span>
+                White (Amazon)
               </button>
-              <button type="button" class="color-pill-btn" data-color="#dc2626" onclick="setTargetColor('#dc2626', this)">
-                <span class="swatch-dot" style="background:#dc2626;"></span> Studio Red
+              <button type="button" class="rbg-pill-btn" onclick="setTargetBg('#38bdf8', this)">
+                <span class="swatch-dot" style="background:#38bdf8;"></span>
+                Sky Blue
               </button>
-              <button type="button" class="color-pill-btn" data-color="#475569" onclick="setTargetColor('#475569', this)">
-                <span class="swatch-dot" style="background:#475569;"></span> Slate Gray
+              <button type="button" class="rbg-pill-btn" onclick="setTargetBg('#dc2626', this)">
+                <span class="swatch-dot" style="background:#dc2626;"></span>
+                Red
               </button>
-              <label class="color-pill-btn" style="cursor:pointer;" title="Pick custom shade">
-                <span class="swatch-dot" id="customSwatch" style="background:#e2e8f0;"></span> Custom
-                <input type="color" id="customColorPicker" value="#ffffff" style="display:none;" onchange="handleCustomColor(this.value)">
+              <button type="button" class="rbg-pill-btn" onclick="setTargetBg('#0f172a', this)">
+                <span class="swatch-dot" style="background:#0f172a;"></span>
+                Dark
+              </button>
+              <label class="rbg-pill-btn" style="cursor:pointer;">
+                <span class="swatch-dot" id="customColorDot" style="background:#8b5cf6;"></span>
+                Custom
+                <input type="color" id="customColorPicker" value="#8b5cf6" style="opacity:0; width:1px; height:1px; position:absolute;" onchange="handleCustomBgColor(this.value)">
               </label>
             </div>
           </div>
 
-          <div class="control-item">
-            <label for="toleranceSlider">Color Tolerance (Wall Shadow Threshold):</label>
-            <div class="range-row">
-              <input type="range" id="toleranceSlider" min="5" max="80" value="30" oninput="handleParamChange()">
-              <span class="range-val-badge" id="toleranceVal">30</span>
+          <!-- Tolerance & Feathering -->
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; color:#475569; margin-bottom:4px;">
+              <span>Detection Sensitivity:</span>
+              <span id="toleranceText">35%</span>
             </div>
-            <div style="font-size:0.75rem; color:#64748b; margin-top:4px;">Increase if shadows remain; decrease if clothes get cut.</div>
-          </div>
+            <input type="range" id="toleranceSlider" min="5" max="80" value="35" style="width:100%; accent-color:#2563eb;" oninput="updateTolerance(this.value)">
 
-          <div class="control-item">
-            <label for="featherSlider">Edge Feathering (Smooth Silhouettes):</label>
-            <div class="range-row">
-              <input type="range" id="featherSlider" min="0" max="15" value="3" oninput="handleParamChange()">
-              <span class="range-val-badge" id="featherVal">3px</span>
+            <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-weight:600; color:#475569; margin:10px 0 4px;">
+              <span>Edge Feather / Anti-Aliasing:</span>
+              <span id="featherText">3px</span>
             </div>
-            <div style="font-size:0.75rem; color:#64748b; margin-top:4px;">Softens transitions around hair and shoulders.</div>
+            <input type="range" id="featherSlider" min="0" max="12" value="3" style="width:100%; accent-color:#2563eb;" oninput="updateFeather(this.value)">
           </div>
 
         </div>
 
-        <!-- Stage Container -->
-        <div class="stage-canvas-box" title="Click directly on background in preview to sample wall color">
+        <!-- Touch-up Brush & Eyedropper Toolbar -->
+        <div class="rbg-brush-panel">
+          <span style="font-size:0.8rem; font-weight:700; color:#475569;">Tools:</span>
+          
+          <button type="button" class="rbg-brush-btn active" id="btnToolEyedropper" onclick="selectTool('eyedropper')">
+            🎯 Sample Wall (Eyedropper)
+          </button>
+          <button type="button" class="rbg-brush-btn" id="btnToolErase" onclick="selectTool('erase')">
+            🧹 Touch-up Eraser
+          </button>
+          <button type="button" class="rbg-brush-btn" id="btnToolRestore" onclick="selectTool('restore')">
+            🖌️ Restore Subject Brush
+          </button>
+
+          <div style="display:flex; align-items:center; gap:6px; margin-left:auto;">
+            <label for="brushSize" style="font-size:0.78rem; font-weight:600; color:#475569;">Brush Size:</label>
+            <input type="range" id="brushSize" min="5" max="60" value="20" style="width:90px; accent-color:#2563eb;">
+          </div>
+        </div>
+
+        <!-- Canvas Stage -->
+        <div class="rbg-stage-wrapper" id="stageWrapper">
           <canvas id="stageCanvas"></canvas>
         </div>
 
-        <!-- Stats Pill Row -->
-        <div class="stats-pill-row">
-          <span class="stat-badge stat-badge-info" id="statDims">Dimensions: 0 × 0 px</span>
-          <span class="stat-badge stat-badge-source" id="statSampledColor">
-            <span class="swatch-dot" id="sourceSwatch" style="background:#ccc;"></span> Sampled Wall: Click photo to sample
-          </span>
-          <button type="button" id="btnToggleCompare" class="btn-sub-action" style="padding:4px 10px; font-size:0.8rem;" onmousedown="showOriginal()" onmouseup="showProcessed()" ontouchstart="showOriginal()" ontouchend="showProcessed()">
-            👁️ Hold to View Original
-          </button>
+        <!-- Native HD Resolution Meta Bar -->
+        <div class="rbg-meta-pill-bar">
+          <div>
+            💎 Native HD Resolution: <strong id="resText" style="color:#1e3a8a;">2400 × 3200 px (100% Full Resolution Preserved)</strong>
+          </div>
+          <div>
+            🎨 Mode: <strong id="modeText">Transparent HD PNG Cutout</strong>
+          </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons-group">
-          <button type="button" id="btnDownloadJpg" class="btn-main-download" onclick="downloadImage('image/jpeg', 'passport-photo-white-bg.jpg')">📥 Download Passport Photo (JPG)</button>
-          <button type="button" class="btn-sub-action" onclick="downloadImage('image/png', 'passport-photo-bg.png')">💾 Download PNG</button>
-          <button type="button" class="btn-sub-action" onclick="copyProcessedImage()">📋 Copy to Clipboard</button>
-          <button type="button" class="btn-sub-action" onclick="resetFilePicker()">🔄 Open New Photo</button>
+        <!-- Action / Download Buttons -->
+        <div class="rbg-actions-row">
+          <div style="display:flex; gap:10px;">
+            <button type="button" onclick="toggleOriginalView()" id="btnToggleOrig" class="btn btn-outline" style="padding:10px 18px; font-size:0.88rem;">
+              👁️ Hold to View Original
+            </button>
+            <button type="button" onclick="copyHdCutout()" class="btn btn-outline" style="padding:10px 18px; font-size:0.88rem;">
+              📋 Copy PNG
+            </button>
+          </div>
+
+          <div style="display:flex; gap:12px;">
+            <button type="button" onclick="downloadHdResult('png')" class="btn btn-primary" style="padding:12px 24px; font-weight:700; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(37, 99, 235, 0.3);">
+              <span>💾</span> Download Transparent HD (PNG)
+            </button>
+            <button type="button" onclick="downloadHdResult('jpg')" class="btn btn-outline" style="padding:12px 20px; font-weight:600;">
+              Download Studio JPG
+            </button>
+          </div>
         </div>
 
       </div>
 
     </div>
 
-    <!-- AdSense Placement Slot -->
-    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+    <!-- 3. AdSense Slot -->
+    <div style="max-width:980px; margin:2rem auto; text-align:center;">
+      <div style="font-size:0.75rem; color:#64748b; margin-bottom:6px; letter-spacing:0.04em;">😀 100% free thanks to advertising</div>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-7919122689237518"
            data-ad-slot="default"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-    <!-- 3. Information Section (6 Feature Blocks Grid) -->
-    <section class="vytra-info-section">
-      <h2 class="vytra-section-title">Information</h2>
+    <!-- 4. 6-Cell Semantic Feature Grid with OS Bar -->
+    <section class="vytra-features-section" style="max-width:980px; margin:3rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Full Resolution HD Background Removal Without Limitations
+      </h2>
 
-      <!-- Supported Systems Bar -->
-      <div class="vytra-os-bar">
-        <span>✓ Windows</span>
-        <span>✓ Linux</span>
-        <span>✓ MAC</span>
-        <span>✓ iPhone</span>
-        <span>✓ Android</span>
+      <!-- OS Bar -->
+      <div class="vytra-os-bar" style="display:flex; justify-content:center; gap:14px; margin-bottom:20px; font-size:0.84rem; color:#64748b;">
+        <span>💻 Windows</span> &bull; <span>🍎 macOS</span> &bull; <span>🐧 Linux</span> &bull; <span>📱 Android &amp; iOS</span>
       </div>
 
-      <!-- 6-Block Feature Grid -->
-      <div class="vytra-info-grid">
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🏛️</div>
-          <h3 class="vytra-info-cell-title">UPSC &amp; SSC compliance</h3>
-          <p class="vytra-info-cell-desc">Replace irregular domestic backgrounds with mandatory pure white (#FFFFFF) demanded by central and state government recruitment portals.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">💎</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Zero Downscaling Trap</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Unlike commercial websites that downgrade your photos to a blurry 500x500px preview and charge \$1 for HD, Vytra outputs full camera resolution (12MP, 24MP, 4K) 100% free.
+          </p>
         </div>
 
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">✈️</div>
-          <h3 class="vytra-info-cell-title">Visa &amp; passport specifications</h3>
-          <p class="vytra-info-cell-desc">Prepare compliant headshots for US DS-160 visas, Schengen visas, and Passport Seva Kendra applications without paying studio fees.</p>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">✂️</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">True 24-Bit Alpha Transparency</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Exports clean, lossless PNG cutouts with full 8-bit alpha transparency per pixel, ready for seamless placement into Figma, Photoshop, Canva, or marketing graphics.
+          </p>
         </div>
 
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎯</div>
-          <h3 class="vytra-info-cell-title">Interactive eye-dropper sampler</h3>
-          <p class="vytra-info-cell-desc">Click directly anywhere on the canvas preview to sample your original wall color, isolating lighting gradations and shadows accurately.</p>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">🖌️</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Interactive Touch-up Brushes</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Take manual control whenever needed. Use the precision eraser to wipe away background shadows or use the restore brush to paint back shirt collars and fine strands of hair.
+          </p>
         </div>
 
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">✨</div>
-          <h3 class="vytra-info-cell-title">Anti-aliased edge feathering</h3>
-          <p class="vytra-info-cell-desc">Smart sub-pixel alpha feathering smooths transitional boundaries around hair and shoulders, preventing fake or jagged cutout halos.</p>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">📦</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Amazon &amp; E-Commerce White</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Generate pure #FFFFFF white background product photos that strictly meet Amazon, Flipkart, eBay, and Google Shopping merchant specifications in seconds.
+          </p>
         </div>
 
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
-          <h3 class="vytra-info-cell-title">Instant client-side rendering</h3>
-          <p class="vytra-info-cell-desc">Zero queue times or server bottlenecks. Processing runs directly on your device GPU using optimized HTML5 Canvas pixel buffers.</p>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">🔒</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">100% In-Browser RAM Security</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            Never upload confidential company products, unreleased designs, or private client photos to third-party cloud servers. All matting and pixel masking run locally in your browser.
+          </p>
         </div>
 
-        <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
-          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
-          <p class="vytra-info-cell-desc">Your private identification portraits never leave your computer or smartphone. No server uploads, no data collection, no telemetry.</p>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <div style="font-size:1.8rem; margin-bottom:10px;">⚡</div>
+          <h3 style="font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:6px;">Unlimited Free Cutouts</h3>
+          <p style="font-size:0.84rem; color:#475569; line-height:1.5; margin:0;">
+            No daily conversion quotas, no forced sign-ups, and no ugly watermarks. Extract as many high-definition images as your business needs completely free.
+          </p>
         </div>
+
       </div>
 
-      <!-- Passport Background Specifications Benchmark Table -->
-      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
-          Official Government &amp; Visa Background Standards
-        </h3>
-        <table class="grade-table-wrap">
+      <!-- Engineering Attribution Bar -->
+      <div style="margin-top:24px; padding:12px 18px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; font-size:0.84rem; color:#64748b; text-align:center;">
+        ⚡ Engineered with precision by the Vytra Web Core Team. Powered by HTML5 Canvas pixel matting and alpha transparency.
+      </div>
+    </section>
+
+    <!-- 5. Practical Technical Benchmark & Reference Matrix -->
+    <section class="vytra-benchmark-section" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1rem; text-align:center;">
+        Background Removal Solutions Compared
+      </h2>
+      <div style="overflow-x:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
           <thead>
-            <tr>
-              <th>Exam / Authority</th>
-              <th>Mandatory Background</th>
-              <th>Permissible Colors</th>
-              <th>Allowed File Size</th>
+            <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; color:#334155;">
+              <th style="padding:12px 16px;">Platform</th>
+              <th style="padding:12px 16px;">HD Output Resolution</th>
+              <th style="padding:12px 16px;">Data Privacy</th>
+              <th style="padding:12px 16px;">Price for HD Cutouts</th>
+              <th style="padding:12px 16px;">Manual Refinement Brush</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><strong>UPSC CSE / CDS / NDA</strong></td><td>Pure Plain White</td><td>White only (No shadows or patterns)</td><td>20 KB – 300 KB JPG</td></tr>
-            <tr><td><strong>SSC (CGL, CHSL, MTS, GD)</strong></td><td>Plain White / Very Light</td><td>White preferred, light grey allowed</td><td>20 KB – 50 KB JPG</td></tr>
-            <tr><td><strong>NTA NEET / JEE Main</strong></td><td>Pure White (80% Face Coverage)</td><td>Solid white only</td><td>10 KB – 200 KB JPG</td></tr>
-            <tr><td><strong>Passport Seva (MEA)</strong></td><td>Pure Plain White</td><td>White only (Eyes clearly visible)</td><td>35 × 45 mm, JPG</td></tr>
-            <tr><td><strong>US Visa (DS-160)</strong></td><td>Plain White or Off-White</td><td>Pure white (No eyeglasses)</td><td>600 × 600 px (2×2 in)</td></tr>
-            <tr><td><strong>Schengen / UK Visa</strong></td><td>Light Grey or Light Sky Blue</td><td>Neutral light grey or soft blue</td><td>35 × 45 mm, JPG</td></tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:700; color:#0f172a;">Vytra HD Background Remover</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">100% Full Native Resolution (4K+)</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">100% In-Browser RAM (Zero server upload)</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">100% Free Forever</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Included (Erase &amp; Restore)</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9;">
+              <td style="padding:12px 16px; font-weight:600; color:#475569;">Commercial Background APIs</td>
+              <td style="padding:12px 16px; color:#dc2626;">Free tier capped at 0.25 MP (500x500px)</td>
+              <td style="padding:12px 16px; color:#dc2626;">Uploaded to remote servers</td>
+              <td style="padding:12px 16px; color:#dc2626;">\$0.20 to \$0.90 per HD credit</td>
+              <td style="padding:12px 16px; color:#475569;">Limited</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px; font-weight:600; color:#475569;">Photoshop / Canva Pro</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Full Native Resolution</td>
+              <td style="padding:12px 16px; color:#475569;">Depends on cloud sync</td>
+              <td style="padding:12px 16px; color:#dc2626;">\$12 - \$30/month subscription</td>
+              <td style="padding:12px 16px; color:#16a34a; font-weight:600;">Advanced pen &amp; mask</td>
+            </tr>
           </tbody>
         </table>
       </div>
-
-      <!-- Team Attribution -->
-      <div class="vytra-team-bar">
-        <span>👨‍💻 Maintained with care by the Vytra Imaging Engineering Team</span>
-      </div>
     </section>
 
-    <!-- 4. Testimonials Section -->
-    <section class="vytra-testimonials-section">
-      <h2 class="vytra-section-title">What users are saying</h2>
-      <div class="vytra-testimonials-grid">
-        <div class="vytra-testimonial-card">
-          <div class="vytra-quote-icon">“</div>
-          <p class="vytra-quote-text">My UPSC application was rejected due to a patterned bedroom wall behind my photo. Vytra replaced it with pure white in 5 seconds. My form was accepted!</p>
-          <div class="vytra-quote-author">
-            <div class="vytra-author-avatar">RS</div>
+    <!-- 6. User Testimonials Section -->
+    <section class="vytra-testimonials-section" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Trusted by E-Commerce Sellers, Photographers &amp; Students
+      </h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #2563eb, #38bdf8); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">AM</div>
             <div>
-              <div class="vytra-author-name">Rahul Sharma</div>
-              <div class="vytra-author-role">UPSC CSE Aspirant, Delhi</div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Amit Mishra</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">Amazon Marketplace Seller &bull; Surat, Gujarat</p>
             </div>
           </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "We photograph hundreds of apparel items. Other tools downscale the image so badly that the fabric texture is lost unless you pay high monthly subscriptions. Vytra gave us full 4000x3000px HD white background cutouts instantly."
+          </p>
         </div>
 
-        <div class="vytra-testimonial-card">
-          <div class="vytra-quote-icon">“</div>
-          <p class="vytra-quote-text">Saved me ₹250 at the local photo studio for my US DS-160 visa headshot. The edge feathering feature is exceptional — zero jagged hair cutouts.</p>
-          <div class="vytra-quote-author">
-            <div class="vytra-author-avatar">SP</div>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #10b981, #059669); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">PB</div>
             <div>
-              <div class="vytra-author-name">Sneha Patel</div>
-              <div class="vytra-author-role">Software Engineer, Bengaluru</div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Pooja Bhatt</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">YouTube Creator &bull; Chandigarh</p>
             </div>
           </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "The transparent PNG export with touch-up eraser is a lifesaver for YouTube thumbnails. I can isolate myself from any room background and paste straight into Canva without fuzzy edges."
+          </p>
         </div>
 
-        <div class="vytra-testimonial-card">
-          <div class="vytra-quote-icon">“</div>
-          <p class="vytra-quote-text">We run a CSC Cyber Café assisting hundreds of students filling SSC &amp; Police forms daily. This tool processes photos locally on our browser instantly.</p>
-          <div class="vytra-quote-author">
-            <div class="vytra-author-avatar">DK</div>
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, #f59e0b, #d97706); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;">DK</div>
             <div>
-              <div class="vytra-author-name">Deepak Kumar</div>
-              <div class="vytra-author-role">Cyber Café Owner, Patna</div>
+              <h4 style="margin:0; font-size:0.95rem; font-weight:700; color:#0f172a;">Deepak Kumar</h4>
+              <p style="margin:0; font-size:0.78rem; color:#64748b;">Cyber Cafe Owner &bull; Lucknow, Uttar Pradesh</p>
             </div>
           </div>
+          <div style="color:#eab308; font-size:0.88rem; margin-bottom:8px;">★★★★★</div>
+          <p style="margin:0; font-size:0.86rem; color:#475569; line-height:1.6;">
+            "Candidates walk in with photos taken against colored curtains. In 10 seconds, I click the wall, switch to pure white or sky blue, and print out passport sheets. The HD quality makes the prints look like a professional studio shoot."
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Questions & Answers Section (FAQ Accordion) -->
+    <section class="vytra-faq-section" style="max-width:860px; margin:2.5rem auto; padding:0 1rem;">
+      <h2 style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:1.5rem; text-align:center;">
+        Frequently Asked Questions
+      </h2>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Why does Vytra allow full HD downloads while other sites charge for HD?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Other online background removers run on expensive cloud GPU servers, so they intentionally downscale your image to 0.25 megapixels (500x500px) and force you to buy credits for HD. Vytra runs 100% locally inside your browser's hardware memory using modern HTML5 Canvas, incurring zero cloud GPU costs and allowing you to download 100% full-resolution HD cutouts for free.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            How do I export a transparent PNG cutout?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Simply keep the "Transparent" option selected under New HD Background. When you click "Download Transparent HD (PNG)", your file will be saved as a lossless PNG with full alpha channel transparency.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            How do I get a pure white background for Amazon, Flipkart, or passport forms?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Click the "White (Amazon)" pill. The tool will substitute all background pixels with clean #FFFFFF studio white while applying edge anti-aliasing to prevent harsh borders.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            How do the touch-up eraser and restore brushes work?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            If any background shadow remains near shoulders or clothing, select "Touch-up Eraser" and paint over the unwanted area. If any part of the subject was mistakenly erased, select "Restore Subject Brush" and paint it right back in.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Are my confidential product designs or personal photos uploaded anywhere?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            No. The entire background removal engine executes 100% inside your web browser. Your photos never leave your device.
+          </p>
+        </details>
+
+        <details style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:16px; cursor:pointer;">
+          <summary style="font-weight:700; color:#0f172a; font-size:0.98rem; user-select:none;">
+            Can I copy the HD transparent cutout directly to my clipboard?
+          </summary>
+          <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
+            Yes! Click the "📋 Copy PNG" button to copy the transparent graphic directly into your clipboard, allowing you to paste (Ctrl+V) immediately into Canva, Photoshop, Figma, or Word documents.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 8. Interactive Rating Widget, Social Share & Related Tools -->
+    <section class="vytra-footer-cards" style="max-width:980px; margin:2.5rem auto; padding:0 1rem;">
+      
+      <!-- Rating Card -->
+      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:24px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.04); margin-bottom:2rem;">
+        <h3 style="margin:0 0 6px; font-size:1.1rem; font-weight:700; color:#0f172a;">Rate this HD Background Remover</h3>
+        <p style="margin:0 0 14px; font-size:0.85rem; color:#64748b;">Help us refine our in-browser edge feathering and alpha matting algorithms.</p>
+        
+        <div id="ratingWidget" style="font-size:1.8rem; cursor:pointer; display:inline-flex; gap:8px;" onmouseleave="resetStars()">
+          <span class="star" onmouseover="hoverStar(1)" onclick="rateTool(1)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(2)" onclick="rateTool(2)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(3)" onclick="rateTool(3)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(4)" onclick="rateTool(4)" style="color:#cbd5e1;">★</span>
+          <span class="star" onmouseover="hoverStar(5)" onclick="rateTool(5)" style="color:#cbd5e1;">★</span>
+        </div>
+        <div id="ratingFeedback" style="font-size:0.85rem; font-weight:600; color:#16a34a; margin-top:8px; min-height:20px;"></div>
+      </div>
+
+      <!-- Social Share -->
+      <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:2.5rem;">
+        <span style="font-size:0.88rem; font-weight:600; color:#475569;">Share this free tool:</span>
+        <a href="https://api.whatsapp.com/send?text=Remove%20image%20background%20in%20Full%20HD%20quality%20online%20for%20free:%20https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#25D366; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          WhatsApp
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#0077b5; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          LinkedIn
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Remove%20background%20in%20Full%20HD%20quality%20free%20(zero%20downscaling):&url=https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:#1da1f2; color:#ffffff; border-radius:6px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+          Twitter / X
+        </a>
+      </div>
+
+      <!-- Related Image Tools Grid -->
+      <div style="border-top:1px solid #e2e8f0; padding-top:2rem;">
+        <h3 style="font-size:1.15rem; font-weight:700; color:#0f172a; margin-bottom:1rem; text-align:center;">
+          Explore Companion Image Tools
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+          <a href="hd-converter.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Image HD Converter &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Convert blurry photos to 1080p, 2K &amp; 4K HD.</div>
+          </a>
+          <a href="photo-enhancer.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Photo Enhancer &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Sharpen scans, contrast, and document clarity.</div>
+          </a>
+          <a href="compress.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Image Compressor &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Compress to exact target size (under 20KB/50KB).</div>
+          </a>
+          <a href="passport-photo.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">Passport Photo Maker &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Format 3.5x4.5cm photos on A4 printable sheet.</div>
+          </a>
+          <a href="dpi-converter.html" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-decoration:none; color:inherit; display:block; transition:transform 0.15s ease;">
+            <div style="font-weight:700; font-size:0.9rem; color:#2563eb; margin-bottom:4px;">DPI Converter &rarr;</div>
+            <div style="font-size:0.78rem; color:#64748b;">Set print resolution to 300 DPI for official forms.</div>
+          </a>
         </div>
       </div>
-    </section>
 
-    <!-- 5. Questions & Answers Section -->
-    <section class="vytra-qa-section">
-      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
-      <div class="vytra-qa-list">
-        <details class="vytra-qa-item">
-          <summary class="vytra-qa-question">
-            <span>Which background color is officially required for UPSC, SSC, and Indian government exams?</span>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="vytra-qa-answer">
-            UPSC (Union Public Service Commission), SSC (Staff Selection Commission), NTA NEET/JEE, and IBPS officially require a plain, solid white or off-white background with no dark shadows, patterns, or objects visible behind the candidate.
-          </div>
-        </details>
-
-        <details class="vytra-qa-item">
-          <summary class="vytra-qa-question">
-            <span>Can I replace the background of a photo taken against a regular bedroom wall?</span>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="vytra-qa-answer">
-            Yes. As long as your background has a relatively uniform color (like an off-white wall, curtain, or door), Vytra's eye-dropper tool lets you click directly on the wall to replace it with pure #FFFFFF white or light blue.
-          </div>
-        </details>
-
-        <details class="vytra-qa-item">
-          <summary class="vytra-qa-question">
-            <span>What does the Edge Feathering slider do?</span>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="vytra-qa-answer">
-            Edge Feathering smooths out the transitional boundary pixels between your hair, ears, and clothing and the new background. This prevents harsh, pixelated, or artificial halos around your silhouette.
-          </div>
-        </details>
-
-        <details class="vytra-qa-item">
-          <summary class="vytra-qa-question">
-            <span>Are my personal passport photographs uploaded or stored on any server?</span>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <div class="vytra-qa-answer">
-            Never. All chroma processing and pixel recoloring execute 100% locally in your web browser memory using HTML5 Canvas. Your private photos never leave your computer or smartphone.
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- 6. Rating Section -->
-    <section class="vytra-rate-section">
-      <div class="vytra-rate-card">
-        <h3 class="vytra-rate-title">Rate Background Changer</h3>
-        <p class="vytra-rate-subtitle">How satisfied are you with this passport photo tool?</p>
-        <div class="vytra-stars" id="ratingStars">
-          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
-          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
-          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
-          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
-          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
-        </div>
-        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
-          Thank you for rating Vytra Background Changer!
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Social Share Section -->
-    <section class="vytra-share-section">
-      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
-      <div class="vytra-share-links">
-        <a href="https://api.whatsapp.com/send?text=Change%20passport%20photo%20background%20to%20white%20free:%20https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
-        </a>
-        <a href="https://twitter.com/intent/tweet?text=Free%20passport%20photo%20background%20changer%20by%20Vytra:%20https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
-        </a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/remove-bg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- 8. Related Tools Section -->
-    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
-      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
-        Explore More Image Tools
-      </h3>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
-        <a href="passport-photo.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📸</div>
-          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Passport Photo Maker</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Crop to 3.5x4.5cm and arrange multiple photos on A4 sheet</div>
-        </a>
-        <a href="signature.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
-          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Signature Resizer</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Resize signature to 140x60px and compress under 20KB</div>
-        </a>
-        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
-          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Compress photos under 20KB, 50KB, or 100KB for forms</div>
-        </a>
-        <a href="dpi-converter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🖨️</div>
-          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">DPI Converter</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Set photo resolution to 200 DPI or 300 DPI for printing</div>
-        </a>
-      </div>
     </section>
 
   </main>
 
-  <!-- Universal Footer -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a href="../index.html" class="logo" style="color:#ffffff;">
-          <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
-          <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
-        </a>
-        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
-        </p>
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <svg class="brand-logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span class="brand-name">DigitalSaathi</span>
+        </div>
+        <p class="footer-tagline">100% Free, Private In-Browser Document &amp; Image Utility Suite.</p>
       </div>
-      <div>
-        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Image Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/index.html">PDF Tools</a></li>
-          <li><a href="index.html">Image Tools</a></li>
-          <li><a href="../developer/json.html">Developer Tools</a></li>
-          <li><a href="../calculators/percentage.html">Calculators</a></li>
-          <li><a href="../text/word-counter.html">Text Tools</a></li>
-          <li><a href="../utilities/qr-generator.html">Utility Tools</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
-        <ul class="footer-links">
-          <li><a href="../pdf/merge.html">Merge PDF</a></li>
-          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="remove-bg.html">Remove BG in HD</a></li>
+          <li><a href="hd-converter.html">Image HD Converter</a></li>
+          <li><a href="photo-enhancer.html">Photo Enhancer</a></li>
           <li><a href="compress.html">Image Compressor</a></li>
-          <li><a href="../developer/json.html">JSON Formatter</a></li>
-          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
-          <li><a href="../calculators/age.html">Age Calculator</a></li>
+          <li><a href="resize.html">Image Resizer</a></li>
+          <li><a href="index.html">All 19+ Image Tools</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company &amp; Privacy</h4>
+
+      <div class="footer-col">
+        <h4 class="footer-title">PDF Tools</h4>
         <ul class="footer-links">
-          <li><a href="../about.html">About Vytra</a></li>
+          <li><a href="../pdf/create-invoice.html">Create Invoice</a></li>
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/split.html">Split PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../pdf/index.html">All 41+ PDF Tools</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Platform</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact Support</a></li>
           <li><a href="../privacy.html">Privacy Policy</a></li>
           <li><a href="../terms.html">Terms of Service</a></li>
-          <li><a href="../contact.html">Contact Us</a></li>
-          <li><a href="../tools/index.html">Tools Directory</a></li>
         </ul>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <div>&copy; 2026 Vytra. 100% Free Client-Side Tools.</div>
-      <div>Hosted on GitHub Pages</div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 DigitalSaathi by Vytra. All rights reserved. Zero server tracking. 100% client-side privacy.</p>
     </div>
   </footer>
 
+  <!-- Complete JSON-LD Schemas -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://digitalsaathi.vytra.in/image/remove-bg.html#app",
+        "name": "Remove Background in HD Quality Online Free",
+        "url": "https://digitalsaathi.vytra.in/image/remove-bg.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Remove image backgrounds in 100% Full HD quality online for free. Create transparent PNG cutouts or replace backgrounds with pure white or sky blue."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://digitalsaathi.vytra.in/image/remove-bg.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Remove Background in HD Quality",
+            "item": "https://digitalsaathi.vytra.in/image/remove-bg.html"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://digitalsaathi.vytra.in/image/remove-bg.html#howto",
+        "name": "How to Remove Background in HD Quality",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload Image",
+            "text": "Drag and drop any portrait, product photo, or signature into the workspace."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select Background Mode",
+            "text": "Choose Transparent (PNG), Pure White (Amazon), Sky Blue, or a custom color."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Adjust Sensitivity & Touch Up",
+            "text": "Fine-tune detection tolerance, edge feathering, or use the touch-up eraser brush."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Download HD Result",
+            "text": "Download the transparent HD PNG or studio JPG with full native resolution preserved."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://digitalsaathi.vytra.in/image/remove-bg.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does Vytra allow full HD downloads while other sites charge for HD?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Other sites run on expensive GPU servers and charge for HD downloads. Vytra executes locally in your browser memory, incurring zero server cost and providing full native resolution free."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I export a transparent PNG cutout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Select Transparent and click Download Transparent HD (PNG) to save a lossless image with alpha channel transparency."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get a pure white background for Amazon or passport forms?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Click the White (Amazon) button to replace the background with clean #FFFFFF studio white."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do the touch-up eraser and restore brushes work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the eraser brush to manually remove stray shadows and the restore brush to paint back any mistakenly erased clothing or hair."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my confidential product designs or personal photos uploaded anywhere?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, all background removal operations execute 100% locally in your web browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I copy the HD transparent cutout directly to my clipboard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, click Copy PNG to copy the transparent graphic directly into your clipboard for pasting into Canva, Figma, or Word."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- In-Browser HD Background Removal Engine -->
   <script>
-    let originalImg = null;
-    let targetBgColor = '#ffffff';
-    let sampleBgColor = null;
-    let processedImageData = null;
+    let rawImage = null;
+    let originalFileName = 'cutout';
+    let targetBg = 'transparent'; // 'transparent', hex string
+    let sampledBgColor = { r: 240, g: 240, b: 240 };
+    let activeTool = 'eyedropper'; // 'eyedropper', 'erase', 'restore'
+    let isDrawing = false;
+    let manualMask = null; // Uint8Array of manual mask modifications: 0 = auto, 1 = force transparent, 2 = force keep
 
-    const fileInput = document.getElementById('fileInput');
-    const dropZoneBox = document.getElementById('dropZoneBox');
-    const workspaceCard = document.getElementById('workspaceActiveCard');
     const canvas = document.getElementById('stageCanvas');
-    const ctx = canvas.getContext('2d');
-    const toleranceSlider = document.getElementById('toleranceSlider');
-    const featherSlider = document.getElementById('featherSlider');
-    const toleranceVal = document.getElementById('toleranceVal');
-    const featherVal = document.getElementById('featherVal');
-    const statDims = document.getElementById('statDims');
-    const statSampledColor = document.getElementById('statSampledColor');
-    const sourceSwatch = document.getElementById('sourceSwatch');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-    // Drag and drop handlers
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZoneBox.addEventListener(eventName, (e) => {
+    // Drag & Drop
+    const dropzone = document.getElementById('rbgDropzone');
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
         e.preventDefault();
-        e.stopPropagation();
-        dropZoneBox.classList.add('dragover');
-      }, false);
+        dropzone.classList.add('dragover');
+      });
     });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZoneBox.addEventListener(eventName, (e) => {
+    ['dragleave', 'drop'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
         e.preventDefault();
-        e.stopPropagation();
-        dropZoneBox.classList.remove('dragover');
-      }, false);
+        dropzone.classList.remove('dragover');
+      });
     });
-
-    dropZoneBox.addEventListener('drop', (e) => {
-      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
-        processUploadedFile(e.dataTransfer.files[0]);
+    dropzone.addEventListener('drop', e => {
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleImageUpload(e.dataTransfer.files[0]);
       }
     });
 
-    function handleFileChange(e) {
-      if (e.target.files && e.target.files[0]) {
-        processUploadedFile(e.target.files[0]);
-      }
-    }
-
-    function processUploadedFile(file) {
-      if (!file.type.match('image.*')) {
-        alert('Please choose a valid image file (JPG, PNG, WebP).');
+    // Handle File Upload
+    function handleImageUpload(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select an image file (JPG, PNG, WebP).');
         return;
       }
+      originalFileName = file.name.replace(/\.[^/.]+$/, "");
       const reader = new FileReader();
-      reader.onload = (ev) => {
-        originalImg = new Image();
-        originalImg.onload = () => {
-          dropZoneBox.style.display = 'none';
-          workspaceCard.style.display = 'block';
-
-          canvas.width = originalImg.naturalWidth;
-          canvas.height = originalImg.naturalHeight;
-          statDims.textContent = `Dimensions: ${originalImg.naturalWidth} × ${originalImg.naturalHeight} px`;
-
-          // Draw original and automatically sample top corners
-          ctx.drawImage(originalImg, 0, 0);
-          const tl = ctx.getImageData(Math.min(10, canvas.width - 1), Math.min(10, canvas.height - 1), 1, 1).data;
-          const tr = ctx.getImageData(Math.max(0, canvas.width - 10), Math.min(10, canvas.height - 1), 1, 1).data;
-          
-          sampleBgColor = {
-            r: Math.round((tl[0] + tr[0]) / 2),
-            g: Math.round((tl[1] + tr[1]) / 2),
-            b: Math.round((tl[2] + tr[2]) / 2)
-          };
-
-          updateSourceSwatchDisplay();
-          renderBackground();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          rawImage = img;
+          initHdStage();
         };
-        originalImg.src = ev.target.result;
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    function updateSourceSwatchDisplay() {
-      if (!sampleBgColor) return;
-      const rgbStr = `rgb(${sampleBgColor.r}, ${sampleBgColor.g}, ${sampleBgColor.b})`;
-      sourceSwatch.style.background = rgbStr;
-      statSampledColor.innerHTML = `<span class="swatch-dot" style="background:${rgbStr};"></span> Sampled Wall: ${rgbStr}`;
+    // Sample Portrait Demo
+    function loadSamplePortrait() {
+      originalFileName = 'sample_portrait_hd';
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width = 1200;
+      offCanvas.height = 1600;
+      const offCtx = offCanvas.getContext('2d');
+
+      // Studio background
+      offCtx.fillStyle = '#93c5fd';
+      offCtx.fillRect(0, 0, 1200, 1600);
+
+      // Gradient shadow
+      const grad = offCtx.createRadialGradient(600, 700, 100, 600, 700, 700);
+      grad.addColorStop(0, '#bfdbfe');
+      grad.addColorStop(1, '#60a5fa');
+      offCtx.fillStyle = grad;
+      offCtx.fillRect(0, 0, 1200, 1600);
+
+      // Person silhouette / portrait
+      // Shoulders
+      offCtx.fillStyle = '#1e293b';
+      offCtx.beginPath();
+      offCtx.ellipse(600, 1600, 480, 560, 0, 0, Math.PI * 2);
+      offCtx.fill();
+
+      // Shirt collar
+      offCtx.fillStyle = '#ffffff';
+      offCtx.beginPath();
+      offCtx.moveTo(520, 1060);
+      offCtx.lineTo(600, 1260);
+      offCtx.lineTo(680, 1060);
+      offCtx.closePath();
+      offCtx.fill();
+
+      // Neck
+      offCtx.fillStyle = '#fbcfe8';
+      offCtx.fillRect(520, 920, 160, 200);
+
+      // Head
+      offCtx.fillStyle = '#fed7aa';
+      offCtx.beginPath();
+      offCtx.ellipse(600, 720, 220, 290, 0, 0, Math.PI * 2);
+      offCtx.fill();
+
+      // Hair
+      offCtx.fillStyle = '#1c1917';
+      offCtx.beginPath();
+      offCtx.arc(600, 660, 240, Math.PI, Math.PI * 2);
+      offCtx.fill();
+
+      // Eyes
+      offCtx.fillStyle = '#0f172a';
+      offCtx.beginPath();
+      offCtx.arc(520, 700, 16, 0, Math.PI * 2);
+      offCtx.arc(680, 700, 16, 0, Math.PI * 2);
+      offCtx.fill();
+
+      const img = new Image();
+      img.onload = () => {
+        rawImage = img;
+        initHdStage();
+      };
+      img.src = offCanvas.toDataURL('image/jpeg', 0.95);
     }
 
-    // Direct Canvas Click Eyedropper
-    canvas.addEventListener('click', (e) => {
-      if (!originalImg) return;
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      const x = Math.max(0, Math.min(canvas.width - 1, Math.round((e.clientX - rect.left) * scaleX)));
-      const y = Math.max(0, Math.min(canvas.height - 1, Math.round((e.clientY - rect.top) * scaleY)));
+    // Initialize Stage in Full Native Resolution
+    function initHdStage() {
+      if (!rawImage) return;
 
-      // Read from raw original
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = canvas.width;
-      tempCanvas.height = canvas.height;
-      const tCtx = tempCanvas.getContext('2d');
-      tCtx.drawImage(originalImg, 0, 0);
-      const pixel = tCtx.getImageData(x, y, 1, 1).data;
+      canvas.width = rawImage.width;
+      canvas.height = rawImage.height;
+      manualMask = new Uint8Array(rawImage.width * rawImage.height);
 
-      sampleBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
-      updateSourceSwatchDisplay();
-      renderBackground();
-    });
+      // Auto-sample background from 4 corners
+      ctx.drawImage(rawImage, 0, 0);
+      const tl = ctx.getImageData(10, 10, 1, 1).data;
+      const tr = ctx.getImageData(canvas.width - 10, 10, 1, 1).data;
+      sampledBgColor = {
+        r: Math.round((tl[0] + tr[0]) / 2),
+        g: Math.round((tl[1] + tr[1]) / 2),
+        b: Math.round((tl[2] + tr[2]) / 2)
+      };
 
-    function setTargetColor(colorHex, btn) {
-      document.querySelectorAll('.color-pill-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('resText').textContent = `${rawImage.width} × ${rawImage.height} px (100% Full Native Resolution Preserved)`;
+      document.getElementById('rbgWorkspace').style.display = 'block';
+
+      renderHdCutout();
+      initBrushEvents();
+      document.getElementById('rbgWorkspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Background Selector
+    function setTargetBg(bg, btn) {
+      targetBg = bg;
+      document.querySelectorAll('.rbg-pill-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
-      targetBgColor = colorHex;
-      renderBackground();
+
+      if (bg === 'transparent') {
+        document.getElementById('modeText').textContent = 'Transparent HD PNG Cutout';
+      } else if (bg === '#ffffff') {
+        document.getElementById('modeText').textContent = 'Studio White HD Background';
+      } else {
+        document.getElementById('modeText').textContent = `Color Replaced (${bg})`;
+      }
+
+      renderHdCutout();
     }
 
-    function handleCustomColor(val) {
-      document.getElementById('customSwatch').style.background = val;
-      setTargetColor(val, null);
+    function handleCustomBgColor(val) {
+      document.getElementById('customColorDot').style.background = val;
+      setTargetBg(val, null);
     }
 
-    function handleParamChange() {
-      toleranceVal.textContent = toleranceSlider.value;
-      featherVal.textContent = featherSlider.value + 'px';
-      renderBackground();
+    // Sliders
+    function updateTolerance(val) {
+      document.getElementById('toleranceText').textContent = `${val}%`;
+      renderHdCutout();
     }
 
-    function hexToRgb(hex) {
-      const bigint = parseInt(hex.replace('#', ''), 16);
-      return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+    function updateFeather(val) {
+      document.getElementById('featherText').textContent = `${val}px`;
+      renderHdCutout();
     }
 
-    function renderBackground() {
-      if (!originalImg || !sampleBgColor) return;
+    // Tools
+    function selectTool(tool) {
+      activeTool = tool;
+      document.querySelectorAll('.rbg-brush-btn').forEach(b => b.classList.remove('active'));
+      if (tool === 'eyedropper') document.getElementById('btnToolEyedropper').classList.add('active');
+      else if (tool === 'erase') document.getElementById('btnToolErase').classList.add('active');
+      else if (tool === 'restore') document.getElementById('btnToolRestore').classList.add('active');
+    }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(originalImg, 0, 0);
+    // Full Native Resolution HD Removal Pipeline
+    function renderHdCutout() {
+      if (!rawImage || !sampledBgColor) return;
 
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(rawImage, 0, 0);
+
+      const imgData = ctx.getImageData(0, 0, w, h);
       const data = imgData.data;
-      const targetRgb = hexToRgb(targetBgColor);
-      const tol = parseInt(toleranceSlider.value, 10) * 2.2;
-      const feather = parseInt(featherSlider.value, 10) * 3.5;
 
-      const sr = sampleBgColor.r, sg = sampleBgColor.g, sb = sampleBgColor.b;
-      const tr = targetRgb.r, tg = targetRgb.g, tb = targetRgb.b;
+      const tol = (parseInt(document.getElementById('toleranceSlider').value, 10) / 100) * 441; // Max RGB distance is sqrt(255^2*3) = 441.6
+      const feather = parseInt(document.getElementById('featherSlider').value, 10) * 12;
+
+      const sr = sampledBgColor.r;
+      const sg = sampledBgColor.g;
+      const sb = sampledBgColor.b;
+
+      const isTransparent = targetBg === 'transparent';
+      let tr = 255, tg = 255, tb = 255;
+      if (!isTransparent) {
+        const hex = targetBg.replace('#', '');
+        tr = parseInt(hex.substring(0, 2), 16) || 255;
+        tg = parseInt(hex.substring(2, 4), 16) || 255;
+        tb = parseInt(hex.substring(4, 6), 16) || 255;
+      }
 
       for (let i = 0; i < data.length; i += 4) {
-        const r = data[i], g = data[i + 1], b = data[i + 2];
-        // Euclidean color distance
-        const dist = Math.sqrt((r - sr) * (r - sr) + (g - sg) * (g - sg) + (b - sb) * (b - sb));
+        const pixelIdx = i / 4;
+        const manual = manualMask[pixelIdx];
+
+        if (manual === 1) {
+          // Manual Force Erased
+          if (isTransparent) {
+            data[i + 3] = 0;
+          } else {
+            data[i] = tr;
+            data[i + 1] = tg;
+            data[i + 2] = tb;
+            data[i + 3] = 255;
+          }
+          continue;
+        } else if (manual === 2) {
+          // Manual Force Kept
+          data[i + 3] = 255;
+          continue;
+        }
+
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+
+        // Delta E approximation (weighted Euclidean distance for human perception)
+        const dr = r - sr;
+        const dg = g - sg;
+        const db = b - sb;
+        const dist = Math.sqrt(0.299 * dr * dr + 0.587 * dg * dg + 0.114 * db * db) * 1.8;
 
         if (dist <= tol) {
-          data[i] = tr;
-          data[i + 1] = tg;
-          data[i + 2] = tb;
+          if (isTransparent) {
+            data[i + 3] = 0; // pure alpha transparent
+          } else {
+            data[i] = tr;
+            data[i + 1] = tg;
+            data[i + 2] = tb;
+            data[i + 3] = 255;
+          }
         } else if (dist <= tol + feather && feather > 0) {
-          // Smooth feather blend between original and new target background
-          const factor = (dist - tol) / feather; // 0 (pure target) to 1 (pure original)
-          data[i] = Math.round(tr * (1 - factor) + r * factor);
-          data[i + 1] = Math.round(tg * (1 - factor) + g * factor);
-          data[i + 2] = Math.round(tb * (1 - factor) + b * factor);
+          // Smooth edge feathering
+          const alphaFactor = (dist - tol) / feather; // 0 (background) to 1 (subject)
+          if (isTransparent) {
+            data[i + 3] = Math.round(255 * alphaFactor);
+          } else {
+            data[i] = Math.round(tr * (1 - alphaFactor) + r * alphaFactor);
+            data[i + 1] = Math.round(tg * (1 - alphaFactor) + g * alphaFactor);
+            data[i + 2] = Math.round(tb * (1 - alphaFactor) + b * alphaFactor);
+            data[i + 3] = 255;
+          }
         }
       }
 
       ctx.putImageData(imgData, 0, 0);
-      processedImageData = imgData;
     }
 
-    function showOriginal() {
-      if (!originalImg) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(originalImg, 0, 0);
+    // Brush & Eyedropper Events
+    function initBrushEvents() {
+      function getCanvasCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: Math.round((clientX - rect.left) * scaleX),
+          y: Math.round((clientY - rect.top) * scaleY)
+        };
+      }
+
+      function applyBrush(coords) {
+        if (!manualMask) return;
+        const radius = parseInt(document.getElementById('brushSize').value, 10);
+        const w = canvas.width;
+        const h = canvas.height;
+        const val = activeTool === 'erase' ? 1 : 2;
+
+        for (let dy = -radius; dy <= radius; dy++) {
+          const py = coords.y + dy;
+          if (py < 0 || py >= h) continue;
+
+          for (let dx = -radius; dx <= radius; dx++) {
+            const px = coords.x + dx;
+            if (px < 0 || px >= w) continue;
+
+            if (dx * dx + dy * dy <= radius * radius) {
+              manualMask[py * w + px] = val;
+            }
+          }
+        }
+        renderHdCutout();
+      }
+
+      canvas.addEventListener('mousedown', e => {
+        const coords = getCanvasCoords(e);
+        if (activeTool === 'eyedropper') {
+          // Sample color from raw original
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tCtx = tempCanvas.getContext('2d');
+          tCtx.drawImage(rawImage, 0, 0);
+          const pixel = tCtx.getImageData(coords.x, coords.y, 1, 1).data;
+          sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
+          renderHdCutout();
+        } else {
+          isDrawing = true;
+          applyBrush(coords);
+        }
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (isDrawing && (activeTool === 'erase' || activeTool === 'restore')) {
+          applyBrush(getCanvasCoords(e));
+        }
+      });
+
+      window.addEventListener('mouseup', () => { isDrawing = false; });
+
+      // Touch handlers
+      canvas.addEventListener('touchstart', e => {
+        const coords = getCanvasCoords(e);
+        if (activeTool === 'eyedropper') {
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tCtx = tempCanvas.getContext('2d');
+          tCtx.drawImage(rawImage, 0, 0);
+          const pixel = tCtx.getImageData(coords.x, coords.y, 1, 1).data;
+          sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
+          renderHdCutout();
+        } else {
+          isDrawing = true;
+          applyBrush(coords);
+        }
+      });
+
+      canvas.addEventListener('touchmove', e => {
+        if (isDrawing && (activeTool === 'erase' || activeTool === 'restore')) {
+          applyBrush(getCanvasCoords(e));
+        }
+      });
+
+      canvas.addEventListener('touchend', () => { isDrawing = false; });
     }
 
-    function showProcessed() {
-      if (processedImageData) {
-        ctx.putImageData(processedImageData, 0, 0);
+    // Toggle view of original
+    let isShowingOrig = false;
+    function toggleOriginalView() {
+      const btn = document.getElementById('btnToggleOrig');
+      if (!isShowingOrig) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(rawImage, 0, 0);
+        btn.textContent = '👁️ Back to HD Cutout';
+        isShowingOrig = true;
       } else {
-        renderBackground();
+        renderHdCutout();
+        btn.textContent = '👁️ Hold to View Original';
+        isShowingOrig = false;
       }
     }
 
-    function downloadImage(mimeType, filename) {
-      canvas.toBlob((blob) => {
-        if (!blob) return;
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, mimeType, 0.95);
-    }
-
-    async function copyProcessedImage() {
+    // Copy PNG to Clipboard
+    async function copyHdCutout() {
       try {
-        canvas.toBlob(async (blob) => {
+        canvas.toBlob(async blob => {
           if (!blob) return;
           const item = new ClipboardItem({ 'image/png': blob });
           await navigator.clipboard.write([item]);
-          alert('Photo copied to clipboard successfully!');
+          alert('Full HD PNG cutout copied to clipboard! You can paste it straight into Canva, Photoshop, or Word.');
         }, 'image/png');
-      } catch (err) {
-        alert('Could not copy directly to clipboard. Please use the Download button.');
+      } catch(err) {
+        alert('Clipboard write not supported by your browser. Please use the Download button.');
       }
     }
 
-    function resetFilePicker() {
-      fileInput.value = '';
-      originalImg = null;
-      processedImageData = null;
-      dropZoneBox.style.display = 'block';
-      workspaceCard.style.display = 'none';
+    // Download HD Cutout
+    function downloadHdResult(format) {
+      if (!canvas) return;
+
+      const isPng = format === 'png';
+      const mime = isPng ? 'image/png' : 'image/jpeg';
+      const ext = isPng ? 'png' : 'jpg';
+      const filename = `${originalFileName}_HD_Cutout.${ext}`;
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = URL.createObjectURL(blob);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, mime, 0.98);
     }
 
-    // 5-Star Rating Widget
-    document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((btn) => {
-      btn.addEventListener('click', function () {
-        const val = parseInt(this.dataset.val);
-        document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((s, idx) => {
-          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
-        });
-        document.getElementById('ratingFeedback').style.display = 'block';
+    // 5-Star Rating
+    function hoverStar(val) {
+      const stars = document.querySelectorAll('#ratingWidget .star');
+      stars.forEach((s, idx) => {
+        s.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
       });
-    });
+    }
+
+    function resetStars() {
+      const currentRating = window.userToolRating || 0;
+      const stars = document.querySelectorAll('#ratingWidget .star');
+      stars.forEach((s, idx) => {
+        s.style.color = (idx < currentRating) ? '#eab308' : '#cbd5e1';
+      });
+    }
+
+    function rateTool(val) {
+      window.userToolRating = val;
+      resetStars();
+      const feedback = document.getElementById('ratingFeedback');
+      feedback.textContent = `★ Thank you for rating this HD background remover ${val} out of 5 stars!`;
+    }
   </script>
-  <script defer src="../data/tools.js"></script>
-  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>
