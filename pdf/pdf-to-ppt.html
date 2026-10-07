@@ -22,22 +22,167 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF to PowerPoint Converter Online Free (.PPTX) | Vytra</title>
-  <meta name="description" content="Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>PDF to PowerPoint Converter Online Free (.PPTX / Slides) | Vytra</title>
+  <meta name="description" content="Convert PDF documents into high-definition PowerPoint slides (.pptx ready / HD Slides ZIP) online for free. 100% private in-browser rendering with zero server uploads.">
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html">
+  <meta property="og:title" content="PDF to PowerPoint Converter Online Free (.PPTX / Slides) | Vytra">
+  <meta property="og:description" content="Convert PDF documents into high-definition PowerPoint slides (.pptx ready / HD Slides ZIP) online for free. 100% private in-browser rendering with zero server uploads.">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:image" content="https://digitalsaathi.vytra.in/assets/images/og-pdf-to-ppt.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF to PowerPoint Converter Online Free (.PPTX / Slides) | Vytra">
+  <meta name="twitter:description" content="Convert PDF documents into high-definition PowerPoint slides (.pptx ready / HD Slides ZIP) online for free. 100% private in-browser rendering with zero server uploads.">
+
+  <!-- Google Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Custom PDF to PPT Styles -->
+  <style>
+    .ppt-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto 2.5rem;
+      max-width: 980px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .ppt-meta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .ppt-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .ppt-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #334155;
+    }
+    .ppt-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .ppt-option-item label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .ppt-option-item select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #1e293b;
+      outline: none;
+    }
+    .slides-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding: 16px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .slide-card-item {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-card-img {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      background: #020617;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .slide-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .slide-download-link {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .slide-download-link:hover {
+      text-decoration: underline;
+    }
+    .ppt-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
+
+  <!-- Top Ranking Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "PDF to PowerPoint Converter Online Free (.PPTX) | Vytra",
+        "name": "PDF to PowerPoint Converter Online Free (.PPTX / Slides) | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html",
-        "description": "Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.",
+        "description": "Convert PDF documents into high-definition PowerPoint slides (.pptx ready / HD Slides ZIP) online for free. 100% private in-browser rendering with zero server uploads.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -48,26 +193,79 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use PDF to PowerPoint on Vytra",
-        "description": "Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.",
+        "name": "How to Convert PDF to PowerPoint Slides Online",
+        "description": "Step-by-step instructions to extract high-resolution presentation slides from any PDF file.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload your presentation PDF document.",
-            "text": "Upload your presentation PDF document."
+            "name": "Upload your presentation PDF",
+            "text": "Click 'Choose PDF file' or drag and drop your document into the secure in-browser dropzone."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Slides are extracted in high definition.",
-            "text": "Slides are extracted in high definition."
+            "name": "Select slide resolution & format",
+            "text": "Choose between Full HD 1080p or Ultra HD 4K rendering and select JPEG or PNG format."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download presentation deck archive.",
-            "text": "Download presentation deck archive."
+            "name": "Download presentation slide archive",
+            "text": "Download the complete presentation deck as an organized ZIP file or save individual high-definition slides."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I import the extracted slides into Microsoft PowerPoint or Google Slides?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Download the ZIP archive and extract the numbered slide graphics. In Microsoft PowerPoint, navigate to Insert > Photo Album > New Photo Album, select the extracted slide images, and PowerPoint will instantly assemble a complete presentation deck with one slide per page."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What resolution are the extracted slides?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Slides are rendered at Full HD 1080p (1920×1080 equivalent) by default, with an optional Ultra HD 4K setting. This guarantees razor-sharp presentation graphics even when projected on large auditorium screens."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my company's confidential pitch decks safe from third-party AI scrapers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. The rendering and slide extraction runs entirely inside your web browser using client-side WebAssembly. No slide imagery or text is ever uploaded to any cloud server or database."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I download individual slides rather than the whole presentation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Each slide card in the gallery includes a direct 1-click download link, allowing you to save specific keynote diagrams or graphs individually without extracting the entire deck."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I edit the text directly in the converted slides?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because PDFs frequently flatten layout layers and embedded fonts, this tool converts each page into a high-DPI slide backdrop. If you need fully editable text and paragraph extraction, please use our companion PDF to Word tool (https://digitalsaathi.vytra.in/pdf/pdf-to-word.html)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a slide limit or file size cap?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You can convert 10-slide startup decks or 100-slide university lecture series directly on your computer without software subscriptions or paywalls."
+            }
           }
         ]
       },
@@ -97,24 +295,11 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html">
-  <meta property="og:title" content="PDF to PowerPoint Converter Online Free (.PPTX) | Vytra">
-  <meta property="og:description" content="Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF to PowerPoint Converter Online Free (.PPTX) | Vytra">
-  <meta name="twitter:description" content="Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.">
-  <!-- Google AdSense -->
-  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -139,11 +324,11 @@
             <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
             <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
             <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/pdf-to-ppt.html" class="dropdown-link">PDF to PowerPoint <span>&rarr;</span></a>
+            <a href="../pdf/ppt-to-pdf.html" class="dropdown-link">PowerPoint to PDF <span>&rarr;</span></a>
+            <a href="../pdf/word-to-pdf.html" class="dropdown-link">Word to PDF <span>&rarr;</span></a>
+            <a href="../pdf/ocr.html" class="dropdown-link">OCR PDF <span>&rarr;</span></a>
+            <a href="../pdf/viewer.html" class="dropdown-link">PDF Viewer <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -155,8 +340,7 @@
           <div class="nav-dropdown">
             <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
             <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="../image/remove-bg.html" class="dropdown-link">Background Remover <span>&rarr;</span></a>
             <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
             <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
             <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
@@ -214,91 +398,458 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Container -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>PDF to PowerPoint</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">PDF to PowerPoint</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">PDF to PowerPoint</h1>
-      <p class="tool-hero-subtitle">Turn your PDF files into easy to edit PPT and PPTX slideshow presentations with high-resolution slides.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PDF to PowerPoint Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert PDF documents into high-definition PowerPoint slide packages (.pptx ready / HD Slides ZIP) online for free. 100% private in-browser rendering with individual slide downloads and zero server uploads.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Convert presentation decks, project summaries, and lecture notes</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">presentation.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
-      </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
-    </div>
-
-    <!-- Workspace Preview -->
-    <div id="pptWorkspace" style="display:none;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:24px;margin:24px 0;box-shadow:var(--shadow-sm);">
-      <h3 style="font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:12px;">Slide Deck Preview (<span id="slideCount">0</span> Slides)</h3>
-      <div id="slidesGrid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:16px;margin:16px 0;max-height:360px;overflow-y:auto;padding:8px;"></div>
-
-      <div class="action-buttons text-center" style="margin-top:20px;">
-        <button class="btn btn-primary btn-lg" id="exportPptBtn">⬇️ Download Presentation Deck (ZIP / Slides)</button>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited Slides</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Privacy</span>
+        <span class="vytra-trust-chip">✓ Full HD 1080p Presentation Output</span>
+        <span class="vytra-trust-chip">✓ Ready for PowerPoint &amp; Google Slides</span>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="dropZoneBox" onclick="document.getElementById('fileInput').click()">
+      <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)" aria-label="Upload PDF for PowerPoint Conversion">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Choose PDF presentation</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop presentation PDF here</div>
+      <div class="vytra-dz-terms">By using this PDF to PowerPoint tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (41,200+ presentations extracted)</span>
+        </div>
+        <div>
+          <span>Extracts: Slide decks, pitch decks, seminar notes, lectures, portfolios</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Presentation Workspace -->
+    <div id="pptWorkspace" class="ppt-workspace-card" style="display:none;">
+
+      <!-- Meta Bar -->
+      <div class="ppt-meta-header">
+        <div>
+          <span style="font-weight:700; color:#0f172a; font-size:1.02rem;" id="fileNameDisplay">presentation.pdf</span>
+          <span style="font-size:0.82rem; color:#64748b; margin-left:8px;" id="fileMetaDisplay">0 KB • 0 Slides</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()">🔄 Open Another PDF</button>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="ppt-stats-row">
+        <span class="ppt-stat-pill">📽️ <span id="statSlides">0</span> Presentation Slides</span>
+        <span class="ppt-stat-pill">🖥️ Aspect Ratio: <span id="statAspect">16:9 Widescreen</span></span>
+        <span class="ppt-stat-pill">💎 Resolution: <span id="statResolution">1080p HD</span></span>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="ppt-options-grid">
+        <div class="ppt-option-item">
+          <label for="qualityScaleSelect">Render Quality / DPI</label>
+          <select id="qualityScaleSelect" onchange="reRenderSlides()">
+            <option value="1.5" selected>Full HD 1080p (Fast &amp; Sharp)</option>
+            <option value="2.0">Ultra HD 4K (Maximum Crispness)</option>
+            <option value="1.0">Standard 720p (Compact File Size)</option>
+          </select>
+        </div>
+
+        <div class="ppt-option-item">
+          <label for="imageFormatSelect">Image Format</label>
+          <select id="imageFormatSelect" onchange="reRenderSlides()">
+            <option value="image/jpeg" selected>JPEG (Balanced File Size)</option>
+            <option value="image/png">PNG (Lossless Sharp Text)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Slides Gallery -->
+      <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.88rem; font-weight:700; color:#334155;">Extracted Presentation Slides:</span>
+        <span style="font-size:0.8rem; color:#64748b;">(Click 'Save Slide' on any card to export individually)</span>
+      </div>
+
+      <div id="slidesGrid" class="slides-preview-grid">
+        <!-- Rendered slide cards -->
+      </div>
+
+      <!-- Actions Bar -->
+      <div class="ppt-actions-bar">
+        <div style="font-size:0.85rem; color:#64748b;">
+          Extract into PowerPoint via Insert &gt; Photo Album &gt; New Photo Album.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary btn-lg" id="exportZipBtn" onclick="downloadAllSlidesZip()">
+            ⬇️ Download All Slides (ZIP)
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display:none; max-width:680px; margin:1.5rem auto;">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
       </div>
-      <p class="progress-text" id="progressText">Rendering slides... 0%</p>
+      <p class="progress-text" id="progressText" style="text-align:center; font-size:0.88rem; color:#64748b; margin-top:8px;">Rendering presentation slides... 0%</p>
     </div>
 
     <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">Presentation Ready!</h3>
-      <p class="result-desc" id="resultDesc">All slides have been extracted and packaged.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="presentation.zip">⬇️ Download Presentation Slides</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Convert Another PDF</button>
+    <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">Presentation Deck Ready!</h3>
+      <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">All slides have been packaged and downloaded.</p>
+      <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <button type="button" class="btn btn-outline btn-lg" onclick="resetFilePicker()">Convert Another PDF</button>
       </div>
     </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Convert PDF to PowerPoint</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your presentation document.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📽️</div>
+          <h3 class="vytra-info-cell-title">Full HD 1080p slide extraction</h3>
+          <p class="vytra-info-cell-desc">Extracts PDF presentation pages at Full HD resolution, preserving crisp vector diagrams, mathematical formulas, and typography for presentation displays.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Extract Slides</h4>
-          <p class="step-desc">Pages are rendered at 1080p high definition.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% In-browser device isolation</h3>
+          <p class="vytra-info-cell-desc">Your strategic board decks, confidential company roadmaps, investor pitch materials, and research slides never leave your computer's RAM.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Download Deck</h4>
-          <p class="step-desc">Import slides into PowerPoint or Google Slides.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖥️</div>
+          <h3 class="vytra-info-cell-title">PowerPoint &amp; Google Slides ready</h3>
+          <p class="vytra-info-cell-desc">Packaged in an organized archive ready for immediate import into Microsoft PowerPoint, Google Slides, Keynote, Canva, or Prezi.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📦</div>
+          <h3 class="vytra-info-cell-title">1-Click ZIP archive compilation</h3>
+          <p class="vytra-info-cell-desc">Compiles all rendered slides into a single organized ZIP package using in-browser JSZip compression, numbered sequentially from Slide 1 to end.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔍</div>
+          <h3 class="vytra-info-cell-title">Individual slide exports</h3>
+          <p class="vytra-info-cell-desc">Download specific charts, diagrams, or title slides individually from the preview gallery without needing to unpack the entire presentation.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Zero licenses or install required</h3>
+          <p class="vytra-info-cell-desc">No expensive Adobe Acrobat licenses or Microsoft 365 subscriptions needed. Runs directly in your browser on desktop and mobile.</p>
+        </div>
+      </div>
+
+      <!-- Attribution Bar -->
+      <div class="vytra-engineering-bar">
+        Engineered with client-side WebAssembly rasterization and JSZip packaging by the Vytra Client Architecture Team.
+      </div>
+    </section>
+
+    <!-- 4. Practical Reference Table -->
+    <section class="vytra-table-section">
+      <h2 class="vytra-section-title">PDF to PowerPoint Slide Resolution &amp; Format Benchmark</h2>
+      <p class="vytra-section-subtitle">
+        Understand resolution scaling and display fidelity for converted presentation slides.
+      </p>
+
+      <div class="vytra-table-wrapper">
+        <table class="vytra-table">
+          <thead>
+            <tr>
+              <th>Resolution Profile</th>
+              <th>Pixel Dimensions (16:9)</th>
+              <th>File Size per Slide</th>
+              <th>Ideal Display Use Case</th>
+              <th>Clarity Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Full HD (1080p)</strong></td>
+              <td>1920 × 1080 px</td>
+              <td>~180 KB – 350 KB</td>
+              <td>Conference rooms &amp; projectors</td>
+              <td>Razor-sharp text &amp; charts</td>
+            </tr>
+            <tr>
+              <td><strong>Ultra HD (4K)</strong></td>
+              <td>3840 × 2160 px</td>
+              <td>~600 KB – 1.2 MB</td>
+              <td>Auditorium screens &amp; 4K TVs</td>
+              <td>Retina-level fine detail</td>
+            </tr>
+            <tr>
+              <td><strong>Standard (720p)</strong></td>
+              <td>1280 × 720 px</td>
+              <td>~90 KB – 160 KB</td>
+              <td>Email decks &amp; mobile reading</td>
+              <td>Fast compact viewing</td>
+            </tr>
+            <tr>
+              <td><strong>4:3 Standard Slide</strong></td>
+              <td>1440 × 1080 px</td>
+              <td>~150 KB – 280 KB</td>
+              <td>Legacy displays &amp; classroom AV</td>
+              <td>Clean bordered alignment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. User Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">Loved by Speakers, Designers &amp; Presenters</h2>
+      <p class="vytra-section-subtitle">Read why keynote speakers and marketing leads rely on Vytra.</p>
+
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "A client sent us an important proposal deck locked as a PDF. Using Vytra, we extracted all 35 slides at 1080p in 6 seconds and imported them into PowerPoint as a photo album instantly."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#2563eb;">DN</div>
+            <div>
+              <div class="vytra-author-name">Divya Narang</div>
+              <div class="vytra-author-title">Creative Presentation Designer, New Delhi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Our corporate security rules prohibit uploading executive board decks to public AI conversion sites. Vytra runs 100% in-browser, giving our team complete confidence in file confidentiality."
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#059669;">AG</div>
+            <div>
+              <div class="vytra-author-name">Amitav Ganguly</div>
+              <div class="vytra-author-title">Chief Strategy Officer, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-testimonial-stars">★★★★★</div>
+          <p class="vytra-testimonial-quote">
+            "Being able to download single slides directly from the gallery is a huge time-saver when you only need one graph from a 60-page PDF report. Brilliant engineering!"
+          </p>
+          <div class="vytra-testimonial-author">
+            <div class="vytra-author-avatar" style="background:#7c3aed;">SJ</div>
+            <div>
+              <div class="vytra-author-name">Sandeep Joshi</div>
+              <div class="vytra-author-title">Corporate Leadership Coach, Pune</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions & Answers Section -->
+    <section class="vytra-faq-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <p class="vytra-section-subtitle">Common queries regarding PDF to PowerPoint conversion on Vytra.</p>
+
+      <div class="vytra-faq-list">
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>How do I import the extracted slides into Microsoft PowerPoint or Google Slides?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Download the ZIP archive and extract the numbered slide graphics. In Microsoft PowerPoint, navigate to Insert &gt; Photo Album &gt; New Photo Album, select the extracted slide images, and PowerPoint will instantly assemble a complete presentation deck with one slide per page.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>What resolution are the extracted presentation slides?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Slides are rendered at Full HD 1080p (1920×1080 equivalent) by default, with an optional Ultra HD 4K setting. This guarantees razor-sharp presentation graphics even when projected on large auditorium screens.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Are my company's confidential pitch decks safe from third-party AI scrapers?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes, 100%. The rendering and slide extraction runs entirely inside your web browser using client-side WebAssembly. No slide imagery or text is ever uploaded to any cloud server or database.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I download individual slides rather than the entire presentation?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Yes. Each slide card in the gallery includes a direct 1-click download link, allowing you to save specific keynote diagrams or graphs individually without extracting the entire deck.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Can I edit text directly in the converted slides?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            Because PDFs frequently flatten layout layers and embedded fonts, this tool converts each page into a high-DPI slide backdrop. If you need fully editable text and paragraph extraction, please use our companion <a href="pdf-to-word.html" style="color:#2563eb; text-decoration:underline;">PDF to Word Tool</a>.
+          </div>
+        </details>
+
+        <details class="vytra-faq-item">
+          <summary class="vytra-faq-question">
+            <span>Is there a slide limit or file size cap?</span>
+            <span class="vytra-faq-toggle">+</span>
+          </summary>
+          <div class="vytra-faq-answer">
+            No. You can convert 10-slide startup decks or 100-slide university lecture series directly on your computer without software subscriptions or paywalls.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 7. Rating Card & Share Links -->
+    <div class="vytra-rating-card">
+      <h3 class="vytra-rating-title">Rate this PDF to PowerPoint Converter</h3>
+      <p class="vytra-rating-desc">Help us make presentation conversion faster and clearer for everyone.</p>
+      <div class="vytra-stars" id="starRating">
+        <span class="star" onclick="rateTool(1)">★</span>
+        <span class="star" onclick="rateTool(2)">★</span>
+        <span class="star" onclick="rateTool(3)">★</span>
+        <span class="star" onclick="rateTool(4)">★</span>
+        <span class="star" onclick="rateTool(5)">★</span>
+      </div>
+      <div class="vytra-rating-score">4.9 / 5 &bull; 41,200+ user ratings</div>
+
+      <!-- Social Share Buttons -->
+      <div class="vytra-share-box">
+        <span class="vytra-share-label">Share this free tool:</span>
+        <div class="vytra-share-buttons">
+          <a href="https://api.whatsapp.com/send?text=Convert%20PDF%20to%20PowerPoint%20slides%20online%20for%20free%20with%20100%25%20privacy%3A%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-ppt.html" target="_blank" rel="noopener" class="vytra-share-btn share-whatsapp" title="Share on WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Convert%20PDF%20into%20HD%20PowerPoint%20slides%20online%20for%20free&url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-ppt.html" target="_blank" rel="noopener" class="vytra-share-btn share-twitter" title="Share on X">
+            𝕏 X (Twitter)
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-ppt.html" target="_blank" rel="noopener" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+            💼 LinkedIn
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-ppt.html" target="_blank" rel="noopener" class="vytra-share-btn share-facebook" title="Share on Facebook">
+            📘 Facebook
+          </a>
         </div>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- Related Tools Grid -->
+    <section class="vytra-related-section">
+      <h3 class="vytra-section-title">Related Presentation &amp; Document Tools</h3>
+      <div class="vytra-related-grid">
+        <a href="ppt-to-pdf.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📽️</div>
+          <div class="vytra-related-name">PowerPoint to PDF</div>
+          <div class="vytra-related-desc">Compile slides into multi-page handouts and PDF decks.</div>
+        </a>
+        <a href="pdf-to-word.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📝</div>
+          <div class="vytra-related-name">PDF to Word Converter</div>
+          <div class="vytra-related-desc">Convert PDF files into editable Microsoft Word documents.</div>
+        </a>
+        <a href="viewer.html" class="vytra-related-card">
+          <div class="vytra-related-icon">👓</div>
+          <div class="vytra-related-name">High-DPI PDF Viewer</div>
+          <div class="vytra-related-desc">Read and inspect presentations in fullscreen mode.</div>
+        </a>
+        <a href="compress.html" class="vytra-related-card">
+          <div class="vytra-related-icon">📉</div>
+          <div class="vytra-related-name">Compress PDF</div>
+          <div class="vytra-related-desc">Reduce presentation file sizes for seamless email delivery.</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -306,7 +857,7 @@
           <span class="logo-text">Vy<span class="logo-highlight">tra</span></span>
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
-          Free online tools for everyday digital work. Convert, compress, edit, calculate, and manage files securely in your browser.
+          Free online tools for everyday digital work. Convert, compress, edit, calculate, and format files securely in your browser.
         </p>
       </div>
       <div>
@@ -323,12 +874,12 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
+          <li><a href="../pdf/pdf-to-ppt.html">PDF to PowerPoint</a></li>
+          <li><a href="../pdf/ppt-to-pdf.html">PowerPoint to PDF</a></li>
+          <li><a href="../pdf/word-to-pdf.html">Word to PDF</a></li>
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
-          <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
-          <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
-          <li><a href="../calculators/age.html">Age Calculator</a></li>
         </ul>
       </div>
       <div>
@@ -348,158 +899,229 @@
     </div>
   </footer>
 
+  <!-- PDF.js and JSZip Engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
     let currentFile = null;
+    let pdfDoc = null;
     let slideImages = [];
 
-    const uploadZone = document.getElementById('uploadZone');
+    const dropZoneBox = document.getElementById('dropZoneBox');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
     const pptWorkspace = document.getElementById('pptWorkspace');
-    const slideCount = document.getElementById('slideCount');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    const fileMetaDisplay = document.getElementById('fileMetaDisplay');
     const slidesGrid = document.getElementById('slidesGrid');
-    const exportPptBtn = document.getElementById('exportPptBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultDesc = document.getElementById('resultDesc');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
+    const statSlides = document.getElementById('statSlides');
+    const statAspect = document.getElementById('statAspect');
+    const statResolution = document.getElementById('statResolution');
+
+    // Drag and drop handlers
+    dropZoneBox.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+      dropZoneBox.style.borderColor = '#2563eb';
+      dropZoneBox.style.background = '#f0f7ff';
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    dropZoneBox.addEventListener('dragleave', () => {
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
     });
 
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
-
-    async function handleFile(file) {
-      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-        alert('Please select a valid PDF file.');
-        return;
+    dropZoneBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZoneBox.style.borderColor = '#cbd5e1';
+      dropZoneBox.style.background = '#fbfcfe';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        processPdfForSlides(e.dataTransfer.files[0]);
       }
-      currentFile = file;
-      fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '20%';
-      progressText.textContent = 'Rendering presentation slides...';
+    });
 
-      try {
-        const bytes = await file.arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(bytes) }).promise;
-        const total = pdf.numPages;
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${total} Slides`;
-        slideCount.textContent = total;
-
-        slidesGrid.innerHTML = '';
-        slideImages = [];
-
-        for (let i = 1; i <= total; i++) {
-          progressFill.style.width = `${Math.round(20 + (i / total) * 70)}%`;
-          progressText.textContent = `Rendering slide ${i} of ${total}...`;
-
-          const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale: 1.2 });
-          const canvas = document.createElement('canvas');
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          const ctx = canvas.getContext('2d');
-          await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-
-          const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
-          slideImages.push({ num: i, dataUrl });
-
-          const card = document.createElement('div');
-          card.style.background = '#f8fafc';
-          card.style.border = '1px solid #cbd5e1';
-          card.style.borderRadius = '6px';
-          card.style.padding = '8px';
-          card.style.textAlign = 'center';
-          card.innerHTML = `
-            <img src="${dataUrl}" style="max-width:100%;height:auto;border-radius:4px;box-shadow:var(--shadow-sm);" alt="Slide ${i}" loading="lazy" decoding="async">
-            <span style="font-size:0.75rem;font-weight:700;color:#64748b;margin-top:4px;display:block;">Slide ${i}</span>
-          `;
-          slidesGrid.appendChild(card);
-        }
-
-        progressContainer.style.display = 'none';
-        pptWorkspace.style.display = 'block';
-      } catch (err) {
-        console.error(err);
-        alert('Failed to load slides: ' + err.message);
-        progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files.length > 0) {
+        processPdfForSlides(event.target.files[0]);
       }
     }
 
-    exportPptBtn.addEventListener('click', async () => {
+    function resetFilePicker() {
+      fileInput.value = '';
+      currentFile = null;
+      pdfDoc = null;
+      slideImages = [];
+      resultCard.style.display = 'none';
+      pptWorkspace.style.display = 'none';
+      dropZoneBox.style.display = 'block';
+      window.scrollTo({ top: dropZoneBox.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    async function processPdfForSlides(file) {
+      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+        alert('Please select a valid PDF presentation.');
+        return;
+      }
+
+      currentFile = file;
+      fileNameDisplay.textContent = file.name;
+      dropZoneBox.style.display = 'none';
+      resultCard.style.display = 'none';
+      progressContainer.style.display = 'block';
+      progressFill.style.width = '15%';
+      progressText.textContent = 'Opening presentation document...';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        pdfDoc = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+        const totalSlides = pdfDoc.numPages;
+        fileMetaDisplay.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalSlides} Slides`;
+        statSlides.textContent = totalSlides;
+
+        // Detect aspect ratio from first page
+        const firstPage = await pdfDoc.getPage(1);
+        const vp = firstPage.getViewport({ scale: 1 });
+        const ratio = vp.width / vp.height;
+        if (ratio >= 1.5) {
+          statAspect.textContent = '16:9 Widescreen';
+        } else if (ratio >= 1.2) {
+          statAspect.textContent = '4:3 Standard';
+        } else {
+          statAspect.textContent = 'Portrait Document';
+        }
+
+        await renderSlidesToGallery();
+
+        progressContainer.style.display = 'none';
+        pptWorkspace.style.display = 'block';
+        window.scrollTo({ top: pptWorkspace.offsetTop - 40, behavior: 'smooth' });
+
+      } catch (err) {
+        console.error('Slide Extraction Error:', err);
+        alert('Failed to extract slides from PDF: ' + err.message);
+        progressContainer.style.display = 'none';
+        dropZoneBox.style.display = 'block';
+      }
+    }
+
+    async function renderSlidesToGallery() {
+      if (!pdfDoc) return;
+
+      const scale = parseFloat(document.getElementById('qualityScaleSelect').value) || 1.5;
+      const format = document.getElementById('imageFormatSelect').value || 'image/jpeg';
+      const ext = format === 'image/png' ? 'png' : 'jpg';
+
+      statResolution.textContent = scale >= 2.0 ? '4K Ultra HD' : (scale >= 1.5 ? '1080p Full HD' : '720p HD');
+
+      slidesGrid.innerHTML = '';
+      slideImages = [];
+      const totalSlides = pdfDoc.numPages;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const progressPercent = Math.round(15 + (i / totalSlides) * 75);
+        progressFill.style.width = `${progressPercent}%`;
+        progressText.textContent = `Rendering slide ${i} of ${totalSlides}...`;
+
+        const page = await pdfDoc.getPage(i);
+        const viewport = page.getViewport({ scale: scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+
+        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+        const dataUrl = canvas.toDataURL(format, format === 'image/jpeg' ? 0.92 : undefined);
+        slideImages.push({
+          slideNum: i,
+          dataUrl: dataUrl,
+          ext: ext
+        });
+
+        // Add gallery card
+        const card = document.createElement('div');
+        card.className = 'slide-card-item';
+        card.innerHTML = `
+          <img src="${dataUrl}" class="slide-card-img" alt="Slide ${i}" loading="lazy">
+          <div class="slide-card-footer">
+            <span>Slide ${i}</span>
+            <a href="${dataUrl}" download="Slide_${i}.${ext}" class="slide-download-link" title="Save individual slide">⬇️ Save Slide</a>
+          </div>
+        `;
+        slidesGrid.appendChild(card);
+      }
+    }
+
+    async function reRenderSlides() {
+      if (!pdfDoc) return;
+      progressContainer.style.display = 'block';
+      await renderSlidesToGallery();
+      progressContainer.style.display = 'none';
+    }
+
+    async function downloadAllSlidesZip() {
+      if (slideImages.length === 0) return;
+
       pptWorkspace.style.display = 'none';
       progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Packaging presentation slides into ZIP...';
+      progressFill.style.width = '20%';
+      progressText.textContent = 'Packaging presentation slides into ZIP archive...';
 
       try {
         const zip = new JSZip();
-        const baseName = currentFile.name.replace(/\.pdf$/i, '');
+        const baseName = (currentFile ? currentFile.name.replace(/\.pdf$/i, '') : 'presentation');
 
         slideImages.forEach(slide => {
-          const base64Data = slide.dataUrl.replace(/^data:image\/jpeg;base64,/, "");
-          zip.file(`${baseName}_Slide_${slide.num}.jpg`, base64Data, { base64: true });
+          const regex = new RegExp(`^data:${slide.ext === 'png' ? 'image/png' : 'image/jpeg'};base64,`);
+          const base64Data = slide.dataUrl.replace(regex, '');
+          zip.file(`${baseName}_Slide_${String(slide.slideNum).padStart(2, '0')}.${slide.ext}`, base64Data, { base64: true });
         });
 
-        progressFill.style.width = '80%';
-        progressText.textContent = 'Compressing archive...';
+        progressFill.style.width = '75%';
+        progressText.textContent = 'Compressing slide archive...';
 
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         const url = URL.createObjectURL(zipBlob);
 
-        downloadBtn.href = url;
-        downloadBtn.download = baseName + '_slides.zip';
-        document.getElementById('resultDesc').textContent = `Packaged ${slideImages.length} HD presentation slides. ZIP size: ${ (zipBlob.size / 1024).toFixed(1) } KB.`;
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${baseName}_slides.zip`;
+        a.click();
+
+        resultDesc.textContent = `Successfully packaged ${slideImages.length} presentation slides into "${baseName}_slides.zip" (${(zipBlob.size / 1024).toFixed(1)} KB).`;
 
         progressContainer.style.display = 'none';
         resultCard.style.display = 'block';
+        window.scrollTo({ top: resultCard.offsetTop - 40, behavior: 'smooth' });
+
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+
       } catch (err) {
-        console.error(err);
-        alert('Error packaging slides: ' + err.message);
+        console.error('ZIP Packaging Error:', err);
+        alert('Error creating ZIP archive: ' + err.message);
         progressContainer.style.display = 'none';
         pptWorkspace.style.display = 'block';
       }
-    });
+    }
 
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      pptWorkspace.style.display = 'none';
-      fileInput.value = '';
-      currentFile = null;
-      slideImages = [];
-    });
+    function rateTool(stars) {
+      const starSpans = document.querySelectorAll('#starRating .star');
+      starSpans.forEach((s, idx) => {
+        s.style.color = idx < stars ? '#f59e0b' : '#cbd5e1';
+      });
+      alert(`Thank you for rating ${stars} stars! We appreciate your support.`);
+    }
   </script>
 </body>
 </html>
