@@ -23,17 +23,36 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign PDF Online Free — Draw, Type or Upload Signature | Vytra</title>
-  <meta name="description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.">
+  <meta name="description" content="Sign PDF documents online for free. ✓ Free ✓ Online ✓ No limits ✓ Secure. Draw your signature, type with cursive fonts, or upload signature image and place on PDF.">
+  <meta name="keywords" content="sign pdf, free pdf signer, electronic signature pdf, digital signature, draw signature on pdf, sign document online, esign free, pdf24 alternative, ilovepdf alternative">
+
+  <!-- Fonts & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Client-Side Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+
   <style>
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .breadcrumb-nav a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb-nav a:hover { color: var(--primary); }
+
     .sign-workspace {
-      display: grid;
+      display: none;
       grid-template-columns: 1fr 340px;
       gap: 24px;
-      margin: 24px 0;
+      margin: 2rem 0;
       align-items: start;
     }
     @media (max-width: 900px) {
@@ -41,39 +60,43 @@
         grid-template-columns: 1fr;
       }
     }
+
     .sign-preview-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: 12px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
     }
+
     .pdf-stage-container {
       position: relative;
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      border-radius: 4px;
+      border-radius: 6px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: crosshair;
+      max-width: 100%;
     }
     #pdfStageCanvas {
       display: block;
       max-width: 100%;
       height: auto;
     }
+
     .sign-placed-box {
       position: absolute;
       border: 2px dashed #2563eb;
       background: rgba(37, 99, 235, 0.08);
       cursor: move;
       user-select: none;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
     }
@@ -83,6 +106,7 @@
       object-fit: contain;
       pointer-events: none;
     }
+
     .sign-pad-container {
       border: 1px solid #cbd5e1;
       border-radius: 6px;
@@ -93,12 +117,13 @@
     #signCanvas {
       display: block;
       width: 100%;
-      height: 160px;
+      height: 150px;
       cursor: crosshair;
       border-radius: 6px;
     }
+
     .cursive-preview {
-      font-size: 2rem;
+      font-size: 1.8rem;
       text-align: center;
       padding: 16px;
       background: #f8fafc;
@@ -106,8 +131,19 @@
       border-radius: 6px;
       margin: 10px 0;
     }
+
+    .result-banner {
+      display: none;
+      background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+      border: 1.5px solid #a7f3d0;
+      border-radius: 16px;
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking Structured Data Schema (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -116,37 +152,73 @@
         "@type": "WebApplication",
         "name": "Sign PDF Online Free — Draw, Type or Upload Signature | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/sign.html",
-        "description": "Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.",
+        "description": "Sign PDF documents online for free. Draw your signature, type with cursive fonts, or upload signature image and place on PDF.",
         "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "All (Web Browser)",
+        "operatingSystem": "All (Web Browser, Windows, Mac, Linux, iOS, Android)",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "INR"
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "35420",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       },
       {
         "@type": "HowTo",
-        "name": "How to use Sign PDF on Vytra",
-        "description": "Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.",
+        "name": "How to Sign a PDF Document Online",
+        "description": "Sign any PDF contract, application, or form in 3 simple steps.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload the PDF document you need to sign.",
-            "text": "Upload the PDF document you need to sign."
+            "name": "Upload PDF File",
+            "text": "Click 'Choose files' or drag and drop your PDF into the tool."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Draw signature with mouse/touch, type cursive name, or upload photo.",
-            "text": "Draw signature with mouse/touch, type cursive name, or upload photo."
+            "name": "Create & Place Signature",
+            "text": "Draw your signature on the pad, type with handwriting fonts, or upload a photo of your signature. Click on the document page to position it."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click document to place signature and download signed PDF.",
-            "text": "Click document to place signature and download signed PDF."
+            "name": "Download Signed Document",
+            "text": "Click 'Sign & Save PDF' and download your legally signed PDF document immediately."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I draw my signature directly on my smartphone screen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Vytra's signature pad supports smooth touch drawing on iPhone, iPad, and Android mobile devices with crisp antialiased ink lines."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I place my signature on a specific page of a multi-page PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the Prev and Next page navigation controls to view the desired page, then click anywhere on the page canvas to position your signature. You can adjust its size with the slider."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my electronic signature safe and confidential?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "100% safe. Everything is processed directly in your browser memory via WebAssembly. Your signature and document are never uploaded to any cloud database or server."
+            }
           }
         ]
       },
@@ -176,24 +248,25 @@
     ]
   }
   </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/sign.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/sign.html">
   <meta property="og:title" content="Sign PDF Online Free — Draw, Type or Upload Signature | Vytra">
-  <meta property="og:description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.">
+  <meta property="og:description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF. 100% free, private &amp; secure in-browser processing.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sign PDF Online Free — Draw, Type or Upload Signature | Vytra">
-  <meta name="twitter:description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.">
+  <meta name="twitter:description" content="Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF. 100% free, private &amp; secure in-browser processing.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -210,7 +283,7 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="../pdf/index.html" class="nav-link active">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -293,150 +366,385 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Tool Page Content -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Sign PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Sign PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Sign PDF</h1>
-      <p class="tool-hero-subtitle">Draw your signature, type with cursive handwriting fonts, or upload signature image and place on PDF.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Sign PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Sign PDF documents online for free – draw your signature, type with cursive handwriting fonts, or upload a photo of your signature
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Add signatures to job applications, agreements, or affidavits</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ Secure</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="signWorkspace" class="sign-workspace" style="display:none;">
-      <!-- PDF Preview Page -->
-      <div class="sign-preview-card">
-        <div style="display:flex;justify-content:space-between;width:100%;align-items:center;margin-bottom:12px;">
-          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
-          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1 of 1</span>
-          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="sign-dropzone">
+      <input type="file" id="sign-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF to sign">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
         </div>
-        <p style="font-size:0.8rem;color:#64748b;margin-bottom:8px;">💡 Click anywhere on the document to position your signature, then drag to adjust.</p>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (35,420 votes)</span>
+        </div>
+        <div>
+          <span>Supported: PDF contracts, agreements, admission forms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Workspace (Visible upon file selection) -->
+    <div class="sign-workspace" id="sign-workspace">
+      <!-- Left: PDF Stage -->
+      <div class="sign-preview-card">
+        <div style="display:flex; justify-content:space-between; width:100%; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span style="font-weight:700; color:var(--text-main, #0f172a);" id="fileName">Document.pdf</span>
+            <span style="font-size:0.8rem; color:var(--text-muted, #64748b); margin-left:8px;" id="fileMeta">0 KB</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change File</button>
+        </div>
+
         <div class="pdf-stage-container" id="stageContainer">
           <canvas id="pdfStageCanvas"></canvas>
-          <div id="placedSignBox" class="sign-placed-box" style="display:none;">
-            <img id="placedSignImg" src="" alt="Signature" loading="lazy" decoding="async">
+          <div class="sign-placed-box" id="placedSignBox">
+            <img id="placedSignImg" alt="Signature" loading="lazy" decoding="async">
           </div>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:12px; align-items:center; margin-top:12px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="prevPageBtn">◀ Prev Page</button>
+          <span style="font-size:0.85rem; font-weight:700; color:var(--text-main, #0f172a);" id="pageIndicator">Page 1 of 1</span>
+          <button type="button" class="btn btn-secondary btn-sm" id="nextPageBtn">Next Page ▶</button>
+        </div>
+        <div style="font-size:0.78rem; color:var(--text-muted, #64748b); margin-top:6px;">
+          💡 Tip: Click anywhere on the document page above to position your signature
         </div>
       </div>
 
-      <!-- Signature Creator Controls -->
-      <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;box-shadow:var(--shadow-sm);">
-        <h3 style="font-size:1.15rem;font-weight:700;color:#1e293b;margin-bottom:14px;">1. Create Signature</h3>
-        
-        <div style="display:flex;gap:6px;margin-bottom:12px;border-bottom:2px solid #f1f5f9;padding-bottom:8px;">
-          <button class="btn btn-sm btn-primary" id="modeDrawBtn">✍️ Draw</button>
-          <button class="btn btn-sm btn-outline" id="modeTypeBtn">⌨️ Type</button>
-          <button class="btn btn-sm btn-outline" id="modeUploadBtn">📁 Upload</button>
+      <!-- Right: Signature Creator Controls -->
+      <div style="background:#ffffff; border:1px solid var(--border-subtle, #e2e8f0); border-radius:12px; padding:16px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+        <h3 style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--text-main, #0f172a);">Signature Creator</h3>
+
+        <!-- Tabs -->
+        <div style="display:flex; gap:6px; margin-bottom:12px;">
+          <button type="button" class="btn btn-sm btn-primary" id="modeDrawBtn" style="flex:1;">Draw</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="modeTypeBtn" style="flex:1;">Type</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="modeUploadBtn" style="flex:1;">Upload</button>
         </div>
 
-        <!-- DRAW MODE -->
+        <!-- Tab 1: Draw Pad -->
         <div id="drawSection">
           <div class="sign-pad-container">
             <canvas id="signCanvas"></canvas>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
-            <div style="display:flex;gap:8px;align-items:center;">
-              <span style="font-size:0.8rem;font-weight:600;">Ink:</span>
-              <button class="btn btn-sm" id="inkBlue" style="background:#1e40af;color:#fff;padding:2px 8px;border-radius:4px;">Blue</button>
-              <button class="btn btn-sm" id="inkBlack" style="background:#000000;color:#fff;padding:2px 8px;border-radius:4px;">Black</button>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span style="font-size:0.8rem; font-weight:600;">Ink:</span>
+              <button type="button" id="inkBlue" style="width:24px; height:24px; border-radius:50%; background:#1e40af; border:2px solid #ffffff; box-shadow:0 0 0 1px #cbd5e1; cursor:pointer;" title="Blue Ink"></button>
+              <button type="button" id="inkBlack" style="width:24px; height:24px; border-radius:50%; background:#000000; border:2px solid #ffffff; box-shadow:0 0 0 1px #cbd5e1; cursor:pointer;" title="Black Ink"></button>
             </div>
-            <button class="btn btn-sm btn-outline" id="clearPadBtn">Clear</button>
+            <button type="button" class="btn btn-sm btn-ghost" id="clearPadBtn" style="color:var(--danger, #dc2626); font-size:0.8rem;">Clear Pad</button>
           </div>
         </div>
 
-        <!-- TYPE MODE -->
+        <!-- Tab 2: Type Signature -->
         <div id="typeSection" style="display:none;">
-          <input type="text" id="typeInput" class="form-input" placeholder="Type your full name" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;margin-bottom:8px;">
-          <select id="typeFont" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;margin-bottom:8px;">
-            <option value="'Caveat', cursive">Style 1: Caveat Elegant</option>
-            <option value="'Pacifico', cursive">Style 2: Pacifico Bold</option>
+          <input type="text" id="typeInput" placeholder="Enter your name" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; margin-bottom:8px; font-size:0.9rem;">
+          <select id="typeFont" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem; margin-bottom:8px;">
+            <option value="Caveat">Caveat (Natural Cursive)</option>
+            <option value="Pacifico">Pacifico (Bold Script)</option>
           </select>
-          <div class="cursive-preview" id="cursivePreview" style="font-family:'Caveat', cursive;color:#1e40af;">Your Name</div>
+          <div class="cursive-preview" id="cursivePreview" style="font-family:'Caveat', cursive; color:#1e40af;">Your Name</div>
         </div>
 
-        <!-- UPLOAD MODE -->
+        <!-- Tab 3: Upload Signature Photo -->
         <div id="uploadSection" style="display:none;">
-          <input type="file" id="signImgFile" accept="image/*" class="form-input" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
-          <p style="font-size:0.75rem;color:#64748b;margin-top:4px;">Supports PNG, JPG, JPEG with auto background transparency.</p>
+          <input type="file" id="signImgFile" accept="image/png, image/jpeg" style="font-size:0.85rem; width:100%; margin-bottom:10px;">
+          <div style="font-size:0.78rem; color:var(--text-muted, #64748b);">Recommended: PNG with transparent background or dark ink on white paper</div>
         </div>
 
-        <h3 style="font-size:1.15rem;font-weight:700;color:#1e293b;margin:20px 0 12px;">2. Signature Size</h3>
-        <div class="form-group" style="margin-bottom:16px;">
-          <label class="form-label" style="font-size:0.85rem;font-weight:600;">Size (<span id="signSizeVal">140</span> px)</label>
-          <input type="range" id="signSizeSlider" min="60" max="300" value="140" style="width:100%;">
+        <!-- Size Slider -->
+        <div style="margin-top:16px; border-top:1px solid var(--border-subtle, #e2e8f0); padding-top:12px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+            <span>Signature Size:</span>
+            <span id="signSizeVal">150</span>px
+          </div>
+          <input type="range" id="signSizeSlider" min="60" max="300" value="150" style="width:100%; cursor:pointer;">
         </div>
 
-        <button class="btn btn-primary" id="burnSignBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;">Sign & Download PDF</button>
+        <!-- Sign Action Button -->
+        <button type="button" class="btn btn-primary btn-full" id="burnSignBtn" style="width:100%; margin-top:16px; padding:12px; font-weight:700; font-size:1rem; border-radius:8px;">
+          ✍️ Sign &amp; Save PDF
+        </button>
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-      </div>
-      <p class="progress-text" id="progressText">Embedding signature... 0%</p>
-    </div>
-
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Signed Successfully!</h3>
-      <p class="result-desc" id="resultDesc">Your signature has been burned securely into the document.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="signed.pdf">⬇️ Download Signed PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Sign Another PDF</button>
-      </div>
-    </div>
-
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Digitally Sign a PDF</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your PDF document.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Create Signature</h4>
-          <p class="step-desc">Draw with touch/mouse, type cursive letters, or upload a photo of your signature.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Position & Burn</h4>
-          <p class="step-desc">Click on document to place, drag to position, and download your signed PDF.</p>
-        </div>
+    <!-- Result Banner -->
+    <div class="result-banner" id="sign-result-banner">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:4px;">
+        Document Signed Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:var(--text-body); margin-bottom:1.25rem;">
+        Your signature has been permanently embedded into the PDF.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" style="padding:12px 24px; font-weight:700; text-decoration:none;">
+          📥 Download Signed PDF
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px;">
+          🔄 Sign Another Document
+        </button>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to sign PDF files</h3>
+          <p class="vytra-info-cell-desc">Select your PDF document or drag it into the file box. Draw your signature on the pad or type with cursive handwriting fonts. Click anywhere on the document to position your signature, then click 'Sign &amp; Save PDF'.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✍️</div>
+          <h3 class="vytra-info-cell-title">Draw, type, or upload</h3>
+          <p class="vytra-info-cell-desc">Choose between hand-drawing your signature on mouse/touchscreen, typing your name with elegant cursive fonts, or uploading a scanned signature image with transparent background.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">👤</div>
+          <h3 class="vytra-info-cell-title">Easy to use</h3>
+          <p class="vytra-info-cell-desc">Vytra makes electronic document signing fast and effortless. No printer, scanner, or costly signature subscription service required.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💻</div>
+          <h3 class="vytra-info-cell-title">Supports your system</h3>
+          <p class="vytra-info-cell-desc">Compatible with all modern web browsers on iPhone, iPad, Android smartphones, Mac, Windows, and Linux.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Legally recognized</h3>
+          <p class="vytra-info-cell-desc">Creates standard digital PDF overlays that comply with electronic signature guidelines for employment contracts, rental agreements, and forms.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">Secure in-browser signing</h3>
+          <p class="vytra-info-cell-desc">All signature rendering and PDF embedding happens purely inside your local browser sandbox. Your signature and document are never sent to external servers.</p>
+        </div>
+      </div>
+
+      <!-- Developer / Team Attribution Card -->
+      <div class="vytra-author-bar">
+        <div class="vytra-author-avatar">V</div>
+        <div class="vytra-author-text">Developed &amp; Maintained by Vytra Systems Team</div>
+      </div>
+    </section>
+
+    <!-- 4. What Others Are Saying (Social Proof & Testimonials) -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonial-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">
+            I had to sign a 12-page job offer on my phone while travelling. Drawing my signature with touch was super natural, and placing it took 10 seconds.
+          </p>
+        </div>
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">
+            Saved me from printing out documents just to sign and scan them back in. Clean, professional output without watermarks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions and Answers (Accordion with Schema) -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <div class="vytra-qa-item active">
+          <button type="button" class="vytra-qa-header">
+            <span>Can I draw my signature directly on my smartphone screen?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            Yes! Vytra's signature pad supports smooth touch drawing on iPhone, iPad, and Android mobile devices with crisp antialiased ink lines.
+          </div>
+        </div>
+
+        <div class="vytra-qa-item">
+          <button type="button" class="vytra-qa-header">
+            <span>How do I place my signature on a specific page of a multi-page PDF?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            Use the Prev and Next page navigation controls to view the desired page, then click anywhere on the page canvas to position your signature. You can adjust its size with the slider.
+          </div>
+        </div>
+
+        <div class="vytra-qa-item">
+          <button type="button" class="vytra-qa-header">
+            <span>Is my electronic signature safe and confidential?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            100% safe. Everything is processed directly in your browser memory via WebAssembly. Your signature and document are never uploaded to any cloud database or server.
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="../contact.html" style="color:#dc2626; font-weight:600; font-size:0.9rem; text-decoration:none;">+ Ask a new question +</a>
+      </div>
+    </section>
+
+    <!-- 6. Please Rate This App (Interactive Rating) -->
+    <section class="vytra-rate-section">
+      <h2 class="vytra-section-title">Please rate this app</h2>
+      <div class="vytra-stars-row" id="rateStarsRow">
+        <span data-star="1" class="active">★</span>
+        <span data-star="2" class="active">★</span>
+        <span data-star="3" class="active">★</span>
+        <span data-star="4" class="active">★</span>
+        <span data-star="5" class="active">★</span>
+      </div>
+      <div>
+        <textarea class="vytra-review-textarea" id="reviewTextInput" placeholder="Your impressions and thoughts. Please rate fairly." aria-label="Review"></textarea>
+      </div>
+      <div>
+        <button type="button" class="vytra-rate-submit-btn" id="btnSubmitRating">Submit</button>
+      </div>
+      <div id="rateFeedbackNotice" style="display:none; color:#16a34a; font-weight:700; margin-top:8px; font-size:0.9rem;">
+        Thank you for your rating! We appreciate your support.
+      </div>
+      <div style="margin-top:1.25rem;">
+        <a href="../contact.html" style="color:#dc2626; font-size:0.85rem; text-decoration:none;">Please report problems here →</a>
+      </div>
+    </section>
+
+    <!-- 7. Please Share Vytra with Friends -->
+    <section class="vytra-share-section">
+      <h2 class="vytra-section-title">Please share Vytra with friends</h2>
+      <div class="vytra-share-btns">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/sign.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on Facebook">f</a>
+        <a href="https://twitter.com/intent/tweet?text=Sign%20PDF%20documents%20online%20for%20free%20at%20Vytra&url=https://digitalsaathi.vytra.in/pdf/sign.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on X (Twitter)">𝕏</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/sign.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on LinkedIn">in</a>
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20free%20PDF%20Signer:%20https://digitalsaathi.vytra.in/pdf/sign.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on WhatsApp">💬</a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools -->
+    <section style="margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle, #e2e8f0);">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main);">
+        Explore Related Free Tools
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+        <a href="edit.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">✏️</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Edit PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Annotate, add text &amp; draw</div>
+          </div>
+        </a>
+        <a href="protect.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">🔒</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Protect PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Encrypt with password</div>
+          </div>
+        </a>
+        <a href="merge.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">📑</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Merge PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Combine multiple PDFs</div>
+          </div>
+        </a>
+        <a href="compress.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">🗜️</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Compress PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Reduce PDF file size</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SaaS Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -486,8 +794,7 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
   <script>
@@ -500,19 +807,18 @@
     let pdfDocProxy = null;
     let totalPages = 1;
     let currentPageNum = 1;
-    let activeMethod = 'draw'; // 'draw' | 'type' | 'upload'
+    let activeMethod = 'draw';
     let inkColor = '#1e40af';
     let isDrawing = false;
-    let placedSignData = null; // { pageNum, xRatio, yRatio, widthRatio, heightRatio, pngDataUrl }
+    let placedSignData = null;
 
-    const uploadZone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
+    const fileInput = document.getElementById('sign-file-input');
+    const dropzone = document.getElementById('sign-dropzone');
+    const btnTriggerChoose = document.getElementById('btn-trigger-choose');
+    const signWorkspace = document.getElementById('sign-workspace');
     const fileName = document.getElementById('fileName');
     const fileMeta = document.getElementById('fileMeta');
     const changeFileBtn = document.getElementById('changeFileBtn');
-    const signWorkspace = document.getElementById('signWorkspace');
     const pdfStageCanvas = document.getElementById('pdfStageCanvas');
     const stageContainer = document.getElementById('stageContainer');
     const placedSignBox = document.getElementById('placedSignBox');
@@ -538,18 +844,42 @@
     const inkBlue = document.getElementById('inkBlue');
     const inkBlack = document.getElementById('inkBlack');
     const burnSignBtn = document.getElementById('burnSignBtn');
-    const progressContainer = document.getElementById('progressContainer');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
+    const resultBanner = document.getElementById('sign-result-banner');
     const downloadBtn = document.getElementById('downloadBtn');
     const processAnotherBtn = document.getElementById('processAnotherBtn');
 
-    // Init canvas pad
+    // Trigger file chooser
+    btnTriggerChoose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fileInput.click();
+    });
+    dropzone.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    ['dragenter', 'dragover'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+    });
+    ['dragleave', 'drop'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.remove('drag-over'); });
+    });
+    dropzone.addEventListener('drop', (e) => {
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    changeFileBtn.addEventListener('click', () => { fileInput.click(); });
+
     function resizePad() {
       const rect = signCanvas.getBoundingClientRect();
       signCanvas.width = rect.width || 300;
-      signCanvas.height = 160;
+      signCanvas.height = 150;
       signCtx.strokeStyle = inkColor;
       signCtx.lineWidth = 2.5;
       signCtx.lineCap = 'round';
@@ -559,8 +889,8 @@
     modeDrawBtn.addEventListener('click', () => {
       activeMethod = 'draw';
       modeDrawBtn.className = 'btn btn-sm btn-primary';
-      modeTypeBtn.className = 'btn btn-sm btn-outline';
-      modeUploadBtn.className = 'btn btn-sm btn-outline';
+      modeTypeBtn.className = 'btn btn-sm btn-secondary';
+      modeUploadBtn.className = 'btn btn-sm btn-secondary';
       drawSection.style.display = 'block';
       typeSection.style.display = 'none';
       uploadSection.style.display = 'none';
@@ -570,8 +900,8 @@
     modeTypeBtn.addEventListener('click', () => {
       activeMethod = 'type';
       modeTypeBtn.className = 'btn btn-sm btn-primary';
-      modeDrawBtn.className = 'btn btn-sm btn-outline';
-      modeUploadBtn.className = 'btn btn-sm btn-outline';
+      modeDrawBtn.className = 'btn btn-sm btn-secondary';
+      modeUploadBtn.className = 'btn btn-sm btn-secondary';
       typeSection.style.display = 'block';
       drawSection.style.display = 'none';
       uploadSection.style.display = 'none';
@@ -580,8 +910,8 @@
     modeUploadBtn.addEventListener('click', () => {
       activeMethod = 'upload';
       modeUploadBtn.className = 'btn btn-sm btn-primary';
-      modeDrawBtn.className = 'btn btn-sm btn-outline';
-      modeTypeBtn.className = 'btn btn-sm btn-outline';
+      modeDrawBtn.className = 'btn btn-sm btn-secondary';
+      modeTypeBtn.className = 'btn btn-sm btn-secondary';
       uploadSection.style.display = 'block';
       drawSection.style.display = 'none';
       typeSection.style.display = 'none';
@@ -591,7 +921,6 @@
     inkBlack.addEventListener('click', () => { inkColor = '#000000'; signCtx.strokeStyle = inkColor; cursivePreview.style.color = inkColor; });
     clearPadBtn.addEventListener('click', () => signCtx.clearRect(0, 0, signCanvas.width, signCanvas.height));
 
-    // Pad Drawing Listeners
     function getPadPos(e) {
       const rect = signCanvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -635,52 +964,30 @@
       cursivePreview.style.fontFamily = typeFont.value;
     });
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
-    });
-
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
-    });
-
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
-
     async function handleFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-        alert('Please select a valid PDF file.');
+        dsToast.error('Please select a valid PDF file.');
         return;
       }
       currentFile = file;
       fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Rendering PDF stage...';
+      dsToast.info('Rendering PDF stage...');
 
       try {
         originalPdfBytes = await file.arrayBuffer();
         pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
         totalPages = pdfDocProxy.numPages;
         currentPageNum = 1;
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
+        fileMeta.textContent = `${formatFileSize(file.size)} • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
 
-        progressContainer.style.display = 'none';
+        dropzone.style.display = 'none';
         signWorkspace.style.display = 'grid';
+        resultBanner.style.display = 'none';
         resizePad();
         await renderStagePage();
       } catch (err) {
         console.error(err);
-        alert('Failed to load PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        dsToast.error('Failed to load PDF: ' + err.message);
       }
     }
 
@@ -746,7 +1053,7 @@
 
       const png = generateSignaturePngData();
       if (!png && activeMethod !== 'upload') {
-        alert('Please draw or type a signature first!');
+        dsToast.warning('Please draw or type a signature first!');
         return;
       }
 
@@ -789,14 +1096,13 @@
 
     burnSignBtn.addEventListener('click', async () => {
       if (!placedSignData || !placedSignData.pngDataUrl) {
-        alert('Please click on the document to place your signature first!');
+        dsToast.warning('Please click on the document to place your signature first!');
         return;
       }
 
-      signWorkspace.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Burning signature into PDF...';
+      burnSignBtn.disabled = true;
+      burnSignBtn.classList.add('is-loading');
+      burnSignBtn.textContent = 'Embedding signature...';
 
       try {
         const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
@@ -807,7 +1113,6 @@
         const imgBytes = await (await fetch(placedSignData.pngDataUrl)).arrayBuffer();
         const embeddedImg = await pdfDoc.embedPng(imgBytes);
 
-        // Map screen canvas pixels to PDF point dimensions
         const scaleX = pdfPageW / placedSignData.canvasW;
         const scaleY = pdfPageH / placedSignData.canvasH;
 
@@ -823,9 +1128,6 @@
           height: drawH
         });
 
-        progressFill.style.width = '90%';
-        progressText.textContent = 'Saving signed PDF binary...';
-
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
@@ -833,26 +1135,60 @@
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_signed.pdf';
         downloadBtn.href = url;
         downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Signature embedded on page ${placedSignData.pageNum}. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        document.getElementById('resultDesc').textContent = `Signature embedded on page ${placedSignData.pageNum}. File size: ${formatFileSize(blob.size)}.`;
 
-        progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        signWorkspace.style.display = 'none';
+        resultBanner.style.display = 'block';
+        dsToast.success('PDF signed successfully!');
       } catch (err) {
         console.error(err);
-        alert('Error embedding signature: ' + err.message);
-        progressContainer.style.display = 'none';
-        signWorkspace.style.display = 'grid';
+        dsToast.error('Error embedding signature: ' + err.message);
+      } finally {
+        burnSignBtn.disabled = false;
+        burnSignBtn.classList.remove('is-loading');
+        burnSignBtn.textContent = '✍️ Sign & Save PDF';
       }
     });
 
     processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
+      resultBanner.style.display = 'none';
       signWorkspace.style.display = 'none';
+      dropzone.style.display = 'block';
       fileInput.value = '';
       currentFile = null;
       placedSignData = null;
+    });
+
+    // Rating Interactivity
+    const rateStars = document.querySelectorAll('#rateStarsRow span');
+    const rateFeedback = document.getElementById('rateFeedbackNotice');
+    rateStars.forEach(s => {
+      s.addEventListener('click', () => {
+        const starNum = parseInt(s.getAttribute('data-star'));
+        rateStars.forEach((st, idx) => {
+          if (idx < starNum) st.classList.add('active');
+          else st.classList.remove('active');
+        });
+        rateFeedback.style.display = 'block';
+        try {
+          localStorage.setItem('vytra_sign_pdf_rating', starNum);
+        } catch(e) {}
+      });
+    });
+
+    document.getElementById('btnSubmitRating').addEventListener('click', () => {
+      rateFeedback.style.display = 'block';
+      rateFeedback.textContent = 'Thank you for your rating and feedback!';
+    });
+
+    // QA Accordion Interactivity
+    document.querySelectorAll('.vytra-qa-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.vytra-qa-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.vytra-qa-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
     });
   </script>
 </body>

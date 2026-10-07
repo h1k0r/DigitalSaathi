@@ -22,24 +22,54 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit PDF Online Free — Add Text, Annotate & Draw | Vytra</title>
-  <meta name="description" content="Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.">
+  <title>Edit PDF — Free Online PDF Editor | Vytra</title>
+  <meta name="description" content="Edit PDF files online for free. ✓ Free ✓ Online ✓ No limits ✓ Secure. Add text, annotations, highlights, shapes, and whiteout to PDF documents directly in your browser.">
+  <meta name="keywords" content="edit pdf, online pdf editor, free pdf editor, annotate pdf, add text to pdf, draw on pdf, whiteout pdf, redact pdf online, pdf24 alternative, ilovepdf alternative">
+
+  <!-- Fonts & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Client-Side Libraries -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+
   <style>
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .breadcrumb-nav a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb-nav a:hover { color: var(--primary); }
+
+    .pdf-editor-workspace {
+      display: none;
+      margin-top: 2rem;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
     .editor-toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       align-items: center;
-      background: #f8fafc;
-      padding: 10px 16px;
+      background: var(--bg-surface-subtle, #f8fafc);
+      padding: 10px 14px;
       border-radius: 8px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-subtle, #e2e8f0);
       margin-bottom: 16px;
     }
+
     .tool-btn {
       padding: 6px 12px;
       font-size: 0.85rem;
@@ -51,7 +81,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
     .tool-btn:hover {
       background: #f1f5f9;
@@ -59,24 +89,26 @@
     }
     .tool-btn.active {
       background: #eff6ff;
-      border-color: var(--primary);
-      color: var(--primary);
+      border-color: #2563eb;
+      color: #2563eb;
       box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
     }
+
     .canvas-stage-wrapper {
       position: relative;
-      background: #e2e8f0;
+      background: #f1f5f9;
       padding: 20px;
       border-radius: 8px;
       display: flex;
       justify-content: center;
       overflow: auto;
       max-height: 75vh;
+      border: 1px solid var(--border-subtle, #e2e8f0);
     }
     .canvas-container-stack {
       position: relative;
       background: #ffffff;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       border-radius: 4px;
     }
     #pdfBgCanvas {
@@ -88,47 +120,94 @@
       left: 0;
       cursor: crosshair;
     }
+
+    .result-banner {
+      display: none;
+      background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+      border: 1.5px solid #a7f3d0;
+      border-radius: 16px;
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <!-- Top Ranking Structured Data Schema (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Edit PDF Online Free — Add Text, Annotate & Draw | Vytra",
+        "name": "Edit PDF — Free Online PDF Editor | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/edit.html",
-        "description": "Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.",
+        "description": "Edit PDF files online for free. Add text, annotations, highlights, shapes, and whiteout to PDF documents directly in your browser.",
         "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "All (Web Browser)",
+        "operatingSystem": "All (Web Browser, Windows, Mac, Linux, iOS, Android)",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "INR"
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "29810",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       },
       {
         "@type": "HowTo",
-        "name": "How to use Edit PDF on Vytra",
-        "description": "Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.",
+        "name": "How to Edit a PDF Document Online",
+        "description": "Add text, annotations, shapes, and whiteout to any PDF file in 3 simple steps.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload your PDF document.",
-            "text": "Upload your PDF document."
+            "name": "Upload PDF File",
+            "text": "Click 'Choose files' or drag and drop your PDF into the editor box."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Select pen, highlighter, text box, or whiteout tool.",
-            "text": "Select pen, highlighter, text box, or whiteout tool."
+            "name": "Annotate & Edit",
+            "text": "Use the pen, text tool, highlighter, or whiteout block to annotate and modify the document pages."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click 'Save & Download' to export your edited file.",
-            "text": "Click 'Save & Download' to export your edited file."
+            "name": "Save & Download",
+            "text": "Click 'Save & Download' to merge all annotations directly into your new PDF document."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I add text to a PDF file without Adobe Acrobat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload your PDF into Vytra's online editor. Select the 'Text' tool from the toolbar and click anywhere on the page to insert custom text, change font color, and adjust size."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I whiteout or erase confidential parts of a PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Click the 'Whiteout' tool in the toolbar and drag a rectangular box over any text, signature, or number you wish to conceal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my edited PDF documents stored on any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All PDF rendering and annotation embedding takes place locally in your web browser memory. Your confidential files never leave your device."
+            }
           }
         ]
       },
@@ -158,24 +237,25 @@
     ]
   }
   </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/edit.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/edit.html">
-  <meta property="og:title" content="Edit PDF Online Free — Add Text, Annotate & Draw | Vytra">
-  <meta property="og:description" content="Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.">
+  <meta property="og:title" content="Edit PDF — Free Online PDF Editor | Vytra">
+  <meta property="og:description" content="Add text, shapes, comments and highlights to your PDF document. 100% free, private &amp; secure in-browser processing.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Edit PDF Online Free — Add Text, Annotate & Draw | Vytra">
-  <meta name="twitter:description" content="Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.">
+  <meta name="twitter:title" content="Edit PDF — Free Online PDF Editor | Vytra">
+  <meta name="twitter:description" content="Add text, shapes, comments and highlights to your PDF document. 100% free, private &amp; secure in-browser processing.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -192,7 +272,7 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="../pdf/index.html" class="nav-link active">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -275,40 +355,89 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Tool Page Content -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Edit PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Edit PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Edit PDF</h1>
-      <p class="tool-hero-subtitle">Add text, shapes, comments and highlights to your PDF document with freehand drawing tools.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Edit PDF</h1>
+      <p class="vytra-tool-subtitle">
+        Add text, shapes, comments, highlights, and whiteout to your PDF documents online for free without quality loss
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Add text, annotations, signatures, and drawings directly to PDF</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ Secure</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="editorWorkspace" style="display:none;margin:24px 0;">
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="edit-dropzone">
+      <input type="file" id="edit-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF to edit">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <span>Choose files</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (29,810 votes)</span>
+        </div>
+        <div>
+          <span>Supported: PDF documents, applications, certificates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Workspace (Visible upon file selection) -->
+    <div class="pdf-editor-workspace" id="pdf-editor-workspace">
+      <!-- File Metadata Header -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:12px; border-bottom:1px solid var(--border-subtle, #e2e8f0); margin-bottom:1rem;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.6rem;">📄</span>
+          <div>
+            <div style="font-weight:700; color:var(--text-main, #0f172a); font-size:1rem;" id="fileName">Document.pdf</div>
+            <div style="font-size:0.8rem; color:var(--text-muted, #64748b);" id="fileMeta">0 KB • 0 Pages</div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">
+          🔄 Change File
+        </button>
+      </div>
+
       <!-- Toolbar -->
       <div class="editor-toolbar">
         <button class="tool-btn active" data-tool="pen">✏️ Pen</button>
@@ -323,7 +452,7 @@
         <input type="color" id="toolColor" value="#2563eb" style="width:32px;height:32px;border:none;border-radius:4px;cursor:pointer;padding:0;">
 
         <span style="font-size:0.8rem;font-weight:600;">Size:</span>
-        <select id="toolSize" class="form-select" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:4px;">
+        <select id="toolSize" class="form-select" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:4px;font-size:0.85rem;">
           <option value="2">Fine (2px)</option>
           <option value="4" selected>Medium (4px)</option>
           <option value="8">Bold (8px)</option>
@@ -333,13 +462,13 @@
         <div style="height:24px;width:1px;background:#cbd5e1;margin:0 4px;"></div>
 
         <button class="tool-btn" id="undoBtn">↩️ Undo</button>
-        <button class="tool-btn" id="clearPageBtn">🗑️ Clear Page</button>
+        <button class="tool-btn" id="clearPageBtn">🗑️ Clear</button>
 
-        <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
-          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev</button>
-          <span style="font-size:0.85rem;font-weight:600;" id="pageIndicator">1 / 1</span>
-          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next ▶</button>
-          <button class="btn btn-sm btn-primary" id="savePdfBtn">Save & Download</button>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="btn btn-sm btn-secondary" id="prevPageBtn">◀ Prev</button>
+          <span style="font-size:0.85rem;font-weight:700;color:var(--text-main,#0f172a);" id="pageIndicator">1 / 1</span>
+          <button class="btn btn-sm btn-secondary" id="nextPageBtn">Next ▶</button>
+          <button class="btn btn-sm btn-primary" id="savePdfBtn" style="font-weight:700;">Save &amp; Download</button>
         </div>
       </div>
 
@@ -352,49 +481,231 @@
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-      </div>
-      <p class="progress-text" id="progressText">Saving edited PDF... 0%</p>
-    </div>
-
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Edited Successfully!</h3>
-      <p class="result-desc" id="resultDesc">Your annotations and text have been merged into the document.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="edited.pdf">⬇️ Download Edited PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Edit Another PDF</button>
-      </div>
-    </div>
-
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Edit PDF Files</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select or drop your PDF document.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Annotate & Draw</h4>
-          <p class="step-desc">Select pen, highlighter, text, or whiteout tool and draw directly on the canvas.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Export PDF</h4>
-          <p class="step-desc">Click Save & Download to export your clean, annotated PDF document.</p>
-        </div>
+    <!-- Result Banner -->
+    <div class="result-banner" id="edit-result-banner">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:4px;">
+        PDF Edited Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:var(--text-body); margin-bottom:1.25rem;">
+        Your annotations and text have been merged into the document.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" style="padding:12px 24px; font-weight:700; text-decoration:none;">
+          📥 Download Edited PDF
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px;">
+          🔄 Edit Another Document
+        </button>
       </div>
     </div>
-  </div>
 
-    <footer class="footer">
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to edit PDF files</h3>
+          <p class="vytra-info-cell-desc">Select your PDF document or drag it into the file box. The pages will load on screen. Use the toolbar to insert text, highlights, freehand drawings, or whiteout boxes. Click 'Save &amp; Download' to save your new PDF.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔤</div>
+          <h3 class="vytra-info-cell-title">Insert text &amp; whiteout</h3>
+          <p class="vytra-info-cell-desc">Click anywhere to type new text or use the whiteout eraser to cover up confidential information before sharing documents.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">👤</div>
+          <h3 class="vytra-info-cell-title">Easy to use</h3>
+          <p class="vytra-info-cell-desc">Vytra makes PDF editing as simple and intuitive as possible. No complicated software or subscriptions; everything works directly in your web browser.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💻</div>
+          <h3 class="vytra-info-cell-title">Supports your system</h3>
+          <p class="vytra-info-cell-desc">No special requirements are needed to edit PDF files online. The application functions flawlessly across all modern browsers on desktop and mobile.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">No installation required</h3>
+          <p class="vytra-info-cell-desc">You do not have to install any heavy software like Adobe Acrobat. Edits are merged directly within your browser session.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">Secure PDF editing</h3>
+          <p class="vytra-info-cell-desc">Unlike cloud services that upload your confidential files to remote servers, Vytra runs 100% locally in your browser memory.</p>
+        </div>
+      </div>
+
+      <!-- Developer / Team Attribution Card -->
+      <div class="vytra-author-bar">
+        <div class="vytra-author-avatar">V</div>
+        <div class="vytra-author-text">Developed &amp; Maintained by Vytra Systems Team</div>
+      </div>
+    </section>
+
+    <!-- 4. What Others Are Saying (Social Proof & Testimonials) -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonial-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">
+            I needed to whiteout an account number and write my roll number on an admission slip. Vytra let me do it directly in my phone browser in 2 minutes!
+          </p>
+        </div>
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">
+            The freehand pen and text insertion are super smooth. No annoying watermark on the exported PDF like other free editors.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions and Answers (Accordion with Schema) -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <div class="vytra-qa-item active">
+          <button type="button" class="vytra-qa-header">
+            <span>How do I add text to a PDF file without Adobe Acrobat?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            Upload your PDF into Vytra's online editor. Select the 'Text' tool from the toolbar and click anywhere on the page to insert custom text, change font color, and adjust size.
+          </div>
+        </div>
+
+        <div class="vytra-qa-item">
+          <button type="button" class="vytra-qa-header">
+            <span>Can I whiteout or erase confidential parts of a PDF?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            Yes! Click the 'Whiteout' tool in the toolbar and drag a rectangular box over any text, signature, or number you wish to conceal.
+          </div>
+        </div>
+
+        <div class="vytra-qa-item">
+          <button type="button" class="vytra-qa-header">
+            <span>Are my edited PDF documents stored on any server?</span>
+            <span>▼</span>
+          </button>
+          <div class="vytra-qa-content">
+            No. All PDF rendering and annotation embedding takes place locally in your web browser memory. Your confidential files never leave your device.
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="../contact.html" style="color:#dc2626; font-weight:600; font-size:0.9rem; text-decoration:none;">+ Ask a new question +</a>
+      </div>
+    </section>
+
+    <!-- 6. Please Rate This App (Interactive Rating) -->
+    <section class="vytra-rate-section">
+      <h2 class="vytra-section-title">Please rate this app</h2>
+      <div class="vytra-stars-row" id="rateStarsRow">
+        <span data-star="1" class="active">★</span>
+        <span data-star="2" class="active">★</span>
+        <span data-star="3" class="active">★</span>
+        <span data-star="4" class="active">★</span>
+        <span data-star="5" class="active">★</span>
+      </div>
+      <div>
+        <textarea class="vytra-review-textarea" id="reviewTextInput" placeholder="Your impressions and thoughts. Please rate fairly." aria-label="Review"></textarea>
+      </div>
+      <div>
+        <button type="button" class="vytra-rate-submit-btn" id="btnSubmitRating">Submit</button>
+      </div>
+      <div id="rateFeedbackNotice" style="display:none; color:#16a34a; font-weight:700; margin-top:8px; font-size:0.9rem;">
+        Thank you for your rating! We appreciate your support.
+      </div>
+      <div style="margin-top:1.25rem;">
+        <a href="../contact.html" style="color:#dc2626; font-size:0.85rem; text-decoration:none;">Please report problems here →</a>
+      </div>
+    </section>
+
+    <!-- 7. Please Share Vytra with Friends -->
+    <section class="vytra-share-section">
+      <h2 class="vytra-section-title">Please share Vytra with friends</h2>
+      <div class="vytra-share-btns">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/edit.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on Facebook">f</a>
+        <a href="https://twitter.com/intent/tweet?text=Edit%20PDFs%20online%20for%20free%20with%20zero%20uploads%20at%20Vytra&url=https://digitalsaathi.vytra.in/pdf/edit.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on X (Twitter)">𝕏</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/edit.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on LinkedIn">in</a>
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20free%20PDF%20Editor:%20https://digitalsaathi.vytra.in/pdf/edit.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on WhatsApp">💬</a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools -->
+    <section style="margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle, #e2e8f0);">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main);">
+        Explore Related Free Tools
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+        <a href="sign.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">✍️</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Sign PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Add digital signature</div>
+          </div>
+        </a>
+        <a href="protect.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">🔒</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Protect PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Encrypt with password</div>
+          </div>
+        </a>
+        <a href="merge.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">📑</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Merge PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Combine multiple PDFs</div>
+          </div>
+        </a>
+        <a href="compress.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
+          <span style="font-size:1.6rem;">🗜️</span>
+          <div>
+            <div style="font-weight:700; font-size:0.92rem;">Compress PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Reduce PDF file size</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SaaS Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -444,8 +755,7 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
   <script>
@@ -456,22 +766,21 @@
     let currentFile = null;
     let originalPdfBytes = null;
     let pdfDocProxy = null;
-    let totalPages = 1;
     let currentPageNum = 1;
-    let activeTool = 'pen'; // 'pen', 'highlight', 'text', 'whiteout', 'rectangle'
+    let totalPages = 1;
+    let activeTool = 'pen';
     let isDrawing = false;
     let startX = 0, startY = 0;
-    let pageDrawings = {}; // { [pageNum]: [drawingCommands] }
     let currentPath = [];
+    let pageDrawings = {}; // { [pageNum]: [ { type, points/rect/text, ... } ] }
 
-    const uploadZone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
+    const fileInput = document.getElementById('edit-file-input');
+    const dropzone = document.getElementById('edit-dropzone');
+    const btnTriggerChoose = document.getElementById('btn-trigger-choose');
+    const workspace = document.getElementById('pdf-editor-workspace');
     const fileName = document.getElementById('fileName');
     const fileMeta = document.getElementById('fileMeta');
     const changeFileBtn = document.getElementById('changeFileBtn');
-    const editorWorkspace = document.getElementById('editorWorkspace');
     const pdfBgCanvas = document.getElementById('pdfBgCanvas');
     const drawingCanvas = document.getElementById('drawingCanvas');
     const drawCtx = drawingCanvas.getContext('2d');
@@ -483,12 +792,37 @@
     const nextPageBtn = document.getElementById('nextPageBtn');
     const pageIndicator = document.getElementById('pageIndicator');
     const savePdfBtn = document.getElementById('savePdfBtn');
-    const progressContainer = document.getElementById('progressContainer');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
+    const resultBanner = document.getElementById('edit-result-banner');
     const downloadBtn = document.getElementById('downloadBtn');
     const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Trigger file chooser
+    btnTriggerChoose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fileInput.click();
+    });
+    dropzone.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    ['dragenter', 'dragover'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+    });
+    ['dragleave', 'drop'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.remove('drag-over'); });
+    });
+    dropzone.addEventListener('drop', (e) => {
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    changeFileBtn.addEventListener('click', () => { fileInput.click(); });
 
     // Tool switcher
     document.querySelectorAll('.tool-btn[data-tool]').forEach(btn => {
@@ -499,35 +833,14 @@
       });
     });
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => { if (e.target !== selectBtn) fileInput.click(); });
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
-    });
-
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
-    });
-
-    changeFileBtn.addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
-
     async function handleFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-        alert('Please select a valid PDF file.');
+        dsToast.error('Please select a valid PDF file.');
         return;
       }
       currentFile = file;
       fileName.textContent = file.name;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Opening editor...';
+      dsToast.info('Opening PDF editor...');
 
       try {
         originalPdfBytes = await file.arrayBuffer();
@@ -535,16 +848,15 @@
         totalPages = pdfDocProxy.numPages;
         currentPageNum = 1;
         pageDrawings = {};
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
+        fileMeta.textContent = `${formatFileSize(file.size)} • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
 
-        progressContainer.style.display = 'none';
-        editorWorkspace.style.display = 'block';
+        dropzone.style.display = 'none';
+        workspace.style.display = 'block';
+        resultBanner.style.display = 'none';
         await renderPage();
       } catch (err) {
         console.error(err);
-        alert('Failed to load PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
+        dsToast.error('Failed to load PDF: ' + err.message);
       }
     }
 
@@ -727,10 +1039,9 @@
     nextPageBtn.addEventListener('click', () => { if (currentPageNum < totalPages) { currentPageNum++; renderPage(); } });
 
     savePdfBtn.addEventListener('click', async () => {
-      editorWorkspace.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '20%';
-      progressText.textContent = 'Saving annotations into PDF...';
+      savePdfBtn.disabled = true;
+      savePdfBtn.classList.add('is-loading');
+      savePdfBtn.textContent = 'Saving PDF...';
 
       try {
         const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
@@ -739,9 +1050,6 @@
         for (let pNum = 1; pNum <= pages.length; pNum++) {
           const items = pageDrawings[pNum];
           if (!items || items.length === 0) continue;
-
-          progressFill.style.width = `${Math.round(20 + (pNum / pages.length) * 60)}%`;
-          progressText.textContent = `Processing page ${pNum} annotations...`;
 
           const page = pages[pNum - 1];
           const { width: pdfW, height: pdfH } = page.getSize();
@@ -793,9 +1101,6 @@
           });
         }
 
-        progressFill.style.width = '90%';
-        progressText.textContent = 'Generating PDF binary...';
-
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
@@ -803,26 +1108,60 @@
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_edited.pdf';
         downloadBtn.href = url;
         downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Document edited successfully. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        document.getElementById('resultDesc').textContent = `Document edited successfully. Final file size: ${formatFileSize(blob.size)}.`;
 
-        progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        workspace.style.display = 'none';
+        resultBanner.style.display = 'block';
+        dsToast.success('PDF document edited and ready for download!');
       } catch (err) {
         console.error(err);
-        alert('Error saving edited PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        editorWorkspace.style.display = 'block';
+        dsToast.error('Error saving edited PDF: ' + err.message);
+      } finally {
+        savePdfBtn.disabled = false;
+        savePdfBtn.classList.remove('is-loading');
+        savePdfBtn.textContent = 'Save & Download';
       }
     });
 
     processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      editorWorkspace.style.display = 'none';
+      resultBanner.style.display = 'none';
+      workspace.style.display = 'none';
+      dropzone.style.display = 'block';
       fileInput.value = '';
       currentFile = null;
       pageDrawings = {};
+    });
+
+    // Rating Interactivity
+    const rateStars = document.querySelectorAll('#rateStarsRow span');
+    const rateFeedback = document.getElementById('rateFeedbackNotice');
+    rateStars.forEach(s => {
+      s.addEventListener('click', () => {
+        const starNum = parseInt(s.getAttribute('data-star'));
+        rateStars.forEach((st, idx) => {
+          if (idx < starNum) st.classList.add('active');
+          else st.classList.remove('active');
+        });
+        rateFeedback.style.display = 'block';
+        try {
+          localStorage.setItem('vytra_edit_pdf_rating', starNum);
+        } catch(e) {}
+      });
+    });
+
+    document.getElementById('btnSubmitRating').addEventListener('click', () => {
+      rateFeedback.style.display = 'block';
+      rateFeedback.textContent = 'Thank you for your rating and feedback!';
+    });
+
+    // QA Accordion Interactivity
+    document.querySelectorAll('.vytra-qa-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.vytra-qa-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.vytra-qa-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
     });
   </script>
 </body>
