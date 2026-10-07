@@ -822,28 +822,24 @@
       const homeGrid = document.getElementById('homeToolsGrid');
       const searchInput = document.getElementById('homeSearchInput');
       const catBtns = document.querySelectorAll('.cat-pill');
+      const popularSec = document.getElementById('popularToolsSection');
 
       let currentCat = 'all';
 
-      function renderTools(list) {
-        if (!list || list.length === 0) {
-          homeGrid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; background: #fff; border: 1px dashed var(--border-default); border-radius: var(--radius-xl);">
-              <div style="margin-bottom: 10px; color: var(--text-muted); display: flex; justify-content: center;">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">No tools match your search</h3>
-              <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Try searching for another keyword or select a category.</p>
-            </div>
-          `;
-          return;
-        }
-
-        homeGrid.innerHTML = list.map(t => {
-          const finalUrl = window.resolveToolUrl(t.url);
-          const iconHtml = window.getToolSvgIcon ? window.getToolSvgIcon(t.id, t.category) : `<div class="tool-icon-tile" style="background:#eff6ff;color:#2563eb;">${t.icon}</div>`;
+      // 1. Pre-render all tools ONCE with crisp vector SVGs and search metadata attributes
+      if (homeGrid && tools.length > 0) {
+        const cardsHtml = tools.map(t => {
+          const finalUrl = window.resolveToolUrl ? window.resolveToolUrl(t.url) : t.url;
+          const iconHtml = window.getToolSvgIcon ? window.getToolSvgIcon(t.id, t.category) : `<div class="tool-icon-tile" style="background:#eff6ff;color:#2563eb;">${t.icon || '📄'}</div>`;
+          const tagsStr = (t.tags || []).join(' ').toLowerCase();
           return `
-            <a href="${finalUrl}" class="tool-card">
+            <a href="${finalUrl}" class="tool-card" 
+               data-id="${t.id}"
+               data-cat="${t.category}" 
+               data-name="${window.escapeHtml(t.name).toLowerCase()}" 
+               data-desc="${window.escapeHtml(t.description).toLowerCase()}" 
+               data-catname="${window.escapeHtml(t.categoryName || '').toLowerCase()}" 
+               data-tags="${window.escapeHtml(tagsStr)}">
               <div class="tool-card-top">
                 ${iconHtml}
                 <span class="tool-badge">${t.badge || t.categoryName}</span>
@@ -857,29 +853,60 @@
             </a>
           `;
         }).join('');
+
+        const emptyStateHtml = `
+          <div id="homeEmptyState" style="display:none; grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; background: #fff; border: 1px dashed var(--border-default); border-radius: var(--radius-xl);">
+            <div style="margin-bottom: 10px; color: var(--text-muted); display: flex; justify-content: center;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">No tools match your search</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Try searching for another keyword or select a category pill above.</p>
+          </div>
+        `;
+
+        homeGrid.innerHTML = cardsHtml + emptyStateHtml;
       }
 
+      // Cached references to pre-rendered card DOM elements for 0ms style toggling
+      const toolCards = homeGrid ? homeGrid.querySelectorAll('.tool-card') : [];
+      const emptyStateEl = document.getElementById('homeEmptyState');
+
       function applyFilter() {
-        const query = (searchInput.value || '').toLowerCase().trim();
-        const popularSec = document.getElementById('popularToolsSection');
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
         if (popularSec) {
           popularSec.style.display = query.length > 0 ? 'none' : 'block';
         }
 
-        const filtered = tools.filter(t => {
-          const matchCat = (currentCat === 'all') || (t.category === currentCat);
-          const matchQ = !query || 
-            t.name.toLowerCase().includes(query) ||
-            t.description.toLowerCase().includes(query) ||
-            t.categoryName.toLowerCase().includes(query) ||
-            (t.tags && t.tags.some(tag => tag.toLowerCase().includes(query)));
-          
-          return matchCat && matchQ;
+        let matchCount = 0;
+        toolCards.forEach(card => {
+          const cardCat = card.getAttribute('data-cat');
+          const cardName = card.getAttribute('data-name');
+          const cardDesc = card.getAttribute('data-desc');
+          const cardCatName = card.getAttribute('data-catname');
+          const cardTags = card.getAttribute('data-tags');
+
+          const matchCat = (currentCat === 'all') || (cardCat === currentCat);
+          const matchQ = !query ||
+            cardName.includes(query) ||
+            cardDesc.includes(query) ||
+            cardCatName.includes(query) ||
+            cardTags.includes(query);
+
+          if (matchCat && matchQ) {
+            card.style.display = '';
+            matchCount++;
+          } else {
+            card.style.display = 'none';
+          }
         });
 
-        renderTools(filtered);
+        if (emptyStateEl) {
+          emptyStateEl.style.display = matchCount === 0 ? 'block' : 'none';
+        }
       }
 
+      // Category filter pills
       catBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           catBtns.forEach(b => b.classList.remove('active'));
@@ -889,18 +916,19 @@
         });
       });
 
+      // Debounced search input
       let searchTimer = null;
-      searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(applyFilter, 50);
-      });
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(applyFilter, 60);
+        });
+      }
 
       window.addEventListener('vytra:search', () => {
-        applyFilter();
+        if (searchTimer) clearTimeout(searchTimer);
+        searchTimer = setTimeout(applyFilter, 30);
       });
-
-      // Initial render
-      renderTools(tools);
     });
   </script>
 </body>

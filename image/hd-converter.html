@@ -1151,11 +1151,15 @@
       renderHdPipeline();
     }
 
-    // Sliders
+    // Sliders with rAF throttling
+    let hdRafTimer = null;
     function updateControlVal(key, val) {
       controls[key] = parseInt(val, 10);
       document.getElementById(`${key}Val`).textContent = `${val}%`;
-      renderHdPipeline();
+      if (hdRafTimer) cancelAnimationFrame(hdRafTimer);
+      hdRafTimer = requestAnimationFrame(() => {
+        renderHdPipeline();
+      });
     }
 
     // Initialize Workspace
@@ -1166,19 +1170,12 @@
       document.getElementById('hdWorkspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Core HD Upscaling & Enhancement Pipeline
-    function renderHdPipeline() {
-      if (!sourceImage) return;
-
-      const origW = sourceImage.width;
-      const origH = sourceImage.height;
-
-      // 1. Calculate Target HD Dimensions
+    function calculateHdDimensions(origW, origH, preset) {
       let targetW = origW;
       let targetH = origH;
       const aspect = origW / origH;
 
-      if (currentPreset === '1080p') {
+      if (preset === '1080p') {
         if (aspect >= 1) {
           targetW = 1920;
           targetH = Math.round(1920 / aspect);
@@ -1186,7 +1183,7 @@
           targetH = 1080;
           targetW = Math.round(1080 * aspect);
         }
-      } else if (currentPreset === '4k') {
+      } else if (preset === '4k') {
         if (aspect >= 1) {
           targetW = 3840;
           targetH = Math.round(3840 / aspect);
@@ -1194,7 +1191,7 @@
           targetH = 2160;
           targetW = Math.round(2160 * aspect);
         }
-      } else if (currentPreset === '2k') {
+      } else if (preset === '2k') {
         if (aspect >= 1) {
           targetW = 2560;
           targetH = Math.round(2560 / aspect);
@@ -1202,7 +1199,7 @@
           targetH = 1440;
           targetW = Math.round(1440 * aspect);
         }
-      } else if (currentPreset === '720p') {
+      } else if (preset === '720p') {
         if (aspect >= 1) {
           targetW = 1280;
           targetH = Math.round(1280 / aspect);
@@ -1210,45 +1207,58 @@
           targetH = 720;
           targetW = Math.round(720 * aspect);
         }
-      } else if (currentPreset === '2x') {
+      } else if (preset === '2x') {
         targetW = origW * 2;
         targetH = origH * 2;
-      } else if (currentPreset === '4x') {
+      } else if (preset === '4x') {
         targetW = origW * 4;
         targetH = origH * 4;
       }
 
-      // Max safety dimension check for in-browser canvas
       if (targetW > 4096) targetW = 4096;
       if (targetH > 4096) targetH = Math.round(targetW / aspect);
 
-      // Render Original onto Canvas (for visual comparison)
-      canvasOrig.width = targetW;
-      canvasOrig.height = targetH;
-      ctxOrig.imageSmoothingEnabled = false; // keep low-res pixel structure visible in comparison
-      ctxOrig.drawImage(sourceImage, 0, 0, targetW, targetH);
+      return { targetW, targetH, aspect };
+    }
 
-      // 2. Multi-Pass Progressive Bicubic Upscaling onto Processing Canvas
-      canvasProc.width = targetW;
-      canvasProc.height = targetH;
+    // Core HD Upscaling & Enhancement Pipeline (Optimized 60fps Interactive Preview)
+    function renderHdPipeline() {
+      if (!sourceImage) return;
 
-      // First step: smooth high-quality upscale
-      ctxProc.imageSmoothingEnabled = true;
-      ctxProc.imageSmoothingQuality = 'high';
-      ctxProc.drawImage(sourceImage, 0, 0, targetW, targetH);
+      const origW = sourceImage.width;
+      const origH = sourceImage.height;
+      const full = calculateHdDimensions(origW, origH, currentPreset);
+      const aspect = full.aspect;
 
-      // 3. Pixel-level Unsharp Mask & Micro-Contrast Enhancement
-      applyHdPixelEnhancements(ctxProc, targetW, targetH, controls);
-
-      // 4. Update Metadata texts
+      // Update Metadata texts with true target dimensions
       const origKb = sourceImage.fileSize ? Math.round(sourceImage.fileSize / 1024) : 80;
       document.getElementById('origMetaText').textContent = `${origW} × ${origH} px (~${origKb} KB)`;
       
-      const scale = (targetW / origW).toFixed(2);
+      const scale = (full.targetW / origW).toFixed(2);
       document.getElementById('scaleMetaText').textContent = `${scale}x Upscale`;
 
-      const estSizeKb = Math.round((targetW * targetH * 4) / (1024 * 6));
-      document.getElementById('targetMetaText').textContent = `${targetW} × ${targetH} px (~${estSizeKb > 1024 ? (estSizeKb/1024).toFixed(1) + ' MB' : estSizeKb + ' KB'}, 300 DPI)`;
+      const estSizeKb = Math.round((full.targetW * full.targetH * 4) / (1024 * 6));
+      document.getElementById('targetMetaText').textContent = `${full.targetW} × ${full.targetH} px (~${estSizeKb > 1024 ? (estSizeKb/1024).toFixed(1) + ' MB' : estSizeKb + ' KB'}, 300 DPI)`;
+
+      // Limit interactive split-screen canvas to maximum 1280px for zero lag & 60fps
+      const previewW = Math.min(full.targetW, 1280);
+      const previewH = Math.round(previewW / aspect);
+
+      // Render Original onto Canvas (for visual comparison)
+      canvasOrig.width = previewW;
+      canvasOrig.height = previewH;
+      ctxOrig.imageSmoothingEnabled = false; // keep low-res pixel structure visible in comparison
+      ctxOrig.drawImage(sourceImage, 0, 0, previewW, previewH);
+
+      // Multi-Pass Progressive Bicubic Upscaling onto Processing Canvas
+      canvasProc.width = previewW;
+      canvasProc.height = previewH;
+      ctxProc.imageSmoothingEnabled = true;
+      ctxProc.imageSmoothingQuality = 'high';
+      ctxProc.drawImage(sourceImage, 0, 0, previewW, previewH);
+
+      // Pixel-level Unsharp Mask & Micro-Contrast Enhancement
+      applyHdPixelEnhancements(ctxProc, previewW, previewH, controls);
     }
 
     // High-Definition Filter Algorithms
@@ -1257,7 +1267,6 @@
 
       const imgData = ctx.getImageData(0, 0, w, h);
       const data = imgData.data;
-      const len = data.length;
 
       // Copy for convolution
       const copy = new Uint8ClampedArray(data);
@@ -1357,20 +1366,58 @@
       handle.style.left = '50%';
     }
 
-    // Download HD Image
-    function downloadHdImage() {
-      if (!canvasProc) return;
+    // Download HD Image (Full Preset Native High-Res Export)
+    async function downloadHdImage() {
+      if (!sourceImage) return;
 
-      const format = document.getElementById('exportFormat').value;
-      const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
-      const filename = `${sourceFileName}_${currentPreset.toUpperCase()}_HD.${ext}`;
+      const btn = document.querySelector('button[onclick="downloadHdImage()"]');
+      const origText = btn ? btn.innerHTML : 'Download HD Image';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '⚡ Generating Full HD Image...';
+      }
 
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = canvasProc.toDataURL(format, 0.95);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Small tick to allow UI button text to paint
+      await new Promise(r => setTimeout(r, 40));
+
+      try {
+        const fullDims = calculateHdDimensions(sourceImage.width, sourceImage.height, currentPreset);
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = fullDims.targetW;
+        exportCanvas.height = fullDims.targetH;
+        const expCtx = exportCanvas.getContext('2d');
+        expCtx.imageSmoothingEnabled = true;
+        expCtx.imageSmoothingQuality = 'high';
+        expCtx.drawImage(sourceImage, 0, 0, fullDims.targetW, fullDims.targetH);
+
+        // Apply pixel enhancements at full export scale
+        applyHdPixelEnhancements(expCtx, fullDims.targetW, fullDims.targetH, controls);
+
+        const format = document.getElementById('exportFormat').value;
+        const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/webp' ? 'webp' : 'png';
+        const filename = `${sourceFileName}_${currentPreset.toUpperCase()}_HD.${ext}`;
+
+        exportCanvas.toBlob(blob => {
+          if (!blob) return;
+          const link = document.createElement('a');
+          link.download = filename;
+          link.href = URL.createObjectURL(blob);
+          document.body.appendChild(link);
+          link.click();
+          setTimeout(() => {
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+          }, 200);
+        }, format, 0.95);
+      } catch (err) {
+        console.error('HD Export Error:', err);
+        alert('Failed to generate full HD export: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = origText;
+        }
+      }
     }
 
     // 5-Star Interactive Rating Widget

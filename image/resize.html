@@ -781,18 +781,24 @@
       reader.readAsDataURL(file);
     }
 
+    let resizeDebounceTimer = null;
+    function scheduleResize() {
+      clearTimeout(resizeDebounceTimer);
+      resizeDebounceTimer = setTimeout(updateResize, 80);
+    }
+
     inputWidth.addEventListener('input', () => {
       if (lockAspect.checked && originalImg) {
         inputHeight.value = Math.round(parseInt(inputWidth.value || 0) / aspectRatio);
       }
-      updateResize();
+      scheduleResize();
     });
 
     inputHeight.addEventListener('input', () => {
       if (lockAspect.checked && originalImg) {
         inputWidth.value = Math.round(parseInt(inputHeight.value || 0) * aspectRatio);
       }
-      updateResize();
+      scheduleResize();
     });
 
     presetBtns.forEach(btn => {

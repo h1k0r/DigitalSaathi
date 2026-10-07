@@ -493,8 +493,12 @@
         });
       }
 
+      let lastQuery = null;
+
       function doSearch() {
         const query = input.value.toLowerCase().trim();
+        if (query === lastQuery) return;
+        lastQuery = query;
 
         if (query.length < 1) {
           resultsContainer.innerHTML = '';
@@ -543,7 +547,7 @@
         window.dispatchEvent(new CustomEvent('vytra:search', { detail: { query, count: currentMatches.length } }));
       }
 
-      input.addEventListener('input', doSearch);
+      input.addEventListener('input', debounce(doSearch, 60));
       input.addEventListener('focus', () => {
         if (input.value.trim().length >= 1) {
           doSearch();
@@ -715,13 +719,21 @@
       } catch (err) {}
     }
 
-    // Navbar elevation on scroll
+    // Navbar elevation on scroll (passive 60fps rAF throttle)
     if (navbar) {
+      let isScrolled = false;
+      let scrollTicking = false;
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
+        if (!scrollTicking) {
+          window.requestAnimationFrame(() => {
+            const shouldBeScrolled = window.scrollY > 20;
+            if (shouldBeScrolled !== isScrolled) {
+              isScrolled = shouldBeScrolled;
+              navbar.classList.toggle('scrolled', isScrolled);
+            }
+            scrollTicking = false;
+          });
+          scrollTicking = true;
         }
       }, { passive: true });
     }
@@ -824,6 +836,7 @@
   function upgradeEmojiIcons() {
     if (!window.getToolSvgIcon) return;
     const iconWraps = document.querySelectorAll('.saas-tool-icon-wrap, .tool-icon-box');
+    if (!iconWraps || iconWraps.length === 0) return;
     iconWraps.forEach(wrap => {
       const card = wrap.closest('a');
       if (!card) return;

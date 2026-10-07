@@ -793,6 +793,7 @@
       });
     });
 
+    let compressTimer = null;
     qualityRange.addEventListener('input', () => {
       qualityVal.textContent = qualityRange.value + '%';
       targetKB = null;
@@ -805,7 +806,8 @@
           b.classList.add('btn-secondary');
         }
       });
-      processImage();
+      clearTimeout(compressTimer);
+      compressTimer = setTimeout(processImage, 70);
     });
 
     formatSelect.addEventListener('change', processImage);

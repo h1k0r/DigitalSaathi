@@ -987,13 +987,17 @@
   </script>
 
   <!-- PDF.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" ></script>
 
   <!-- In-Browser PDF Invoice Parser & Electronic Generator -->
   <script>
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    function initPdfWorker() {
+      if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
     }
+    initPdfWorker();
+    document.addEventListener('DOMContentLoaded', initPdfWorker);
 
     let activeExportFormat = 'zugferd'; // 'zugferd', 'ubl', 'gst'
     let currentElectronicPayload = '';

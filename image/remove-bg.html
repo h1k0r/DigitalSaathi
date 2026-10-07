@@ -1099,6 +1099,17 @@
       img.src = offCanvas.toDataURL('image/jpeg', 0.95);
     }
 
+    let offscreenRawCanvas = null;
+    let offscreenRawCtx = null;
+    let rbgRafTimer = null;
+
+    function scheduleCutoutRender() {
+      if (rbgRafTimer) cancelAnimationFrame(rbgRafTimer);
+      rbgRafTimer = requestAnimationFrame(() => {
+        renderHdCutout();
+      });
+    }
+
     // Initialize Stage in Full Native Resolution
     function initHdStage() {
       if (!rawImage) return;
@@ -1107,10 +1118,16 @@
       canvas.height = rawImage.height;
       manualMask = new Uint8Array(rawImage.width * rawImage.height);
 
-      // Auto-sample background from 4 corners
-      ctx.drawImage(rawImage, 0, 0);
-      const tl = ctx.getImageData(10, 10, 1, 1).data;
-      const tr = ctx.getImageData(canvas.width - 10, 10, 1, 1).data;
+      // Create offscreen source canvas once for instant eyedropper and original lookups
+      offscreenRawCanvas = document.createElement('canvas');
+      offscreenRawCanvas.width = rawImage.width;
+      offscreenRawCanvas.height = rawImage.height;
+      offscreenRawCtx = offscreenRawCanvas.getContext('2d');
+      offscreenRawCtx.drawImage(rawImage, 0, 0);
+
+      // Auto-sample background from corners
+      const tl = offscreenRawCtx.getImageData(10, 10, 1, 1).data;
+      const tr = offscreenRawCtx.getImageData(canvas.width - 10, 10, 1, 1).data;
       sampledBgColor = {
         r: Math.round((tl[0] + tr[0]) / 2),
         g: Math.round((tl[1] + tr[1]) / 2),
@@ -1139,7 +1156,7 @@
         document.getElementById('modeText').textContent = `Color Replaced (${bg})`;
       }
 
-      renderHdCutout();
+      scheduleCutoutRender();
     }
 
     function handleCustomBgColor(val) {
@@ -1150,12 +1167,12 @@
     // Sliders
     function updateTolerance(val) {
       document.getElementById('toleranceText').textContent = `${val}%`;
-      renderHdCutout();
+      scheduleCutoutRender();
     }
 
     function updateFeather(val) {
       document.getElementById('featherText').textContent = `${val}px`;
-      renderHdCutout();
+      scheduleCutoutRender();
     }
 
     // Tools
@@ -1167,7 +1184,7 @@
       else if (tool === 'restore') document.getElementById('btnToolRestore').classList.add('active');
     }
 
-    // Full Native Resolution HD Removal Pipeline
+    // Full Native Resolution HD Removal Pipeline (High-Speed Optimized)
     function renderHdCutout() {
       if (!rawImage || !sampledBgColor) return;
 
@@ -1180,8 +1197,14 @@
       const imgData = ctx.getImageData(0, 0, w, h);
       const data = imgData.data;
 
-      const tol = (parseInt(document.getElementById('toleranceSlider').value, 10) / 100) * 441; // Max RGB distance is sqrt(255^2*3) = 441.6
+      const tol = (parseInt(document.getElementById('toleranceSlider').value, 10) / 100) * 441;
       const feather = parseInt(document.getElementById('featherSlider').value, 10) * 12;
+
+      // Precalculate squared thresholds to avoid calling Math.sqrt on every single pixel!
+      const tolNormalized = tol / 1.8;
+      const tolSq = tolNormalized * tolNormalized;
+      const featherLimit = (tol + feather) / 1.8;
+      const featherSq = featherLimit * featherLimit;
 
       const sr = sampledBgColor.r;
       const sg = sampledBgColor.g;
@@ -1221,13 +1244,13 @@
         const g = data[i + 1];
         const b = data[i + 2];
 
-        // Delta E approximation (weighted Euclidean distance for human perception)
+        // Delta E squared comparison (avoiding Math.sqrt on 90%+ of pixels)
         const dr = r - sr;
         const dg = g - sg;
         const db = b - sb;
-        const dist = Math.sqrt(0.299 * dr * dr + 0.587 * dg * dg + 0.114 * db * db) * 1.8;
+        const distSq = 0.299 * dr * dr + 0.587 * dg * dg + 0.114 * db * db;
 
-        if (dist <= tol) {
+        if (distSq <= tolSq) {
           if (isTransparent) {
             data[i + 3] = 0; // pure alpha transparent
           } else {
@@ -1236,8 +1259,9 @@
             data[i + 2] = tb;
             data[i + 3] = 255;
           }
-        } else if (dist <= tol + feather && feather > 0) {
-          // Smooth edge feathering
+        } else if (feather > 0 && distSq <= featherSq) {
+          // Smooth edge feathering on boundary pixels only
+          const dist = Math.sqrt(distSq) * 1.8;
           const alphaFactor = (dist - tol) / feather; // 0 (background) to 1 (subject)
           if (isTransparent) {
             data[i + 3] = Math.round(255 * alphaFactor);
@@ -1287,21 +1311,17 @@
             }
           }
         }
-        renderHdCutout();
+        scheduleCutoutRender();
       }
 
       canvas.addEventListener('mousedown', e => {
         const coords = getCanvasCoords(e);
         if (activeTool === 'eyedropper') {
-          // Sample color from raw original
-          const tempCanvas = document.createElement('canvas');
-          tempCanvas.width = canvas.width;
-          tempCanvas.height = canvas.height;
-          const tCtx = tempCanvas.getContext('2d');
-          tCtx.drawImage(rawImage, 0, 0);
-          const pixel = tCtx.getImageData(coords.x, coords.y, 1, 1).data;
-          sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
-          renderHdCutout();
+          if (offscreenRawCtx) {
+            const pixel = offscreenRawCtx.getImageData(coords.x, coords.y, 1, 1).data;
+            sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
+            scheduleCutoutRender();
+          }
         } else {
           isDrawing = true;
           applyBrush(coords);
@@ -1320,14 +1340,11 @@
       canvas.addEventListener('touchstart', e => {
         const coords = getCanvasCoords(e);
         if (activeTool === 'eyedropper') {
-          const tempCanvas = document.createElement('canvas');
-          tempCanvas.width = canvas.width;
-          tempCanvas.height = canvas.height;
-          const tCtx = tempCanvas.getContext('2d');
-          tCtx.drawImage(rawImage, 0, 0);
-          const pixel = tCtx.getImageData(coords.x, coords.y, 1, 1).data;
-          sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
-          renderHdCutout();
+          if (offscreenRawCtx) {
+            const pixel = offscreenRawCtx.getImageData(coords.x, coords.y, 1, 1).data;
+            sampledBgColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
+            scheduleCutoutRender();
+          }
         } else {
           isDrawing = true;
           applyBrush(coords);

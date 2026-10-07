@@ -844,9 +844,13 @@
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
   <script>
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    function initPdfWorker() {
+      if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
     }
+    initPdfWorker();
+    document.addEventListener('DOMContentLoaded', initPdfWorker);
 
     let currentFile = null;
     let currentArrayBuffer = null;
