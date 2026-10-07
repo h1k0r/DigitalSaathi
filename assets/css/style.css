@@ -4082,3 +4082,444 @@ img {
   will-change: transform;
 }
 
+/* ==========================================================================
+   VYTRA UNIFIED PROFESSIONAL TOOL PAGE DESIGN SYSTEM (PDF24 STANDARD)
+   ========================================================================== */
+.vytra-tool-view {
+  max-width: 1040px;
+  margin: 1.5rem auto 4rem;
+  padding: 0 1rem;
+}
+
+.vytra-tool-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.vytra-tool-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.vytra-tool-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted, #64748b);
+  max-width: 760px;
+  margin: 0 auto 1.25rem;
+  line-height: 1.5;
+}
+
+.vytra-trust-chips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 1.75rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #15803d;
+}
+
+.vytra-trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* The Signature PDF24-Style Dropzone Workspace Box */
+.vytra-dropzone-box {
+  background: #f0f7ff;
+  border: 2px dashed #93c5fd;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem 1.25rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.04);
+}
+
+.vytra-dropzone-box:hover,
+.vytra-dropzone-box.dragover {
+  background: #e0f2fe;
+  border-color: #2563eb;
+}
+
+.vytra-dz-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+.vytra-dz-secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #16a34a;
+}
+
+.vytra-dz-desktop-link {
+  color: #2563eb;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vytra-choose-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 14px 38px;
+  border-radius: 9999px;
+  border: none;
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.28);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 0.75rem;
+}
+
+.vytra-choose-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(234, 88, 12, 0.35);
+}
+
+.vytra-choose-btn-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28);
+}
+
+.vytra-choose-btn-blue:hover {
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.35);
+}
+
+.vytra-dz-subtext {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.vytra-dz-terms {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 1.75rem;
+}
+
+.vytra-dz-bottombar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: #64748b;
+  border-top: 1px dashed #bfdbfe;
+  padding-top: 0.75rem;
+}
+
+.vytra-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+}
+
+.vytra-rating-badge .star-icon {
+  color: #f59e0b;
+}
+
+/* Advertisement Slot Header */
+.vytra-ad-notice {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 1.25rem 0 2rem;
+}
+
+/* Information Section (6-Block Grid) */
+.vytra-info-section {
+  margin-top: 4.5rem;
+  text-align: center;
+}
+
+.vytra-section-title {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 0.75rem;
+}
+
+.vytra-os-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #16a34a;
+  margin-bottom: 2.5rem;
+}
+
+.vytra-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem 1.75rem;
+  text-align: left;
+}
+
+.vytra-info-cell {
+  background: transparent;
+}
+
+.vytra-info-cell-icon {
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+  color: var(--primary, #2563eb);
+}
+
+.vytra-info-cell-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 6px;
+}
+
+.vytra-info-cell-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Team / Developer Attribution Card */
+.vytra-author-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 2.5rem auto 0;
+  padding: 10px 18px;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 9999px;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.vytra-author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vytra-author-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main, #0f172a);
+}
+
+/* Testimonials / Social Proof */
+.vytra-testimonials-section {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.vytra-testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.vytra-testimonial-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.vytra-quote-icon {
+  font-size: 2.5rem;
+  color: #bfdbfe;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-family: serif;
+}
+
+.vytra-quote-text {
+  font-size: 0.95rem;
+  color: var(--text-main, #334155);
+  line-height: 1.55;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Questions and Answers (Accordion) */
+.vytra-qa-section {
+  margin-top: 5rem;
+}
+
+.vytra-qa-list {
+  max-width: 820px;
+  margin: 1.75rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vytra-qa-item {
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.vytra-qa-item.active {
+  border-color: #93c5fd;
+}
+
+.vytra-qa-header {
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main, #0f172a);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vytra-qa-content {
+  display: none;
+  padding: 0 1.25rem 1.25rem;
+  color: var(--text-muted, #64748b);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.vytra-qa-item.active .vytra-qa-content {
+  display: block;
+}
+
+/* Interactive App Rating */
+.vytra-rate-section {
+  margin-top: 5rem;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vytra-stars-row {
+  display: inline-flex;
+  gap: 8px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #cbd5e1;
+  margin: 12px 0 16px;
+}
+
+.vytra-stars-row span:hover,
+.vytra-stars-row span.active {
+  color: #f59e0b;
+}
+
+.vytra-review-textarea {
+  width: 100%;
+  height: 90px;
+  border: 1px solid var(--border-default, #cbd5e1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.vytra-review-textarea:focus {
+  border-color: var(--primary, #2563eb);
+}
+
+.vytra-rate-submit-btn {
+  padding: 8px 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  background: var(--bg-surface-subtle, #f1f5f9);
+  color: var(--text-main, #334155);
+  border: 1px solid var(--border-default, #cbd5e1);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.vytra-rate-submit-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Social Share Bar */
+.vytra-share-section {
+  margin-top: 4.5rem;
+  text-align: center;
+}
+
+.vytra-share-btns {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.vytra-share-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  color: var(--text-main, #0f172a);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.18s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.vytra-share-btn:hover {
+  background: var(--primary, #2563eb);
+  color: #ffffff;
+  border-color: var(--primary, #2563eb);
+  transform: translateY(-2px);
+}
+
