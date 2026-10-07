@@ -12,9 +12,9 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Free Online Tools Directory — PDF, Images, Developer &amp; Calculators | Vytra</title>
-  <meta name="description" content="Browse our complete directory of 100% free client-side online tools. Convert, compress, edit, calculate, and manage files directly in your web browser with zero server uploads.">
-  <meta name="keywords" content="free online tools, pdf tools, image compressor, json formatter, qr generator, age calculator, emi calculator, word counter, digitalsaathi directory">
+  <title>All Tools Directory — 100% Free Online Tools | Vytra</title>
+  <meta name="description" content="Browse Vytra's complete directory of 76+ free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, calculate, format JSON, and generate QR codes with 100% private in-browser processing.">
+  <meta name="keywords" content="all tools, pdf tools directory, convert to pdf, convert from pdf, free online tools, image compressor, json formatter, qr generator, age calculator, ilovepdf alternative, pdf24 alternative, vytra">
 
   <!-- Fonts & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,175 +23,365 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <style>
-    .directory-search-wrap {
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
+    /* Fresh & Modern SaaS Directory Styles */
+    .dir-hero {
+      text-align: center;
+      padding: 1.5rem 1rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .dir-hero-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: var(--text-main, #0f172a);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+    .dir-hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted, #64748b);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Live Search & Toolbar Controls */
+    .dir-toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    .dir-search-wrap {
+      width: 100%;
       position: relative;
     }
-    .directory-search-input {
+    .dir-search-input {
       width: 100%;
       padding: 14px 20px 14px 46px;
       font-size: 1rem;
-      border: 2px solid var(--border-default);
-      border-radius: var(--radius-full);
-      box-shadow: var(--shadow-sm);
+      border: 1.5px solid var(--border-default, #cbd5e1);
+      border-radius: var(--radius-full, 9999px);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
       outline: none;
       transition: all 0.2s;
+      background: #ffffff;
+      color: var(--text-main, #0f172a);
     }
-    .directory-search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px var(--primary-glow);
+    .dir-search-input:focus {
+      border-color: var(--primary, #2563eb);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
     }
     .dir-search-icon {
       position: absolute;
       left: 18px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.2rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
     }
-    .filter-pills-wrap {
+
+    /* Top Sticky Category Filter Pills (Like PDF24 but Modern) */
+    .filter-pills-bar {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 2.5rem;
+      padding: 4px;
     }
-    .filter-btn {
-      padding: 7px 16px;
-      font-size: 0.88rem;
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
       font-weight: 600;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-full);
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-default, #e2e8f0);
+      border-radius: 9999px;
       cursor: pointer;
-      color: var(--text-body);
-      transition: all 0.2s;
+      color: var(--text-main, #334155);
+      transition: all 0.18s ease;
+      user-select: none;
     }
-    .filter-btn:hover {
-      background: var(--primary-50);
-      color: var(--primary);
-      border-color: var(--primary-200);
+    .filter-pill:hover {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+      border-color: #bfdbfe;
     }
-    .filter-btn.active {
-      background: var(--primary);
+    .filter-pill.active {
+      background: var(--primary, #2563eb);
       color: #ffffff;
-      border-color: var(--primary);
-      box-shadow: var(--shadow-xs);
+      border-color: var(--primary, #2563eb);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
     }
-    .tool-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+    .filter-pill .pill-count {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    .filter-pill.active .pill-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* View Switcher Bar (Compact Matrix vs Detailed Bento) */
+    .view-control-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+      padding-bottom: 0.75rem;
+    }
+    .view-count-label {
+      font-size: 0.9rem;
+      color: var(--text-muted, #64748b);
+      font-weight: 600;
+    }
+    .view-switch-btns {
+      display: inline-flex;
+      background: var(--bg-surface-subtle, #f1f5f9);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+    }
+    .view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted, #64748b);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .view-btn.active {
+      background: #ffffff;
+      color: var(--primary, #2563eb);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* Section Headers */
+    .tool-section-block {
       margin-bottom: 3.5rem;
     }
-    .tool-card {
+    .section-header-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #eff6ff;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main, #0f172a);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-badge-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* 1. MATRIX COMPACT VIEW (PDF24 High-Density Style with Modern Polish) */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    @media (min-width: 1024px) {
+      .matrix-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+    @media (min-width: 1280px) {
+      .matrix-grid {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+    .matrix-card {
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 1.5rem;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: 12px;
+      padding: 16px 10px 12px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+      min-height: 120px;
+    }
+    .matrix-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-300, #93c5fd);
+      box-shadow: 0 8px 16px -2px rgba(37, 99, 235, 0.12);
+    }
+    .matrix-card .fav-star-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      font-size: 1rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: color 0.15s;
+      z-index: 2;
+    }
+    .matrix-card .fav-star-btn:hover,
+    .matrix-card .fav-star-btn.active {
+      color: #f59e0b;
+    }
+    .matrix-card .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .matrix-card .icon-box svg {
+      width: 24px;
+      height: 24px;
+    }
+    .matrix-card .tool-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main, #0f172a);
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    /* 2. DETAILED BENTO VIEW (With Full Descriptions) */
+    .detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .detailed-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: var(--radius-xl, 16px);
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       text-decoration: none;
       color: inherit;
-      box-shadow: var(--shadow-xs);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
     }
-    .tool-card:hover {
+    .detailed-card:hover {
       transform: translateY(-4px);
-      border-color: var(--primary-300);
-      box-shadow: var(--shadow-card-hover);
+      border-color: var(--primary-300, #93c5fd);
+      box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
     }
-    .tool-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-    }
-    .tool-icon-box {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      background: var(--primary-50);
+    .detailed-card .top-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
     }
-    .tool-badge {
-      font-size: 0.72rem;
+    .detailed-card .fav-star-btn {
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: color 0.15s;
+    }
+    .detailed-card .fav-star-btn:hover,
+    .detailed-card .fav-star-btn.active {
+      color: #f59e0b;
+    }
+    .detailed-card .tool-title {
+      font-size: 1.05rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      background: var(--primary-50);
-      color: var(--primary-700);
-      border: 1px solid var(--primary-200);
+      color: var(--text-main, #0f172a);
+      margin-bottom: 0.35rem;
     }
-    .tool-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 0.4rem;
-    }
-    .tool-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
+    .detailed-card .tool-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted, #64748b);
       line-height: 1.45;
       flex-grow: 1;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
-    .tool-footer {
+    .detailed-card .card-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle, #f1f5f9);
+      font-size: 0.8125rem;
       font-weight: 600;
-      color: var(--primary);
+      color: var(--primary, #2563eb);
     }
+
+    /* Empty state */
     .empty-state {
-      grid-column: 1 / -1;
       text-align: center;
       padding: 3.5rem 1rem;
       background: #ffffff;
-      border: 1px dashed var(--border-default);
-      border-radius: var(--radius-xl);
+      border: 1px dashed var(--border-default, #cbd5e1);
+      border-radius: var(--radius-xl, 16px);
+      margin: 2rem 0;
     }
   </style>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/tools/index.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/tools/index.html">
-  <meta property="og:title" content="All Free Online Tools Directory — PDF, Images, Developer &amp; Calculators | Vytra">
-  <meta property="og:description" content="Browse our complete directory of 100% free client-side online tools. Convert, compress, edit, calculate, and manage files directly in your web browser with zero server uploads.">
+  <meta property="og:title" content="All Tools Directory — 100% Free Online Tools | Vytra">
+  <meta property="og:description" content="Browse Vytra's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and calculate.">
   <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Free Online Tools Directory — PDF, Images, Developer &amp; Calculators | Vytra">
-  <meta name="twitter:description" content="Browse our complete directory of 100% free client-side online tools. Convert, compress, edit, calculate, and manage files directly in your web browser with zero server uploads.">
-  <!-- Top Ranking Structured Data Schema -->
+
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "All Free Online Tools Directory \u2014 PDF, Images, Developer &amp; Calculators | Vytra",
-  "url": "https://digitalsaathi.vytra.in/tools/index.html",
-  "description": "Browse our complete directory of 100% free client-side online tools. Convert, compress, edit, calculate, and manage files directly in your web browser with zero server uploads."
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "All Tools Directory — 100% Free Online Tools | Vytra",
+    "url": "https://digitalsaathi.vytra.in/tools/index.html",
+    "description": "Browse Vytra's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and calculate."
+  }
   </script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518"
      crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Universal Header Navigation (SaaS Professional Standard: No Emojis, Crisp Typography) -->
-      <nav class="navbar" id="main-nav">
+  <!-- Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -264,7 +454,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../tools/index.html" class="nav-link">
+          <a href="../tools/index.html" class="nav-link active">
             All Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -291,73 +481,124 @@
     </div>
   </nav>
 
-  <!-- Main Content Body -->
-  <main class="container page-content" style="max-width: 1200px; padding: 2.5rem 1rem 4rem;">
+  <!-- Main Directory Body -->
+  <main class="container page-content" style="max-width: 1240px; padding: 1.5rem 1rem 4rem;">
     <!-- Directory Hero -->
-    <div class="tool-hero" style="padding-top: 1rem;">
-      <h1 class="tool-hero-title">Free Online Tools Directory</h1>
-      <p class="tool-hero-subtitle">Every tool you need to convert, compress, edit, calculate, and manage files directly in your web browser. 100% Free &amp; Private.</p>
+    <div class="dir-hero">
+      <h1 class="dir-hero-title">All Online Tools</h1>
+      <p class="dir-hero-desc">
+        Fast, clean, 100% free client-side tools. Convert files, compress documents, calculate numbers, and format code with complete in-browser privacy.
+      </p>
 
-      <!-- Instant Live Search Box -->
-      <div class="directory-search-wrap">
-        <span class="dir-search-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </span>
-        <input type="text" id="dirSearchInput" class="directory-search-input" placeholder="Search any tool (e.g. Merge PDF, Image Compress, JSON, QR)..." aria-label="Search tools">
-      </div>
-
-      <!-- Category Filter Pills (Clean SaaS: Zero Emojis) -->
-      <div class="filter-pills-wrap" id="categoryFilterWrap">
-        <button type="button" class="filter-btn active" data-category="all">All Tools (<span id="totalCount">0</span>)</button>
-        <button type="button" class="filter-btn" data-category="pdf">PDF Tools</button>
-        <button type="button" class="filter-btn" data-category="images">Image Tools</button>
-        <button type="button" class="filter-btn" data-category="developer">Developer</button>
-        <button type="button" class="filter-btn" data-category="calculators">Calculators</button>
-        <button type="button" class="filter-btn" data-category="text">Text Tools</button>
-        <button type="button" class="filter-btn" data-category="utilities">Utilities</button>
-      </div>
-    </div>
-
-
-    <!-- Dynamic Tool Cards Grid -->
-    <div id="toolsGrid" class="tool-cards-grid">
-      <!-- Dynamically generated from data/tools.js -->
-    </div>
-
-    <!-- Privacy Trust Section -->
-    <section class="section-card" style="background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%); border: 1px solid var(--primary-200); border-radius: var(--radius-xl); padding: 2.5rem 2rem; margin-bottom: 3rem;">
-      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <div style="margin-bottom: 12px; color: var(--primary); display: flex; justify-content: center;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- Instant Live Search Bar -->
+      <div class="dir-toolbar">
+        <div class="dir-search-wrap">
+          <span class="dir-search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" id="dirSearchInput" class="dir-search-input" placeholder="Search any tool (e.g. Merge PDF, PDF to Images, Compress, QR)..." aria-label="Search all tools">
         </div>
-        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">100% Client-Side Privacy Guarantee</h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-          Your sensitive documents, confidential images, and private text never touch our servers. All file processing happens locally in your browser sandbox using HTML5 Canvas, WebAssembly, and modern Web APIs.
+      </div>
+
+      <!-- PDF24-Inspired Quick-Filter Category Pills -->
+      <div class="filter-pills-bar" id="categoryFilterBar">
+        <button type="button" class="filter-pill active" data-filter="all">
+          <span>All Tools</span>
+          <span class="pill-count" id="countAll">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="favorites" id="pillFavorites" style="display:none;">
+          <span>⭐ Favorites</span>
+          <span class="pill-count" id="countFavorites">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="convert-to-pdf">
+          <span>Convert to PDF</span>
+          <span class="pill-count" id="countConvertToPdf">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="convert-from-pdf">
+          <span>Convert from PDF</span>
+          <span class="pill-count" id="countConvertFromPdf">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="organize-pdf">
+          <span>Organize &amp; Edit PDF</span>
+          <span class="pill-count" id="countOrganizePdf">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="image-tools">
+          <span>Image &amp; Photo</span>
+          <span class="pill-count" id="countImage">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="calculators">
+          <span>Calculators</span>
+          <span class="pill-count" id="countCalc">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="developer">
+          <span>Developer</span>
+          <span class="pill-count" id="countDev">0</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="utilities">
+          <span>Utilities</span>
+          <span class="pill-count" id="countUtil">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- View Controls Toolbar (Density Switcher) -->
+    <div class="view-control-row">
+      <div class="view-count-label" id="resultsSummaryText">Showing all tools</div>
+      <div class="view-switch-btns">
+        <button type="button" class="view-btn active" id="btnViewMatrix" title="Compact matrix grid (PDF24 style)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Compact Matrix
+        </button>
+        <button type="button" class="view-btn" id="btnViewDetailed" title="Detailed cards with descriptions">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Detailed Cards
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamic Categorized Content Container -->
+    <div id="sectionsContainer">
+      <!-- Injected by JavaScript with categorized groups & favorites shelf -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div style="margin-bottom:12px; color:var(--text-muted); display:flex; justify-content:center;">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <h3 style="font-size:1.25rem; font-weight:700; color:var(--text-main); margin-bottom:4px;">No matching tools found</h3>
+      <p style="color:var(--text-muted); font-size:0.92rem; margin:0;">
+        Try searching for another keyword like "PDF", "JPG", "Compress", or "Convert".
+      </p>
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3.5rem 0 2rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Client-Side Privacy Guarantee Callout -->
+    <section class="section-card" style="background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border: 1px solid #bfdbfe; border-radius: var(--radius-xl); padding: 2.5rem 2rem; margin-top: 2rem; text-align: center;">
+      <div style="max-width: 780px; margin: 0 auto;">
+        <div style="margin-bottom: 12px; color: var(--primary); display: flex; justify-content: center;">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">100% In-Browser Privacy Guarantee</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Unlike legacy converters that upload your confidential files to remote servers, Vytra runs directly inside your browser using HTML5 Canvas and WebAssembly. Your documents, photos, and personal data never leave your device.
         </p>
       </div>
     </section>
-
-    <!-- FAQ Section -->
-    <section class="section-card" style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem;">
-      <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">Frequently Asked Questions</h2>
-      <div class="faq-item" style="border-bottom: 1px solid var(--border-subtle); padding: 1rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Are all tools on Vytra completely free?</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Yes! All tools are 100% free with unlimited usage, no watermarks, no registration, and no subscriptions.</p>
-      </div>
-      <div class="faq-item" style="border-bottom: 1px solid var(--border-subtle); padding: 1rem 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Can I use these tools on mobile phones?</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Yes! Every tool is designed mobile-first and tested to run smoothly on Android, iOS, tablets, and desktop browsers.</p>
-      </div>
-      <div class="faq-item" style="padding: 1rem 0 0;">
-        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;">Are there any file size or usage limits?</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Since all processing is done locally on your machine, you are only limited by your device's memory. There are no artificial daily limits.</p>
-      </div>
-    </section>
-
   </main>
 
-  <!-- Universal Footer -->
-    <footer class="footer">
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -413,78 +654,264 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const tools = window.VYTRA_TOOLS || window.DIGITALSAATHI_TOOLS || [];
-      const grid = document.getElementById('toolsGrid');
+      const sectionsContainer = document.getElementById('sectionsContainer');
+      const emptyState = document.getElementById('emptyState');
       const searchInput = document.getElementById('dirSearchInput');
-      const totalCountSpan = document.getElementById('totalCount');
-      const filterBtns = document.querySelectorAll('.filter-btn');
+      const filterBtns = document.querySelectorAll('.filter-pill');
+      const pillFavorites = document.getElementById('pillFavorites');
+      const summaryText = document.getElementById('resultsSummaryText');
+      const btnMatrix = document.getElementById('btnViewMatrix');
+      const btnDetailed = document.getElementById('btnViewDetailed');
 
-      totalCountSpan.textContent = tools.length;
-      let activeCategory = 'all';
+      // State
+      let activeFilter = 'all';
+      let currentView = localStorage.getItem('vytra_dir_view') || 'matrix'; // 'matrix' or 'detailed'
+      let favorites = [];
+      try {
+        favorites = JSON.parse(localStorage.getItem('vytra_favorite_tools') || '[]');
+      } catch (e) {
+        favorites = [];
+      }
 
-      function renderToolCards(filteredList) {
-        if (!filteredList || filteredList.length === 0) {
-          grid.innerHTML = `
-            <div class="empty-state">
-              <div style="margin-bottom:12px; color:var(--text-muted); display:flex; justify-content:center;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3 style="font-size:1.2rem; font-weight:700; color:var(--text-main);">No tools found</h3>
-              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:4px;">Try adjusting your search keywords or clearing the category filter.</p>
-            </div>
-          `;
-          return;
+      // Sync active view button
+      if (currentView === 'detailed') {
+        btnDetailed.classList.add('active');
+        btnMatrix.classList.remove('active');
+      } else {
+        btnMatrix.classList.add('active');
+        btnDetailed.classList.remove('active');
+      }
+
+      btnMatrix.addEventListener('click', () => {
+        currentView = 'matrix';
+        localStorage.setItem('vytra_dir_view', 'matrix');
+        btnMatrix.classList.add('active');
+        btnDetailed.classList.remove('active');
+        render();
+      });
+
+      btnDetailed.addEventListener('click', () => {
+        currentView = 'detailed';
+        localStorage.setItem('vytra_dir_view', 'detailed');
+        btnDetailed.classList.add('active');
+        btnMatrix.classList.remove('active');
+        render();
+      });
+
+      // Semantic Section Groupings (Matching PDF24 Intent Architecture)
+      const SECTION_DEFS = [
+        {
+          id: 'favorites',
+          title: '⭐ Frequently Used & Favorites',
+          icon: '⭐',
+          predicate: (t) => favorites.includes(t.id)
+        },
+        {
+          id: 'convert-to-pdf',
+          title: 'Convert to PDF',
+          icon: '📥',
+          predicate: (t) => {
+            const id = t.id.toLowerCase();
+            return (id.endsWith('-to-pdf') || id.includes('images-to-pdf')) && !id.startsWith('pdf-to-');
+          }
+        },
+        {
+          id: 'convert-from-pdf',
+          title: 'Convert from PDF',
+          icon: '📤',
+          predicate: (t) => {
+            const id = t.id.toLowerCase();
+            return id.startsWith('pdf-to-') || id === 'extract-images';
+          }
+        },
+        {
+          id: 'organize-pdf',
+          title: 'Organize, Edit & Secure PDF',
+          icon: '📑',
+          predicate: (t) => {
+            const id = t.id.toLowerCase();
+            return (t.category === 'pdf' || t.category === 'cybercafe') &&
+                   !id.endsWith('-to-pdf') &&
+                   !id.startsWith('pdf-to-');
+          }
+        },
+        {
+          id: 'image-tools',
+          title: 'Image & Photo Tools',
+          icon: '🖼️',
+          predicate: (t) => t.category === 'images' || t.category === 'image'
+        },
+        {
+          id: 'calculators',
+          title: 'Calculators & Converters',
+          icon: '🧮',
+          predicate: (t) => t.category === 'calculators'
+        },
+        {
+          id: 'developer',
+          title: 'Developer & Code Tools',
+          icon: '💻',
+          predicate: (t) => t.category === 'developer'
+        },
+        {
+          id: 'utilities',
+          title: 'Text & Everyday Utilities',
+          icon: '📝',
+          predicate: (t) => t.category === 'text' || t.category === 'utilities' || t.category === 'student' || t.category === 'jobs'
+        }
+      ];
+
+      function updateCounts() {
+        document.getElementById('countAll').textContent = tools.length;
+        document.getElementById('countFavorites').textContent = favorites.length;
+        if (favorites.length > 0) {
+          pillFavorites.style.display = 'inline-flex';
+        } else {
+          pillFavorites.style.display = 'none';
         }
 
-        grid.innerHTML = filteredList.map(t => {
-          const finalUrl = window.resolveToolUrl(t.url);
-          const iconTile = window.getToolSvgIcon ? window.getToolSvgIcon(t.id, t.category) : `<div class="tool-icon-tile">${t.icon}</div>`;
+        SECTION_DEFS.forEach(sec => {
+          const matchCount = tools.filter(sec.predicate).length;
+          if (sec.id === 'convert-to-pdf') document.getElementById('countConvertToPdf').textContent = matchCount;
+          if (sec.id === 'convert-from-pdf') document.getElementById('countConvertFromPdf').textContent = matchCount;
+          if (sec.id === 'organize-pdf') document.getElementById('countOrganizePdf').textContent = matchCount;
+          if (sec.id === 'image-tools') document.getElementById('countImage').textContent = matchCount;
+          if (sec.id === 'calculators') document.getElementById('countCalc').textContent = matchCount;
+          if (sec.id === 'developer') document.getElementById('countDev').textContent = matchCount;
+          if (sec.id === 'utilities') document.getElementById('countUtil').textContent = matchCount;
+        });
+      }
+
+      window.toggleToolFavorite = function(toolId, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const index = favorites.indexOf(toolId);
+        if (index > -1) {
+          favorites.splice(index, 1);
+        } else {
+          favorites.push(toolId);
+        }
+        localStorage.setItem('vytra_favorite_tools', JSON.stringify(favorites));
+        updateCounts();
+        render();
+      };
+
+      function renderCard(t) {
+        const isFav = favorites.includes(t.id);
+        const finalUrl = window.resolveToolUrl(t.url);
+        const iconTile = window.getToolSvgIcon ? window.getToolSvgIcon(t.id, t.category) : `<div class="tool-icon-tile">${t.icon}</div>`;
+        const starChar = isFav ? '★' : '☆';
+        const starClass = isFav ? 'active' : '';
+
+        if (currentView === 'matrix') {
           return `
-            <a href="${finalUrl}" class="tool-card">
-              <div class="tool-card-top">
+            <a href="${finalUrl}" class="matrix-card" data-tool-id="${t.id}">
+              <button type="button" class="fav-star-btn ${starClass}" onclick="window.toggleToolFavorite('${t.id}', event)" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">
+                ${starChar}
+              </button>
+              <div class="icon-box">
                 ${iconTile}
-                <span class="tool-badge">${t.badge || t.categoryName}</span>
+              </div>
+              <h3 class="tool-name">${window.escapeHtml(t.name)}</h3>
+            </a>
+          `;
+        } else {
+          return `
+            <a href="${finalUrl}" class="detailed-card" data-tool-id="${t.id}">
+              <div class="top-row">
+                ${iconTile}
+                <button type="button" class="fav-star-btn ${starClass}" onclick="window.toggleToolFavorite('${t.id}', event)" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">
+                  ${starChar}
+                </button>
               </div>
               <h3 class="tool-title">${window.escapeHtml(t.name)}</h3>
               <p class="tool-desc">${window.escapeHtml(t.description)}</p>
-              <div class="tool-footer">
-                <span>${window.escapeHtml(t.categoryName)}</span>
-                <span>Open Tool →</span>
+              <div class="card-footer">
+                <span>${window.escapeHtml(t.categoryName || t.category)}</span>
+                <span>Open Tool &rarr;</span>
               </div>
             </a>
           `;
-        }).join('');
+        }
       }
 
-      function filterAndRender() {
+      function render() {
         const query = (searchInput.value || '').toLowerCase().trim();
+        const visibleSections = [];
+        let totalVisibleTools = 0;
 
-        const results = tools.filter(t => {
-          const matchCat = (activeCategory === 'all') || (t.category === activeCategory);
-          const matchQuery = !query || 
-            t.name.toLowerCase().includes(query) ||
-            t.description.toLowerCase().includes(query) ||
-            t.categoryName.toLowerCase().includes(query) ||
-            (t.tags && t.tags.some(tag => tag.toLowerCase().includes(query)));
-          
-          return matchCat && matchQuery;
+        SECTION_DEFS.forEach(sec => {
+          // If viewing favorites only, skip other sections
+          if (activeFilter === 'favorites' && sec.id !== 'favorites') return;
+          if (activeFilter !== 'all' && activeFilter !== 'favorites' && sec.id !== activeFilter) return;
+
+          // Don't show favorites section if empty
+          if (sec.id === 'favorites' && favorites.length === 0) return;
+
+          const sectionTools = tools.filter(t => {
+            const matchesSec = sec.predicate(t);
+            if (!matchesSec) return false;
+
+            if (!query) return true;
+            return t.name.toLowerCase().includes(query) ||
+                   t.description.toLowerCase().includes(query) ||
+                   (t.categoryName && t.categoryName.toLowerCase().includes(query)) ||
+                   (t.tags && t.tags.some(tag => tag.toLowerCase().includes(query)));
+          });
+
+          if (sectionTools.length > 0) {
+            totalVisibleTools += sectionTools.length;
+            visibleSections.push({
+              def: sec,
+              items: sectionTools
+            });
+          }
         });
 
-        renderToolCards(results);
+        summaryText.textContent = query 
+          ? `Found ${totalVisibleTools} tool(s) matching "${query}"`
+          : `Showing ${totalVisibleTools} tools across ${visibleSections.length} categories`;
+
+        if (visibleSections.length === 0) {
+          sectionsContainer.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        const gridClass = currentView === 'matrix' ? 'matrix-grid' : 'detailed-grid';
+
+        sectionsContainer.innerHTML = visibleSections.map(secData => `
+          <div class="tool-section-block" id="sec-${secData.def.id}">
+            <div class="section-header-wrap">
+              <h2 class="section-title">
+                <span>${secData.def.title}</span>
+                <span class="section-badge-count">${secData.items.length}</span>
+              </h2>
+            </div>
+            <div class="${gridClass}">
+              ${secData.items.map(renderCard).join('')}
+            </div>
+          </div>
+        `).join('');
       }
 
+      // Filter Pill Click Handlers
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           filterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          activeCategory = btn.getAttribute('data-category');
-          filterAndRender();
+          activeFilter = btn.getAttribute('data-filter');
+          render();
         });
       });
 
-      searchInput.addEventListener('input', window.debounce(filterAndRender, 150));
+      // Live search with debounce
+      searchInput.addEventListener('input', window.debounce(render, 120));
 
-      // Initial render
-      renderToolCards(tools);
+      // Initial Setup
+      updateCounts();
+      render();
     });
   </script>
 </body>
