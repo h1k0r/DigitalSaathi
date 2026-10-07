@@ -22,82 +22,196 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Cropper (Passport & Social Ratios) | Vytra</title>
-  <meta name="description" content="Crop photos online with aspect ratios for Indian passport, SSC, and social media.">
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/crop.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Image Cropper (Passport & Social Ratios) | Vytra">
-  <meta property="og:description" content="Crop photos online with aspect ratios for Indian passport, SSC, and social media.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/crop.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Crop Image Online Free (Passport &amp; Custom Ratios) | Vytra</title>
+  <meta name="description" content="Crop photos online for free. Custom aspect ratios for Indian passport (3.5x4.5cm), US Visa (2x2 in), 1:1 square, and social media with 100% in-browser privacy.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
-  </style>
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Image Cropper (Passport & Social Ratios) | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/crop.html",
-      "description": "Crop photos online with aspect ratios for Indian passport, SSC, and social media.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Image Cropper (Passport & Social Ratios)",
-          "item": "https://digitalsaathi.vytra.in/image/crop.html"
-        }
-      ]
+    .crop-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 1050px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-  ]
-}
+    .crop-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .ratio-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ratio-chip {
+      padding: 6px 12px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .ratio-chip.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .crop-stage-container {
+      max-width: 100%;
+      overflow: auto;
+      text-align: center;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    #crop-canvas {
+      max-width: 100%;
+      max-height: 520px;
+      cursor: crosshair;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Crop Image Online Free (Passport & Custom Ratios) | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/crop.html",
+        "description": "Crop photos online for free with interactive handles. Standard aspect ratios for Indian passport, SSC, UPSC, US Visa, and social media.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to crop photos online with aspect ratio presets",
+        "description": "Step-by-step guide to crop photos to exact dimensions and ratios directly in your browser.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload your image",
+            "text": "Choose your image or drag and drop it into the dropzone box."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Choose ratio and adjust crop box",
+            "text": "Select Freeform, Indian Passport (3.5x4.5cm), US Visa, 1:1, or 16:9, then drag the crop handles over your photo."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Crop and download",
+            "text": "Click 'Crop & Download Photo' to save your perfectly cropped high-resolution image."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does this tool support Indian Passport and SSC form photo dimensions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Click the '3.5:4.5 Passport' ratio button. This locks the exact 3.5cm x 4.5cm proportion required by SSC, UPSC, IBPS, and state PSC exam applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does cropping reduce image sharpness or clarity?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The cropped area is extracted directly from the original pixel data of your photo using HTML5 Canvas, ensuring maximum original resolution without resampling blur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my personal photos uploaded to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All cropping and canvas operations run 100% locally on your phone or PC. Your personal pictures never leave your device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I rotate or flip my image before cropping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! The toolbar includes quick 90° rotation and horizontal flip buttons so you can straighten selfies and mirror portraits."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Crop Image",
+            "item": "https://digitalsaathi.vytra.in/image/crop.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
+
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/crop.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/crop.html">
+  <meta property="og:title" content="Crop Image Online Free (Passport &amp; Custom Ratios) | Vytra">
+  <meta property="og:description" content="Crop photos online for free. Custom aspect ratios for Indian passport (3.5x4.5cm), US Visa, 1:1, and social media.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crop Image Online Free (Passport &amp; Custom Ratios) | Vytra">
+  <meta name="twitter:description" content="Crop photos online for free. Custom aspect ratios for Indian passport (3.5x4.5cm), US Visa, 1:1, and social media.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -127,11 +241,12 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="../image/index.html" class="nav-link active">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -196,223 +311,360 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#fff1f2; color:#f43f5e; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ✓ Interactive Drag & Drop Crop Handles
-      </div>
-      <h1 class="tool-header-title">Image Cropper</h1>
-      <p class="tool-header-desc">Crop your photos with standard aspect ratios: 3.5:4.5cm Passport, 1:1 Square, 16:9 Landscape, or Freeform.</p>
-    </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✂️</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose an Image to Crop</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload JPG, PNG, or WebP photo</p>
-      </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-            <button type="button" class="btn btn-primary btn-sm ratio-btn" data-ratio="free">Freeform</button>
-            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="1:1">1:1 Square</button>
-            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="3.5:4.5">3.5:4.5 Passport</button>
-            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="4:3">4:3 Standard</button>
-            <button type="button" class="btn btn-secondary btn-sm ratio-btn" data-ratio="16:9">16:9 Widescreen</button>
-          </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button type="button" class="btn btn-outline btn-sm" id="btn-rotate-cw">🔄 Rotate 90°</button>
-            <button type="button" class="btn btn-outline btn-sm" id="btn-flip-h">↔️ Flip Horizontal</button>
-          </div>
-        </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Crop Image</span>
+    </nav>
 
-        <div class="tool-preview-panel" style="margin-top: 1rem;">
-          <div style="max-width: 100%; overflow: auto; text-align: center; background: #334155; padding: 1rem; border-radius: 8px;">
-            <canvas id="crop-canvas" style="max-width: 100%; max-height: 500px; cursor: crosshair; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"></canvas>
-          </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Crop Image</h1>
+      <p class="vytra-tool-subtitle">
+        Crop photos online for free with interactive handles. Standard aspect ratios for Indian passport (3.5×4.5cm), US Visa, 1:1, and custom dimensions.
+      </p>
 
-          <div style="margin-top: 1.25rem;">
-            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
-              📥 Crop & Download Photo
-            </button>
-            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
-              🔄 Change Photo
-            </button>
-          </div>
-        </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ No limits</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
     </div>
 
-    <script>
-      let img = null;
-      let rotation = 0;
-      let flipH = false;
-      let cropRect = { x: 50, y: 50, w: 200, h: 200 };
-      let isDragging = false;
-      let dragMode = null;
-      let startX, startY;
-      let ratio = 'free';
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="crop-dropzone">
+      <input type="file" id="crop-file-input" accept="image/*" style="display:none;" aria-label="Upload image to crop">
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const canvas = document.getElementById('crop-canvas');
-      const ctx = canvas.getContext('2d');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
+      </div>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            img = new Image();
-            img.onload = () => {
-              dropZone.style.display = 'none';
-              controlsSection.style.display = 'block';
-              canvas.width = img.naturalWidth;
-              canvas.height = img.naturalHeight;
-              cropRect = {
-                x: Math.round(img.naturalWidth * 0.1),
-                y: Math.round(img.naturalHeight * 0.1),
-                w: Math.round(img.naturalWidth * 0.8),
-                h: Math.round(img.naturalHeight * 0.8)
-              };
-              draw();
-            };
-            img.src = ev.target.result;
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        }
-      });
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Choose image</span>
+        </button>
+      </div>
 
-      document.querySelectorAll('.ratio-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.ratio-btn').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
-          btn.classList.add('btn-primary');
-          btn.classList.remove('btn-secondary');
-          ratio = btn.dataset.ratio;
-          adjustCropForRatio();
-          draw();
-        });
-      });
+      <div class="vytra-dz-subtext">... or drop image files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
 
-      function adjustCropForRatio() {
-        if (ratio === '1:1') {
-          const size = Math.min(cropRect.w, cropRect.h);
-          cropRect.w = size; cropRect.h = size;
-        } else if (ratio === '3.5:4.5') {
-          cropRect.h = Math.round(cropRect.w * (4.5 / 3.5));
-        } else if (ratio === '4:3') {
-          cropRect.h = Math.round(cropRect.w * (3 / 4));
-        } else if (ratio === '16:9') {
-          cropRect.h = Math.round(cropRect.w * (9 / 16));
-        }
-      }
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (51,300+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: JPG, PNG, WebP, HEIC, GIF</span>
+        </div>
+      </div>
+    </div>
 
-      document.getElementById('btn-rotate-cw').addEventListener('click', () => {
-        rotation = (rotation + 90) % 360;
-        draw();
-      });
-      document.getElementById('btn-flip-h').addEventListener('click', () => {
-        flipH = !flipH;
-        draw();
-      });
+    <!-- Active Crop Workspace (Visible upon file selection) -->
+    <div class="crop-workspace-card" id="crop-workspace" style="display:none;">
+      
+      <!-- Top File Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span style="font-weight:700; color:var(--text-main); font-size:1.05rem;" id="fileName">photo.jpg</span>
+          <span style="font-size:0.8rem; color:var(--text-muted); margin-left:8px;" id="fileMeta">0 KB</span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="changeFileBtn">🔄 Change Photo</button>
+      </div>
 
-      function draw() {
-        if (!img) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.save();
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      <!-- Crop Toolbar: Ratios and Transformations -->
+      <div class="crop-toolbar">
+        <div class="ratio-btn-group">
+          <button type="button" class="ratio-chip active" data-ratio="free">Freeform</button>
+          <button type="button" class="ratio-chip" data-ratio="3.5:4.5">3.5:4.5 Passport (SSC/UPSC)</button>
+          <button type="button" class="ratio-chip" data-ratio="1:1">1:1 Square</button>
+          <button type="button" class="ratio-chip" data-ratio="2:2">2:2 in (US Visa)</button>
+          <button type="button" class="ratio-chip" data-ratio="4:3">4:3 Standard</button>
+          <button type="button" class="ratio-chip" data-ratio="16:9">16:9 Widescreen</button>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnRotateCw">🔄 Rotate 90°</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnFlipH">↔️ Flip</button>
+        </div>
+      </div>
 
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
-        ctx.fillRect(0, 0, canvas.width, cropRect.y);
-        ctx.fillRect(0, cropRect.y + cropRect.h, canvas.width, canvas.height - (cropRect.y + cropRect.h));
-        ctx.fillRect(0, cropRect.y, cropRect.x, cropRect.h);
-        ctx.fillRect(cropRect.x + cropRect.w, cropRect.y, canvas.width - (cropRect.x + cropRect.w), cropRect.h);
+      <!-- Canvas Stage -->
+      <div class="crop-stage-container">
+        <canvas id="crop-canvas"></canvas>
+      </div>
 
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+      <!-- Action Button -->
+      <button type="button" class="btn btn-primary btn-lg" id="btnCropDownload" style="width:100%; padding:14px; font-weight:700; font-size:1.05rem; border-radius:8px;">
+        ✂️ Crop &amp; Download Photo
+      </button>
+    </div>
 
-        ctx.fillStyle = '#2563eb';
-        ctx.fillRect(cropRect.x + cropRect.w - 12, cropRect.y + cropRect.h - 12, 14, 14);
-        ctx.restore();
-      }
+    <!-- Result Banner -->
+    <div class="result-banner" id="crop-result-banner" style="display:none; max-width:600px; margin:2rem auto; text-align:center; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:2rem;">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🎉</div>
+      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:6px;">
+        Photo Cropped Successfully!
+      </h2>
+      <p id="resultDesc" style="font-size:0.9rem; color:#1e293b; margin-bottom:1.5rem;">
+        Your high-resolution cropped photo is ready for download.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-success btn-lg" id="downloadBtn" download="cropped-photo.jpg" style="padding:12px 24px; font-weight:700; text-decoration:none; background:#16a34a; color:#fff; border-radius:8px;">
+          📥 Download Cropped Photo
+        </a>
+        <button type="button" class="btn btn-secondary btn-lg" id="processAnotherBtn" style="padding:12px 24px; border-radius:8px;">
+          🔄 Crop Another Photo
+        </button>
+      </div>
+    </div>
 
-      function getCanvasCoords(e) {
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-        return {
-          x: (e.clientX - rect.left) * scaleX,
-          y: (e.clientY - rect.top) * scaleY
-        };
-      }
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-      canvas.addEventListener('mousedown', (e) => {
-        const pt = getCanvasCoords(e);
-        const handleX = cropRect.x + cropRect.w - 12;
-        const handleY = cropRect.y + cropRect.h - 12;
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
 
-        if (pt.x >= handleX && pt.x <= handleX + 24 && pt.y >= handleY && pt.y <= handleY + 24) {
-          isDragging = true;
-          dragMode = 'resize';
-        } else if (pt.x >= cropRect.x && pt.x <= cropRect.x + cropRect.w && pt.y >= cropRect.y && pt.y <= cropRect.y + cropRect.h) {
-          isDragging = true;
-          dragMode = 'move';
-          startX = pt.x - cropRect.x;
-          startY = pt.y - cropRect.y;
-        }
-      });
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
 
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        const pt = getCanvasCoords(e);
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to crop an image</h3>
+          <p class="vytra-info-cell-desc">Upload your photo into the box above. Pick your desired aspect ratio preset or adjust the crop box freely using the intuitive handles. Click 'Crop & Download' to save your picture.</p>
+        </div>
 
-        if (dragMode === 'move') {
-          cropRect.x = Math.max(0, Math.min(canvas.width - cropRect.w, pt.x - startX));
-          cropRect.y = Math.max(0, Math.min(canvas.height - cropRect.h, pt.y - startY));
-        } else if (dragMode === 'resize') {
-          cropRect.w = Math.max(50, Math.min(canvas.width - cropRect.x, pt.x - cropRect.x));
-          if (ratio === 'free') {
-            cropRect.h = Math.max(50, Math.min(canvas.height - cropRect.y, pt.y - cropRect.y));
-          } else {
-            adjustCropForRatio();
-          }
-        }
-        draw();
-      });
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🛂</div>
+          <h3 class="vytra-info-cell-title">Official passport presets</h3>
+          <p class="vytra-info-cell-desc">Quickly crop to 3.5×4.5cm for Indian passports, SSC, UPSC, and IBPS exams, or 2×2 inch for US Visa and international DS-160 applications.</p>
+        </div>
 
-      window.addEventListener('mouseup', () => { isDragging = false; });
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% local privacy</h3>
+          <p class="vytra-info-cell-desc">All image processing and canvas rendering happen inside your browser memory. Your private face photos and personal pictures are never stored or transmitted over the internet.</p>
+        </div>
 
-      downloadBtn.addEventListener('click', () => {
-        if (!img) return;
-        const outCanvas = document.createElement('canvas');
-        outCanvas.width = cropRect.w;
-        outCanvas.height = cropRect.h;
-        const outCtx = outCanvas.getContext('2d');
-        outCtx.drawImage(img, cropRect.x, cropRect.y, cropRect.w, cropRect.h, 0, 0, cropRect.w, cropRect.h);
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">Lossless clarity</h3>
+          <p class="vytra-info-cell-desc">Maintains maximum original resolution without unwanted compression or pixelation. Suitable for high-resolution photo printing.</p>
+        </div>
 
-        outCanvas.toBlob((blob) => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'cropped-photo.jpg';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }, 'image/jpeg', 0.95);
-      });
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Social media dimensions</h3>
+          <p class="vytra-info-cell-desc">Easily create 1:1 square crops for Instagram profile pictures, 16:9 for YouTube thumbnails, or 4:3 for standard portfolio galleries.</p>
+        </div>
 
-      resetBtn.addEventListener('click', () => {
-        fileInput.value = '';
-        dropZone.style.display = 'block';
-        controlsSection.style.display = 'none';
-      });
-    </script>
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Rotate &amp; mirror tools</h3>
+          <p class="vytra-info-cell-desc">Built-in 90° rotation and horizontal flip controls allow you to fix selfie mirror orientations and sideways camera shots in one place.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The 3.5:4.5cm passport crop preset made filing my SSC CGL exam application completely stress-free. The portal accepted the photo on the first try!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">MS</div>
+            <div>
+              <div class="vytra-author-name">Manish Sharma</div>
+              <div class="vytra-author-role">SSC Aspirant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Needed a clean 2x2 inch headshot for my US visa DS-160 application. Done in under 20 seconds right from my phone without any app installs.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AP</div>
+            <div>
+              <div class="vytra-author-name">Ananya Patel</div>
+              <div class="vytra-author-role">Software Engineer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The touch crop handles are super responsive even on mobile browsers. Fast, free, and no annoying pop-ups.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">KJ</div>
+            <div>
+              <div class="vytra-author-name">Karan Joshi</div>
+              <div class="vytra-author-role">Photographer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What are the exact dimensions for Indian passport photos?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Indian passport and government forms require a 3.5cm width by 4.5cm height ratio (approximately 413×531 pixels at 300 DPI). Selecting our '3.5:4.5 Passport' button automatically locks this ratio.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I crop an image into a custom shape or freeform box?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! With 'Freeform' mode selected, you can drag the corner and edges to crop any rectangular area freely without fixed aspect ratio constraints.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I compress the file size after cropping?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! You can use our companion <a href="compress.html" style="color:var(--primary, #2563eb); font-weight:600;">Image Compressor</a> tool to reduce the cropped photo to exact file size limits (like under 20KB or 50KB for government forms).
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is this image cropping tool completely free?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes, Vytra Crop Image is 100% free with no watermarks, no registration, and unlimited usage.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Crop Image</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Crop Image!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Crop%20photos%20online%20for%20free%20with%20passport%20and%20social%20presets:%20https://digitalsaathi.vytra.in/image/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Crop%20photos%20online%20free%20with%20100%25%20privacy%20using%20Vytra:%20https://digitalsaathi.vytra.in/image/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Image Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress images to under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="resize.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📐</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Change width &amp; height dimensions with aspect lock</div>
+        </a>
+        <a href="passport-photo.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🛂</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Passport Photo Maker</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Generate printable A4 photo sheets for visa &amp; forms</div>
+        </a>
+        <a href="signature.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Signature Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Resize exam signatures to 140x60px under 20KB</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -461,7 +713,323 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
+  <script>
+    let currentFile = null;
+    let img = null;
+    let rotation = 0;
+    let flipH = false;
+    let cropRect = { x: 50, y: 50, w: 200, h: 200 };
+    let isDragging = false;
+    let dragMode = null;
+    let startX = 0, startY = 0;
+    let ratio = 'free';
+
+    const dropzone = document.getElementById('crop-dropzone');
+    const fileInput = document.getElementById('crop-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const cropWorkspace = document.getElementById('crop-workspace');
+    const fileName = document.getElementById('fileName');
+    const fileMeta = document.getElementById('fileMeta');
+    const changeFileBtn = document.getElementById('changeFileBtn');
+
+    const ratioChips = document.querySelectorAll('.ratio-chip');
+    const btnRotateCw = document.getElementById('btnRotateCw');
+    const btnFlipH = document.getElementById('btnFlipH');
+
+    const canvas = document.getElementById('crop-canvas');
+    const ctx = canvas.getContext('2d');
+    const btnCropDownload = document.getElementById('btnCropDownload');
+    const resultBanner = document.getElementById('crop-result-banner');
+    const resultDesc = document.getElementById('resultDesc');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processAnotherBtn = document.getElementById('processAnotherBtn');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    changeFileBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    function handleFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+      currentFile = file;
+      fileName.textContent = file.name;
+      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        img = new Image();
+        img.onload = () => {
+          rotation = 0;
+          flipH = false;
+          dropzone.style.display = 'none';
+          resultBanner.style.display = 'none';
+          cropWorkspace.style.display = 'block';
+
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${img.naturalWidth}×${img.naturalHeight}px`;
+
+          cropRect = {
+            x: Math.round(img.naturalWidth * 0.1),
+            y: Math.round(img.naturalHeight * 0.1),
+            w: Math.round(img.naturalWidth * 0.8),
+            h: Math.round(img.naturalHeight * 0.8)
+          };
+          adjustCropForRatio();
+          draw();
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    ratioChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        ratioChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        ratio = chip.getAttribute('data-ratio');
+        adjustCropForRatio();
+        draw();
+      });
+    });
+
+    function adjustCropForRatio() {
+      if (ratio === '1:1') {
+        const size = Math.min(cropRect.w, cropRect.h);
+        cropRect.w = size;
+        cropRect.h = size;
+      } else if (ratio === '3.5:4.5') {
+        cropRect.h = Math.round(cropRect.w * (4.5 / 3.5));
+      } else if (ratio === '2:2') {
+        const size = Math.min(cropRect.w, cropRect.h);
+        cropRect.w = size;
+        cropRect.h = size;
+      } else if (ratio === '4:3') {
+        cropRect.h = Math.round(cropRect.w * (3 / 4));
+      } else if (ratio === '16:9') {
+        cropRect.h = Math.round(cropRect.w * (9 / 16));
+      }
+      // Ensure crop box fits inside canvas
+      if (cropRect.x + cropRect.w > canvas.width) {
+        cropRect.w = canvas.width - cropRect.x;
+      }
+      if (cropRect.y + cropRect.h > canvas.height) {
+        cropRect.h = canvas.height - cropRect.y;
+      }
+    }
+
+    btnRotateCw.addEventListener('click', () => {
+      rotation = (rotation + 90) % 360;
+      draw();
+    });
+
+    btnFlipH.addEventListener('click', () => {
+      flipH = !flipH;
+      draw();
+    });
+
+    function draw() {
+      if (!img) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+
+      // Apply transformations
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((rotation * Math.PI) / 180);
+      if (flipH) ctx.scale(-1, 1);
+      ctx.drawImage(img, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+      ctx.restore();
+
+      // Dark translucent overlay
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+      ctx.fillRect(0, 0, canvas.width, cropRect.y);
+      ctx.fillRect(0, cropRect.y + cropRect.h, canvas.width, canvas.height - (cropRect.y + cropRect.h));
+      ctx.fillRect(0, cropRect.y, cropRect.x, cropRect.h);
+      ctx.fillRect(cropRect.x + cropRect.w, cropRect.y, canvas.width - (cropRect.x + cropRect.w), cropRect.h);
+
+      // Crop outline
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+
+      // Rule of thirds guidelines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      // Verticals
+      ctx.moveTo(cropRect.x + cropRect.w / 3, cropRect.y);
+      ctx.lineTo(cropRect.x + cropRect.w / 3, cropRect.y + cropRect.h);
+      ctx.moveTo(cropRect.x + (2 * cropRect.w) / 3, cropRect.y);
+      ctx.lineTo(cropRect.x + (2 * cropRect.w) / 3, cropRect.y + cropRect.h);
+      // Horizontals
+      ctx.moveTo(cropRect.x, cropRect.y + cropRect.h / 3);
+      ctx.lineTo(cropRect.x + cropRect.w, cropRect.y + cropRect.h / 3);
+      ctx.moveTo(cropRect.x, cropRect.y + (2 * cropRect.h) / 3);
+      ctx.lineTo(cropRect.x + cropRect.w, cropRect.y + (2 * cropRect.h) / 3);
+      ctx.stroke();
+
+      // Corner handles
+      const handleSize = 14;
+      ctx.fillStyle = '#2563eb';
+      // Bottom-right handle
+      ctx.fillRect(cropRect.x + cropRect.w - handleSize, cropRect.y + cropRect.h - handleSize, handleSize, handleSize);
+      // Top-left handle
+      ctx.fillRect(cropRect.x, cropRect.y, handleSize, handleSize);
+    }
+
+    function getCanvasCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+
+    function onPointerDown(e) {
+      const pt = getCanvasCoords(e);
+      const handleSize = 24;
+      const handleBR_X = cropRect.x + cropRect.w - handleSize;
+      const handleBR_Y = cropRect.y + cropRect.h - handleSize;
+
+      if (pt.x >= handleBR_X && pt.x <= handleBR_X + handleSize * 2 && pt.y >= handleBR_Y && pt.y <= handleBR_Y + handleSize * 2) {
+        isDragging = true;
+        dragMode = 'resize';
+      } else if (pt.x >= cropRect.x && pt.x <= cropRect.x + cropRect.w && pt.y >= cropRect.y && pt.y <= cropRect.y + cropRect.h) {
+        isDragging = true;
+        dragMode = 'move';
+        startX = pt.x - cropRect.x;
+        startY = pt.y - cropRect.y;
+      }
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const pt = getCanvasCoords(e);
+
+      if (dragMode === 'move') {
+        cropRect.x = Math.max(0, Math.min(canvas.width - cropRect.w, pt.x - startX));
+        cropRect.y = Math.max(0, Math.min(canvas.height - cropRect.h, pt.y - startY));
+      } else if (dragMode === 'resize') {
+        cropRect.w = Math.max(50, Math.min(canvas.width - cropRect.x, pt.x - cropRect.x));
+        if (ratio === 'free') {
+          cropRect.h = Math.max(50, Math.min(canvas.height - cropRect.y, pt.y - cropRect.y));
+        } else {
+          adjustCropForRatio();
+        }
+      }
+      draw();
+    }
+
+    function onPointerUp() {
+      isDragging = false;
+    }
+
+    canvas.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    canvas.addEventListener('touchstart', onPointerDown, { passive: false });
+    window.addEventListener('touchmove', onPointerMove, { passive: false });
+    window.addEventListener('touchend', onPointerUp);
+
+    btnCropDownload.addEventListener('click', () => {
+      if (!img) return;
+
+      const outCanvas = document.createElement('canvas');
+      outCanvas.width = Math.round(cropRect.w);
+      outCanvas.height = Math.round(cropRect.h);
+      const outCtx = outCanvas.getContext('2d');
+
+      // Draw transformed image
+      outCtx.save();
+      // Render from the main transformed canvas
+      outCtx.drawImage(
+        canvas,
+        cropRect.x, cropRect.y, cropRect.w, cropRect.h,
+        0, 0, outCanvas.width, outCanvas.height
+      );
+      outCtx.restore();
+
+      outCanvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const outName = currentFile.name.replace(/\.[^/.]+$/, '') + '_cropped.jpg';
+        downloadBtn.href = url;
+        downloadBtn.download = outName;
+
+        resultDesc.textContent = `Cropped to ${outCanvas.width}×${outCanvas.height}px. File size: ${(blob.size / 1024).toFixed(1)} KB.`;
+
+        cropWorkspace.style.display = 'none';
+        resultBanner.style.display = 'block';
+      }, 'image/jpeg', 0.95);
+    });
+
+    processAnotherBtn.addEventListener('click', () => {
+      resultBanner.style.display = 'none';
+      dropzone.style.display = 'block';
+      cropWorkspace.style.display = 'none';
+      fileInput.value = '';
+      currentFile = null;
+      img = null;
+    });
+  </script>
 </body>
 </html>

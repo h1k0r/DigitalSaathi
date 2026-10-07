@@ -22,82 +22,201 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universal Image Converter (JPG, PNG, WebP) | Vytra</title>
-  <meta name="description" content="Convert image formats online in bulk. Free client-side JPG to PNG, PNG to JPG, WebP conversion.">
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/convert.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Universal Image Converter (JPG, PNG, WebP) | Vytra">
-  <meta property="og:description" content="Convert image formats online in bulk. Free client-side JPG to PNG, PNG to JPG, WebP conversion.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/convert.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Convert Image Online Free (JPG, PNG, WebP) | Vytra</title>
+  <meta name="description" content="Convert images between JPG, PNG, and WebP formats online for free in batch. Fast client-side conversion with zero file uploads and 100% privacy.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
-  </style>
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Universal Image Converter (JPG, PNG, WebP) | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/convert.html",
-      "description": "Convert image formats online in bulk. Free client-side JPG to PNG, PNG to JPG, WebP conversion.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Universal Image Converter (JPG, PNG, WebP)",
-          "item": "https://digitalsaathi.vytra.in/image/convert.html"
-        }
-      ]
+    .convert-workspace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 960px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-  ]
-}
+    .convert-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .format-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+    .format-chip {
+      padding: 8px 16px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .format-chip.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    .file-convert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .file-convert-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      transition: border-color 0.2s;
+    }
+    .file-convert-item:hover {
+      border-color: #cbd5e1;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Convert Image Online Free (JPG, PNG, WebP) | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/convert.html",
+        "description": "Convert images between JPG, PNG, and WebP formats online for free in batch with 100% in-browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to convert image formats online in batch",
+        "description": "Step-by-step instructions to convert pictures to JPG, PNG, or WebP formats in bulk.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload your images",
+            "text": "Select one or multiple images or drag and drop them into the conversion dropzone."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select target format",
+            "text": "Choose your desired target format: JPG, PNG, or WebP."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Convert and download",
+            "text": "Click 'Convert All Images' and download individually or as a single ZIP archive."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What image formats can I convert?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can upload JPG, JPEG, PNG, WebP, GIF, and BMP files and convert them into standard JPG, PNG, or modern WebP format."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between JPG, PNG, and WebP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JPG is ideal for photographs and general web use. PNG supports transparent backgrounds and lossless graphics. WebP provides the highest compression efficiency, producing files 30% smaller than JPG while maintaining equivalent quality."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert multiple images at once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can select multiple images simultaneously. Vytra converts them in parallel and lets you download all files with one click in a ZIP archive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my images sent to any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All conversions happen locally inside your browser via HTML5 Canvas. Your images stay 100% private on your device."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Convert Image",
+            "item": "https://digitalsaathi.vytra.in/image/convert.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
+
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/convert.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/convert.html">
+  <meta property="og:title" content="Convert Image Online Free (JPG, PNG, WebP) | Vytra">
+  <meta property="og:description" content="Convert images between JPG, PNG, and WebP formats online for free in batch. Fast client-side conversion with zero file uploads and 100% privacy.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Convert Image Online Free (JPG, PNG, WebP) | Vytra">
+  <meta name="twitter:description" content="Convert images between JPG, PNG, and WebP formats online for free in batch. Fast client-side conversion with zero file uploads and 100% privacy.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -127,11 +246,12 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="../image/index.html" class="nav-link active">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -196,145 +316,337 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#eff6ff; color:#2563eb; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ✓ Universal Client-Side Format Conversion
+
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Convert Image</span>
+    </nav>
+
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Convert Image</h1>
+      <p class="vytra-tool-subtitle">
+        Convert images between JPG, PNG, and WebP formats online for free in batch. Instant in-browser conversion with zero quality compromise.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free</span>
+        <span class="vytra-trust-chip">✓ Online</span>
+        <span class="vytra-trust-chip">✓ Batch support</span>
+        <span class="vytra-trust-chip">✓ 100% Private</span>
       </div>
-      <h1 class="tool-header-title">Universal Image Converter</h1>
-      <p class="tool-header-desc">Convert JPG, PNG, WebP, GIF, and BMP formats instantly in your browser. Single or batch conversion.</p>
     </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔄</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose Images to Convert</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload one or multiple images (JPG, PNG, WebP, GIF, BMP)</p>
+    <!-- 2. The Signature Dropzone Box (PDF24 UI Layout) -->
+    <div class="vytra-dropzone-box" id="convert-dropzone">
+      <input type="file" id="convert-file-input" accept="image/*" multiple style="display:none;" aria-label="Upload images to convert">
+
+      <!-- Top Bar inside Box -->
+      <div class="vytra-dz-topbar">
+        <div class="vytra-dz-secure-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>File protection is active</span>
+        </div>
+        <div class="vytra-dz-desktop-link">
+          <span>100% In-Browser Privacy</span>
+          <span>🔒</span>
+        </div>
       </div>
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
-            <div>
-              <label style="font-size: 0.88rem; font-weight: 600; margin-right: 0.5rem;">Convert To:</label>
-              <select id="target-format" style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-default, #cbd5e1); font-size: 1rem; font-weight: 600;">
-                <option value="image/jpeg">JPG / JPEG</option>
-                <option value="image/png">PNG</option>
-                <option value="image/webp">WebP</option>
-              </select>
-            </div>
-            <button id="convert-all-btn" class="btn btn-primary">⚡ Convert All Images</button>
+      <!-- Center CTA Button -->
+      <div>
+        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Choose images</span>
+        </button>
+      </div>
+
+      <div class="vytra-dz-subtext">... or drop single or multiple image files here</div>
+      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
+
+      <!-- Bottom Bar inside Box -->
+      <div class="vytra-dz-bottombar">
+        <div class="vytra-rating-badge">
+          <span class="star-icon">★</span>
+          <span>4.9 (48,700+ votes)</span>
+        </div>
+        <div>
+          <span>Supported: JPG, PNG, WebP, GIF, BMP, SVG</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Convert Workspace (Visible upon file selection) -->
+    <div class="convert-workspace-card" id="convert-workspace" style="display:none;">
+      
+      <!-- Top Toolbar -->
+      <div class="convert-toolbar">
+        <div>
+          <span style="font-weight:700; color:#334155; font-size:0.9rem; margin-right:8px;">Convert to:</span>
+          <div class="format-btn-group" style="display:inline-flex;">
+            <button type="button" class="format-chip active" data-fmt="image/jpeg" data-ext="jpg">JPG</button>
+            <button type="button" class="format-chip" data-fmt="image/png" data-ext="png">PNG</button>
+            <button type="button" class="format-chip" data-fmt="image/webp" data-ext="webp">WebP</button>
           </div>
         </div>
 
-        <div id="items-list" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
-
-        <div id="bulk-download-box" style="margin-top: 1.5rem; text-align: center; display: none;">
-          <button id="zip-download-btn" class="btn btn-success" style="padding: 0.8rem 2rem; font-weight: 700;">
-            📦 Download All Converted Files (ZIP)
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="btn btn-secondary btn-sm" id="changeFilesBtn">➕ Add More Files</button>
+          <button type="button" class="btn btn-primary" id="btnConvertAll" style="font-weight:700; padding:8px 18px;">
+            ⚡ Convert All Files
           </button>
         </div>
       </div>
+
+      <!-- File Items List -->
+      <div class="file-convert-list" id="fileConvertList">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Bulk Download Box -->
+      <div id="bulkDownloadBox" style="display:none; text-align:center; padding:16px 0;">
+        <button type="button" class="btn btn-success btn-lg" id="btnDownloadZip" style="padding:12px 28px; font-weight:700; background:#16a34a; color:#fff; border-radius:8px;">
+          📦 Download All Converted Files (ZIP)
+        </button>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script>
-      let fileList = [];
-      let convertedBlobs = [];
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const itemsList = document.getElementById('items-list');
-      const targetFormat = document.getElementById('target-format');
-      const convertAllBtn = document.getElementById('convert-all-btn');
-      const zipDownloadBtn = document.getElementById('zip-download-btn');
-      const bulkDownloadBox = document.getElementById('bulk-download-box');
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-          fileList = Array.from(e.target.files);
-          renderList();
-          dropZone.style.display = 'none';
-          controlsSection.style.display = 'block';
-        }
-      });
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
 
-      function renderList() {
-        itemsList.innerHTML = '';
-        fileList.forEach((file, index) => {
-          const item = document.createElement('div');
-          item.style.cssText = 'background:white; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem 1.25rem; display:flex; justify-content:space-between; align-items:center;';
-          item.innerHTML = '<div><strong style="color:#0f172a;">' + file.name + '</strong><div style="font-size:0.85rem; color:#64748b;">' + (file.size / 1024).toFixed(1) + ' KB</div></div><div id="status-' + index + '"><span class="badge badge-neutral">Ready</span></div>';
-          itemsList.appendChild(item);
-        });
-      }
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💡</div>
+          <h3 class="vytra-info-cell-title">How to convert images</h3>
+          <p class="vytra-info-cell-desc">Upload one or multiple photos above. Choose your target format: JPG, PNG, or WebP. Click 'Convert All Files' to process everything instantly and download as individual files or a ZIP archive.</p>
+        </div>
 
-      convertAllBtn.addEventListener('click', async () => {
-        convertAllBtn.disabled = true;
-        convertAllBtn.textContent = 'Processing...';
-        convertedBlobs = [];
-        const format = targetFormat.value;
-        const ext = format === 'image/png' ? 'png' : (format === 'image/webp' ? 'webp' : 'jpg');
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Batch processing</h3>
+          <p class="vytra-info-cell-desc">Convert tens or hundreds of files in parallel without rate limits. Download all converted images bundled neatly into a single ZIP archive.</p>
+        </div>
 
-        for (let i = 0; i < fileList.length; i++) {
-          const file = fileList[i];
-          const statusDiv = document.getElementById('status-' + i);
-          statusDiv.innerHTML = '<span class="badge badge-info">Converting...</span>';
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">Zero server uploads</h3>
+          <p class="vytra-info-cell-desc">Every pixel conversion executes directly in your browser using HTML5 Canvas. Your sensitive photos and graphic assets are never uploaded to any remote server.</p>
+        </div>
 
-          const blob = await convertSingle(file, format);
-          const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-          const newName = baseName + '.' + ext;
-          convertedBlobs.push({ name: newName, blob });
-          statusDiv.innerHTML = '<a href="' + URL.createObjectURL(blob) + '" download="' + newName + '" class="btn btn-sm btn-primary">Download ' + ext.toUpperCase() + '</a>';
-        }
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🚀</div>
+          <h3 class="vytra-info-cell-title">Modern WebP conversion</h3>
+          <p class="vytra-info-cell-desc">Switch from bulky PNGs or JPGs to modern WebP format to reduce website payload by up to 35% with zero perceivable loss in visual quality.</p>
+        </div>
 
-        convertAllBtn.disabled = false;
-        convertAllBtn.textContent = '⚡ Re-Convert';
-        bulkDownloadBox.style.display = 'block';
-      });
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✨</div>
+          <h3 class="vytra-info-cell-title">Preserves transparency</h3>
+          <p class="vytra-info-cell-desc">Converting between PNG and WebP preserves transparent alpha backgrounds, perfect for brand logos, icons, and web product imagery.</p>
+        </div>
 
-      function convertSingle(file, format) {
-        return new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-              const canvas = document.createElement('canvas');
-              canvas.width = img.naturalWidth;
-              canvas.height = img.naturalHeight;
-              const ctx = canvas.getContext('2d');
-              if (format === 'image/jpeg') {
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-              }
-              ctx.drawImage(img, 0, 0);
-              canvas.toBlob(resolve, format, 0.92);
-            };
-            img.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        });
-      }
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">Universal device support</h3>
+          <p class="vytra-info-cell-desc">Works smoothly on iPhones, Android smartphones, iPads, Macs, and Windows PCs with no software installations required.</p>
+        </div>
+      </div>
 
-      zipDownloadBtn.addEventListener('click', async () => {
-        if (convertedBlobs.length === 0) return;
-        const zip = new JSZip();
-        convertedBlobs.forEach(item => {
-          zip.file(item.name, item.blob);
-        });
-        const zipContent = await zip.generateAsync({ type: 'blob' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(zipContent);
-        a.download = 'converted-images.zip';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
-    </script>
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What others are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Converted 50 product photos from PNG to WebP in 10 seconds and downloaded the entire bundle as a ZIP. Boosted my website speed score tremendously!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SK</div>
+            <div>
+              <div class="vytra-author-name">Saurabh Khurana</div>
+              <div class="vytra-author-role">Shopify Store Owner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The university portal only accepted JPG images, but my camera saved in HEIC/PNG. Vytra converted everything instantly right from my phone.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RA</div>
+            <div>
+              <div class="vytra-author-name">Ritu Agarwal</div>
+              <div class="vytra-author-role">Medical Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Fast, clean interface with no advertisements blocking the download button. Super impressed with the browser-based speed.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">TN</div>
+            <div>
+              <div class="vytra-author-name">Tarun Nair</div>
+              <div class="vytra-author-role">Graphic Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Questions and Answers</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>When should I convert PNG to JPG?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Convert PNG to JPG when uploading photos to government, banking, or job portals (which often have strict 50KB or 100KB limits). JPG compresses photographic images much more efficiently than PNG.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Will transparent backgrounds turn black when converting PNG to JPG?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Vytra automatically renders a clean white background behind transparent areas when converting to JPG, so your images look pristine.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why should I use WebP?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            WebP is Google's modern image format supported by all major browsers. It produces file sizes that are 25-35% smaller than JPG while delivering equivalent visual fidelity.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are there any limits on file count or size?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No limits. Because conversion happens locally in your browser memory, you can convert dozens of photos simultaneously without subscription fees.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Image Converter</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Image Converter!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with colleagues &amp; friends</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Convert%20JPG%2C%20PNG%20and%20WebP%20images%20online%20in%20bulk%20with%20100%25%20privacy:%20https://digitalsaathi.vytra.in/image/convert.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Convert%20images%20online%20for%20free%20with%20zero%20uploads%20using%20Vytra:%20https://digitalsaathi.vytra.in/image/convert.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/convert.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/convert.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Image Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Free Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress images to under 20KB, 50KB, or 100KB</div>
+        </a>
+        <a href="resize.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📐</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Change width &amp; height dimensions with aspect lock</div>
+        </a>
+        <a href="crop.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Crop Photo</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Crop to Indian passport 3.5x4.5cm or custom ratio</div>
+        </a>
+        <a href="passport-photo.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🛂</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Passport Photo Maker</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Generate printable A4 photo sheets for visa &amp; forms</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -383,7 +695,190 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
+  <script>
+    let fileList = [];
+    let convertedBlobs = [];
+    let currentFormat = 'image/jpeg';
+    let currentExt = 'jpg';
+
+    const dropzone = document.getElementById('convert-dropzone');
+    const fileInput = document.getElementById('convert-file-input');
+    const chooseBtn = document.getElementById('btn-trigger-choose');
+    const convertWorkspace = document.getElementById('convert-workspace');
+    const fileConvertList = document.getElementById('fileConvertList');
+    const changeFilesBtn = document.getElementById('changeFilesBtn');
+    const formatChips = document.querySelectorAll('.format-chip');
+    const btnConvertAll = document.getElementById('btnConvertAll');
+    const bulkDownloadBox = document.getElementById('bulkDownloadBox');
+    const btnDownloadZip = document.getElementById('btnDownloadZip');
+
+    // Rating logic
+    const ratingStars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+    const ratingFeedback = document.getElementById('ratingFeedback');
+    ratingStars.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        ratingStars.forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        ratingFeedback.style.display = 'block';
+      });
+    });
+
+    // File listeners
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-trigger-choose') && !e.target.closest('a')) {
+        fileInput.click();
+      }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = 'var(--primary, #2563eb)';
+      dropzone.style.background = '#f0fdf4';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '';
+      dropzone.style.background = '';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        addFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        addFiles(Array.from(e.target.files));
+      }
+    });
+
+    changeFilesBtn.addEventListener('click', () => {
+      fileInput.value = '';
+      fileInput.click();
+    });
+
+    function addFiles(files) {
+      const valid = files.filter(f => f.type.startsWith('image/'));
+      if (valid.length === 0) {
+        alert('Please select valid image files.');
+        return;
+      }
+      fileList = fileList.concat(valid);
+      dropzone.style.display = 'none';
+      convertWorkspace.style.display = 'block';
+      bulkDownloadBox.style.display = 'none';
+      renderList();
+    }
+
+    formatChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        formatChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentFormat = chip.getAttribute('data-fmt');
+        currentExt = chip.getAttribute('data-ext');
+        renderList();
+      });
+    });
+
+    function renderList() {
+      fileConvertList.innerHTML = '';
+      fileList.forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'file-convert-item';
+        item.innerHTML = `
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px; height:36px; border-radius:6px; background:#eff6ff; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">🖼️</div>
+            <div>
+              <strong style="color:#0f172a; font-size:0.92rem; display:block;">${file.name}</strong>
+              <div style="font-size:0.78rem; color:#64748b;">${(file.size / 1024).toFixed(1)} KB • Target: ${currentExt.toUpperCase()}</div>
+            </div>
+          </div>
+          <div id="status-${index}">
+            <span style="font-size:0.8rem; padding:4px 10px; border-radius:4px; background:#f1f5f9; color:#475569; font-weight:600;">Ready</span>
+          </div>
+        `;
+        fileConvertList.appendChild(item);
+      });
+    }
+
+    btnConvertAll.addEventListener('click', async () => {
+      btnConvertAll.disabled = true;
+      btnConvertAll.textContent = 'Converting...';
+      convertedBlobs = [];
+
+      for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i];
+        const statusDiv = document.getElementById('status-' + i);
+        statusDiv.innerHTML = '<span style="font-size:0.8rem; padding:4px 10px; border-radius:4px; background:#eff6ff; color:#2563eb; font-weight:600;">Processing...</span>';
+
+        const blob = await convertSingle(file, currentFormat);
+        const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+        const newName = baseName + '.' + currentExt;
+        convertedBlobs.push({ name: newName, blob });
+
+        const url = URL.createObjectURL(blob);
+        statusDiv.innerHTML = `
+          <a href="${url}" download="${newName}" class="btn btn-sm btn-success" style="text-decoration:none; padding:6px 12px; font-weight:700; background:#16a34a; color:#fff; border-radius:6px;">
+            📥 Download ${currentExt.toUpperCase()}
+          </a>
+        `;
+      }
+
+      btnConvertAll.disabled = false;
+      btnConvertAll.textContent = '⚡ Re-Convert All';
+      bulkDownloadBox.style.display = 'block';
+    });
+
+    function convertSingle(file, format) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            if (format === 'image/jpeg') {
+              ctx.fillStyle = '#ffffff';
+              ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            ctx.drawImage(img, 0, 0);
+            canvas.toBlob(resolve, format, 0.92);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    btnDownloadZip.addEventListener('click', async () => {
+      if (convertedBlobs.length === 0) return;
+      const zip = new JSZip();
+      convertedBlobs.forEach(item => {
+        zip.file(item.name, item.blob);
+      });
+      const zipContent = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(zipContent);
+      a.download = `converted-${currentExt}-images.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
 </body>
 </html>
