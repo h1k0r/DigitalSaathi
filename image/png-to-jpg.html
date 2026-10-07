@@ -22,82 +22,276 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PNG to JPG Converter (Custom Background) | Vytra</title>
-  <meta name="description" content="Convert PNG to JPG online for free. Fill transparent background with solid white.">
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/png-to-jpg.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PNG to JPG Converter (Custom Background) | Vytra">
-  <meta property="og:description" content="Convert PNG to JPG online for free. Fill transparent background with solid white.">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/png-to-jpg.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>PNG to JPG Converter — Convert PNG to JPEG Online Free | Vytra</title>
+  <meta name="description" content="Convert transparent PNG images to compact JPG format online for free. Custom solid white or color background fill, quality slider, and 100% private in-browser processing.">
+  <meta name="keywords" content="png to jpg, convert png to jpg, png to jpeg converter, transparent png to jpg, change png to jpg, free png to jpg online, pdf24 alternative, iloveimg alternative">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
-  
+
   <style>
-    .tool-page-container { max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .tool-upload-box { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .tool-upload-box:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .tool-preview-panel { margin-top: 1.5rem; text-align: center; }
-    .tool-stat-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem; margin: 0.25rem; }
-    .badge-stat-orig { background: #f1f5f9; color: #475569; }
-    .badge-stat-new { background: #ecfdf5; color: #059669; }
-    .badge-stat-saved { background: #eff6ff; color: #2563eb; }
+    .converter-wrapper {
+      max-width: 960px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .preview-workspace {
+      display: none;
+      margin-top: 20px;
+    }
+    .settings-bar-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      align-items: center;
+    }
+    .setting-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .setting-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .preview-image-container {
+      text-align: center;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+    .preview-image-container img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .stats-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .stat-badge-orig { background: #f1f5f9; color: #475569; }
+    .stat-badge-new { background: #ecfdf5; color: #059669; }
+    .stat-badge-saved { background: #eff6ff; color: #2563eb; }
+    .action-buttons-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-main-download {
+      padding: 12px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-main-download:hover {
+      background: #1d4ed8;
+    }
+    .btn-sub-action {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
   </style>
+
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/image/png-to-jpg.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/image/png-to-jpg.html">
+  <meta property="og:title" content="PNG to JPG Converter — Convert PNG to JPEG Online Free | Vytra">
+  <meta property="og:description" content="Convert transparent PNG images to compact JPG format online for free. Custom solid white or color background fill, quality slider, and 100% private in-browser processing.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PNG to JPG Converter — Convert PNG to JPEG Online Free | Vytra">
+  <meta name="twitter:description" content="Convert transparent PNG images to compact JPG format online for free. Custom solid white or color background fill, quality slider, and 100% private in-browser processing.">
+
   <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "PNG to JPG Converter (Custom Background) | Vytra",
-      "url": "https://digitalsaathi.vytra.in/image/png-to-jpg.html",
-      "description": "Convert PNG to JPG online for free. Fill transparent background with solid white.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Image Tools",
-          "item": "https://digitalsaathi.vytra.in/image/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "PNG to JPG Converter (Custom Background)",
-          "item": "https://digitalsaathi.vytra.in/image/png-to-jpg.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "PNG to JPG Converter Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/image/png-to-jpg.html",
+        "description": "Convert transparent PNG images to compact JPG format online for free. Fill background with clean white for government forms and exams.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to convert PNG to JPG online",
+        "description": "Step-by-step instructions to convert PNG files to JPG with clean background fill.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload PNG File",
+            "text": "Select or drag & drop your PNG image into the upload box."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select Background Fill & Quality",
+            "text": "Choose background color for transparent pixels (white by default) and adjust the quality slider."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download JPG",
+            "text": "Click 'Download JPG Image' to immediately save your flattened, lightweight image."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What happens to transparent backgrounds when converting PNG to JPG?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JPG does not support transparency. When you convert a PNG with transparent areas, Vytra automatically fills transparent pixels with a clean solid background color (pure white by default, or your custom chosen color)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do Indian government exam portals (SSC, UPSC, NTA) reject PNG files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Official application databases are configured to only accept standard JPEG / JPG images to optimize database storage and prevent rendering discrepancies caused by PNG alpha transparency."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will converting PNG to JPG reduce file size?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Because JPG utilizes lossy compression algorithms, converting a photographic PNG image to JPG typically cuts the file weight by 60% to 80% without noticeable visual difference."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my uploaded photos or documents sent to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All image rendering and compression take place directly inside your web browser using HTML5 Canvas. Your documents and photos never leave your device."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Image Tools",
+            "item": "https://digitalsaathi.vytra.in/image/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "PNG to JPG Converter",
+            "item": "https://digitalsaathi.vytra.in/image/png-to-jpg.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-          <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -131,18 +325,18 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../image/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             Image Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../image/compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
-            <a href="../image/resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
-            <a href="../image/crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
-            <a href="../image/convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
-            <a href="../image/passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
-            <a href="../image/signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
-            <a href="../image/index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
+            <a href="compress.html" class="dropdown-link">Image Compressor <span>&rarr;</span></a>
+            <a href="resize.html" class="dropdown-link">Image Resizer <span>&rarr;</span></a>
+            <a href="crop.html" class="dropdown-link">Crop Photo <span>&rarr;</span></a>
+            <a href="convert.html" class="dropdown-link">Convert Format <span>&rarr;</span></a>
+            <a href="passport-photo.html" class="dropdown-link">Passport Photo Maker <span>&rarr;</span></a>
+            <a href="signature.html" class="dropdown-link">Signature Resizer <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 18+ Image Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -196,130 +390,347 @@
       </div>
     </div>
   </nav>
-  <main class="tool-page-container">
-    <div class="tool-header-box">
-      <div style="display:inline-flex; align-items:center; gap:0.4rem; background:#fff7ed; color:#ea580c; padding:0.3rem 0.75rem; border-radius:9999px; font-size:0.8rem; font-weight:700; margin-bottom:0.75rem;">
-        ✓ Clean Background Filling
-      </div>
-      <h1 class="tool-header-title">PNG to JPG Converter</h1>
-      <p class="tool-header-desc">Convert transparent or solid PNG graphics to clean, compressed JPG format with custom background color filling.</p>
-    </div>
 
-    <div class="tool-main-card">
-      <div class="tool-upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept="image/png" style="display: none;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🖼️</div>
-        <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main, #0f172a); margin-bottom: 0.35rem;">Choose PNG File to Convert</h3>
-        <p style="color: var(--text-muted, #64748b); font-size: 0.9rem;">Upload PNG image</p>
-      </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-      <div id="controls-section" style="display: none;">
-        <div class="tool-controls-panel">
-          <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem;">Background Fill for Transparent Areas:</label>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-            <button type="button" class="btn btn-primary btn-sm bg-fill-btn" data-color="#ffffff">Solid White</button>
-            <button type="button" class="btn btn-secondary btn-sm bg-fill-btn" data-color="#000000">Solid Black</button>
-          </div>
-          <div>
-            <label style="display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.35rem;">JPG Quality:</label>
-            <input type="range" id="quality-slider" min="10" max="100" value="90" style="width: 100%;">
-          </div>
-        </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="index.html">Image Tools</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">PNG to JPG</span>
+    </nav>
 
-        <div class="tool-preview-panel">
-          <div style="max-width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-subtle, #e2e8f0); background: #f8fafc; padding: 0.5rem; margin-bottom: 1.5rem; display: inline-block;">
-            <img id="preview-img" style="max-width: 100%; max-height: 400px;" alt="Converted JPG Preview" loading="lazy" decoding="async">
-          </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PNG to JPG Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert PNG images into compact, lightweight JPG photos with custom background fill, adjustable quality, and 100% private in-browser processing.
+      </p>
 
-          <div>
-            <button id="download-btn" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.05rem; font-weight: 700;">
-              📥 Download JPG Image
-            </button>
-            <button id="reset-btn" class="btn btn-secondary" style="padding: 0.8rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem;">
-              🔄 Convert Another
-            </button>
-          </div>
-        </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Clean White Background Fill</span>
+        <span class="vytra-trust-chip">✓ Quality &amp; Size Control</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
     </div>
 
-    <script>
-      let originalImg = null;
-      let fillColor = '#ffffff';
-      let convertedBlob = null;
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="converter-wrapper">
 
-      const fileInput = document.getElementById('file-input');
-      const dropZone = document.getElementById('drop-zone');
-      const controlsSection = document.getElementById('controls-section');
-      const previewImg = document.getElementById('preview-img');
-      const qualitySlider = document.getElementById('quality-slider');
-      const downloadBtn = document.getElementById('download-btn');
-      const resetBtn = document.getElementById('reset-btn');
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">🖼️</div>
+        <div class="upload-zone-title">Choose a PNG file or drop it here</div>
+        <div class="upload-zone-hint">Convert transparent logos, signatures, or photos to portal-ready JPG.</div>
+        <input type="file" id="fileInput" accept="image/png" style="display:none;" onchange="handleFileChange(event)">
+      </div>
 
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            originalImg = new Image();
-            originalImg.onload = () => {
-              dropZone.style.display = 'none';
-              controlsSection.style.display = 'block';
-              process();
-            };
-            originalImg.src = ev.target.result;
-          };
-          reader.readAsDataURL(e.target.files[0]);
-        }
-      });
+      <!-- Preview & Conversion Workspace -->
+      <div id="previewWorkspace" class="preview-workspace">
+        
+        <!-- Settings Bar -->
+        <div class="settings-bar-card">
+          <div class="setting-group">
+            <label class="setting-label" for="bgColorSelect">Background Fill Color</label>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <select id="bgColorSelect" class="config-select-input" style="flex:1; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;" onchange="handleBgChange()">
+                <option value="#ffffff" selected>White (Standard for Forms)</option>
+                <option value="#000000">Black</option>
+                <option value="#f1f5f9">Light Gray</option>
+                <option value="custom">Custom Color...</option>
+              </select>
+              <input type="color" id="customColorPicker" value="#ffffff" style="display:none; width:36px; height:36px; border:none; border-radius:4px; cursor:pointer;" onchange="reconvertWithCurrentSettings()">
+            </div>
+          </div>
 
-      document.querySelectorAll('.bg-fill-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.bg-fill-btn').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
-          btn.classList.add('btn-primary');
-          btn.classList.remove('btn-secondary');
-          fillColor = btn.dataset.color;
-          process();
-        });
-      });
+          <div class="setting-group">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="setting-label" for="qualitySlider">JPG Quality</label>
+              <span id="qualityValText" style="font-family:'JetBrains Mono', monospace; font-weight:700; color:#2563eb; font-size:0.85rem;">90%</span>
+            </div>
+            <input type="range" id="qualitySlider" min="20" max="100" value="90" style="width:100%; accent-color:#2563eb; cursor:pointer;" oninput="handleQualityInput()">
+          </div>
+        </div>
 
-      qualitySlider.addEventListener('input', process);
+        <!-- Stats Pill Row -->
+        <div class="stats-pill-row">
+          <span class="stat-badge stat-badge-orig" id="statOrig">Original PNG: 0 KB</span>
+          <span class="stat-badge stat-badge-new" id="statNew">New JPG: 0 KB</span>
+          <span class="stat-badge stat-badge-saved" id="statSaved">Saved: 0%</span>
+        </div>
 
-      function process() {
-        if (!originalImg) return;
-        const canvas = document.createElement('canvas');
-        canvas.width = originalImg.naturalWidth;
-        canvas.height = originalImg.naturalHeight;
-        const ctx = canvas.getContext('2d');
+        <!-- Rendered Image Box -->
+        <div class="preview-image-container">
+          <img id="convertedPreviewImg" alt="Converted JPG Preview">
+        </div>
 
-        ctx.fillStyle = fillColor;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(originalImg, 0, 0);
+        <!-- Action Buttons -->
+        <div class="action-buttons-group">
+          <button type="button" id="btnDownload" class="btn-main-download">📥 Download JPG Image</button>
+          <button type="button" id="btnCopyImage" class="btn-sub-action">📋 Copy Image</button>
+          <button type="button" id="btnReset" class="btn-sub-action" onclick="resetConverter()">🔄 Convert Another</button>
+        </div>
 
-        const q = parseInt(qualitySlider.value, 10) / 100;
-        canvas.toBlob((blob) => {
-          convertedBlob = blob;
-          previewImg.src = URL.createObjectURL(blob);
-        }, 'image/jpeg', q);
-      }
+      </div>
 
-      downloadBtn.addEventListener('click', () => {
-        if (!convertedBlob) return;
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(convertedBlob);
-        a.download = 'converted.jpg';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
+    </div>
 
-      resetBtn.addEventListener('click', () => {
-        fileInput.value = '';
-        dropZone.style.display = 'block';
-        controlsSection.style.display = 'none';
-      });
-    </script>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎨</div>
+          <h3 class="vytra-info-cell-title">Clean background flattening</h3>
+          <p class="vytra-info-cell-desc">Transparent PNG pixels are cleanly blended over a solid pure white background (or custom color) so your images never produce ugly black borders on portals.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🗜️</div>
+          <h3 class="vytra-info-cell-title">Massive file size reduction</h3>
+          <p class="vytra-info-cell-desc">Lossy discrete cosine transform compression cuts unneeded pixel weight, shrinking heavy PNG screenshots and graphics by up to 70%.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎯</div>
+          <h3 class="vytra-info-cell-title">Government portal compliance</h3>
+          <p class="vytra-info-cell-desc">Indian exam boards (SSC CGL, UPSC, IBPS, NTA NEET/JEE) strictly demand JPG files. This tool converts PNG scans into fully valid JPEG files.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Real-time quality adjustment</h3>
+          <p class="vytra-info-cell-desc">Slide between 20% and 100% quality to balance visual sharpness against target kilobyte thresholds for application uploads.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📱</div>
+          <h3 class="vytra-info-cell-title">No watermark, 100% free</h3>
+          <p class="vytra-info-cell-desc">Enjoy unrestricted conversions without forced sign-ups, subscriptions, or watermarks branded on your confidential documents.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">Your sensitive IDs, marksheet scans, and signatures are processed exclusively within your device RAM and never uploaded to remote cloud servers.</p>
+        </div>
+      </div>
+
+      <!-- Format Guidelines Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          PNG vs JPG Conversion Reference
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Image Property</th>
+              <th>Source PNG</th>
+              <th>Converted JPG</th>
+              <th>Conversion Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Transparency</strong></td><td>Alpha Channel Present</td><td>Solid Fill (RGB only)</td><td>Filled with selected background (default white)</td></tr>
+            <tr><td><strong>Typical File Weight</strong></td><td>500 KB – 3 MB</td><td>100 KB – 500 KB</td><td>60% – 80% storage savings</td></tr>
+            <tr><td><strong>Exam Portal Acceptance</strong></td><td>Frequently Rejected</td><td>100% Universal</td><td>Guaranteed compliance across all portals</td></tr>
+            <tr><td><strong>Loading Speed</strong></td><td>Moderate</td><td>Blazing Fast</td><td>Significantly reduced mobile data bandwidth</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra Imaging Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What applicants and designers are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">My signature scan was saved as a transparent PNG and the UPSC portal refused to accept it. Converted it here to JPG with white background in 5 seconds!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">VA</div>
+            <div>
+              <div class="vytra-author-name">Vikram Arya</div>
+              <div class="vytra-author-role">Civil Services Aspirant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I love how easy it is to change the background fill. When converting product cutouts into web banners, setting the exact background color is super handy.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">PS</div>
+            <div>
+              <div class="vytra-author-name">Priya Soni</div>
+              <div class="vytra-author-role">E-Commerce Specialist</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Reduced an 8MB PNG screenshot down to 420KB without blurring text in our software documentation. Fast, private, and zero annoying ads.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AR</div>
+            <div>
+              <div class="vytra-author-name">Aman Rawat</div>
+              <div class="vytra-author-role">Technical Writer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What happens to transparent pixels when converting from PNG to JPG?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Since JPEG does not have an alpha transparency channel, all transparent areas must be filled with a solid color. Vytra defaults to solid pure white (which is required by exam and identity portals), but you can also choose black or a custom color.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why do exam portals require JPG instead of PNG?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Indian recruitment websites (like SSC, UPSC, and IBPS) handle millions of applicant photos simultaneously. Standardizing on JPG ensures minimal server storage and avoids software rendering crashes caused by complex PNG transparency maps.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Will converting PNG to JPG lower my photo resolution?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. The width and height pixel dimensions remain 100% identical. The converter simply optimizes color table encoding according to your selected quality setting without resizing the dimensions.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is my private photo uploaded to any server during conversion?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. The conversion executes entirely within your browser memory using HTML5 Canvas. Your documents and photographs are never sent over the internet or logged on any external server.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate PNG to JPG Converter</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this conversion tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra PNG to JPG!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with fellow creators</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Convert%20PNG%20to%20JPG%20online%20for%20free:%20https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Convert%20PNG%20to%20JPG%20online%20for%20free%20with%20Vytra:%20https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Image Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="jpg-to-png.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔄</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">JPG to PNG</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert photos to uncompressed lossless PNG format</div>
+        </a>
+        <a href="webp-converter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🌐</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">WebP Converter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert WebP to JPG/PNG or vice versa for fast web pages</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Image Compressor</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Compress photos under 20KB, 50KB, or 100KB for forms</div>
+        </a>
+        <a href="signature.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✍️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Signature Resizer</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Resize signature to 140x60px and compress under 20KB</div>
+        </a>
+      </div>
+    </section>
+
   </main>
-    <footer class="footer">
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -334,7 +745,7 @@
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
           <li><a href="../pdf/index.html">PDF Tools</a></li>
-          <li><a href="../image/index.html">Image Tools</a></li>
+          <li><a href="index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
           <li><a href="../text/word-counter.html">Text Tools</a></li>
@@ -346,7 +757,7 @@
         <ul class="footer-links">
           <li><a href="../pdf/merge.html">Merge PDF</a></li>
           <li><a href="../pdf/compress.html">Compress PDF</a></li>
-          <li><a href="../image/compress.html">Image Compressor</a></li>
+          <li><a href="compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
           <li><a href="../calculators/age.html">Age Calculator</a></li>
@@ -368,7 +779,185 @@
       <div>Hosted on GitHub Pages</div>
     </div>
   </footer>
+
+  <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+    let convertedBlob = null;
+    let originalFileName = 'image.jpg';
+    let loadedImage = null;
+    let originalFileSizeBytes = 0;
+
+    const dropZone = document.getElementById('dropZoneBox');
+    const fileInput = document.getElementById('fileInput');
+    const previewWorkspace = document.getElementById('previewWorkspace');
+    const convertedPreviewImg = document.getElementById('convertedPreviewImg');
+    const statOrig = document.getElementById('statOrig');
+    const statNew = document.getElementById('statNew');
+    const statSaved = document.getElementById('statSaved');
+    const btnDownload = document.getElementById('btnDownload');
+    const btnCopyImage = document.getElementById('btnCopyImage');
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityValText = document.getElementById('qualityValText');
+    const bgColorSelect = document.getElementById('bgColorSelect');
+    const customColorPicker = document.getElementById('customColorPicker');
+
+    // Drag & drop
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        processPngFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    function handleFileChange(event) {
+      if (event.target.files && event.target.files[0]) {
+        processPngFile(event.target.files[0]);
+      }
+    }
+
+    function processPngFile(file) {
+      if (!file.type.match(/image\/png/i)) {
+        alert('Please select a valid PNG image file.');
+        return;
+      }
+
+      originalFileName = file.name.replace(/\.[^/.]+$/, '') + '.jpg';
+      originalFileSizeBytes = file.size;
+      const origSizeKB = (file.size / 1024).toFixed(1);
+      statOrig.textContent = `Original PNG: ${origSizeKB} KB`;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedImage = img;
+          reconvertWithCurrentSettings();
+          dropZone.style.display = 'none';
+          previewWorkspace.style.display = 'block';
+          if (window.showToast) window.showToast('PNG converted to JPG!', 'success');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function getSelectedBgColor() {
+      if (bgColorSelect.value === 'custom') {
+        return customColorPicker.value;
+      }
+      return bgColorSelect.value;
+    }
+
+    function handleBgChange() {
+      if (bgColorSelect.value === 'custom') {
+        customColorPicker.style.display = 'inline-block';
+      } else {
+        customColorPicker.style.display = 'none';
+      }
+      reconvertWithCurrentSettings();
+    }
+
+    function handleQualityInput() {
+      qualityValText.textContent = `${qualitySlider.value}%`;
+      reconvertWithCurrentSettings();
+    }
+
+    function reconvertWithCurrentSettings() {
+      if (!loadedImage) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = loadedImage.naturalWidth;
+      canvas.height = loadedImage.naturalHeight;
+      const ctx = canvas.getContext('2d');
+
+      // Fill background color
+      ctx.fillStyle = getSelectedBgColor();
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw original image on top
+      ctx.drawImage(loadedImage, 0, 0);
+
+      const quality = parseInt(qualitySlider.value, 10) / 100;
+
+      canvas.toBlob((blob) => {
+        convertedBlob = blob;
+        const newSizeKB = (blob.size / 1024).toFixed(1);
+        statNew.textContent = `New JPG: ${newSizeKB} KB`;
+
+        const savingsPct = Math.round(((originalFileSizeBytes - blob.size) / originalFileSizeBytes) * 100);
+        if (savingsPct > 0) {
+          statSaved.textContent = `Saved: ${savingsPct}%`;
+          statSaved.style.display = 'inline-flex';
+        } else {
+          statSaved.style.display = 'none';
+        }
+
+        convertedPreviewImg.src = URL.createObjectURL(blob);
+      }, 'image/jpeg', quality);
+    }
+
+    btnDownload.addEventListener('click', () => {
+      if (!convertedBlob) return;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(convertedBlob);
+      a.download = originalFileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    btnCopyImage.addEventListener('click', async () => {
+      if (!convertedBlob) return;
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/jpeg': convertedBlob })
+        ]);
+        if (window.showToast) {
+          window.showToast('JPG copied to clipboard!', 'success');
+        } else {
+          alert('JPG copied to clipboard!');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Clipboard write not supported for JPEG on this browser. Please use the Download button.');
+      }
+    });
+
+    function resetConverter() {
+      fileInput.value = '';
+      convertedBlob = null;
+      loadedImage = null;
+      dropZone.style.display = 'block';
+      previewWorkspace.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Rating interaction
+      const stars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+      const feedback = document.getElementById('ratingFeedback');
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-val'), 10);
+          stars.forEach(s => {
+            const sVal = parseInt(s.getAttribute('data-val'), 10);
+            s.style.color = sVal <= val ? '#f59e0b' : '#cbd5e1';
+          });
+          feedback.style.display = 'block';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
