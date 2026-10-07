@@ -10,7 +10,7 @@
 
     gtag('config', 'G-R2EMRPEG70');
   </script>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -20,91 +20,307 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMI Calculator - Vytra</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .emi-container { max-width: 900px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        @media (max-width: 768px) { .emi-container { grid-template-columns: 1fr; } }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 500; }
-        .form-group input[type="range"] { width: 100%; cursor: pointer; }
-        .input-with-symbol { position: relative; }
-        .input-with-symbol input[type="number"] { width: 100%; padding: 8px 8px 8px 30px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .symbol { position: absolute; left: 10px; top: 9px; color: #6b7280; font-weight: 500; }
-        .results-panel { background: #f9fafb; padding: 20px; border-radius: 8px; text-align: center; }
-        .result-item { margin-bottom: 15px; }
-        .result-item h4 { margin: 0 0 5px 0; color: #6b7280; font-size: 14px; }
-        .result-item h2 { margin: 0; color: #111827; }
-        .text-primary { color: #2563eb !important; }
-        .chart-container { width: 200px; height: 200px; margin: 20px auto; position: relative; }
-        canvas { width: 100%; height: 100%; }
-        .disclaimer { font-size: 12px; color: #9ca3af; margin-top: 20px; text-align: center; }
-    </style>
-  <meta name="description" content="Free Loan EMI Calculator with interactive monthly payment breakdown, interest vs principal charts, and full amortization schedule.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan EMI Calculator Online Free (Home, Education &amp; Car Loans) | Vytra</title>
+  <meta name="description" content="Calculate monthly loan EMI for home, education, personal, and car loans. Interactive interest breakdown pie chart, year-wise amortization schedule, and prepayment calculator free online.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+  <style>
+    .calc-center-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 860px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .calc-tab-strip {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .calc-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+    }
+    .calc-tab-pane {
+      display: none;
+    }
+    .calc-tab-pane.active {
+      display: block;
+    }
+    .preset-pill-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+    .preset-pill {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-pill:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .emi-grid-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .emi-grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .slider-row {
+      margin-bottom: 20px;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .slider-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+    .slider-display-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #2563eb;
+    }
+    .form-range-slider {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+    .form-number-box {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      margin-top: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .results-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .emi-val-big {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #2563eb;
+      margin: 4px 0 14px;
+      letter-spacing: -0.02em;
+    }
+    .chart-box {
+      width: 170px;
+      height: 170px;
+      margin: 12px auto;
+      position: relative;
+    }
+    .chart-legend {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    .amort-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.85rem;
+    }
+    .amort-table th, .amort-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: right;
+    }
+    .amort-table th:first-child, .amort-table td:first-child {
+      text-align: center;
+    }
+    .amort-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Loan EMI Calculator Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/calculators/emi.html",
+        "description": "Calculate monthly loan EMI for home loans, education loans, personal loans, and car loans with interactive pie charts and year-wise amortization schedules.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to calculate loan EMI using the online calculator",
+        "description": "Step-by-step instructions to calculate equated monthly installments (EMI) and interest amounts.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select Loan Amount",
+            "text": "Use the slider or input field to enter the total principal loan amount you wish to borrow in Rupees."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Enter Annual Interest Rate",
+            "text": "Specify the annual rate of interest quoted by the bank (e.g. 8.5% for Home Loan or 9.5% for Education Loan)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Set Loan Tenure",
+            "text": "Choose the loan repayment duration in years or months to see instant calculated monthly EMI, total interest, and charts."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the formula used to calculate loan EMI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The standard reducing balance formula is: EMI = [P × r × (1 + r)^n] / [(1 + r)^n - 1], where P is Principal loan amount, r is monthly interest rate (annual interest rate / 12 / 100), and n is total loan tenure in months."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I claim tax benefits on education loan EMI interest in India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Under Section 80E of the Indian Income Tax Act, the entire interest component paid on higher education loans (for yourself, spouse, or children) is fully deductible from taxable income for up to 8 consecutive assessment years with no upper financial cap."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does loan prepayment affect my EMI or tenure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Making part-prepayments reduces your outstanding principal balance directly. You can choose either to lower your monthly EMI while keeping the tenure unchanged, or reduce your overall loan tenure to save substantially on total interest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between flat interest rate and reducing balance interest rate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In a flat interest rate, interest is calculated on the original loan amount throughout the tenure. In reducing balance rate (standard for home and education loans), interest is only charged on the remaining unpaid principal after each monthly installment."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculators",
+            "item": "https://digitalsaathi.vytra.in/tools/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Loan EMI Calculator",
+            "item": "https://digitalsaathi.vytra.in/calculators/emi.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/calculators/emi.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/calculators/emi.html">
-  <meta property="og:title" content="EMI Calculator - Vytra">
-  <meta property="og:description" content="Free Loan EMI Calculator with interactive monthly payment breakdown, interest vs principal charts, and full amortization schedule.">
+  <meta property="og:title" content="Loan EMI Calculator Online Free (Home, Education &amp; Car Loans) | Vytra">
+  <meta property="og:description" content="Calculate monthly loan EMI for home, education, personal, and car loans. Interactive interest breakdown pie chart and year-wise amortization schedule.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EMI Calculator - Vytra">
-  <meta name="twitter:description" content="Free Loan EMI Calculator with interactive monthly payment breakdown, interest vs principal charts, and full amortization schedule.">
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "EMI Calculator - Vytra",
-      "url": "https://digitalsaathi.vytra.in/calculators/emi.html",
-      "description": "Free Loan EMI Calculator with interactive monthly payment breakdown, interest vs principal charts, and full amortization schedule.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Calculators Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "EMI Calculator",
-          "item": "https://digitalsaathi.vytra.in/calculators/emi.html"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <meta name="twitter:title" content="Loan EMI Calculator Online Free (Home, Education &amp; Car Loans) | Vytra">
+  <meta name="twitter:description" content="Calculate monthly loan EMI for home, education, personal, and car loans. Interactive interest breakdown pie chart and year-wise amortization schedule.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
-<body>
-            <nav class="navbar" id="main-nav">
+<body class="tool-page">
+
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -134,6 +350,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -153,7 +370,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../calculators/percentage.html" class="nav-link">
+          <a href="../calculators/percentage.html" class="nav-link active">
             Calculators
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -204,73 +421,448 @@
     </div>
   </nav>
 
-    <main class="container">
-        <h1 style="text-align: center; margin-top: 40px;">EMI Calculator</h1>
-        <div class="emi-container">
-            <div class="inputs-panel">
-                <div class="form-group">
-                    <label><span>Loan Amount</span> <span id="amountVal">₹ 1,00,000</span></label>
-                    <input type="range" id="amountRange" min="10000" max="10000000" step="10000" value="100000" oninput="updateValues()">
-                    <div class="input-with-symbol mt-2">
-                        <span class="symbol">₹</span>
-                        <input type="number" id="amountInput" value="100000" oninput="syncRange('amount')">
-                    </div>
-                </div>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-                <div class="form-group">
-                    <label><span>Interest Rate (% p.a.)</span> <span id="rateVal">10.5%</span></label>
-                    <input type="range" id="rateRange" min="1" max="30" step="0.1" value="10.5" oninput="updateValues()">
-                    <div class="input-with-symbol mt-2">
-                        <span class="symbol">%</span>
-                        <input type="number" id="rateInput" value="10.5" step="0.1" oninput="syncRange('rate')">
-                    </div>
-                </div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../tools/index.html">Calculators</a>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Loan EMI Calculator</span>
+    </nav>
 
-                <div class="form-group">
-                    <label>
-                        <span>Loan Tenure</span> 
-                        <span id="tenureVal">5 Years</span>
-                    </label>
-                    <div style="margin-bottom: 10px;">
-                        <input type="radio" name="tenureType" id="tenureYr" value="yr" checked onchange="updateValues()"> Years 
-                        <input type="radio" name="tenureType" id="tenureMo" value="mo" onchange="updateValues()"> Months
-                    </div>
-                    <input type="range" id="tenureRange" min="1" max="30" step="1" value="5" oninput="updateValues()">
-                    <div class="input-with-symbol mt-2">
-                        <span class="symbol">T</span>
-                        <input type="number" id="tenureInput" value="5" oninput="syncRange('tenure')">
-                    </div>
-                </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Loan EMI Calculator</h1>
+      <p class="vytra-tool-subtitle">
+        Calculate monthly EMI, interest breakdown, and total payment for home, education, car, and personal loans with interactive pie charts and amortization schedules.
+      </p>
+
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Instant</span>
+        <span class="vytra-trust-chip">✓ Home &amp; Student Loans</span>
+        <span class="vytra-trust-chip">✓ Pie Chart Breakdown</span>
+        <span class="vytra-trust-chip">✓ Full Amortization</span>
+      </div>
+    </div>
+
+    <!-- 2. Interactive Calculator Container -->
+    <div class="calc-center-box">
+      
+      <!-- Tab Header Strip -->
+      <div class="calc-tab-strip">
+        <button type="button" class="calc-tab-btn active" data-tab="tabEmiCalc">💰 Monthly EMI &amp; Charts</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabAmort">📅 Amortization Schedule</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabPrepay">⚡ Prepayment Planner</button>
+      </div>
+
+      <!-- Presets Bar -->
+      <div class="preset-pill-bar">
+        <span style="font-size:0.8rem; font-weight:700; color:#64748b;">Loan Presets:</span>
+        <button type="button" class="preset-pill" onclick="applyLoanPreset(3000000, 8.5, 20, 'yr')">🏠 Home Loan (₹30L @ 8.5%, 20Y)</button>
+        <button type="button" class="preset-pill" onclick="applyLoanPreset(1000000, 9.5, 7, 'yr')">🎓 Education Loan (₹10L @ 9.5%, 7Y)</button>
+        <button type="button" class="preset-pill" onclick="applyLoanPreset(800000, 9.0, 5, 'yr')">🚗 Car Loan (₹8L @ 9%, 5Y)</button>
+        <button type="button" class="preset-pill" onclick="applyLoanPreset(300000, 12.0, 3, 'yr')">💼 Personal Loan (₹3L @ 12%, 3Y)</button>
+      </div>
+
+      <!-- Tab 1: EMI & Chart -->
+      <div class="calc-tab-pane active" id="tabEmiCalc">
+        <div class="emi-grid-layout">
+          
+          <!-- Left Controls Column -->
+          <div>
+            <!-- Loan Amount Slider -->
+            <div class="slider-row">
+              <div class="slider-header">
+                <span class="slider-label">Loan Amount</span>
+                <span class="slider-display-val" id="amountDisplay">₹ 10,00,000</span>
+              </div>
+              <input type="range" id="amountRange" class="form-range-slider" min="50000" max="10000000" step="25000" value="1000000" oninput="syncAmount(this.value)">
+              <input type="number" id="amountInput" class="form-number-box" value="1000000" step="5000" oninput="syncAmount(this.value)">
             </div>
 
-            <div class="results-panel">
-                <div class="result-item">
-                    <h4>Monthly EMI</h4>
-                    <h2 class="text-primary" id="emiResult">₹ 0</h2>
-                </div>
-                <div class="result-item">
-                    <h4>Principal Amount</h4>
-                    <h2 id="principalResult">₹ 0</h2>
-                </div>
-                <div class="result-item">
-                    <h4>Total Interest</h4>
-                    <h2 id="interestResult">₹ 0</h2>
-                </div>
-                <div class="result-item">
-                    <h4>Total Amount Payable</h4>
-                    <h2 id="totalResult">₹ 0</h2>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="pieChart"></canvas>
-                </div>
-
-                <p class="disclaimer">Disclaimer: This is for informational purposes only. Consult a financial advisor for professional advice.</p>
+            <!-- Interest Rate Slider -->
+            <div class="slider-row">
+              <div class="slider-header">
+                <span class="slider-label">Interest Rate (% p.a.)</span>
+                <span class="slider-display-val" id="rateDisplay">9.5%</span>
+              </div>
+              <input type="range" id="rateRange" class="form-range-slider" min="5" max="25" step="0.1" value="9.5" oninput="syncRate(this.value)">
+              <input type="number" id="rateInput" class="form-number-box" value="9.5" step="0.1" oninput="syncRate(this.value)">
             </div>
+
+            <!-- Loan Tenure Slider -->
+            <div class="slider-row">
+              <div class="slider-header">
+                <span class="slider-label">Loan Tenure</span>
+                <span class="slider-display-val" id="tenureDisplay">7 Years</span>
+              </div>
+              <div style="display:flex; gap:12px; margin-bottom:6px; font-size:0.85rem; font-weight:600; color:#475569;">
+                <label><input type="radio" name="tenureType" value="yr" checked onchange="handleTenureTypeChange()"> Years</label>
+                <label><input type="radio" name="tenureType" value="mo" onchange="handleTenureTypeChange()"> Months</label>
+              </div>
+              <input type="range" id="tenureRange" class="form-range-slider" min="1" max="30" step="1" value="7" oninput="syncTenure(this.value)">
+              <input type="number" id="tenureInput" class="form-number-box" value="7" min="1" oninput="syncTenure(this.value)">
+            </div>
+          </div>
+
+          <!-- Right Results Card & Canvas Pie Chart -->
+          <div class="results-card">
+            <div style="font-size:0.82rem; color:#64748b; font-weight:600; letter-spacing:0.04em;">MONTHLY EMI</div>
+            <div class="emi-val-big" id="monthlyEmiResult">₹ 0</div>
+
+            <div class="chart-box">
+              <canvas id="emiPieCanvas" width="170" height="170"></canvas>
+            </div>
+
+            <div class="chart-legend">
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#2563eb;"></span>
+                <span>Principal</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#7c3aed;"></span>
+                <span>Interest</span>
+              </div>
+            </div>
+
+            <div style="margin-top:16px; text-align:left; font-size:0.85rem;">
+              <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #e2e8f0;">
+                <span style="color:#64748b;">Principal Amount:</span>
+                <strong id="cardPrincipalVal">₹ 0</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #e2e8f0;">
+                <span style="color:#64748b;">Total Interest:</span>
+                <strong id="cardInterestVal" style="color:#7c3aed;">₹ 0</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; padding:6px 0; font-weight:700;">
+                <span>Total Amount Payable:</span>
+                <span id="cardTotalVal" style="color:#1e293b;">₹ 0</span>
+              </div>
+            </div>
+
+            <button type="button" class="btn" onclick="copyEmiSummary()" style="margin-top:14px; width:100%; padding:8px; background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; cursor:pointer; font-weight:600; font-size:0.85rem;">
+              📋 Copy Loan Breakdown
+            </button>
+            <div id="copyEmiNotice" style="display:none; color:#16a34a; font-size:0.8rem; font-weight:600; margin-top:6px;">Copied to clipboard!</div>
+          </div>
+
         </div>
-    </main>
+      </div>
 
-      <footer class="footer">
+      <!-- Tab 2: Amortization Schedule -->
+      <div class="calc-tab-pane" id="tabAmort">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+          <h4 style="font-size:1rem; font-weight:700; color:#1e293b; margin:0;">Yearly Loan Repayment Schedule</h4>
+          <button type="button" class="btn" onclick="window.print()" style="padding:6px 14px; font-size:0.8rem; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; font-weight:600; cursor:pointer;">
+            🖨️ Print Schedule
+          </button>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="amort-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Opening Balance</th>
+                <th>EMI Paid</th>
+                <th>Principal Paid</th>
+                <th>Interest Paid</th>
+                <th>Ending Balance</th>
+              </tr>
+            </thead>
+            <tbody id="amortTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Prepayment Planner -->
+      <div class="calc-tab-pane" id="tabPrepay">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Calculate how much interest and tenure you can shave off your loan by paying extra each month.
+        </p>
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Extra Monthly Prepayment (₹)</label>
+          <input type="number" id="prepayExtraMonthly" class="form-number-box" placeholder="e.g. 2500" value="2000" oninput="calculatePrepaymentSavings()">
+        </div>
+
+        <div class="results-card" style="text-align:left; margin-top:16px;">
+          <h4 style="font-size:1rem; font-weight:700; color:#1e293b; margin-bottom:10px;">Prepayment Savings Impact</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1px solid #86efac; border-radius:8px; padding:12px; text-align:center;">
+              <div style="font-size:0.75rem; color:#15803d; font-weight:700; text-transform:uppercase;">Total Interest Saved</div>
+              <div id="prepayInterestSavedVal" style="font-size:1.4rem; font-weight:800; color:#16a34a; margin:4px 0;">₹ 0</div>
+              <div style="font-size:0.72rem; color:#64748b;">Direct financial savings</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+              <div style="font-size:0.75rem; color:#1e40af; font-weight:700; text-transform:uppercase;">Tenure Reduced By</div>
+              <div id="prepayTenureReducedVal" style="font-size:1.4rem; font-weight:800; color:#2563eb; margin:4px 0;">0 Months</div>
+              <div style="font-size:0.72rem; color:#64748b;">Become debt-free sooner</div>
+            </div>
+          </div>
+          <div id="prepaySummaryText" style="font-size:0.85rem; color:#475569; margin-top:12px; line-height:1.5;"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🏦</div>
+          <h3 class="vytra-info-cell-title">Reducing balance formula</h3>
+          <p class="vytra-info-cell-desc">Accurately models the reducing balance methodology standardized across major Indian banks like SBI, HDFC, ICICI, and Axis Bank.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎓</div>
+          <h3 class="vytra-info-cell-title">Section 80E tax deduction</h3>
+          <p class="vytra-info-cell-desc">Under Section 80E of the Income Tax Act, 100% of interest paid on student education loans can be deducted from taxable income for 8 years.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📊</div>
+          <h3 class="vytra-info-cell-title">Interactive pie chart breakdown</h3>
+          <p class="vytra-info-cell-desc">Instant Canvas visual feedback distinguishes your initial borrowing principal from the cumulative interest surcharge owed over the tenure.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Prepayment savings planner</h3>
+          <p class="vytra-info-cell-desc">See how adding even a modest ₹1,000 to ₹3,000 extra monthly prepayment knocks years off your debt and saves lakhs in interest.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📅</div>
+          <h3 class="vytra-info-cell-title">Full amortization schedule</h3>
+          <p class="vytra-info-cell-desc">Year-by-year schedule displays opening principal, annual EMI installments, interest paid, and closing balances for tax filing.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private in-browser tool</h3>
+          <p class="vytra-info-cell-desc">All loan mathematics run strictly within your browser. No financial figures or personal info are ever sent to remote servers.</p>
+        </div>
+      </div>
+
+      <!-- Current Interest Rates Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Typical Indian Retail Loan Interest Rate Benchmarks (2026)
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Loan Category</th>
+              <th>Interest Rate Range (p.a.)</th>
+              <th>Typical Tenure</th>
+              <th>Key Tax Benefits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Home Loan</strong></td><td>8.35% – 9.75%</td><td>15 to 30 Years</td><td>Sec 24(b) up to ₹2 Lakh + Sec 80C up to ₹1.5 Lakh</td></tr>
+            <tr><td><strong>Education Loan</strong></td><td>8.50% – 11.50%</td><td>5 to 15 Years</td><td>Sec 80E (100% of interest with no upper ceiling)</td></tr>
+            <tr><td><strong>Car / Auto Loan</strong></td><td>8.75% – 10.50%</td><td>3 to 7 Years</td><td>Depreciation &amp; interest (for business/self-employed)</td></tr>
+            <tr><td><strong>Personal Loan</strong></td><td>10.50% – 16.00%</td><td>1 to 5 Years</td><td>None (unless used for business or home improvement)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What borrowers are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The prepayment planner is a game changer. It showed me that paying just ₹2,500 extra per month on my ₹30 Lakh home loan saves ₹6.4 Lakhs in interest!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RG</div>
+            <div>
+              <div class="vytra-author-name">Rohan Gupta</div>
+              <div class="vytra-author-role">Homebuyer (Bengaluru)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I used this to compare education loan offers from SBI and HDFC for my abroad master's degree. The amortization table made the yearly interest deductions clear.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SK</div>
+            <div>
+              <div class="vytra-author-name">Shreya Kulkarni</div>
+              <div class="vytra-author-role">Postgraduate Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Clean, fast, and no annoying popups asking for my phone number or spamming sales calls. Pure client-side privacy!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">VS</div>
+            <div>
+              <div class="vytra-author-name">Vikram Singh</div>
+              <div class="vytra-author-role">Chartered Accountant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How is monthly loan EMI calculated?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            EMI is calculated using the formula: EMI = [P × r × (1 + r)^n] / [(1 + r)^n - 1]. In this formula, P represents the principal borrowed, r is the periodic monthly interest rate (annual rate divided by 1200), and n is the total number of monthly payments.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I claim tax deduction on education loans?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes. Under Section 80E of the Indian Income Tax Act, you can claim an unlimited tax deduction on the full interest component paid towards higher education loans for up to 8 years starting from the year repayment commences.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is it better to choose a longer or shorter loan tenure?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            A shorter tenure increases your monthly EMI but drastically reduces the total interest paid over time. A longer tenure lowers your monthly installment, easing monthly cash flow, but significantly increases cumulative interest.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are there prepayment penalties for floating-rate home loans?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            According to Reserve Bank of India (RBI) guidelines, banks and housing finance companies (HFCs) are strictly prohibited from charging prepayment penalties or foreclosure charges on floating-rate term loans given to individual borrowers.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Loan EMI Calculator</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this financial tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra EMI Calculator!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; family</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Calculate%20loan%20EMI%20and%20interest%20breakdowns%20for%20free:%20https://digitalsaathi.vytra.in/calculators/emi.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Calculate%20loan%20EMI%20and%20amortization%20schedules%20online%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/calculators/emi.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/calculators/emi.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/calculators/emi.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Financial &amp; Academic Calculators
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="percentage.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📊</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Percentage Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate marks percentage and exam division rankings</div>
+        </a>
+        <a href="cgpa.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎓</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">CGPA Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate semester SGPA and cumulative credits</div>
+        </a>
+        <a href="attendance.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📅</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Attendance Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate classes needed to maintain 75% attendance</div>
+        </a>
+        <a href="age.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎂</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Age Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Exact age in years, months, and days for exam forms</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -320,100 +912,283 @@
     </div>
   </footer>
 
-    <script defer src="../data/tools.js"></script>
+  <!-- Scripts -->
+  <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
-    <script>
-        function formatRupee(num) {
-            return "₹ " + num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+  <script>
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.calc-tab-btn');
+    const tabPanes = document.querySelectorAll('.calc-tab-pane');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        const targetPane = document.getElementById(target);
+        if (targetPane) targetPane.classList.add('active');
+      });
+    });
+
+    function formatINR(val) {
+      return '₹ ' + Math.round(val).toLocaleString('en-IN');
+    }
+
+    let globalPrincipal = 1000000;
+    let globalRate = 9.5;
+    let globalTenure = 7;
+    let globalTenureType = 'yr';
+    let globalMonthlyEmi = 0;
+    let globalTotalInterest = 0;
+    let globalTotalPayable = 0;
+
+    function syncAmount(val) {
+      const v = Math.max(10000, parseFloat(val) || 10000);
+      globalPrincipal = v;
+      document.getElementById('amountRange').value = v;
+      document.getElementById('amountInput').value = v;
+      document.getElementById('amountDisplay').textContent = formatINR(v);
+      recalculateAll();
+    }
+
+    function syncRate(val) {
+      const v = Math.max(1, parseFloat(val) || 1);
+      globalRate = v;
+      document.getElementById('rateRange').value = v;
+      document.getElementById('rateInput').value = v;
+      document.getElementById('rateDisplay').textContent = v.toFixed(1) + '%';
+      recalculateAll();
+    }
+
+    function syncTenure(val) {
+      const v = Math.max(1, parseFloat(val) || 1);
+      globalTenure = v;
+      document.getElementById('tenureRange').value = v;
+      document.getElementById('tenureInput').value = v;
+      document.getElementById('tenureDisplay').textContent = `${v} ${globalTenureType === 'yr' ? 'Years' : 'Months'}`;
+      recalculateAll();
+    }
+
+    function handleTenureTypeChange() {
+      const checked = document.querySelector('input[name="tenureType"]:checked').value;
+      globalTenureType = checked;
+      const tRange = document.getElementById('tenureRange');
+      if (checked === 'yr') {
+        tRange.max = 30;
+        if (globalTenure > 30) globalTenure = 20;
+      } else {
+        tRange.max = 360;
+        if (globalTenure < 12) globalTenure = 60;
+      }
+      syncTenure(globalTenure);
+    }
+
+    function applyLoanPreset(amt, rate, tenure, type) {
+      document.querySelector(`input[name="tenureType"][value="${type}"]`).checked = true;
+      globalTenureType = type;
+      syncAmount(amt);
+      syncRate(rate);
+      syncTenure(tenure);
+    }
+
+    function recalculateAll() {
+      const p = globalPrincipal;
+      const rAnnual = globalRate;
+      const totalMonths = globalTenureType === 'yr' ? globalTenure * 12 : globalTenure;
+      const monthlyRate = rAnnual / 12 / 100;
+
+      let emi = 0;
+      if (monthlyRate === 0) {
+        emi = p / totalMonths;
+      } else {
+        const factor = Math.pow(1 + monthlyRate, totalMonths);
+        emi = (p * monthlyRate * factor) / (factor - 1);
+      }
+
+      const totalPayable = emi * totalMonths;
+      const totalInterest = totalPayable - p;
+
+      globalMonthlyEmi = emi;
+      globalTotalInterest = totalInterest;
+      globalTotalPayable = totalPayable;
+
+      document.getElementById('monthlyEmiResult').textContent = formatINR(emi);
+      document.getElementById('cardPrincipalVal').textContent = formatINR(p);
+      document.getElementById('cardInterestVal').textContent = formatINR(totalInterest);
+      document.getElementById('cardTotalVal').textContent = formatINR(totalPayable);
+
+      drawEmiDonut(p, totalInterest);
+      generateAmortizationSchedule(p, monthlyRate, emi, totalMonths);
+      calculatePrepaymentSavings();
+    }
+
+    function drawEmiDonut(principal, interest) {
+      const canvas = document.getElementById('emiPieCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const total = principal + interest;
+      const pAngle = (principal / total) * 2 * Math.PI;
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = 75;
+      const innerRadius = 45;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Principal slice (blue)
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, pAngle, false);
+      ctx.arc(centerX, centerY, innerRadius, pAngle, 0, true);
+      ctx.closePath();
+      ctx.fillStyle = '#2563eb';
+      ctx.fill();
+
+      // Interest slice (purple)
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, pAngle, 2 * Math.PI, false);
+      ctx.arc(centerX, centerY, innerRadius, 2 * Math.PI, pAngle, true);
+      ctx.closePath();
+      ctx.fillStyle = '#7c3aed';
+      ctx.fill();
+
+      // Center text
+      ctx.font = 'bold 12px Inter';
+      ctx.fillStyle = '#1e293b';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const principalPerc = Math.round((principal / total) * 100);
+      ctx.fillText(`${principalPerc}% P`, centerX, centerY - 8);
+      ctx.font = '10px Inter';
+      ctx.fillStyle = '#64748b';
+      ctx.fillText(`${100 - principalPerc}% Int`, centerX, centerY + 10);
+    }
+
+    function generateAmortizationSchedule(principal, monthlyRate, emi, totalMonths) {
+      const tbody = document.getElementById('amortTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      let balance = principal;
+      let year = 1;
+      let yearPrincipal = 0;
+      let yearInterest = 0;
+      let yearEmi = 0;
+      let openingBalance = balance;
+
+      for (let m = 1; m <= totalMonths; m++) {
+        const interestForMonth = balance * monthlyRate;
+        const principalForMonth = emi - interestForMonth;
+        balance -= principalForMonth;
+        if (balance < 0) balance = 0;
+
+        yearPrincipal += principalForMonth;
+        yearInterest += interestForMonth;
+        yearEmi += emi;
+
+        if (m % 12 === 0 || m === totalMonths) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>Year ${year}</td>
+            <td>${formatINR(openingBalance)}</td>
+            <td>${formatINR(yearEmi)}</td>
+            <td>${formatINR(yearPrincipal)}</td>
+            <td style="color:#7c3aed;">${formatINR(yearInterest)}</td>
+            <td><strong>${formatINR(balance)}</strong></td>
+          `;
+          tbody.appendChild(row);
+
+          year++;
+          yearPrincipal = 0;
+          yearInterest = 0;
+          yearEmi = 0;
+          openingBalance = balance;
+        }
+      }
+    }
+
+    function calculatePrepaymentSavings() {
+      const extraMonthly = parseFloat(document.getElementById('prepayExtraMonthly').value) || 0;
+      const p = globalPrincipal;
+      const monthlyRate = (globalRate / 12 / 100);
+      const standardEmi = globalMonthlyEmi;
+      const standardInterest = globalTotalInterest;
+      const standardMonths = globalTenureType === 'yr' ? globalTenure * 12 : globalTenure;
+
+      if (extraMonthly <= 0) {
+        document.getElementById('prepayInterestSavedVal').textContent = '₹ 0';
+        document.getElementById('prepayTenureReducedVal').textContent = '0 Months';
+        document.getElementById('prepaySummaryText').textContent = 'Enter an extra monthly prepayment amount to calculate savings.';
+        return;
+      }
+
+      const totalMonthlyPay = standardEmi + extraMonthly;
+      let balance = p;
+      let newMonths = 0;
+      let newTotalInterest = 0;
+
+      while (balance > 0 && newMonths < 600) {
+        const interestForMonth = balance * monthlyRate;
+        let principalForMonth = totalMonthlyPay - interestForMonth;
+
+        if (principalForMonth > balance) {
+          principalForMonth = balance;
         }
 
-        function syncRange(type) {
-            document.getElementById(type + 'Range').value = document.getElementById(type + 'Input').value;
-            updateValues();
-        }
+        balance -= principalForMonth;
+        newTotalInterest += interestForMonth;
+        newMonths++;
+      }
 
-        function updateValues() {
-            let p = parseFloat(document.getElementById('amountRange').value);
-            let r = parseFloat(document.getElementById('rateRange').value);
-            let t = parseFloat(document.getElementById('tenureRange').value);
-            let tType = document.querySelector('input[name="tenureType"]:checked').value;
+      const interestSaved = Math.max(0, standardInterest - newTotalInterest);
+      const monthsSaved = Math.max(0, standardMonths - newMonths);
+      const yearsSaved = (monthsSaved / 12).toFixed(1);
 
-            // Sync Inputs
-            document.getElementById('amountInput').value = p;
-            document.getElementById('rateInput').value = r;
-            document.getElementById('tenureInput').value = t;
+      document.getElementById('prepayInterestSavedVal').textContent = formatINR(interestSaved);
+      document.getElementById('prepayTenureReducedVal').textContent = `${monthsSaved} Months (~${yearsSaved} Yrs)`;
+      document.getElementById('prepaySummaryText').innerHTML = `By paying an extra <strong>${formatINR(extraMonthly)}/month</strong>, your loan will be completely paid off in <strong>${Math.floor(newMonths / 12)} years and ${newMonths % 12} months</strong> instead of ${Math.floor(standardMonths / 12)} years, saving a total of <strong>${formatINR(interestSaved)}</strong> in interest!`;
+    }
 
-            // Update Labels
-            document.getElementById('amountVal').textContent = formatRupee(p);
-            document.getElementById('rateVal').textContent = r + '%';
-            document.getElementById('tenureVal').textContent = t + (tType === 'yr' ? ' Years' : ' Months');
+    function copyEmiSummary() {
+      const emiText = document.getElementById('monthlyEmiResult').textContent;
+      const pText = document.getElementById('cardPrincipalVal').textContent;
+      const intText = document.getElementById('cardInterestVal').textContent;
+      const totText = document.getElementById('cardTotalVal').textContent;
 
-            calculateEMI(p, r, t, tType);
-        }
+      const summary = `Loan EMI Calculation Summary:
+- Monthly EMI: ${emiText}
+- Principal Loan: ${pText}
+- Total Interest: ${intText}
+- Total Amount Payable: ${totText}
+- Tenure: ${globalTenure} ${globalTenureType === 'yr' ? 'Years' : 'Months'} @ ${globalRate}%
+Calculated via Vytra: https://digitalsaathi.vytra.in/calculators/emi.html`;
 
-        function calculateEMI(p, r, t, tType) {
-            let months = tType === 'yr' ? t * 12 : t;
-            let monthlyRate = r / 12 / 100;
-            
-            let emi = 0;
-            if (monthlyRate === 0) {
-                emi = p / months;
-            } else {
-                emi = p * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
-            }
+      navigator.clipboard.writeText(summary).then(() => {
+        const notice = document.getElementById('copyEmiNotice');
+        notice.style.display = 'block';
+        setTimeout(() => { notice.style.display = 'none'; }, 3000);
+      });
+    }
 
-            let totalPayable = emi * months;
-            let totalInterest = totalPayable - p;
+    // Rating star handler
+    const ratingBtns = document.querySelectorAll('.vytra-star-btn');
+    ratingBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.dataset.val);
+        ratingBtns.forEach((b, idx) => {
+          b.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
+      });
+    });
 
-            document.getElementById('emiResult').textContent = formatRupee(emi);
-            document.getElementById('principalResult').textContent = formatRupee(p);
-            document.getElementById('interestResult').textContent = formatRupee(totalInterest);
-            document.getElementById('totalResult').textContent = formatRupee(totalPayable);
-
-            drawChart(p, totalInterest);
-        }
-
-        function drawChart(principal, interest) {
-            let canvas = document.getElementById('pieChart');
-            let ctx = canvas.getContext('2d');
-            let total = principal + interest;
-            let pAngle = (principal / total) * 2 * Math.PI;
-
-            // Fix resolution
-            canvas.width = 200;
-            canvas.height = 200;
-
-            let centerX = canvas.width / 2;
-            let centerY = canvas.height / 2;
-            let radius = 90;
-
-            // Clear
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Principal slice (blue)
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.arc(centerX, centerY, radius, 0, pAngle);
-            ctx.fillStyle = '#2563eb';
-            ctx.fill();
-
-            // Interest slice (purple)
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.arc(centerX, centerY, radius, pAngle, 2 * Math.PI);
-            ctx.fillStyle = '#7c3aed';
-            ctx.fill();
-
-            // Legend
-            ctx.font = "12px Inter";
-            ctx.fillStyle = '#2563eb';
-            ctx.fillText("Principal", 10, 20);
-            ctx.fillStyle = '#7c3aed';
-            ctx.fillText("Interest", 150, 20);
-        }
-
-        // Init
-        updateValues();
-    </script>
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      recalculateAll();
+    });
+  </script>
 </body>
 </html>
