@@ -475,9 +475,39 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/utilities/qr-generator.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <loc>https://digitalsaathi.vytra.in/pdf/create-invoice.html</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://digitalsaathi.vytra.in/pdf/create-invoice-visually.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://digitalsaathi.vytra.in/pdf/create-electronic-invoice.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://digitalsaathi.vytra.in/pdf/pdf-invoice-to-e-invoice.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://digitalsaathi.vytra.in/pdf/xml-e-invoice-to-pdf.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://digitalsaathi.vytra.in/pdf/validate-e-invoice.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 </urlset>

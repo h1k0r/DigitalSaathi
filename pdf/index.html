@@ -291,6 +291,20 @@
           <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
+          <a href="../pdf/create-invoice.html" class="nav-link">
+            Invoices
+            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="create-invoice.html" class="dropdown-link">Create Invoice <span>&rarr;</span></a>
+            <a href="create-invoice-visually.html" class="dropdown-link">Create Invoice Visually <span>&rarr;</span></a>
+            <a href="create-electronic-invoice.html" class="dropdown-link">Create Electronic Invoice <span>&rarr;</span></a>
+            <a href="pdf-invoice-to-e-invoice.html" class="dropdown-link">PDF to E-Invoice <span>&rarr;</span></a>
+            <a href="xml-e-invoice-to-pdf.html" class="dropdown-link">XML E-Invoice to PDF <span>&rarr;</span></a>
+            <a href="validate-e-invoice.html" class="dropdown-link">Validate E-Invoice <span>&rarr;</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
           <a href="../pdf/index.html" class="nav-link" style="color:var(--primary); font-weight:700;">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -415,7 +429,8 @@
 
       <!-- Category Filter Pills -->
       <div class="saas-category-nav" id="categoryFilterBar">
-        <button type="button" class="saas-pill-btn active" data-filter="all">All Tools (35)</button>
+        <button type="button" class="saas-pill-btn active" data-filter="all">All Tools (41)</button>
+        <button type="button" class="saas-pill-btn" data-filter="invoices">🧾 Invoices (6)</button>
         <button type="button" class="saas-pill-btn" data-filter="convert">Convert to/from PDF</button>
         <button type="button" class="saas-pill-btn" data-filter="organize">Organize &amp; Merge</button>
         <button type="button" class="saas-pill-btn" data-filter="optimize">Compress &amp; Clean</button>
@@ -425,8 +440,63 @@
       </div>
     </div>
 
-    <!-- 35+ Tool Cards Grid -->
+    <!-- 41+ Tool Cards Grid -->
     <div class="saas-grid-container" id="toolGrid">
+
+      <!-- Invoices Tools -->
+      <a href="create-invoice.html" class="saas-tool-card" data-cat="invoices" data-name="create invoice generator gst bill">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#eff6ff; color:#2563eb;">🧾</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">Create Invoice</h3>
+        <p class="saas-tool-desc">Structured GST invoice form with auto CGST/SGST/IGST tax math, logo upload, and vector PDF compilation.</p>
+      </a>
+
+      <a href="create-invoice-visually.html" class="saas-tool-card" data-cat="invoices" data-name="create invoice visually wysiwyg editor">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#ecfdf5; color:#059669;">🎨</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">Create Invoice Visually</h3>
+        <p class="saas-tool-desc">WYSIWYG live A4 sheet editor with inline editable typing, automatic line math, and theme palettes.</p>
+      </a>
+
+      <a href="create-electronic-invoice.html" class="saas-tool-card" data-cat="invoices" data-name="create electronic invoice zugferd factur-x ubl gst">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#fef3c7; color:#d97706;">⚡</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">Create Electronic Invoice</h3>
+        <p class="saas-tool-desc">Generate EN 16931-compliant ZUGFeRD 2.2, Factur-X CII XML, UBL 2.1, and Indian GST JSON invoices.</p>
+      </a>
+
+      <a href="pdf-invoice-to-e-invoice.html" class="saas-tool-card" data-cat="invoices" data-name="pdf invoice to e-invoice converter extractor">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#f3e8ff; color:#7e22ce;">🔍</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">PDF Invoice to E-Invoice</h3>
+        <p class="saas-tool-desc">Extract invoice numbers, tax IDs, and totals from PDF bills into machine-readable electronic XML/JSON.</p>
+      </a>
+
+      <a href="xml-e-invoice-to-pdf.html" class="saas-tool-card" data-cat="invoices" data-name="xml e-invoice to pdf viewer zugferd ubl">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#e0f2fe; color:#0284c7;">📄</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">XML E-Invoice to PDF</h3>
+        <p class="saas-tool-desc">Transform machine-readable ZUGFeRD, XRechnung, and UBL XML into printable visual A4 PDF invoices.</p>
+      </a>
+
+      <a href="validate-e-invoice.html" class="saas-tool-card" data-cat="invoices" data-name="validate e-invoice zugferd factur-x ubl gst check">
+        <div class="card-header-row">
+          <div class="tool-icon-tile" style="background:#f0fdf4; color:#16a34a;">🛡️</div>
+          <span class="saas-badge-new">New!</span>
+        </div>
+        <h3 class="saas-tool-title">Validate E-Invoice</h3>
+        <p class="saas-tool-desc">Audit electronic invoices for EN 16931 schema rules, syntax, and tax mathematics with PDF certificate.</p>
+      </a>
 
       <!-- Core Organize Tools -->
       <a href="merge.html" class="saas-tool-card" data-cat="organize" data-name="merge pdf">
