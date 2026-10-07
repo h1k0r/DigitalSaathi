@@ -458,7 +458,9 @@
 
       <! - Upload Drop Zone - >
       <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
-        <div class="upload-zone-icon">📑</div>
+        <div style="width:52px; height:52px; margin:0 auto 16px; border-radius:12px; background:var(--bg-surface-subtle, #f1f5f9); border:1px solid var(--border-subtle, #e2e8f0); display:flex; align-items:center; justify-content:center; color:var(--text-main, #0f172a);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
         <div class="upload-zone-title">Choose PDF file or drag &amp; drop here</div>
         <div class="upload-zone-hint">Upload any PDF to view thumbnails and select exact pages to extract. 100% private.</div>
         <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)">
@@ -483,7 +485,7 @@
             <button type="button" class="btn-sub-action" onclick="selectAllPages()">Select All</button>
             <button type="button" class="btn-sub-action" onclick="deselectAllPages()">Deselect All</button>
             <button type="button" class="btn-sub-action" onclick="invertSelection()">Invert</button>
-            <button type="button" class="btn-sub-action" onclick="resetFilePicker()">🔄 Open New PDF</button>
+            <button type="button" class="btn-sub-action" onclick="resetFilePicker()"> Open New PDF</button>
           </div>
         </div>
 
@@ -501,16 +503,16 @@
 
         <! - Action Buttons - >
         <div class="action-buttons-group">
-          <button type="button" id="btnExtract" class="btn-main-action" onclick="extractPages()">📥 Extract &amp; Download PDF</button>
+          <button type="button" id="btnExtract" class="btn-main-action" onclick="extractPages()"> Extract &amp; Download PDF</button>
         </div>
 
         <! - Success Result Box - >
         <div id="resultSuccessBox" class="result-success-box">
-          <div style="font-size:2rem; margin-bottom:8px;">🎉</div>
+          <div style="font-size:2rem; margin-bottom:8px;"></div>
           <h3 style="font-size:1.15rem; font-weight:700; color:#065f46; margin-bottom:6px;">Pages Extracted Successfully!</h3>
           <p id="resultSummaryText" style="font-size:0.88rem; color:#047857; margin-bottom:16px;"></p>
           <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-            <button type="button" id="btnDownloadResult" class="btn-main-action" style="background:#059669; border-color:#059669;">📥 Download PDF</button>
+            <button type="button" id="btnDownloadResult" class="btn-main-action" style="background:#059669; border-color:#059669;"> Download PDF</button>
             <button type="button" class="btn-sub-action" onclick="resetFilePicker()">Extract from Another PDF</button>
           </div>
         </div>
@@ -529,7 +531,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -547,37 +549,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎯</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Precision visual thumbnail selection</h3>
           <p class="vytra-info-cell-desc">Browse rendered page previews directly inside your browser so you never accidentally extract the wrong page or missing invoice appendix.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Flexible range syntax</h3>
           <p class="vytra-info-cell-desc">Type complex page ranges like '1-3, 5, 8-10' or click thumbnails to dynamically synchronize your selection in both directions.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">💎</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="6 3 18 3 22 9 12 22 2 9 6 3"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="12" y1="22" x2="8.5" y2="9"/><line x1="12" y1="22" x2="15.5" y2="9"/></svg></div>
           <h3 class="vytra-info-cell-title">Lossless vector &amp; font fidelity</h3>
           <p class="vytra-info-cell-desc">Preserves exact embedded vector fonts, searchable text layers, form fields, and resolution without blurry rasterization or recompression.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📁</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Instant client-side assembly</h3>
           <p class="vytra-info-cell-desc">Powered by PDF-Lib WebAssembly and PDF.js. Your new PDF compiles locally in fractions of a second with zero upload waiting time.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% confidential in-browser privacy</h3>
           <p class="vytra-info-cell-desc">Your sensitive legal documents, contracts, bank statements, and tax returns never leave your device RAM or touch any external cloud server.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🌐</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Unlimited &amp; zero watermarks</h3>
           <p class="vytra-info-cell-desc">Free forever with zero daily limits, zero hidden fees, zero email sign-ups, and zero branding watermarks on your extracted files.</p>
         </div>
@@ -608,7 +610,7 @@
 
       <! - Team Attribution - >
       <div class="vytra-team-bar">
-        <span>👨‍💻 Maintained with care by the Vytra Document Engineering Team</span>
+        <span>‍<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Maintained with care by the Vytra Document Engineering Team</span>
       </div>
     </section>
 
@@ -684,16 +686,16 @@
       <h3 style="font-size:1.1rem; font-weight:700; color:var( - text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
       <div class="vytra-share-links">
         <a href="https://api.whatsapp.com/send?text=Extract%20pages%20from%20PDF%20online%20for%20free:%20https://digitalsaathi.vytra.in/pdf/extract.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
+          <span> WhatsApp</span>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Free%20online%20PDF%20page%20extractor%20by%20Vytra:%20https://digitalsaathi.vytra.in/pdf/extract.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
+          <span> X / Twitter</span>
         </a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/extract.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
+          <span> LinkedIn</span>
         </a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/extract.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
+          <span> Facebook</span>
         </a>
       </div>
     </section>
@@ -705,22 +707,22 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
         <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🔗</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Merge PDF</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Combine multiple PDF files into one clean document</div>
         </a>
         <a href="split.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Split PDF</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Divide large PDF documents into multiple smaller files</div>
         </a>
         <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Compress PDF</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Reduce PDF file size under 100KB, 200KB, or 500KB</div>
         </a>
         <a href="pdf-to-jpg.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🖼️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">PDF to JPG</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Convert PDF document pages to high-resolution JPG images</div>
         </a>

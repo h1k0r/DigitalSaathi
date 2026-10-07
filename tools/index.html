@@ -471,7 +471,7 @@
           <span class="pill-count" id="countAll">0</span>
         </button>
         <button type="button" class="filter-pill" data-filter="favorites" id="pillFavorites" style="display:none;">
-          <span>⭐ Favorites</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:-2px; color:#f59e0b;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Favorites</span>
           <span class="pill-count" id="countFavorites">0</span>
         </button>
         <button type="button" class="filter-pill" data-filter="convert-to-pdf">
@@ -660,14 +660,14 @@
       const SECTION_DEFS = [
         {
           id: 'favorites',
-          title: '⭐ Frequently Used & Favorites',
-          icon: '⭐',
+          title: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:-2px; color:#f59e0b;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Frequently Used & Favorites',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:-2px; color:#f59e0b;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
           predicate: (t) => favorites.includes(t.id)
         },
         {
           id: 'convert-to-pdf',
           title: 'Convert to PDF',
-          icon: '📥',
+          icon: '',
           predicate: (t) => {
             const id = t.id.toLowerCase();
             return (id.endsWith('-to-pdf') || id.includes('images-to-pdf')) && !id.startsWith('pdf-to-');
@@ -676,7 +676,7 @@
         {
           id: 'convert-from-pdf',
           title: 'Convert from PDF',
-          icon: '📤',
+          icon: '',
           predicate: (t) => {
             const id = t.id.toLowerCase();
             return id.startsWith('pdf-to-') || id === 'extract-images';
@@ -685,7 +685,7 @@
         {
           id: 'organize-pdf',
           title: 'Organize, Edit & Secure PDF',
-          icon: '📑',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
           predicate: (t) => {
             const id = t.id.toLowerCase();
             return (t.category === 'pdf' || t.category === 'cybercafe') &&
@@ -696,25 +696,25 @@
         {
           id: 'image-tools',
           title: 'Image & Photo Tools',
-          icon: '🖼️',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
           predicate: (t) => t.category === 'images' || t.category === 'image'
         },
         {
           id: 'calculators',
           title: 'Calculators & Converters',
-          icon: '🧮',
+          icon: '',
           predicate: (t) => t.category === 'calculators'
         },
         {
           id: 'developer',
           title: 'Developer & Code Tools',
-          icon: '💻',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
           predicate: (t) => t.category === 'developer'
         },
         {
           id: 'utilities',
           title: 'Text & Everyday Utilities',
-          icon: '📝',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
           predicate: (t) => t.category === 'text' || t.category === 'utilities' || t.category === 'student' || t.category === 'jobs'
         }
       ];

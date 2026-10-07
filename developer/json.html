@@ -408,17 +408,17 @@
       
       <! - Toolbar - >
       <div class="editor-toolbar">
-        <button type="button" class="tool-btn tool-btn-primary" onclick="formatJSON(2)">⚡ Format (2 Spaces)</button>
+        <button type="button" class="tool-btn tool-btn-primary" onclick="formatJSON(2)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Format (2 Spaces)</button>
         <button type="button" class="tool-btn" onclick="formatJSON(4)">Format (4 Spaces)</button>
-        <button type="button" class="tool-btn" onclick="minifyJSON()">🗜️ Minify</button>
+        <button type="button" class="tool-btn" onclick="minifyJSON()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg> Minify</button>
         <button type="button" class="tool-btn" onclick="validateJSON()">✅ Validate</button>
-        <button type="button" class="tool-btn" id="treeToggleBtn" onclick="toggleTreeView()">🌳 Tree View</button>
-        <button type="button" class="tool-btn" onclick="copyFormatted()">📋 Copy</button>
-        <button type="button" class="tool-btn" onclick="downloadJSON()">💾 Download .json</button>
-        <button type="button" class="tool-btn" onclick="document.getElementById('fileUploadInput').click()">📁 Open File</button>
+        <button type="button" class="tool-btn" id="treeToggleBtn" onclick="toggleTreeView()"> Tree View</button>
+        <button type="button" class="tool-btn" onclick="copyFormatted()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy</button>
+        <button type="button" class="tool-btn" onclick="downloadJSON()"> Download .json</button>
+        <button type="button" class="tool-btn" onclick="document.getElementById('fileUploadInput').click()"> Open File</button>
         <input type="file" id="fileUploadInput" accept=".json,text/plain" style="display:none;" onchange="handleFileUpload(event)">
-        <button type="button" class="tool-btn" onclick="loadSampleData()">🧪 Sample</button>
-        <button type="button" class="tool-btn tool-btn-danger" onclick="clearEditor()">🗑️ Clear</button>
+        <button type="button" class="tool-btn" onclick="loadSampleData()"> Sample</button>
+        <button type="button" class="tool-btn tool-btn-danger" onclick="clearEditor()">️ Clear</button>
       </div>
 
       <! - Live Status Message - >
@@ -448,10 +448,10 @@
 
       <! - JSON Statistics Bar - >
       <div class="stats-bar" id="jsonStatsBar">
-        <span>📦 Size: <strong id="statSize">0 B</strong></span>
-        <span>🔑 Total Keys: <strong id="statKeys">0</strong></span>
-        <span>🏷️ Data Type: <strong id="statType">None</strong></span>
-        <span>📏 Max Depth: <strong id="statDepth">0</strong></span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Size: <strong id="statSize">0 B</strong></span>
+        <span> Total Keys: <strong id="statKeys">0</strong></span>
+        <span>️ Data Type: <strong id="statType">None</strong></span>
+        <span> Max Depth: <strong id="statDepth">0</strong></span>
       </div>
 
     </div>
@@ -466,7 +466,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -484,37 +484,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔍</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <h3 class="vytra-info-cell-title">Syntax error line detection</h3>
           <p class="vytra-info-cell-desc">Accurately identifies missing commas, invalid trailing commas, unquoted object keys, and single-quote issues with helpful line error feedback.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎨</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg></div>
           <h3 class="vytra-info-cell-title">Colored syntax highlighting</h3>
           <p class="vytra-info-cell-desc">Renders distinct visual styles for property keys, string values, numbers, booleans, and null entries for immediate visual readability.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🌳</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Interactive collapsible tree view</h3>
           <p class="vytra-info-cell-desc">Explore deeply nested JSON hierarchies and large array structures with single-click expandable and collapsible tree view branches.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🗜️</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
           <h3 class="vytra-info-cell-title">High-compression minification</h3>
           <p class="vytra-info-cell-desc">Compresses formatted JSON by stripping redundant spaces, indentations, and line breaks to minimize payload size for production APIs.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">💾</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Direct file upload &amp; export</h3>
           <p class="vytra-info-cell-desc">Open large .json files straight from your device, format or validate their syntax, and download the beautified output as a standard .json file.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% private client-side parsing</h3>
           <p class="vytra-info-cell-desc">All parsing and formatting runs entirely inside your browser's local V8 JavaScript engine. Your API keys, tokens, and data never reach any server.</p>
         </div>
@@ -546,7 +546,7 @@
 
       <! - Team Attribution - >
       <div class="vytra-team-bar">
-        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+        <span>‍<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Created with care by the Vytra Engineering Team</span>
       </div>
     </section>
 
@@ -622,16 +622,16 @@
       <h3 style="font-size:1.1rem; font-weight:700; color:var( - text-main); margin-bottom:12px;">Share with fellow developers</h3>
       <div class="vytra-share-links">
         <a href="https://api.whatsapp.com/send?text=Format%20and%20validate%20JSON%20online%20for%20free:%20https://digitalsaathi.vytra.in/developer/json.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
+          <span> WhatsApp</span>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Format%20and%20validate%20JSON%20with%20tree%20view%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/developer/json.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
+          <span> X / Twitter</span>
         </a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/developer/json.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
+          <span> LinkedIn</span>
         </a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/developer/json.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
+          <span> Facebook</span>
         </a>
       </div>
     </section>
@@ -643,22 +643,22 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
         <a href="base64.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🔤</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Base64 Converter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Encode and decode text, files, and images to Base64</div>
         </a>
         <a href="sql.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">💾</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">SQL Formatter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Format, indent, and prettify SQL queries instantly</div>
         </a>
         <a href="../utilities/qr-generator.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📱</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">QR Code Generator</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Generate high-res custom QR codes for URLs and text</div>
         </a>
         <a href="../text/word-counter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📝</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Word Counter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Count words, characters, sentences, and reading time</div>
         </a>
@@ -916,7 +916,7 @@
         formattedEl.style.display = 'none';
         treeEl.style.display = 'block';
         label.textContent = 'Interactive Tree';
-        btn.textContent = '📄 Code View';
+        btn.textContent = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Code View';
         btn.classList.add('tool-btn-primary');
       } else {
         switchToCodeView();
@@ -929,7 +929,7 @@
       document.getElementById('treeOutput').style.display = 'none';
       document.getElementById('viewModeLabel').textContent = 'Syntax Highlighted';
       const btn = document.getElementById('treeToggleBtn');
-      btn.textContent = '🌳 Tree View';
+      btn.textContent = ' Tree View';
       btn.classList.remove('tool-btn-primary');
     }
 

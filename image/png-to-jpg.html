@@ -388,7 +388,9 @@
 
       <! - Upload Drop Zone - >
       <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
-        <div class="upload-zone-icon">🖼️</div>
+        <div style="width:52px; height:52px; margin:0 auto 16px; border-radius:12px; background:var(--bg-surface-subtle, #f1f5f9); border:1px solid var(--border-subtle, #e2e8f0); display:flex; align-items:center; justify-content:center; color:var(--text-main, #0f172a);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
         <div class="upload-zone-title">Choose a PNG file or drop it here</div>
         <div class="upload-zone-hint">Convert transparent logos, signatures, or photos to portal-ready JPG.</div>
         <input type="file" id="fileInput" accept="image/png" style="display:none;" onchange="handleFileChange(event)">
@@ -435,9 +437,9 @@
 
         <! - Action Buttons - >
         <div class="action-buttons-group">
-          <button type="button" id="btnDownload" class="btn-main-download">📥 Download JPG Image</button>
-          <button type="button" id="btnCopyImage" class="btn-sub-action">📋 Copy Image</button>
-          <button type="button" id="btnReset" class="btn-sub-action" onclick="resetConverter()">🔄 Convert Another</button>
+          <button type="button" id="btnDownload" class="btn-main-download"> Download JPG Image</button>
+          <button type="button" id="btnCopyImage" class="btn-sub-action"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy Image</button>
+          <button type="button" id="btnReset" class="btn-sub-action" onclick="resetConverter()"> Convert Another</button>
         </div>
 
       </div>
@@ -454,7 +456,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -472,37 +474,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎨</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg></div>
           <h3 class="vytra-info-cell-title">Clean background flattening</h3>
           <p class="vytra-info-cell-desc">Transparent PNG pixels are cleanly blended over a solid pure white background (or custom color) so your images never produce ugly black borders on portals.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🗜️</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
           <h3 class="vytra-info-cell-title">Massive file size reduction</h3>
           <p class="vytra-info-cell-desc">Lossy discrete cosine transform compression cuts unneeded pixel weight, shrinking heavy PNG screenshots and graphics by up to 70%.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎯</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Government portal compliance</h3>
           <p class="vytra-info-cell-desc">Indian exam boards (SSC CGL, UPSC, IBPS, NTA NEET/JEE) strictly demand JPG files. This tool converts PNG scans into fully valid JPEG files.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Real-time quality adjustment</h3>
           <p class="vytra-info-cell-desc">Slide between 20% and 100% quality to balance visual sharpness against target kilobyte thresholds for application uploads.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📱</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">No watermark, 100% free</h3>
           <p class="vytra-info-cell-desc">Enjoy unrestricted conversions without forced sign-ups, subscriptions, or watermarks branded on your confidential documents.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
           <p class="vytra-info-cell-desc">Your sensitive IDs, marksheet scans, and signatures are processed exclusively within your device RAM and never uploaded to remote cloud servers.</p>
         </div>
@@ -533,7 +535,7 @@
 
       <! - Team Attribution - >
       <div class="vytra-team-bar">
-        <span>👨‍💻 Maintained with care by the Vytra Imaging Engineering Team</span>
+        <span>‍<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Maintained with care by the Vytra Imaging Engineering Team</span>
       </div>
     </section>
 
@@ -609,16 +611,16 @@
       <h3 style="font-size:1.1rem; font-weight:700; color:var( - text-main); margin-bottom:12px;">Share with fellow creators</h3>
       <div class="vytra-share-links">
         <a href="https://api.whatsapp.com/send?text=Convert%20PNG%20to%20JPG%20online%20for%20free:%20https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
+          <span> WhatsApp</span>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Convert%20PNG%20to%20JPG%20online%20for%20free%20with%20Vytra:%20https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
+          <span> X / Twitter</span>
         </a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
+          <span> LinkedIn</span>
         </a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/image/png-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
+          <span> Facebook</span>
         </a>
       </div>
     </section>
@@ -630,17 +632,17 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
         <a href="jpg-to-png.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🔄</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">JPG to PNG</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Convert photos to uncompressed lossless PNG format</div>
         </a>
         <a href="webp-converter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🌐</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">WebP Converter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Convert WebP to JPG/PNG or vice versa for fast web pages</div>
         </a>
         <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Image Compressor</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Compress photos under 20KB, 50KB, or 100KB for forms</div>
         </a>

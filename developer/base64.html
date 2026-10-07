@@ -393,10 +393,10 @@
       
       <! - Tab Header Strip - >
       <div class="calc-tab-strip">
-        <button type="button" class="calc-tab-btn active" data-tab="tabText">🔤 Text &lt;&gt; Base64</button>
-        <button type="button" class="calc-tab-btn" data-tab="tabFile">📁 File / Image to Base64</button>
-        <button type="button" class="calc-tab-btn" data-tab="tabDecodeFile">💾 Base64 to File</button>
-        <button type="button" class="calc-tab-btn" data-tab="tabUrlSafe">🔗 URL-Safe Base64</button>
+        <button type="button" class="calc-tab-btn active" data-tab="tabText"> Text &lt;&gt; Base64</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabFile"> File / Image to Base64</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabDecodeFile"> Base64 to File</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabUrlSafe"> URL-Safe Base64</button>
       </div>
 
       <! - Live Feedback Alert - >
@@ -420,13 +420,13 @@
           <button type="button" class="tool-btn tool-btn-primary" onclick="encodeText()">Encode to Base64 &rarr;</button>
           <button type="button" class="tool-btn" onclick="decodeText()">&larr; Decode to Plain Text</button>
           <button type="button" class="tool-btn" onclick="swapTextBoxes()">⇄ Swap Text</button>
-          <button type="button" class="tool-btn" onclick="clearTextMode()">🗑️ Clear</button>
+          <button type="button" class="tool-btn" onclick="clearTextMode()">️ Clear</button>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-weight:600; font-size:0.88rem; color:#475569;">
             <span>CONVERTED RESULT</span>
-            <button type="button" onclick="copyTextOutput()" style="background:none; border:none; color:#2563eb; font-weight:700; font-size:0.8rem; cursor:pointer;">📋 Copy Result</button>
+            <button type="button" onclick="copyTextOutput()" style="background:none; border:none; color:#2563eb; font-weight:700; font-size:0.8rem; cursor:pointer;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy Result</button>
           </div>
           <textarea id="textOutput" class="code-box" readonly placeholder="Output will appear here..."></textarea>
           <div class="meta-bar">
@@ -440,7 +440,7 @@
       <div class="calc-tab-pane" id="tabFile">
         <div class="upload-zone-b64" id="fileDropZone" onclick="document.getElementById('fileUploadInput').click()">
           <input type="file" id="fileUploadInput" style="display:none;" onchange="handleFileSelected(event)">
-          <div style="font-size:2.4rem; margin-bottom:8px;">📁</div>
+          <div style="font-size:2.4rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; font-size:1.05rem; color:#1e293b;">Click to Choose File or Drag &amp; Drop Here</div>
           <div style="font-size:0.82rem; color:#64748b; margin-top:6px;">Supports PNG, JPG, WebP, SVG, PDF, TXT, Audio, Video up to 25MB</div>
         </div>
@@ -459,10 +459,10 @@
           </div>
 
           <div class="action-button-strip">
-            <button type="button" class="tool-btn tool-btn-primary" onclick="copyFileDataUri()">📋 Copy Data URI</button>
-            <button type="button" class="tool-btn" onclick="copyImgTag()">🖼️ Copy &lt;img&gt; Tag</button>
-            <button type="button" class="tool-btn" onclick="copyCssBg()">🎨 Copy CSS Background</button>
-            <button type="button" class="tool-btn" onclick="copyRawBase64FromFile()">🔤 Copy Raw Base64</button>
+            <button type="button" class="tool-btn tool-btn-primary" onclick="copyFileDataUri()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy Data URI</button>
+            <button type="button" class="tool-btn" onclick="copyImgTag()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Copy &lt;img&gt; Tag</button>
+            <button type="button" class="tool-btn" onclick="copyCssBg()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg> Copy CSS Background</button>
+            <button type="button" class="tool-btn" onclick="copyRawBase64FromFile()"> Copy Raw Base64</button>
           </div>
         </div>
       </div>
@@ -484,7 +484,7 @@
           </div>
           <div class="form-group" style="display:flex; align-items:flex-end;">
             <button type="button" class="tool-btn tool-btn-primary" onclick="downloadDecodedFile()" style="width:100%; padding:12px; justify-content:center;">
-              💾 Download Decoded File
+               Download Decoded File
             </button>
           </div>
         </div>
@@ -526,7 +526,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -544,37 +544,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔤</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">UTF-8 multi-byte encoding</h3>
           <p class="vytra-info-cell-desc">Accurately encodes international unicode characters, accents, non-Latin scripts, and emojis without standard JavaScript <code>btoa()</code> character-out-of-range errors.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🖼️</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
           <h3 class="vytra-info-cell-title">Inline image data URIs</h3>
           <p class="vytra-info-cell-desc">Convert PNG, JPG, and SVG graphics into compact <code>data:image/...;base64</code> strings for embedding directly into HTML tags or CSS stylesheets without HTTP requests.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔗</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">RFC 4648 URL-safe base64</h3>
           <p class="vytra-info-cell-desc">Supports the Base64url standard used in JSON Web Tokens (JWT) and web URLs by replacing special characters <code>+</code> and <code>/</code> with safe URL alternatives.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">💾</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Binary file reconstruction</h3>
           <p class="vytra-info-cell-desc">Paste base64 code from an email attachment or API response and convert it directly into downloadable binary files with automatic MIME type detection.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Fast byte calculation</h3>
           <p class="vytra-info-cell-desc">Real-time statistics provide exact character lengths, raw byte sizes, and calculate the exact 33% encoding expansion ratio instantly.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% private in-browser tool</h3>
           <p class="vytra-info-cell-desc">All conversions occur entirely within your web browser using HTML5 FileReader and Web APIs. Your confidential files, tokens, and keys are never uploaded to any server.</p>
         </div>
@@ -605,7 +605,7 @@
 
       <! - Team Attribution - >
       <div class="vytra-team-bar">
-        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+        <span>‍<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Created with care by the Vytra Engineering Team</span>
       </div>
     </section>
 
@@ -681,16 +681,16 @@
       <h3 style="font-size:1.1rem; font-weight:700; color:var( - text-main); margin-bottom:12px;">Share with fellow developers</h3>
       <div class="vytra-share-links">
         <a href="https://api.whatsapp.com/send?text=Encode%20and%20decode%20Base64%20and%20Data%20URIs%20for%20free:%20https://digitalsaathi.vytra.in/developer/base64.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
+          <span> WhatsApp</span>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Encode%20and%20decode%20Base64%20online%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/developer/base64.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
+          <span> X / Twitter</span>
         </a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/developer/base64.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
+          <span> LinkedIn</span>
         </a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/developer/base64.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
+          <span> Facebook</span>
         </a>
       </div>
     </section>
@@ -702,22 +702,22 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
         <a href="json.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🛠️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;">️</div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">JSON Formatter &amp; Validator</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Prettify, validate, and minify JSON with tree explorer</div>
         </a>
         <a href="sql.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">💾</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">SQL Formatter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Format, indent, and prettify SQL queries instantly</div>
         </a>
         <a href="../utilities/qr-generator.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📱</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">QR Code Generator</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Generate high-res custom QR codes for URLs and text</div>
         </a>
         <a href="../text/word-counter.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📝</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Word Counter</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Count words, characters, sentences, and reading time</div>
         </a>
@@ -875,7 +875,7 @@
     }
 
     function loadSampleText() {
-      document.getElementById('textInput').value = 'Welcome to Vytra Developer Tools! Fast, private, and 100% client-side 🚀';
+      document.getElementById('textInput').value = 'Welcome to Vytra Developer Tools! Fast, private, and 100% client-side <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>';
       updateTextStats();
       encodeText();
     }

@@ -374,7 +374,7 @@
         </div>
         <div class="vytra-dz-desktop-link">
           <span>100% In-Browser Privacy</span>
-          <span>🔒</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         </div>
       </div>
 
@@ -410,15 +410,15 @@
           <span style="font-weight:700; color:#0f172a; font-size:1.02rem;" id="fileNameDisplay">document.pdf</span>
           <span style="font-size:0.82rem; color:#64748b; margin-left:8px;" id="fileMetaDisplay">0 KB &bull; 0 Pages</span>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()">🔄 Open Another PDF</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()"> Open Another PDF</button>
       </div>
 
       <! - Stats Row - >
       <div class="excel-stats-row">
-        <span class="excel-stat-pill">📊 <span id="statRows">0</span> Table Rows</span>
-        <span class="excel-stat-pill">📑 <span id="statCols">0</span> Columns Detected</span>
-        <span class="excel-stat-pill">📄 <span id="statPages">0</span> Pages Processed</span>
-        <span class="excel-stat-pill">🔢 <span id="statCells">0</span> Data Cells</span>
+        <span class="excel-stat-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span id="statRows">0</span> Table Rows</span>
+        <span class="excel-stat-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> <span id="statCols">0</span> Columns Detected</span>
+        <span class="excel-stat-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> <span id="statPages">0</span> Pages Processed</span>
+        <span class="excel-stat-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg> <span id="statCells">0</span> Data Cells</span>
       </div>
 
       <! - Extraction Settings - >
@@ -434,7 +434,7 @@
 
         <div class="excel-option-item">
           <label for="searchFilterInput">Filter Table Rows</label>
-          <input type="text" id="searchFilterInput" placeholder="🔍 Search text or amount..." oninput="filterPreviewRows()">
+          <input type="text" id="searchFilterInput" placeholder="<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search text or amount..." oninput="filterPreviewRows()">
         </div>
 
         <div class="excel-option-item">
@@ -463,10 +463,10 @@
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <button type="button" class="btn btn-secondary" onclick="copyTableClipboard()">
-            📋 Copy Table
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy Table
           </button>
           <button type="button" class="btn btn-secondary" id="exportCsvBtn" onclick="exportCsvAction()">
-            📄 Download CSV (.csv)
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download CSV (.csv)
           </button>
           <button type="button" class="btn btn-primary" id="exportXlsxBtn" onclick="exportXlsxAction()">
             ⬇️ Download Excel (.xlsx)
@@ -486,7 +486,7 @@
 
     <! - Result Card - >
     <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue, #0066FF)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">Spreadsheet Ready!</h3>
       <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your PDF tables have been extracted into an editable spreadsheet.</p>
       <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
@@ -505,7 +505,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -523,37 +523,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎯</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">2D Spatial coordinate quantization</h3>
           <p class="vytra-info-cell-desc">Groups character glyphs along vertical Y coordinates into rows and horizontal X offsets into columns, extracting clean tables without requiring drawn border lines.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% Private in-browser execution</h3>
           <p class="vytra-info-cell-desc">Your bank statements, payroll registers, GST invoices, and investment portfolios are processed strictly inside your device's browser memory sandbox.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📑</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
           <h3 class="vytra-info-cell-title">Multi-page continuous statement stitching</h3>
           <p class="vytra-info-cell-desc">Converts 30-page bank statements or multi-month ledger dockets into a single unified Excel spreadsheet without manual copy-pasting.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Native .XLSX &amp; CSV export</h3>
           <p class="vytra-info-cell-desc">Download authentic modern Excel OpenXML (.xlsx) workbooks or universal CSV files compatible with Microsoft Excel, Google Sheets, PowerBI, and Python Pandas.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🧮</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Formula-ready clean numeric values</h3>
           <p class="vytra-info-cell-desc">Sanitizes cell numbers by stripping non-breaking whitespace and formatting numbers appropriately so you can immediately execute SUM, AVERAGE, and VLOOKUP.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🌐</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Universal cross-platform accessibility</h3>
           <p class="vytra-info-cell-desc">Operates without Adobe plugins or desktop software across Windows PCs, MacBooks, Linux, Android tablets, and iPads.</p>
         </div>
@@ -713,16 +713,16 @@
         <span class="vytra-share-label">Share this free tool:</span>
         <div class="vytra-share-buttons">
           <a href="https://api.whatsapp.com/send?text=Extract%20tables%20from%20PDF%20into%20Excel%20online%20for%20free%20with%20100%25%20privacy%3A%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-excel.html" target="_blank" rel="noopener" class="vytra-share-btn share-whatsapp" title="Share on WhatsApp">
-            💬 WhatsApp
+             WhatsApp
           </a>
           <a href="https://twitter.com/intent/tweet?text=Extract%20PDF%20tables%20into%20Excel%20and%20CSV%20online%20for%20free%20with%20complete%20privacy&url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-excel.html" target="_blank" rel="noopener" class="vytra-share-btn share-twitter" title="Share on X">
-            𝕏 X (Twitter)
+             X (Twitter)
           </a>
           <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-excel.html" target="_blank" rel="noopener" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-            💼 LinkedIn
+             LinkedIn
           </a>
           <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fpdf-to-excel.html" target="_blank" rel="noopener" class="vytra-share-btn share-facebook" title="Share on Facebook">
-            📘 Facebook
+             Facebook
           </a>
         </div>
       </div>
@@ -733,22 +733,22 @@
       <h3 class="vytra-section-title">Related Financial &amp; PDF Tools</h3>
       <div class="vytra-related-grid">
         <a href="excel-to-pdf.html" class="vytra-related-card">
-          <div class="vytra-related-icon">📊</div>
+          <div class="vytra-related-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div class="vytra-related-name">Excel to PDF Converter</div>
           <div class="vytra-related-desc">Convert Excel spreadsheets (.xlsx) to printable PDF tables.</div>
         </a>
         <a href="pdf-to-word.html" class="vytra-related-card">
-          <div class="vytra-related-icon">📝</div>
+          <div class="vytra-related-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
           <div class="vytra-related-name">PDF to Word Converter</div>
           <div class="vytra-related-desc">Convert PDF files into editable Microsoft Word documents.</div>
         </a>
         <a href="ocr.html" class="vytra-related-card">
-          <div class="vytra-related-icon">🔍</div>
+          <div class="vytra-related-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <div class="vytra-related-name">OCR PDF &amp; Text Extractor</div>
           <div class="vytra-related-desc">Extract text layers from scanned documents with live search.</div>
         </a>
         <a href="../developer/json.html" class="vytra-related-card">
-          <div class="vytra-related-icon">⚡</div>
+          <div class="vytra-related-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <div class="vytra-related-name">JSON Formatter</div>
           <div class="vytra-related-desc">Format, minify, and validate structured JSON datasets.</div>
         </a>

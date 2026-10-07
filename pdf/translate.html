@@ -450,7 +450,7 @@
         </div>
         <div class="vytra-dz-desktop-link">
           <span>100% In-Browser Privacy</span>
-          <span>🔒</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         </div>
       </div>
 
@@ -466,14 +466,14 @@
 
       <! - Quick Language Preset Pills - >
       <div class="lang-pill-row" onclick="event.stopPropagation();">
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('hi')">🇮🇳 Hindi (हिन्दी)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('bn')">🇧🇩 Bengali (বাংলা)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('te')">🇮🇳 Telugu (తెలుగు)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('ta')">🇮🇳 Tamil (தமிழ்)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('mr')">🇮🇳 Marathi (मराठी)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('gu')">🇮🇳 Gujarati (ગુજરાતી)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('es')">🇪🇸 Spanish (Español)</button>
-        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('fr')">🇫🇷 French (Français)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('hi')"> Hindi (हिन्दी)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('bn')"> Bengali (বাংলা)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('te')"> Telugu (తెలుగు)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('ta')"> Tamil (தமிழ்)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('mr')"> Marathi (मराठी)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('gu')"> Gujarati (ગુજરાતી)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('es')"> Spanish (Español)</button>
+        <button type="button" class="lang-pill-btn" onclick="quickSelectLang('fr')"> French (Français)</button>
       </div>
 
       <div class="vytra-dz-terms" style="margin-top:14px;">By using this PDF Translation tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
@@ -506,26 +506,26 @@
             <button type="button" class="trans-view-btn" id="viewBtnTrans" onclick="setViewMode('trans')">Translation Only</button>
             <button type="button" class="trans-view-btn" id="viewBtnOrig" onclick="setViewMode('orig')">Original Only</button>
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()">🔄 Open Another File</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilePicker()"> Open Another File</button>
         </div>
       </div>
 
       <! - Live Stats Row - >
       <div class="trans-stats-row">
         <div class="trans-stat-pill">
-          <span>📄 Extracted Words:</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Extracted Words:</span>
           <span id="statWordCount" style="color:#2563eb; font-weight:700;">0 Words</span>
         </div>
         <div class="trans-stat-pill">
-          <span>🌐 Target Language:</span>
+          <span> Target Language:</span>
           <span id="statTargetLang" style="color:#2563eb; font-weight:700;">Hindi (हिन्दी)</span>
         </div>
         <div class="trans-stat-pill">
-          <span>🔤 Script Font:</span>
+          <span> Script Font:</span>
           <span id="statFontType" style="color:#16a34a;">Devanagari Unicode</span>
         </div>
         <div class="trans-stat-pill">
-          <span>🔒 Privacy:</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacy:</span>
           <span style="color:#16a34a; font-weight:700;">100% In-Browser RAM</span>
         </div>
       </div>
@@ -547,7 +547,7 @@
         <div class="trans-option-item">
           <label for="targetLangSelect">Translate To</label>
           <select id="targetLangSelect" onchange="onTargetLangChange()">
-            <optgroup label="🇮🇳 Indian Regional Languages">
+            <optgroup label=" Indian Regional Languages">
               <option value="hi" selected>Hindi (हिन्दी)</option>
               <option value="bn">Bengali (বাংলা)</option>
               <option value="te">Telugu (తెలుగు)</option>
@@ -559,7 +559,7 @@
               <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
               <option value="ur">Urdu (اردو)</option>
             </optgroup>
-            <optgroup label="🌍 Global Languages">
+            <optgroup label=" Global Languages">
               <option value="es">Spanish (Español)</option>
               <option value="fr">French (Français)</option>
               <option value="de">German (Deutsch)</option>
@@ -584,7 +584,7 @@
 
         <div class="trans-option-item" style="display:flex; align-items:flex-end;">
           <button type="button" class="btn btn-primary" id="startTransBtn" style="width:100%;" onclick="translateDocumentAction()">
-            ⚡ Translate Document
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Translate Document
           </button>
         </div>
       </div>
@@ -596,11 +596,11 @@
         <div class="trans-pane trans-col-orig">
           <div class="trans-pane-header">
             <div style="font-weight:700; font-size:0.92rem; color:#1e293b;">
-              📄 Original PDF Text <span id="origCharCount" style="font-weight:normal; color:#64748b; font-size:0.8rem;">(0 chars)</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Original PDF Text <span id="origCharCount" style="font-weight:normal; color:#64748b; font-size:0.8rem;">(0 chars)</span>
             </div>
             <div style="display:flex; gap:6px;">
               <button type="button" class="btn btn-secondary btn-sm" onclick="copyOrigText()" title="Copy original text">Copy</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="speakText('orig')" title="Listen to original text">🔊 Listen</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="speakText('orig')" title="Listen to original text"> Listen</button>
             </div>
           </div>
           <textarea id="origText" class="trans-textarea" placeholder="Original document text extracted from PDF pages will appear here..." style="background:#f8fafc;"></textarea>
@@ -610,11 +610,11 @@
         <div class="trans-pane trans-col-translated">
           <div class="trans-pane-header">
             <div style="font-weight:700; font-size:0.92rem; color:#1e293b;">
-              🌐 Translated Document <span id="transCharCount" style="font-weight:normal; color:#64748b; font-size:0.8rem;">(Editable)</span>
+               Translated Document <span id="transCharCount" style="font-weight:normal; color:#64748b; font-size:0.8rem;">(Editable)</span>
             </div>
             <div style="display:flex; gap:6px;">
               <button type="button" class="btn btn-secondary btn-sm" onclick="copyTransText()" title="Copy translated text">Copy</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="speakText('trans')" title="Listen to translated text">🔊 Listen</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="speakText('trans')" title="Listen to translated text"> Listen</button>
             </div>
           </div>
           <textarea id="transText" class="trans-textarea" placeholder="Translated text will appear here. You can also edit and fine-tune paragraphs directly..."></textarea>
@@ -625,11 +625,11 @@
       <! - Action Toolbar - >
       <div class="trans-actions-bar">
         <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#64748b;">
-          <span>🔒 100% Client-side PDF text parsing. Zero backend storage.</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% Client-side PDF text parsing. Zero backend storage.</span>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <button type="button" class="btn btn-secondary" onclick="downloadAsTxt()">
-            📄 Download as TXT
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download as TXT
           </button>
           <button type="button" class="btn btn-primary" onclick="exportToTranslatedPdf()">
             ⬇️ Download Translated PDF
@@ -649,12 +649,12 @@
 
     <! - Result Card - >
     <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue, #0066FF)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">Translation Complete!</h3>
       <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your translated document is ready for download in PDF and TXT formats.</p>
       <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
         <button type="button" class="btn btn-primary btn-lg" onclick="exportToTranslatedPdf()">⬇️ Download Translated PDF</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick="downloadAsTxt()">📄 Download TXT</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick="downloadAsTxt()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download TXT</button>
         <button type="button" class="btn btn-outline btn-lg" onclick="backToWorkspace()">Edit Translation</button>
       </div>
     </div>
@@ -669,7 +669,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -687,37 +687,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% In-browser confidentiality</h3>
           <p class="vytra-info-cell-desc">Your sensitive legal notices, employment circulars, and study materials are decoded directly inside your device RAM without uploading files to remote servers.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🇮🇳</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Native Indian regional typography</h3>
           <p class="vytra-info-cell-desc">Full Unicode support for Devanagari, Bengali, Telugu, Tamil, Marathi, and Gujarati scripts, preventing broken matras or missing ligature glyphs.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📖</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Side-by-side synchronized reading</h3>
           <p class="vytra-info-cell-desc">Dual responsive panels allow side-by-side verification between the original source phrasing and the translated output for effortless proofreading.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📄</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
           <h3 class="vytra-info-cell-title">Download translated PDF &amp; TXT</h3>
           <p class="vytra-info-cell-desc">Export the finished translation as an immutable, cleanly paginated A4 PDF document, or save it as a lightweight text file for easy sharing.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔊</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Text-to-speech audio playback</h3>
           <p class="vytra-info-cell-desc">Listen to translated paragraphs spoken aloud using your device's native voice synthesizer for accessibility and pronunciation verification.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Instant unlimited conversions</h3>
           <p class="vytra-info-cell-desc">No subscription fees, no artificial page caps, and no queue waiting times. Translate as many documents as you need completely free of charge.</p>
         </div>
@@ -725,7 +725,7 @@
 
       <! - Engineering Attribution Bar - >
       <div style="margin-top:24px; padding:12px 18px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; font-size:0.84rem; color:#64748b; text-align:center;">
-        ⚡ Engineered with precision by the Vytra Web Core Team. Powered by Mozilla PDF.js text layer decoding and client-side vector pagination.
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Engineered with precision by the Vytra Web Core Team. Powered by Mozilla PDF.js text layer decoding and client-side vector pagination.
       </div>
     </section>
 
@@ -783,7 +783,7 @@
             How does the Text-to-Speech audio reader work?
           </summary>
           <p style="margin:12px 0 0; color:#475569; font-size:0.88rem; line-height:1.6;">
-            Click the "🔊 Listen" button above either the original or translated pane. The tool accesses your device's built-in Web Speech API voice engine to pronounce the paragraphs in the selected language.
+            Click the " Listen" button above either the original or translated pane. The tool accesses your device's built-in Web Speech API voice engine to pronounce the paragraphs in the selected language.
           </p>
         </details>
 
@@ -832,28 +832,28 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
         <a href="ocr.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">🔍</span>
+          <span style="font-size:1.4rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">OCR PDF</div>
             <div style="font-size:0.75rem; color:#64748b;">Extract text from scans</div>
           </div>
         </a>
         <a href="ai-summarizer.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">🤖</span>
+          <span style="font-size:1.4rem;"></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">AI PDF Summarizer</div>
             <div style="font-size:0.75rem; color:#64748b;">Instant key takeaways</div>
           </div>
         </a>
         <a href="pdf-to-word.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">📄</span>
+          <span style="font-size:1.4rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">PDF to Word</div>
             <div style="font-size:0.75rem; color:#64748b;">Convert to editable doc</div>
           </div>
         </a>
         <a href="html-to-pdf.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">🌐</span>
+          <span style="font-size:1.4rem;"></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">HTML to PDF</div>
             <div style="font-size:0.75rem; color:#64748b;">Print HTML &amp; invoices</div>
@@ -1186,7 +1186,7 @@
       } finally {
         isTranslating = false;
         startTransBtn.disabled = false;
-        startTransBtn.textContent = '⚡ Translate Document';
+        startTransBtn.textContent = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Translate Document';
       }
     }
 

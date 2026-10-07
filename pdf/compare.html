@@ -361,7 +361,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span style="color:#2563eb; font-weight:700;">Document 1 (Original)</span>
           </div>
-          <span>📄 Step 1</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Step 1</span>
         </div>
         <div>
           <button type="button" class="vytra-choose-btn" id="btnChooseDoc1" onclick="event.stopPropagation(); document.getElementById('fileInput1').click();">
@@ -382,7 +382,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span style="color:#d97706; font-weight:700;">Document 2 (Modified)</span>
           </div>
-          <span>📝 Step 2</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Step 2</span>
         </div>
         <div>
           <button type="button" class="vytra-choose-btn" id="btnChooseDoc2" style="background:#d97706; border-color:#d97706;" onclick="event.stopPropagation(); document.getElementById('fileInput2').click();">
@@ -414,19 +414,19 @@
 
         <! - Center: Zoom & View Mode - >
         <div style="display:flex; align-items:center; gap:8px;">
-          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(-0.15)">🔍 -</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(-0.15)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> -</button>
           <span id="zoomPercentText" style="font-size:0.84rem; font-weight:600;">100%</span>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(0.15)">🔍 +</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="adjustZoom(0.15)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> +</button>
 
           <button type="button" class="btn btn-secondary btn-sm" id="btnToggleDiff" onclick="toggleDiffOverlayMode()">
-            <span id="diffModeIcon">🔍</span>
+            <span id="diffModeIcon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
             <span id="diffModeText">Visual Diff Overlay</span>
           </button>
         </div>
 
         <! - Right: Actions - >
         <div>
-          <button type="button" class="btn btn-outline btn-sm" style="color:#ffffff; border-color:#64748b;" onclick="resetComparison()">🔄 Change Files</button>
+          <button type="button" class="btn btn-outline btn-sm" style="color:#ffffff; border-color:#64748b;" onclick="resetComparison()"> Change Files</button>
         </div>
 
       </div>
@@ -438,7 +438,7 @@
         <div class="compare-pane">
           <div class="pane-header">
             <div class="pane-title">
-              <span>📄 Document 1</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Document 1</span>
               <span class="pane-badge badge-original">Original</span>
             </div>
             <div style="font-size:0.75rem; color:#64748b;" id="paneName1">file1.pdf</div>
@@ -452,7 +452,7 @@
         <div class="compare-pane">
           <div class="pane-header">
             <div class="pane-title">
-              <span>📝 Document 2</span>
+              <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Document 2</span>
               <span class="pane-badge badge-revised">Revised</span>
             </div>
             <div style="font-size:0.75rem; color:#64748b;" id="paneName2">file2.pdf</div>
@@ -468,11 +468,11 @@
       <div id="viewDiffOverlay" class="compare-pane" style="display:none; width:100%;">
         <div class="pane-header">
           <div class="pane-title">
-            <span>🔬 Visual Pixel Diff Analysis</span>
+            <span> Visual Pixel Diff Analysis</span>
             <span class="pane-badge" style="background:#fce7f3; color:#9d174d;">High-Contrast Inversion</span>
           </div>
           <div style="font-size:0.8rem; color:#64748b;">
-            💡 Identical areas render dark/transparent. <strong>Altered words, shifted numbers, and changed paragraphs glow brightly in high contrast!</strong>
+             Identical areas render dark/transparent. <strong>Altered words, shifted numbers, and changed paragraphs glow brightly in high contrast!</strong>
           </div>
         </div>
         <div class="compare-canvas-viewport" style="max-height:75vh;">
@@ -492,7 +492,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -516,31 +516,31 @@
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔬</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">High-contrast visual diff overlay</h3>
           <p class="vytra-info-cell-desc">Inverts identical pixels so any altered punctuation, numbers, or relocated graphic elements glow immediately on screen.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔄</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Synchronized dual navigation</h3>
           <p class="vytra-info-cell-desc">Pages turn in lockstep on both viewports simultaneously, maintaining exact alignment between original and revised chapters.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% In-browser private processing</h3>
           <p class="vytra-info-cell-desc">Both files are parsed and rendered directly in client RAM. Neither document is ever uploaded to any server or cloud database.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📐</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Architectural &amp; CAD drawing checks</h3>
           <p class="vytra-info-cell-desc">Verify structural blueprints, electrical schematics, and packaging artwork revisions down to single-millimeter offsets.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📊</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <h3 class="vytra-info-cell-title">Supports variable page counts</h3>
           <p class="vytra-info-cell-desc">Handles files where revised drafts contain extra annexures or deleted appendices with clear end-of-document indicators.</p>
         </div>
@@ -686,7 +686,7 @@
         <a href="https://api.whatsapp.com/send?text=Compare%20PDF%20documents%20side%20by%20side%20online%20privately%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on WhatsApp">WhatsApp</a>
         <a href="https://twitter.com/intent/tweet?text=Compare%20two%20PDF%20files%20online%20with%20visual%20diff%20https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on X">Twitter / X</a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdigitalsaathi.vytra.in%2Fpdf%2Fcompare.html" target="_blank" rel="noopener" class="vytra-share-pill" title="Share on LinkedIn">LinkedIn</a>
-        <button type="button" class="vytra-share-pill" onclick="copyToolLink()" title="Copy Link to Clipboard">🔗 Copy Link</button>
+        <button type="button" class="vytra-share-pill" onclick="copyToolLink()" title="Copy Link to Clipboard"> Copy Link</button>
       </div>
     </div>
 
@@ -695,7 +695,7 @@
       <h3 style="font-size:1.15rem; font-weight:700; color:#1e293b; margin-bottom:1rem;">Related PDF Tools</h3>
       <div class="vytra-related-tools">
         <a href="viewer.html" class="vytra-related-card">
-          <span class="vytra-related-icon">👁️</span>
+          <span class="vytra-related-icon">️</span>
           <div>
             <div class="vytra-related-title">PDF Viewer</div>
             <div class="vytra-related-desc">Read and inspect PDF documents with high-DPI zoom</div>
@@ -709,14 +709,14 @@
           </div>
         </a>
         <a href="crop.html" class="vytra-related-card">
-          <span class="vytra-related-icon">📐</span>
+          <span class="vytra-related-icon"></span>
           <div>
             <div class="vytra-related-title">Crop PDF</div>
             <div class="vytra-related-desc">Trim white margins for e-readers and tablets</div>
           </div>
         </a>
         <a href="protect.html" class="vytra-related-card">
-          <span class="vytra-related-icon">🔒</span>
+          <span class="vytra-related-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
           <div>
             <div class="vytra-related-title">Protect PDF</div>
             <div class="vytra-related-desc">Encrypt confidential documents with password security</div>
@@ -965,14 +965,14 @@
         viewSideBySide.style.display = 'none';
         viewDiffOverlay.style.display = 'flex';
         btnToggleDiff.classList.add('active');
-        diffModeIcon.textContent = '📑';
+        diffModeIcon.textContent = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
         diffModeText.textContent = 'Side-by-Side View';
         computeDiffOverlay();
       } else {
         viewDiffOverlay.style.display = 'none';
         viewSideBySide.style.display = 'grid';
         btnToggleDiff.classList.remove('active');
-        diffModeIcon.textContent = '🔬';
+        diffModeIcon.textContent = '';
         diffModeText.textContent = 'Visual Diff Overlay';
       }
     }

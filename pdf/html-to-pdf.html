@@ -517,7 +517,7 @@
         </div>
         <div class="vytra-dz-desktop-link">
           <span>100% In-Browser Privacy</span>
-          <span>🔒</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
         </div>
       </div>
 
@@ -533,11 +533,11 @@
 
       <! - Quick Preset Buttons inside Dropzone - >
       <div class="preset-pill-row" onclick="event.stopPropagation();">
-        <button type="button" class="preset-pill-btn" onclick="applyTemplate('invoice')">🧾 GST Tax Invoice</button>
-        <button type="button" class="preset-pill-btn" onclick="applyTemplate('certificate')">🎓 Student Certificate</button>
-        <button type="button" class="preset-pill-btn" onclick="applyTemplate('report')">📊 Project Report</button>
-        <button type="button" class="preset-pill-btn" onclick="applyTemplate('resume')">📄 Modern Resume</button>
-        <button type="button" class="preset-pill-btn" onclick="applyTemplate('clean')">📝 Blank Starter</button>
+        <button type="button" class="preset-pill-btn" onclick="applyTemplate('invoice')"> GST Tax Invoice</button>
+        <button type="button" class="preset-pill-btn" onclick="applyTemplate('certificate')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Student Certificate</button>
+        <button type="button" class="preset-pill-btn" onclick="applyTemplate('report')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Project Report</button>
+        <button type="button" class="preset-pill-btn" onclick="applyTemplate('resume')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Modern Resume</button>
+        <button type="button" class="preset-pill-btn" onclick="applyTemplate('clean')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Blank Starter</button>
       </div>
 
       <div class="vytra-dz-terms" style="margin-top:14px;">By using this HTML to PDF tool, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;" onclick="event.stopPropagation();">terms of use</a></div>
@@ -570,26 +570,26 @@
             <button type="button" class="html-view-btn" id="viewBtnCode" onclick="setViewMode('code')">Code Only</button>
             <button type="button" class="html-view-btn" id="viewBtnPreview" onclick="setViewMode('preview')">Preview Only</button>
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('fileInput').click()">📁 Open HTML File</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('fileInput').click()"> Open HTML File</button>
         </div>
       </div>
 
       <! - Live Stats & Quick Preset Bar - >
       <div class="html-stats-row">
         <div class="html-stat-pill">
-          <span>📄 Target Format:</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Target Format:</span>
           <span id="statPageFormat" style="color:#2563eb;">A4 Portrait</span>
         </div>
         <div class="html-stat-pill">
-          <span>📏 Margins:</span>
+          <span> Margins:</span>
           <span id="statMargin" style="color:#2563eb;">Normal (12 mm)</span>
         </div>
         <div class="html-stat-pill">
-          <span>🔍 Canvas Scale:</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Canvas Scale:</span>
           <span id="statScale" style="color:#2563eb;">2.0x (High DPI)</span>
         </div>
         <div class="html-stat-pill">
-          <span>📑 Estimated Pages:</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Estimated Pages:</span>
           <span id="statPageCount" style="color:#16a34a; font-weight:700;">1 Page</span>
         </div>
       </div>
@@ -695,14 +695,14 @@
       <! - Action Toolbar - >
       <div class="html-actions-bar">
         <div style="display:flex; align-items:center; gap:8px; font-size:0.85rem; color:#64748b;">
-          <span>🔒 Client-side execution via html2canvas &amp; jsPDF. Zero server upload.</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Client-side execution via html2canvas &amp; jsPDF. Zero server upload.</span>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <button type="button" class="btn btn-secondary" onclick="copyHtmlSource()">
-            📋 Copy HTML
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Copy HTML
           </button>
           <button type="button" class="btn btn-secondary" onclick="printRenderedDoc()">
-            🖨️ Direct Print
+            ️ Direct Print
           </button>
           <button type="button" class="btn btn-primary" id="convertBtn" onclick="convertToPdfAction()">
             ⬇️ Convert to PDF &amp; Download
@@ -722,7 +722,7 @@
 
     <! - Result Card - >
     <div class="result-card" id="resultCard" style="display:none; max-width:680px; margin:1.5rem auto; text-align:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-      <div class="result-icon" style="font-size:3rem; margin-bottom:12px;">🎉</div>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue, #0066FF)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <h3 class="result-title" style="font-size:1.4rem; font-weight:700; color:#0f172a; margin-bottom:8px;">PDF Document Generated!</h3>
       <p class="result-desc" id="resultDesc" style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">Your HTML template has been converted into a high-resolution, multi-page vector PDF.</p>
       <div class="result-actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
@@ -741,7 +741,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -759,37 +759,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% In-browser confidentiality</h3>
           <p class="vytra-info-cell-desc">Your customer invoices, medical forms, internal metrics, and custom HTML scripts are processed completely inside your device RAM without uploading to external servers.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📏</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Multi-page auto-pagination</h3>
           <p class="vytra-info-cell-desc">Continuous web content is intelligently sliced across standard ISO A4 or US Letter pages, preventing cut-off text, broken tables, or awkward vertical overflows.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🎨</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"/></svg></div>
           <h3 class="vytra-info-cell-title">Full CSS3 &amp; Web fonts support</h3>
           <p class="vytra-info-cell-desc">Render modern web designs with Flexbox, CSS Grid, custom border styles, gradients, Google Fonts, and embedded SVG vector graphics with pixel precision.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🧾</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Ready-to-use business presets</h3>
           <p class="vytra-info-cell-desc">Includes verified Indian GST tax invoices, university certificates, corporate status reports, and modern resumes ready for instant editing and PDF export.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📐</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Configurable margins &amp; paper size</h3>
           <p class="vytra-info-cell-desc">Easily switch between A4, US Letter, US Legal, and A3 formats with customizable millimeter margin presets and portrait or landscape orientation.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Ultra crisp high-DPI rendering</h3>
           <p class="vytra-info-cell-desc">Choose between 2x and 3x retina scaling to ensure razor-sharp typography and crisp image details suitable for professional commercial printing.</p>
         </div>
@@ -797,7 +797,7 @@
 
       <! - Engineering Attribution Bar - >
       <div style="margin-top:24px; padding:12px 18px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; font-size:0.84rem; color:#64748b; text-align:center;">
-        ⚡ Engineered with precision by the Vytra Web Core Team. Compliant with ISO 32000 PDF standards and W3C HTML5 / CSS3 specifications.
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Engineered with precision by the Vytra Web Core Team. Compliant with ISO 32000 PDF standards and W3C HTML5 / CSS3 specifications.
       </div>
     </section>
 
@@ -904,28 +904,28 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
         <a href="word-to-pdf.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">📝</span>
+          <span style="font-size:1.4rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">Word to PDF</div>
             <div style="font-size:0.75rem; color:#64748b;">Convert .docx to PDF</div>
           </div>
         </a>
         <a href="pdf-to-word.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">📄</span>
+          <span style="font-size:1.4rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">PDF to Word</div>
             <div style="font-size:0.75rem; color:#64748b;">Convert PDF to .docx</div>
           </div>
         </a>
         <a href="excel-to-pdf.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">📊</span>
+          <span style="font-size:1.4rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">Excel to PDF</div>
             <div style="font-size:0.75rem; color:#64748b;">Convert .xlsx sheets</div>
           </div>
         </a>
         <a href="pdf-to-ppt.html" style="padding:14px; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; text-decoration:none; color:#1e293b; display:flex; align-items:center; gap:10px; transition:border-color 0.15s;">
-          <span style="font-size:1.4rem;">📽️</span>
+          <span style="font-size:1.4rem;">️</span>
           <div>
             <div style="font-weight:700; font-size:0.88rem;">PDF to PPT</div>
             <div style="font-size:0.75rem; color:#64748b;">Convert PDF to slides</div>
@@ -1197,10 +1197,10 @@
     <h1 style="margin: 0; font-size: 1.8rem; color: #0f172a; letter-spacing: -0.5px;">ANANYA SHARMA</h1>
     <p style="margin: 4px 0 8px; font-size: 0.95rem; font-weight: 600; color: #2563eb;">Senior Full-Stack &amp; Systems Engineer</p>
     <div style="display: flex; gap: 14px; font-size: 0.8rem; color: #64748b; flex-wrap: wrap;">
-      <span>📍 Bengaluru, India</span>
+      <span> Bengaluru, India</span>
       <span>✉️ ananya.sharma@example.com</span>
-      <span>📞 +91 98765 43210</span>
-      <span>🔗 linkedin.com/in/ananyasharma</span>
+      <span> +91 98765 43210</span>
+      <span> linkedin.com/in/ananyasharma</span>
     </div>
   </div>
 

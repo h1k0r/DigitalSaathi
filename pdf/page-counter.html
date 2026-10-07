@@ -418,7 +418,9 @@
 
       <! - Upload Drop Zone - >
       <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
-        <div class="upload-zone-icon">🔢</div>
+        <div style="width:52px; height:52px; margin:0 auto 16px; border-radius:12px; background:var(--bg-surface-subtle, #f1f5f9); border:1px solid var(--border-subtle, #e2e8f0); display:flex; align-items:center; justify-content:center; color:var(--text-main, #0f172a);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
         <div class="upload-zone-title">Choose PDF files or drag &amp; drop here</div>
         <div class="upload-zone-hint">Upload one or multiple PDF files for instant page counting and cost estimate (100% private).</div>
         <input type="file" id="fileInput" accept="application/pdf" multiple style="display:none;" onchange="handleFileChange(event)">
@@ -458,7 +460,7 @@
             <input type="number" id="inputCopies" value="1" min="1" oninput="calculateCost()">
           </div>
           <div class="cost-calc-item" style="display:flex; align-items:flex-end;">
-            <button type="button" class="btn-sub-action" style="width:100%; height:40px;" onclick="exportSummaryCsv()">💾 Export CSV Report</button>
+            <button type="button" class="btn-sub-action" style="width:100%; height:40px;" onclick="exportSummaryCsv()"> Export CSV Report</button>
           </div>
         </div>
 
@@ -482,7 +484,7 @@
         <! - Action Buttons - >
         <div class="action-buttons-group">
           <button type="button" class="btn-main-action" onclick="document.getElementById('fileInput').click()">➕ Add More PDF Files</button>
-          <button type="button" class="btn-sub-action" onclick="clearAllFiles()">🔄 Clear All</button>
+          <button type="button" class="btn-sub-action" onclick="clearAllFiles()"> Clear All</button>
         </div>
 
       </div>
@@ -499,7 +501,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -517,37 +519,37 @@
       <! - 6-Block Feature Grid - >
       <div class="vytra-info-grid">
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">⚡</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3 class="vytra-info-cell-title">Instant multi-file batch counting</h3>
           <p class="vytra-info-cell-desc">Drop dozens of PDF files simultaneously to compute aggregate page totals and combined storage volume in milliseconds.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🖨️</div>
+          <div class="vytra-info-cell-icon">️</div>
           <h3 class="vytra-info-cell-title">Cyber café print cost estimator</h3>
           <p class="vytra-info-cell-desc">Customize your cost per page and copy quantity for rapid, accurate billing quotes for students, job applicants, and clients.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔍</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <h3 class="vytra-info-cell-title">Deep metadata inspector</h3>
           <p class="vytra-info-cell-desc">Inspect internal PDF document properties, author names, creation software, and producer signatures with zero modification.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">📊</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <h3 class="vytra-info-cell-title">1-Click CSV invoice export</h3>
           <p class="vytra-info-cell-desc">Download a cleanly structured spreadsheet listing every file name, byte size, and page count for bookkeeping and audit trails.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🔒</div>
+          <div class="vytra-info-cell-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <h3 class="vytra-info-cell-title">100% in-browser confidentiality</h3>
           <p class="vytra-info-cell-desc">Document binary streams are parsed directly in local JavaScript memory. Your legal contracts and financial data never leave your PC.</p>
         </div>
 
         <div class="vytra-info-cell">
-          <div class="vytra-info-cell-icon">🌐</div>
+          <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Unlimited &amp; zero installation</h3>
           <p class="vytra-info-cell-desc">No bulky desktop software required. Works seamlessly on Windows, macOS, Linux, Android, and iOS browsers.</p>
         </div>
@@ -579,7 +581,7 @@
 
       <! - Team Attribution - >
       <div class="vytra-team-bar">
-        <span>👨‍💻 Maintained with care by the Vytra Document Engineering Team</span>
+        <span>‍<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Maintained with care by the Vytra Document Engineering Team</span>
       </div>
     </section>
 
@@ -655,16 +657,16 @@
       <h3 style="font-size:1.1rem; font-weight:700; color:var( - text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
       <div class="vytra-share-links">
         <a href="https://api.whatsapp.com/send?text=Count%20PDF%20pages%20and%20calculate%20print%20cost%20free:%20https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
-          <span>💬 WhatsApp</span>
+          <span> WhatsApp</span>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Free%20PDF%20page%20counter%20by%20Vytra:%20https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
-          <span>🐦 X / Twitter</span>
+          <span> X / Twitter</span>
         </a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
-          <span>💼 LinkedIn</span>
+          <span> LinkedIn</span>
         </a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
-          <span>👍 Facebook</span>
+          <span> Facebook</span>
         </a>
       </div>
     </section>
@@ -676,22 +678,22 @@
       </h3>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
         <a href="page-numbers.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🔢</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Add Page Numbers</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Insert customized headers and footers to PDF pages</div>
         </a>
         <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🔗</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Merge PDF</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Combine multiple PDF files into one clean document</div>
         </a>
         <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Compress PDF</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Reduce PDF file size under 100KB, 200KB, or 500KB</div>
         </a>
         <a href="extract.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
-          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-size:1.75rem; margin-bottom:8px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
           <div style="font-weight:700; color:var( - text-main); margin-bottom:4px;">Extract Pages</div>
           <div style="font-size:0.8rem; color:var( - text-muted);">Pick and save specific pages into a new document</div>
         </a>
