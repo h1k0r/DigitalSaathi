@@ -1,483 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://digitalsaathi.vytra.in/</loc>
+    <loc>https://vytra.in/</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/base64.html</loc>
+    <loc>https://vytra.in/about.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/blur-face.html</loc>
+    <loc>https://vytra.in/contact.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/bulk-resize.html</loc>
+    <loc>https://vytra.in/cookie-policy.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/color-picker.html</loc>
+    <loc>https://vytra.in/design-system.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/compress.html</loc>
+    <loc>https://vytra.in/image/base64.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/convert.html</loc>
+    <loc>https://vytra.in/image/blur-face.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/crop.html</loc>
+    <loc>https://vytra.in/image/bulk-resize.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/dpi-converter.html</loc>
+    <loc>https://vytra.in/image/color-picker.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/hd-converter.html</loc>
+    <loc>https://vytra.in/image/compress.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/index.html</loc>
+    <loc>https://vytra.in/image/convert.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/jpg-to-pdf.html</loc>
+    <loc>https://vytra.in/image/crop.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/jpg-to-png.html</loc>
+    <loc>https://vytra.in/image/dpi-converter.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/passport-photo.html</loc>
+    <loc>https://vytra.in/image/hd-converter.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/photo-enhancer.html</loc>
+    <loc>https://vytra.in/image/index.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/png-to-jpg.html</loc>
+    <loc>https://vytra.in/image/jpg-to-png.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/remove-bg.html</loc>
+    <loc>https://vytra.in/image/passport-photo.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/resize.html</loc>
+    <loc>https://vytra.in/image/photo-enhancer.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/rotate.html</loc>
+    <loc>https://vytra.in/image/png-to-jpg.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/signature.html</loc>
+    <loc>https://vytra.in/image/remove-bg.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/watermark.html</loc>
+    <loc>https://vytra.in/image/resize.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/image/webp-converter.html</loc>
+    <loc>https://vytra.in/image/rotate.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/ai-summarizer.html</loc>
+    <loc>https://vytra.in/image/signature.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/compare.html</loc>
+    <loc>https://vytra.in/image/watermark.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/compress.html</loc>
+    <loc>https://vytra.in/image/webp-converter.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/create-electronic-invoice.html</loc>
+    <loc>https://vytra.in/pdf/ai-summarizer.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/create-invoice-visually.html</loc>
+    <loc>https://vytra.in/pdf/compare.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/create-invoice.html</loc>
+    <loc>https://vytra.in/pdf/compress.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/crop.html</loc>
+    <loc>https://vytra.in/pdf/create-electronic-invoice.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/edit.html</loc>
+    <loc>https://vytra.in/pdf/create-invoice-visually.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/excel-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/create-invoice.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/extract.html</loc>
+    <loc>https://vytra.in/pdf/crop.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/forms.html</loc>
+    <loc>https://vytra.in/pdf/edit.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/html-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/excel-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/index.html</loc>
+    <loc>https://vytra.in/pdf/extract.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/info.html</loc>
+    <loc>https://vytra.in/pdf/forms.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/jpg-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/html-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/merge.html</loc>
+    <loc>https://vytra.in/pdf/index.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/ocr.html</loc>
+    <loc>https://vytra.in/pdf/info.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/organize.html</loc>
+    <loc>https://vytra.in/pdf/jpg-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/page-counter.html</loc>
+    <loc>https://vytra.in/pdf/merge.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/page-numbers.html</loc>
+    <loc>https://vytra.in/pdf/ocr.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-a.html</loc>
+    <loc>https://vytra.in/pdf/organize.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-invoice-to-e-invoice.html</loc>
+    <loc>https://vytra.in/pdf/page-counter.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-to-excel.html</loc>
+    <loc>https://vytra.in/pdf/page-numbers.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html</loc>
+    <loc>https://vytra.in/pdf/pdf-a.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-to-markdown.html</loc>
+    <loc>https://vytra.in/pdf/pdf-invoice-to-e-invoice.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-to-ppt.html</loc>
+    <loc>https://vytra.in/pdf/pdf-to-excel.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/pdf-to-word.html</loc>
+    <loc>https://vytra.in/pdf/pdf-to-jpg.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/ppt-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/pdf-to-markdown.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/protect.html</loc>
+    <loc>https://vytra.in/pdf/pdf-to-ppt.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/redact.html</loc>
+    <loc>https://vytra.in/pdf/pdf-to-word.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/reorder.html</loc>
+    <loc>https://vytra.in/pdf/ppt-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/repair.html</loc>
+    <loc>https://vytra.in/pdf/protect.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/rotate.html</loc>
+    <loc>https://vytra.in/pdf/redact.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/scan-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/reorder.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/sign.html</loc>
+    <loc>https://vytra.in/pdf/repair.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/split.html</loc>
+    <loc>https://vytra.in/pdf/rotate.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/translate.html</loc>
+    <loc>https://vytra.in/pdf/scan-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/unlock.html</loc>
+    <loc>https://vytra.in/pdf/sign.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/validate-e-invoice.html</loc>
+    <loc>https://vytra.in/pdf/split.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/viewer.html</loc>
+    <loc>https://vytra.in/pdf/translate.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/watermark.html</loc>
+    <loc>https://vytra.in/pdf/unlock.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/word-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/validate-e-invoice.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/workflow.html</loc>
+    <loc>https://vytra.in/pdf/viewer.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/pdf/xml-e-invoice-to-pdf.html</loc>
+    <loc>https://vytra.in/pdf/watermark.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/404.html</loc>
+    <loc>https://vytra.in/pdf/word-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/about.html</loc>
+    <loc>https://vytra.in/pdf/workflow.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/contact.html</loc>
+    <loc>https://vytra.in/pdf/xml-e-invoice-to-pdf.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/cookie-policy.html</loc>
+    <loc>https://vytra.in/privacy.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/design-system.html</loc>
+    <loc>https://vytra.in/terms.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/privacy.html</loc>
+    <loc>https://vytra.in/text/index.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/terms.html</loc>
+    <loc>https://vytra.in/text/word-counter.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/seo/keyword-report.html</loc>
+    <loc>https://vytra.in/tools/index.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/text/index.html</loc>
+    <loc>https://vytra.in/utilities/index.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/text/word-counter.html</loc>
+    <loc>https://vytra.in/utilities/password-generator.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://digitalsaathi.vytra.in/tools/index.html</loc>
+    <loc>https://vytra.in/utilities/qr-generator.html</loc>
     <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://digitalsaathi.vytra.in/utilities/index.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://digitalsaathi.vytra.in/utilities/password-generator.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://digitalsaathi.vytra.in/utilities/qr-generator.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
 </urlset>

@@ -1,7 +1,7 @@
 /**
  * VYTRA — GOOGLE ADSENSE CENTRAL CONFIGURATION & LOADER
  * File: config/ads-config.js
- * Production Domain: https://digitalsaathi.vytra.in
+ * Production Domain: https://vytra.in
  *
  * INSTRUCTIONS FOR ACTIVATION:
  * 1. Register your site on Google AdSense (https://www.google.com/adsense/).

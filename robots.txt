@@ -1,5 +1,5 @@
 # DigitalSaathi Robots.txt
-# https://digitalsaathi.vytra.in
+# https://vytra.in
 
 User-agent: *
 Allow: /
@@ -7,4 +7,4 @@ Disallow: /design-system.html
 Disallow: /seo/
 
 # Global XML Sitemap
-Sitemap: https://digitalsaathi.vytra.in/sitemap.xml
+Sitemap: https://vytra.in/sitemap.xml
