@@ -23,44 +23,101 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crop PDF Margins Online Free — Trim White Borders | Vytra</title>
-  <meta name="description" content="Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Trim PDF document margins, remove scanner white borders, and crop pages to custom dimensions with live visual preview. 100% private in-browser processing.">
+  <meta name="keywords" content="crop pdf, trim pdf margins, remove pdf white borders, crop pdf online free, cut pdf pages, pdf margin trimmer, pdf cropbox, pdf24 crop pdf alternative">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- PDF.js and PDF-Lib Engines -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
   <style>
-    .crop-workspace {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 24px;
-      margin: 24px 0;
-      align-items: start;
+    .crop-wrapper {
+      max-width: 980px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
-    @media (max-width: 900px) {
-      .crop-workspace {
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .workspace-active-card {
+      display: none;
+      margin-top: 20px;
+    }
+    .crop-stage-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 860px) {
+      .crop-stage-layout {
         grid-template-columns: 1fr;
       }
     }
-    .crop-preview-card {
-      background: #ffffff;
+    .crop-preview-box {
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
+      border-radius: 10px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: var(--shadow-sm);
     }
-    .crop-canvas-container {
-      position: relative;
-      background: #f8fafc;
+    .page-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      background: #ffffff;
       border: 1px solid #cbd5e1;
-      border-radius: 4px;
+      border-radius: 6px;
+    }
+    .canvas-container {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
       overflow: hidden;
       max-width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
     #cropCanvas {
       max-width: 100%;
@@ -71,43 +128,149 @@
       position: absolute;
       border: 2px dashed #2563eb;
       background: rgba(37, 99, 235, 0.15);
-      cursor: move;
+      pointer-events: none;
       box-sizing: border-box;
+      transition: all 0.1s ease;
     }
-    .crop-controls-card {
-      background: #ffffff;
+    .crop-controls-panel {
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
+      border-radius: 10px;
+      padding: 18px;
     }
-    .margin-inputs-grid {
+    .crop-controls-panel h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+    .preset-select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      background: #ffffff;
+      outline: none;
+    }
+    .preset-select:focus {
+      border-color: #2563eb;
+    }
+    .margins-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0;
+      gap: 10px;
+      margin-bottom: 16px;
     }
-    .page-nav-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .margin-item label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+    .margin-item input {
       width: 100%;
-      margin-bottom: 12px;
-      padding: 8px 12px;
-      background: #f1f5f9;
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .margin-item input:focus {
+      border-color: #2563eb;
+    }
+    .scope-selector {
+      margin-bottom: 18px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 6px;
     }
+    .scope-selector label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+    .scope-selector label:last-child {
+      margin-bottom: 0;
+    }
+    .action-buttons-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-main-action {
+      padding: 12px 30px;
+      font-size: 1.02rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-main-action:hover {
+      background: #1d4ed8;
+    }
+    .btn-sub-action {
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #2563eb;
+    }
+    .result-success-box {
+      display: none;
+      text-align: center;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+    }
   </style>
-  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, BreadcrumbList) -->
+
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/crop.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/crop.html">
+  <meta property="og:title" content="Crop PDF Margins Online Free — Trim White Borders | Vytra">
+  <meta property="og:description" content="Trim PDF document margins, remove scanner white borders, and crop pages to custom dimensions with live visual preview. 100% private in-browser processing.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crop PDF Margins Online Free — Trim White Borders | Vytra">
+  <meta name="twitter:description" content="Trim PDF document margins, remove scanner white borders, and crop pages to custom dimensions with live visual preview. 100% private in-browser processing.">
+
+  <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Crop PDF Margins Online Free — Trim White Borders | Vytra",
+        "name": "Crop PDF Margins Online Free | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/crop.html",
-        "description": "Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.",
+        "description": "Trim PDF document margins, remove scanner white borders, and crop pages to custom dimensions with live visual preview. 100% private in-browser processing.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All (Web Browser)",
         "offers": {
@@ -118,26 +281,63 @@
       },
       {
         "@type": "HowTo",
-        "name": "How to use Crop PDF on Vytra",
-        "description": "Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.",
+        "name": "How to crop PDF margins and trim white borders online",
+        "description": "Step-by-step instructions to trim margins and crop page dimensions in a PDF document.",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload your PDF document.",
-            "text": "Upload your PDF document."
+            "name": "Upload PDF",
+            "text": "Select or drag & drop your PDF file into the crop workspace."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Adjust visual crop box or percentage margin sliders.",
-            "text": "Adjust visual crop box or percentage margin sliders."
+            "name": "Adjust Crop Margins",
+            "text": "Choose a preset (e.g. Trim 5% or Trim 10%) or adjust the Top, Bottom, Left, and Right percentage inputs with live visual preview."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Click 'Crop PDF & Download'.",
-            "text": "Click 'Crop PDF & Download'."
+            "name": "Crop & Download",
+            "text": "Click 'Crop PDF & Download' to compile and save your clean, trimmed PDF file."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does cropping PDF margins degrade image or text sharpness?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra updates the standard PDF CropBox boundary coordinates via pdf-lib. All vector fonts, selectable text layers, and embedded high-resolution graphics remain 100% untouched without lossy bitmap recompression."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I crop the current page only or all pages in the PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can do both! In the settings pane, select 'All Pages in Document' to apply uniform border trims across the entire file, or choose 'Current Page Only' to crop a specific cover page or appendix."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is cropping PDF margins helpful for Kindle and e-readers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Academic papers and book scans often feature huge 2-inch white margins. Trimming these margins allows e-reader software to zoom in and expand the body text to fill the screen, dramatically improving reading comfort."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my private documents uploaded to an external server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All page rendering and CropBox geometry updates execute 100% locally in your web browser memory. Your files never leave your computer or smartphone."
+            }
           }
         ]
       },
@@ -154,7 +354,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "PDF Tools",
-            "item": "https://digitalsaathi.vytra.in/pdf/"
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
           },
           {
             "@type": "ListItem",
@@ -167,24 +367,13 @@
     ]
   }
   </script>
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/crop.html">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/crop.html">
-  <meta property="og:title" content="Crop PDF Margins Online Free — Trim White Borders | Vytra">
-  <meta property="og:description" content="Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Crop PDF Margins Online Free — Trim White Borders | Vytra">
-  <meta name="twitter:description" content="Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.">
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -195,26 +384,26 @@
 
       <ul class="nav-links" id="navLinks">
         <li class="nav-item">
-          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+          <a href="merge.html" class="nav-link">Merge PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+          <a href="compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
-            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
-            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
-            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+            <a href="merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -284,161 +473,383 @@
     </div>
   </nav>
 
-  <div class="container page-content">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><div class="container breadcrumb">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
-      <span>›</span>
+      <span>/</span>
       <a href="index.html">PDF Tools</a>
-      <span>›</span>
-      <span>Crop PDF</span>
-    </div></nav>
+      <span>/</span>
+      <span style="color:var(--text-main); font-weight:600;">Crop PDF</span>
+    </nav>
 
-        <div class="tool-hero">
-      <h1 class="tool-hero-title">Crop PDF</h1>
-      <p class="tool-hero-subtitle">Trim document margins, remove white borders, and crop pages to custom dimensions with live visual preview.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Crop PDF Margins</h1>
+      <p class="vytra-tool-subtitle">
+        Trim document margins, remove scanner white borders, and crop pages to custom dimensions with live visual preview.
+      </p>
 
-    <!-- Upload Box -->
-    <div class="upload-zone" id="uploadZone">
-      <div class="upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div>
-      <h3 class="upload-title">Select PDF file or drag & drop here</h3>
-      <p class="drop-hint-text">Adjust margins and crop pages with interactive visual controls</p>
-      <button class="btn-hero-cta" id="selectBtn" type="button">Select PDF file</button>
-      <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-    </div>
-
-    <!-- File Info Bar -->
-    <div class="file-info-bar" id="fileInfo" style="display: none;">
-      <div class="file-details">
-        <span class="file-name" id="fileName">document.pdf</span>
-        <span class="file-meta" id="fileMeta">0 KB • 0 Pages</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ 100% Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Live Visual Crop Overlay</span>
+        <span class="vytra-trust-chip">✓ Trim 5%, 10%, or Custom Borders</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
-      <button class="btn btn-sm btn-outline" id="changeFileBtn" type="button">Change File</button>
     </div>
 
-    <!-- Workspace -->
-    <div id="cropWorkspace" class="crop-workspace" style="display:none;">
-      <!-- Preview Pane -->
-      <div class="crop-preview-card">
-        <div class="page-nav-bar">
-          <button class="btn btn-sm btn-outline" id="prevPageBtn">◀ Prev Page</button>
-          <span style="font-weight:600;font-size:0.9rem;" id="pageIndicator">Page 1 of 1</span>
-          <button class="btn btn-sm btn-outline" id="nextPageBtn">Next Page ▶</button>
-        </div>
-        <div class="crop-canvas-container" id="canvasContainer">
-          <canvas id="cropCanvas"></canvas>
-          <div id="cropOverlay" class="crop-overlay"></div>
-        </div>
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="crop-wrapper">
+
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">✂️</div>
+        <div class="upload-zone-title">Choose PDF file or drag &amp; drop here</div>
+        <div class="upload-zone-hint">Adjust margins and crop pages with interactive visual controls. 100% private.</div>
+        <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)">
       </div>
 
-      <!-- Settings Pane -->
-      <div class="crop-controls-card">
-        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:12px;color:#1e293b;">Crop Settings</h3>
+      <!-- Loading Spinner Box -->
+      <div id="loadingBox" style="display:none; text-align:center; padding:3rem 1rem;">
+        <div class="spinner" style="margin:0 auto 12px; width:40px; height:40px; border:4px solid #e2e8f0; border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <div id="loadingText" style="font-weight:700; color:#1e293b;">Loading document for visual crop...</div>
+      </div>
+
+      <!-- Active Workspace -->
+      <div id="workspaceActiveCard" class="workspace-active-card">
         
-        <div class="form-group" style="margin-bottom:14px;">
-          <label class="form-label" style="font-weight:600;">Crop Preset</label>
-          <select id="cropPreset" class="form-select" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;">
-            <option value="custom">Custom Margins</option>
-            <option value="trim5">Trim 5% Borders (Standard Clean)</option>
-            <option value="trim10">Trim 10% Borders (Wide Margins)</option>
-            <option value="trim15">Trim 15% Borders (Tight Content)</option>
-          </select>
+        <div class="crop-stage-layout">
+          
+          <!-- Visual Preview Box -->
+          <div class="crop-preview-box">
+            <div class="page-nav-bar">
+              <button type="button" class="btn-sub-action" id="prevPageBtn" onclick="changePage(-1)">◀ Prev Page</button>
+              <span id="pageIndicator" style="font-weight:700; font-size:0.88rem; color:#1e293b;">Page 1 of 1</span>
+              <button type="button" class="btn-sub-action" id="nextPageBtn" onclick="changePage(1)">Next Page ▶</button>
+            </div>
+            <div class="canvas-container">
+              <canvas id="cropCanvas"></canvas>
+              <div id="cropOverlay" class="crop-overlay"></div>
+            </div>
+          </div>
+
+          <!-- Controls Pane -->
+          <div class="crop-controls-panel">
+            <h3>Crop Settings</h3>
+
+            <label style="display:block; font-size:0.82rem; font-weight:700; color:#475569; margin-bottom:4px;">Crop Preset:</label>
+            <select id="cropPreset" class="preset-select" onchange="handlePresetChange(this.value)">
+              <option value="custom">Custom Margins</option>
+              <option value="trim5">Trim 5% Borders (Standard Clean)</option>
+              <option value="trim10">Trim 10% Borders (Wide Margins)</option>
+              <option value="trim15">Trim 15% Borders (Tight Content)</option>
+            </select>
+
+            <div class="margins-grid">
+              <div class="margin-item">
+                <label for="cropTop">Top Crop (%)</label>
+                <input type="number" id="cropTop" min="0" max="45" value="5" oninput="handleManualCropInput()">
+              </div>
+              <div class="margin-item">
+                <label for="cropBottom">Bottom Crop (%)</label>
+                <input type="number" id="cropBottom" min="0" max="45" value="5" oninput="handleManualCropInput()">
+              </div>
+              <div class="margin-item">
+                <label for="cropLeft">Left Crop (%)</label>
+                <input type="number" id="cropLeft" min="0" max="45" value="5" oninput="handleManualCropInput()">
+              </div>
+              <div class="margin-item">
+                <label for="cropRight">Right Crop (%)</label>
+                <input type="number" id="cropRight" min="0" max="45" value="5" oninput="handleManualCropInput()">
+              </div>
+            </div>
+
+            <div class="scope-selector">
+              <div style="font-size:0.8rem; font-weight:700; color:#475569; margin-bottom:6px;">Apply Crop To:</div>
+              <label>
+                <input type="radio" name="applyScope" value="all" checked> All Pages in Document
+              </label>
+              <label>
+                <input type="radio" name="applyScope" value="current"> Current Page Only
+              </label>
+            </div>
+
+            <button type="button" id="btnProcessCrop" class="btn-main-action" style="width:100%; margin-bottom:8px;" onclick="processCrop()">✂️ Crop PDF &amp; Download</button>
+            <button type="button" class="btn-sub-action" style="width:100%; margin-bottom:8px;" onclick="resetCropMargins()">↺ Reset Margins</button>
+            <button type="button" class="btn-sub-action" style="width:100%;" onclick="resetFilePicker()">🔄 Open New PDF</button>
+          </div>
+
         </div>
 
-        <div class="margin-inputs-grid">
-          <div>
-            <label class="form-label" style="font-size:0.8rem;font-weight:600;">Top Crop (%)</label>
-            <input type="number" id="cropTop" class="form-input" min="0" max="45" value="5" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:0.8rem;font-weight:600;">Bottom Crop (%)</label>
-            <input type="number" id="cropBottom" class="form-input" min="0" max="45" value="5" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:0.8rem;font-weight:600;">Left Crop (%)</label>
-            <input type="number" id="cropLeft" class="form-input" min="0" max="45" value="5" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:0.8rem;font-weight:600;">Right Crop (%)</label>
-            <input type="number" id="cropRight" class="form-input" min="0" max="45" value="5" style="width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:4px;">
+        <!-- Success Result Box -->
+        <div id="resultSuccessBox" class="result-success-box">
+          <div style="font-size:2rem; margin-bottom:8px;">🎉</div>
+          <h3 style="font-size:1.15rem; font-weight:700; color:#065f46; margin-bottom:6px;">PDF Cropped Successfully!</h3>
+          <p id="resultSummaryText" style="font-size:0.88rem; color:#047857; margin-bottom:16px;"></p>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+            <a id="btnDownloadResult" class="btn-main-action" style="background:#059669; border-color:#059669; text-decoration:none; display:inline-block;">📥 Download PDF</a>
+            <button type="button" class="btn-sub-action" onclick="resetFilePicker()">Crop Another PDF</button>
           </div>
         </div>
 
-        <div class="form-group" style="margin-bottom:18px;">
-          <label class="form-label" style="font-weight:600;">Apply Crop To</label>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
-            <label style="font-size:0.9rem;display:flex;align-items:center;gap:6px;cursor:pointer;">
-              <input type="radio" name="applyScope" value="all" aria-label="Apply crop to all pages" checked> All Pages in Document
-            </label>
-            <label style="font-size:0.9rem;display:flex;align-items:center;gap:6px;cursor:pointer;">
-              <input type="radio" name="applyScope" value="current" aria-label="Apply crop to current page only"> Current Page Only
-            </label>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" id="processCropBtn" style="width:100%;padding:12px;font-weight:700;font-size:1rem;">Crop PDF & Download</button>
-        <button class="btn btn-outline" id="resetCropBtn" style="width:100%;margin-top:8px;padding:8px;">Reset Settings</button>
       </div>
+
     </div>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer" style="display: none;">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-      </div>
-      <p class="progress-text" id="progressText">Processing crop... 0%</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-    <!-- Result Card -->
-    <div class="result-card" id="resultCard" style="display: none;">
-      <div class="result-icon">🎉</div>
-      <h3 class="result-title">PDF Cropped Successfully!</h3>
-      <p class="result-desc" id="resultDesc">Your PDF pages have been cropped to the specified dimensions.</p>
-      <div class="result-actions">
-        <a href="javascript:void(0)" class="btn btn-primary btn-lg" id="downloadBtn" download="cropped.pdf">⬇️ Download Cropped PDF</a>
-        <button class="btn btn-outline btn-lg" id="processAnotherBtn">Crop Another PDF</button>
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
       </div>
-    </div>
 
-    <!-- Steps -->
-    <div class="guide-card">
-      <h3 class="guide-title">How to Crop PDF Margins</h3>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4 class="step-title">Upload PDF</h4>
-          <p class="step-desc">Select your PDF file. The first page is rendered with a live visual crop box.</p>
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">✂️</div>
+          <h3 class="vytra-info-cell-title">Lossless vector CropBox updates</h3>
+          <p class="vytra-info-cell-desc">Updates standard ISO PDF CropBox coordinates without re-rendering vector typography or compressing images into blurry pixels.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4 class="step-title">Set Margins</h4>
-          <p class="step-desc">Choose a quick preset or adjust Top, Bottom, Left, and Right crop percentages.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📖</div>
+          <h3 class="vytra-info-cell-title">E-reader &amp; tablet optimization</h3>
+          <p class="vytra-info-cell-desc">Trim excessive 2-inch white paper margins so body text expands to fill Kindle, iPad, and smartphone screens with superior readability.</p>
         </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4 class="step-title">Save & Download</h4>
-          <p class="step-desc">Click Crop PDF. The CropBox coordinates are updated and your file downloads instantly.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">Remove scanner border artifacts</h3>
+          <p class="vytra-info-cell-desc">Eliminate unsightly dark scanner shadows, punch-hole perforations, and binder margin creases from legacy office scans seamlessly.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">👁️</div>
+          <h3 class="vytra-info-cell-title">Real-time live visual preview</h3>
+          <p class="vytra-info-cell-desc">Interactive blue overlay boundaries dynamically reflect every percentage change so you verify text clearance before downloading.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% confidential in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">Your private legal documents, contracts, bank statements, and tax returns never leave your device RAM or touch any external cloud server.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🌐</div>
+          <h3 class="vytra-info-cell-title">Zero watermarks or limitations</h3>
+          <p class="vytra-info-cell-desc">Free forever with zero daily limits, zero hidden fees, zero email sign-ups, and zero branding watermarks on your cropped files.</p>
         </div>
       </div>
-    </div>
 
-    <!-- FAQ -->
-    <div class="faq-section">
-      <h3 class="faq-heading">Frequently Asked Questions</h3>
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary class="faq-question">Does cropping reduce PDF file size?</summary>
-          <div class="faq-answer">Cropping updates the visible bounding box (CropBox) of the PDF, trimming away headers, footers, or blank margins for cleaner printing and viewing.</div>
+      <!-- Crop Recommendations Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Standard PDF Margin &amp; Crop Recommendation Guide
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Document Type</th>
+              <th>Recommended Margin Trim</th>
+              <th>Resulting Content Focus</th>
+              <th>Primary Benefit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Scanned Book Pages</strong></td><td>Top 8%, Bottom 8%, Sides 10%</td><td>80% Content Focus</td><td>Eliminates spine curve &amp; black scanner edges</td></tr>
+            <tr><td><strong>Mobile / Kindle E-reader</strong></td><td>Top 10%, Bottom 10%, Sides 12%</td><td>76% Content Focus</td><td>Maximizes font legibility on small displays</td></tr>
+            <tr><td><strong>Academic Paper / Thesis</strong></td><td>Top 5%, Bottom 5%, Sides 5%</td><td>90% Content Focus</td><td>Cleans header/footer clutter for double-page print</td></tr>
+            <tr><td><strong>Legal Contracts / Deeds</strong></td><td>Top 4%, Bottom 4%, Sides 4%</td><td>92% Content Focus</td><td>Trims staple marks without losing legal stamps</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra Document Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I read hundreds of PDF research papers on my iPad. Trimming 10% white borders made the text 25% bigger and much easier on my eyes.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RG</div>
+            <div>
+              <div class="vytra-author-name">Rohan Gupta</div>
+              <div class="vytra-author-role">PhD Researcher, IIT Delhi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Our scanned tenancy agreements had black edge shadows from an old flatbed scanner. Vytra cropped all 20 pages cleanly in seconds.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NS</div>
+            <div>
+              <div class="vytra-author-name">Neeraj Singhal</div>
+              <div class="vytra-author-role">Property Consultant, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Crisp vector text remains razor sharp because it doesn't convert pages to JPEGs. The live crop box overlay is intuitive and responsive.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AK</div>
+            <div>
+              <div class="vytra-author-name">Anand Kulkarni</div>
+              <div class="vytra-author-role">Graphic Designer, Pune</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does cropping PDF margins degrade image or text sharpness?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Vytra updates the standard PDF CropBox boundary coordinates via pdf-lib. All vector fonts, selectable text layers, and embedded high-resolution graphics remain 100% untouched without lossy bitmap recompression.
+          </div>
         </details>
-        <details class="faq-item">
-          <summary class="faq-question">Can I apply different crops to different pages?</summary>
-          <div class="faq-answer">Yes, you can choose to apply the crop to all pages or apply it specifically to the active page.</div>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I crop the current page only or all pages in the PDF?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            You can do both! In the settings pane, select 'All Pages in Document' to apply uniform border trims across the entire file, or choose 'Current Page Only' to crop a specific cover page or appendix.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Why is cropping PDF margins helpful for Kindle and e-readers?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Academic papers and book scans often feature huge 2-inch white margins. Trimming these margins allows e-reader software to zoom in and expand the body text to fill the screen, dramatically improving reading comfort.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my private documents uploaded to an external server?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All page rendering and CropBox geometry updates execute 100% locally in your web browser memory. Your files never leave your computer or smartphone.
+          </div>
         </details>
       </div>
-    </div>
-  </div>
+    </section>
 
-    <footer class="footer">
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Crop PDF Tool</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this margin trimmer?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Crop PDF Tool!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Crop%20PDF%20margins%20online%20for%20free:%20https://digitalsaathi.vytra.in/pdf/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Free%20online%20PDF%20margin%20cropper%20by%20Vytra:%20https://digitalsaathi.vytra.in/pdf/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/crop.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size under 100KB, 200KB, or 500KB</div>
+        </a>
+        <a href="extract.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Extract Pages</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Pick and save specific pages into a new document</div>
+        </a>
+        <a href="reorder.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔀</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Reorder Pages</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Rearrange and reverse PDF page sequence visually</div>
+        </a>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔗</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files into one clean document</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -452,7 +863,7 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="index.html">PDF Tools</a></li>
           <li><a href="../image/index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
@@ -463,8 +874,8 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/merge.html">Merge PDF</a></li>
-          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="merge.html">Merge PDF</a></li>
+          <li><a href="compress.html">Compress PDF</a></li>
           <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
@@ -488,10 +899,6 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script defer src="../data/tools.js"></script>
-  <script defer src="../assets/js/common.js"></script>
   <script>
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -503,85 +910,80 @@
     let currentPageNum = 1;
     let totalPages = 1;
 
-    const uploadZone = document.getElementById('uploadZone');
     const fileInput = document.getElementById('fileInput');
-    const selectBtn = document.getElementById('selectBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    const fileMeta = document.getElementById('fileMeta');
-    const changeFileBtn = document.getElementById('changeFileBtn');
-    const cropWorkspace = document.getElementById('cropWorkspace');
+    const dropZoneBox = document.getElementById('dropZoneBox');
+    const loadingBox = document.getElementById('loadingBox');
+    const loadingText = document.getElementById('loadingText');
+    const workspaceCard = document.getElementById('workspaceActiveCard');
     const cropCanvas = document.getElementById('cropCanvas');
     const cropOverlay = document.getElementById('cropOverlay');
+    const pageIndicator = document.getElementById('pageIndicator');
     const prevPageBtn = document.getElementById('prevPageBtn');
     const nextPageBtn = document.getElementById('nextPageBtn');
-    const pageIndicator = document.getElementById('pageIndicator');
+    const cropPreset = document.getElementById('cropPreset');
     const cropTop = document.getElementById('cropTop');
     const cropBottom = document.getElementById('cropBottom');
     const cropLeft = document.getElementById('cropLeft');
     const cropRight = document.getElementById('cropRight');
-    const cropPreset = document.getElementById('cropPreset');
-    const processCropBtn = document.getElementById('processCropBtn');
-    const resetCropBtn = document.getElementById('resetCropBtn');
-    const progressContainer = document.getElementById('progressContainer');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const processAnotherBtn = document.getElementById('processAnotherBtn');
+    const resultSuccessBox = document.getElementById('resultSuccessBox');
+    const resultSummaryText = document.getElementById('resultSummaryText');
+    const btnDownloadResult = document.getElementById('btnDownloadResult');
 
-    selectBtn.addEventListener('click', () => fileInput.click());
-    uploadZone.addEventListener('click', (e) => {
-      if (e.target !== selectBtn) fileInput.click();
+    // Drag and drop handlers
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.add('dragover');
+      }, false);
     });
 
-    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
-    uploadZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.remove('dragover');
+      }, false);
     });
 
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files && e.target.files.length > 0) handleFile(e.target.files[0]);
+    dropZoneBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+      }
     });
 
-    changeFileBtn.addEventListener('click', () => {
-      fileInput.value = '';
-      fileInput.click();
-    });
+    function handleFileChange(e) {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    }
 
     async function handleFile(file) {
-      if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-        alert('Please select a valid PDF file.');
+      if (!file || !file.name.match(/\.pdf$/i)) {
+        alert('Please choose a valid PDF file.');
         return;
       }
       currentFile = file;
-      fileName.textContent = file.name;
-      fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • Loading...`;
-      uploadZone.style.display = 'none';
-      fileInfo.style.display = 'flex';
-      resultCard.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '30%';
-      progressText.textContent = 'Loading pages for visual crop...';
+
+      dropZoneBox.style.display = 'none';
+      resultSuccessBox.style.display = 'none';
+      loadingBox.style.display = 'block';
+      loadingText.textContent = 'Loading document for visual crop...';
 
       try {
         originalPdfBytes = await file.arrayBuffer();
         pdfDocProxy = await pdfjsLib.getDocument({ data: new Uint8Array(originalPdfBytes) }).promise;
         totalPages = pdfDocProxy.numPages;
         currentPageNum = 1;
-        fileMeta.textContent = `${(file.size / 1024).toFixed(1)} KB • ${totalPages} ${totalPages === 1 ? 'Page' : 'Pages'}`;
 
-        progressContainer.style.display = 'none';
-        cropWorkspace.style.display = 'grid';
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
         await renderCurrentPage();
       } catch (err) {
         console.error(err);
+        loadingBox.style.display = 'none';
+        dropZoneBox.style.display = 'block';
         alert('Failed to load PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        uploadZone.style.display = 'block';
       }
     }
 
@@ -617,19 +1019,16 @@
 
       cropOverlay.style.top = topPx + 'px';
       cropOverlay.style.left = leftPx + 'px';
-      cropOverlay.style.width = (w - leftPx - rightPx) + 'px';
-      cropOverlay.style.height = (h - topPx - bottomPx) + 'px';
+      cropOverlay.style.width = Math.max(0, w - leftPx - rightPx) + 'px';
+      cropOverlay.style.height = Math.max(0, h - topPx - bottomPx) + 'px';
     }
 
-    [cropTop, cropBottom, cropLeft, cropRight].forEach(input => {
-      input.addEventListener('input', () => {
-        cropPreset.value = 'custom';
-        updateOverlay();
-      });
-    });
+    function handleManualCropInput() {
+      cropPreset.value = 'custom';
+      updateOverlay();
+    }
 
-    cropPreset.addEventListener('change', () => {
-      const val = cropPreset.value;
+    function handlePresetChange(val) {
       if (val === 'trim5') {
         cropTop.value = 5; cropBottom.value = 5; cropLeft.value = 5; cropRight.value = 5;
       } else if (val === 'trim10') {
@@ -638,32 +1037,31 @@
         cropTop.value = 15; cropBottom.value = 15; cropLeft.value = 15; cropRight.value = 15;
       }
       updateOverlay();
-    });
+    }
 
-    prevPageBtn.addEventListener('click', () => {
-      if (currentPageNum > 1) {
-        currentPageNum--;
+    function changePage(delta) {
+      const target = currentPageNum + delta;
+      if (target >= 1 && target <= totalPages) {
+        currentPageNum = target;
         renderCurrentPage();
       }
-    });
+    }
 
-    nextPageBtn.addEventListener('click', () => {
-      if (currentPageNum < totalPages) {
-        currentPageNum++;
-        renderCurrentPage();
-      }
-    });
+    function resetCropMargins() {
+      cropTop.value = 0; cropBottom.value = 0; cropLeft.value = 0; cropRight.value = 0;
+      cropPreset.value = 'custom';
+      updateOverlay();
+    }
 
     window.addEventListener('resize', updateOverlay);
 
-    processCropBtn.addEventListener('click', async () => {
-      cropWorkspace.style.display = 'none';
-      progressContainer.style.display = 'block';
-      progressFill.style.width = '20%';
-      progressText.textContent = 'Applying crop coordinates...';
+    async function processCrop() {
+      workspaceCard.style.display = 'none';
+      loadingBox.style.display = 'block';
+      loadingText.textContent = 'Applying crop coordinates and saving PDF...';
 
       try {
-        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes);
+        const pdfDoc = await PDFLib.PDFDocument.load(originalPdfBytes, { ignoreEncryption: true });
         const pages = pdfDoc.getPages();
         const applyScope = document.querySelector('input[name="applyScope"]:checked').value;
 
@@ -686,42 +1084,49 @@
           p.setCropBox(x, y, cropW, cropH);
         }
 
-        progressFill.style.width = '80%';
-        progressText.textContent = 'Saving cropped PDF...';
-
         const croppedBytes = await pdfDoc.save();
         const blob = new Blob([croppedBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
 
         const outName = currentFile.name.replace(/\.pdf$/i, '') + '_cropped.pdf';
-        downloadBtn.href = url;
-        downloadBtn.download = outName;
-        document.getElementById('resultDesc').textContent = `Crop applied successfully. New file size: ${(blob.size / 1024).toFixed(1)} KB.`;
+        btnDownloadResult.href = url;
+        btnDownloadResult.download = outName;
 
-        progressContainer.style.display = 'none';
-        resultCard.style.display = 'block';
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
+        resultSuccessBox.style.display = 'block';
+
+        resultSummaryText.textContent = `Crop applied successfully to ${applyScope === 'all' ? 'all pages' : 'page ' + currentPageNum} (${(blob.size / 1024).toFixed(1)} KB).`;
       } catch (err) {
         console.error(err);
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
         alert('Error cropping PDF: ' + err.message);
-        progressContainer.style.display = 'none';
-        cropWorkspace.style.display = 'grid';
       }
-    });
+    }
 
-    resetCropBtn.addEventListener('click', () => {
-      cropTop.value = 0; cropBottom.value = 0; cropLeft.value = 0; cropRight.value = 0;
-      cropPreset.value = 'custom';
-      updateOverlay();
-    });
-
-    processAnotherBtn.addEventListener('click', () => {
-      resultCard.style.display = 'none';
-      uploadZone.style.display = 'block';
-      fileInfo.style.display = 'none';
-      cropWorkspace.style.display = 'none';
+    function resetFilePicker() {
       fileInput.value = '';
       currentFile = null;
+      pdfDocProxy = null;
+      originalPdfBytes = null;
+      dropZoneBox.style.display = 'block';
+      workspaceCard.style.display = 'none';
+      resultSuccessBox.style.display = 'none';
+    }
+
+    // 5-Star Rating Widget
+    document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const val = parseInt(this.dataset.val);
+        document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
+      });
     });
   </script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>

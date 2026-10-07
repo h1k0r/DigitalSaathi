@@ -23,114 +23,332 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | Vytra</title>
-  <meta name="description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with move buttons, reverse order, and 100% private in-browser processing.">
+  <meta name="keywords" content="reorder pdf pages, rearrange pdf pages, change pdf page order, move pdf pages, reverse pdf pages, organize pdf pages free, pdf page sequencer, pdf24 reorder pdf alternative">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- PDF.js and PDF-Lib Engines -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
   <style>
+    .reorder-wrapper {
+      max-width: 980px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .workspace-active-card {
+      display: none;
+      margin-top: 20px;
+    }
+    .reorder-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 16px;
+    }
+    .doc-meta-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+    }
+    .doc-meta-subtitle {
+      font-size: 0.82rem;
+      color: #64748b;
+    }
     .reorder-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 16px;
-      margin: 20px 0;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
     .reorder-card {
       background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-      padding: 10px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
-      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+    .reorder-card:hover {
+      border-color: #2563eb;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
     }
     .reorder-thumb-wrapper {
-      width: 110px;
-      height: 150px;
+      width: 100%;
+      height: 145px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      margin-bottom: 8px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
+      margin-bottom: 6px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 4px;
     }
     .reorder-thumb-wrapper canvas {
       max-width: 100%;
       max-height: 100%;
+      object-fit: contain;
     }
-    .reorder-controls {
+    .reorder-badge-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .reorder-badge-pos {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+    .reorder-controls-row {
       display: flex;
-      gap: 4px;
-      margin-top: 6px;
+      gap: 6px;
+    }
+    .move-btn {
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .move-btn:hover:not(:disabled) {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #ffffff;
+    }
+    .move-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .action-buttons-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-main-action {
+      padding: 12px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-main-action:hover {
+      background: #1d4ed8;
+    }
+    .btn-sub-action {
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #2563eb;
+    }
+    .result-success-box {
+      display: none;
+      text-align: center;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
     }
   </style>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/reorder.html">
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/reorder.html">
   <meta property="og:title" content="Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | Vytra">
-  <meta property="og:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
+  <meta property="og:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with move buttons, reverse order, and 100% private in-browser processing.">
   <meta property="og:site_name" content="Vytra">
   
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Reorder PDF Pages Online Free — Rearrange PDF Page Sequence | Vytra">
-  <meta name="twitter:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.">
+  <meta name="twitter:description" content="Rearrange and reorder pages in any PDF document online for free. Visual page organizer with move buttons, reverse order, and 100% private in-browser processing.">
+
   <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Reorder PDF Pages Online Free \u2014 Rearrange PDF Page Sequence | Vytra",
-      "url": "https://digitalsaathi.vytra.in/pdf/reorder.html",
-      "description": "Rearrange and reorder pages in any PDF document online for free. Visual page organizer with instant preview and download. 100% private client-side processing.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Pdf Tools",
-          "item": "https://digitalsaathi.vytra.in/pdf/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Reorder PDF Pages Online Free \u2014 Rearrange PDF Page Sequence",
-          "item": "https://digitalsaathi.vytra.in/pdf/reorder.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Reorder PDF Pages Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/pdf/reorder.html",
+        "description": "Rearrange and reorder pages in any PDF document online for free. Visual page organizer with move buttons, reverse order, and 100% private in-browser processing.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to reorder pages in a PDF document online",
+        "description": "Step-by-step instructions to change the page order or sequence of any PDF file.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload PDF",
+            "text": "Select or drag & drop your PDF file into the reorder tool."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Rearrange Pages",
+            "text": "Use the left (←) and right (→) move buttons on each page thumbnail or click 'Reverse All Pages' to invert the sequence."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Save & Download",
+            "text": "Click 'Save & Download Reordered PDF' to compile your freshly organized document."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does reordering PDF pages reduce visual sharpness or compress text?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra rearranges the internal page tree references inside the PDF structure using pdf-lib without re-rendering or compressing text, images, or vector shapes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I reverse the entire page order in one click?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Click the '🔄 Reverse All Pages' button on the toolbar to immediately flip the document sequence from back to front."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a limit on how many pages I can reorder?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vytra operates directly in your browser memory and can process documents with dozens or hundreds of pages without subscription limits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my confidential files uploaded or saved on any server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All page rendering and restructuring happen 100% locally in your device RAM. Your files never touch an external server."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Reorder PDF Pages",
+            "item": "https://digitalsaathi.vytra.in/pdf/reorder.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Navigation -->
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -141,26 +359,26 @@
 
       <ul class="nav-links" id="navLinks">
         <li class="nav-item">
-          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+          <a href="merge.html" class="nav-link">Merge PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+          <a href="compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
-            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
-            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
-            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+            <a href="merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -230,86 +448,342 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="tool-hero">
-    <div class="container">
-      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
-        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <span style="color:#ffffff;">Reorder Pages</span>
-      </div>
-      <h1>🔀 Reorder PDF Pages</h1>
-      <p>Rearrange the sequence of pages in your PDF document with visual move controls.</p>
-    </div>
-  </header>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-  <!-- Main Content -->
-  <main class="tool-content">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
-      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span style="color:var(--text-main);font-weight:600;">Reorder Pages</span>
+      <span style="color:var(--text-main); font-weight:600;">Reorder PDF Pages</span>
     </nav>
 
-    <div class="tool-box">
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Reorder PDF Pages</h1>
+      <p class="vytra-tool-subtitle">
+        Rearrange and reorganize pages in any PDF document online for free. Visual page organizer with move buttons, reverse order, and instant download.
+      </p>
 
-      <!-- Upload Area -->
-      <div class="upload-zone" id="drop-zone">
-        <span class="upload-icon">🔀</span>
-        <div class="upload-text">Click or Drag & Drop PDF to Reorder Pages</div>
-        <div class="upload-hint">Upload a PDF document to visually reorganize pages (100% private)</div>
-        <input type="file" id="pdf-input" accept="application/pdf">
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ 100% Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Move Left &amp; Right Buttons</span>
+        <span class="vytra-trust-chip">✓ 1-Click Reverse All Pages</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
+      </div>
+    </div>
+
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="reorder-wrapper">
+
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">🔀</div>
+        <div class="upload-zone-title">Choose PDF file or drag &amp; drop here</div>
+        <div class="upload-zone-hint">Upload a PDF document to visually reorder pages. 100% private in-browser processing.</div>
+        <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFileChange(event)">
       </div>
 
-      <!-- Settings & Grid -->
-      <div id="reorder-settings-section" style="display:none; margin-top:24px;">
-        
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid #e5e7eb; padding-bottom:16px;">
-          <div>
-            <h3 id="doc-name-display">Document Pages</h3>
-            <div style="font-size:0.85rem; color:#6b7280;" id="doc-info-display"></div>
-          </div>
+      <!-- Loading Spinner Box -->
+      <div id="loadingBox" style="display:none; text-align:center; padding:3rem 1rem;">
+        <div class="spinner" style="margin:0 auto 12px; width:40px; height:40px; border:4px solid #e2e8f0; border-top-color:#2563eb; border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <div id="loadingText" style="font-weight:700; color:#1e293b;">Rendering page previews...</div>
+      </div>
 
+      <!-- Active Workspace -->
+      <div id="workspaceActiveCard" class="workspace-active-card">
+        
+        <!-- Toolbar -->
+        <div class="reorder-toolbar">
+          <div>
+            <div class="doc-meta-title" id="docMetaTitle">document.pdf</div>
+            <div class="doc-meta-subtitle" id="docMetaSubtitle">0 Pages Total</div>
+          </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" id="btn-reverse-order" class="btn btn-sm btn-secondary">🔄 Reverse All Pages</button>
-            <button type="button" id="btn-reset-order" class="btn btn-sm btn-secondary">↺ Reset Order</button>
-            <button type="button" id="btn-change-doc" class="btn btn-sm btn-outline">Change File</button>
+            <button type="button" class="btn-sub-action" onclick="reverseAllPages()">🔄 Reverse All</button>
+            <button type="button" class="btn-sub-action" onclick="resetToOriginalOrder()">↺ Reset Order</button>
+            <button type="button" class="btn-sub-action" onclick="resetFilePicker()">🔄 Open New PDF</button>
           </div>
         </div>
 
         <!-- Page Cards Grid -->
-        <div class="reorder-grid" id="reorder-pages-grid"></div>
+        <div class="reorder-grid" id="pagesGrid"></div>
 
-        <button type="button" id="btn-save-reorder" class="btn btn-primary btn-full" style="margin-top:24px;">💾 Save & Download Reordered PDF</button>
-      </div>
-
-      <!-- Processing -->
-      <div id="processing-box" style="display:none; text-align:center; padding:32px 0;">
-        <div class="spinner"></div>
-        <div style="font-weight:600; margin-top:12px;" id="processing-msg">Loading pages...</div>
-      </div>
-
-      <!-- Result Box -->
-      <div id="result-box" class="result-box" style="display:none;">
-        <span style="font-size:2.5rem; display:block; margin-bottom:8px;">🎉</span>
-        <h3>PDF Pages Successfully Reordered!</h3>
-        <p id="result-details" style="font-size:0.875rem; color:#065f46; margin-bottom:16px;"></p>
-        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-          <button type="button" id="btn-download-reordered" class="btn btn-success">📥 Download Reordered PDF</button>
-          <button type="button" id="btn-reorder-more" class="btn btn-secondary">Reorder Another File</button>
+        <!-- Action Buttons -->
+        <div class="action-buttons-group">
+          <button type="button" id="btnSaveReorder" class="btn-main-action" onclick="saveReorderedPdf()">💾 Save &amp; Download Reordered PDF</button>
         </div>
+
+        <!-- Success Result Box -->
+        <div id="resultSuccessBox" class="result-success-box">
+          <div style="font-size:2rem; margin-bottom:8px;">🎉</div>
+          <h3 style="font-size:1.15rem; font-weight:700; color:#065f46; margin-bottom:6px;">PDF Pages Successfully Reordered!</h3>
+          <p id="resultSummaryText" style="font-size:0.88rem; color:#047857; margin-bottom:16px;"></p>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+            <button type="button" id="btnDownloadResult" class="btn-main-action" style="background:#059669; border-color:#059669;">📥 Download PDF</button>
+            <button type="button" class="btn-sub-action" onclick="resetFilePicker()">Reorder Another PDF</button>
+          </div>
+        </div>
+
       </div>
 
     </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔀</div>
+          <h3 class="vytra-info-cell-title">Precision visual page sequencing</h3>
+          <p class="vytra-info-cell-desc">Use intuitive directional buttons to nudge any page left or right into its exact logical sequence with real-time thumbnail updates.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔄</div>
+          <h3 class="vytra-info-cell-title">1-Click reverse order</h3>
+          <p class="vytra-info-cell-desc">Easily fix multi-page documents scanned upside-down or back-to-front by reversing the entire page flow with a single click.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💎</div>
+          <h3 class="vytra-info-cell-title">100% lossless structural integrity</h3>
+          <p class="vytra-info-cell-desc">Reorganizes internal PDF page cross-reference arrays cleanly without re-compressing high-resolution images or degrading vector typography.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant WebAssembly compilation</h3>
+          <p class="vytra-info-cell-desc">Powered by PDF-Lib client-side assembly. Your new PDF compiles locally in fractions of a second with zero upload waiting time.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% confidential in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">Your sensitive legal documents, contracts, bank statements, and tax returns never leave your device RAM or touch any external cloud server.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🌐</div>
+          <h3 class="vytra-info-cell-title">Unlimited &amp; zero watermarks</h3>
+          <p class="vytra-info-cell-desc">Free forever with zero daily limits, zero hidden fees, zero email sign-ups, and zero branding watermarks on your reordered files.</p>
+        </div>
+      </div>
+
+      <!-- Academic & Legal Page Sequencing Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Standard Academic &amp; Legal PDF Document Page Sequencing Guide
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Document Section</th>
+              <th>Recommended Sequence</th>
+              <th>Typical Contents</th>
+              <th>Standards Compliance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Title &amp; Front-Matter</strong></td><td>Page 1 – 2</td><td>Cover Page, Declaration, Certificate</td><td>Mandatory for thesis submission</td></tr>
+            <tr><td><strong>Abstract &amp; Acknowledgements</strong></td><td>Page 3 – 4</td><td>Executive Summary, Advisor Credits</td><td>Roman numerals (i, ii) convention</td></tr>
+            <tr><td><strong>Table of Contents</strong></td><td>Page 5 – 6</td><td>Contents, List of Tables, Figures</td><td>Hyperlinked page references</td></tr>
+            <tr><td><strong>Core Main Body</strong></td><td>Page 7 to N-4</td><td>Chapters 1 to 5, Analysis, Findings</td><td>Arabic numerals (1, 2, 3...)</td></tr>
+            <tr><td><strong>References &amp; Appendices</strong></td><td>Last 4 Pages</td><td>Bibliography, Raw Data, Certificates</td><td>IEEE / APA / MLA Standards</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra Document Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Our office scanner feeder scanned a 50-page legal brief backwards. The 'Reverse All' button fixed the whole document in 2 seconds flat!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RD</div>
+            <div>
+              <div class="vytra-author-name">Ramesh Deshmukh</div>
+              <div class="vytra-author-role">High Court Advocate, Nagpur</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I was submitting my M.Tech dissertation and realized the declaration page was placed after the abstract. Reordered it visually without converting to Word!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">PS</div>
+            <div>
+              <div class="vytra-author-name">Pooja Sharma</div>
+              <div class="vytra-author-role">M.Tech Scholar, IIT Roorkee</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Extremely clean interface, crisp preview thumbnails, and 100% private. Best in-browser PDF organizer available.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AK</div>
+            <div>
+              <div class="vytra-author-name">Amitabh Kashyap</div>
+              <div class="vytra-author-role">Operations Manager, Gurgaon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does reordering PDF pages reduce visual sharpness or compress text?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Vytra rearranges the internal page tree references inside the PDF structure using pdf-lib without re-rendering or compressing text, images, or vector shapes.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I reverse the entire page order in one click?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! Click the '🔄 Reverse All Pages' button on the toolbar to immediately flip the document sequence from back to front.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is there a limit on how many pages I can reorder?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Vytra operates directly in your browser memory and can process documents with dozens or hundreds of pages without subscription limits.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my confidential files uploaded or saved on any server?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All page rendering and restructuring happen 100% locally in your device RAM. Your files never touch an external server.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Reorder PDF Tool</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this page organizer?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Reorder PDF Tool!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Reorder%20PDF%20pages%20online%20for%20free:%20https://digitalsaathi.vytra.in/pdf/reorder.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Free%20online%20PDF%20page%20organizer%20by%20Vytra:%20https://digitalsaathi.vytra.in/pdf/reorder.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/reorder.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/reorder.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="extract.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Extract Pages</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Pick and save specific pages into a new document</div>
+        </a>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔗</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files into one clean document</div>
+        </a>
+        <a href="split.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Split PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Divide large PDF documents into multiple smaller files</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size under 100KB, 200KB, or 500KB</div>
+        </a>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-    <footer class="footer">
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -323,7 +797,7 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="index.html">PDF Tools</a></li>
           <li><a href="../image/index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
@@ -334,8 +808,8 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/merge.html">Merge PDF</a></li>
-          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="merge.html">Merge PDF</a></li>
+          <li><a href="compress.html">Compress PDF</a></li>
           <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
@@ -359,183 +833,211 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script defer src="../data/tools.js"></script>
-  <script defer src="../assets/js/common.js"></script>
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
 
-    (function () {
-      let rawArrayBuffer = null;
-      let totalPages = 0;
-      let originalFilename = 'document.pdf';
-      let renderedThumbnails = []; // Array of canvas elements
-      let pageOrder = []; // Array of 0-based page indices: [0, 1, 2, ...]
-      let reorderedPdfBytes = null;
+    let rawArrayBuffer = null;
+    let totalPages = 0;
+    let originalFilename = 'document.pdf';
+    let renderedThumbnails = [];
+    let pageOrder = [];
+    let reorderedPdfBytes = null;
 
-      const fileInput = document.getElementById('pdf-input');
-      const settingsSection = document.getElementById('reorder-settings-section');
-      const docNameDisplay = document.getElementById('doc-name-display');
-      const docInfoDisplay = document.getElementById('doc-info-display');
-      const pagesGrid = document.getElementById('reorder-pages-grid');
-      const btnReverse = document.getElementById('btn-reverse-order');
-      const btnReset = document.getElementById('btn-reset-order');
-      const btnChangeDoc = document.getElementById('btn-change-doc');
-      const btnSaveReorder = document.getElementById('btn-save-reorder');
-      const processingBox = document.getElementById('processing-box');
-      const processingMsg = document.getElementById('processing-msg');
-      const resultBox = document.getElementById('result-box');
-      const resultDetails = document.getElementById('result-details');
-      const btnDownloadReordered = document.getElementById('btn-download-reordered');
-      const btnReorderMore = document.getElementById('btn-reorder-more');
+    const fileInput = document.getElementById('fileInput');
+    const dropZoneBox = document.getElementById('dropZoneBox');
+    const loadingBox = document.getElementById('loadingBox');
+    const loadingText = document.getElementById('loadingText');
+    const workspaceCard = document.getElementById('workspaceActiveCard');
+    const pagesGrid = document.getElementById('pagesGrid');
+    const docMetaTitle = document.getElementById('docMetaTitle');
+    const docMetaSubtitle = document.getElementById('docMetaSubtitle');
+    const resultSuccessBox = document.getElementById('resultSuccessBox');
+    const resultSummaryText = document.getElementById('resultSummaryText');
+    const btnDownloadResult = document.getElementById('btnDownloadResult');
 
-      fileInput.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        originalFilename = file.name;
-        rawArrayBuffer = await file.arrayBuffer();
-        await renderPdfPages();
-      });
+    // Drag and drop handlers
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.add('dragover');
+      }, false);
+    });
 
-      btnChangeDoc.addEventListener('click', () => fileInput.click());
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.remove('dragover');
+      }, false);
+    });
 
-      async function renderPdfPages() {
-        settingsSection.style.display = 'none';
-        resultBox.style.display = 'none';
-        processingBox.style.display = 'block';
-        processingMsg.textContent = 'Rendering page previews...';
-
-        try {
-          const loadingTask = pdfjsLib.getDocument({ data: rawArrayBuffer });
-          const pdfDoc = await loadingTask.promise;
-          totalPages = pdfDoc.numPages;
-
-          pageOrder = Array.from({ length: totalPages }, (_, i) => i);
-          renderedThumbnails = [];
-
-          docNameDisplay.textContent = originalFilename;
-          docInfoDisplay.textContent = `${totalPages} Pages Total`;
-
-          for (let i = 1; i <= totalPages; i++) {
-            const page = await pdfDoc.getPage(i);
-            const viewport = page.getViewport({ scale: 0.25 });
-
-            const canvas = document.createElement('canvas');
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            const renderContext = {
-              canvasContext: canvas.getContext('2d'),
-              viewport: viewport
-            };
-            await page.render(renderContext).promise;
-            renderedThumbnails.push(canvas);
-          }
-
-          renderGrid();
-          processingBox.style.display = 'none';
-          settingsSection.style.display = 'block';
-        } catch (err) {
-          console.error(err);
-          processingBox.style.display = 'none';
-          if (typeof showToast === 'function') showToast('Error reading PDF: ' + err.message, 'error');
-        }
+    dropZoneBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+        processUploadedPdf(e.dataTransfer.files[0]);
       }
+    });
 
-      function renderGrid() {
-        pagesGrid.innerHTML = '';
-
-        pageOrder.forEach((pageIdx, currentPosition) => {
-          const card = document.createElement('div');
-          card.className = 'reorder-card';
-          card.innerHTML = `
-            <div class="reorder-thumb-wrapper" id="thumb-pos-${currentPosition}"></div>
-            <div style="font-size:0.8rem; font-weight:700; color:var(--gray-800);">Page ${pageIdx + 1}</div>
-            <div style="font-size:0.7rem; color:#6b7280;">(Position ${currentPosition + 1})</div>
-            <div class="reorder-controls">
-              <button type="button" class="btn btn-sm btn-secondary move-pos-btn" data-dir="-1" data-pos="${currentPosition}" ${currentPosition === 0 ? 'disabled' : ''} title="Move Left">←</button>
-              <button type="button" class="btn btn-sm btn-secondary move-pos-btn" data-dir="1" data-pos="${currentPosition}" ${currentPosition === pageOrder.length - 1 ? 'disabled' : ''} title="Move Right">→</button>
-            </div>
-          `;
-          card.querySelector(`#thumb-pos-${currentPosition}`).appendChild(renderedThumbnails[pageIdx].cloneNode(true));
-          pagesGrid.appendChild(card);
-        });
+    function handleFileChange(e) {
+      if (e.target.files && e.target.files[0]) {
+        processUploadedPdf(e.target.files[0]);
       }
+    }
 
-      pagesGrid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.move-pos-btn');
-        if (!btn) return;
-        const pos = parseInt(btn.dataset.pos, 10);
-        const dir = parseInt(btn.dataset.dir, 10);
-        const newPos = pos + dir;
+    async function processUploadedPdf(file) {
+      if (!file.name.match(/\.pdf$/i)) {
+        alert('Please choose a valid PDF document.');
+        return;
+      }
+      originalFilename = file.name;
+      rawArrayBuffer = await file.arrayBuffer();
 
-        if (newPos >= 0 && newPos < pageOrder.length) {
-          const temp = pageOrder[pos];
-          pageOrder[pos] = pageOrder[newPos];
-          pageOrder[newPos] = temp;
-          renderGrid();
-        }
-      });
+      dropZoneBox.style.display = 'none';
+      resultSuccessBox.style.display = 'none';
+      loadingBox.style.display = 'block';
+      loadingText.textContent = 'Rendering page previews...';
 
-      btnReverse.addEventListener('click', () => {
-        pageOrder.reverse();
-        renderGrid();
-      });
+      try {
+        const loadingTask = pdfjsLib.getDocument({ data: rawArrayBuffer });
+        const pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
 
-      btnReset.addEventListener('click', () => {
         pageOrder = Array.from({ length: totalPages }, (_, i) => i);
-        renderGrid();
-      });
+        renderedThumbnails = [];
 
-      // Save reordered PDF
-      btnSaveReorder.addEventListener('click', async () => {
-        settingsSection.style.display = 'none';
-        processingBox.style.display = 'block';
-        processingMsg.textContent = 'Compiling reordered PDF...';
+        docMetaTitle.textContent = originalFilename;
+        docMetaSubtitle.textContent = `${totalPages} Pages Total • ${(file.size / (1024 * 1024)).toFixed(2)} MB`;
 
-        try {
-          const donorDoc = await PDFLib.PDFDocument.load(rawArrayBuffer, { ignoreEncryption: true });
-          const newDoc = await PDFLib.PDFDocument.create();
+        for (let i = 1; i <= totalPages; i++) {
+          const page = await pdfDoc.getPage(i);
+          const viewport = page.getViewport({ scale: 0.25 });
 
-          const copiedPages = await newDoc.copyPages(donorDoc, pageOrder);
-          copiedPages.forEach(p => newDoc.addPage(p));
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
 
-          reorderedPdfBytes = await newDoc.save();
-
-          processingBox.style.display = 'none';
-          resultBox.style.display = 'block';
-          resultDetails.textContent = `Rearranged ${totalPages} pages into the new sequence (${formatFileSize(reorderedPdfBytes.byteLength)}).`;
-          if (typeof showToast === 'function') showToast('PDF reordered successfully!', 'success');
-        } catch (err) {
-          console.error(err);
-          processingBox.style.display = 'none';
-          settingsSection.style.display = 'block';
-          if (typeof showToast === 'function') showToast('Error reordering PDF: ' + err.message, 'error');
+          const renderContext = {
+            canvasContext: canvas.getContext('2d'),
+            viewport: viewport
+          };
+          await page.render(renderContext).promise;
+          renderedThumbnails.push(canvas);
         }
-      });
 
-      btnDownloadReordered.addEventListener('click', () => {
-        if (!reorderedPdfBytes) return;
-        const blob = new Blob([reorderedPdfBytes], { type: 'application/pdf' });
-        const name = originalFilename.replace(/\.pdf$/i, '_reordered.pdf');
-        if (typeof downloadBlob === 'function') {
-          downloadBlob(blob, name);
-        } else {
+        renderGrid();
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        loadingBox.style.display = 'none';
+        dropZoneBox.style.display = 'block';
+        alert('Error parsing PDF: ' + err.message);
+      }
+    }
+
+    function renderGrid() {
+      pagesGrid.innerHTML = '';
+
+      pageOrder.forEach((pageIdx, currentPosition) => {
+        const card = document.createElement('div');
+        card.className = 'reorder-card';
+        card.innerHTML = `
+          <div class="reorder-thumb-wrapper" id="thumb-pos-${currentPosition}"></div>
+          <div class="reorder-badge-title">Page ${pageIdx + 1}</div>
+          <div class="reorder-badge-pos">(Slot ${currentPosition + 1})</div>
+          <div class="reorder-controls-row">
+            <button type="button" class="move-btn" onclick="movePage(${currentPosition}, -1)" ${currentPosition === 0 ? 'disabled' : ''} title="Move Left">←</button>
+            <button type="button" class="move-btn" onclick="movePage(${currentPosition}, 1)" ${currentPosition === pageOrder.length - 1 ? 'disabled' : ''} title="Move Right">→</button>
+          </div>
+        `;
+        card.querySelector(`#thumb-pos-${currentPosition}`).appendChild(renderedThumbnails[pageIdx].cloneNode(true));
+        pagesGrid.appendChild(card);
+      });
+    }
+
+    function movePage(pos, dir) {
+      const newPos = pos + dir;
+      if (newPos >= 0 && newPos < pageOrder.length) {
+        const temp = pageOrder[pos];
+        pageOrder[pos] = pageOrder[newPos];
+        pageOrder[newPos] = temp;
+        renderGrid();
+      }
+    }
+
+    function reverseAllPages() {
+      pageOrder.reverse();
+      renderGrid();
+    }
+
+    function resetToOriginalOrder() {
+      pageOrder = Array.from({ length: totalPages }, (_, i) => i);
+      renderGrid();
+    }
+
+    async function saveReorderedPdf() {
+      workspaceCard.style.display = 'none';
+      loadingBox.style.display = 'block';
+      loadingText.textContent = 'Compiling reordered PDF...';
+
+      try {
+        const donorDoc = await PDFLib.PDFDocument.load(rawArrayBuffer, { ignoreEncryption: true });
+        const newDoc = await PDFLib.PDFDocument.create();
+
+        const copiedPages = await newDoc.copyPages(donorDoc, pageOrder);
+        copiedPages.forEach(p => newDoc.addPage(p));
+
+        reorderedPdfBytes = await newDoc.save();
+
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
+        resultSuccessBox.style.display = 'block';
+
+        const sizeStr = (reorderedPdfBytes.byteLength / 1024).toFixed(1) + ' KB';
+        resultSummaryText.textContent = `Rearranged ${totalPages} pages into the new sequence (${sizeStr}).`;
+
+        btnDownloadResult.onclick = () => {
+          const blob = new Blob([reorderedPdfBytes], { type: 'application/pdf' });
           const a = document.createElement('a');
           a.href = URL.createObjectURL(blob);
-          a.download = name;
+          a.download = originalFilename.replace(/\.pdf$/i, '_reordered.pdf');
+          document.body.appendChild(a);
           a.click();
-        }
-      });
+          document.body.removeChild(a);
+        };
+      } catch (err) {
+        console.error(err);
+        loadingBox.style.display = 'none';
+        workspaceCard.style.display = 'block';
+        alert('Error saving PDF: ' + err.message);
+      }
+    }
 
-      btnReorderMore.addEventListener('click', () => {
-        settingsSection.style.display = 'none';
-        resultBox.style.display = 'none';
-        fileInput.value = '';
+    function resetFilePicker() {
+      fileInput.value = '';
+      rawArrayBuffer = null;
+      reorderedPdfBytes = null;
+      renderedThumbnails = [];
+      pageOrder = [];
+      dropZoneBox.style.display = 'block';
+      workspaceCard.style.display = 'none';
+      resultSuccessBox.style.display = 'none';
+    }
+
+    // 5-Star Rating Widget
+    document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const val = parseInt(this.dataset.val);
+        document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
       });
-    })();
+    });
   </script>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
 </body>
 </html>

@@ -22,125 +22,308 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Page Counter & Metadata Inspector Free | Vytra</title>
-  <meta name="description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>PDF Page Counter &amp; Print Cost Estimator Online Free | Vytra</title>
+  <meta name="description" content="Instantly count total pages across single or batch PDF files online for free. Calculate cyber café printing costs, inspect metadata, and export CSV reports with 100% in-browser privacy.">
+  <meta name="keywords" content="pdf page counter, count pdf pages online, batch pdf page counter, calculate pdf printing cost, cyber cafe print cost calculator, pdf page counter free, pdf page count tool, pdf24 page counter alternative">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- PDF-Lib Engine -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
   <style>
+    .counter-wrapper {
+      max-width: 980px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .workspace-active-card {
+      display: none;
+      margin-top: 20px;
+    }
     .counter-stat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
     .counter-stat-box {
-      background: var(--primary-light);
+      background: #eff6ff;
       border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 18px 16px;
       text-align: center;
     }
     .counter-stat-value {
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-weight: 800;
-      color: var(--primary);
+      color: #2563eb;
+      line-height: 1.2;
     }
     .counter-stat-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      margin-top: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 6px;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cost-calc-panel {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    .cost-calc-item {
+      flex: 1;
+      min-width: 150px;
+    }
+    .cost-calc-item label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+    .cost-calc-item input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-weight: 600;
+      outline: none;
+    }
+    .cost-calc-item input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
     .meta-table-container {
       overflow-x: auto;
-      margin-top: 20px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
     .meta-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
-      background: #ffffff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      font-size: 0.86rem;
+      text-align: left;
     }
     .meta-table th, .meta-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e2e8f0;
     }
     .meta-table th {
       background: #f8fafc;
       font-weight: 700;
-      color: var(--gray-700);
+      color: #334155;
+    }
+    .meta-table tr:hover {
+      background: #f8fafc;
+    }
+    .action-buttons-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-main-action {
+      padding: 10px 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-main-action:hover {
+      background: #1d4ed8;
+    }
+    .btn-sub-action {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
     }
   </style>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/page-counter.html">
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/page-counter.html">
-  <meta property="og:title" content="PDF Page Counter & Metadata Inspector Free | Vytra">
-  <meta property="og:description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
+  <meta property="og:title" content="PDF Page Counter &amp; Print Cost Estimator Online Free | Vytra">
+  <meta property="og:description" content="Instantly count total pages across single or batch PDF files online for free. Calculate cyber café printing costs, inspect metadata, and export CSV reports with 100% in-browser privacy.">
   <meta property="og:site_name" content="Vytra">
   
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF Page Counter & Metadata Inspector Free | Vytra">
-  <meta name="twitter:description" content="Instantly count pages across single or batch PDF files online. Calculate cyber café printing costs, inspect metadata, author, and creation dates for free.">
+  <meta name="twitter:title" content="PDF Page Counter &amp; Print Cost Estimator Online Free | Vytra">
+  <meta name="twitter:description" content="Instantly count total pages across single or batch PDF files online for free. Calculate cyber café printing costs, inspect metadata, and export CSV reports with 100% in-browser privacy.">
+
   <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "PDF Page Counter & Metadata Inspector Free | Vytra",
-      "url": "https://digitalsaathi.vytra.in/pdf/page-counter.html",
-      "description": "Instantly count pages across single or batch PDF files online. Calculate cyber caf\u00e9 printing costs, inspect metadata, author, and creation dates for free.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Pdf Tools",
-          "item": "https://digitalsaathi.vytra.in/pdf/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "PDF Page Counter & Metadata Inspector Free",
-          "item": "https://digitalsaathi.vytra.in/pdf/page-counter.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "PDF Page Counter & Print Cost Estimator | Vytra",
+        "url": "https://digitalsaathi.vytra.in/pdf/page-counter.html",
+        "description": "Instantly count total pages across single or batch PDF files online for free. Calculate cyber café printing costs, inspect metadata, and export CSV reports with 100% in-browser privacy.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to count PDF pages and estimate printing costs online",
+        "description": "Step-by-step instructions to calculate total pages and cost across multiple PDF documents.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload PDF Files",
+            "text": "Select or drag & drop single or multiple PDF documents into the page counter."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "View Aggregate Counts",
+            "text": "Inspect the total page count, combined file size, and individual breakdown per file."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Set Rate & Export CSV",
+            "text": "Customize the rate per page (₹) and copies multiplier to generate an instant quote or export a CSV report."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I count pages across multiple PDF files simultaneously in batch?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can select or drop dozens of PDF documents at once. Vytra will read the page count of each document in parallel and display an aggregate total alongside a detailed per-file breakdown table."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the printing cost calculator work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator multiplies your total page count by your custom rate per page (default ₹2 for standard B&W print) and your copies multiplier. You can adjust the rate per page to match your local cyber café or commercial printing shop tariff."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the counter inspect PDF title, author, and producer metadata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vytra reads the internal PDF Info dictionary and displays the document Title, Creator, and Producer software directly in the summary table."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my PDF documents uploaded to an external server for counting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All page counting and metadata reading execute 100% locally in your browser memory using PDF-Lib. Your private documents are never sent across the internet."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Tools",
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "PDF Page Counter",
+            "item": "https://digitalsaathi.vytra.in/pdf/page-counter.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Navigation -->
-          <nav class="navbar" id="main-nav">
+  <!-- Universal Header Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -151,26 +334,26 @@
 
       <ul class="nav-links" id="navLinks">
         <li class="nav-item">
-          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+          <a href="merge.html" class="nav-link">Merge PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+          <a href="compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
-            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
-            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
-            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+            <a href="merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -240,107 +423,362 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="tool-hero">
-    <div class="container">
-      <div class="breadcrumb" style="justify-content: center; margin-bottom: 8px;">
-        <a href="../index.html" style="color:rgba(255,255,255,0.8);">Home</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <a href="index.html" style="color:rgba(255,255,255,0.8);">PDF Tools</a>
-        <span class="separator" style="color:rgba(255,255,255,0.5);">/</span>
-        <span style="color:#ffffff;">Page Counter</span>
-      </div>
-      <h1>🔢 PDF Page Counter & Inspector</h1>
-      <p>Instantly count total pages across single or batch PDF files. Calculate printing costs and inspect metadata.</p>
-    </div>
-  </header>
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
 
-  <!-- Main Content -->
-  <main class="tool-content">
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
-      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span style="color:var(--text-main);font-weight:600;">PDF Page Counter</span>
+      <span style="color:var(--text-main); font-weight:600;">PDF Page Counter</span>
     </nav>
 
-    <div class="tool-box">
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PDF Page Counter &amp; Print Cost Estimator</h1>
+      <p class="vytra-tool-subtitle">
+        Instantly count total pages across single or batch PDF files. Calculate cyber café printing costs and export CSV reports.
+      </p>
 
-      <!-- Upload Area -->
-      <div class="upload-zone" id="drop-zone">
-        <span class="upload-icon">🔢</span>
-        <div class="upload-text">Click or Drag & Drop PDF files</div>
-        <div class="upload-hint">Upload one or multiple PDF files for instant page counting and cost estimate (100% private)</div>
-        <input type="file" id="pdf-input" accept="application/pdf" multiple>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ 100% Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Batch Multi-File Support</span>
+        <span class="vytra-trust-chip">✓ Cyber Café Print Cost Calculator</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
+      </div>
+    </div>
+
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="counter-wrapper">
+
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">🔢</div>
+        <div class="upload-zone-title">Choose PDF files or drag &amp; drop here</div>
+        <div class="upload-zone-hint">Upload one or multiple PDF files for instant page counting and cost estimate (100% private).</div>
+        <input type="file" id="fileInput" accept="application/pdf" multiple style="display:none;" onchange="handleFileChange(event)">
       </div>
 
-      <!-- Results Summary -->
-      <div id="counter-results-section" style="display:none; margin-top:24px;">
+      <!-- Active Workspace -->
+      <div id="workspaceActiveCard" class="workspace-active-card">
         
+        <!-- Summary Stats Grid -->
         <div class="counter-stat-grid">
           <div class="counter-stat-box">
-            <div class="counter-stat-value" id="stat-total-pages">0</div>
+            <div class="counter-stat-value" id="statTotalPages">0</div>
             <div class="counter-stat-label">Total Pages</div>
           </div>
           <div class="counter-stat-box">
-            <div class="counter-stat-value" id="stat-total-files">0</div>
+            <div class="counter-stat-value" id="statTotalFiles">0</div>
             <div class="counter-stat-label">Total PDF Files</div>
           </div>
           <div class="counter-stat-box">
-            <div class="counter-stat-value" id="stat-total-size">0 KB</div>
-            <div class="counter-stat-label">Combined Size</div>
+            <div class="counter-stat-value" id="statTotalSize">0 KB</div>
+            <div class="counter-stat-label">Combined File Size</div>
           </div>
           <div class="counter-stat-box" style="background:#ecfdf5; border-color:#a7f3d0;">
-            <div class="counter-stat-value" id="stat-print-cost" style="color:#059669;">₹0</div>
-            <div class="counter-stat-label">Print Cost Estimate (@ ₹2/page)</div>
+            <div class="counter-stat-value" id="statPrintCost" style="color:#059669;">₹0</div>
+            <div class="counter-stat-label" id="statCostLabel">Est. Print Cost (@ ₹2/page)</div>
           </div>
         </div>
 
-        <!-- Cost Calculator Settings for Cyber Cafes -->
-        <div class="form-row" style="background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; align-items:center;">
-          <div class="form-group" style="margin-bottom:0; flex:1;">
-            <label class="form-label" style="margin-bottom:2px;">Rate per page (₹)</label>
-            <input type="number" id="input-rate-per-page" class="form-input" value="2" min="0" step="0.5">
+        <!-- Cost Calculator Settings Panel -->
+        <div class="cost-calc-panel">
+          <div class="cost-calc-item">
+            <label for="inputRate">Rate per page (₹):</label>
+            <input type="number" id="inputRate" value="2" min="0" step="0.5" oninput="calculateCost()">
           </div>
-          <div class="form-group" style="margin-bottom:0; flex:1;">
-            <label class="form-label" style="margin-bottom:2px;">Copies multiplier</label>
-            <input type="number" id="input-copies-count" class="form-input" value="1" min="1">
+          <div class="cost-calc-item">
+            <label for="inputCopies">Copies multiplier:</label>
+            <input type="number" id="inputCopies" value="1" min="1" oninput="calculateCost()">
           </div>
-          <div style="flex:1; display:flex; gap:8px; align-items:flex-end;">
-            <button type="button" id="btn-export-summary-csv" class="btn btn-secondary btn-sm" style="height:38px; width:100%;">💾 Export CSV</button>
+          <div class="cost-calc-item" style="display:flex; align-items:flex-end;">
+            <button type="button" class="btn-sub-action" style="width:100%; height:40px;" onclick="exportSummaryCsv()">💾 Export CSV Report</button>
           </div>
         </div>
 
-        <!-- Detailed Table -->
+        <!-- Detailed Per-File Table -->
         <div class="meta-table-container">
-          <table class="meta-table" id="meta-table">
+          <table class="meta-table">
             <thead>
               <tr>
-                <th>#</th>
+                <th style="width:40px;">#</th>
                 <th>File Name</th>
                 <th>Pages</th>
-                <th>File Size</th>
+                <th>Size</th>
                 <th>Title / Producer</th>
+                <th style="width:60px;">Action</th>
               </tr>
             </thead>
-            <tbody id="meta-table-body"></tbody>
+            <tbody id="metaTableBody"></tbody>
           </table>
         </div>
 
-        <div style="display:flex; justify-content:center; gap:12px; margin-top:24px;">
-          <button type="button" id="btn-add-more-pdfs" class="btn btn-primary">➕ Add More Files</button>
-          <button type="button" id="btn-clear-counter" class="btn btn-secondary">Clear All</button>
+        <!-- Action Buttons -->
+        <div class="action-buttons-group">
+          <button type="button" class="btn-main-action" onclick="document.getElementById('fileInput').click()">➕ Add More PDF Files</button>
+          <button type="button" class="btn-sub-action" onclick="clearAllFiles()">🔄 Clear All</button>
         </div>
 
       </div>
 
     </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant multi-file batch counting</h3>
+          <p class="vytra-info-cell-desc">Drop dozens of PDF files simultaneously to compute aggregate page totals and combined storage volume in milliseconds.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖨️</div>
+          <h3 class="vytra-info-cell-title">Cyber café print cost estimator</h3>
+          <p class="vytra-info-cell-desc">Customize your cost per page and copy quantity for rapid, accurate billing quotes for students, job applicants, and clients.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔍</div>
+          <h3 class="vytra-info-cell-title">Deep metadata inspector</h3>
+          <p class="vytra-info-cell-desc">Inspect internal PDF document properties, author names, creation software, and producer signatures with zero modification.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📊</div>
+          <h3 class="vytra-info-cell-title">1-Click CSV invoice export</h3>
+          <p class="vytra-info-cell-desc">Download a cleanly structured spreadsheet listing every file name, byte size, and page count for bookkeeping and audit trails.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser confidentiality</h3>
+          <p class="vytra-info-cell-desc">Document binary streams are parsed directly in local JavaScript memory. Your legal contracts and financial data never leave your PC.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🌐</div>
+          <h3 class="vytra-info-cell-title">Unlimited &amp; zero installation</h3>
+          <p class="vytra-info-cell-desc">No bulky desktop software required. Works seamlessly on Windows, macOS, Linux, Android, and iOS browsers.</p>
+        </div>
+      </div>
+
+      <!-- Printing Rates Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Standard Commercial Document Printing &amp; Cyber Café Pricing Benchmarks
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Print Service Type</th>
+              <th>Paper Grade Standard</th>
+              <th>Typical Market Rate (India)</th>
+              <th>Common Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Single-Sided B&amp;W</strong></td><td>A4 75 GSM Bond</td><td>₹2 – ₹3 per page</td><td>Admit cards, job forms, Aadhaar cards</td></tr>
+            <tr><td><strong>Double-Sided B&amp;W</strong></td><td>A4 75 GSM Bond</td><td>₹3 – ₹4 per sheet</td><td>Dissertations, project reports, notes</td></tr>
+            <tr><td><strong>Single-Sided Color</strong></td><td>A4 80 GSM Ultra-white</td><td>₹10 – ₹15 per page</td><td>Certificates, resumes, presentation slides</td></tr>
+            <tr><td><strong>Photo Glossy Print</strong></td><td>A4 / 4×6 Glossy Photo</td><td>₹25 – ₹50 per page</td><td>Passport photos, art portfolios, ID proofs</td></tr>
+            <tr><td><strong>Legal Document Print</strong></td><td>Legal Size 85 GSM</td><td>₹3 – ₹5 per page</td><td>Rent agreements, court affidavits, deeds</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra Document Engineering Team</span>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">We run a cyber café near Patna University. Students bring 15 different PDFs to print. This tool calculates the total pages and cost in 3 seconds!</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">MJ</div>
+            <div>
+              <div class="vytra-author-name">Manoj Jha</div>
+              <div class="vytra-author-role">Cyber Café Owner, Patna</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The CSV export is phenomenal. I can attach an exact page count breakdown to client invoices for legal document preparation.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">ST</div>
+            <div>
+              <div class="vytra-author-name">Swati Tiwari</div>
+              <div class="vytra-author-role">Corporate Paralegal, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Instant, zero ads cluttering the workspace, and it runs right in the browser without uploading client confidential proposals.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">AK</div>
+            <div>
+              <div class="vytra-author-name">Alok Kumar</div>
+              <div class="vytra-author-role">Printing Press Manager, Lucknow</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Can I count pages across multiple PDF files simultaneously in batch?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes! You can select or drop dozens of PDF documents at once. Vytra will read the page count of each document in parallel and display an aggregate total alongside a detailed per-file breakdown table.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How does the printing cost calculator work?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            The calculator multiplies your total page count by your custom rate per page (default ₹2 for standard B&W print) and your copies multiplier. You can adjust the rate per page to match your local cyber café or commercial printing shop tariff.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does the counter inspect PDF title, author, and producer metadata?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes. Vytra reads the internal PDF Info dictionary and displays the document Title, Creator, and Producer software directly in the summary table.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Are my PDF documents uploaded to an external server for counting?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Never. All page counting and metadata reading execute 100% locally in your browser memory using PDF-Lib. Your private documents are never sent across the internet.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate PDF Page Counter</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this page counting tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra PDF Page Counter!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Count%20PDF%20pages%20and%20calculate%20print%20cost%20free:%20https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Free%20PDF%20page%20counter%20by%20Vytra:%20https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/page-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More PDF Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="page-numbers.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔢</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Add Page Numbers</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Insert customized headers and footers to PDF pages</div>
+        </a>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔗</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files into one clean document</div>
+        </a>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size under 100KB, 200KB, or 500KB</div>
+        </a>
+        <a href="extract.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Extract Pages</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Pick and save specific pages into a new document</div>
+        </a>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-    <footer class="footer">
+  <!-- Universal Footer -->
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -354,7 +792,7 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="index.html">PDF Tools</a></li>
           <li><a href="../image/index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
@@ -365,8 +803,8 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/merge.html">Merge PDF</a></li>
-          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="merge.html">Merge PDF</a></li>
+          <li><a href="compress.html">Compress PDF</a></li>
           <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
@@ -390,135 +828,183 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script>
+    let fileRecords = [];
+
+    const fileInput = document.getElementById('fileInput');
+    const dropZoneBox = document.getElementById('dropZoneBox');
+    const workspaceCard = document.getElementById('workspaceActiveCard');
+    const statTotalPages = document.getElementById('statTotalPages');
+    const statTotalFiles = document.getElementById('statTotalFiles');
+    const statTotalSize = document.getElementById('statTotalSize');
+    const statPrintCost = document.getElementById('statPrintCost');
+    const statCostLabel = document.getElementById('statCostLabel');
+    const inputRate = document.getElementById('inputRate');
+    const inputCopies = document.getElementById('inputCopies');
+    const metaTableBody = document.getElementById('metaTableBody');
+
+    // Drag and drop handlers
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZoneBox.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZoneBox.classList.remove('dragover');
+      }, false);
+    });
+
+    dropZoneBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+        processUploadedFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+
+    function handleFileChange(e) {
+      if (e.target.files && e.target.files.length > 0) {
+        processUploadedFiles(Array.from(e.target.files));
+        fileInput.value = '';
+      }
+    }
+
+    async function processUploadedFiles(files) {
+      for (const file of files) {
+        if (!file.name.match(/\.pdf$/i)) continue;
+        try {
+          const buffer = await file.arrayBuffer();
+          const pdfDoc = await PDFLib.PDFDocument.load(buffer, { ignoreEncryption: true });
+          const pageCount = pdfDoc.getPageCount();
+          const title = pdfDoc.getTitle() || '—';
+          const producer = pdfDoc.getProducer() || '—';
+
+          fileRecords.push({
+            id: Date.now() + Math.random(),
+            name: file.name,
+            size: file.size,
+            pageCount: pageCount,
+            title: title,
+            producer: producer
+          });
+        } catch (err) {
+          console.error(err);
+          alert(`Could not parse ${file.name}: ${err.message}`);
+        }
+      }
+
+      renderDashboard();
+    }
+
+    function renderDashboard() {
+      if (!fileRecords.length) {
+        workspaceCard.style.display = 'none';
+        dropZoneBox.style.display = 'block';
+        return;
+      }
+
+      dropZoneBox.style.display = 'none';
+      workspaceCard.style.display = 'block';
+
+      const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
+      const totalSize = fileRecords.reduce((acc, cur) => acc + cur.size, 0);
+
+      statTotalPages.textContent = totalPages.toLocaleString();
+      statTotalFiles.textContent = fileRecords.length.toLocaleString();
+      statTotalSize.textContent = formatBytes(totalSize);
+
+      calculateCost();
+
+      metaTableBody.innerHTML = fileRecords.map((item, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td style="font-weight:700; color:#1e293b;">${escapeHtml(item.name)}</td>
+          <td><span style="display:inline-block; padding:2px 8px; border-radius:4px; font-weight:700; background:#eff6ff; color:#2563eb;">${item.pageCount} pages</span></td>
+          <td>${formatBytes(item.size)}</td>
+          <td style="color:#64748b; font-size:0.8rem;">${escapeHtml(item.title !== '—' ? item.title : item.producer)}</td>
+          <td>
+            <button type="button" style="background:none; border:none; color:#dc2626; font-weight:700; cursor:pointer;" onclick="removeRecord('${item.id}')" title="Remove File">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function removeRecord(id) {
+      fileRecords = fileRecords.filter(r => String(r.id) !== String(id));
+      renderDashboard();
+    }
+
+    function clearAllFiles() {
+      fileRecords = [];
+      renderDashboard();
+    }
+
+    function calculateCost() {
+      const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
+      const rate = parseFloat(inputRate.value) || 0;
+      const copies = parseInt(inputCopies.value, 10) || 1;
+      const totalCost = totalPages * rate * copies;
+      statPrintCost.textContent = `₹${totalCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+      statCostLabel.textContent = `Est. Print Cost (@ ₹${rate}/page × ${copies} cop.)`;
+    }
+
+    function exportSummaryCsv() {
+      if (!fileRecords.length) return;
+      let csvContent = 'File Number,File Name,Page Count,Size Bytes,Formatted Size,Title,Producer\n';
+
+      fileRecords.forEach((r, idx) => {
+        csvContent += `"${idx + 1}","${r.name.replace(/"/g, '""')}","${r.pageCount}","${r.size}","${formatBytes(r.size)}","${(r.title || '').replace(/"/g, '""')}","${(r.producer || '').replace(/"/g, '""')}"\n`;
+      });
+
+      const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
+      const totalSize = fileRecords.reduce((acc, cur) => acc + cur.size, 0);
+      const rate = parseFloat(inputRate.value) || 0;
+      const copies = parseInt(inputCopies.value, 10) || 1;
+      const totalCost = totalPages * rate * copies;
+
+      csvContent += `\n"SUMMARY","Total Files: ${fileRecords.length}","Total Pages: ${totalPages}","${totalSize}","${formatBytes(totalSize)}","Rate: Rs.${rate} x ${copies} copies","Total Cost: Rs.${totalCost}"\n`;
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'pdf_pages_summary.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    // 5-Star Rating Widget
+    document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const val = parseInt(this.dataset.val);
+        document.querySelectorAll('#ratingStars .vytra-star-btn').forEach((s, idx) => {
+          s.style.color = idx < val ? '#f59e0b' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
+      });
+    });
+  </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
-  <script>
-    (function () {
-      let fileRecords = []; // Array of { name, size, pageCount, title, producer }
-
-      const fileInput = document.getElementById('pdf-input');
-      const resultsSection = document.getElementById('counter-results-section');
-      const statTotalPages = document.getElementById('stat-total-pages');
-      const statTotalFiles = document.getElementById('stat-total-files');
-      const statTotalSize = document.getElementById('stat-total-size');
-      const statPrintCost = document.getElementById('stat-print-cost');
-      const inputRate = document.getElementById('input-rate-per-page');
-      const inputCopies = document.getElementById('input-copies-count');
-      const tableBody = document.getElementById('meta-table-body');
-      const btnAddMore = document.getElementById('btn-add-more-pdfs');
-      const btnClear = document.getElementById('btn-clear-counter');
-      const btnExportCsv = document.getElementById('btn-export-summary-csv');
-
-      fileInput.addEventListener('change', async (e) => {
-        const files = Array.from(e.target.files);
-        if (!files.length) return;
-        await inspectFiles(files);
-        fileInput.value = '';
-      });
-
-      btnAddMore.addEventListener('click', () => fileInput.click());
-
-      btnClear.addEventListener('click', () => {
-        fileRecords = [];
-        renderDashboard();
-      });
-
-      inputRate.addEventListener('input', calculateCost);
-      inputCopies.addEventListener('input', calculateCost);
-
-      async function inspectFiles(files) {
-        for (const file of files) {
-          if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) continue;
-          try {
-            const buffer = await file.arrayBuffer();
-            const pdfDoc = await PDFLib.PDFDocument.load(buffer, { ignoreEncryption: true });
-            const pageCount = pdfDoc.getPageCount();
-            const title = pdfDoc.getTitle() || '—';
-            const producer = pdfDoc.getProducer() || '—';
-
-            fileRecords.push({
-              name: file.name,
-              size: file.size,
-              pageCount: pageCount,
-              title: title,
-              producer: producer
-            });
-          } catch (err) {
-            console.error(err);
-            if (typeof showToast === 'function') showToast(`Could not read ${file.name}`, 'error');
-          }
-        }
-        renderDashboard();
-      }
-
-      function renderDashboard() {
-        if (!fileRecords.length) {
-          resultsSection.style.display = 'none';
-          return;
-        }
-
-        resultsSection.style.display = 'block';
-
-        const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
-        const totalSize = fileRecords.reduce((acc, cur) => acc + cur.size, 0);
-
-        statTotalPages.textContent = totalPages.toLocaleString();
-        statTotalFiles.textContent = fileRecords.length.toLocaleString();
-        statTotalSize.textContent = formatFileSize(totalSize);
-
-        calculateCost();
-
-        tableBody.innerHTML = fileRecords.map((item, idx) => `
-          <tr>
-            <td>${idx + 1}</td>
-            <td style="font-weight:600;">${escapeHTML(item.name)}</td>
-            <td><span class="badge badge-primary">${item.pageCount} pages</span></td>
-            <td>${formatFileSize(item.size)}</td>
-            <td style="color:#6b7280; font-size:0.8rem;">${escapeHTML(item.title !== '—' ? item.title : item.producer)}</td>
-          </tr>
-        `).join('');
-      }
-
-      function calculateCost() {
-        const totalPages = fileRecords.reduce((acc, cur) => acc + cur.pageCount, 0);
-        const rate = parseFloat(inputRate.value) || 0;
-        const copies = parseInt(inputCopies.value, 10) || 1;
-        const totalCost = totalPages * rate * copies;
-        statPrintCost.textContent = `₹${totalCost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
-      }
-
-      // Export CSV
-      btnExportCsv.addEventListener('click', () => {
-        if (!fileRecords.length) return;
-        let csvContent = 'File Number,File Name,Page Count,File Size Bytes,Formatted Size,Title,Producer\n';
-
-        fileRecords.forEach((r, idx) => {
-          csvContent += `"${idx + 1}","${r.name.replace(/"/g, '""')}","${r.pageCount}","${r.size}","${formatFileSize(r.size)}","${(r.title || '').replace(/"/g, '""')}","${(r.producer || '').replace(/"/g, '""')}"\n`;
-        });
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        if (typeof downloadBlob === 'function') {
-          downloadBlob(blob, 'pdf_pages_summary.csv');
-        } else {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'pdf_pages_summary.csv';
-          a.click();
-        }
-      });
-
-      function escapeHTML(str) {
-        return String(str || '').replace(/[&<>'"]/g, tag => ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          "'": '&#39;',
-          '"': '&quot;'
-        }[tag] || tag));
-      }
-    })();
-  </script>
 </body>
 </html>
