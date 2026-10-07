@@ -809,6 +809,35 @@
     processBtn.addEventListener('click', processSignature);
     widthInput.addEventListener('input', () => { presetSize.value = 'custom'; processSignature(); });
     heightInput.addEventListener('input', () => { presetSize.value = 'custom'; processSignature(); });
+
+    // Deep-link preset handler from Smart Tool Finder
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const presetParam = urlParams.get('preset');
+      if (presetParam) {
+        const p = presetParam.toLowerCase();
+        if (p === 'ssc' || p === 'ibps' || p === '140x60') {
+          presetSize.value = '140x60';
+          widthInput.value = '140';
+          heightInput.value = '60';
+        } else if (p === 'upsc' || p === '150x70') {
+          presetSize.value = '150x70';
+          widthInput.value = '150';
+          heightInput.value = '70';
+        } else if (p === 'psc' || p === 'police' || p === '200x100') {
+          presetSize.value = '200x100';
+          widthInput.value = '200';
+          heightInput.value = '100';
+        }
+      }
+      const targetParam = urlParams.get('target') || urlParams.get('max') || urlParams.get('size');
+      if (targetParam) {
+        const num = parseInt(targetParam, 10);
+        if ([10, 20, 50, 100].includes(num)) {
+          sizeLimit.value = String(num);
+        }
+      }
+    } catch(e) {}
   </script>
 </body>
 </html>

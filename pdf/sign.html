@@ -945,7 +945,7 @@
       }
     }
 
-    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum - ; renderStagePage(); } });
+    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum--; renderStagePage(); } });
     nextPageBtn.addEventListener('click', () => { if (currentPageNum < totalPages) { currentPageNum++; renderStagePage(); } });
 
     function generateSignaturePngData() {

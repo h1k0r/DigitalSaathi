@@ -971,7 +971,7 @@
       }
     });
 
-    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum - ; renderPage(); } });
+    prevPageBtn.addEventListener('click', () => { if (currentPageNum > 1) { currentPageNum--; renderPage(); } });
     nextPageBtn.addEventListener('click', () => { if (currentPageNum < totalPages) { currentPageNum++; renderPage(); } });
 
     savePdfBtn.addEventListener('click', async () => {

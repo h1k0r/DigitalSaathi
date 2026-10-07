@@ -306,7 +306,153 @@
   window.dsModal = dsModal;
 
   // ==========================================================================
-  // 5. GLOBAL SEARCH ENGINE & COMMAND PALETTE (Ctrl+K)
+  // 5. SMART INTENT & INTENT DETECTION ENGINE
+  // ==========================================================================
+  function matchSmartIntent(query) {
+    const q = query.toLowerCase().trim().replace(/[-_]/g, ' ');
+    if (!q || q.length < 2) return null;
+
+    // 1. Passport Photo Intent (SSC, UPSC, 3.5x4.5, etc.)
+    if (/(passport\s*photo|3\.5\s*x\s*4\.5|ssc\s*photo|upsc\s*photo|exam\s*photo|visa\s*photo|2\s*x\s*2\s*inch|gov\w*\s*photo)/i.test(q)) {
+      let preset = '3.5x4.5';
+      let titleExtra = ' (3.5×4.5cm Indian Exam Preset)';
+      if (/visa|us|2\s*x\s*2/i.test(q)) {
+        preset = '5.08x5.08';
+        titleExtra = ' (2×2 inch US Visa Preset)';
+      } else if (/college|3\s*x\s*4/i.test(q)) {
+        preset = '3x4';
+        titleExtra = ' (3×4cm College Form Preset)';
+      }
+      return {
+        title: 'Passport Photo Maker' + titleExtra,
+        category: 'Indian Form Tools',
+        icon: '📸',
+        url: `image/passport-photo.html?preset=${preset}`,
+        isSmartMatch: true
+      };
+    }
+
+    // 2. Signature Resizer Intent (Signature 20kb, 50kb, etc.)
+    if (/(sign\w*\s*(20\s*kb|50\s*kb|10\s*kb|100\s*kb|resize|dimension|ssc|upsc|ibps)|signature)/i.test(q)) {
+      let target = '20';
+      let preset = 'ssc';
+      let titleExtra = ' (Under 20KB SSC/IBPS Preset)';
+      if (/50\s*kb|upsc|psc/i.test(q)) {
+        target = '50';
+        preset = 'upsc';
+        titleExtra = ' (Under 50KB UPSC Preset)';
+      } else if (/10\s*kb/i.test(q)) {
+        target = '10';
+        preset = 'ssc';
+        titleExtra = ' (Under 10KB Preset)';
+      }
+      return {
+        title: 'Signature Resizer' + titleExtra,
+        category: 'Indian Form Tools',
+        icon: '✍️',
+        url: `image/signature.html?preset=${preset}&target=${target}`,
+        isSmartMatch: true
+      };
+    }
+
+    // 3. Image KB Compressor (Photo 20kb, 50kb, 100kb, etc.)
+    const kbMatch = q.match(/(?:photo|image|pic|picture|compress|reduce|shrink|make)\s*(?:under|to|in)?\s*(\d{2,3})\s*(?:kb|k)/i) ||
+                    q.match(/(\d{2,3})\s*(?:kb|k)\s*(?:photo|image|pic|compress)/i);
+    if (kbMatch && !q.includes('sign')) {
+      const kb = parseInt(kbMatch[1], 10);
+      return {
+        title: `Image Compressor (${kb}KB Target Preset)`,
+        category: 'Image Tools',
+        icon: '🗜️',
+        url: `image/compress.html?target=${kb}`,
+        isSmartMatch: true
+      };
+    }
+
+    // 4. DPI Converter Intent (300 DPI, 200 DPI, etc.)
+    const dpiMatch = q.match(/(\d{2,4})\s*dpi/i);
+    if (dpiMatch || q.includes('dpi') || q.includes('ppi')) {
+      const dpi = dpiMatch ? dpiMatch[1] : '300';
+      return {
+        title: `DPI Converter (${dpi} DPI Print Preset)`,
+        category: 'Image Tools',
+        icon: '🖨️',
+        url: `image/dpi-converter.html?dpi=${dpi}`,
+        isSmartMatch: true
+      };
+    }
+
+    // 5. Combine / Join / Merge PDF
+    if (/combine\s*pdf|join\s*pdf|merge\s*pdf|put\s*pdf\s*together|concat\s*pdf/i.test(q)) {
+      return {
+        title: 'Merge PDF (Combine Multiple Files)',
+        category: 'PDF Tools',
+        icon: '📑',
+        url: 'pdf/merge.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 6. Remove / Delete PDF Pages / Organize
+    if (/pdf\s*page\w*\s*(remove|delete|extract|reorder|organize)|(remove|delete)\s*pdf\s*page\w*/i.test(q)) {
+      return {
+        title: 'Organize PDF (Delete, Reorder & Rotate Pages)',
+        category: 'PDF Tools',
+        icon: '📑',
+        url: 'pdf/organize.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 7. Images into PDF / Make PDF from Photos
+    if (/image\w*\s*(into|to)\s*pdf|photo\w*\s*(into|to)\s*pdf|make\s*pdf\s*from\s*(image|photo|pic)|turn\s*(image|photo|pic)\w*\s*into\s*pdf/i.test(q)) {
+      return {
+        title: 'JPG / Photos to PDF Converter',
+        category: 'PDF Tools',
+        icon: '📑',
+        url: 'pdf/jpg-to-pdf.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 8. PDF Pictures / Extract Images from PDF
+    if (/pdf\s*(pictures|images|photo\w*)|extract\s*image\w*\s*from\s*pdf|save\s*pdf\s*as\s*(jpg|png|image)|turn\s*pdf\s*into\s*(image|jpg|png)/i.test(q)) {
+      return {
+        title: 'PDF to JPG Converter (Extract PDF Images)',
+        category: 'PDF Tools',
+        icon: '🖼️',
+        url: 'pdf/pdf-to-jpg.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 9. Remove Background
+    if (/remove\s*bg|remove\s*background|transparent\s*(bg|background|png)|white\s*background\s*photo/i.test(q)) {
+      return {
+        title: 'Remove Background in HD Quality',
+        category: 'Image Tools',
+        icon: '✂️',
+        url: 'image/remove-bg.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 10. Marksheet / Xerox Scan Enhancer
+    if (/scan\s*(enhancer|clarify|clean)|marksheet\s*enhanc\w*|xerox\s*(clean|boost|contrast)|enhance\s*(scan|document|xerox)/i.test(q)) {
+      return {
+        title: 'Photo Enhancer & Scan Optimizer',
+        category: 'Image Tools',
+        icon: '✨',
+        url: 'image/photo-enhancer.html',
+        isSmartMatch: true
+      };
+    }
+
+    return null;
+  }
+
+  // ==========================================================================
+  // 6. GLOBAL SEARCH ENGINE & COMMAND PALETTE (Ctrl+K)
   // ==========================================================================
   function initCommandPalette() {
     let overlay = document.querySelector('.command-palette-overlay');
@@ -318,7 +464,7 @@
         <div class="command-palette-modal" role="dialog" aria-modal="true" aria-label="Quick Search">
           <div class="palette-search-header">
             <span class="palette-search-icon">🔍</span>
-            <input type="text" class="palette-search-input" id="paletteSearchInput" placeholder="Type a tool name, format, or task..." autocomplete="off" spellcheck="false">
+            <input type="text" class="palette-search-input" id="paletteSearchInput" placeholder="Type a tool name, format, or task (e.g. ssc photo, signature 20kb)..." autocomplete="off" spellcheck="false">
             <button class="palette-close-btn" id="paletteCloseBtn" aria-label="Close search">ESC</button>
           </div>
           <div class="palette-results-list" id="paletteResultsList">
@@ -342,6 +488,8 @@
     function renderResults(query = '') {
       let filtered = [];
       const cleanQ = query.toLowerCase().trim();
+      const smartMatch = cleanQ ? matchSmartIntent(cleanQ) : null;
+
       if (!cleanQ) {
         filtered = SEARCH_REGISTRY.slice(0, 10);
       } else {
@@ -350,6 +498,9 @@
                  item.category.toLowerCase().includes(cleanQ) ||
                  (item.keywords && item.keywords.toLowerCase().includes(cleanQ));
         });
+        if (smartMatch) {
+          filtered = [smartMatch, ...filtered.filter(it => it.url !== smartMatch.url.split('?')[0])];
+        }
       }
 
       if (filtered.length === 0) {
@@ -365,11 +516,15 @@
       selectedIndex = 0;
       resultsList.innerHTML = filtered.map((item, idx) => {
         const finalUrl = resolveRelativeUrl(item.url);
+        const isSmart = item.isSmartMatch;
         return `
           <a href="${finalUrl}" class="palette-result-item ${idx === 0 ? 'selected' : ''}" data-idx="${idx}">
             <span class="palette-result-icon">${item.icon}</span>
             <div class="palette-result-info">
-              <div class="palette-result-title">${cleanQ ? highlightMatch(item.title, cleanQ) : escapeHtml(item.title)}</div>
+              <div class="palette-result-title">
+                ${cleanQ ? highlightMatch(item.title, cleanQ) : escapeHtml(item.title)}
+                ${isSmart ? '<span style="background:#eff6ff;color:#2563eb;font-size:0.72rem;font-weight:700;padding:2px 6px;border-radius:4px;border:1px solid #bfdbfe;margin-left:6px;">🎯 Smart Preset</span>' : ''}
+              </div>
               <div class="palette-result-category">${escapeHtml(item.category)}</div>
             </div>
             <span class="palette-result-badge">Open →</span>
@@ -500,11 +655,17 @@
           return;
         }
 
+        const smartMatch = matchSmartIntent(query);
+
         currentMatches = SEARCH_REGISTRY.filter(item => {
           return item.title.toLowerCase().includes(query) ||
                  item.category.toLowerCase().includes(query) ||
                  (item.keywords && item.keywords.toLowerCase().includes(query));
         });
+
+        if (smartMatch) {
+          currentMatches = [smartMatch, ...currentMatches.filter(it => it.url !== smartMatch.url.split('?')[0])];
+        }
 
         selectedIndex = currentMatches.length > 0 ? 0 : -1;
 
@@ -518,11 +679,15 @@
         } else {
           resultsContainer.innerHTML = currentMatches.slice(0, 8).map((item, idx) => {
             const finalUrl = resolveRelativeUrl(item.url);
+            const isSmart = item.isSmartMatch;
             return `
               <a href="${finalUrl}" class="search-result-item ${idx === 0 ? 'selected' : ''}" data-idx="${idx}" style="display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border-subtle, #f1f5f9);text-decoration:none;color:var(--text-main, #0f172a);transition:background 0.15s ease;">
                 <span class="search-result-icon" style="font-size:1.3rem;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--bg-surface-subtle, #f8fafc);border-radius:8px;border:1px solid var(--border-subtle, #e2e8f0);">${item.icon}</span>
                 <div style="flex:1;min-width:0;">
-                  <div style="font-weight:600;font-size:0.92rem;color:var(--text-main, #0f172a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${highlightMatch(item.title, query)}</div>
+                  <div style="font-weight:600;font-size:0.92rem;color:var(--text-main, #0f172a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    ${highlightMatch(item.title, query)}
+                    ${isSmart ? '<span style="background:#eff6ff;color:#2563eb;font-size:0.72rem;font-weight:700;padding:2px 6px;border-radius:4px;border:1px solid #bfdbfe;margin-left:6px;">🎯 Smart Preset</span>' : ''}
+                  </div>
                   <div style="font-size:0.75rem;color:var(--text-muted, #64748b);">${escapeHtml(item.category)}</div>
                 </div>
                 <span style="font-size:0.78rem;color:var(--primary, #2563eb);font-weight:700;display:inline-flex;align-items:center;gap:3px;">Open &rarr;</span>

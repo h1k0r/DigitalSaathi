@@ -810,6 +810,32 @@
     bgColor.addEventListener('change', generatePhoto);
     dpiSelect.addEventListener('change', generatePhoto);
     generateBtn.addEventListener('click', generatePhoto);
+
+    // Deep-link preset handler from Smart Tool Finder
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const presetParam = urlParams.get('preset') || urlParams.get('size');
+      if (presetParam) {
+        const p = presetParam.toLowerCase();
+        if (p === 'ssc' || p === 'upsc' || p === 'indian' || p === '3.5x4.5' || p.includes('passport')) {
+          presetSize.value = '3.5x4.5';
+        } else if (p === 'us' || p === 'visa' || p === '5x5' || p === '2x2' || p === '5.08x5.08') {
+          presetSize.value = '5.08x5.08';
+        } else if (p === '3.5x3.5' || p === 'govt') {
+          presetSize.value = '3.5x3.5';
+        } else if (p === '3x4' || p === 'college') {
+          presetSize.value = '3x4';
+        }
+      }
+      const formatParam = urlParams.get('format') || urlParams.get('layout');
+      if (formatParam && ['single', 'a4-2x4', 'a4-3x4'].includes(formatParam)) {
+        outputFormat.value = formatParam;
+      }
+      const dpiParam = urlParams.get('dpi');
+      if (dpiParam && ['150', '200', '300'].includes(dpiParam)) {
+        dpiSelect.value = dpiParam;
+      }
+    } catch(e) {}
   </script>
 </body>
 </html>

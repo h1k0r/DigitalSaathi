@@ -831,6 +831,22 @@
         if (!isActive) item.classList.add('active');
       });
     });
+
+    // Deep-link preset handler from Smart Tool Finder
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetParam = urlParams.get('target') || urlParams.get('preset') || urlParams.get('size') || urlParams.get('kb');
+      if (targetParam) {
+        const num = parseInt(targetParam, 10);
+        if ([20, 50, 100].includes(num)) {
+          presetBtns.forEach(b => {
+            if (b.dataset.target === String(num)) {
+              b.click();
+            }
+          });
+        }
+      }
+    } catch(e) {}
   </script>
 </body>
 </html>

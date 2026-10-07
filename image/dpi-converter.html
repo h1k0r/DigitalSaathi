@@ -962,6 +962,22 @@
       currentFile = null;
       originalBytes = null;
     });
+
+    // Deep-link preset handler from Smart Tool Finder
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const dpiParam = urlParams.get('dpi') || urlParams.get('preset');
+      if (dpiParam) {
+        const d = parseInt(dpiParam, 10);
+        if ([72, 150, 200, 300, 600].includes(d)) {
+          dpiChips.forEach(chip => {
+            if (chip.getAttribute('data-dpi') === String(d)) {
+              chip.click();
+            }
+          });
+        }
+      }
+    } catch(e) {}
   </script>
 </body>
 </html>
