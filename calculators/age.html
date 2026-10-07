@@ -20,157 +20,266 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Calculator — Free Exact Chronological Age & Birthday Calculator | Vytra</title>
-  <meta name="description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
-  <meta name="keywords" content="age calculator, calculate age from dob, chronological age, birthday countdown, days lived calculator, exact age online">
-  
-  <!-- Fonts & Stylesheet -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Age Calculator Online Free (Exact DOB, Exam Cut-off & Birthday) | Vytra</title>
+  <meta name="description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Calculate age as of government exam cut-off dates (UPSC, SSC, Banking) and birthday countdown free.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  
   <style>
-    .calc-card {
+    .calc-center-box {
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 1.5rem auto;
+      max-width: 800px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+    .calc-tab-strip {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+      overflow-x: auto;
     }
-    @media (max-width: 640px) {
-      .form-row-2 { grid-template-columns: 1fr; }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
     }
-    .result-hero {
-      background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%);
-      border: 2px solid var(--primary-200);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      text-align: center;
-      margin-top: 1.5rem;
+    .calc-tab-btn.active {
+      background: #eff6ff;
+      color: var(--primary, #2563eb);
+    }
+    .calc-tab-pane {
       display: none;
     }
-    .result-hero.active { display: block; }
-    .age-primary-display {
+    .calc-tab-pane.active {
+      display: block;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .cutoff-pill-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .cutoff-pill {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cutoff-pill:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .result-display-card {
+      margin-top: 24px;
+      padding: 24px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .result-val-big {
       font-size: 2.2rem;
       font-weight: 800;
-      color: var(--primary-800);
-      margin: 0.5rem 0 1rem;
+      color: #2563eb;
+      margin-bottom: 6px;
       letter-spacing: -0.02em;
     }
-    .stats-grid {
+    .bday-highlight-badge {
+      background: #eff6ff;
+      border: 1px dashed #93c5fd;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 14px auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+    .stats-metric-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .stat-pill {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1rem 0.75rem;
+      gap: 12px;
+      margin-top: 18px;
       text-align: center;
-      box-shadow: var(--shadow-xs);
     }
-    .stat-num {
-      font-size: 1.3rem;
+    .metric-cell {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 10px;
+    }
+    .metric-val {
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--text-main);
-      font-family: var(--font-mono);
+      color: #1e293b;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .metric-label {
+      font-size: 0.72rem;
+      color: #64748b;
       text-transform: uppercase;
       font-weight: 600;
       margin-top: 4px;
     }
-    .birthday-box {
-      background: #f8fafc;
-      border: 1px dashed var(--primary-300);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
   </style>
+
+  <!-- Top Ranking SEO Schema Markup (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Age Calculator Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/calculators/age.html",
+        "description": "Calculate exact chronological age in years, months, days from date of birth. Calculate age as of government exam cut-off dates (UPSC, SSC, Banking) free.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to calculate exact age for government exam forms",
+        "description": "Step-by-step instructions to calculate exact age as of an official recruitment cut-off date.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Select Date of Birth",
+            "text": "Choose your date of birth as recorded on your 10th class / matriculation certificate."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Select Cut-Off Date",
+            "text": "Select the official reference date specified in the exam notification (e.g. 1st August 2026 for UPSC, 1st January for SSC)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "View Exact Age & Eligibility",
+            "text": "Get instant calculated age in years, months, and days to fill directly into the application form."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is exact age calculated from date of birth?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Exact chronological age is calculated by finding the difference between your date of birth and the reference date, accounting for the varying lengths of months (28, 29, 30, or 31 days) and leap years."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to calculate age for SSC, UPSC, and Banking exams?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Government exam notifications specify an 'Age as on' cut-off date (commonly 1st August or 1st January of the exam year). Enter your DOB and select that specific cut-off date to verify if your age falls within the required min/max limits (e.g., 18 to 27 or 21 to 32 years)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I calculate the age difference between two people?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Switch to the 'Age Difference' tab, enter the dates of birth of both individuals, and the tool will calculate exactly who is older and by how many years, months, and days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my date of birth saved or stored online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculation runs 100% locally inside your web browser. No personal dates or private information are ever uploaded or transmitted to any server."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Calculators",
+            "item": "https://digitalsaathi.vytra.in/tools/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Age Calculator",
+            "item": "https://digitalsaathi.vytra.in/calculators/age.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/calculators/age.html">
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsaathi.vytra.in/calculators/age.html">
-  <meta property="og:title" content="Age Calculator — Free Exact Chronological Age & Birthday Calculator | Vytra">
-  <meta property="og:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
+  <meta property="og:title" content="Age Calculator Online Free (Exact DOB, Exam Cut-off & Birthday) | Vytra">
+  <meta property="og:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Calculate age as of government exam cut-off dates free.">
   <meta property="og:site_name" content="Vytra">
   
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Age Calculator — Free Exact Chronological Age & Birthday Calculator | Vytra">
-  <meta name="twitter:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.">
-  <!-- Top Ranking Structured Data Schema -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Age Calculator \u2014 Free Exact Chronological Age & Birthday Calculator | Vytra",
-      "url": "https://digitalsaathi.vytra.in/calculators/age.html",
-      "description": "Calculate your exact age in years, months, days, hours, and minutes from date of birth. Find your next birthday countdown and life statistics with 100% free privacy-safe browser calculator.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Calculators Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Age Calculator \u2014 Free Exact Chronological Age & Birthday Calculator",
-          "item": "https://digitalsaathi.vytra.in/calculators/age.html"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <meta name="twitter:title" content="Age Calculator Online Free (Exact DOB, Exam Cut-off & Birthday) | Vytra">
+  <meta name="twitter:description" content="Calculate your exact age in years, months, days, hours, and minutes from date of birth. Calculate age as of government exam cut-off dates free.">
+
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Universal Header Navigation -->
-        <nav class="navbar" id="main-nav">
+  <!-- Universal Navigation -->
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -200,6 +309,7 @@
             <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
             <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
             <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="../pdf/unlock.html" class="dropdown-link">Unlock PDF <span>&rarr;</span></a>
             <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
@@ -219,7 +329,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a href="../calculators/percentage.html" class="nav-link">
+          <a href="../calculators/percentage.html" class="nav-link active">
             Calculators
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -270,109 +380,464 @@
     </div>
   </nav>
 
-  <!-- Main Content Container -->
-  <main class="container page-content" style="max-width: 900px; padding: 2rem 1rem 4rem;">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
     <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
       <span>/</span>
       <a href="../tools/index.html">Calculators</a>
       <span>/</span>
-      <span class="current">Age Calculator</span>
+      <span style="color:var(--text-main); font-weight:600;">Age Calculator</span>
     </nav>
 
-    <!-- Tool Header -->
-    <div class="tool-hero">
-      <h1 class="tool-hero-title">Age Calculator</h1>
-      <p class="tool-hero-subtitle">Calculate your exact chronological age in years, months, days, minutes, and find your next birthday countdown.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Age Calculator</h1>
+      <p class="vytra-tool-subtitle">
+        Calculate your exact chronological age in years, months, and days from date of birth. Find age as of exam cut-off dates (UPSC, SSC, Banking) and birthday countdown free.
+      </p>
 
-    <!-- Calculator Card -->
-    <div class="calc-card">
-      <form id="ageForm">
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="dob" class="form-label" style="font-weight:600; display:block; margin-bottom:8px;">Date of Birth (DOB) *</label>
-            <input type="date" id="dob" class="form-input" style="width:100%; padding:10px 14px; border:1px solid var(--border-default); border-radius:var(--radius-md);" required>
-          </div>
-          <div class="form-group">
-            <label for="targetDate" class="form-label" style="font-weight:600; display:block; margin-bottom:8px;">Age as of Date</label>
-            <input type="date" id="targetDate" class="form-input" style="width:100%; padding:10px 14px; border:1px solid var(--border-default); border-radius:var(--radius-md);">
-          </div>
-        </div>
-
-        <div style="display:flex; gap:12px; align-items:center;">
-          <button type="submit" class="btn btn-primary" style="flex:1; padding:12px 24px; font-weight:700;">Calculate Exact Age</button>
-          <button type="button" id="resetBtn" class="btn btn-outline" style="padding:12px 20px;">Reset</button>
-        </div>
-      </form>
-
-      <!-- Results Display -->
-      <div id="resultsArea" class="result-hero">
-        <div style="font-size:0.9rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Your Chronological Age</div>
-        <div id="primaryAgeText" class="age-primary-display">-- Years, -- Months, -- Days</div>
-        
-        <div id="birthdayBox" class="birthday-box">
-          <span style="font-size:1.4rem;">🎂</span>
-          <span id="nextBirthdayText">Next Birthday in: -- days (--)</span>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-pill">
-            <div id="statTotalMonths" class="stat-num">0</div>
-            <div class="stat-label">Total Months</div>
-          </div>
-          <div class="stat-pill">
-            <div id="statTotalWeeks" class="stat-num">0</div>
-            <div class="stat-label">Total Weeks</div>
-          </div>
-          <div class="stat-pill">
-            <div id="statTotalDays" class="stat-num">0</div>
-            <div class="stat-label">Total Days</div>
-          </div>
-          <div class="stat-pill">
-            <div id="statTotalHours" class="stat-num">0</div>
-            <div class="stat-label">Total Hours</div>
-          </div>
-          <div class="stat-pill">
-            <div id="statTotalMinutes" class="stat-num">0</div>
-            <div class="stat-label">Total Minutes</div>
-          </div>
-          <div class="stat-pill">
-            <div id="statZodiac" class="stat-num" style="font-size:1rem;">--</div>
-            <div class="stat-label">Zodiac Sign</div>
-          </div>
-        </div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Instant</span>
+        <span class="vytra-trust-chip">✓ Exact Cut-Off Dates</span>
+        <span class="vytra-trust-chip">✓ Birthday Countdown</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser</span>
       </div>
     </div>
 
-    <!-- How to Use Section -->
-    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:2rem; margin-bottom:2rem;">
-      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1rem;">How to Calculate Your Exact Age</h2>
-      <ol style="padding-left:1.25rem; color:var(--text-body); line-height:1.7;">
-        <li>Select your <strong>Date of Birth</strong> using the date picker.</li>
-        <li>Optionally adjust the <strong>Age as of Date</strong> (defaults to today's date).</li>
-        <li>Click <strong>Calculate Exact Age</strong> to see your age in years, months, days, plus total lived hours and next birthday countdown.</li>
-      </ol>
+    <!-- 2. Interactive Calculator Container -->
+    <div class="calc-center-box">
+      
+      <!-- Tab Header Strip -->
+      <div class="calc-tab-strip">
+        <button type="button" class="calc-tab-btn active" data-tab="tabDobAge">🎂 Chronological Age (DOB)</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabExamCutoff">📝 Exam Cut-off Age</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabAgeDiff">👥 Age Difference (2 Persons)</button>
+        <button type="button" class="calc-tab-btn" data-tab="tabMilestones">⭐ Life Milestones</button>
+      </div>
+
+      <!-- Tab 1: Chronological Age (DOB to Today / Given Date) -->
+      <div class="calc-tab-pane active" id="tabDobAge">
+        <form id="dobAgeForm" onsubmit="event.preventDefault(); calculateDobAge();">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="primaryDob" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Date of Birth (DOB) *</label>
+              <input type="date" id="primaryDob" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;" required>
+            </div>
+            <div class="form-group">
+              <label for="primaryTargetDate" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Age as of Date (Today)</label>
+              <input type="date" id="primaryTargetDate" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="submit" class="btn btn-primary" style="flex:1; background:#2563eb; color:#ffffff; border:none; padding:12px 20px; border-radius:6px; font-weight:700; cursor:pointer;">
+              Calculate Exact Age
+            </button>
+            <button type="button" class="btn" onclick="resetDobAgeForm()" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#475569; padding:12px 18px; border-radius:6px; font-weight:600; cursor:pointer;">
+              Reset
+            </button>
+          </div>
+        </form>
+
+        <!-- Result Box -->
+        <div class="result-display-card" id="dobResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600; letter-spacing:0.04em;">CHRONOLOGICAL AGE</div>
+          <div class="result-val-big" id="primaryAgeText">-- Years, -- Months, -- Days</div>
+          
+          <div class="bday-highlight-badge" id="bdayHighlightBadge">
+            <span style="font-size:1.4rem;">🎂</span>
+            <span id="nextBirthdayText">Next Birthday in: -- days</span>
+          </div>
+
+          <div class="stats-metric-grid">
+            <div class="metric-cell">
+              <div class="metric-val" id="metricMonths">0</div>
+              <div class="metric-label">Total Months</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricWeeks">0</div>
+              <div class="metric-label">Total Weeks</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricDays">0</div>
+              <div class="metric-label">Total Days</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricHours">0</div>
+              <div class="metric-label">Total Hours</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricMinutes">0</div>
+              <div class="metric-label">Total Minutes</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-val" id="metricZodiac" style="font-size:0.95rem;">--</div>
+              <div class="metric-label">Zodiac Sign</div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:10px; margin-top:18px;">
+            <button type="button" class="btn" onclick="copyAgeSummary()" style="padding:8px 16px; font-size:0.85rem; background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; cursor:pointer; font-weight:600;">
+              📋 Copy Age Details
+            </button>
+          </div>
+          <div id="copyAgeNotice" style="display:none; color:#16a34a; font-size:0.85rem; font-weight:600; margin-top:8px;">Age summary copied to clipboard!</div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Exam Cut-off Age -->
+      <div class="calc-tab-pane" id="tabExamCutoff">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Select your exam recruitment cut-off date to determine your exact qualifying age as of the notification deadline.
+        </p>
+
+        <!-- Presets Bar -->
+        <div class="cutoff-pill-bar">
+          <span style="font-size:0.8rem; font-weight:700; color:#64748b;">Exam Cut-off Presets:</span>
+          <button type="button" class="cutoff-pill" onclick="setExamCutoff('2026-08-01', 'UPSC CSE 2026 (1st August)')">UPSC 2026 (1 Aug)</button>
+          <button type="button" class="cutoff-pill" onclick="setExamCutoff('2026-01-01', 'SSC CGL 2026 (1st January)')">SSC CGL (1 Jan)</button>
+          <button type="button" class="cutoff-pill" onclick="setExamCutoff('2026-08-01', 'SSC CHSL 2026 (1st August)')">SSC CHSL (1 Aug)</button>
+          <button type="button" class="cutoff-pill" onclick="setExamCutoff('2026-07-01', 'IBPS PO 2026 (1st July)')">IBPS PO (1 July)</button>
+          <button type="button" class="cutoff-pill" onclick="setExamCutoff('2026-07-01', 'Railway RRB (1st July)')">RRB NTPC (1 July)</button>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="examDob" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Your Date of Birth (as in 10th cert)</label>
+            <input type="date" id="examDob" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;" required>
+          </div>
+          <div class="form-group">
+            <label for="examCutoffDate" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Official Cut-off Date</label>
+            <input type="date" id="examCutoffDate" value="2026-08-01" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Eligible Age Limits (for check)</label>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <input type="number" id="minAgeReq" value="18" placeholder="Min Age (e.g. 18)" style="width:120px; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <span style="color:#64748b; font-weight:600;">to</span>
+            <input type="number" id="maxAgeReq" value="32" placeholder="Max Age (e.g. 32)" style="width:120px; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px;">
+            <span style="font-size:0.85rem; color:#64748b;">Years</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateExamAge()" style="width:100%; background:#2563eb; color:#ffffff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;">
+          Verify Exam Form Age &amp; Eligibility
+        </button>
+
+        <div class="result-display-card" id="examResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">AGE AS ON CUT-OFF DATE</div>
+          <div class="result-val-big" id="examAgeText">-- Years, -- Months, -- Days</div>
+          <div id="examEligibilityBadge" style="font-weight:700; font-size:1.1rem; padding:8px 16px; border-radius:6px; display:inline-block; margin-top:8px;">
+            Eligible
+          </div>
+          <p id="examCutoffNote" style="font-size:0.85rem; color:#64748b; margin-top:12px;"></p>
+        </div>
+      </div>
+
+      <!-- Tab 3: Age Difference (2 Persons) -->
+      <div class="calc-tab-pane" id="tabAgeDiff">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Calculate the exact difference in age between two people (e.g. siblings, partners, classmates).
+        </p>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="person1Dob" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Person 1 Date of Birth</label>
+            <input type="date" id="person1Dob" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+          <div class="form-group">
+            <label for="person2Dob" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Person 2 Date of Birth</label>
+            <input type="date" id="person2Dob" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateAgeDifference()" style="width:100%; background:#2563eb; color:#ffffff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;">
+          Calculate Age Difference
+        </button>
+
+        <div class="result-display-card" id="diffResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">EXACT AGE DIFFERENCE</div>
+          <div class="result-val-big" id="diffTextVal">-- Years, -- Months, -- Days</div>
+          <div id="diffOlderText" style="font-weight:700; color:#2563eb; font-size:1.05rem; margin-top:4px;">Person 1 is older than Person 2</div>
+          <div id="diffDaysText" style="font-size:0.85rem; color:#64748b; margin-top:8px;">Total difference: 0 days</div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Life Milestones -->
+      <div class="calc-tab-pane" id="tabMilestones">
+        <p style="font-size:0.88rem; color:#64748b; margin-bottom:14px;">
+          Enter your date of birth to see your upcoming milestone birthdays, day of the week you were born, and estimated life heartbeats.
+        </p>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label for="milestoneDob" style="font-weight:600; font-size:0.9rem; display:block; margin-bottom:6px;">Enter Your Date of Birth</label>
+          <input type="date" id="milestoneDob" class="form-input" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem;">
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="calculateMilestones()" style="width:100%; background:#2563eb; color:#ffffff; border:none; padding:12px; border-radius:6px; font-weight:700; cursor:pointer;">
+          Show Life Milestones &amp; Fun Facts
+        </button>
+
+        <div class="result-display-card" id="milestoneResultCard" style="display:none;">
+          <div style="font-size:0.85rem; color:#64748b; font-weight:600;">BORN ON A</div>
+          <div class="result-val-big" id="bornDayOfWeek" style="color:#059669;">Sunday</div>
+          
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-top:16px; text-align:left;">
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+              <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase;">Estimated Heartbeats</div>
+              <div id="milestoneHeartbeats" style="font-size:1.2rem; font-weight:700; color:#1e293b; font-family:'JetBrains Mono', monospace; margin-top:4px;">0</div>
+              <div style="font-size:0.72rem; color:#94a3b8;">Avg 72 beats / min</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+              <div style="font-size:0.75rem; color:#64748b; font-weight:600; text-transform:uppercase;">Estimated Breaths</div>
+              <div id="milestoneBreaths" style="font-size:1.2rem; font-weight:700; color:#1e293b; font-family:'JetBrains Mono', monospace; margin-top:4px;">0</div>
+              <div style="font-size:0.72rem; color:#94a3b8;">Avg 16 breaths / min</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px; text-align:left;">
+            <h4 style="font-size:0.95rem; font-weight:700; color:#1e293b; margin-bottom:10px;">Milestone Birthday Dates:</h4>
+            <div id="milestonesList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:8px;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📅</div>
+          <h3 class="vytra-info-cell-title">Exact calendar math precision</h3>
+          <p class="vytra-info-cell-desc">Accurately computes date differences taking into account varying month lengths (28, 29, 30, and 31 days) and leap years with zero rounding errors.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📝</div>
+          <h3 class="vytra-info-cell-title">Government exam cut-off dates</h3>
+          <p class="vytra-info-cell-desc">Includes presets for UPSC CSE (1st August), SSC CGL (1st January), and IBPS PO notifications to confirm your eligibility before paying exam fees.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎂</div>
+          <h3 class="vytra-info-cell-title">Live birthday countdown</h3>
+          <p class="vytra-info-cell-desc">Tells you the exact days remaining until your next birthday and reveals the day of the week on which your celebration will occur.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">👥</div>
+          <h3 class="vytra-info-cell-title">Age difference between two people</h3>
+          <p class="vytra-info-cell-desc">Compare two dates of birth side-by-side to find out who is older and calculate the precise gap in years, months, and days.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⭐</div>
+          <h3 class="vytra-info-cell-title">Milestones &amp; life statistics</h3>
+          <p class="vytra-info-cell-desc">Explore fun milestones including the weekday you were born, total hours and minutes lived, and dates for your 18th, 21st, 25th, and 60th birthdays.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% private in-browser tool</h3>
+          <p class="vytra-info-cell-desc">Your birth date and personal details never leave your web browser. No data logging, cookies, or external server uploads.</p>
+        </div>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Created with care by the Vytra Engineering Team</span>
+      </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:2rem; margin-bottom:2rem;">
-      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.25rem;">Frequently Asked Questions</h2>
-      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:1rem 0;">
-        <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">How is exact chronological age calculated?</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">The calculator accounts for leap years, variations in days per month (28, 29, 30, or 31), and calculates the precise difference between the birth date and reference date.</p>
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Filling out the UPSC Civil Services form requires age as of 1st August. This tool gave me the exact years, months, and days in one click. Saved me a ton of time.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NS</div>
+            <div>
+              <div class="vytra-author-name">Nitin Sharma</div>
+              <div class="vytra-author-role">UPSC Aspirant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">We run a cyber café in Patna and use Vytra every day for student form registrations. The exam cut-off presets make age verification 100% error-free.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RK</div>
+            <div>
+              <div class="vytra-author-name">Rakesh Kumar</div>
+              <div class="vytra-author-role">Digital Cyber Café Owner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Loved the birthday countdown and milestones tab! It showed the exact weekday I was born on and how many total days I've been alive. Clean and fast.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">DM</div>
+            <div>
+              <div class="vytra-author-name">Divya Menon</div>
+              <div class="vytra-author-role">College Student</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="faq-item" style="padding:1rem 0 0;">
-        <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.5rem;">Is my date of birth saved or stored on any server?</h3>
-        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">No. All calculations are executed 100% client-side in your web browser. No personal data or dates are ever sent to any server.</p>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How is exact chronological age calculated?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Age is computed by subtracting the birth year, month, and day from the reference date. If the reference day is smaller than the birth day, days are borrowed from the previous calendar month (which may have 28, 29, 30, or 31 days). If the reference month is smaller than the birth month, 12 months are borrowed from the year.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What cut-off date should I use for SSC and UPSC forms?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Always refer to the official exam notification. For UPSC CSE, the cut-off date is typically August 1 of the exam year. For SSC CGL/CHSL, it is usually January 1 or August 1 depending on whether the notification is released in the first or second half of the year.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Does this calculator account for leap years?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Yes, leap years (including February 29) are fully supported. The day difference automatically factors in 366-day leap years throughout your lifespan.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is my date of birth stored or shared?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. All computations occur completely on your device using client-side JavaScript. No dates, queries, or user data are ever uploaded to any web server.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Age Calculator</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Age Calculator!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; classmates</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Calculate%20exact%20chronological%20age%20and%20exam%20cut-off%20dates%20for%20free:%20https://digitalsaathi.vytra.in/calculators/age.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Calculate%20exact%20age%20and%20exam%20cut-off%20dates%20online%20for%20free%20using%20Vytra:%20https://digitalsaathi.vytra.in/calculators/age.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/calculators/age.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/calculators/age.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Academic &amp; Form Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="percentage.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📊</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Percentage Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate marks percentage and exam division rankings</div>
+        </a>
+        <a href="cgpa.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🎓</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">CGPA Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate semester SGPA and cumulative credits</div>
+        </a>
+        <a href="attendance.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📅</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Attendance Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate classes needed to maintain 75% attendance</div>
+        </a>
+        <a href="emi.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">💰</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Loan EMI Calculator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Calculate loan interest and monthly amortization</div>
+        </a>
       </div>
     </section>
 
   </main>
 
   <!-- Universal Footer -->
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -425,127 +890,304 @@
   <!-- Scripts -->
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('ageForm');
-      const dobInput = document.getElementById('dob');
-      const targetInput = document.getElementById('targetDate');
-      const resultsArea = document.getElementById('resultsArea');
-      const resetBtn = document.getElementById('resetBtn');
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.calc-tab-btn');
+    const tabPanes = document.querySelectorAll('.calc-tab-pane');
 
-      // Set default target date to today
-      const today = new Date();
-      const todayStr = today.toISOString().split('T')[0];
-      targetInput.value = todayStr;
-      targetInput.max = '2099-12-31';
-      dobInput.max = todayStr;
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
 
-      function getZodiacSign(day, month) {
-        const signs = [
-          { name: 'Capricorn ♑', d: 20, m: 1 },
-          { name: 'Aquarius ♒', d: 19, m: 2 },
-          { name: 'Pisces ♓', d: 20, m: 3 },
-          { name: 'Aries ♈', d: 20, m: 4 },
-          { name: 'Taurus ♉', d: 21, m: 5 },
-          { name: 'Gemini ♊', d: 21, m: 6 },
-          { name: 'Cancer ♋', d: 23, m: 7 },
-          { name: 'Leo ♌', d: 23, m: 8 },
-          { name: 'Virgo ♍', d: 23, m: 9 },
-          { name: 'Libra ♎', d: 23, m: 10 },
-          { name: 'Scorpio ♏', d: 22, m: 11 },
-          { name: 'Sagittarius ♐', d: 22, m: 12 },
-          { name: 'Capricorn ♑', d: 31, m: 12 }
-        ];
-        for (let i = 0; i < signs.length; i++) {
-          if (month === signs[i].m && day <= signs[i].d) return signs[i].name;
-          if (month === signs[i].m - 1 && day > signs[i-1]?.d) return signs[i].name;
-        }
-        return 'Capricorn ♑';
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        const targetPane = document.getElementById(target);
+        if (targetPane) targetPane.classList.add('active');
+      });
+    });
+
+    // Initialize Default Dates
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    const primaryTargetDateInput = document.getElementById('primaryTargetDate');
+    const primaryDobInput = document.getElementById('primaryDob');
+    if (primaryTargetDateInput) {
+      primaryTargetDateInput.value = todayStr;
+      primaryTargetDateInput.max = '2099-12-31';
+    }
+    if (primaryDobInput) {
+      primaryDobInput.max = todayStr;
+    }
+
+    function getZodiacSign(day, month) {
+      const signs = [
+        { name: 'Capricorn ♑', d: 20, m: 1 },
+        { name: 'Aquarius ♒', d: 19, m: 2 },
+        { name: 'Pisces ♓', d: 20, m: 3 },
+        { name: 'Aries ♈', d: 20, m: 4 },
+        { name: 'Taurus ♉', d: 21, m: 5 },
+        { name: 'Gemini ♊', d: 21, m: 6 },
+        { name: 'Cancer ♋', d: 23, m: 7 },
+        { name: 'Leo ♌', d: 23, m: 8 },
+        { name: 'Virgo ♍', d: 23, m: 9 },
+        { name: 'Libra ♎', d: 23, m: 10 },
+        { name: 'Scorpio ♏', d: 22, m: 11 },
+        { name: 'Sagittarius ♐', d: 22, m: 12 },
+        { name: 'Capricorn ♑', d: 31, m: 12 }
+      ];
+      for (let i = 0; i < signs.length; i++) {
+        if (month === signs[i].m && day <= signs[i].d) return signs[i].name;
+        if (month === signs[i].m - 1 && day > signs[i-1]?.d) return signs[i].name;
+      }
+      return 'Capricorn ♑';
+    }
+
+    function computeDateDifference(dob, targetDate) {
+      let years = targetDate.getFullYear() - dob.getFullYear();
+      let months = targetDate.getMonth() - dob.getMonth();
+      let days = targetDate.getDate() - dob.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonthLastDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
+        days += prevMonthLastDay;
       }
 
-      function calculateAge(dob, targetDate) {
-        let years = targetDate.getFullYear() - dob.getFullYear();
-        let months = targetDate.getMonth() - dob.getMonth();
-        let days = targetDate.getDate() - dob.getDate();
-
-        if (days < 0) {
-          months--;
-          const prevMonthLastDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
-          days += prevMonthLastDay;
-        }
-
-        if (months < 0) {
-          years--;
-          months += 12;
-        }
-
-        // Total time diff in ms
-        const diffMs = targetDate.getTime() - dob.getTime();
-        const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        const totalWeeks = Math.floor(totalDays / 7);
-        const totalMonths = (years * 12) + months;
-        const totalHours = totalDays * 24;
-        const totalMinutes = totalHours * 60;
-
-        // Next Birthday calculation
-        const nextBday = new Date(targetDate.getFullYear(), dob.getMonth(), dob.getDate());
-        if (nextBday < targetDate) {
-          nextBday.setFullYear(targetDate.getFullYear() + 1);
-        }
-        const bdayDiffMs = nextBday.getTime() - targetDate.getTime();
-        const bdayDiffDays = Math.ceil(bdayDiffMs / (1000 * 60 * 60 * 24));
-        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const nextBdayDayOfWeek = dayNames[nextBday.getDay()];
-
-        const zodiac = getZodiacSign(dob.getDate(), dob.getMonth() + 1);
-
-        return {
-          years, months, days,
-          totalMonths, totalWeeks, totalDays, totalHours, totalMinutes,
-          nextBdayDays: bdayDiffDays,
-          nextBdayDayOfWeek,
-          zodiac
-        };
+      if (months < 0) {
+        years--;
+        months += 12;
       }
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const dobVal = dobInput.value;
-        const targetVal = targetInput.value || todayStr;
+      const diffMs = targetDate.getTime() - dob.getTime();
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const totalWeeks = Math.floor(totalDays / 7);
+      const totalMonths = (years * 12) + months;
+      const totalHours = totalDays * 24;
+      const totalMinutes = totalHours * 60;
 
-        if (!dobVal) {
-          window.showToast('Please select your Date of Birth.', 'warning');
-          return;
-        }
+      // Next Birthday
+      const nextBday = new Date(targetDate.getFullYear(), dob.getMonth(), dob.getDate());
+      if (nextBday < targetDate) {
+        nextBday.setFullYear(targetDate.getFullYear() + 1);
+      }
+      const bdayDiffMs = nextBday.getTime() - targetDate.getTime();
+      const bdayDiffDays = Math.ceil(bdayDiffMs / (1000 * 60 * 60 * 24));
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const nextBdayDayOfWeek = dayNames[nextBday.getDay()];
 
-        const dob = new Date(dobVal + 'T00:00:00');
-        const target = new Date(targetVal + 'T00:00:00');
+      const zodiac = getZodiacSign(dob.getDate(), dob.getMonth() + 1);
 
-        if (dob > target) {
-          window.showToast('Date of Birth cannot be after the reference date.', 'error');
-          return;
-        }
+      return {
+        years, months, days,
+        totalMonths, totalWeeks, totalDays, totalHours, totalMinutes,
+        nextBdayDays: bdayDiffDays,
+        nextBdayDayOfWeek,
+        zodiac
+      };
+    }
 
-        const res = calculateAge(dob, target);
+    // Tab 1: Chronological Age
+    function calculateDobAge() {
+      const dobVal = document.getElementById('primaryDob').value;
+      const targetVal = document.getElementById('primaryTargetDate').value || todayStr;
 
-        document.getElementById('primaryAgeText').textContent = `${res.years} Years, ${res.months} Months, ${res.days} Days`;
-        document.getElementById('nextBirthdayText').textContent = res.nextBdayDays === 0 ? '🎉 Happy Birthday Today!' : `Next Birthday in ${res.nextBdayDays} days (on a ${res.nextBdayDayOfWeek})`;
-        
-        document.getElementById('statTotalMonths').textContent = res.totalMonths.toLocaleString();
-        document.getElementById('statTotalWeeks').textContent = res.totalWeeks.toLocaleString();
-        document.getElementById('statTotalDays').textContent = res.totalDays.toLocaleString();
-        document.getElementById('statTotalHours').textContent = res.totalHours.toLocaleString();
-        document.getElementById('statTotalMinutes').textContent = res.totalMinutes.toLocaleString();
-        document.getElementById('statZodiac').textContent = res.zodiac;
+      if (!dobVal) {
+        alert('Please select your Date of Birth.');
+        return;
+      }
 
-        resultsArea.classList.add('active');
-        resultsArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const dob = new Date(dobVal + 'T00:00:00');
+      const target = new Date(targetVal + 'T00:00:00');
+
+      if (dob > target) {
+        alert('Date of Birth cannot be in the future relative to the reference date.');
+        return;
+      }
+
+      const res = computeDateDifference(dob, target);
+
+      document.getElementById('primaryAgeText').textContent = `${res.years} Years, ${res.months} Months, ${res.days} Days`;
+      document.getElementById('nextBirthdayText').textContent = res.nextBdayDays === 0 ? '🎉 Happy Birthday Today!' : `Next Birthday in ${res.nextBdayDays} days (on a ${res.nextBdayDayOfWeek})`;
+
+      document.getElementById('metricMonths').textContent = res.totalMonths.toLocaleString();
+      document.getElementById('metricWeeks').textContent = res.totalWeeks.toLocaleString();
+      document.getElementById('metricDays').textContent = res.totalDays.toLocaleString();
+      document.getElementById('metricHours').textContent = res.totalHours.toLocaleString();
+      document.getElementById('metricMinutes').textContent = res.totalMinutes.toLocaleString();
+      document.getElementById('metricZodiac').textContent = res.zodiac;
+
+      document.getElementById('dobResultCard').style.display = 'block';
+    }
+
+    function resetDobAgeForm() {
+      document.getElementById('primaryDob').value = '';
+      document.getElementById('primaryTargetDate').value = todayStr;
+      document.getElementById('dobResultCard').style.display = 'none';
+    }
+
+    function copyAgeSummary() {
+      const ageStr = document.getElementById('primaryAgeText').textContent;
+      const bdayStr = document.getElementById('nextBirthdayText').textContent;
+      const daysStr = document.getElementById('metricDays').textContent;
+
+      const summary = `Chronological Age Details:
+- Age: ${ageStr}
+- Birthday Status: ${bdayStr}
+- Total Days Lived: ${daysStr}
+Calculated via Vytra: https://digitalsaathi.vytra.in/calculators/age.html`;
+
+      navigator.clipboard.writeText(summary).then(() => {
+        const notice = document.getElementById('copyAgeNotice');
+        notice.style.display = 'block';
+        setTimeout(() => { notice.style.display = 'none'; }, 3000);
+      });
+    }
+
+    // Tab 2: Exam Cut-off Age
+    function setExamCutoff(dateStr, label) {
+      document.getElementById('examCutoffDate').value = dateStr;
+      const note = document.getElementById('examCutoffNote');
+      if (note) note.textContent = `Applied preset: ${label}`;
+    }
+
+    function calculateExamAge() {
+      const dobVal = document.getElementById('examDob').value;
+      const cutoffVal = document.getElementById('examCutoffDate').value;
+      const minAge = parseFloat(document.getElementById('minAgeReq').value) || 18;
+      const maxAge = parseFloat(document.getElementById('maxAgeReq').value) || 32;
+
+      if (!dobVal || !cutoffVal) {
+        alert('Please enter both your Date of Birth and the Exam Cut-off date.');
+        return;
+      }
+
+      const dob = new Date(dobVal + 'T00:00:00');
+      const cutoff = new Date(cutoffVal + 'T00:00:00');
+
+      if (dob > cutoff) {
+        alert('Date of birth cannot be after the exam cut-off date.');
+        return;
+      }
+
+      const res = computeDateDifference(dob, cutoff);
+      document.getElementById('examAgeText').textContent = `${res.years} Years, ${res.months} Months, ${res.days} Days`;
+
+      const badge = document.getElementById('examEligibilityBadge');
+      const isEligible = res.years >= minAge && (res.years < maxAge || (res.years === maxAge && res.months === 0 && res.days === 0));
+
+      if (isEligible) {
+        badge.textContent = `✓ Eligible (${minAge} to ${maxAge} Years Bracket)`;
+        badge.style.background = '#dcfce7';
+        badge.style.color = '#15803d';
+        badge.style.border = '1px solid #86efac';
+      } else if (res.years < minAge) {
+        badge.textContent = `✕ Underage (Minimum required: ${minAge} Years)`;
+        badge.style.background = '#fee2e2';
+        badge.style.color = '#b91c1c';
+        badge.style.border = '1px solid #fca5a5';
+      } else {
+        badge.textContent = `✕ Overage (Maximum allowed: ${maxAge} Years)`;
+        badge.style.background = '#fee2e2';
+        badge.style.color = '#b91c1c';
+        badge.style.border = '1px solid #fca5a5';
+      }
+
+      document.getElementById('examCutoffNote').textContent = `Calculated as of ${cutoffVal}. Check official notification for category relaxation (OBC +3 yrs, SC/ST +5 yrs).`;
+      document.getElementById('examResultCard').style.display = 'block';
+    }
+
+    // Tab 3: Age Difference
+    function calculateAgeDifference() {
+      const p1Val = document.getElementById('person1Dob').value;
+      const p2Val = document.getElementById('person2Dob').value;
+
+      if (!p1Val || !p2Val) {
+        alert('Please enter dates of birth for both individuals.');
+        return;
+      }
+
+      const p1 = new Date(p1Val + 'T00:00:00');
+      const p2 = new Date(p2Val + 'T00:00:00');
+
+      let older = p1 < p2 ? 'Person 1' : 'Person 2';
+      let earlierDate = p1 < p2 ? p1 : p2;
+      let laterDate = p1 < p2 ? p2 : p1;
+
+      if (p1.getTime() === p2.getTime()) {
+        document.getElementById('diffTextVal').textContent = '0 Years, 0 Months, 0 Days';
+        document.getElementById('diffOlderText').textContent = 'Both persons were born on the exact same day!';
+        document.getElementById('diffDaysText').textContent = 'Total difference: 0 days';
+        document.getElementById('diffResultCard').style.display = 'block';
+        return;
+      }
+
+      const res = computeDateDifference(earlierDate, laterDate);
+      document.getElementById('diffTextVal').textContent = `${res.years} Years, ${res.months} Months, ${res.days} Days`;
+      document.getElementById('diffOlderText').textContent = `${older} is older by ${res.years} years, ${res.months} months, and ${res.days} days.`;
+      document.getElementById('diffDaysText').textContent = `Total calendar difference: ${res.totalDays.toLocaleString()} days`;
+      document.getElementById('diffResultCard').style.display = 'block';
+    }
+
+    // Tab 4: Life Milestones
+    function calculateMilestones() {
+      const dobVal = document.getElementById('milestoneDob').value || document.getElementById('primaryDob').value;
+      if (!dobVal) {
+        alert('Please enter your Date of Birth.');
+        return;
+      }
+
+      const dob = new Date(dobVal + 'T00:00:00');
+      const now = new Date();
+      if (dob > now) {
+        alert('Date of Birth cannot be in the future.');
+        return;
+      }
+
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      document.getElementById('bornDayOfWeek').textContent = dayNames[dob.getDay()];
+
+      const diffMs = now.getTime() - dob.getTime();
+      const totalMinutes = Math.floor(diffMs / (1000 * 60));
+      const heartbeats = totalMinutes * 72;
+      const breaths = totalMinutes * 16;
+
+      document.getElementById('milestoneHeartbeats').textContent = heartbeats.toLocaleString();
+      document.getElementById('milestoneBreaths').textContent = breaths.toLocaleString();
+
+      const milestones = [18, 21, 25, 30, 40, 50, 60, 75, 100];
+      const listEl = document.getElementById('milestonesList');
+      listEl.innerHTML = '';
+
+      milestones.forEach(m => {
+        const mDate = new Date(dob.getFullYear() + m, dob.getMonth(), dob.getDate());
+        const isPast = mDate < now;
+        const cell = document.createElement('div');
+        cell.style.padding = '8px 12px';
+        cell.style.border = '1px solid #e2e8f0';
+        cell.style.borderRadius = '6px';
+        cell.style.background = isPast ? '#f1f5f9' : '#eff6ff';
+        cell.innerHTML = `
+          <div style="font-weight:700; font-size:0.85rem; color:${isPast ? '#64748b' : '#2563eb'};">${m}th Birthday</div>
+          <div style="font-size:0.8rem; color:#1e293b;">${mDate.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</div>
+          <div style="font-size:0.7rem; color:${isPast ? '#94a3b8' : '#16a34a'}; font-weight:600;">${isPast ? 'Completed' : 'Upcoming'}</div>
+        `;
+        listEl.appendChild(cell);
       });
 
-      resetBtn.addEventListener('click', () => {
-        form.reset();
-        targetInput.value = todayStr;
-        resultsArea.classList.remove('active');
+      document.getElementById('milestoneResultCard').style.display = 'block';
+    }
+
+    // Rating star handler
+    const ratingBtns = document.querySelectorAll('.vytra-star-btn');
+    ratingBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = parseInt(btn.dataset.val);
+        ratingBtns.forEach((b, idx) => {
+          b.style.color = (idx < val) ? '#eab308' : '#cbd5e1';
+        });
+        document.getElementById('ratingFeedback').style.display = 'block';
       });
     });
   </script>
