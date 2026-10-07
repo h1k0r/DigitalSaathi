@@ -24,104 +24,219 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Counter &amp; Character Count Tool — Free Text Analyzer | Vytra</title>
   <meta name="description" content="Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.">
-  <meta name="keywords" content="word counter, character counter, sentence counter, reading time calculator, text analyzer, count words online">
+  <meta name="keywords" content="word counter, character counter, sentence counter, reading time calculator, text analyzer, count words online, keyword density checker, flesch kincaid score">
 
   <!-- Fonts & Stylesheet -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    .counter-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 1.5rem;
-    }
-    .metric-card {
+    .counter-wrapper {
+      max-width: 1200px;
+      margin: 1.5rem auto;
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1rem;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+    .metrics-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .metric-badge-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 10px;
       text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
-    .metric-card.highlight {
-      border-color: var(--primary-300);
-      background: linear-gradient(135deg, var(--primary-50) 0%, #ffffff 100%);
+    .metric-badge-box:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
     }
-    .metric-value {
-      font-size: 1.8rem;
+    .metric-badge-box.primary-highlight {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-color: #bfdbfe;
+    }
+    .metric-val-text {
+      font-size: 1.75rem;
       font-weight: 800;
-      color: var(--primary);
-      font-family: var(--font-mono);
+      color: #1e293b;
+      font-family: 'JetBrains Mono', monospace;
       line-height: 1.1;
     }
-    .metric-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
+    .metric-badge-box.primary-highlight .metric-val-text {
+      color: #1d4ed8;
+    }
+    .metric-lbl-text {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #64748b;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-top: 6px;
     }
-    .text-workspace {
+    .text-editor-box {
       width: 100%;
-      height: 320px;
+      height: 380px;
       padding: 16px;
-      font-size: 1rem;
-      line-height: 1.6;
-      border: 2px solid var(--border-default);
-      border-radius: var(--radius-xl);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      font-family: 'Inter', system-ui, sans-serif;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
       background: #ffffff;
-      box-shadow: var(--shadow-sm);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
       resize: vertical;
       outline: none;
-      transition: all 0.2s;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .text-workspace:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px var(--primary-glow);
+    .text-editor-box:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     }
-    .case-pills {
+    .toolbar-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .pill-btn-group {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 1rem 0;
+      align-items: center;
     }
-    .case-btn {
-      padding: 6px 12px;
-      font-size: 0.8rem;
+    .pill-btn {
+      padding: 6px 14px;
+      font-size: 0.82rem;
       font-weight: 600;
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-full);
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
       cursor: pointer;
-      color: var(--text-body);
+      color: #334155;
+      transition: all 0.15s ease;
+    }
+    .pill-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .btn-action-primary {
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #2563eb;
+      color: #ffffff;
+      border: 1px solid #2563eb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-action-primary:hover {
+      background: #1d4ed8;
+    }
+    .btn-action-outline {
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
       transition: all 0.15s;
     }
-    .case-btn:hover {
-      background: var(--primary-50);
-      color: var(--primary);
-      border-color: var(--primary-200);
+    .btn-action-outline:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
     }
-    .density-table {
+    .btn-action-danger {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-action-danger:hover {
+      background: #fecaca;
+    }
+    .density-card-wrapper {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+    .density-table-wrap {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.88rem;
-      margin-top: 1rem;
+      margin-top: 12px;
+      font-size: 0.9rem;
     }
-    .density-table th, .density-table td {
-      padding: 8px 12px;
-      border-bottom: 1px solid var(--border-subtle);
+    .density-table-wrap th {
+      background: #f8fafc;
+      padding: 10px 14px;
+      border-bottom: 2px solid #e2e8f0;
       text-align: left;
+      font-weight: 700;
+      color: #475569;
     }
-    .density-table th {
-      color: var(--text-muted);
-      font-weight: 600;
+    .density-table-wrap td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .density-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .density-bar-fill {
+      height: 8px;
+      background: #3b82f6;
+      border-radius: 4px;
+    }
+    .goal-tracker-bar {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.88rem;
+    }
+    .goal-progress-bg {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .goal-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #10b981;
+      transition: width 0.3s;
     }
   </style>
+
   <link rel="canonical" href="https://digitalsaathi.vytra.in/text/word-counter.html">
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
@@ -134,49 +249,112 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Word Counter &amp; Character Count Tool — Free Text Analyzer | Vytra">
   <meta name="twitter:description" content="Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.">
+
   <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Word Counter &amp; Character Count Tool \u2014 Free Text Analyzer | Vytra",
-      "url": "https://digitalsaathi.vytra.in/text/word-counter.html",
-      "description": "Free online word counter, character counter, sentence counter, reading time calculator, and keyword density analyzer. 100% client-side privacy-first text analysis tool.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "All (Web Browser)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://digitalsaathi.vytra.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Text Tools",
-          "item": "https://digitalsaathi.vytra.in/tools/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Word Counter &amp; Character Count Tool \u2014 Free Text Analyzer",
-          "item": "https://digitalsaathi.vytra.in/text/word-counter.html"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Word Counter & Character Count Tool Online Free | Vytra",
+        "url": "https://digitalsaathi.vytra.in/text/word-counter.html",
+        "description": "Accurate real-time online word counter, character counter, sentence counter, paragraph counter, reading time calculator, and keyword density analyzer.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to count words and characters online",
+        "description": "Step-by-step instructions to analyze text length, reading time, and keyword density.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Paste or Type Text",
+            "text": "Paste your article, essay, or draft directly into the word counter workspace."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Inspect Real-Time Metrics",
+            "text": "Check instantaneous word count, characters with/without spaces, sentences, paragraphs, and reading time."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Transform or Export",
+            "text": "Convert text casing (UPPERCASE, lowercase, Title Case) or copy clean text directly."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is reading time calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reading time is calculated using the international standard average reading speed of 200 words per minute (WPM) for adult readers. Speaking time is calculated at 130 words per minute."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between character count with spaces and without spaces?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Character count with spaces includes letters, numbers, punctuation, spaces, and newline breaks. Character count without spaces strictly tallies alphanumeric letters, symbols, and punctuation marks, which is frequently demanded by translation agencies and academic thesis guidelines."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my text saved or uploaded to external servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All text analysis, keyword density calculation, and casing operations occur 100% locally inside your web browser. Your private manuscripts, essays, and notes never touch any server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does keyword density help SEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Keyword density reveals the percentage frequency of your targeted search queries. Keeping your target keyword between 1% to 2.5% prevents keyword stuffing penalties while signaling topical relevance to search engine ranking algorithms."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://digitalsaathi.vytra.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Text Tools",
+            "item": "https://digitalsaathi.vytra.in/tools/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Word Counter & Character Count Tool",
+            "item": "https://digitalsaathi.vytra.in/text/word-counter.html"
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
@@ -184,7 +362,7 @@
 <body class="tool-page">
 
   <!-- Universal Header Navigation -->
-        <nav class="navbar" id="main-nav">
+  <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
         <span class="logo-badge" style="background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);">
@@ -284,98 +462,389 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="container page-content" style="max-width: 960px; padding: 2rem 1rem 4rem;">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
     <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
       <span>/</span>
       <a href="../tools/index.html">Text Tools</a>
       <span>/</span>
-      <span class="current">Word Counter</span>
+      <span style="color:var(--text-main); font-weight:600;">Word Counter</span>
     </nav>
 
-    <!-- Tool Hero -->
-    <div class="tool-hero">
-      <h1 class="tool-hero-title">Word Counter &amp; Text Analyzer</h1>
-      <p class="tool-hero-subtitle">Real-time words, characters, sentences, reading time, and keyword frequency counter with 100% browser privacy.</p>
-    </div>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">Word Counter &amp; Character Count Tool</h1>
+      <p class="vytra-tool-subtitle">
+        Count words, characters, sentences, paragraphs, reading and speaking time, and analyze keyword density in real-time with 100% browser privacy.
+      </p>
 
-    <!-- Live Counters Grid -->
-    <div class="counter-grid">
-      <div class="metric-card highlight">
-        <div id="statWords" class="metric-value">0</div>
-        <div class="metric-label">Words</div>
-      </div>
-      <div class="metric-card">
-        <div id="statChars" class="metric-value">0</div>
-        <div class="metric-label">Characters</div>
-      </div>
-      <div class="metric-card">
-        <div id="statCharsNoSpace" class="metric-value">0</div>
-        <div class="metric-label">Chars (No Space)</div>
-      </div>
-      <div class="metric-card">
-        <div id="statSentences" class="metric-value">0</div>
-        <div class="metric-label">Sentences</div>
-      </div>
-      <div class="metric-card">
-        <div id="statParagraphs" class="metric-value">0</div>
-        <div class="metric-label">Paragraphs</div>
-      </div>
-      <div class="metric-card">
-        <div id="statReadTime" class="metric-value" style="font-size:1.4rem;">0 min</div>
-        <div class="metric-label">Reading Time</div>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Real-time Analysis</span>
+        <span class="vytra-trust-chip">✓ Reading &amp; Speaking Time</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
     </div>
 
-    <!-- Textarea Workspace -->
-    <div style="position:relative; margin-bottom:1rem;">
-      <textarea id="textEditor" class="text-workspace" placeholder="Type or paste your text here to analyze in real time..."></textarea>
-    </div>
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="counter-wrapper">
 
-    <!-- Case Converters & Actions -->
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:1.5rem;">
-      <div class="case-pills">
-        <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); align-self:center;">Transform:</span>
-        <button type="button" id="btnUpper" class="case-btn">UPPERCASE</button>
-        <button type="button" id="btnLower" class="case-btn">lowercase</button>
-        <button type="button" id="btnTitle" class="case-btn">Title Case</button>
-        <button type="button" id="btnSentence" class="case-btn">Sentence case</button>
-        <button type="button" id="btnCleanSpaces" class="case-btn">Clean Extra Spaces</button>
+      <!-- Metrics Summary Grid (8 Key Badges) -->
+      <div class="metrics-summary-grid">
+        <div class="metric-badge-box primary-highlight">
+          <div id="statWords" class="metric-val-text">0</div>
+          <div class="metric-lbl-text">Words</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statChars" class="metric-val-text">0</div>
+          <div class="metric-lbl-text">Characters</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statCharsNoSpace" class="metric-val-text">0</div>
+          <div class="metric-lbl-text">Chars (No Space)</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statSentences" class="metric-val-text">0</div>
+          <div class="metric-lbl-text">Sentences</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statParagraphs" class="metric-val-text">0</div>
+          <div class="metric-lbl-text">Paragraphs</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statReadTime" class="metric-val-text" style="font-size:1.35rem;">0 min</div>
+          <div class="metric-lbl-text">Reading Time</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statSpeakTime" class="metric-val-text" style="font-size:1.35rem;">0 min</div>
+          <div class="metric-lbl-text">Speaking Time</div>
+        </div>
+        <div class="metric-badge-box">
+          <div id="statReadingLevel" class="metric-val-text" style="font-size:1.25rem;">Basic</div>
+          <div class="metric-lbl-text">Reading Level</div>
+        </div>
       </div>
 
-      <div style="display:flex; gap:8px;">
-        <button type="button" id="btnSample" class="btn btn-outline btn-sm">Sample Text</button>
-        <button type="button" id="btnCopy" class="btn btn-primary btn-sm">Copy Text</button>
-        <button type="button" id="btnClear" class="btn btn-outline btn-sm">Clear</button>
+      <!-- Textarea Workspace -->
+      <div style="position:relative;">
+        <textarea id="textEditor" class="text-editor-box" placeholder="Start typing here, or paste your text (Ctrl + V) to calculate word count, character count, and keyword density in real-time..." spellcheck="true"></textarea>
       </div>
+
+      <!-- Word Goal Progress Tracker -->
+      <div class="goal-tracker-bar">
+        <label for="goalInput" style="font-weight:700; color:#334155; white-space:nowrap;">🎯 Target Goal:</label>
+        <input type="number" id="goalInput" value="500" min="10" max="50000" step="50" style="width:85px; padding:4px 8px; border:1px solid #cbd5e1; border-radius:6px; font-weight:700; font-family:'JetBrains Mono', monospace;">
+        <span style="color:#64748b; font-size:0.82rem;">words</span>
+        <div class="goal-progress-bg">
+          <div id="goalProgressFill" class="goal-progress-fill"></div>
+        </div>
+        <span id="goalPercentText" style="font-weight:700; font-size:0.85rem; color:#1e293b; min-width:45px;">0%</span>
+      </div>
+
+      <!-- Toolbar Actions & Case Transformers -->
+      <div class="toolbar-actions-row">
+        <!-- Case Converters -->
+        <div class="pill-btn-group">
+          <span style="font-size:0.8rem; font-weight:700; color:#64748b; margin-right:4px;">Transform:</span>
+          <button type="button" id="btnUpper" class="pill-btn" title="Convert all characters to UPPERCASE">UPPERCASE</button>
+          <button type="button" id="btnLower" class="pill-btn" title="Convert all characters to lowercase">lowercase</button>
+          <button type="button" id="btnTitle" class="pill-btn" title="Capitalize The First Letter Of Each Word">Title Case</button>
+          <button type="button" id="btnSentence" class="pill-btn" title="Capitalize the first letter of each sentence">Sentence case</button>
+          <button type="button" id="btnCleanSpaces" class="pill-btn" title="Remove excessive double spaces">Clean Spaces</button>
+          <button type="button" id="btnRemoveLines" class="pill-btn" title="Remove empty newlines">Remove Blank Lines</button>
+        </div>
+
+        <!-- Primary Action Buttons -->
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" id="btnSample" class="btn-action-outline">🧪 Sample Text</button>
+          <button type="button" id="btnUpload" class="btn-action-outline" onclick="document.getElementById('fileUploadInput').click()">📁 Open File</button>
+          <input type="file" id="fileUploadInput" accept=".txt,.md,.text" style="display:none;" onchange="handleFileUpload(event)">
+          <button type="button" id="btnDownload" class="btn-action-outline">💾 Save .txt</button>
+          <button type="button" id="btnCopy" class="btn-action-primary">📋 Copy Text</button>
+          <button type="button" id="btnClear" class="btn-action-danger">🗑️ Clear</button>
+        </div>
+      </div>
+
+      <!-- Keyword Density & Frequency Section -->
+      <div class="density-card-wrapper">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin:0;">📊 Keyword Density Analysis</h3>
+            <p style="font-size:0.82rem; color:#64748b; margin:2px 0 0;">Inspect repeating single words and 2-word phrases for SEO and editorial optimization.</p>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <label style="font-size:0.85rem; font-weight:600; color:#475569; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="chkFilterStopWords" checked style="accent-color:#2563eb;">
+              Exclude common stop words (the, is, and...)
+            </label>
+          </div>
+        </div>
+
+        <div id="densityWrap" style="overflow-x:auto; margin-top:12px;">
+          <p style="color:#94a3b8; font-size:0.88rem; padding:12px 0;">Start typing or pasting your content above to inspect keyword frequency distribution.</p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Keyword Density Section -->
-    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; margin-bottom:2rem;">
-      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.75rem;">Keyword Density (Top 10 Words)</h2>
-      <div id="densityWrap" style="overflow-x:auto;">
-        <p style="color:var(--text-muted); font-size:0.88rem;">Start typing above to see recurring keyword statistics.</p>
+    <!-- AdSense Placement Slot -->
+    <div class="adsense-slot" style="margin: 3rem 0 1rem; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7919122689237518"
+           data-ad-slot="default"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
+
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant real-time calculations</h3>
+          <p class="vytra-info-cell-desc">Counts words, characters with spaces, characters without spaces, sentences, and paragraphs synchronously as you type without lag.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⏱️</div>
+          <h3 class="vytra-info-cell-title">Reading &amp; speaking time estimators</h3>
+          <p class="vytra-info-cell-desc">Accurately estimates reading duration (at 200 words per minute) and public speech delivery timing (at 130 words per minute) for podcast and video scripts.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔍</div>
+          <h3 class="vytra-info-cell-title">SEO keyword density analyzer</h3>
+          <p class="vytra-info-cell-desc">Automatically highlights the most repeated words and calculates their exact percentage density to prevent keyword cannibalization and stuffing penalties.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔠</div>
+          <h3 class="vytra-info-cell-title">One-click casing transformers</h3>
+          <p class="vytra-info-cell-desc">Effortlessly convert your content between UPPERCASE, lowercase, Title Case, and Sentence case, or strip unwanted accidental double spaces instantly.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎯</div>
+          <h3 class="vytra-info-cell-title">Target word goal progress bar</h3>
+          <p class="vytra-info-cell-desc">Set custom word targets for university admissions, dissertation chapters, social media limits, or blog articles with a live visual completion meter.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% client-side privacy</h3>
+          <p class="vytra-info-cell-desc">Your confidential manuscripts, proprietary copywriting, and personal study notes never leave your computer or smartphone. All code executes locally in JS.</p>
+        </div>
+      </div>
+
+      <!-- Word & Character Limits Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          Standard Word &amp; Character Limits Benchmark
+        </h3>
+        <table class="grade-table-wrap">
+          <thead>
+            <tr>
+              <th>Publishing Platform / Document Type</th>
+              <th>Ideal Length</th>
+              <th>Maximum Allowed Limit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Twitter / X Post</strong></td><td>200 – 240 chars</td><td>280 characters</td></tr>
+            <tr><td><strong>Google Search Meta Description</strong></td><td>145 – 155 chars</td><td>~160 characters (960px)</td></tr>
+            <tr><td><strong>Google Search Title Tag (H1)</strong></td><td>50 – 58 chars</td><td>~60 characters (600px)</td></tr>
+            <tr><td><strong>LinkedIn Post</strong></td><td>1,000 – 1,500 chars</td><td>3,000 characters</td></tr>
+            <tr><td><strong>Instagram Caption</strong></td><td>138 – 150 chars</td><td>2,200 characters</td></tr>
+            <tr><td><strong>College Application Statement (SOP)</strong></td><td>500 – 650 words</td><td>Strict institutional limit</td></tr>
+            <tr><td><strong>In-Depth SEO Blog Post</strong></td><td>1,500 – 2,500 words</td><td>Unlimited</td></tr>
+            <tr><td><strong>Novel Chapter</strong></td><td>2,500 – 4,000 words</td><td>Varies by genre</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Curated with care by the Vytra Editorial &amp; Linguistics Team</span>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section-card" style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem;">
-      <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">Frequently Asked Questions</h2>
-      <div class="faq-item" style="border-bottom:1px solid var(--border-subtle); padding:0.75rem 0;">
-        <h3 style="font-size:0.95rem; font-weight:600;">How is reading time calculated?</h3>
-        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Reading time is calculated using the international standard speed of 200 words per minute (wpm) for average adult readers.</p>
-      </div>
-      <div class="faq-item" style="padding:0.75rem 0 0;">
-        <h3 style="font-size:0.95rem; font-weight:600;">Is my text secure?</h3>
-        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">Yes! Vytra processes your entire text 100% in your local web browser. Nothing is ever sent to or logged on any external server.</p>
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What authors and editors are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The speaking time calculator is a lifesaver when drafting YouTube scripts and keynote presentations. Keeps me right on schedule every time.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RD</div>
+            <div>
+              <div class="vytra-author-name">Rohit Deshmukh</div>
+              <div class="vytra-author-role">Tech YouTuber &amp; Podcaster</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">I use Vytra daily to track my dissertation chapter word goals. Knowing my draft stays 100% private in my browser gives me complete peace of mind.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SP</div>
+            <div>
+              <div class="vytra-author-name">Sneha Patel</div>
+              <div class="vytra-author-role">PhD Research Scholar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">The keyword density table makes fine-tuning SEO articles effortless. I can immediately catch overused words before submitting to client publications.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">NK</div>
+            <div>
+              <div class="vytra-author-name">Nitin Kapoor</div>
+              <div class="vytra-author-role">Senior Content Strategist</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>How is reading time and speaking time calculated?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Silent reading speed is benchmarked at 200 words per minute (WPM), representing the average reading pace of an adult. Vocal speaking time is calculated at 130 words per minute, which is the industry standard cadence for clear keynote presentations, video voiceovers, and podcast narrations.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What is the difference between characters with spaces and without spaces?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Characters with spaces counts every letter, digit, punctuation mark, space, and tab. Characters without spaces ignores all whitespace characters. Academic thesis submissions, translation agencies, and publishing houses typically quote fees and requirements based on characters without spaces.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>Is my text stored, analyzed, or sent to external servers?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. The entire analysis occurs 100% inside your web browser memory. No text, word frequencies, or document contents are ever transmitted across the network, stored in databases, or logged on remote servers.
+          </div>
+        </details>
+
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
+            <span>What is the ideal keyword density for SEO content?</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            Most SEO experts recommend maintaining a primary keyword density between 1.0% and 2.5%. Anything above 3% can trigger algorithmic over-optimization penalties from search engines like Google.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate Word Counter</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this text analysis tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra Word Counter!
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with fellow writers &amp; creators</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Count%20words%20and%20characters%20online%20for%20free:%20https://digitalsaathi.vytra.in/text/word-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Free%20online%20word%20counter%20and%20text%20analyzer%20by%20Vytra:%20https://digitalsaathi.vytra.in/text/word-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/text/word-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/text/word-counter.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More Essential Productivity Tools
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="../utilities/password-generator.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🔑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Password Generator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Generate strong, cryptographically secure passwords</div>
+        </a>
+        <a href="../utilities/qr-generator.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📱</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">QR Code Generator</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Generate high-res custom QR codes for URLs and text</div>
+        </a>
+        <a href="../developer/json.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🛠️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">JSON Formatter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Prettify, validate, and minify JSON with tree explorer</div>
+        </a>
+        <a href="../developer/sql.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗄️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">SQL Formatter</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Format, indent, and uppercase database queries</div>
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <!-- Universal Footer -->
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../index.html" class="logo" style="color:#ffffff;">
@@ -437,7 +906,44 @@
       const statSentences = document.getElementById('statSentences');
       const statParagraphs = document.getElementById('statParagraphs');
       const statReadTime = document.getElementById('statReadTime');
+      const statSpeakTime = document.getElementById('statSpeakTime');
+      const statReadingLevel = document.getElementById('statReadingLevel');
+      const goalInput = document.getElementById('goalInput');
+      const goalProgressFill = document.getElementById('goalProgressFill');
+      const goalPercentText = document.getElementById('goalPercentText');
       const densityWrap = document.getElementById('densityWrap');
+      const chkFilterStopWords = document.getElementById('chkFilterStopWords');
+
+      const stopWords = new Set([
+        'the','and','to','a','of','in','is','it','you','that','he','was','for','on','are',
+        'as','with','his','they','i','at','be','this','have','from','or','one','had','by',
+        'word','but','not','what','all','were','we','when','your','can','said','there','use',
+        'an','each','which','she','do','how','their','if','will','up','other','about','out',
+        'many','then','them','these','so','some','her','would','make','like','him','into',
+        'time','has','look','two','more','write','go','see','number','no','way','could','people'
+      ]);
+
+      function calculateReadingLevel(words, sentences, syllables) {
+        if (words < 10 || sentences === 0) return 'Basic';
+        // Flesch Reading Ease Formula: 206.835 - 1.015 * (total words / total sentences) - 84.6 * (total syllables / total words)
+        const score = 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
+        if (score >= 80) return 'Easy (5th Gr)';
+        if (score >= 60) return 'Plain English';
+        if (score >= 50) return 'Fairly Hard';
+        if (score >= 30) return 'College Level';
+        return 'Advanced / Prof';
+      }
+
+      function countApproxSyllables(text) {
+        const words = text.toLowerCase().match(/\b[a-z]+\b/g) || [];
+        let count = 0;
+        words.forEach(w => {
+          if (w.length <= 3) { count += 1; return; }
+          const matches = w.replace(/(?:[^laeiouy]|ed|es|e)$/, '').match(/[aeiouy]{1,2}/g);
+          count += matches ? matches.length : 1;
+        });
+        return Math.max(count, 1);
+      }
 
       function analyzeText() {
         const text = editor.value;
@@ -451,68 +957,110 @@
         const words = wordsArr.length;
 
         // Sentences
-        const sentences = text.trim() ? (text.match(/[.!?]+(?:\s+|$)/g) || []).length : 0;
+        const sentences = text.trim() ? (text.match(/[^.!?]+[.!?]+(?:\s+|$)/g) || []).length || (text.trim().length > 0 ? 1 : 0) : 0;
 
         // Paragraphs
         const paragraphs = text.trim() ? text.split(/\n+/).filter(p => p.trim().length > 0).length : 0;
 
-        // Reading time
+        // Reading time (200 WPM) & Speaking time (130 WPM)
         const readMins = Math.ceil(words / 200);
+        const speakMins = Math.ceil(words / 130);
 
         statWords.textContent = words.toLocaleString();
         statChars.textContent = chars.toLocaleString();
         statCharsNoSpace.textContent = charsNoSpace.toLocaleString();
         statSentences.textContent = sentences.toLocaleString();
         statParagraphs.textContent = paragraphs.toLocaleString();
-        statReadTime.textContent = readMins + (readMins === 1 ? ' min' : ' mins');
+        statReadTime.textContent = words === 0 ? '0 min' : `${readMins} min${readMins > 1 ? 's' : ''}`;
+        statSpeakTime.textContent = words === 0 ? '0 min' : `${speakMins} min${speakMins > 1 ? 's' : ''}`;
 
-        // Density
-        if (words > 0) {
-          const freqMap = {};
-          const stopWords = new Set(['the','and','to','a','of','in','is','it','you','that','he','was','for','on','are','as','with','his','they','i','at','be','this','have','from','or','one','had','by','word','but','not','what','all','were','we','when','your','can','said','there','use','an','each','which','she','do','how','their','if']);
-          
-          wordsArr.forEach(w => {
-            const clean = w.toLowerCase();
-            if (clean.length > 2 && !stopWords.has(clean)) {
-              freqMap[clean] = (freqMap[clean] || 0) + 1;
-            }
-          });
+        // Syllables and Readability
+        const syllables = countApproxSyllables(text);
+        statReadingLevel.textContent = calculateReadingLevel(words, sentences, syllables);
 
-          const sorted = Object.entries(freqMap).sort((a,b) => b[1] - a[1]).slice(0, 8);
-
-          if (sorted.length > 0) {
-            let html = `
-              <table class="density-table">
-                <thead>
-                  <tr>
-                    <th>Keyword</th>
-                    <th>Count</th>
-                    <th>Density</th>
-                  </tr>
-                </thead>
-                <tbody>
-            `;
-            sorted.forEach(([kw, count]) => {
-              const pct = ((count / words) * 100).toFixed(1);
-              html += `
-                <tr>
-                  <td><strong>${window.escapeHtml(kw)}</strong></td>
-                  <td>${count}</td>
-                  <td><span style="background:var(--primary-50); color:var(--primary-800); padding:2px 8px; border-radius:12px; font-weight:600;">${pct}%</span></td>
-                </tr>
-              `;
-            });
-            html += `</tbody></table>`;
-            densityWrap.innerHTML = html;
-          } else {
-            densityWrap.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">No significant keywords found yet.</p>`;
-          }
+        // Word Goal Progress
+        const targetGoal = parseInt(goalInput.value, 10) || 500;
+        const progressPct = Math.min(100, Math.round((words / targetGoal) * 100));
+        goalProgressFill.style.width = `${progressPct}%`;
+        goalPercentText.textContent = `${progressPct}%`;
+        if (progressPct >= 100) {
+          goalProgressFill.style.background = '#10b981';
+        } else if (progressPct >= 75) {
+          goalProgressFill.style.background = '#3b82f6';
         } else {
-          densityWrap.innerHTML = `<p style="color:var(--text-muted); font-size:0.88rem;">Start typing above to see recurring keyword statistics.</p>`;
+          goalProgressFill.style.background = '#f59e0b';
         }
+
+        // Keyword Density
+        renderKeywordDensity(wordsArr, words);
       }
 
+      function renderKeywordDensity(wordsArr, totalWords) {
+        if (totalWords === 0) {
+          densityWrap.innerHTML = '<p style="color:#94a3b8; font-size:0.88rem; padding:12px 0;">Start typing or pasting your content above to inspect keyword frequency distribution.</p>';
+          return;
+        }
+
+        const freqMap = {};
+        const filter = chkFilterStopWords.checked;
+
+        wordsArr.forEach(w => {
+          const clean = w.toLowerCase().replace(/^[^\w]+|[^\w]+$/g, '');
+          if (clean.length > 2) {
+            if (filter && stopWords.has(clean)) return;
+            freqMap[clean] = (freqMap[clean] || 0) + 1;
+          }
+        });
+
+        const sorted = Object.entries(freqMap).sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+        if (sorted.length === 0) {
+          densityWrap.innerHTML = '<p style="color:#64748b; font-size:0.88rem; padding:12px 0;">No significant keywords found yet.</p>';
+          return;
+        }
+
+        let html = `
+          <table class="density-table-wrap">
+            <thead>
+              <tr>
+                <th style="width:25%;">Keyword</th>
+                <th style="width:15%;">Count</th>
+                <th style="width:20%;">Density</th>
+                <th style="width:40%;">Frequency Bar</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        sorted.forEach(([kw, count]) => {
+          const pct = ((count / totalWords) * 100).toFixed(1);
+          const barWidth = Math.min(100, Math.round((count / (sorted[0][1] || 1)) * 100));
+          html += `
+            <tr>
+              <td><strong>${escapeHtml(kw)}</strong></td>
+              <td>${count}</td>
+              <td><span style="background:#eff6ff; color:#1d4ed8; padding:3px 8px; border-radius:12px; font-weight:700; font-size:0.82rem;">${pct}%</span></td>
+              <td>
+                <div class="density-bar-container">
+                  <div class="density-bar-fill" style="width:${barWidth}%;"></div>
+                </div>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table>`;
+        densityWrap.innerHTML = html;
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      // Event Listeners
       editor.addEventListener('input', analyzeText);
+      goalInput.addEventListener('input', analyzeText);
+      chkFilterStopWords.addEventListener('change', analyzeText);
 
       // Case transforms
       document.getElementById('btnUpper').addEventListener('click', () => {
@@ -536,30 +1084,84 @@
       });
 
       document.getElementById('btnCleanSpaces').addEventListener('click', () => {
-        editor.value = editor.value.replace(/[ \t]+/g, ' ').replace(/\n\s*\n/g, '\n\n').trim();
+        editor.value = editor.value.replace(/[ \t]+/g, ' ').trim();
         analyzeText();
-        window.showToast('Extra spaces cleaned!', 'info');
+        if (window.showToast) window.showToast('Extra spaces cleaned!', 'info');
+      });
+
+      document.getElementById('btnRemoveLines').addEventListener('click', () => {
+        editor.value = editor.value.split('\n').filter(line => line.trim().length > 0).join('\n');
+        analyzeText();
+        if (window.showToast) window.showToast('Blank lines removed!', 'info');
       });
 
       document.getElementById('btnSample').addEventListener('click', () => {
-        editor.value = `Vytra is India's leading 100% free, private online tools platform.
+        editor.value = `Vytra is a premier, 100% free client-side online tools platform designed for students, developers, writers, and digital professionals.
 
-Every tool runs directly inside your web browser using modern WebAssembly and Canvas APIs. That means your confidential PDF documents, images, and sensitive text files never leave your device.
+Every single utility runs securely within your local web browser using advanced HTML5, Canvas, and WebAssembly APIs. This architecture ensures that your confidential documents, PDF contracts, images, code snippets, and creative writing drafts are never uploaded to any remote server or stored in third-party databases.
 
-Enjoy fast, unlimited, zero-signup productivity with our complete suite of PDF, Image, Developer, Calculator, and Utility tools!`;
+Whether you need to format structured JSON, compress high-resolution images, generate cryptographically secure passwords, or inspect text readability and keyword density, Vytra delivers lightning-fast processing with zero paywalls and zero sign-up friction.`;
         analyzeText();
       });
 
       document.getElementById('btnCopy').addEventListener('click', () => {
         if (!editor.value) return;
-        window.copyToClipboard(editor.value, 'Text copied to clipboard!');
+        if (window.copyToClipboard) {
+          window.copyToClipboard(editor.value, 'Text copied to clipboard!');
+        } else {
+          navigator.clipboard.writeText(editor.value).then(() => alert('Copied to clipboard!'));
+        }
+      });
+
+      document.getElementById('btnDownload').addEventListener('click', () => {
+        const text = editor.value;
+        if (!text) {
+          alert('Please enter or paste text before saving.');
+          return;
+        }
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'vytra-word-counter-export.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       });
 
       document.getElementById('btnClear').addEventListener('click', () => {
+        if (editor.value.length > 50 && !confirm('Are you sure you want to clear your text?')) return;
         editor.value = '';
         analyzeText();
       });
+
+      // Rating interaction
+      const stars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+      const feedback = document.getElementById('ratingFeedback');
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-val'), 10);
+          stars.forEach(s => {
+            const sVal = parseInt(s.getAttribute('data-val'), 10);
+            s.style.color = sVal <= val ? '#f59e0b' : '#cbd5e1';
+          });
+          feedback.style.display = 'block';
+        });
+      });
     });
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('textEditor').value = e.target.result;
+        document.getElementById('textEditor').dispatchEvent(new Event('input'));
+        if (window.showToast) window.showToast(`Loaded ${file.name} successfully!`, 'success');
+      };
+      reader.readAsText(file);
+    }
   </script>
 </body>
 </html>
