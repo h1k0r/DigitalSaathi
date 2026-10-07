@@ -306,14 +306,14 @@
   window.dsModal = dsModal;
 
   // ==========================================================================
-  // 5. SMART INTENT & INTENT DETECTION ENGINE
+  // 5. SMART INTENT & INTENT DETECTION ENGINE (Multi-lingual & Hinglish Ready)
   // ==========================================================================
   function matchSmartIntent(query) {
     const q = query.toLowerCase().trim().replace(/[-_]/g, ' ');
     if (!q || q.length < 2) return null;
 
-    // 1. Passport Photo Intent (SSC, UPSC, 3.5x4.5, etc.)
-    if (/(passport\s*photo|3\.5\s*x\s*4\.5|ssc\s*photo|upsc\s*photo|exam\s*photo|visa\s*photo|2\s*x\s*2\s*inch|gov\w*\s*photo)/i.test(q)) {
+    // 1. Passport Photo Intent (SSC, UPSC, 3.5x4.5, "passport size photo banana hai", etc.)
+    if (/(passport\s*photo|passport\s*pic|3\.5\s*x\s*4\.5|ssc\s*photo|upsc\s*photo|exam\s*photo|visa\s*photo|2\s*x\s*2\s*inch|gov\w*\s*photo|photo\s*passport\s*size|passport\s*banana|passport\s*size)/i.test(q)) {
       let preset = '3.5x4.5';
       let titleExtra = ' (3.5×4.5cm Indian Exam Preset)';
       if (/visa|us|2\s*x\s*2/i.test(q)) {
@@ -332,8 +332,8 @@
       };
     }
 
-    // 2. Signature Resizer Intent (Signature 20kb, 50kb, etc.)
-    if (/(sign\w*\s*(20\s*kb|50\s*kb|10\s*kb|100\s*kb|resize|dimension|ssc|upsc|ibps)|signature)/i.test(q)) {
+    // 2. Signature Resizer Intent ("signature 20kb", "signature 50 kb se kam", "sign chhota karna", etc.)
+    if (/(sign\w*\s*(20\s*kb|50\s*kb|10\s*kb|100\s*kb|resize|dimension|ssc|upsc|ibps|less|under|se\s*kam|chhota|banana|karna)|signature)/i.test(q)) {
       let target = '20';
       let preset = 'ssc';
       let titleExtra = ' (Under 20KB SSC/IBPS Preset)';
@@ -345,6 +345,10 @@
         target = '10';
         preset = 'ssc';
         titleExtra = ' (Under 10KB Preset)';
+      } else if (/100\s*kb/i.test(q)) {
+        target = '100';
+        preset = 'psc';
+        titleExtra = ' (Under 100KB Preset)';
       }
       return {
         title: 'Signature Resizer' + titleExtra,
@@ -355,9 +359,9 @@
       };
     }
 
-    // 3. Image KB Compressor (Photo 20kb, 50kb, 100kb, etc.)
-    const kbMatch = q.match(/(?:photo|image|pic|picture|compress|reduce|shrink|make)\s*(?:under|to|in)?\s*(\d{2,3})\s*(?:kb|k)/i) ||
-                    q.match(/(\d{2,3})\s*(?:kb|k)\s*(?:photo|image|pic|compress)/i);
+    // 3. Image KB Compressor ("photo 20kb karna hai", "photo under 50 kb", "image 100kb", etc.)
+    const kbMatch = q.match(/(?:photo|image|pic|picture|compress|reduce|shrink|make|karna|kam)\s*(?:under|to|in|se|less|ke\s*liye)?\s*(\d{2,3})\s*(?:kb|k)/i) ||
+                    q.match(/(\d{2,3})\s*(?:kb|k)\s*(?:photo|image|pic|compress|karna|se\s*kam|under)/i);
     if (kbMatch && !q.includes('sign')) {
       const kb = parseInt(kbMatch[1], 10);
       return {
@@ -369,7 +373,7 @@
       };
     }
 
-    // 4. DPI Converter Intent (300 DPI, 200 DPI, etc.)
+    // 4. DPI Converter Intent ("300 dpi", "convert to 200 dpi", "dpi change karna", etc.)
     const dpiMatch = q.match(/(\d{2,4})\s*dpi/i);
     if (dpiMatch || q.includes('dpi') || q.includes('ppi')) {
       const dpi = dpiMatch ? dpiMatch[1] : '300';
@@ -382,8 +386,8 @@
       };
     }
 
-    // 5. Combine / Join / Merge PDF
-    if (/combine\s*pdf|join\s*pdf|merge\s*pdf|put\s*pdf\s*together|concat\s*pdf/i.test(q)) {
+    // 5. Combine / Join / Merge PDF ("pdf jodna hai", "combine two pdf", "join pdf", "do pdf ek sath", etc.)
+    if (/combine\s*.*pdf|join\s*.*pdf|merge\s*.*pdf|put\s*pdf\s*together|concat\s*pdf|pdf\s*jodna|do\s*pdf|pdf\s*merge/i.test(q)) {
       return {
         title: 'Merge PDF (Combine Multiple Files)',
         category: 'PDF Tools',
@@ -393,8 +397,8 @@
       };
     }
 
-    // 6. Remove / Delete PDF Pages / Organize
-    if (/pdf\s*page\w*\s*(remove|delete|extract|reorder|organize)|(remove|delete)\s*pdf\s*page\w*/i.test(q)) {
+    // 6. Remove / Delete PDF Pages / Organize ("pdf ka page delete karna hai", "remove page from pdf", "pdf se page hatao", etc.)
+    if (/pdf\s*.*page\w*\s*(remove|delete|extract|reorder|organize|hatao|hata|chahiye)|(remove|delete|hatao|extract)\s*.*page\w*.*pdf|pdf\s*ka\s*page/i.test(q)) {
       return {
         title: 'Organize PDF (Delete, Reorder & Rotate Pages)',
         category: 'PDF Tools',
@@ -404,8 +408,8 @@
       };
     }
 
-    // 7. Images into PDF / Make PDF from Photos
-    if (/image\w*\s*(into|to)\s*pdf|photo\w*\s*(into|to)\s*pdf|make\s*pdf\s*from\s*(image|photo|pic)|turn\s*(image|photo|pic)\w*\s*into\s*pdf/i.test(q)) {
+    // 7. Images into PDF ("images ko pdf banana hai", "photo to pdf", "photos ko pdf me badalna", etc.)
+    if (/image\w*\s*(into|to|ko|se)\s*pdf|photo\w*\s*(into|to|ko|se)\s*pdf|make\s*pdf\s*from\s*(image|photo|pic)|turn\s*(image|photo|pic)\w*\s*into\s*pdf|pdf\s*banana\s*hai|photo\s*ko\s*pdf/i.test(q)) {
       return {
         title: 'JPG / Photos to PDF Converter',
         category: 'PDF Tools',
@@ -415,8 +419,8 @@
       };
     }
 
-    // 8. PDF Pictures / Extract Images from PDF
-    if (/pdf\s*(pictures|images|photo\w*)|extract\s*image\w*\s*from\s*pdf|save\s*pdf\s*as\s*(jpg|png|image)|turn\s*pdf\s*into\s*(image|jpg|png)/i.test(q)) {
+    // 8. PDF Pictures / Extract Images ("pdf se photo nikalna hai", "pdf se image nikalo", "pdf ko jpg mein convert karo", etc.)
+    if (/pdf\s*(pictures|images|photo\w*)|extract\s*image\w*\s*from\s*pdf|save\s*pdf\s*as\s*(jpg|png|image)|turn\s*pdf\s*into\s*(image|jpg|png)|pdf\s*se\s*(photo|image|nikal)|pdf\s*ko\s*(jpg|image|png)/i.test(q)) {
       return {
         title: 'PDF to JPG Converter (Extract PDF Images)',
         category: 'PDF Tools',
@@ -426,8 +430,8 @@
       };
     }
 
-    // 9. Remove Background
-    if (/remove\s*bg|remove\s*background|transparent\s*(bg|background|png)|white\s*background\s*photo/i.test(q)) {
+    // 9. Remove Background ("photo ka bg hatana", "transparent background", "white bg photo", etc.)
+    if (/remove\s*bg|remove\s*background|transparent\s*(bg|background|png)|white\s*background\s*photo|bg\s*(hata|change|remove|saaf)|background\s*hatana/i.test(q)) {
       return {
         title: 'Remove Background in HD Quality',
         category: 'Image Tools',
@@ -437,8 +441,8 @@
       };
     }
 
-    // 10. Marksheet / Xerox Scan Enhancer
-    if (/scan\s*(enhancer|clarify|clean)|marksheet\s*enhanc\w*|xerox\s*(clean|boost|contrast)|enhance\s*(scan|document|xerox)/i.test(q)) {
+    // 10. Marksheet / Xerox Scan Enhancer ("marksheet scan saaf karna", "xerox clean karna", etc.)
+    if (/scan\s*(enhancer|clarify|clean|saaf)|marksheet\s*(enhanc\w*|saaf|clear)|xerox\s*(clean|boost|contrast|saaf)|enhance\s*(scan|document|xerox)|scan\s*saaf/i.test(q)) {
       return {
         title: 'Photo Enhancer & Scan Optimizer',
         category: 'Image Tools',
