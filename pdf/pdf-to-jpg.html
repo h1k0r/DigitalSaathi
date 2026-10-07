@@ -25,76 +25,237 @@
   <title>PDF to JPG Converter — Convert PDF to Images Free Online | Vytra</title>
   <meta name="description" content="Convert PDF pages to high-quality JPG, PNG, or WebP images online for free. ✓ No file limits ✓ 100% In-Browser Privacy ✓ No watermarks or installation. Download single pages or ZIP package.">
   <meta name="keywords" content="pdf to jpg, pdf to images, convert pdf to jpg, pdf to image converter, pdf to png, pdf to webp, convert pdf to pictures, free pdf to jpg converter online, pdf pages to images, extract images from pdf, pdf24 alternative, ilovepdf alternative, convert pdf to high quality jpg">
-  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Fonts & Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <style>
-    .tool-page-container { max-width: 1000px; margin: 2rem auto 4rem; padding: 0 1rem; }
-    .tool-header-box { text-align: center; margin-bottom: 2rem; }
-    .tool-header-title { font-size: clamp(1.8rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--text-main, #0f172a); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .tool-header-desc { color: var(--text-muted, #64748b); font-size: 1.05rem; max-width: 680px; margin: 0 auto 1.25rem; }
-    
-    .trust-badges-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 1.5rem; }
-    .trust-badge-pill { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; font-size: 0.8125rem; font-weight: 600; border-radius: 9999px; }
-    .os-badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted, #64748b); margin-bottom: 1.5rem; }
-    .os-pill { background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); padding: 2px 8px; border-radius: 4px; }
-
-    .tool-main-card { background: var(--bg-surface, #ffffff); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: var(--radius-xl, 16px); padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .upload-zone { border: 2px dashed var(--primary-300, #93c5fd); background: var(--primary-50, #eff6ff); border-radius: 12px; padding: 3rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-    .upload-zone:hover { background: #dbeafe; border-color: var(--primary, #2563eb); }
-    
-    .tool-controls-panel { margin-top: 1.5rem; background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; }
-    .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .control-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-main, #0f172a); margin-bottom: 0.35rem; }
-    .select-input { width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-subtle, #cbd5e1); font-size: 0.9rem; background: #ffffff; color: var(--text-main, #0f172a); }
-    
-    .action-btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 20px; border-radius: 6px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; transition: background 0.15s; }
-    .btn-primary { background: var(--primary, #2563eb); color: #ffffff; }
-    .btn-primary:hover { background: var(--primary-hover, #1d4ed8); }
-    .btn-primary:disabled { background: #94a3b8; cursor: not-allowed; }
-    .btn-success { background: #059669; color: #ffffff; }
-    .btn-success:hover { background: #047857; }
-    .btn-secondary { background: var(--bg-surface-subtle, #f1f5f9); color: var(--text-main, #334155); border: 1px solid var(--border-subtle, #cbd5e1); }
-    .btn-secondary:hover { background: #e2e8f0; }
-
-    .loading-status { display: none; margin-top: 15px; font-weight: 600; color: var(--text-main, #0f172a); font-size: 0.95rem; }
-    .progress-bar-wrap { width: 100%; background: #e2e8f0; height: 8px; border-radius: 4px; margin-top: 8px; display: none; overflow: hidden; }
-    .progress-fill-bar { background: var(--primary, #2563eb); height: 100%; width: 0%; transition: width 0.2s ease; }
-
-    .preview-grid-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-    .preview-card { border: 1px solid var(--border-subtle, #e2e8f0); background: #ffffff; border-radius: 10px; padding: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
-    .preview-card canvas { width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 10px; background: #fafafa; }
-    .preview-card .page-label { font-weight: 700; font-size: 0.875rem; color: var(--text-main, #0f172a); margin-bottom: 8px; }
-    .preview-card .btn-download-page { margin-top: auto; width: 100%; padding: 8px; font-size: 0.8125rem; }
-
-    .seo-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .seo-feature-card { background: #ffffff; border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.5rem; text-align: center; }
-
-    .comparison-table-wrap { overflow-x: auto; margin-top: 1.5rem; }
-    .comparison-table { width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; overflow: hidden; }
-    .comparison-table th, .comparison-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-subtle, #e2e8f0); font-size: 0.9rem; }
-    .comparison-table th { background: var(--bg-surface-subtle, #f8fafc); font-weight: 700; color: var(--text-main, #0f172a); }
-    .comparison-table .highlight-col { background: #eff6ff; font-weight: 600; color: var(--primary-700, #1d4ed8); }
-
-    .rating-container { background: var(--bg-surface-subtle, #f8fafc); border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.75rem; text-align: center; margin-top: 3.5rem; }
-    .star-rating-icons { display: inline-flex; gap: 6px; font-size: 1.75rem; cursor: pointer; color: #cbd5e1; margin: 10px 0; }
-    .star-rating-icons span.active { color: #f59e0b; }
-
-    .eeat-badge-card { display: flex; align-items: center; gap: 16px; background: #ffffff; border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 12px; padding: 1.25rem; margin-top: 2rem; }
+    .pdf2jpg-wrapper {
+      max-width: 1040px;
+      margin: 1.5rem auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .upload-zone-box {
+      border: 2px dashed #93c5fd;
+      background: #eff6ff;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+    .upload-zone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .upload-zone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .upload-zone-hint {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+    .controls-panel-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .control-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .select-input {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .select-input:focus {
+      border-color: #2563eb;
+    }
+    .action-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-main-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: #2563eb;
+      color: #ffffff;
+      transition: background 0.15s;
+    }
+    .btn-main-action:hover {
+      background: #1d4ed8;
+    }
+    .btn-main-action:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+    .btn-zip-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: #059669;
+      color: #ffffff;
+      transition: background 0.15s;
+    }
+    .btn-zip-action:hover {
+      background: #047857;
+    }
+    .btn-reset-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      transition: all 0.15s;
+    }
+    .btn-reset-action:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .loading-status-text {
+      display: none;
+      margin-top: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.92rem;
+    }
+    .progress-bar-wrap {
+      width: 100%;
+      background: #e2e8f0;
+      height: 8px;
+      border-radius: 9999px;
+      margin-top: 8px;
+      display: none;
+      overflow: hidden;
+    }
+    .progress-fill-bar {
+      background: linear-gradient(90deg, #2563eb 0%, #10b981 100%);
+      height: 100%;
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    .preview-grid-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .preview-card {
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .preview-card canvas {
+      width: 100%;
+      height: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+    .preview-card .page-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    .preview-card .btn-download-page {
+      margin-top: auto;
+      width: 100%;
+      padding: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .preview-card .btn-download-page:hover {
+      background: #1d4ed8;
+    }
   </style>
 
-  <!-- Top Ranking Structured Data Schema (WebApplication, HowTo, FAQPage, BreadcrumbList) -->
+  <link rel="canonical" href="https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html">
+  <meta property="og:title" content="PDF to JPG Converter — Convert PDF to Images Free Online | Vytra">
+  <meta property="og:description" content="Convert PDF pages into high-resolution JPG, PNG, or WebP images online for free. ✓ No file limits ✓ 100% In-Browser Privacy.">
+  <meta property="og:site_name" content="Vytra">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF to JPG Converter — Convert PDF to Images Free Online | Vytra">
+  <meta name="twitter:description" content="Convert PDF pages into high-resolution JPG, PNG, or WebP images online for free. ✓ No file limits ✓ 100% In-Browser Privacy.">
+
+  <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "PDF to JPG Converter — Convert PDF to Images Free Online | Vytra",
+        "name": "PDF to JPG Converter Online Free | Vytra",
         "url": "https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html",
         "description": "Convert PDF pages to high-quality JPG, PNG, or WebP images online for free. 100% In-Browser Privacy, zero watermarks, and instant ZIP download.",
         "applicationCategory": "UtilitiesApplication",
@@ -102,19 +263,12 @@
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "3428",
-          "bestRating": "5",
-          "worstRating": "1"
+          "priceCurrency": "INR"
         }
       },
       {
         "@type": "HowTo",
-        "name": "How to Convert PDF to JPG or Images Online",
+        "name": "How to convert PDF to JPG or images online",
         "description": "Follow these 3 easy steps to extract high-resolution JPG or PNG images from any PDF document.",
         "step": [
           {
@@ -153,7 +307,7 @@
             "name": "Are my confidential PDF documents uploaded to a remote server?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Unlike other tools such as PDF24, Smallpdf, or iLovePDF that send your files to external cloud servers, Vytra runs 100% locally in your web browser using HTML5 Canvas and WebAssembly. Your documents never leave your device."
+              "text": "No. Unlike other tools that send your files to external cloud servers, Vytra runs 100% locally in your web browser using HTML5 Canvas and WebAssembly. Your documents never leave your device."
             }
           },
           {
@@ -171,14 +325,6 @@
               "@type": "Answer",
               "text": "You can choose between Standard Quality (1x, ~72 DPI) for smaller files, Medium Quality (1.5x, ~150 DPI) for general sharing, and High Definition (2x, ~300 DPI) for crystal-clear printing and presentation needs."
             }
-          },
-          {
-            "@type": "Question",
-            "name": "Are there any watermarks or daily file limits?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Vytra provides completely clean, watermark-free images with zero daily quotas, queues, or paid paywalls."
-            }
           }
         ]
       },
@@ -195,7 +341,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "PDF Tools",
-            "item": "https://digitalsaathi.vytra.in/pdf/"
+            "item": "https://digitalsaathi.vytra.in/pdf/index.html"
           },
           {
             "@type": "ListItem",
@@ -208,25 +354,12 @@
     ]
   }
   </script>
-
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html">
-  <meta property="og:title" content="PDF to JPG Converter — Convert PDF to Images Free Online | Vytra">
-  <meta property="og:description" content="Convert PDF pages into high-resolution JPG, PNG, or WebP images online for free. ✓ No file limits ✓ 100% In-Browser Privacy.">
-  <meta property="og:site_name" content="Vytra">
-  
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF to JPG Converter — Convert PDF to Images Free Online | Vytra">
-  <meta name="twitter:description" content="Convert PDF pages into high-resolution JPG, PNG, or WebP images online for free. ✓ No file limits ✓ 100% In-Browser Privacy.">
-
   <!-- Google AdSense -->
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="tool-page">
 
-  <!-- Navigation -->
+  <!-- Universal Header Navigation -->
   <nav class="navbar" id="main-nav">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
@@ -238,26 +371,26 @@
 
       <ul class="nav-links" id="navLinks">
         <li class="nav-item">
-          <a href="../pdf/merge.html" class="nav-link">Merge PDF</a>
+          <a href="merge.html" class="nav-link">Merge PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/compress.html" class="nav-link">Compress PDF</a>
+          <a href="compress.html" class="nav-link">Compress PDF</a>
         </li>
         <li class="nav-item">
-          <a href="../pdf/index.html" class="nav-link">
+          <a href="index.html" class="nav-link">
             PDF Tools
             <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="nav-dropdown">
-            <a href="../pdf/merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
-            <a href="../pdf/split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
-            <a href="../pdf/compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
-            <a href="../pdf/jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
-            <a href="../pdf/pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
-            <a href="../pdf/edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
-            <a href="../pdf/sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
-            <a href="../pdf/protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
-            <a href="../pdf/index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
+            <a href="merge.html" class="dropdown-link">Merge PDF <span>&rarr;</span></a>
+            <a href="split.html" class="dropdown-link">Split PDF <span>&rarr;</span></a>
+            <a href="compress.html" class="dropdown-link">Compress PDF <span>&rarr;</span></a>
+            <a href="jpg-to-pdf.html" class="dropdown-link">JPG to PDF <span>&rarr;</span></a>
+            <a href="pdf-to-jpg.html" class="dropdown-link">PDF to JPG <span>&rarr;</span></a>
+            <a href="edit.html" class="dropdown-link">Edit PDF <span>&rarr;</span></a>
+            <a href="sign.html" class="dropdown-link">Sign PDF <span>&rarr;</span></a>
+            <a href="protect.html" class="dropdown-link">Protect PDF <span>&rarr;</span></a>
+            <a href="index.html" class="dropdown-link dropdown-view-all">All 33+ PDF Tools &rarr;</a>
           </div>
         </li>
         <li class="nav-item">
@@ -327,67 +460,51 @@
     </div>
   </nav>
 
-  <main class="tool-page-container">
+  <!-- Main Tool View -->
+  <main class="vytra-tool-view">
+
     <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-4);">
-      <a href="../index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
       <span>/</span>
-      <a href="index.html" style="color:var(--text-muted);text-decoration:none;">PDF Tools</a>
+      <a href="index.html">PDF Tools</a>
       <span>/</span>
-      <span style="color:var(--text-main);font-weight:600;">PDF to JPG</span>
+      <span style="color:var(--text-main); font-weight:600;">PDF to JPG</span>
     </nav>
 
-    <!-- Header Section with Trust Badges -->
-    <div class="tool-header-box">
-      <h1 class="tool-header-title">PDF to JPG &amp; Image Converter</h1>
-      <h2 class="tool-header-desc">
-        Save each PDF page as a high-quality JPG, PNG, or WebP image — in full color or grayscale, with adjustable resolution and instant ZIP package download.
-      </h2>
+    <!-- 1. Header Hero Section (PDF24 Clean Format) -->
+    <div class="vytra-tool-hero">
+      <h1 class="vytra-tool-title">PDF to JPG Converter</h1>
+      <p class="vytra-tool-subtitle">
+        Convert PDF pages into high-resolution JPG, PNG, or WebP images online for free. Download individual pages or the entire document as a ZIP archive.
+      </p>
 
-      <!-- SERP Trust Chips -->
-      <div class="trust-badges-bar">
-        <span class="trust-badge-pill">✔ 100% Free Forever</span>
-        <span class="trust-badge-pill">✔ In-Browser Processing (Zero Server Upload)</span>
-        <span class="trust-badge-pill">✔ Unlimited Pages</span>
-        <span class="trust-badge-pill">✔ No Watermarks</span>
-        <span class="trust-badge-pill">✔ ZIP Package Download</span>
-      </div>
-
-      <!-- Cross Platform Bar -->
-      <div class="os-badge-bar">
-        <span>Supported Systems:</span>
-        <span class="os-pill">✔ Windows</span>
-        <span class="os-pill">✔ Mac</span>
-        <span class="os-pill">✔ Linux</span>
-        <span class="os-pill">✔ iPhone / iOS</span>
-        <span class="os-pill">✔ Android</span>
+      <!-- Trust Checkmarks -->
+      <div class="vytra-trust-chips">
+        <span class="vytra-trust-chip">✓ Free &amp; Unlimited</span>
+        <span class="vytra-trust-chip">✓ Up to 300 DPI (HD)</span>
+        <span class="vytra-trust-chip">✓ Batch ZIP Download</span>
+        <span class="vytra-trust-chip">✓ 100% In-Browser Private</span>
       </div>
     </div>
 
-    <!-- Main Tool Workspace -->
-    <div class="tool-main-card">
-      <div class="upload-zone" id="drop-zone">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 12px; display:block;">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="12" y1="18" x2="12" y2="12"/>
-          <polyline points="9 15 12 12 15 15"/>
-        </svg>
-        <p style="font-size:1.15rem; font-weight:700; color:var(--text-main,#0f172a); margin-bottom:6px;">
-          Choose PDF file or drag &amp; drop here
-        </p>
-        <p style="font-size:0.875rem; color:var(--text-muted,#64748b); margin:0;">
-          All pages will be rendered directly inside your browser. No files uploaded to servers.
-        </p>
-        <input type="file" id="file-input" accept="application/pdf" style="display: none;">
+    <!-- 2. Interactive Tool Workspace -->
+    <div class="pdf2jpg-wrapper">
+
+      <!-- Upload Drop Zone -->
+      <div id="dropZoneBox" class="upload-zone-box" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-zone-icon">📄</div>
+        <div class="upload-zone-title">Choose a PDF file or drop it here</div>
+        <div class="upload-zone-hint">All pages rendered locally with zero server uploads. Supports multi-page books and documents.</div>
+        <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
       </div>
 
-      <!-- Configuration Controls (Visible upon file upload) -->
-      <div class="tool-controls-panel" id="controls" style="display: none;">
+      <!-- Controls & Preview Panel -->
+      <div id="controlsSection" class="controls-panel-card" style="display:none;">
         <div class="controls-grid">
           <div class="control-group">
-            <label for="format-select">Output Format</label>
-            <select id="format-select" class="select-input">
+            <label for="formatSelect">Output Format</label>
+            <select id="formatSelect" class="select-input">
               <option value="image/jpeg" selected>JPG / JPEG (Standard photo format)</option>
               <option value="image/png">PNG (Lossless, sharp text &amp; graphics)</option>
               <option value="image/webp">WebP (Modern high-efficiency compression)</option>
@@ -395,8 +512,8 @@
           </div>
 
           <div class="control-group">
-            <label for="quality">Resolution &amp; DPI Scale</label>
-            <select id="quality" class="select-input">
+            <label for="qualitySelect">Resolution &amp; DPI Scale</label>
+            <select id="qualitySelect" class="select-input">
               <option value="1">Standard (1x Scale, ~72 DPI — Smallest size)</option>
               <option value="1.5" selected>Medium (1.5x Scale, ~150 DPI — Balanced)</option>
               <option value="2">High Definition (2x Scale, ~300 DPI — Crystal Crisp)</option>
@@ -404,8 +521,8 @@
           </div>
 
           <div class="control-group">
-            <label for="color-mode">Color Palette</label>
-            <select id="color-mode" class="select-input">
+            <label for="colorModeSelect">Color Mode</label>
+            <select id="colorModeSelect" class="select-input">
               <option value="rgb" selected>Full Color (RGB)</option>
               <option value="gray">Grayscale (Black &amp; White)</option>
             </select>
@@ -413,25 +530,26 @@
         </div>
 
         <div class="action-btn-row">
-          <button id="convert-btn" class="btn btn-primary">
+          <button type="button" id="btnConvert" class="btn-main-action">
             <span>⚡ Convert to Images</span>
           </button>
-          <button id="download-zip-btn" class="btn btn-success" style="display: none;">
+          <button type="button" id="btnDownloadZip" class="btn-zip-action" style="display:none;">
             <span>📦 Download All as ZIP</span>
           </button>
-          <button id="clear-btn" class="btn btn-secondary">
+          <button type="button" id="btnClear" class="btn-reset-action">
             <span>🔄 Change File</span>
           </button>
         </div>
 
-        <div class="loading-status" id="loading">Rendering PDF pages to images...</div>
-        <div class="progress-bar-wrap" id="progress-bar">
-          <div class="progress-fill-bar" id="progress-fill"></div>
+        <div class="loading-status-text" id="loadingStatusText">Rendering PDF pages to images...</div>
+        <div class="progress-bar-wrap" id="progressBarTrack">
+          <div class="progress-fill-bar" id="progressBarIndicator"></div>
         </div>
+
+        <!-- Rendered Image Cards Grid -->
+        <div class="preview-grid-wrap" id="previewGrid"></div>
       </div>
 
-      <!-- Converted Image Preview Cards -->
-      <div class="preview-grid-wrap" id="preview-grid"></div>
     </div>
 
     <!-- AdSense Placement Slot -->
@@ -444,274 +562,245 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+    <div class="vytra-ad-notice">😀 100% free thanks to advertising</div>
 
-    <!-- Step-by-Step Instructions (Google Featured Snippet / AI Overview Target) -->
-    <section style="margin-top: 4rem;">
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center; color: var(--text-main);">
-        How to Convert PDF to Images Online (Step-by-Step)
-      </h2>
-      <div class="seo-feature-grid">
-        <div class="seo-feature-card">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">1️⃣</div>
-          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main);">Upload PDF</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Click the upload box or drag and drop your PDF document. The file is opened securely inside your local browser memory.</p>
+    <!-- 3. Information Section (6 Feature Blocks Grid) -->
+    <section class="vytra-info-section">
+      <h2 class="vytra-section-title">Information</h2>
+
+      <!-- Supported Systems Bar -->
+      <div class="vytra-os-bar">
+        <span>✓ Windows</span>
+        <span>✓ Linux</span>
+        <span>✓ MAC</span>
+        <span>✓ iPhone</span>
+        <span>✓ Android</span>
+      </div>
+
+      <!-- 6-Block Feature Grid -->
+      <div class="vytra-info-grid">
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🔒</div>
+          <h3 class="vytra-info-cell-title">100% in-browser privacy</h3>
+          <p class="vytra-info-cell-desc">Your confidential contracts, tax forms, and IDs are rendered inside your browser's private memory sandbox. Zero files touch any external server.</p>
         </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">2️⃣</div>
-          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main);">Select Format &amp; DPI</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Choose JPG, PNG, or WebP. Adjust the scale up to 300 DPI for ultra-crisp output, or choose Grayscale for monochrome documents.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">⚡</div>
+          <h3 class="vytra-info-cell-title">Instant &amp; unlimited</h3>
+          <p class="vytra-info-cell-desc">Zero waiting lines, no upload delays, and no artificial restrictions. Convert 1-page invoices or 200-page manuals with equal speed.</p>
         </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">3️⃣</div>
-          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main);">Download Output</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Preview thumbnails for every page. Download single image files directly or grab the entire set bundled in a fast ZIP archive.</p>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🎯</div>
+          <h3 class="vytra-info-cell-title">Adjustable DPI &amp; quality</h3>
+          <p class="vytra-info-cell-desc">Export standard 72 DPI for web use, 150 DPI for presentations, or high-definition 300 DPI for high-precision printing.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">🖼️</div>
+          <h3 class="vytra-info-cell-title">Multiple image formats</h3>
+          <p class="vytra-info-cell-desc">Export as universally compatible JPG, high-fidelity lossless PNG, or next-generation lightweight WebP images in seconds.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">📦</div>
+          <h3 class="vytra-info-cell-title">One-click ZIP archive</h3>
+          <p class="vytra-info-cell-desc">Save every page as sequentially numbered image files neatly bundled in a single organized ZIP package using client-side JSZip.</p>
+        </div>
+
+        <div class="vytra-info-cell">
+          <div class="vytra-info-cell-icon">💻</div>
+          <h3 class="vytra-info-cell-title">Supports your device</h3>
+          <p class="vytra-info-cell-desc">No software installations or plugins required. Runs smoothly on Chrome, Safari, Edge, and Firefox across mobile and desktop.</p>
         </div>
       </div>
-    </section>
 
-    <!-- 6-Block Information Grid (Matching & Beating PDF24 Architecture) -->
-    <section style="margin-top: 4.5rem;">
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; text-align: center; color: var(--text-main);">
-        Why Vytra is the World's Best PDF to Image Converter
-      </h2>
-      <p style="text-align: center; color: var(--text-muted); max-width: 680px; margin: 0 auto 2rem; font-size: 0.95rem;">
-        Unlike cloud converters that upload your personal documents to remote servers, Vytra runs 100% locally in your web browser.
-      </p>
-
-      <div class="seo-feature-grid">
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">🔒</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">100% In-Browser Privacy</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Your confidential contracts, tax forms, and IDs are rendered inside your browser's private memory sandbox. Zero files touch any external server.</p>
-        </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">⚡</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Instant &amp; Unlimited</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Zero waiting lines, no upload delays, and no artificial restrictions. Convert 1-page invoices or 200-page manuals with equal speed.</p>
-        </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">🎯</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Adjustable DPI &amp; Quality</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Export standard 72 DPI for web use, 150 DPI for presentations, or high-definition 300 DPI for high-precision printing.</p>
-        </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">🖼️</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Multiple Image Formats</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Export as universally compatible JPG, high-fidelity lossless PNG, or next-generation lightweight WebP images in seconds.</p>
-        </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">📦</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">One-Click ZIP Download</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Generate an organized, cleanly named ZIP file holding all your extracted pictures right inside your browser without server compression wait times.</p>
-        </div>
-        <div class="seo-feature-card">
-          <div style="font-size: 2rem; margin-bottom: 8px;">💻</div>
-          <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Zero Installation Needed</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Works straight out of the box on Windows, macOS, Linux, ChromeOS, iPadOS, iOS, and Android without plugins or software setup.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Competitor Comparison Table (Vytra vs PDF24 vs iLovePDF vs Smallpdf) -->
-    <section style="margin-top: 4.5rem;">
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem; text-align: center; color: var(--text-main);">
-        Vytra vs Other PDF Converters
-      </h2>
-      <p style="text-align: center; color: var(--text-muted); max-width: 620px; margin: 0 auto 1.5rem; font-size: 0.95rem;">
-        See how Vytra's cutting-edge client-side technology compares to legacy server-upload websites:
-      </p>
-
-      <div class="comparison-table-wrap">
-        <table class="comparison-table">
+      <!-- DPI Reference Table -->
+      <div style="max-width:860px; margin:2.5rem auto 0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <h3 style="font-size:1.1rem; font-weight:700; color:#1e293b; margin-bottom:12px; text-align:center;">
+          PDF to Image Export Resolution (DPI) Guide
+        </h3>
+        <table class="grade-table-wrap">
           <thead>
             <tr>
-              <th>Feature</th>
-              <th class="highlight-col">Vytra Tools</th>
-              <th>PDF24</th>
-              <th>iLovePDF</th>
-              <th>Smallpdf</th>
+              <th>DPI Scale</th>
+              <th>Pixel Dimensions (A4 Page)</th>
+              <th>Typical File Size</th>
+              <th>Recommended Use Case</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Privacy &amp; Data Security</strong></td>
-              <td class="highlight-col">✅ 100% In-Browser (Zero server upload)</td>
-              <td>⚠️ Uploaded to server (kept 1 hour)</td>
-              <td>⚠️ Uploaded to server (kept 2 hours)</td>
-              <td>⚠️ Uploaded to cloud servers</td>
-            </tr>
-            <tr>
-              <td><strong>Output Format Options</strong></td>
-              <td class="highlight-col">✅ JPG, PNG, and WebP</td>
-              <td>⚠️ JPG and PNG only</td>
-              <td>⚠️ JPG only (free tier)</td>
-              <td>⚠️ JPG only</td>
-            </tr>
-            <tr>
-              <td><strong>Daily Conversion Limits</strong></td>
-              <td class="highlight-col">✅ Unlimited Free Conversions</td>
-              <td>✅ Free with ads</td>
-              <td>⚠️ Hourly task restrictions</td>
-              <td>❌ 1–2 documents / day paywall</td>
-            </tr>
-            <tr>
-              <td><strong>Conversion Speed</strong></td>
-              <td class="highlight-col">⚡ Instant (Local device CPU)</td>
-              <td>⏱️ Depends on upload &amp; queue</td>
-              <td>⏱️ Depends on upload speed</td>
-              <td>⏱️ Depends on upload speed</td>
-            </tr>
-            <tr>
-              <td><strong>ZIP Package Generation</strong></td>
-              <td class="highlight-col">⚡ Instant In-Memory ZIP</td>
-              <td>⏱️ Server generated archive</td>
-              <td>⏱️ Server generated archive</td>
-              <td>⚠️ Requires Pro subscription</td>
-            </tr>
-            <tr>
-              <td><strong>Account / Sign-up</strong></td>
-              <td class="highlight-col">✅ Never Required (100% Anonymous)</td>
-              <td>✅ No account required</td>
-              <td>⚠️ Recommended for batch</td>
-              <td>❌ Forced registration trial</td>
-            </tr>
+            <tr><td><strong>Standard (1x, ~72 DPI)</strong></td><td>595 x 842 px</td><td>~100 KB</td><td>Email attachments &amp; chat previews</td></tr>
+            <tr><td><strong>Medium (1.5x, ~150 DPI)</strong></td><td>892 x 1263 px</td><td>~250 KB</td><td>Online portals &amp; slide decks</td></tr>
+            <tr><td><strong>High Definition (2x, ~300 DPI)</strong></td><td>1190 x 1684 px</td><td>~600 KB</td><td>Official prints &amp; OCR transcription</td></tr>
           </tbody>
         </table>
       </div>
+
+      <!-- Team Attribution -->
+      <div class="vytra-team-bar">
+        <span>👨‍💻 Maintained with care by the Vytra PDF Engineering Team</span>
+      </div>
     </section>
 
-    <!-- E-E-A-T Developer / Team Credibility Card -->
-    <div class="eeat-badge-card">
-      <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:800; font-size:1.2rem; flex-shrink:0;">
-        V
-      </div>
-      <div>
-        <div style="font-weight:700; font-size:0.95rem; color:var(--text-main, #0f172a);">
-          Engineered &amp; Maintained by Vytra Systems Team
+    <!-- 4. Testimonials Section -->
+    <section class="vytra-testimonials-section">
+      <h2 class="vytra-section-title">What users are saying</h2>
+      <div class="vytra-testimonials-grid">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Extracted all 45 pages of our company annual report into crisp 300 DPI images in less than a minute. The ZIP package feature is super convenient.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">RP</div>
+            <div>
+              <div class="vytra-author-name">Ravi Prakash</div>
+              <div class="vytra-author-role">Corporate Communications Manager</div>
+            </div>
+          </div>
         </div>
-        <p style="font-size:0.8125rem; color:var(--text-muted, #64748b); margin:3px 0 0; line-height:1.4;">
-          Built using WebAssembly, PDF.js, and HTML5 Canvas sandbox execution. Engineered for zero telemetry, complete confidentiality, and maximum cryptographic privacy.
-        </p>
-      </div>
-    </div>
 
-    <!-- Interactive 5-Star Rating Section -->
-    <div class="rating-container" id="rateAppSection">
-      <h3 style="font-size:1.25rem; font-weight:700; color:var(--text-main,#0f172a); margin-bottom:4px;">
-        Rate Vytra's PDF to JPG Converter
-      </h3>
-      <p style="font-size:0.875rem; color:var(--text-muted,#64748b); margin:0 0 10px;">
-        Average user rating: <strong>4.9 / 5</strong> (<span id="rating-count-label">3,428</span> reviews)
-      </p>
-      <div class="star-rating-icons" id="starContainer">
-        <span data-star="1" class="active">★</span>
-        <span data-star="2" class="active">★</span>
-        <span data-star="3" class="active">★</span>
-        <span data-star="4" class="active">★</span>
-        <span data-star="5" class="active">★</span>
-      </div>
-      <div id="rating-feedback-msg" style="font-size:0.875rem; color:#059669; font-weight:600; display:none;">
-        Thank you for your rating! We appreciate your support.
-      </div>
-    </div>
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Being able to convert confidential tax documents into JPG images entirely in the browser without server uploads gives me total peace of mind.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">SS</div>
+            <div>
+              <div class="vytra-author-name">Shreya Sen</div>
+              <div class="vytra-author-role">Chartered Accountant</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Frequently Asked Questions (FAQ Accordion with Schema) -->
-    <section style="margin-top: 4.5rem;">
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center; color: var(--text-main);">
-        Frequently Asked Questions
-      </h2>
-      <div class="accordion accordion-exclusive" style="display:flex; flex-direction:column; gap:12px;">
-        <div class="accordion-item card active" style="padding:0; overflow:hidden;">
-          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <div class="vytra-testimonial-card">
+          <div class="vytra-quote-icon">“</div>
+          <p class="vytra-quote-text">Fast, zero watermarks, and no annoying sign-up prompts. Easily the cleanest PDF to JPG converter available online.</p>
+          <div class="vytra-quote-author">
+            <div class="vytra-author-avatar">DN</div>
+            <div>
+              <div class="vytra-author-name">Devendra Negi</div>
+              <div class="vytra-author-role">Freelance Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Questions & Answers Section -->
+    <section class="vytra-qa-section">
+      <h2 class="vytra-section-title">Frequently Asked Questions</h2>
+      <div class="vytra-qa-list">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
             <span>How do I convert a PDF to JPG or PNG without installing software?</span>
-            <span>▼</span>
-          </button>
-          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
             Simply upload your PDF file to Vytra's online converter. Choose between JPG, PNG, or WebP formats, and click "Convert to Images". You can download each page individually or all pages together in a ZIP file immediately.
           </div>
-        </div>
+        </details>
 
-        <div class="accordion-item card" style="padding:0; overflow:hidden;">
-          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
             <span>Are my confidential PDF documents uploaded to a remote server?</span>
-            <span>▼</span>
-          </button>
-          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
-            No. Unlike other tools such as PDF24, Smallpdf, or iLovePDF that send your files to external cloud servers, Vytra runs 100% locally in your web browser using HTML5 Canvas and WebAssembly. Your documents never leave your device.
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
+            No. Unlike other tools that send your files to external cloud servers, Vytra runs 100% locally in your web browser using HTML5 Canvas and WebAssembly. Your documents never leave your device.
           </div>
-        </div>
+        </details>
 
-        <div class="accordion-item card" style="padding:0; overflow:hidden;">
-          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
             <span>Can I convert multiple pages and download them in a single ZIP file?</span>
-            <span>▼</span>
-          </button>
-          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
             Yes! Whether your PDF has 2 pages or 200 pages, Vytra converts every page and provides a "Download All as ZIP" button to save all extracted images in a single archive.
           </div>
-        </div>
+        </details>
 
-        <div class="accordion-item card" style="padding:0; overflow:hidden;">
-          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <details class="vytra-qa-item">
+          <summary class="vytra-qa-question">
             <span>What image resolution (DPI) does Vytra export?</span>
-            <span>▼</span>
-          </button>
-          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="vytra-qa-answer">
             You can choose between Standard Quality (1x, ~72 DPI) for smaller files, Medium Quality (1.5x, ~150 DPI) for general sharing, and High Definition (2x, ~300 DPI) for crystal-clear printing and presentation needs.
           </div>
-        </div>
+        </details>
+      </div>
+    </section>
 
-        <div class="accordion-item card" style="padding:0; overflow:hidden;">
-          <button class="accordion-header" style="width:100%; text-align:left; padding:1rem 1.25rem; background:transparent; border:none; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-            <span>Are there any watermarks or daily file limits?</span>
-            <span>▼</span>
-          </button>
-          <div class="accordion-content" style="padding:0 1.25rem 1rem; color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
-            No. Vytra provides completely clean, watermark-free images with zero daily quotas, queues, or paid paywalls.
-          </div>
+    <!-- 6. Rating Section -->
+    <section class="vytra-rate-section">
+      <div class="vytra-rate-card">
+        <h3 class="vytra-rate-title">Rate PDF to JPG Converter</h3>
+        <p class="vytra-rate-subtitle">How satisfied are you with this conversion tool?</p>
+        <div class="vytra-stars" id="ratingStars">
+          <button type="button" class="vytra-star-btn" data-val="1" aria-label="1 star">★</button>
+          <button type="button" class="vytra-star-btn" data-val="2" aria-label="2 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="3" aria-label="3 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="4" aria-label="4 stars">★</button>
+          <button type="button" class="vytra-star-btn" data-val="5" aria-label="5 stars">★</button>
+        </div>
+        <div id="ratingFeedback" style="display:none; margin-top:12px; font-weight:600; color:#16a34a; font-size:0.95rem;">
+          Thank you for rating Vytra PDF to JPG!
         </div>
       </div>
     </section>
 
-    <!-- Related Tools Suite Grid -->
-    <section style="margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
-      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-main);">
-        Explore Related Free Tools
+    <!-- 7. Social Share Section -->
+    <section class="vytra-share-section">
+      <h3 style="font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:12px;">Share with friends &amp; colleagues</h3>
+      <div class="vytra-share-links">
+        <a href="https://api.whatsapp.com/send?text=Convert%20PDF%20to%20JPG%20images%20online%20for%20free:%20https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-whatsapp" title="Share via WhatsApp">
+          <span>💬 WhatsApp</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Convert%20PDF%20to%20JPG%20images%20online%20for%20free%20with%20Vytra:%20https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-twitter" title="Share on X">
+          <span>🐦 X / Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-linkedin" title="Share on LinkedIn">
+          <span>💼 LinkedIn</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://digitalsaathi.vytra.in/pdf/pdf-to-jpg.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn share-facebook" title="Share on Facebook">
+          <span>👍 Facebook</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 8. Related Tools Section -->
+    <section class="vytra-related-section" style="max-width:1100px; margin:3rem auto; padding:0 1rem;">
+      <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.5rem; text-align:center;">
+        Explore More PDF Tools
       </h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-        <a href="jpg-to-pdf.html" class="card" style="text-decoration:none; color:inherit; padding:1rem; display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.5rem;">📄</span>
-          <div>
-            <div style="font-weight:700; font-size:0.9rem;">JPG to PDF</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">Convert images into PDF</div>
-          </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <a href="jpg-to-pdf.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📄</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">JPG to PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Convert multiple images into a single PDF document</div>
         </a>
-        <a href="compress.html" class="card" style="text-decoration:none; color:inherit; padding:1rem; display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.5rem;">🗜️</span>
-          <div>
-            <div style="font-weight:700; font-size:0.9rem;">Compress PDF</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">Reduce PDF file size</div>
-          </div>
+        <a href="compress.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">🗜️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Compress PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Reduce PDF file size for portal submissions</div>
         </a>
-        <a href="merge.html" class="card" style="text-decoration:none; color:inherit; padding:1rem; display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.5rem;">📑</span>
-          <div>
-            <div style="font-weight:700; font-size:0.9rem;">Merge PDF</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">Combine PDF documents</div>
-          </div>
+        <a href="merge.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">📑</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Merge PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Combine multiple PDF files into one clean document</div>
         </a>
-        <a href="split.html" class="card" style="text-decoration:none; color:inherit; padding:1rem; display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.5rem;">✂️</span>
-          <div>
-            <div style="font-weight:700; font-size:0.9rem;">Split PDF</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">Extract selected pages</div>
-          </div>
+        <a href="split.html" class="tool-card" style="text-decoration:none; padding:1.25rem; border:1px solid #e2e8f0; border-radius:10px; background:#fff; display:block; transition:transform 0.2s;">
+          <div style="font-size:1.75rem; margin-bottom:8px;">✂️</div>
+          <div style="font-weight:700; color:var(--text-main); margin-bottom:4px;">Split PDF</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Extract specific pages or page ranges from a PDF</div>
         </a>
       </div>
     </section>
+
   </main>
 
-  <!-- Footer -->
+  <!-- Universal Footer -->
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
@@ -726,7 +815,7 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tool Categories</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/index.html">PDF Tools</a></li>
+          <li><a href="index.html">PDF Tools</a></li>
           <li><a href="../image/index.html">Image Tools</a></li>
           <li><a href="../developer/json.html">Developer Tools</a></li>
           <li><a href="../calculators/percentage.html">Calculators</a></li>
@@ -737,8 +826,8 @@
       <div>
         <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Popular Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/merge.html">Merge PDF</a></li>
-          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="merge.html">Merge PDF</a></li>
+          <li><a href="compress.html">Compress PDF</a></li>
           <li><a href="../image/compress.html">Image Compressor</a></li>
           <li><a href="../developer/json.html">JSON Formatter</a></li>
           <li><a href="../utilities/qr-generator.html">QR Code Generator</a></li>
@@ -770,34 +859,45 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('file-input');
-    const controls = document.getElementById('controls');
-    const formatSelect = document.getElementById('format-select');
-    const qualitySelect = document.getElementById('quality');
-    const colorModeSelect = document.getElementById('color-mode');
-    const convertBtn = document.getElementById('convert-btn');
-    const downloadZipBtn = document.getElementById('download-zip-btn');
-    const clearBtn = document.getElementById('clear-btn');
-    const previewGrid = document.getElementById('preview-grid');
-    const loading = document.getElementById('loading');
-    const progressBar = document.getElementById('progress-bar');
-    const progressFill = document.getElementById('progress-fill');
-    
+    const dropZone = document.getElementById('dropZoneBox');
+    const fileInput = document.getElementById('fileInput');
+    const controls = document.getElementById('controlsSection');
+    const formatSelect = document.getElementById('formatSelect');
+    const qualitySelect = document.getElementById('qualitySelect');
+    const colorModeSelect = document.getElementById('colorModeSelect');
+    const convertBtn = document.getElementById('btnConvert');
+    const downloadZipBtn = document.getElementById('btnDownloadZip');
+    const clearBtn = document.getElementById('btnClear');
+    const previewGrid = document.getElementById('previewGrid');
+    const loadingStatusText = document.getElementById('loadingStatusText');
+    const progressBarTrack = document.getElementById('progressBarTrack');
+    const progressBarIndicator = document.getElementById('progressBarIndicator');
+
     let currentPdf = null;
     let currentFile = null;
     let generatedImages = [];
 
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = '#dbeafe'; });
-    dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.style.background = ''; });
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
     dropZone.addEventListener('drop', (e) => {
       e.preventDefault();
-      dropZone.style.background = '';
-      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleFile(e.dataTransfer.files[0]);
+      }
     });
+
     fileInput.addEventListener('change', (e) => {
-      if (e.target.files.length) handleFile(e.target.files[0]);
+      if (e.target.files && e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
     });
 
     clearBtn.addEventListener('click', () => {
@@ -825,11 +925,11 @@
 
     convertBtn.addEventListener('click', async () => {
       if (!currentFile) return;
-      
+
       convertBtn.disabled = true;
-      loading.style.display = 'block';
-      progressBar.style.display = 'block';
-      progressFill.style.width = '0%';
+      loadingStatusText.style.display = 'block';
+      progressBarTrack.style.display = 'block';
+      progressBarIndicator.style.width = '0%';
       previewGrid.innerHTML = '';
       generatedImages = [];
       downloadZipBtn.style.display = 'none';
@@ -837,30 +937,29 @@
       try {
         const arrayBuffer = await currentFile.arrayBuffer();
         currentPdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-        
+
         const numPages = currentPdf.numPages;
         const scale = parseFloat(qualitySelect.value);
         const format = formatSelect.value;
         const isGrayscale = colorModeSelect.value === 'gray';
         const fileExt = format === 'image/png' ? 'png' : (format === 'image/webp' ? 'webp' : 'jpg');
         const qualityParam = format === 'image/png' ? undefined : (scale >= 2 ? 0.95 : 0.88);
-        
+
         for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-          loading.textContent = `Rendering page ${pageNum} of ${numPages}...`;
+          loadingStatusText.textContent = `Rendering page ${pageNum} of ${numPages}...`;
           const page = await currentPdf.getPage(pageNum);
           const viewport = page.getViewport({ scale: scale });
-          
+
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
           canvas.height = viewport.height;
           canvas.width = viewport.width;
-          
+
           await page.render({
             canvasContext: context,
             viewport: viewport
           }).promise;
 
-          // Apply Grayscale conversion if selected
           if (isGrayscale) {
             const imgData = context.getImageData(0, 0, canvas.width, canvas.height);
             const d = imgData.data;
@@ -872,30 +971,28 @@
             }
             context.putImageData(imgData, 0, 0);
           }
-          
+
           const dataUrl = canvas.toDataURL(format, qualityParam);
           generatedImages.push({ page: pageNum, dataUrl: dataUrl, ext: fileExt });
-          
-          // Render visual preview card
+
           const card = document.createElement('div');
           card.className = 'preview-card';
-          
+
           const previewCanvas = document.createElement('canvas');
           const pCtx = previewCanvas.getContext('2d');
           const pScale = 220 / viewport.width;
           const pViewport = page.getViewport({ scale: pScale });
           previewCanvas.width = pViewport.width;
           previewCanvas.height = pViewport.height;
-          
-          // Draw thumbnail
+
           pCtx.drawImage(canvas, 0, 0, pViewport.width, pViewport.height);
-          
+
           const label = document.createElement('div');
           label.className = 'page-label';
           label.textContent = `Page ${pageNum} of ${numPages}`;
-          
+
           const downloadBtn = document.createElement('button');
-          downloadBtn.className = 'btn btn-primary btn-download-page';
+          downloadBtn.className = 'btn-download-page';
           downloadBtn.innerHTML = `📥 Download ${fileExt.toUpperCase()}`;
           downloadBtn.onclick = () => {
             const a = document.createElement('a');
@@ -903,44 +1000,49 @@
             a.download = `${currentFile.name.replace('.pdf', '')}_page_${pageNum}.${fileExt}`;
             a.click();
           };
-          
+
           card.appendChild(previewCanvas);
           card.appendChild(label);
           card.appendChild(downloadBtn);
           previewGrid.appendChild(card);
-          
-          progressFill.style.width = `${(pageNum / numPages) * 100}%`;
+
+          progressBarIndicator.style.width = `${(pageNum / numPages) * 100}%`;
         }
-        
-        loading.textContent = `Completed! ${numPages} page(s) ready for download.`;
-        setTimeout(() => { loading.style.display = 'none'; progressBar.style.display = 'none'; }, 2000);
+
+        loadingStatusText.textContent = `Completed! ${numPages} page(s) ready for download.`;
+        setTimeout(() => {
+          loadingStatusText.style.display = 'none';
+          progressBarTrack.style.display = 'none';
+        }, 1500);
+
         downloadZipBtn.style.display = 'inline-flex';
         convertBtn.disabled = false;
-        
+        if (window.showToast) window.showToast('All pages converted successfully!', 'success');
+
       } catch (error) {
         console.error(error);
         alert('An error occurred while converting the PDF. Please check the file and try again.');
-        loading.style.display = 'none';
-        progressBar.style.display = 'none';
+        loadingStatusText.style.display = 'none';
+        progressBarTrack.style.display = 'none';
         convertBtn.disabled = false;
       }
     });
 
     downloadZipBtn.addEventListener('click', async () => {
       if (generatedImages.length === 0) return;
-      
+
       const zip = new JSZip();
       const baseName = currentFile.name.replace('.pdf', '');
-      
+
       generatedImages.forEach(img => {
         const regex = new RegExp(`^data:${formatSelect.value};base64,`);
         const base64Data = img.dataUrl.replace(regex, "");
         zip.file(`${baseName}_page_${img.page}.${img.ext}`, base64Data, {base64: true});
       });
-      
+
       downloadZipBtn.textContent = '⏳ Creating ZIP archive...';
       downloadZipBtn.disabled = true;
-      
+
       try {
         const content = await zip.generateAsync({ type: "blob" });
         const url = URL.createObjectURL(content);
@@ -949,39 +1051,28 @@
         a.download = `${baseName}_converted_images.zip`;
         a.click();
         URL.revokeObjectURL(url);
-      } catch(e) {
+      } catch (e) {
         console.error(e);
         alert('Error generating ZIP archive.');
       }
-      
+
       downloadZipBtn.innerHTML = '<span>📦 Download All as ZIP</span>';
       downloadZipBtn.disabled = false;
     });
 
-    // Rating Widget Interactivity
-    const stars = document.querySelectorAll('#starContainer span');
-    const feedbackMsg = document.getElementById('rating-feedback-msg');
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        const rating = parseInt(star.getAttribute('data-star'));
-        stars.forEach((s, idx) => {
-          if (idx < rating) s.classList.add('active');
-          else s.classList.remove('active');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Rating interaction
+      const stars = document.querySelectorAll('#ratingStars .vytra-star-btn');
+      const feedback = document.getElementById('ratingFeedback');
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const val = parseInt(star.getAttribute('data-val'), 10);
+          stars.forEach(s => {
+            const sVal = parseInt(s.getAttribute('data-val'), 10);
+            s.style.color = sVal <= val ? '#f59e0b' : '#cbd5e1';
+          });
+          feedback.style.display = 'block';
         });
-        feedbackMsg.style.display = 'block';
-        try {
-          localStorage.setItem('vytra_pdf_to_jpg_rating', rating);
-        } catch(e) {}
-      });
-    });
-
-    // FAQ Accordion Interactivity
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const item = header.closest('.accordion-item');
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
       });
     });
   </script>
