@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <! - Google tag (gtag.js) - >
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2EMRPEG70"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-R2EMRPEG70');
-  </script>
   <meta charset="UTF-8">
-  <! - Proactive Speed & DNS Pre-resolution Resource Hints - >
+  <!-- Proactive Speed & DNS Pre-resolution Resource Hints -->
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -42,10 +33,11 @@
   <meta name="twitter:description" content="DigitalSaathi provides free online PDF, image and document tools for converting, compressing, merging, editing and optimizing files.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 
-  <! - Fonts & Stylesheet - >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Non-blocking Fonts & Stylesheet -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+  </noscript>
   <link rel="stylesheet" href="assets/css/style.css">
 
   <style>
@@ -226,18 +218,33 @@
       transition: all 0.2s;
     }
     .cat-pill:hover {
-      background: var( - primary-50);
-      color: var( - primary);
-      border-color: var( - primary-200);
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-200);
     }
     .cat-pill.active {
-      background: var( - primary);
+      background: var(--primary);
       color: #ffffff;
-      border-color: var( - primary);
+      border-color: var(--primary);
+    }
+    /* Core Web Vitals & Zero-CLS Layout Stabilization */
+    #homeToolsGrid {
+      min-height: 850px;
+      contain-intrinsic-size: auto 850px;
+    }
+    .tool-card {
+      contain: layout style;
+    }
+    section {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 350px;
+    }
+    .home-hero, .navbar, #popularToolsSection {
+      content-visibility: visible;
     }
   </style>
   <link rel="canonical" href="https://vytra.in/">
-  <! - Top Ranking Structured Data Schema - >
+  <!-- Top Ranking Structured Data Schema -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -314,8 +321,6 @@
   ]
 }
 </script>
-  <! - Google AdSense - >
-  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body class="home-page">
 
@@ -813,5 +818,14 @@
       });
     });
   </script>
+  <!-- Deferred Google Analytics & AdSense (Zero Blocking Overhead) -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-R2EMRPEG70"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R2EMRPEG70');
+  </script>
+  <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </body>
 </html>
