@@ -22,15 +22,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Split PDF Online Free - Extract Pages from PDF Document | DigitalSaathi</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#E5322D">
+  <title>Split PDF Online Free — Extract Pages Instantly | Vytra</title>
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="description" content="Extract specific pages or split PDF into individual one-page files online for free. Fast, private, and unlimited processing in your browser.">
+  <meta name="description" content="Split PDF online free. Pick thumbnails or type ranges like 1-3, 5, extract or ZIP all pages. Private in-browser, no signup. Fast iLovePDF alternative.">
   
   <! - Fonts & Stylesheet - >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/ilp-workflow.css">
 
   <! - Client-Side Libraries - >
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
@@ -43,17 +49,17 @@
       align-items: center;
       gap: 8px;
       font-size: 0.8125rem;
-      color: var( - text-muted);
-      margin-bottom: var( - space-4);
+      color: var(--text-muted);
+      margin-bottom: var(--space-4);
     }
-    .breadcrumb-nav a { color: var( - text-muted); text-decoration: none; }
-    .breadcrumb-nav a:hover { color: var( - primary); }
+    .breadcrumb-nav a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb-nav a:hover { color: var(--primary); }
 
     .split-workspace {
       display: none;
       margin-top: 2rem;
       background: #ffffff;
-      border: 1px solid var( - border-subtle, #e2e8f0);
+      border: 1px solid var(--border-subtle, #e2e8f0);
       border-radius: 16px;
       padding: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
@@ -66,15 +72,15 @@
       max-height: 420px;
       overflow-y: auto;
       padding: 12px;
-      background: var( - bg-surface-subtle, #f8fafc);
-      border: 1px solid var( - border-subtle, #e2e8f0);
+      background: var(--bg-surface-subtle, #f8fafc);
+      border: 1px solid var(--border-subtle, #e2e8f0);
       border-radius: 10px;
       margin: 1.25rem 0;
     }
 
     .page-thumb-card {
       background: #ffffff;
-      border: 2px solid var( - border-subtle, #e2e8f0);
+      border: 2px solid var(--border-subtle, #e2e8f0);
       border-radius: 8px;
       padding: 6px;
       display: flex;
@@ -114,7 +120,7 @@
     .page-num-badge {
       font-size: 0.75rem;
       font-weight: 700;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
       margin-top: 6px;
     }
 
@@ -176,7 +182,7 @@
       "@type": "WebApplication",
       "@id": "https://vytra.in/pdf/split.html#app",
       "url": "https://vytra.in/pdf/split.html",
-      "name": "Split PDF - DigitalSaathi",
+      "name": "Split PDF - Vytra",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Compatible with all modern web browsers.",
@@ -214,7 +220,7 @@
     {
       "@type": "HowTo",
       "@id": "https://vytra.in/pdf/split.html#howto",
-      "name": "How to use Split PDF online on DigitalSaathi",
+      "name": "How to use Split PDF online on Vytra",
       "description": "Simple 3-step guide to use Split PDF online for free without installing software.",
       "step": [
         {
@@ -246,7 +252,7 @@
           "name": "Is this Split PDF tool completely free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, the Split PDF on DigitalSaathi is 100% free with no hidden fees, subscriptions, or daily limits."
+            "text": "Yes, the Split PDF on Vytra is 100% free with no hidden fees, subscriptions, or daily limits."
           }
         },
         {
@@ -262,7 +268,7 @@
           "name": "Can I use Split PDF on mobile phones and tablets?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, DigitalSaathi is fully responsive and optimized for all devices including Android, iOS iPhone/iPad, Windows, Mac, and Linux."
+            "text": "Yes, Vytra is fully responsive and optimized for all devices including Android, iOS iPhone/iPad, Windows, Mac, and Linux."
           }
         }
       ]
@@ -274,16 +280,16 @@
   <link rel="canonical" href="https://vytra.in/pdf/split.html">
     <! - Open Graph / Facebook / WhatsApp - >
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="DigitalSaathi">
+  <meta property="og:site_name" content="Vytra">
   <meta property="og:url" content="https://vytra.in/pdf/split.html">
-  <meta property="og:title" content="Split PDF Online Free - Extract Pages from PDF Document | DigitalSaathi">
-  <meta property="og:description" content="Extract specific pages or split PDF into individual one-page files online for free. Fast, private, and unlimited processing in your browser.">
+  <meta property="og:title" content="Split PDF Online Free — Extract Pages Instantly | Vytra">
+  <meta property="og:description" content="Split PDF online free. Pick thumbnails or type ranges like 1-3, 5, extract or ZIP all pages. Private in-browser, no signup. Fast iLovePDF alternative.">
   <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <! - Twitter Cards - >
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Split PDF Online Free - Extract Pages from PDF Document | DigitalSaathi">
-  <meta name="twitter:description" content="Extract specific pages or split PDF into individual one-page files online for free. Fast, private, and unlimited processing in your browser.">
+  <meta name="twitter:title" content="Split PDF Online Free — Extract Pages Instantly | Vytra">
+  <meta name="twitter:description" content="Split PDF online free. Pick thumbnails or type ranges like 1-3, 5, extract or ZIP all pages. Private in-browser, no signup. Fast iLovePDF alternative.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <! - Google AdSense - >
@@ -292,54 +298,103 @@
 <body class="tool-page">
 
   <! - Universal Navigation - >
-        <nav class="navbar" id="main-nav">
-    <div class="container nav-container">
-      <a href="../" class="logo">
-        <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
-      </a>
-
-      <ul class="nav-links" id="navLinks">
-        <li class="nav-item">
-          <a href="../" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item has-dropdown">
-          <a href="../tools/" class="nav-link">
-            Tools
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="../pdf/" class="dropdown-link">PDF Tools <span>&rarr;</span></a>
-            <a href="../image/" class="dropdown-link">Image Tools <span>&rarr;</span></a>
-            <a href="../text/" class="dropdown-link">Text Tools <span>&rarr;</span></a>
-            <a href="../utilities/" class="dropdown-link">Utility Tools <span>&rarr;</span></a>
-            <a href="../tools/" class="dropdown-link dropdown-view-all">All Tools Directory &rarr;</a>
+        <nav class="ilp-topnav" id="main-nav">
+    <div class="ilp-nav-inner">
+      <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
+      <div class="ilp-links">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <div class="ilp-has-mega" data-mega="convert">
+          <a href="../pdf/jpg-to-pdf.html" class="ilp-link">CONVERT PDF ▾</a>
+          <div class="ilp-mega" style="width:min(560px,94vw);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+              <div><h4>Convert to PDF</h4>
+                <a href="../pdf/jpg-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🖼️</span>JPG to PDF</a>
+                <a href="../pdf/word-to-pdf.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>WORD to PDF</a>
+                <a href="../pdf/ppt-to-pdf.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>POWERPOINT to PDF</a>
+                <a href="../pdf/excel-to-pdf.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>EXCEL to PDF</a>
+                <a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🌐</span>HTML to PDF</a>
+              </div>
+              <div><h4>Convert from PDF</h4>
+                <a href="../pdf/pdf-to-jpg.html"><span class="ilp-dot" style="background:#fef9c3;">🖼️</span>PDF to JPG</a>
+                <a href="../pdf/pdf-to-word.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>PDF to WORD</a>
+                <a href="../pdf/pdf-to-ppt.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>PDF to POWERPOINT</a>
+                <a href="../pdf/pdf-to-excel.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>PDF to EXCEL</a>
+                <a href="../pdf/pdf-a.html"><span class="ilp-dot" style="background:#e0e7ff;">🇦</span>PDF to PDF/A</a>
+              </div>
+            </div>
           </div>
-        </li>
-        <li class="nav-item">
-          <a href="../#categories" class="nav-link">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a href="../#popular" class="nav-link">Popular Tools</a>
-        </li>
-        <li class="nav-item">
-          <a href="../about.html" class="nav-link">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="../contact.html" class="nav-link">Contact</a>
-        </li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span class="search-placeholder">Search tools...</span>
-          <kbd class="nav-search-key">Ctrl K</kbd>
-        </button>
-        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-        <a href="../tools/" class="btn btn-primary btn-sm" style="margin-left: 8px;">Explore Tools</a>
+        </div>
+        <div class="ilp-has-mega" data-mega="all">
+          <a href="../tools/" class="ilp-link red">ALL PDF TOOLS ▾</a>
+          <div class="ilp-mega">
+            <div class="ilp-mega-grid">
+              <div><h4>Organize PDF</h4>
+                <a href="../pdf/merge.html"><span class="ilp-dot" style="background:#fee2e2;">⧉</span>Merge PDF</a>
+                <a href="../pdf/split.html"><span class="ilp-dot" style="background:#fee2e2;">✂</span>Split PDF</a>
+                <a href="../pdf/organize.html"><span class="ilp-dot" style="background:#fee2e2;">✕</span>Remove pages</a>
+                <a href="../pdf/extract.html"><span class="ilp-dot" style="background:#fee2e2;">↗</span>Extract pages</a>
+                <a href="../pdf/organize.html"><span class="ilp-dot" style="background:#fee2e2;">☰</span>Organize PDF</a>
+                <a href="../pdf/scan-to-pdf.html"><span class="ilp-dot" style="background:#fee2e2;">📷</span>Scan to PDF</a>
+              </div>
+              <div><h4>Optimize PDF</h4>
+                <a href="../pdf/compress.html"><span class="ilp-dot" style="background:#dcfce7;">🗜</span>Compress PDF</a>
+                <a href="../pdf/repair.html"><span class="ilp-dot" style="background:#dcfce7;">🔧</span>Repair PDF</a>
+                <a href="../pdf/ocr.html"><span class="ilp-dot" style="background:#dcfce7;">👁</span>OCR PDF</a>
+              </div>
+              <div><h4>Convert to PDF</h4>
+                <a href="../pdf/jpg-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🖼</span>JPG to PDF</a>
+                <a href="../pdf/word-to-pdf.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>WORD to PDF</a>
+                <a href="../pdf/ppt-to-pdf.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>POWERPOINT to PDF</a>
+                <a href="../pdf/excel-to-pdf.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>EXCEL to PDF</a>
+                <a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🌐</span>HTML to PDF</a>
+              </div>
+              <div><h4>Convert from PDF</h4>
+                <a href="../pdf/pdf-to-jpg.html"><span class="ilp-dot" style="background:#fef9c3;">🖼</span>PDF to JPG</a>
+                <a href="../pdf/pdf-to-word.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>PDF to WORD</a>
+                <a href="../pdf/pdf-to-ppt.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>PDF to POWERPOINT</a>
+                <a href="../pdf/pdf-to-excel.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>PDF to EXCEL</a>
+                <a href="../pdf/pdf-a.html"><span class="ilp-dot" style="background:#e0e7ff;">A</span>PDF to PDF/A</a>
+              </div>
+              <div><h4>Edit PDF</h4>
+                <a href="../pdf/rotate.html"><span class="ilp-dot" style="background:#f3e8ff;">⟳</span>Rotate PDF</a>
+                <a href="../pdf/page-numbers.html"><span class="ilp-dot" style="background:#f3e8ff;">🔢</span>Add page numbers</a>
+                <a href="../pdf/watermark.html"><span class="ilp-dot" style="background:#f3e8ff;">💧</span>Add watermark</a>
+                <a href="../pdf/crop.html"><span class="ilp-dot" style="background:#f3e8ff;">◫</span>Crop PDF</a>
+                <a href="../pdf/edit.html"><span class="ilp-dot" style="background:#f3e8ff;">✎</span>Edit PDF</a>
+                <a href="../pdf/forms.html"><span class="ilp-dot" style="background:#f3e8ff;">📋</span>PDF Forms</a>
+              </div>
+              <div><h4>PDF Security</h4>
+                <a href="../pdf/unlock.html"><span class="ilp-dot" style="background:#dbeafe;">🔓</span>Unlock PDF</a>
+                <a href="../pdf/protect.html"><span class="ilp-dot" style="background:#dbeafe;">🔒</span>Protect PDF</a>
+                <a href="../pdf/sign.html"><span class="ilp-dot" style="background:#dbeafe;">✍</span>Sign PDF</a>
+                <a href="../pdf/redact.html"><span class="ilp-dot" style="background:#dbeafe;">⬛</span>Redact PDF</a>
+                <a href="../pdf/compare.html"><span class="ilp-dot" style="background:#dbeafe;">◐</span>Compare PDF</a>
+                <div style="margin-top:10px;"><h4>PDF Intelligence</h4>
+                  <a href="../pdf/ai-summarizer.html"><span class="ilp-dot" style="background:#ede9fe;">🤖</span>AI Summarizer</a>
+                  <a href="../pdf/translate.html"><span class="ilp-dot" style="background:#ede9fe;">🌐</span>Translate PDF</a>
+                  <a href="../pdf/pdf-to-markdown.html"><span class="ilp-dot" style="background:#ede9fe;">⬇</span>PDF to Markdown</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ilp-nav-right">
+        <button class="ilp-ghost-btn" id="headerSearchBtn" style="padding:8px 12px;" aria-label="Search tools">🔍 <span style="font-size:.78rem;">Search</span></button>
+        <a href="../tools/" class="ilp-login">Login</a>
+        <a href="../tools/" class="ilp-signup">Sign up</a>
+        <button class="ilp-burger" id="navToggleBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="ilp-mobile-panel" id="navLinks" style="padding:12px 16px;border-top:1px solid #e5e7eb;">
+      <div style="display:grid;gap:6px;">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <a href="../tools/" class="ilp-link red">ALL PDF TOOLS →</a>
+        
       </div>
     </div>
   </nav>
@@ -353,15 +408,20 @@
       <span>/</span>
       <a href="./">PDF Tools</a>
       <span>/</span>
-      <span style="color:var( - text-main); font-weight:600;">Split PDF</span>
+      <span style="color:var(--text-main); font-weight:600;">Split PDF</span>
     </nav>
 
-    <! - 1. Header Hero Section (PDF24 Clean Format) - >
-    <div class="vytra-tool-hero">
+    <! - 1. Header Hero Section (iLovePDF-logic: title + steps) - >
+    <div class="vytra-tool-hero" style="text-align:center;">
       <h1 class="vytra-tool-title">Split PDF</h1>
       <p class="vytra-tool-subtitle">
-        Separate PDF pages or extract a single page or whole ranges into independent PDF files without losing quality
+        Separate pages or extract ranges into independent PDFs — free, private in-browser.
       </p>
+      <div class="ilp-steps" aria-label="Workflow steps">
+        <span class="ilp-step active" id="step-1"><b>1</b> Select file</span>
+        <span class="ilp-step" id="step-2"><b>2</b> Pick pages</span>
+        <span class="ilp-step" id="step-3"><b>3</b> Download</span>
+      </div>
 
       <! - Trust Checkmarks - >
       <div class="vytra-trust-chips">
@@ -372,8 +432,8 @@
       </div>
     </div>
 
-    <! - 2. The Signature Dropzone Box (PDF24 UI Layout) - >
-    <div class="vytra-dropzone-box" id="split-dropzone">
+    <! - 2. Large Dropzone (iLovePDF-logic) - >
+    <div class="ilp-dropzone-large" id="split-dropzone">
       <input type="file" id="split-file-input" accept="application/pdf" style="display:none;" aria-label="Upload PDF file to split">
 
       <! - Top Bar inside Box - >
@@ -390,106 +450,88 @@
 
       <! - Center CTA Button - >
       <div>
-        <button type="button" class="vytra-choose-btn" id="btn-trigger-choose">
+        <button type="button" class="ilp-select-btn" id="btn-trigger-choose">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
           <span>Choose files</span>
         </button>
       </div>
 
-      <div class="vytra-dz-subtext">... or drop files here</div>
-      <div class="vytra-dz-terms">By using this function, you accept our <a href="../terms.html" style="color:inherit;text-decoration:underline;">terms of use</a></div>
-
-      <! - Bottom Bar inside Box - >
-      <div class="vytra-dz-bottombar">
-        
-        <div>
-          <span>Supported: PDF documents, scanned marksheets, booklets</span>
-        </div>
-      </div>
+      <div class="ilp-drop-hint">... or drag & drop PDF here — click pages to select like iLovePDF</div>
+      <div class="ilp-secure"><span>🔒 Files stay on device</span><span>⚡ Instant</span><span>📱 Mobile ready</span></div>
     </div>
 
-    <! - Active Workspace (Visible upon file selection) - >
-    <div class="split-workspace" id="split-workspace">
-      <! - File Metadata Header - >
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-bottom:12px; border-bottom:1px solid var( - border-subtle, #e2e8f0);">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.6rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+    <! - Processor: pages + sidebar (iLovePDF-logic) - >
+    <div class="ilp-processor" id="split-workspace">
+      <div class="ilp-proc-head">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1.5rem;">📄</span>
           <div>
-            <div style="font-weight:700; color:var( - text-main, #0f172a); font-size:1rem;" id="doc-name-label">Document.pdf</div>
-            <div style="font-size:0.8rem; color:var( - text-muted, #64748b);" id="doc-meta-label">0 Pages &bull; 0 KB</div>
+            <div class="ilp-proc-title" id="doc-name-label">Document.pdf</div>
+            <div class="ilp-proc-sub" id="doc-meta-label">0 Pages • 0 KB</div>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary btn-sm" id="btn-change-file">
-           Change File
-        </button>
+        <button type="button" class="ilp-ghost-btn" id="btn-change-file">Change File</button>
       </div>
-
+      <div class="ilp-proc-body">
+      <div class="ilp-files">
       <! - Split Mode Selector Tabs - >
-      <div style="display:flex; gap:10px; margin:1.25rem 0; border-bottom:1px solid var( - border-subtle, #e2e8f0); padding-bottom:10px;">
-        <button type="button" class="btn btn-sm btn-primary tab-mode-btn" data-mode="range" id="tab-mode-range">
-          Extract Selected Pages
-        </button>
-        <button type="button" class="btn btn-sm btn-secondary tab-mode-btn" data-mode="all" id="tab-mode-all">
-          Split All Pages into ZIP
-        </button>
+      <div style="display:flex; gap:10px; margin:0 0 12px;">
+        <button type="button" class="ilp-ghost-btn tab-mode-btn" data-mode="range" id="tab-mode-range" style="border-color:var(--ilp-red);color:var(--ilp-red);">Extract Selected Pages</button>
+        <button type="button" class="ilp-ghost-btn tab-mode-btn" data-mode="all" id="tab-mode-all">Split All into ZIP</button>
       </div>
 
       <! - Quick Selector Controls - >
       <div id="selection-controls-bar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
-        <div style="font-size:0.85rem; font-weight:700; color:var( - text-main, #0f172a);">
-          Selected Pages: <span id="selected-count-badge" style="color:#2563eb;">0</span> of <span id="total-count-badge">0</span>
+        <div style="font-size:0.85rem; font-weight:700;">
+          Selected: <span id="selected-count-badge" style="color:var(--ilp-red);">0</span> of <span id="total-count-badge">0</span>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn btn-secondary btn-sm" id="btn-select-all" style="padding:4px 8px; font-size:0.75rem;">All</button>
-          <button type="button" class="btn btn-secondary btn-sm" id="btn-deselect-all" style="padding:4px 8px; font-size:0.75rem;">None</button>
-          <button type="button" class="btn btn-secondary btn-sm" id="btn-select-odd" style="padding:4px 8px; font-size:0.75rem;">Odd</button>
-          <button type="button" class="btn btn-secondary btn-sm" id="btn-select-even" style="padding:4px 8px; font-size:0.75rem;">Even</button>
+          <button type="button" class="ilp-ghost-btn" id="btn-select-all" style="padding:4px 10px; font-size:0.75rem;">All</button>
+          <button type="button" class="ilp-ghost-btn" id="btn-deselect-all" style="padding:4px 10px; font-size:0.75rem;">None</button>
+          <button type="button" class="ilp-ghost-btn" id="btn-select-odd" style="padding:4px 10px; font-size:0.75rem;">Odd</button>
+          <button type="button" class="ilp-ghost-btn" id="btn-select-even" style="padding:4px 10px; font-size:0.75rem;">Even</button>
         </div>
       </div>
 
       <! - Visual Page Thumbnails Grid - >
-      <div class="page-grid-container" id="page-grid-box"></div>
+      <div class="ilp-file-grid" id="page-grid-box"></div>
 
+      <div class="ilp-progress" id="split-progress-bar"><div id="split-progress-fill"></div></div>
+      <div class="ilp-status" id="split-status-text"></div>
+      </div>
+      <aside class="ilp-sidebar">
       <! - Range Input & Output Filename - >
-      <div id="range-input-section" style="margin-bottom:1.5rem;">
-        <div style="margin-bottom:1rem;">
-          <label for="custom-range-input" style="display:block; font-size:0.88rem; font-weight:700; margin-bottom:4px; color:var( - text-main, #0f172a);">Page Range String</label>
-          <input type="text" id="custom-range-input" class="form-input" placeholder="e.g. 1-3, 5, 8-10" style="padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; width:100%; max-width:400px;">
-          <div style="font-size:0.78rem; color:var( - text-muted, #64748b); margin-top:3px;">Click thumbnails above or type comma-separated ranges</div>
-        </div>
-
-        <div>
-          <label for="split-output-filename" style="display:block; font-size:0.88rem; font-weight:700; margin-bottom:4px; color:var( - text-main, #0f172a);">Output File Name</label>
-          <input type="text" id="split-output-filename" class="form-input" value="DigitalSaathi_Extracted.pdf" style="padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; width:100%; max-width:400px;">
-        </div>
+      <div id="range-input-section">
+        <p class="ilp-opt-label">Pages</p>
+        <label for="custom-range-input" style="font-size:.82rem;font-weight:700;">Range (e.g. 1-3, 5)</label>
+        <input type="text" id="custom-range-input" class="ilp-input" placeholder="e.g. 1-3, 5, 8-10">
+        <div style="font-size:.76rem;color:var(--ilp-muted);margin:4px 0 12px;">Click thumbnails or type ranges</div>
+        <label for="split-output-filename" style="font-size:.82rem;font-weight:700;">Output name</label>
+        <input type="text" id="split-output-filename" class="ilp-input" value="Vytra_Extracted.pdf">
+        <div style="background:var(--ilp-red-50);border:1px solid #fecaca;border-radius:10px;padding:12px;margin-top:12px;font-size:.82rem;line-height:1.5;"><b>Smart tips:</b><br>• Odd/Even one-click<br>• ZIP mode splits every page<br>• Text stays sharp</div>
       </div>
-
-      <! - Processing Progress Bar - >
-      <div class="progress-bar-container" id="split-progress-bar">
-        <div class="progress-bar-fill" id="split-progress-fill"></div>
+      </aside>
       </div>
-      <div id="split-status-text" style="text-align:center; font-size:0.85rem; color:var( - text-muted, #64748b); display:none; margin-bottom:1rem;"></div>
-
-      <! - Action Button - >
-      <button type="button" class="btn btn-primary btn-lg btn-full" id="btn-execute-split" style="width:100%; padding:14px; font-size:1.05rem; font-weight:700; border-radius:8px;">
-        Split PDF Now &rarr;
-      </button>
+      <div class="ilp-actionbar">
+        <span style="font-size:.85rem;color:var(--ilp-muted);margin-right:auto;" id="split-summary">0 selected</span>
+        <button type="button" class="ilp-primary-btn" id="btn-execute-split">Split PDF Now &rarr;</button>
+      </div>
     </div>
 
+    <div class="ilp-overlay" id="split-overlay"><div class="ilp-spinner-card"><div class="ilp-spinner"></div><div style="font-weight:800;">Splitting PDF…</div><div style="font-size:.82rem;color:var(--ilp-muted);" id="split-overlay-text">Please wait</div></div></div>
+
     <! - Result Banner - >
-    <div class="result-banner" id="split-result-banner">
-      <div style="font-size:2.5rem; margin-bottom:8px;"></div>
-      <h2 style="font-size:1.4rem; font-weight:800; color:#065f46; margin-bottom:4px;">
-        PDF Successfully Split!
-      </h2>
-      <p style="font-size:0.9rem; color:var( - text-body); margin-bottom:1.25rem;">
-        Extracted Pages: <strong id="res-split-pages">0</strong> &bull; File Size: <strong id="res-split-size">0 KB</strong>
+    <div class="ilp-result" id="split-result-banner">
+      <div style="font-size:2.6rem;">✅</div>
+      <h2>PDF Successfully Split!</h2>
+      <p style="font-size:.92rem;color:var(--ilp-muted);">
+        Extracted Pages: <strong id="res-split-pages">0</strong> • File Size: <strong id="res-split-size">0 KB</strong>
       </p>
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-        <button type="button" class="btn btn-success btn-lg" id="btn-download-split" style="padding:12px 24px; font-weight:700;">
+        <button type="button" class="ilp-primary-btn" id="btn-download-split">
            Download Split Document
         </button>
-        <button type="button" class="btn btn-secondary btn-lg" id="btn-reset-tool" style="padding:12px 24px;">
+        <button type="button" class="ilp-ghost-btn" id="btn-reset-tool">
            Split Another File
         </button>
       </div>
@@ -537,7 +579,7 @@
         <div class="vytra-info-cell">
           <div class="vytra-info-cell-icon"></div>
           <h3 class="vytra-info-cell-title">Easy to use</h3>
-          <p class="vytra-info-cell-desc">DigitalSaathi makes it as simple and rapid as possible to separate PDF files. You don't need to install software or register; just upload your document and extract pages.</p>
+          <p class="vytra-info-cell-desc">Vytra makes it as simple and rapid as possible to separate PDF files. You don't need to install software or register; just upload your document and extract pages.</p>
         </div>
 
         <div class="vytra-info-cell">
@@ -562,7 +604,7 @@
       <! - Developer / Team Attribution Card - >
       <div class="vytra-author-bar">
         <div class="vytra-author-avatar">V</div>
-        <div class="vytra-author-text">Developed &amp; Maintained by DigitalSaathi Team</div>
+        <div class="vytra-author-text">Developed &amp; Maintained by Vytra Team</div>
       </div>
     </section>
 
@@ -624,18 +666,18 @@
 
     <! - 7. Please Share Vytra with Friends - >
     <section class="vytra-share-section">
-      <h2 class="vytra-section-title">Share DigitalSaathi with Friends</h2>
+      <h2 class="vytra-section-title">Share Vytra with Friends</h2>
       <div class="vytra-share-btns">
         <a href="https://www.facebook.com/sharer/sharer.php?u=https://vytra.in/pdf/split.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on Facebook">f</a>
-        <a href="https://twitter.com/intent/tweet?text=Split%20PDF%20pages%20for%20free%20with%20free%20at%20DigitalSaathi&url=https://vytra.in/pdf/split.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on X (Twitter)"></a>
+        <a href="https://twitter.com/intent/tweet?text=Split%20PDF%20pages%20for%20free%20with%20free%20at%20Vytra&url=https://vytra.in/pdf/split.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on X (Twitter)"></a>
         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://vytra.in/pdf/split.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on LinkedIn">in</a>
         <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20free%20PDF%20Splitter:%20https://vytra.in/pdf/split.html" target="_blank" rel="noopener noreferrer" class="vytra-share-btn" title="Share on WhatsApp"></a>
       </div>
     </section>
 
     <! - 8. Related Tools - >
-    <section style="margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var( - border-subtle, #e2e8f0);">
-      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; color: var( - text-main);">
+    <section style="margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle, #e2e8f0);">
+      <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main);">
         Explore Related Free Tools
       </h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
@@ -643,28 +685,28 @@
           <span style="font-size:1.6rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.92rem;">Merge PDF</div>
-            <div style="font-size:0.78rem; color:var( - text-muted);">Combine multiple PDFs</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Combine multiple PDFs</div>
           </div>
         </a>
         <a href="compress.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
           <span style="font-size:1.6rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.92rem;">Compress PDF</div>
-            <div style="font-size:0.78rem; color:var( - text-muted);">Reduce PDF file size</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Reduce PDF file size</div>
           </div>
         </a>
         <a href="pdf-to-jpg.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
           <span style="font-size:1.6rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.92rem;">PDF to JPG</div>
-            <div style="font-size:0.78rem; color:var( - text-muted);">Convert PDF to images</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Convert PDF to images</div>
           </div>
         </a>
         <a href="jpg-to-pdf.html" class="card" style="text-decoration:none; color:inherit; padding:1.25rem; display:flex; align-items:center; gap:12px;">
           <span style="font-size:1.6rem;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
           <div>
             <div style="font-weight:700; font-size:0.92rem;">JPG to PDF</div>
-            <div style="font-size:0.78rem; color:var( - text-muted);">Convert images to PDF</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">Convert images to PDF</div>
           </div>
         </a>
       </div>
@@ -677,7 +719,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../" class="logo" style="color:#ffffff;">
-          <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
+          <img src="../assets/images/logo.svg" alt="Vytra" width="120" height="26" style="height:26px;width:auto;">
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
           Free online tools for everyday digital work. Convert, compress, edit, and manage files securely in your browser.
@@ -685,12 +727,12 @@
       </div>
 
       <div>
-        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tools & Categories</h4>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">PDF Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/">PDF Tools</a></li>
-          <li><a href="../image/">Image Tools</a></li>
-          <li><a href="../text/">Text Tools</a></li>
-          <li><a href="../utilities/">Utility Tools</a></li>
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/split.html">Split PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../tools/">All PDF Tools</a></li>
         </ul>
       </div>
       <div>
@@ -711,7 +753,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 DigitalSaathi by Vytra &middot; 100% Client-Side Free Tools. All rights reserved.</div>
+      <div>&copy; 2026 Vytra.in &middot; 100% Client-Side Free Tools. All rights reserved.</div>
     </div>
   </footer>
 
@@ -727,6 +769,7 @@
     initPdfWorker();
     document.addEventListener('DOMContentLoaded', initPdfWorker);
 
+    function safeToast(m,t){ if(window.dsToast&&window.dsToast.show) window.dsToast.show(m,t||"info"); else alert(m); }
     let currentFile = null;
     let currentArrayBuffer = null;
     let totalPageCount = 0;
@@ -767,14 +810,14 @@
     // Handle File Upload
     async function loadPdfFile(file) {
       if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-        dsToast.error('Please select a valid PDF file.');
+        safeToast('Please select a valid PDF file.');
         return;
       }
 
       currentFile = file;
       docNameLabel.textContent = file.name;
       docMetaLabel.textContent = `Analyzing document (${formatFileSize(file.size)})...`;
-      dsToast.info('Loading PDF pages...');
+      safeToast('Loading PDF pages...');
 
       try {
         currentArrayBuffer = await file.arrayBuffer();
@@ -792,13 +835,16 @@
 
         dropzone.style.display = 'none';
         workspace.style.display = 'block';
+        workspace.classList.add('on');
         resultBanner.style.display = 'none';
+        resultBanner.classList.remove('on');
+        setStep(2);
 
         renderPageThumbnails();
 
       } catch (err) {
         console.error('Split load error:', err);
-        dsToast.error('Failed to open PDF: ' + err.message);
+        safeToast('Failed to open PDF: ' + err.message);
       }
     }
 
@@ -807,7 +853,7 @@
       pageGridBox.innerHTML = '';
 
       if (typeof pdfjsLib === 'undefined') {
-        pageGridBox.innerHTML = '<div style="padding:1rem;color:var( - text-muted);">PDF preview library loading...</div>';
+        pageGridBox.innerHTML = '<div style="padding:1rem;color:var(--text-muted);">PDF preview library loading...</div>';
         return;
       }
 
@@ -868,6 +914,17 @@
 
     function updateSelectedCount() {
       selectedCountBadge.textContent = selectedPageIndices.size;
+      updateSplitSummary();
+    }
+    function setStep(n){
+      [1,2,3].forEach(i=>{
+        const el=document.getElementById('step-'+i);
+        if(el) el.classList.toggle('active', i<=n);
+      });
+    }
+    function updateSplitSummary(){
+      const s=document.getElementById('split-summary');
+      if(s) s.textContent = currentMode==='all' ? totalPageCount+' pages → ZIP' : selectedPageIndices.size+' selected / '+totalPageCount+' pages';
     }
 
     function updateRangeInputFromSet() {
@@ -977,22 +1034,24 @@
 
     tabModeRange.addEventListener('click', () => {
       currentMode = 'range';
-      tabModeRange.className = 'btn btn-sm btn-primary tab-mode-btn';
-      tabModeAll.className = 'btn btn-sm btn-secondary tab-mode-btn';
+      tabModeRange.style.borderColor='var(--ilp-red)';tabModeRange.style.color='var(--ilp-red)';
+      tabModeAll.style.borderColor='';tabModeAll.style.color='';
       selectionControlsBar.style.display = 'flex';
       pageGridBox.style.display = 'grid';
       rangeInputSection.style.display = 'block';
-      btnExecuteSplit.textContent = 'Extract Selected Pages &rarr;';
+      btnExecuteSplit.innerHTML = 'Extract Selected Pages &rarr;';
+      updateSplitSummary();
     });
 
     tabModeAll.addEventListener('click', () => {
       currentMode = 'all';
-      tabModeAll.className = 'btn btn-sm btn-primary tab-mode-btn';
-      tabModeRange.className = 'btn btn-sm btn-secondary tab-mode-btn';
+      tabModeAll.style.borderColor='var(--ilp-red)';tabModeAll.style.color='var(--ilp-red)';
+      tabModeRange.style.borderColor='';tabModeRange.style.color='';
       selectionControlsBar.style.display = 'none';
       pageGridBox.style.display = 'none';
       rangeInputSection.style.display = 'none';
-      btnExecuteSplit.textContent = `Split All ${totalPageCount} Pages into ZIP &rarr;`;
+      btnExecuteSplit.innerHTML = `Split All ${totalPageCount} Pages into ZIP &rarr;`;
+      updateSplitSummary();
     });
 
     // Execute Split
@@ -1001,6 +1060,9 @@
 
       btnExecuteSplit.disabled = true;
       btnExecuteSplit.classList.add('is-loading');
+      const overlay=document.getElementById('split-overlay');
+      const overlayText=document.getElementById('split-overlay-text');
+      if(overlay) overlay.classList.add('on');
       progressBar.style.display = 'block';
       progressFill.style.width = '20%';
       statusText.style.display = 'block';
@@ -1009,7 +1071,7 @@
         if (currentMode === 'range') {
           // Extract specific pages to a single PDF
           if (selectedPageIndices.size === 0) {
-            dsToast.warning('Please select at least 1 page to extract.');
+            safeToast('Please select at least 1 page to extract.');
             btnExecuteSplit.disabled = false;
             btnExecuteSplit.classList.remove('is-loading');
             progressBar.style.display = 'none';
@@ -1018,6 +1080,7 @@
           }
 
           statusText.textContent = `Extracting ${selectedPageIndices.size} pages...`;
+          if(overlayText) overlayText.textContent = statusText.textContent;
           progressFill.style.width = '50%';
 
           const srcDoc = await PDFLib.PDFDocument.load(currentArrayBuffer, { ignoreEncryption: true });
@@ -1033,9 +1096,7 @@
           const pdfBytes = await newDoc.save();
           splitResultBlob = new Blob([pdfBytes], { type: 'application/pdf' });
           splitResultFilename = outputFilenameInput.value.trim() || 'Vytra_Extracted.pdf';
-
-          document.getElementById('res-split-pages').textContent = sortedIndices.length;
-          document.getElementById('res-split-size').textContent = formatFileSize(splitResultBlob.size);
+          var _pages = sortedIndices.length, _size = formatFileSize(splitResultBlob.size);
 
         } else {
           // Split every page into separate PDFs inside a ZIP archive
@@ -1064,9 +1125,7 @@
 
           splitResultBlob = await zip.generateAsync({ type: 'blob' });
           splitResultFilename = `${baseName}_Pages_Split.zip`;
-
-          document.getElementById('res-split-pages').textContent = `${totalPageCount} (All Pages)`;
-          document.getElementById('res-split-size').textContent = formatFileSize(splitResultBlob.size);
+          var _pages = `${totalPageCount} (All Pages)`, _size = formatFileSize(splitResultBlob.size);
         }
 
         progressFill.style.width = '100%';
@@ -1074,54 +1133,93 @@
 
         setTimeout(() => {
           workspace.style.display = 'none';
+          workspace.classList.remove('on');
           resultBanner.style.display = 'block';
-          dsToast.success('PDF split successfully!');
+          resultBanner.classList.add('on');
+          setStep(3);
+          resultBanner.innerHTML = `
+            <div style="font-size:2.6rem;">✅</div>
+            <h2>PDF Successfully Split!</h2>
+            <p style="font-size:.92rem;color:var(--ilp-muted);">Extracted: <strong>${_pages}</strong> • Size: <strong>${_size}</strong></p>
+            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
+              <button type="button" class="ilp-primary-btn" id="btn-download-split">Download Result</button>
+              <button type="button" class="ilp-ghost-btn" id="btn-reset-tool">Split Another File</button>
+            </div>`;
+          document.getElementById('btn-download-split').addEventListener('click', ()=>{
+            if(!splitResultBlob) return;
+            downloadBlob(splitResultBlob, splitResultFilename);
+            safeToast('Download started!');
+          });
+          document.getElementById('btn-reset-tool').addEventListener('click', resetSplit);
+          safeToast('PDF split successfully!');
         }, 400);
 
       } catch (err) {
         console.error('Split error:', err);
-        dsToast.error('Failed to split PDF: ' + err.message);
+        safeToast('Failed to split PDF: ' + err.message);
       } finally {
         btnExecuteSplit.disabled = false;
         btnExecuteSplit.classList.remove('is-loading');
+        if(overlay) overlay.classList.remove('on');
         progressBar.style.display = 'none';
         statusText.style.display = 'none';
       }
     });
 
-    // Download Result
-    btnDownload.addEventListener('click', () => {
-      if (!splitResultBlob) return;
-      downloadBlob(splitResultBlob, splitResultFilename);
-      dsToast.success('Download started!');
-    });
-
-    // Reset Tool
-    btnReset.addEventListener('click', () => {
+    function resetSplit(){
       currentFile = null;
       currentArrayBuffer = null;
       splitResultBlob = null;
       selectedPageIndices.clear();
       resultBanner.style.display = 'none';
+      resultBanner.classList.remove('on');
       workspace.style.display = 'none';
+      workspace.classList.remove('on');
       dropzone.style.display = 'block';
+      setStep(1);
+    }
+
+    // Download Result
+    if(btnDownload) btnDownload.addEventListener('click', () => {
+      if (!splitResultBlob) return;
+      downloadBlob(splitResultBlob, splitResultFilename);
+      safeToast('Download started!');
     });
 
-    btnChangeFile.addEventListener('click', () => {
+    // Reset Tool
+    if(btnReset) btnReset.addEventListener('click', () => {
+      currentFile = null;
+      currentArrayBuffer = null;
+      splitResultBlob = null;
+      selectedPageIndices.clear();
+      resultBanner.style.display = 'none';
+      try{resultBanner.classList.remove('on');workspace.classList.remove('on');}catch(_){}
+      workspace.style.display = 'none';
+      dropzone.style.display = 'block';
+      try{setStep(1);}catch(_){}
+    });
+
+    if(btnChangeFile) btnChangeFile.addEventListener('click', () => {
       fileInput.click();
     });
 
+    try{
+      dropzone.addEventListener('dragover',(e)=>{e.preventDefault();dropzone.classList.add('dragover');});
+      dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
+      dropzone.addEventListener('drop',(e)=>{e.preventDefault();dropzone.classList.remove('dragover'); if(e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]) loadPdfFile(e.dataTransfer.files[0]);});
+    }catch(_){}
     // Init Dropzone
     fileInput.addEventListener('change', (e) => {
       if (e.target.files && e.target.files.length > 0) {
         loadPdfFile(e.target.files[0]);
       }
+      try{e.target.value='';}catch(_){}
     });
 
     // Rating Interactivity
     const rateStars = document.querySelectorAll('#rateStarsRow span');
     const rateFeedback = document.getElementById('rateFeedbackNotice');
-    rateStars.forEach(s => {
+    if (rateStars && rateStars.length && rateFeedback) rateStars.forEach(s => {
       s.addEventListener('click', () => {
         const starNum = parseInt(s.getAttribute('data-star'));
         rateStars.forEach((st, idx) => {
@@ -1135,7 +1233,8 @@
       });
     });
 
-    document.getElementById('btnSubmitRating').addEventListener('click', () => {
+    var _btnRate = document.getElementById('btnSubmitRating');
+    if (_btnRate && rateFeedback) _btnRate.addEventListener('click', () => {
       rateFeedback.style.display = 'block';
       rateFeedback.textContent = 'Thank you for your rating and feedback!';
     });
@@ -1156,5 +1255,22 @@
       }
     });
   </script>
+<script>
+(function ilpMegaInit(){
+  document.querySelectorAll('.ilp-has-mega').forEach(function(w){
+    var link=w.querySelector(':scope > a');
+    if(link) link.addEventListener('click',function(e){
+      if(window.innerWidth>960){ e.preventDefault(); var was=w.classList.contains('open');
+        document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+        if(!was) w.classList.add('open'); }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.ilp-has-mega')) document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+  });
+  var b=document.getElementById('navToggleBtn'), panel=document.getElementById('navLinks');
+  if(b&&panel) b.addEventListener('click',function(){ panel.classList.toggle('on'); });
+})();
+</script>
 </body>
 </html>

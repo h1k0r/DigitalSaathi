@@ -7,30 +7,30 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 def run_tools_only_validation():
     print("=" * 70)
-    print("🚀 DIGITALSAATHI: TOOLS-ONLY PRODUCT ARCHITECTURE & QA VALIDATOR")
+    print("VYTRA PDF-ONLY QA VALIDATOR (33 iLovePDF-parity tools)")
     print("=" * 70)
 
-    # 1. Verify Core 15 Tools Exist and Have Working Logic
+    # 1. Verify PDF-only core tools exist and have working logic
     core_15_tools = [
         ("Merge PDF", "pdf/merge.html", ["pdf-lib", "PDFDocument", "merge"]),
         ("Split PDF", "pdf/split.html", ["pdf-lib", "PDFDocument", "split"]),
         ("Compress PDF", "pdf/compress.html", ["pdf-lib", "compress", "download"]),
         ("JPG to PDF", "pdf/jpg-to-pdf.html", ["pdf-lib", "pdfdocument", "convert"]),
         ("PDF to JPG", "pdf/pdf-to-jpg.html", ["pdf.js", "pdfjsLib", "canvas"]),
-        ("Image Compressor", "image/compress.html", ["canvas", "toBlob", "quality"]),
-        ("Image Resizer", "image/resize.html", ["canvas", "drawImage", "resize"]),
-        ("JSON Formatter", "developer/json.html", ["JSON.parse", "JSON.stringify", "format"]),
-        ("Base64 Encoder/Decoder", "developer/base64.html", ["btoa", "atob", "FileReader"]),
-        ("Word Counter", "text/word-counter.html", ["words", "chars", "reading"]),
-        ("Percentage Calculator", "calculators/percentage.html", ["percent", "calculate"]),
-        ("Age Calculator", "calculators/age.html", ["dob", "years", "months", "days"]),
-        ("EMI Calculator", "calculators/emi.html", ["emi", "interest", "tenure"]),
-        ("QR Generator", "utilities/qr-generator.html", ["QRCode", "qrcode", "download"]),
-        ("Password Generator", "utilities/password-generator.html", ["getRandomValues", "crypto", "strength"])
+        ("Word to PDF", "pdf/word-to-pdf.html", ["mammoth", "convert"]),
+        ("PDF to Word", "pdf/pdf-to-word.html", ["pdfjsLib", "text"]),
+        ("Rotate PDF", "pdf/rotate.html", ["pdf-lib", "rotate"]),
+        ("Protect PDF", "pdf/protect.html", ["password", "encrypt"]),
+        ("Unlock PDF", "pdf/unlock.html", ["password", "decrypt"]),
+        ("Organize PDF", "pdf/organize.html", ["pdf-lib", "PDFDocument"]),
+        ("OCR PDF", "pdf/ocr.html", ["pdfjsLib", "text"]),
+        ("Sign PDF", "pdf/sign.html", ["signature", "canvas"]),
+        ("Edit PDF", "pdf/edit.html", ["pdfjsLib", "canvas"]),
+        ("PDF to Excel", "pdf/pdf-to-excel.html", ["pdfjsLib", "xlsx"]),
     ]
 
     all_passed = True
-    print("\n--- 1. VERIFYING 15 CORE TOOLS ---")
+    print("\n--- 1. VERIFYING PDF-ONLY CORE TOOLS ---")
     for name, path, signatures in core_15_tools:
         if not os.path.exists(path):
             print(f"❌ [FAIL] Missing file: {path} ({name})")
@@ -101,7 +101,7 @@ def run_tools_only_validation():
 
     print("\n" + "=" * 70)
     if all_passed:
-        print("🏆 ALL 15 CORE TOOLS & TOOLS-ONLY REDESIGN VERIFIED 100% OPERATIONAL!")
+        print("ALL PDF-ONLY CORE TOOLS VERIFIED 100% OPERATIONAL!")
     else:
         print("❌ SOME AUDIT CHECKS FAILED.")
     print("=" * 70)

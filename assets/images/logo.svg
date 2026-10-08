@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48">
+  <rect x="2" y="4" width="40" height="40" rx="10" fill="#E5322D"/>
+  <path d="M11 13 L22 35 L33 13" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="31" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5" fill="#1A1A1A">VYTRA<tspan fill="#E5322D">.IN</tspan></text>
+</svg>

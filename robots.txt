@@ -1,4 +1,4 @@
-# DigitalSaathi Robots.txt
+# Vytra.in Robots.txt — world-class crawl config to compete with iLovePDF
 # https://vytra.in
 
 User-agent: *

@@ -28,7 +28,6 @@
     { title: 'Crop PDF', category: 'PDF Tools', icon: '📐', url: 'pdf/crop.html', keywords: 'crop margins trim page size box bounding area' },
     { title: 'Page Numbers', category: 'PDF Tools', icon: '🔢', url: 'pdf/page-numbers.html', keywords: 'add page numbers footer header numbering roman' },
     { title: 'Extract Pages', category: 'PDF Tools', icon: '📥', url: 'pdf/extract.html', keywords: 'extract specific page range separate download' },
-    { title: 'Reorder Pages', category: 'PDF Tools', icon: '🔀', url: 'pdf/reorder.html', keywords: 'drag reorder sort rearrange pdf pages' },
 
     // PDF Tools - Convert
     { title: 'PDF to Word Converter', category: 'PDF Tools', icon: '📝', url: 'pdf/pdf-to-word.html', keywords: 'convert pdf to docx word editable document pdf to word pdf to word converter pdf to word online convert pdf to word pdf to docx convert pdf to docx pdf to word editable extract text from pdf to docx pdf to word online free' },
@@ -58,51 +57,17 @@
     { title: 'Scan to PDF', category: 'PDF Tools', icon: '📷', url: 'pdf/scan-to-pdf.html', keywords: 'camera scan document paper to pdf mobile web' },
     { title: 'OCR PDF (Text Recognition)', category: 'PDF Tools', icon: '👁️', url: 'pdf/ocr.html', keywords: 'ocr recognize text scanned image searchable extract' },
     { title: 'Compare PDF', category: 'PDF Tools', icon: '🔍', url: 'pdf/compare.html', keywords: 'compare two pdf documents side by side difference diff' },
-    { title: 'PDF Information & Metadata', category: 'PDF Tools', icon: 'ℹ️', url: 'pdf/info.html', keywords: 'metadata author title subject fonts inspect page count' },
-    { title: 'PDF Viewer & Reader', category: 'PDF Tools', icon: '👁️', url: 'pdf/viewer.html', keywords: 'view read inspect search zoom preview pdf online' },
-    { title: 'PDF Page Counter & Stats', category: 'PDF Tools', icon: '🔢', url: 'pdf/page-counter.html', keywords: 'count pages words metadata fast analyze inspect' },
     { title: 'AI PDF Summarizer', category: 'PDF Tools', icon: '🤖', url: 'pdf/ai-summarizer.html', keywords: 'summarize key points insights client side ai extract overview' },
     { title: 'Translate PDF', category: 'PDF Tools', icon: '🌐', url: 'pdf/translate.html', keywords: 'translate language hindi english marathi bengali tamil' },
-    { title: 'Create PDF Workflow', category: 'PDF Tools', icon: '⚡', url: 'pdf/workflow.html', keywords: 'automate chained pipeline merge compress convert batch' },
     { title: 'All PDF Tools Suite', category: 'PDF Tools', icon: '✨', url: 'pdf/index.html', keywords: 'all 38 pdf tools online free client side' },
 
     // Image Tools
-    { title: 'Image HD Converter (4K & 1080p)', category: 'Image Tools', icon: '✨', url: 'image/hd-converter.html', keywords: 'image hd converter 1080p 2k 4k ultra hd upscale sharpen unsharp mask blur resolution' },
-    { title: 'Image Compressor (Under 20KB/50KB/100KB)', category: 'Image Tools', icon: '🗜️', url: 'image/compress.html', keywords: 'compress photo reduce size quality slider webp jpg png ssc upsc kb' },
-    { title: 'Image Resizer (Pixel & Exam Scale)', category: 'Image Tools', icon: '📐', url: 'image/resize.html', keywords: 'resize image dimensions width height aspect ratio ssc upsc custom' },
-    { title: 'Image Cropper', category: 'Image Tools', icon: '✂️', url: 'image/crop.html', keywords: 'crop photo passport 3.5x4.5 ratio square 1:1 circular avatar landscape' },
-    { title: 'Universal Image Converter', category: 'Image Tools', icon: '🔄', url: 'image/convert.html', keywords: 'convert image format batch zip jpg png webp gif bmp' },
-    { title: 'JPG to PDF Converter', category: 'Image Tools', icon: '📄', url: 'image/jpg-to-pdf.html', keywords: 'convert jpg images to pdf combine multiple photos a4 document image to pdf image to pdf converter convert image to pdf image to pdf online image to pdf online free image to pdf free photo to pdf photo to pdf converter picture to pdf picture to pdf converter convert picture to pdf images to pdf images to pdf converter convert images to pdf image converter to pdf make pdf from image make pdf from photos create pdf from images turn image into pdf turn photos into pdf' },
-    { title: 'Remove Background in HD Quality', category: 'Image Tools', icon: '✂️', url: 'image/remove-bg.html', keywords: 'remove background hd transparent png cutout photo eraser pure white passport seva exam remove background hd remove bg in hd quality transparent png maker photo background eraser white background photo maker passport background changer online free' },
-    { title: 'Blur & Redact Censor Tool', category: 'Image Tools', icon: '🔒', url: 'image/blur-face.html', keywords: 'blur redact pixelate censor aadhaar pan card number face identity' },
-    { title: 'Image Watermark Tool', category: 'Image Tools', icon: '💧', url: 'image/watermark.html', keywords: 'watermark stamp copyright protection diagonal tile logo text photo' },
-    { title: 'Photo Enhancer & Scan Optimizer', category: 'Image Tools', icon: '✨', url: 'image/photo-enhancer.html', keywords: 'enhance clarify scan xerox marksheet text boost contrast filter' },
-    { title: 'Bulk Image Resizer & Compressor', category: 'Image Tools', icon: '⚡', url: 'image/bulk-resize.html', keywords: 'bulk batch resize compress multiple 50 images zip download' },
-    { title: 'Rotate & Flip Image', category: 'Image Tools', icon: '🔄', url: 'image/rotate.html', keywords: 'rotate 90 180 degrees flip horizontal mirror selfie vertical' },
-    { title: 'Image Color Picker & Palette', category: 'Image Tools', icon: '🎨', url: 'image/color-picker.html', keywords: 'color picker eyedropper extract palette hex rgb hsl loupe' },
-    { title: 'Image to Base64 Encoder', category: 'Image Tools', icon: '💻', url: 'image/base64.html', keywords: 'image to base64 data uri html img css background string decode' },
-    { title: 'DPI / PPI Converter (300 DPI)', category: 'Image Tools', icon: '🖨️', url: 'image/dpi-converter.html', keywords: 'dpi converter 200 300 600 ppi upsc ssc exam print jfif header' },
-    { title: 'PNG to JPG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/png-to-jpg.html', keywords: 'png to jpg convert white background transparent fill quality png to jpg png to jpg converter convert png to jpg convert png with white background' },
-    { title: 'JPG to PNG Converter', category: 'Image Tools', icon: '🖼️', url: 'image/jpg-to-png.html', keywords: 'jpg to png convert lossless original quality uncompressed jpg to png jpg to png converter jpg to png online convert jpg to png' },
-    { title: 'WebP Converter', category: 'Image Tools', icon: '⚡', url: 'image/webp-converter.html', keywords: 'webp converter convert to webp 70 percent smaller size web optimization webp to jpg webp to png jpg to webp png to webp webp converter convert image to webp heic to jpg heic to png heic converter avif to jpg avif to png' },
-    { title: 'Passport Photo Maker (A4 Grid)', category: 'Image Tools', icon: '📸', url: 'image/passport-photo.html', keywords: 'passport photo 3.5x4.5 ssc upsc visa 2x2 a4 print sheet grid' },
-    { title: 'Signature Resizer (<20KB)', category: 'Image Tools', icon: '✍️', url: 'image/signature.html', keywords: 'resize signature under 20kb 50kb ibps ssc upsc dimension 140x60' },
-    { title: 'All Image Tools Suite', category: 'Image Tools', icon: '✨', url: 'image/index.html', keywords: 'all 18 image photo tools free private browser' },
 
     // Invoice Tools Suite
-    { title: 'Create Invoice (GST & Standard)', category: 'Invoices', icon: '🧾', url: 'pdf/create-invoice.html', keywords: 'create invoice gst bill billing tax invoice maker hsn sac cgst sgst igst' },
-    { title: 'Create Invoice Visually (WYSIWYG)', category: 'Invoices', icon: '🎨', url: 'pdf/create-invoice-visually.html', keywords: 'visual invoice editor a4 wysiwyg live edit invoice print logo design' },
-    { title: 'Create Electronic Invoice (ZUGFeRD / UBL)', category: 'Invoices', icon: '⚡', url: 'pdf/create-electronic-invoice.html', keywords: 'electronic invoice e-invoice zugferd factur-x ubl xml gst json b2b' },
-    { title: 'PDF Invoice to E-Invoice Converter', category: 'Invoices', icon: '🔍', url: 'pdf/pdf-invoice-to-e-invoice.html', keywords: 'pdf to e-invoice extract invoice text parser xml json zugferd' },
-    { title: 'XML E-Invoice to PDF Visualizer', category: 'Invoices', icon: '📄', url: 'pdf/xml-e-invoice-to-pdf.html', keywords: 'xml invoice to pdf render electronic invoice visualizer print' },
-    { title: 'Validate E-Invoice Compliance', category: 'Invoices', icon: '🛡️', url: 'pdf/validate-e-invoice.html', keywords: 'validate e-invoice en 16931 rules audit syntax check certificate' },
 
     // Developer & Data Tools
             
     // Text & Utility Tools
-    { title: 'Word Counter & Text Analyzer', category: 'Text Tools', icon: '📝', url: 'text/word-counter.html', keywords: 'word counter characters count reading time paragraphs sentences word counter character counter sentence counter case converter uppercase to lowercase lowercase to uppercase reading time calculator' },
-    { title: 'QR Code Generator', category: 'Utility Tools', icon: '📱', url: 'utilities/qr-generator.html', keywords: 'qr code generator create custom qr wifi url vcard qr code generator make qr code free qr generator upi qr code generator wifi qr code maker' },
-    { title: 'Password Generator', category: 'Utility Tools', icon: '🔐', url: 'utilities/password-generator.html', keywords: 'password generator secure random password strong passphrase password generator random password generator strong password maker secure password generator' }
   ];
 
   function getBasePrefix() {
@@ -436,7 +401,6 @@
         title: 'Remove Background in HD Quality',
         category: 'Image Tools',
         icon: '✂️',
-        url: 'image/remove-bg.html',
         isSmartMatch: true
       };
     }
@@ -447,7 +411,6 @@
         title: 'Photo Enhancer & Scan Optimizer',
         category: 'Image Tools',
         icon: '✨',
-        url: 'image/photo-enhancer.html',
         isSmartMatch: true
       };
     }
@@ -500,7 +463,6 @@
         title: 'Image Resizer (Custom Dimensions & Pixels)',
         category: 'Image Tools',
         icon: '📐',
-        url: 'image/resize.html',
         isSmartMatch: true
       };
     }

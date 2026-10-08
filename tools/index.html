@@ -22,15 +22,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Free Online Tools Directory | DigitalSaathi</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#E5322D">
+  <title>All Free Online Tools Directory | Vytra</title>
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="description" content="Browse DigitalSaathi's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and generate QR codes with 100% private in-browser processing.">
+  <meta name="description" content="Browse Vytra's complete directory of free client-side online tools. Merge, split, compress, convert, edit and secure PDFs with 100% private in-browser processing.">
   
   <! - Fonts & Stylesheet - >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/ilp-workflow.css"
 
   <style>
     /* Fresh & Modern SaaS Directory Styles */
@@ -43,13 +49,13 @@
     .dir-hero-title {
       font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 800;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
       letter-spacing: -0.025em;
       margin-bottom: 0.5rem;
     }
     .dir-hero-desc {
       font-size: 1.05rem;
-      color: var( - text-muted, #64748b);
+      color: var(--text-muted, #64748b);
       line-height: 1.5;
       margin-bottom: 1.5rem;
     }
@@ -71,16 +77,16 @@
       width: 100%;
       padding: 14px 20px 14px 46px;
       font-size: 1rem;
-      border: 1.5px solid var( - border-default, #cbd5e1);
-      border-radius: var( - radius-full, 9999px);
+      border: 1.5px solid var(--border-default, #cbd5e1);
+      border-radius: var(--radius-full, 9999px);
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
       outline: none;
       transition: all 0.2s;
       background: #ffffff;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
     }
     .dir-search-input:focus {
-      border-color: var( - primary, #2563eb);
+      border-color: var(--primary, #2563eb);
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
     }
     .dir-search-icon {
@@ -88,7 +94,7 @@
       left: 18px;
       top: 50%;
       transform: translateY(-50%);
-      color: var( - text-muted, #94a3b8);
+      color: var(--text-muted, #94a3b8);
       pointer-events: none;
     }
 
@@ -109,23 +115,23 @@
       padding: 8px 16px;
       font-size: 0.85rem;
       font-weight: 600;
-      background: var( - bg-surface, #ffffff);
-      border: 1px solid var( - border-default, #e2e8f0);
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-default, #e2e8f0);
       border-radius: 9999px;
       cursor: pointer;
-      color: var( - text-main, #334155);
+      color: var(--text-main, #334155);
       transition: all 0.18s ease;
       user-select: none;
     }
     .filter-pill:hover {
       background: #eff6ff;
-      color: var( - primary, #2563eb);
+      color: var(--primary, #2563eb);
       border-color: #bfdbfe;
     }
     .filter-pill.active {
-      background: var( - primary, #2563eb);
+      background: var(--primary, #2563eb);
       color: #ffffff;
-      border-color: var( - primary, #2563eb);
+      border-color: var(--primary, #2563eb);
       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
     }
     .filter-pill .pill-count {
@@ -145,20 +151,20 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
-      border-bottom: 1px solid var( - border-subtle, #e2e8f0);
+      border-bottom: 1px solid var(--border-subtle, #e2e8f0);
       padding-bottom: 0.75rem;
     }
     .view-count-label {
       font-size: 0.9rem;
-      color: var( - text-muted, #64748b);
+      color: var(--text-muted, #64748b);
       font-weight: 600;
     }
     .view-switch-btns {
       display: inline-flex;
-      background: var( - bg-surface-subtle, #f1f5f9);
+      background: var(--bg-surface-subtle, #f1f5f9);
       padding: 3px;
       border-radius: 8px;
-      border: 1px solid var( - border-subtle, #e2e8f0);
+      border: 1px solid var(--border-subtle, #e2e8f0);
     }
     .view-btn {
       display: inline-flex;
@@ -169,14 +175,14 @@
       font-weight: 600;
       border: none;
       background: transparent;
-      color: var( - text-muted, #64748b);
+      color: var(--text-muted, #64748b);
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s;
     }
     .view-btn.active {
       background: #ffffff;
-      color: var( - primary, #2563eb);
+      color: var(--primary, #2563eb);
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
@@ -195,7 +201,7 @@
     .section-title {
       font-size: 1.35rem;
       font-weight: 800;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -204,7 +210,7 @@
       font-size: 0.75rem;
       font-weight: 700;
       background: #eff6ff;
-      color: var( - primary, #2563eb);
+      color: var(--primary, #2563eb);
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid #bfdbfe;
@@ -228,7 +234,7 @@
     }
     .matrix-card {
       background: #ffffff;
-      border: 1px solid var( - border-subtle, #e2e8f0);
+      border: 1px solid var(--border-subtle, #e2e8f0);
       border-radius: 12px;
       padding: 16px 10px 12px;
       text-align: center;
@@ -245,7 +251,7 @@
     }
     .matrix-card:hover {
       transform: translateY(-3px);
-      border-color: var( - primary-300, #93c5fd);
+      border-color: var(--primary-300, #93c5fd);
       box-shadow: 0 8px 16px -2px rgba(37, 99, 235, 0.12);
     }
     .matrix-card .fav-star-btn {
@@ -285,7 +291,7 @@
     .matrix-card .tool-name {
       font-size: 0.88rem;
       font-weight: 700;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
       line-height: 1.25;
       margin: 0;
     }
@@ -298,8 +304,8 @@
     }
     .detailed-card {
       background: #ffffff;
-      border: 1px solid var( - border-subtle, #e2e8f0);
-      border-radius: var( - radius-xl, 16px);
+      border: 1px solid var(--border-subtle, #e2e8f0);
+      border-radius: var(--radius-xl, 16px);
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
@@ -311,7 +317,7 @@
     }
     .detailed-card:hover {
       transform: translateY(-4px);
-      border-color: var( - primary-300, #93c5fd);
+      border-color: var(--primary-300, #93c5fd);
       box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
     }
     .detailed-card .top-row {
@@ -335,12 +341,12 @@
     .detailed-card .tool-title {
       font-size: 1.05rem;
       font-weight: 700;
-      color: var( - text-main, #0f172a);
+      color: var(--text-main, #0f172a);
       margin-bottom: 0.35rem;
     }
     .detailed-card .tool-desc {
       font-size: 0.85rem;
-      color: var( - text-muted, #64748b);
+      color: var(--text-muted, #64748b);
       line-height: 1.45;
       flex-grow: 1;
       margin-bottom: 1rem;
@@ -350,10 +356,10 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 0.75rem;
-      border-top: 1px solid var( - border-subtle, #f1f5f9);
+      border-top: 1px solid var(--border-subtle, #f1f5f9);
       font-size: 0.8125rem;
       font-weight: 600;
-      color: var( - primary, #2563eb);
+      color: var(--primary, #2563eb);
     }
 
     /* Empty state */
@@ -361,8 +367,8 @@
       text-align: center;
       padding: 3.5rem 1rem;
       background: #ffffff;
-      border: 1px dashed var( - border-default, #cbd5e1);
-      border-radius: var( - radius-xl, 16px);
+      border: 1px dashed var(--border-default, #cbd5e1);
+      border-radius: var(--radius-xl, 16px);
       margin: 2rem 0;
     }
   </style>
@@ -370,24 +376,24 @@
   <link rel="canonical" href="https://vytra.in/tools/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vytra.in/tools/">
-  <meta property="og:title" content="All Free Online Tools Directory | DigitalSaathi">
-  <meta property="og:description" content="Browse DigitalSaathi's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and generate QR codes.">
-  <meta property="og:site_name" content="DigitalSaathi">
+  <meta property="og:title" content="All Free Online Tools Directory | Vytra">
+  <meta property="og:description" content="Browse Vytra's complete directory of free client-side online tools. Merge, split, compress, convert, edit and secure PDFs online free.">
+  <meta property="og:site_name" content="Vytra">
   <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Free Online Tools Directory | DigitalSaathi">
-  <meta name="twitter:description" content="Browse DigitalSaathi's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and generate QR codes.">
+  <meta name="twitter:title" content="All Free Online Tools Directory | Vytra">
+  <meta name="twitter:description" content="Browse Vytra's complete directory of free client-side online tools. Merge, split, compress, convert, edit and secure PDFs online free.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "All Free Online Tools Directory | DigitalSaathi",
+  "name": "All Free Online Tools Directory | Vytra",
   "url": "https://vytra.in/tools/",
-  "description": "Browse DigitalSaathi's complete directory of free client-side online tools. Convert to PDF, convert from PDF, organize, compress images, and generate QR codes."
+  "description": "Browse Vytra's complete directory of free client-side online tools. Merge, split, compress, convert, edit and secure PDFs online free."
 }
 </script>
 
@@ -397,54 +403,103 @@
 <body class="tool-page">
 
   <! - Header Navigation - >
-        <nav class="navbar" id="main-nav">
-    <div class="container nav-container">
-      <a href="../" class="logo">
-        <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
-      </a>
-
-      <ul class="nav-links" id="navLinks">
-        <li class="nav-item">
-          <a href="../" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item has-dropdown">
-          <a href="../tools/" class="nav-link">
-            Tools
-            <svg class="nav-chevron" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1L4.5 4.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <div class="nav-dropdown">
-            <a href="../pdf/" class="dropdown-link">PDF Tools <span>&rarr;</span></a>
-            <a href="../image/" class="dropdown-link">Image Tools <span>&rarr;</span></a>
-            <a href="../text/" class="dropdown-link">Text Tools <span>&rarr;</span></a>
-            <a href="../utilities/" class="dropdown-link">Utility Tools <span>&rarr;</span></a>
-            <a href="../tools/" class="dropdown-link dropdown-view-all">All Tools Directory &rarr;</a>
+        <nav class="ilp-topnav" id="main-nav">
+    <div class="ilp-nav-inner">
+      <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
+      <div class="ilp-links">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <div class="ilp-has-mega" data-mega="convert">
+          <a href="../pdf/jpg-to-pdf.html" class="ilp-link">CONVERT PDF ▾</a>
+          <div class="ilp-mega" style="width:min(560px,94vw);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+              <div><h4>Convert to PDF</h4>
+                <a href="../pdf/jpg-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🖼️</span>JPG to PDF</a>
+                <a href="../pdf/word-to-pdf.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>WORD to PDF</a>
+                <a href="../pdf/ppt-to-pdf.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>POWERPOINT to PDF</a>
+                <a href="../pdf/excel-to-pdf.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>EXCEL to PDF</a>
+                <a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🌐</span>HTML to PDF</a>
+              </div>
+              <div><h4>Convert from PDF</h4>
+                <a href="../pdf/pdf-to-jpg.html"><span class="ilp-dot" style="background:#fef9c3;">🖼️</span>PDF to JPG</a>
+                <a href="../pdf/pdf-to-word.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>PDF to WORD</a>
+                <a href="../pdf/pdf-to-ppt.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>PDF to POWERPOINT</a>
+                <a href="../pdf/pdf-to-excel.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>PDF to EXCEL</a>
+                <a href="../pdf/pdf-a.html"><span class="ilp-dot" style="background:#e0e7ff;">🇦</span>PDF to PDF/A</a>
+              </div>
+            </div>
           </div>
-        </li>
-        <li class="nav-item">
-          <a href="../#categories" class="nav-link">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a href="../#popular" class="nav-link">Popular Tools</a>
-        </li>
-        <li class="nav-item">
-          <a href="../about.html" class="nav-link">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="../contact.html" class="nav-link">Contact</a>
-        </li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="nav-search-btn" id="headerSearchBtn" title="Search all tools (Ctrl+K)" aria-label="Search tools">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span class="search-placeholder">Search tools...</span>
-          <kbd class="nav-search-key">Ctrl K</kbd>
-        </button>
-        <button class="mobile-search-btn" id="mobileSearchBtn" title="Search tools" aria-label="Search tools">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-        <button class="nav-toggle" id="navToggleBtn" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-        <a href="../tools/" class="btn btn-primary btn-sm" style="margin-left: 8px;">Explore Tools</a>
+        </div>
+        <div class="ilp-has-mega" data-mega="all">
+          <a href="../tools/" class="ilp-link red">ALL PDF TOOLS ▾</a>
+          <div class="ilp-mega">
+            <div class="ilp-mega-grid">
+              <div><h4>Organize PDF</h4>
+                <a href="../pdf/merge.html"><span class="ilp-dot" style="background:#fee2e2;">⧉</span>Merge PDF</a>
+                <a href="../pdf/split.html"><span class="ilp-dot" style="background:#fee2e2;">✂</span>Split PDF</a>
+                <a href="../pdf/organize.html"><span class="ilp-dot" style="background:#fee2e2;">✕</span>Remove pages</a>
+                <a href="../pdf/extract.html"><span class="ilp-dot" style="background:#fee2e2;">↗</span>Extract pages</a>
+                <a href="../pdf/organize.html"><span class="ilp-dot" style="background:#fee2e2;">☰</span>Organize PDF</a>
+                <a href="../pdf/scan-to-pdf.html"><span class="ilp-dot" style="background:#fee2e2;">📷</span>Scan to PDF</a>
+              </div>
+              <div><h4>Optimize PDF</h4>
+                <a href="../pdf/compress.html"><span class="ilp-dot" style="background:#dcfce7;">🗜</span>Compress PDF</a>
+                <a href="../pdf/repair.html"><span class="ilp-dot" style="background:#dcfce7;">🔧</span>Repair PDF</a>
+                <a href="../pdf/ocr.html"><span class="ilp-dot" style="background:#dcfce7;">👁</span>OCR PDF</a>
+              </div>
+              <div><h4>Convert to PDF</h4>
+                <a href="../pdf/jpg-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🖼</span>JPG to PDF</a>
+                <a href="../pdf/word-to-pdf.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>WORD to PDF</a>
+                <a href="../pdf/ppt-to-pdf.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>POWERPOINT to PDF</a>
+                <a href="../pdf/excel-to-pdf.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>EXCEL to PDF</a>
+                <a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#fef9c3;">🌐</span>HTML to PDF</a>
+              </div>
+              <div><h4>Convert from PDF</h4>
+                <a href="../pdf/pdf-to-jpg.html"><span class="ilp-dot" style="background:#fef9c3;">🖼</span>PDF to JPG</a>
+                <a href="../pdf/pdf-to-word.html"><span class="ilp-dot" style="background:#dbeafe;">🇼</span>PDF to WORD</a>
+                <a href="../pdf/pdf-to-ppt.html"><span class="ilp-dot" style="background:#ffe4e6;">🇵</span>PDF to POWERPOINT</a>
+                <a href="../pdf/pdf-to-excel.html"><span class="ilp-dot" style="background:#dcfce7;">🇽</span>PDF to EXCEL</a>
+                <a href="../pdf/pdf-a.html"><span class="ilp-dot" style="background:#e0e7ff;">A</span>PDF to PDF/A</a>
+              </div>
+              <div><h4>Edit PDF</h4>
+                <a href="../pdf/rotate.html"><span class="ilp-dot" style="background:#f3e8ff;">⟳</span>Rotate PDF</a>
+                <a href="../pdf/page-numbers.html"><span class="ilp-dot" style="background:#f3e8ff;">🔢</span>Add page numbers</a>
+                <a href="../pdf/watermark.html"><span class="ilp-dot" style="background:#f3e8ff;">💧</span>Add watermark</a>
+                <a href="../pdf/crop.html"><span class="ilp-dot" style="background:#f3e8ff;">◫</span>Crop PDF</a>
+                <a href="../pdf/edit.html"><span class="ilp-dot" style="background:#f3e8ff;">✎</span>Edit PDF</a>
+                <a href="../pdf/forms.html"><span class="ilp-dot" style="background:#f3e8ff;">📋</span>PDF Forms</a>
+              </div>
+              <div><h4>PDF Security</h4>
+                <a href="../pdf/unlock.html"><span class="ilp-dot" style="background:#dbeafe;">🔓</span>Unlock PDF</a>
+                <a href="../pdf/protect.html"><span class="ilp-dot" style="background:#dbeafe;">🔒</span>Protect PDF</a>
+                <a href="../pdf/sign.html"><span class="ilp-dot" style="background:#dbeafe;">✍</span>Sign PDF</a>
+                <a href="../pdf/redact.html"><span class="ilp-dot" style="background:#dbeafe;">⬛</span>Redact PDF</a>
+                <a href="../pdf/compare.html"><span class="ilp-dot" style="background:#dbeafe;">◐</span>Compare PDF</a>
+                <div style="margin-top:10px;"><h4>PDF Intelligence</h4>
+                  <a href="../pdf/ai-summarizer.html"><span class="ilp-dot" style="background:#ede9fe;">🤖</span>AI Summarizer</a>
+                  <a href="../pdf/translate.html"><span class="ilp-dot" style="background:#ede9fe;">🌐</span>Translate PDF</a>
+                  <a href="../pdf/pdf-to-markdown.html"><span class="ilp-dot" style="background:#ede9fe;">⬇</span>PDF to Markdown</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ilp-nav-right">
+        <button class="ilp-ghost-btn" id="headerSearchBtn" style="padding:8px 12px;" aria-label="Search tools">🔍 <span style="font-size:.78rem;">Search</span></button>
+        <a href="../tools/" class="ilp-login">Login</a>
+        <a href="../tools/" class="ilp-signup">Sign up</a>
+        <button class="ilp-burger" id="navToggleBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="ilp-mobile-panel" id="navLinks" style="padding:12px 16px;border-top:1px solid #e5e7eb;">
+      <div style="display:grid;gap:6px;">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <a href="../tools/" class="ilp-link red">ALL PDF TOOLS →</a>
+        
       </div>
     </div>
   </nav>
@@ -464,7 +519,7 @@
           <span class="dir-search-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </span>
-          <input type="text" id="dirSearchInput" class="dir-search-input" placeholder="Search any tool (e.g. Merge PDF, PDF to Images, Compress, QR)..." aria-label="Search all tools">
+          <input type="text" id="dirSearchInput" class="dir-search-input" placeholder="Search any tool (e.g. Merge PDF, Split PDF, Compress PDF)..." aria-label="Search all tools">
         </div>
       </div>
 
@@ -490,13 +545,13 @@
           <span>Organize &amp; Edit PDF</span>
           <span class="pill-count" id="countOrganizePdf">0</span>
         </button>
-        <button type="button" class="filter-pill" data-filter="image-tools">
-          <span>Image &amp; Photo</span>
-          <span class="pill-count" id="countImage">0</span>
+        <button type="button" class="filter-pill" data-filter="optimize-pdf">
+          <span>Optimize PDF</span>
+          <span class="pill-count" id="countOptimize">0</span>
         </button>
-        <button type="button" class="filter-pill" data-filter="utilities">
-          <span>Utilities &amp; Text</span>
-          <span class="pill-count" id="countUtil">0</span>
+        <button type="button" class="filter-pill" data-filter="secure-ai">
+          <span>Secure &amp; AI</span>
+          <span class="pill-count" id="countSecure">0</span>
         </button>
       </div>
     </div>
@@ -523,11 +578,11 @@
 
     <! - Empty Search State - >
     <div class="empty-state" id="emptyState" style="display:none;">
-      <div style="margin-bottom:12px; color:var( - text-muted); display:flex; justify-content:center;">
+      <div style="margin-bottom:12px; color:var(--text-muted); display:flex; justify-content:center;">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
-      <h3 style="font-size:1.25rem; font-weight:700; color:var( - text-main); margin-bottom:4px;">No matching tools found</h3>
-      <p style="color:var( - text-muted); font-size:0.92rem; margin:0;">
+      <h3 style="font-size:1.25rem; font-weight:700; color:var(--text-main); margin-bottom:4px;">No matching tools found</h3>
+      <p style="color:var(--text-muted); font-size:0.92rem; margin:0;">
         Try searching for another keyword like "PDF", "JPG", "Compress", or "Convert".
       </p>
     </div>
@@ -544,14 +599,14 @@
     </div>
 
     <! - Client-Side Privacy Guarantee Callout - >
-    <section class="section-card" style="background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border: 1px solid #bfdbfe; border-radius: var( - radius-xl); padding: 2.5rem 2rem; margin-top: 2rem; text-align: center;">
+    <section class="section-card" style="background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border: 1px solid #bfdbfe; border-radius: var(--radius-xl); padding: 2.5rem 2rem; margin-top: 2rem; text-align: center;">
       <div style="max-width: 780px; margin: 0 auto;">
-        <div style="margin-bottom: 12px; color: var( - primary); display: flex; justify-content: center;">
+        <div style="margin-bottom: 12px; color: var(--primary); display: flex; justify-content: center;">
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h2 style="font-size: 1.45rem; font-weight: 800; color: var( - text-main); margin-bottom: 0.75rem;">100% In-Browser Privacy Guarantee</h2>
-        <p style="color: var( - text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-          Unlike legacy converters that upload your confidential files to remote servers, DigitalSaathi runs directly inside your browser using HTML5 Canvas and WebAssembly. Your documents, photos, and personal data never leave your device.
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">100% In-Browser Privacy Guarantee</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Unlike legacy converters that upload your confidential files to remote servers, Vytra runs directly inside your browser using HTML5 Canvas and WebAssembly. Your documents, photos, and personal data never leave your device.
         </p>
       </div>
     </section>
@@ -562,7 +617,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="../" class="logo" style="color:#ffffff;">
-          <span class="logo-text" style="letter-spacing: -0.05em; font-weight: 800;">DIGITALSAATHI</span>
+          <img src="../assets/images/logo.svg" alt="Vytra" width="120" height="26" style="height:26px;width:auto;">
         </a>
         <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
           Free online tools for everyday digital work. Convert, compress, edit, and manage files securely in your browser.
@@ -570,12 +625,12 @@
       </div>
 
       <div>
-        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Tools & Categories</h4>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">PDF Tools</h4>
         <ul class="footer-links">
-          <li><a href="../pdf/">PDF Tools</a></li>
-          <li><a href="../image/">Image Tools</a></li>
-          <li><a href="../text/">Text Tools</a></li>
-          <li><a href="../utilities/">Utility Tools</a></li>
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/split.html">Split PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../tools/">All PDF Tools</a></li>
         </ul>
       </div>
       <div>
@@ -596,7 +651,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 DigitalSaathi by Vytra &middot; 100% Client-Side Free Tools. All rights reserved.</div>
+      <div>&copy; 2026 Vytra.in &middot; 100% Client-Side Free Tools. All rights reserved.</div>
     </div>
   </footer>
 
@@ -605,7 +660,7 @@
   <script defer src="../assets/js/common.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const tools = window.VYTRA_TOOLS || window.DIGITALSAATHI_TOOLS || [];
+      const tools = window.VYTRA_TOOLS || window.VYTRA_TOOLS || [];
       const sectionsContainer = document.getElementById('sectionsContainer');
       const emptyState = document.getElementById('emptyState');
       const searchInput = document.getElementById('dirSearchInput');
@@ -688,16 +743,16 @@
           }
         },
         {
-          id: 'image-tools',
-          title: 'Image & Photo Tools',
-          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>',
-          predicate: (t) => t.category === 'images' || t.category === 'image'
+          id: 'optimize-pdf',
+          title: 'Optimize PDF',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>',
+          predicate: (t) => ['compress-pdf', 'repair-pdf', 'ocr-pdf'].includes(t.id.toLowerCase())
         },
         {
-          id: 'utilities',
-          title: 'Text & Everyday Utilities',
-          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
-          predicate: (t) => t.category === 'text' || t.category === 'utilities' || t.category === 'Text Tools' || t.category === 'Utilities'
+          id: 'secure-ai',
+          title: 'Secure & AI PDF',
+          icon: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+          predicate: (t) => ['protect-pdf', 'unlock-pdf', 'sign-pdf', 'redact-pdf', 'compare-pdf', 'ai-summarizer', 'translate-pdf', 'pdf-to-markdown'].includes(t.id.toLowerCase())
         }
       ];
 
@@ -715,8 +770,8 @@
           if (sec.id === 'convert-to-pdf') document.getElementById('countConvertToPdf').textContent = matchCount;
           if (sec.id === 'convert-from-pdf') document.getElementById('countConvertFromPdf').textContent = matchCount;
           if (sec.id === 'organize-pdf') document.getElementById('countOrganizePdf').textContent = matchCount;
-          if (sec.id === 'image-tools') document.getElementById('countImage').textContent = matchCount;
-          if (sec.id === 'utilities') document.getElementById('countUtil').textContent = matchCount;
+          if (sec.id === 'optimize-pdf') document.getElementById('countOptimize').textContent = matchCount;
+          if (sec.id === 'secure-ai') document.getElementById('countSecure').textContent = matchCount;
         });
       }
 
@@ -852,5 +907,22 @@
       render();
     });
   </script>
+<script>
+(function ilpMegaInit(){
+  document.querySelectorAll('.ilp-has-mega').forEach(function(w){
+    var link=w.querySelector(':scope > a');
+    if(link) link.addEventListener('click',function(e){
+      if(window.innerWidth>960){ e.preventDefault(); var was=w.classList.contains('open');
+        document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+        if(!was) w.classList.add('open'); }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.ilp-has-mega')) document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+  });
+  var b=document.getElementById('navToggleBtn'), panel=document.getElementById('navLinks');
+  if(b&&panel) b.addEventListener('click',function(){ panel.classList.toggle('on'); });
+})();
+</script>
 </body>
 </html>
