@@ -38,9 +38,60 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
   </noscript>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
 
   <style>
+    /* Critical Above-The-Fold CSS (Instant Frame 1 Render) */
+    :root {
+      --primary: #000000;
+      --primary-50: #f8f9fa;
+      --primary-100: #f1f3f5;
+      --primary-200: #e9ecef;
+      --primary-300: #dee2e6;
+      --primary-glow: rgba(0, 0, 0, 0.05);
+      --bg-body: #FAFAFA;
+      --bg-surface: #FFFFFF;
+      --bg-surface-subtle: #F5F5F5;
+      --text-main: #171717;
+      --text-body: #404040;
+      --text-muted: #737373;
+      --border-subtle: #E5E5E5;
+      --border-default: #D4D4D4;
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-card-hover: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      --radius-md: 6px;
+      --radius-xl: 10px;
+      --radius-2xl: 12px;
+      --radius-full: 9999px;
+      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.6; color: var(--text-body); background-color: var(--bg-body); min-height: 100vh; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1.25rem; }
+    .navbar { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; text-decoration: none; color: var(--text-main); font-weight: 800; font-size: 1.15rem; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-link { color: var(--text-muted); font-size: 0.88rem; font-weight: 600; text-decoration: none; padding: 6px 12px; border-radius: var(--radius-md); }
+    .nav-link:hover, .nav-link.active { color: var(--text-main); background: var(--bg-surface-subtle); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-search-btn { display: flex; align-items: center; gap: 8px; background: var(--bg-surface-subtle); border: 1px solid var(--border-subtle); padding: 7px 14px; border-radius: var(--radius-full); font-size: 0.85rem; color: var(--text-muted); cursor: pointer; }
+    .nav-search-key { font-size: 0.72rem; background: #fff; border: 1px solid var(--border-default); padding: 1px 5px; border-radius: 4px; }
+    .mobile-search-btn, .nav-toggle { display: none; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; font-weight: 600; text-decoration: none; border-radius: var(--radius-full); border: 1px solid transparent; cursor: pointer; }
+    .btn-primary { background: var(--primary); color: #ffffff; }
+    .btn-secondary { background: #ffffff; border-color: var(--border-default); color: var(--text-main); }
+    .btn-sm { padding: 6px 14px; font-size: 0.82rem; }
+    .btn-lg { padding: 12px 26px; font-size: 1rem; }
+    .btn-outline { background: transparent; border-color: var(--border-default); color: var(--text-main); }
+    .tool-icon-tile { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .tool-icon-tile svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    @media (max-width: 900px) {
+      .nav-links, .nav-search-btn { display: none; }
+      .mobile-search-btn, .nav-toggle { display: inline-flex; background: none; border: none; cursor: pointer; font-size: 1.25rem; }
+    }
     .home-hero {
       text-align: center;
       padding: 3.5rem 1rem 2.5rem;
