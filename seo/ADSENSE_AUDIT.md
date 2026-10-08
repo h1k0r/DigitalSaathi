@@ -1,6 +1,6 @@
 # DIGITALSAATHI GOOGLE ADSENSE READINESS & MONETIZATION AUDIT
 
-> **Platform:** Vytra (`https://digitalsaathi.vytra.in/`)  
+> **Platform:** Vytra (`https://vytra.in/`)  
 > **Environment:** GitHub Pages (100% Static HTML/CSS/JavaScript, Zero Server Runtime)  
 > **Audit Date:** October 2026  
 > **Specialist Lead:** Senior Web Developer, Technical SEO Engineer & AdSense Implementation Specialist  
@@ -26,7 +26,7 @@ This audit identifies existing gaps and specifies exact files to create, modify,
   - [`assets/js/common.js`](file:///c:/Users/dell/Documents/moneyhackwithdigitaldata/assets/js/common.js) (Navigation, modal search, tool filtering).
   - [`data/tools.js`](file:///c:/Users/dell/Documents/moneyhackwithdigitaldata/data/tools.js) (67 functional tools registry with vector SVG tiles).
 - **Hosting Pipeline:** GitHub Pages with GitHub Actions static deployment workflow.
-- **Production Domain:** `https://digitalsaathi.vytra.in/`.
+- **Production Domain:** `https://vytra.in/`.
 
 ---
 

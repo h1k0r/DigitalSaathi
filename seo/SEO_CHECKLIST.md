@@ -1,9 +1,9 @@
 # DIGITALSAATHI TECHNICAL SEO PRE-DEPLOYMENT CHECKLIST
 
 ### 1. Canonical & Domain Standards
-- [x] All 76 HTML pages have canonical URLs referencing `https://digitalsaathi.vytra.in/`
+- [x] All 76 HTML pages have canonical URLs referencing `https://vytra.in/`
 - [x] Zero references to temporary or old domains (`digitalsaathi.com` / `digitalsaathi.in`)
-- [x] `robots.txt` points to `https://digitalsaathi.vytra.in/sitemap.xml`
+- [x] `robots.txt` points to `https://vytra.in/sitemap.xml`
 - [x] `design-system.html` is marked with `<meta name="robots" content="noindex, nofollow">` and disallowed in `robots.txt`
 
 ### 2. Category Hub Architecture

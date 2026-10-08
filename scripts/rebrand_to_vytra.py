@@ -55,7 +55,7 @@ for filepath in files_to_process:
     content = re.sub(r'<span class=["\']logo-text["\']>DigitalSaathi</span>', r'<span class="logo-text">Vy<span class="logo-highlight">tra</span></span>', content, flags=re.I)
 
     # 4. Email addresses: update support email to support@vytra.in
-    content = content.replace("support@digitalsaathi.vytra.in", "support@vytra.in")
+    content = content.replace("support@vytra.in", "support@vytra.in")
 
     # 5. Titles and Brand Names
     content = content.replace("— DigitalSaathi", "— Vytra")

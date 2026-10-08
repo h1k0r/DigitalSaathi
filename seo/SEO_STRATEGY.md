@@ -1,10 +1,10 @@
 # DIGITALSAATHI TECHNICAL SEO & PROGRAMMATIC ACQUISITION STRATEGY
 
-> **Platform:** Vytra (`https://digitalsaathi.vytra.in/`)  
+> **Platform:** Vytra (`https://vytra.in/`)  
 > **Architecture:** 100% Client-Side Web Application (GitHub Pages Compatible)  
 > **Total Legitimate Keywords Targeted:** 6,700  
 > **Total Functional Tools Mapped:** 67 Tools across 6 Categories  
-> **Canonical Domain:** `https://digitalsaathi.vytra.in/`
+> **Canonical Domain:** `https://vytra.in/`
 
 ---
 
@@ -46,7 +46,7 @@ Total database size: **6,700 legitimate search queries**.
 ## 3. Internal Linking & PageRank Distribution Engine
 
 ### Hierarchical Pyramid Structure:
-1. **Level 0 (Homepage - PR Anchor):** `https://digitalsaathi.vytra.in/` passes link equity to all 6 category hubs and top popular tools.
+1. **Level 0 (Homepage - PR Anchor):** `https://vytra.in/` passes link equity to all 6 category hubs and top popular tools.
 2. **Level 1 (Category Hubs):**
    - `/pdf/` (37 tools)
    - `/image/` (19 tools)
@@ -75,6 +75,6 @@ To maximize RPM while preventing bounce rates and Core Web Vitals degradation:
 
 - **Zero Invisible Text:** No keywords hidden in CSS `display:none` or transparent fonts.
 - **Zero Doorway Pages:** Every single URL targets a functional, self-contained interactive tool.
-- **Canonical Standardization:** 100% of HTML pages enforce strict canonical tags pointing to `https://digitalsaathi.vytra.in/`.
+- **Canonical Standardization:** 100% of HTML pages enforce strict canonical tags pointing to `https://vytra.in/`.
 - **Sandbox Exclusion:** Internal testing tools like `design-system.html` are strictly tagged `<meta name="robots" content="noindex, nofollow">` and disallowed in `robots.txt`.
 - **Pure Client-Side Speed:** Total asset weight < 150KB, zero database round-trips, sub-50ms execution.

@@ -1,6 +1,6 @@
 # DIGITALSAATHI — GOOGLE ADSENSE MONETIZATION FINAL REPORT
 
-> **Platform:** Vytra (`https://digitalsaathi.vytra.in/`)  
+> **Platform:** Vytra (`https://vytra.in/`)  
 > **Environment:** GitHub Pages (100% Static HTML/CSS/JavaScript, Zero Server Dependencies)  
 > **Date:** October 2026  
 > **Implementation Lead:** Senior Web Developer, Technical SEO Engineer & AdSense Specialist  
@@ -81,7 +81,7 @@ Total Source Files Inspected: 91 (HTML: 87, CSS: 1, JS: 3)
 
 To start earning ad revenue:
 1. Follow the 10-step instructions in [`docs/ADSENSE_SETUP.md`](file:///docs/ADSENSE_SETUP.md).
-2. Sign in to your [Google AdSense account](https://www.google.com/adsense/) and add `https://digitalsaathi.vytra.in`.
+2. Sign in to your [Google AdSense account](https://www.google.com/adsense/) and add `https://vytra.in/`.
 3. Update `ads.txt` with your unique `pub-XXXXXXXXXXXXXXXX`.
 4. Update `config/ads-config.js` with your unique `ca-pub-XXXXXXXXXXXXXXXX` and set `enabled: true`.
 5. Push to GitHub to deploy via GitHub Pages and click **Request review** in AdSense.

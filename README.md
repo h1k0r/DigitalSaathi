@@ -2,7 +2,7 @@
 
 > **100% Free, Client-Side Online Tools Suite.** Convert, compress, edit, calculate, and manage files securely in your web browser with zero server uploads.
 
-[![GitHub Pages](https://img.shields.io/badge/Deployment-GitHub%20Pages-blue?logo=github)](https://digitalsaathi.vytra.in)
+[![GitHub Pages](https://img.shields.io/badge/Deployment-GitHub%20Pages-blue?logo=github)](https://vytra.in/)
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20Client--Side-emerald)](#privacy--security)
 [![License](https://img.shields.io/badge/License-MIT-purple)](LICENSE)
 

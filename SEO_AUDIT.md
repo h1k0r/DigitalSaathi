@@ -1,7 +1,7 @@
 # DIGITALSAATHI TECHNICAL SEO & INFORMATION ARCHITECTURE AUDIT
 
 > **Site Audit Date:** October 2026  
-> **Target Domain:** `https://digitalsaathi.vytra.in/`  
+> **Target Domain:** `https://vytra.in/`  
 > **Hosting & Environment:** GitHub Pages (100% Static HTML/CSS/JS, Zero Server-Side Runtime)  
 > **Auditor:** Technical SEO Architect & Programmatic SEO Engineering Lead
 
@@ -16,7 +16,7 @@ Vytra is a 100% client-side online tools platform designed to compete with indus
 | Area | Current Rating | Critical Finding |
 | :--- | :---: | :--- |
 | **Static Hosting & Compatibility** | **100% / Optimal** | Pure static client-side architecture; zero server dependencies. Fully GitHub Pages compliant. |
-| **Domain & Canonical Consistency** | **Needs Update** | URLs and sitemap references currently point to `.com` / `.in` rather than the official `https://digitalsaathi.vytra.in/`. |
+| **Domain & Canonical Consistency** | **Needs Update** | URLs and sitemap references currently point to `.com` / `.in` rather than the official `https://vytra.in/`. |
 | **Catalog Registration Coverage** | **35.5% (27/76)** | `data/tools.js` only registers 27 tools out of the 76 available pages; 49 active tool pages are missing from structured data registry. |
 | **Internal Linking & Related Tools** | **5.7% (4/70)** | Only 4 out of 70 tool pages possess a contextual "Related Tools" cluster block. High orphan risk. |
 | **FAQ & Rich Snippet Markup** | **4.2% (3/70)** | Only 3 pages carry `FAQPage` schema. 67 pages miss out on Google "People Also Ask" (PAA) SERP features. |
@@ -134,8 +134,8 @@ Vytra/
 ## 3. SEO Problems & Vulnerabilities Identified
 
 ### Problem 1: Domain Name Inconsistency Across Metadata
-- **Current State:** 53 files have canonical URLs pointing to `https://digitalsaathi.vytra.in/`, `robots.txt` points to `digitalsaathi.vytra.in/sitemap.xml`, and Open Graph `og:url` tags reflect `.com`.
-- **Target Spec:** The project's actual production domain is `https://digitalsaathi.vytra.in/`.
+- **Current State:** 53 files have canonical URLs pointing to `https://vytra.in/`, `robots.txt` points to `vytra.in/sitemap.xml`, and Open Graph `og:url` tags reflect `.com`.
+- **Target Spec:** The project's actual production domain is `https://vytra.in/`.
 - **Impact:** Canonical divergence causes search engines to ignore canonical tags or treat pages as external redirects, dividing PageRank and link equity.
 
 ### Problem 2: Tool Registry Disconnect (`data/tools.js`)
@@ -168,7 +168,7 @@ Vytra/
 ## 4. Recommended Target Architecture
 
 ```
-https://digitalsaathi.vytra.in/
+https://vytra.in/
 │
 ├── /index.html                         (Master Platform Directory)
 │
@@ -219,12 +219,12 @@ https://digitalsaathi.vytra.in/
 
 ## 5. Audit Action Plan & Immediate Next Steps
 
-1. **Phase 2:** Standardize URL architecture, enforce clean canonical paths on `https://digitalsaathi.vytra.in/`.
+1. **Phase 2:** Standardize URL architecture, enforce clean canonical paths on `https://vytra.in/`.
 2. **Phase 3:** Construct the 5,000+ legitimate keyword database across JSON models (`keyword-map.json`, `keyword-clusters.json`, `keyword-rules.json`, `SEO_STRATEGY.md`).
 3. **Phase 4:** Map 100% of keywords to active tool URLs; register all 70 tools inside `data/tools.js`.
 4. **Phase 5:** Identify strategic keyword gaps for future expansion.
 5. **Phase 6:** Develop reusable, modular HTML templates in `/templates/`.
 6. **Phase 7 & 8:** Upgrade all tool pages and build missing category hubs (`/calculators/index.html`, `/developer/index.html`, `/text/index.html`, `/utilities/index.html`).
 7. **Phase 9 & 10:** Deploy automated contextual internal linking widgets and comprehensive JSON-LD schemas (`WebApplication`, `HowTo`, `FAQPage`, `BreadcrumbList`).
-8. **Phase 11:** Generate clean, production-ready `sitemap.xml` and `robots.txt` referencing `https://digitalsaathi.vytra.in/`.
+8. **Phase 11:** Generate clean, production-ready `sitemap.xml` and `robots.txt` referencing `https://vytra.in/`.
 9. **Phase 12-16:** Execute complete QA, performance validation, and generate `keyword-report.html` and scoring report.

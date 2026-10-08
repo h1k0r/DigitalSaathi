@@ -1,6 +1,6 @@
 """
 Complete SEO Architecture & 5,000+ Keyword System Generator for DigitalSaathi
-Domain: https://digitalsaathi.vytra.in
+Domain: https://vytra.in/
 """
 
 import json
@@ -743,7 +743,7 @@ print("Saved /seo/keyword-map.json")
 CLUSTERS_DATA = {
     "version": "2.0.0",
     "updated": "2026-10-06",
-    "domain": "https://digitalsaathi.vytra.in",
+    "domain": "https://vytra.in/",
     "totalCategories": 6,
     "categories": {
         "pdf": {
@@ -803,7 +803,7 @@ RULES_DATA = {
         "troubleshooting",
         "educational"
     ],
-    "canonicalDomain": "https://digitalsaathi.vytra.in",
+    "canonicalDomain": "https://vytra.in/",
     "maxKeywordsPerTool": 100,
     "generationRules": {
         "action_patterns": ["{verb} {noun}", "{verb} {noun} online free", "{verb} {noun} without software"],
@@ -835,11 +835,11 @@ for k in all_keywords:
 # =========================================================================
 strategy_md = f"""# DIGITALSAATHI TECHNICAL SEO & PROGRAMMATIC ACQUISITION STRATEGY
 
-> **Platform:** DigitalSaathi (`https://digitalsaathi.vytra.in/`)  
+> **Platform:** DigitalSaathi (`https://vytra.in/`)  
 > **Architecture:** 100% Client-Side Web Application (GitHub Pages Compatible)  
 > **Total Legitimate Keywords Targeted:** {len(all_keywords):,}  
 > **Total Functional Tools Mapped:** 67 Tools across 6 Categories  
-> **Canonical Domain:** `https://digitalsaathi.vytra.in/`
+> **Canonical Domain:** `https://vytra.in/`
 
 ---
 
@@ -881,7 +881,7 @@ Total database size: **{len(all_keywords):,} legitimate search queries**.
 ## 3. Internal Linking & PageRank Distribution Engine
 
 ### Hierarchical Pyramid Structure:
-1. **Level 0 (Homepage - PR Anchor):** `https://digitalsaathi.vytra.in/` passes link equity to all 6 category hubs and top popular tools.
+1. **Level 0 (Homepage - PR Anchor):** `https://vytra.in/` passes link equity to all 6 category hubs and top popular tools.
 2. **Level 1 (Category Hubs):**
    - `/pdf/` (37 tools)
    - `/image/` (19 tools)
@@ -910,7 +910,7 @@ To maximize RPM while preventing bounce rates and Core Web Vitals degradation:
 
 - **Zero Invisible Text:** No keywords hidden in CSS `display:none` or transparent fonts.
 - **Zero Doorway Pages:** Every single URL targets a functional, self-contained interactive tool.
-- **Canonical Standardization:** 100% of HTML pages enforce strict canonical tags pointing to `https://digitalsaathi.vytra.in/`.
+- **Canonical Standardization:** 100% of HTML pages enforce strict canonical tags pointing to `https://vytra.in/`.
 - **Sandbox Exclusion:** Internal testing tools like `design-system.html` are strictly tagged `<meta name="robots" content="noindex, nofollow">` and disallowed in `robots.txt`.
 - **Pure Client-Side Speed:** Total asset weight < 150KB, zero database round-trips, sub-50ms execution.
 """
@@ -925,9 +925,9 @@ print("Saved /seo/SEO_STRATEGY.md")
 checklist_md = """# DIGITALSAATHI TECHNICAL SEO PRE-DEPLOYMENT CHECKLIST
 
 ### 1. Canonical & Domain Standards
-- [x] All 76 HTML pages have canonical URLs referencing `https://digitalsaathi.vytra.in/`
+- [x] All 76 HTML pages have canonical URLs referencing `https://vytra.in/`
 - [x] Zero references to temporary or old domains (`digitalsaathi.com` / `digitalsaathi.in`)
-- [x] `robots.txt` points to `https://digitalsaathi.vytra.in/sitemap.xml`
+- [x] `robots.txt` points to `https://vytra.in/sitemap.xml`
 - [x] `design-system.html` is marked with `<meta name="robots" content="noindex, nofollow">` and disallowed in `robots.txt`
 
 ### 2. Category Hub Architecture
@@ -1102,7 +1102,7 @@ report_html = f"""<!DOCTYPE html>
         <div>
           <span style="font-size: 0.8125rem; font-weight: 700; color: #2563eb; text-transform: uppercase;">Technical SEO Dashboard</span>
           <h1 style="font-size: 2rem; font-weight: 800; color: #0f172a; margin: 4px 0 6px;">5,000+ Keyword Programmatic SEO System</h1>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0;">DigitalSaathi • Production Domain: <a href="https://digitalsaathi.vytra.in" target="_blank" style="color: #2563eb; text-decoration: underline;">https://digitalsaathi.vytra.in</a></p>
+          <p style="color: #64748b; font-size: 0.95rem; margin: 0;">DigitalSaathi • Production Domain: <a href="https://vytra.in/" target="_blank" style="color: #2563eb; text-decoration: underline;">https://vytra.in/</a></p>
         </div>
         <div>
           <a href="../index.html" class="btn btn-primary">&larr; Return to Live Site</a>
@@ -1156,7 +1156,7 @@ report_html = f"""<!DOCTYPE html>
           <li><strong>Zero Doorway Risk:</strong> Every query resolves directly to a genuine, working browser tool.</li>
           <li><strong>100% Client-Side:</strong> Zero server latency, WebAssembly + Web Workers execution.</li>
           <li><strong>Rich Schemas:</strong> WebApplication, HowTo, BreadcrumbList, FAQPage JSON-LD.</li>
-          <li><strong>Canonical Purity:</strong> All canonicals aligned with <code>https://digitalsaathi.vytra.in/</code>.</li>
+          <li><strong>Canonical Purity:</strong> All canonicals aligned with <code>https://vytra.in/</code>.</li>
         </ul>
       </div>
     </div>

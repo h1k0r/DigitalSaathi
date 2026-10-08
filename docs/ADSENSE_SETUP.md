@@ -1,6 +1,6 @@
 # Google AdSense Activation & Operational Guide
 
-**Website:** [Vytra](https://digitalsaathi.vytra.in/)  
+**Website:** [Vytra](https://vytra.in/)  
 **Hosting Architecture:** 100% Static HTML/CSS/JavaScript on GitHub Pages  
 **Target Ad Platform:** Google AdSense (Auto Ads & Non-Intrusive Responsive Units)  
 **Configuration File:** [`config/ads-config.js`](file:///config/ads-config.js)  
@@ -33,7 +33,7 @@ The Vytra codebase is pre-configured and architecturally hardened for Google AdS
 2. Click the **+ New site** (or **Add site**) button.
 3. Enter your custom domain:
    ```
-   digitalsaathi.vytra.in
+   vytra.in
    ```
 4. Click **Save**.
 
@@ -103,14 +103,14 @@ Within 1–2 minutes, GitHub Pages will deploy the updated static build.
 
 Verify your live `ads.txt` is accessible at:
 ```
-https://digitalsaathi.vytra.in/ads.txt
+https://vytra.in/ads.txt
 ```
 
 ---
 
 ### Step 7: Request Site Review in AdSense Console
 1. Return to the **Sites** tab in the Google AdSense dashboard.
-2. Under `digitalsaathi.vytra.in`, confirm the verification status method:
+2. Under `vytra.in`, confirm the verification status method:
    - AdSense checks for the presence of the `pagead2.googlesyndication.com` script (which `config/ads-config.js` injects) and the `ads.txt` file.
 3. Click **Request review**.
 4. The review process typically takes between **24 hours and 14 days**.
@@ -120,7 +120,7 @@ https://digitalsaathi.vytra.in/ads.txt
 ### Step 8: Configure Auto Ads (Recommended Settings)
 While your site is under review or once approved:
 1. In AdSense, go to **Ads** > **By site**.
-2. Click the edit icon (pencil) next to `digitalsaathi.vytra.in`.
+2. Click the edit icon (pencil) next to `vytra.in`.
 3. Enable **Auto ads**.
 4. Configure Ad formats for optimal user experience:
    - **In-page ads:** ON (Google places native responsive ads into natural breaks in content).

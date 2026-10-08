@@ -1,13 +1,13 @@
 """
 Sitemap Generator for Vytra
-Domain: https://digitalsaathi.vytra.in
+Domain: https://vytra.in/
 """
 
 import os
 from datetime import datetime
 
 ROOT_DIR = r"c:\Users\dell\Documents\moneyhackwithdigitaldata"
-BASE_URL = "https://digitalsaathi.vytra.in"
+BASE_URL = "https://vytra.in/"
 
 # Canonical entries
 entries = [
