@@ -103,3 +103,53 @@
 @media(max-width:960px){.ilp-links{display:none;}.ilp-burger{display:block;}.ilp-mega{position:fixed;top:64px;left:12px;right:12px;transform:none;width:auto;max-height:70vh;overflow:auto;}}
 .ilp-mobile-panel{display:none;}
 .ilp-mobile-panel.on{display:block;}
+
+/* VYTRA BOTTOM SECTIONS — shared styling for info / FAQ / rating / share / related / tables.
+   Tool pages use several historical class variants; all are styled here so no bottom
+   content ever renders unstyled. */
+.vytra-section-subtitle{color:var(--ilp-muted);font-size:.92rem;margin:4px 0 18px;line-height:1.6;}
+.vytra-info-cell-icon:empty{display:none;}
+.vytra-engineering-bar,.vytra-team-bar{margin-top:1.5rem;background:var(--ilp-bg);border:1px solid var(--ilp-border);border-radius:10px;padding:12px 16px;font-size:.82rem;color:var(--ilp-muted);line-height:1.6;}
+/* FAQ (details/summary variant) */
+.vytra-faq-section,.vytra-guide-section{margin:2.5rem 0;}
+.vytra-faq-list,.vytra-faq-accordion{display:grid;gap:10px;}
+.vytra-faq-item{background:#fff;border:1px solid var(--ilp-border);border-radius:10px;overflow:hidden;}
+.vytra-faq-item summary.vytra-faq-question{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;font-weight:700;font-size:.92rem;color:var(--ilp-ink);cursor:pointer;}
+.vytra-faq-item summary.vytra-faq-question::-webkit-details-marker{display:none;}
+.vytra-faq-toggle,.faq-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--ilp-bg);border:1px solid var(--ilp-border);display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:var(--ilp-red);}
+.vytra-faq-item[open] .vytra-faq-toggle,.vytra-faq-item[open] .faq-icon{background:var(--ilp-red);border-color:var(--ilp-red);color:#fff;}
+.vytra-faq-answer{padding:0 16px 16px;font-size:.87rem;color:var(--ilp-muted);line-height:1.65;}
+.vytra-qa-question{font-weight:700;color:var(--ilp-ink);margin:12px 0 4px;font-size:.9rem;}
+.vytra-qa-answer{color:var(--ilp-muted);font-size:.87rem;line-height:1.65;margin:0 0 8px;}
+/* Rating */
+.vytra-rating-card,.vytra-feedback-card{background:#fff;border:1px solid var(--ilp-border);border-radius:14px;padding:26px 22px;text-align:center;margin:2.5rem auto;max-width:680px;}
+.vytra-rating-title,.vytra-feedback-title{font-size:1.15rem;font-weight:800;color:var(--ilp-ink);margin-bottom:6px;}
+.vytra-rating-desc,.vytra-feedback-desc{font-size:.86rem;color:var(--ilp-muted);margin-bottom:12px;}
+.vytra-stars,.vytra-star-rating{display:flex;gap:6px;justify-content:center;font-size:1.7rem;}
+.vytra-stars .star,.vytra-star-rating .star-btn{cursor:pointer;color:#cbd5e1;background:none;border:0;padding:2px;transition:color .12s,transform .12s;}
+.vytra-stars .star:hover,.vytra-star-rating .star-btn:hover{transform:scale(1.15);}
+.vytra-stars .star.active,.vytra-star-rating .star-btn.active,.vytra-stars .star.selected{color:#f59e0b;}
+.vytra-rating-score{margin-top:10px;font-size:.82rem;font-weight:700;color:var(--ilp-muted);}
+/* Share */
+.vytra-share-box,.vytra-share-links{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.vytra-share-label{font-size:.82rem;font-weight:700;color:var(--ilp-muted);}
+.vytra-share-buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.vytra-share-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9999px;background:#fff;border:1px solid var(--ilp-border);font-size:.82rem;font-weight:700;color:var(--ilp-ink);text-decoration:none;cursor:pointer;font-family:inherit;}
+.vytra-share-pill:hover{border-color:#fecaca;background:var(--ilp-red-50);color:var(--ilp-red);}
+/* Related tools */
+.vytra-related-section{margin:2.5rem 0;}
+.vytra-related-grid,.vytra-related-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.vytra-related-grid-wrap{margin:2.5rem 0 3.5rem;}
+.vytra-related-card{background:#fff;border:1px solid var(--ilp-border);border-radius:12px;padding:16px 14px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px;transition:all .15s;}
+.vytra-related-card:hover{border-color:#fca5a5;box-shadow:var(--ilp-shadow);transform:translateY(-2px);}
+.vytra-related-icon{width:34px;height:34px;border-radius:8px;background:var(--ilp-red-50);color:var(--ilp-red);display:flex;align-items:center;justify-content:center;}
+.vytra-related-icon:empty{display:none;}
+.vytra-related-name,.vytra-related-title{font-weight:700;font-size:.9rem;color:var(--ilp-ink);}
+.vytra-related-desc{font-size:.78rem;color:var(--ilp-muted);line-height:1.5;}
+/* Benchmark / data tables */
+.vytra-table-section{margin:2.5rem 0;}
+.vytra-table-wrapper{overflow-x:auto;border:1px solid var(--ilp-border);border-radius:12px;background:#fff;}
+.vytra-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:640px;}
+.vytra-table th{background:var(--ilp-ink);color:#fff;text-align:left;padding:12px 14px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+.vytra-table td{padding:11px 14px;border-top:1px solid var(--ilp-border);color:var(--ilp-ink);}
+.vytra-table tbody tr:nth-child(even){background:#f8fafc;}
