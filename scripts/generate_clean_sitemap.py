@@ -2,7 +2,7 @@ import os
 import glob
 from xml.dom import minidom
 
-base_url = "https://digitalsaathi.com"
+base_url = "https://vytra.in"
 
 # Discover all html files
 html_files = []

@@ -7,7 +7,7 @@ import json
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
-base_url = "https://digitalsaathi.com"
+base_url = "https://vytra.in"
 
 # Scan all html files
 html_files = []
