@@ -452,6 +452,59 @@
       };
     }
 
+    // 11. Compress PDF Intent ("compress pdf", "pdf size kam karna", "make pdf smaller", "pdf under 200kb", etc.)
+    if (/compress\s*pdf|pdf\s*compress|reduce\s*pdf|shrink\s*pdf|make\s*pdf\s*smaller|pdf\s*(size|mb|kb)\s*(kam|chhota|reduce|less|down)|pdf\s*2\s*mb|pdf\s*100\s*kb|pdf\s*200\s*kb|pdf\s*500\s*kb/i.test(q)) {
+      return {
+        title: 'Compress PDF (Reduce PDF File Size)',
+        category: 'PDF Tools',
+        icon: '🗜️',
+        url: 'pdf/compress.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 12. Split PDF Intent ("split pdf", "separate pdf pages", "pdf alag karna", etc.)
+    if (/split\s*pdf|separate\s*pdf|cut\s*pdf|divide\s*pdf|pdf\s*split|pdf\s*(alag|tukde|divide)/i.test(q)) {
+      return {
+        title: 'Split PDF (Extract & Separate Pages)',
+        category: 'PDF Tools',
+        icon: '✂️',
+        url: 'pdf/split.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 13. PDF to Word / Word to PDF
+    if (/pdf\s*(to|into|se|ko)\s*(word|doc|docx)|word\s*to\s*pdf|convert\s*pdf\s*word/i.test(q)) {
+      if (/word\s*(to|into|se|ko)\s*pdf/i.test(q)) {
+        return {
+          title: 'Word to PDF Converter',
+          category: 'PDF Tools',
+          icon: '📄',
+          url: 'pdf/word-to-pdf.html',
+          isSmartMatch: true
+        };
+      }
+      return {
+        title: 'PDF to Word Converter',
+        category: 'PDF Tools',
+        icon: '📝',
+        url: 'pdf/pdf-to-word.html',
+        isSmartMatch: true
+      };
+    }
+
+    // 14. Image Resizer Intent ("resize photo", "pixel dimensions", "1920x1080", "photo width height", etc.)
+    if (/resize\s*(image|photo|pic)|change\s*(pixel|dimension|width|height)|image\s*resiz|photo\s*chhota|size\s*badalna/i.test(q)) {
+      return {
+        title: 'Image Resizer (Custom Dimensions & Pixels)',
+        category: 'Image Tools',
+        icon: '📐',
+        url: 'image/resize.html',
+        isSmartMatch: true
+      };
+    }
+
     return null;
   }
 
