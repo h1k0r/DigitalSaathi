@@ -156,7 +156,8 @@
 .vytra-table tbody tr:nth-child(even){background:#f8fafc;}
 
 /* ILP-IDE v1.0 — VS Code-style mini IDE: explorer + editor + terminal */
-.ilp-ide{display:grid;grid-template-columns:220px minmax(0,1fr) 370px;border:1px solid var(--ilp-border);border-radius:10px;overflow:hidden;background:#fff;}
+.ilp-ide{display:grid;grid-template-columns:200px minmax(0,1fr) 340px;border:1px solid var(--ilp-border);border-radius:10px;overflow:hidden;background:#fff;}
+#codeEd{white-space:pre;overflow:auto;overflow-y:auto;}
 .ilp-explorer{background:#f8fafc;border-right:1px solid var(--ilp-border);display:flex;flex-direction:column;min-height:600px;}
 .ilp-exp-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--ilp-muted);border-bottom:1px solid var(--ilp-border);}
 .ilp-exp-head button{background:#fff;border:1px solid var(--ilp-border);border-radius:6px;font-size:.72rem;font-weight:700;padding:3px 8px;cursor:pointer;color:var(--ilp-ink);}
