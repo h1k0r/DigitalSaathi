@@ -751,6 +751,72 @@
         ],
         "popular": false,
         "badge": ""
+    },
+    {
+        "id": "c-compiler",
+        "name": "C Compiler",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Run C code online on gcc with stdin input and instant output.",
+        "url": "developer/c-compiler.html",
+        "tags": ["c compiler", "gcc", "run c", "stdin", "piston"],
+        "popular": true,
+        "badge": "Popular"
+    },
+    {
+        "id": "cpp-compiler",
+        "name": "C++ Compiler",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Run modern C++ with full STL support on g++.",
+        "url": "developer/cpp-compiler.html",
+        "tags": ["c++ compiler", "g++", "stl", "run cpp", "stdin"],
+        "popular": true,
+        "badge": "Popular"
+    },
+    {
+        "id": "java-compiler",
+        "name": "Java Compiler",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Run Java Main-class programs on OpenJDK with stdin.",
+        "url": "developer/java-compiler.html",
+        "tags": ["java compiler", "openjdk", "run java", "main class"],
+        "popular": false,
+        "badge": ""
+    },
+    {
+        "id": "php-compiler",
+        "name": "PHP Compiler",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Run PHP CLI scripts online with stdin input.",
+        "url": "developer/php-compiler.html",
+        "tags": ["php runner", "run php", "cli", "fgets"],
+        "popular": false,
+        "badge": ""
+    },
+    {
+        "id": "sql-playground",
+        "name": "SQL Playground",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Query real SQLite privately in your browser. Nothing leaves your device.",
+        "url": "developer/sql-playground.html",
+        "tags": ["sql", "sqlite", "sql.js", "query", "playground", "private"],
+        "popular": true,
+        "badge": "Private"
+    },
+    {
+        "id": "troubleshoot-code",
+        "name": "Troubleshoot Code",
+        "category": "developer",
+        "categoryName": "Code Tools",
+        "description": "Paste code and compiler errors for plain-language causes and fixes.",
+        "url": "developer/troubleshoot.html",
+        "tags": ["debug", "troubleshoot", "error", "bracket", "semicolon", "NullPointer"],
+        "popular": false,
+        "badge": "New"
     }
 ];
 

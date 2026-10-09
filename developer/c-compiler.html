@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#E5322D">
+  <title>Online C Compiler — Run C Code Free | Vytra</title>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="description" content="Run C code online free with gcc. Write, give stdin input and see output instantly. Free, no signup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/ilp-workflow.css">
+  <link rel="canonical" href="https://vytra.in/developer/c-compiler.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vytra">
+  <meta property="og:url" content="https://vytra.in/developer/c-compiler.html">
+  <meta property="og:title" content="Online C Compiler — Run C Code Free | Vytra">
+  <meta property="og:description" content="Run C code online free with gcc. Write, give stdin input and see output instantly. Free, no signup.">
+  <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Online C Compiler — Run C Code Free | Vytra">
+  <meta name="twitter:description" content="Run C code online free with gcc. Write, give stdin input and see output instantly. Free, no signup.">
+  <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
+</head>
+<body class="tool-page">
+<nav class="ilp-topnav" id="main-nav">
+    <div class="ilp-nav-inner">
+      <a href=".././" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
+      <div class="ilp-links">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <div class="ilp-has-mega" data-mega="convert">
+          <a href="../pdf/jpg-to-pdf.html" class="ilp-link">CONVERT PDF ▾</a>
+          <div class="ilp-mega" style="width:min(560px,94vw);">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+              <div><h4>Convert to PDF</h4><a href="../pdf/jpg-to-pdf.html"><span class="ilp-badge" style="background:#EAB308;font-size:13px;">J</span>JPG to PDF</a><a href="../pdf/word-to-pdf.html"><span class="ilp-badge" style="background:#2563EB;font-size:13px;">W</span>WORD to PDF</a><a href="../pdf/ppt-to-pdf.html"><span class="ilp-badge" style="background:#EA580C;font-size:13px;">P</span>POWERPOINT to PDF</a><a href="../pdf/excel-to-pdf.html"><span class="ilp-badge" style="background:#16A34A;font-size:13px;">X</span>EXCEL to PDF</a><a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#FEF3C7;color:#B45309;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></span>HTML to PDF</a></div>
+              <div><h4>Convert from PDF</h4><a href="../pdf/pdf-to-jpg.html"><span class="ilp-badge" style="background:#EAB308;font-size:13px;">J</span>PDF to JPG</a><a href="../pdf/pdf-to-word.html"><span class="ilp-badge" style="background:#2563EB;font-size:13px;">W</span>PDF to WORD</a><a href="../pdf/pdf-to-ppt.html"><span class="ilp-badge" style="background:#EA580C;font-size:13px;">P</span>PDF to POWERPOINT</a><a href="../pdf/pdf-to-excel.html"><span class="ilp-badge" style="background:#16A34A;font-size:13px;">X</span>PDF to EXCEL</a><a href="../pdf/pdf-a.html"><span class="ilp-badge" style="background:#475569;font-size:13px;">A</span>PDF to PDF/A</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="ilp-has-mega" data-mega="code">
+          <a href="../developer/" class="ilp-link">CODE ▾</a>
+          <div class="ilp-mega" style="width:min(360px,94vw);">
+            <div><h4>Code Tools</h4><a href="../developer/c-compiler.html"><span class="ilp-badge" style="background:#64748B;font-size:13px;">C</span>C Compiler</a><a href="../developer/cpp-compiler.html"><span class="ilp-badge" style="background:#2563EB;font-size:10px;">C++</span>C++ Compiler</a><a href="../developer/java-compiler.html"><span class="ilp-badge" style="background:#EA580C;font-size:13px;">J</span>Java Compiler</a><a href="../developer/php-compiler.html"><span class="ilp-badge" style="background:#777BB4;font-size:13px;">P</span>PHP Compiler</a><a href="../developer/sql-playground.html"><span class="ilp-badge" style="background:#0E7490;font-size:13px;">S</span>SQL Playground</a><a href="../developer/troubleshoot.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Troubleshoot Code</a></div>
+          </div>
+        </div>
+        <div class="ilp-has-mega" data-mega="all">
+          <a href="../tools/" class="ilp-link red">ALL PDF TOOLS ▾</a>
+          <div class="ilp-mega">
+            <div class="ilp-mega-grid">
+              <div><h4>Organize PDF</h4><a href="../pdf/merge.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M7 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2"/><path d="M17 4h2a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-2"/><path d="M12 8v9M9 14l3 3 3-3"/></svg></span>Merge PDF</a><a href="../pdf/split.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M10 4H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3z"/><path d="M14 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3z"/></svg></span>Split PDF</a><a href="../pdf/organize.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 10.5l4 4M14 10.5l-4 4"/></svg></span>Remove pages</a><a href="../pdf/extract.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="4" y="3" width="12" height="18" rx="2"/><path d="M9 12h7M14 9l3 3-3 3"/></svg></span>Extract pages</a><a href="../pdf/organize.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span>Organize PDF</a><a href="../pdf/scan-to-pdf.html"><span class="ilp-dot" style="background:#FEE2E2;color:#E5322D;"><svg viewBox="0 0 24 24" fill="none" stroke="#E5322D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="3" y="8" width="18" height="12" rx="2"/><circle cx="12" cy="14" r="3"/><path d="M8 8l1.5-4h5L16 8"/></svg></span>Scan to PDF</a></div>
+              <div><h4>Optimize PDF</h4><a href="../pdf/compress.html"><span class="ilp-dot" style="background:#DCFCE7;color:#16A34A;"><svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M11 6l-5 6 5 6"/><path d="M13 6l5 6-5 6"/></svg></span>Compress PDF</a><a href="../pdf/repair.html"><span class="ilp-dot" style="background:#DCFCE7;color:#16A34A;"><svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Repair PDF</a><a href="../pdf/ocr.html"><span class="ilp-dot" style="background:#DCFCE7;color:#16A34A;"><svg viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8.5h6M9 12.5h6M9 16.5h4"/></svg></span>OCR PDF</a></div>
+              <div><h4>Convert to PDF</h4><a href="../pdf/jpg-to-pdf.html"><span class="ilp-badge" style="background:#EAB308;font-size:13px;">J</span>JPG to PDF</a><a href="../pdf/word-to-pdf.html"><span class="ilp-badge" style="background:#2563EB;font-size:13px;">W</span>WORD to PDF</a><a href="../pdf/ppt-to-pdf.html"><span class="ilp-badge" style="background:#EA580C;font-size:13px;">P</span>POWERPOINT to PDF</a><a href="../pdf/excel-to-pdf.html"><span class="ilp-badge" style="background:#16A34A;font-size:13px;">X</span>EXCEL to PDF</a><a href="../pdf/html-to-pdf.html"><span class="ilp-dot" style="background:#FEF3C7;color:#B45309;"><svg viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></span>HTML to PDF</a></div>
+              <div><h4>Convert from PDF</h4><a href="../pdf/pdf-to-jpg.html"><span class="ilp-badge" style="background:#EAB308;font-size:13px;">J</span>PDF to JPG</a><a href="../pdf/pdf-to-word.html"><span class="ilp-badge" style="background:#2563EB;font-size:13px;">W</span>PDF to WORD</a><a href="../pdf/pdf-to-ppt.html"><span class="ilp-badge" style="background:#EA580C;font-size:13px;">P</span>PDF to POWERPOINT</a><a href="../pdf/pdf-to-excel.html"><span class="ilp-badge" style="background:#16A34A;font-size:13px;">X</span>PDF to EXCEL</a><a href="../pdf/pdf-a.html"><span class="ilp-badge" style="background:#475569;font-size:13px;">A</span>PDF to PDF/A</a></div>
+              <div><h4>Edit PDF</h4><a href="../pdf/rotate.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3v4.5h-4.5"/></svg></span>Rotate PDF</a><a href="../pdf/page-numbers.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9.5 8h5M9.5 11.5h5"/><path d="M9.5 15.5h5" stroke-width="2.6"/></svg></span>Add page numbers</a><a href="../pdf/watermark.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M9 12h6v5H9z"/><path d="M12 12V8a2 2 0 1 0-2-2"/><path d="M4.5 20h15"/></svg></span>Add watermark</a><a href="../pdf/crop.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M6 2v16a2 2 0 0 0 2 2h16"/><path d="M2 6h16a2 2 0 0 1 2 2v16"/></svg></span>Crop PDF</a><a href="../pdf/edit.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M17 3l4 4L8 20l-5 1 1-5L17 3z"/></svg></span>Edit PDF</a><a href="../pdf/forms.html"><span class="ilp-dot" style="background:#EDE9FF;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8"/><rect x="8" y="15" width="3.5" height="3.5" rx="0.8"/></svg></span>PDF Forms</a></div>
+              <div><h4>PDF Security</h4><a href="../pdf/unlock.html"><span class="ilp-dot" style="background:#DBEAFE;color:#1D4ED8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.9-1.2"/></svg></span>Unlock PDF</a><a href="../pdf/protect.html"><span class="ilp-dot" style="background:#DBEAFE;color:#1D4ED8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M12 3l7 3v6c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6l7-3z"/><path d="M10 12l2 2 3.5-3.5"/></svg></span>Protect PDF</a><a href="../pdf/sign.html"><span class="ilp-dot" style="background:#DBEAFE;color:#1D4ED8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M3 17c3 0 4-6 6-6s1 6 3 6 4-9 6-9"/><path d="M17 3l4 4"/></svg></span>Sign PDF</a><a href="../pdf/redact.html"><span class="ilp-dot" style="background:#DBEAFE;color:#1D4ED8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M5 6.5h14M5 17.5h14"/><rect x="4" y="10" width="16" height="5" rx="1" fill="currentColor" stroke="none"/></svg></span>Redact PDF</a><a href="../pdf/compare.html"><span class="ilp-dot" style="background:#DBEAFE;color:#1D4ED8;"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="3" y="5" width="8" height="14" rx="1.5"/><rect x="13" y="5" width="8" height="14" rx="1.5"/></svg></span>Compare PDF</a><div style="margin-top:10px;"><h4>PDF Intelligence</h4><a href="../pdf/ai-summarizer.html"><span class="ilp-dot" style="background:#EDE9FF;color:#6D28D9;"><svg viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M12 4l1.7 4.3L18 10l-4.3 1.7L12 16l-1.7-4.3L6 10l4.3-1.7L12 4z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z"/></svg></span>AI Summarizer</a><a href="../pdf/translate.html"><span class="ilp-dot" style="background:#EDE9FF;color:#6D28D9;"><svg viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M4 6h9M8.5 4v2c0 4-2.5 6.8-5.5 8.5M6 9c1.5 2.5 4 4.8 7 5.8"/><path d="M13 20l4-9 4 9M14.6 17h4.8"/></svg></span>Translate PDF</a><a href="../pdf/pdf-to-markdown.html"><span class="ilp-dot" style="background:#EDE9FF;color:#6D28D9;"><svg viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9.5 8h5M9.5 11.5h5"/><path d="M12 14.5V20M10 18l2 2 2-2"/></svg></span>PDF to Markdown</a></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ilp-nav-right">
+        <button class="ilp-ghost-btn" id="headerSearchBtn" style="padding:8px 12px;" aria-label="Search tools">🔍 <span style="font-size:.78rem;">Search</span></button>
+        <button type="button" class="ilp-login ilp-authbtn" data-mode="login">Login</button>
+        <button type="button" class="ilp-signup ilp-authbtn" data-mode="signup">Sign up</button>
+        <button class="ilp-burger" id="navToggleBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="ilp-mobile-panel" id="navLinks" style="padding:12px 16px;border-top:1px solid #e5e7eb;">
+      <div style="display:grid;gap:6px;">
+        <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
+        <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
+        <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <a href="../tools/" class="ilp-link red">ALL PDF TOOLS →</a>
+        <a href="../developer/" class="ilp-link">CODE TOOLS →</a>
+      </div>
+    </div>
+  </nav>
+  <main class="vytra-tool-view">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb"><a href="../">Home</a><span>/</span><a href="./">Code Tools</a><span>/</span><span style="color:var(--text-main);font-weight:600;">C Compiler</span></nav>
+    <div class="vytra-tool-hero" style="text-align:center;">
+      <h1 class="vytra-tool-title">C Compiler</h1>
+      <p class="vytra-tool-subtitle">Write C, feed stdin, run on gcc — output in seconds.</p>
+      <div class="ilp-steps" aria-label="Workflow steps"><span class="ilp-step active"><b>1</b> Write code</span><span class="ilp-step"><b>2</b> Run</span><span class="ilp-step"><b>3</b> See output</span></div>
+    </div>
+    <div class="ilp-dropzone-large" style="padding:0;border:0;background:none;">
+      <div class="ilp-processor on" style="display:block;margin-top:0;">
+        <div class="ilp-proc-head">
+          <div><div class="ilp-proc-title">Code Editor</div><div class="ilp-proc-sub" id="rtInfo">Runner: c (gcc, auto latest)</div></div>
+          <button type="button" class="ilp-ghost-btn" id="btnClearCode">Clear output</button>
+        </div>
+        <div class="ilp-proc-body">
+          <div class="ilp-files">
+            <label for="codeEd" style="font-weight:700;font-size:.85rem;">Source code</label>
+            <textarea id="codeEd" spellcheck="false" style="width:100%;min-height:300px;font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.6;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:#0f172a;color:#e2e8f0;tab-size:4;">#include &lt;stdio.h&gt;
+
+int main() {
+    char name[100];
+    if (scanf("%99s", name) != 1) return 0;
+    printf("Hello, %s!\n", name);
+    return 0;
+}</textarea>
+            <label for="codeStdin" style="font-weight:700;font-size:.85rem;margin-top:12px;display:block;">Program input (stdin) — fed line by line</label>
+            <textarea id="codeStdin" spellcheck="false" style="width:100%;min-height:70px;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;">Programmer</textarea>
+            <div class="ilp-progress" id="codeProg" style="display:none;"><div style="width:60%;"></div></div>
+            <div class="ilp-status" id="codeStatus" style="display:none;"></div>
+            <p class="ilp-opt-label" style="margin-top:12px;">Output</p>
+            <div id="codeOut" style="background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;min-height:120px;font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.6;overflow:auto;max-height:380px;"><span style="color:#64748b;">Output appears here…</span></div>
+            <div id="errHint" style="display:none;margin-top:10px;background:var(--ilp-red-50);border:1px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:.82rem;">Non-zero exit? Copy the red error text into the <a href="troubleshoot.html" style="color:var(--ilp-red);font-weight:700;">Troubleshoot tool</a> for a plain-language fix.</div>
+          </div>
+          <aside class="ilp-sidebar">
+            <p class="ilp-opt-label">Good to know</p>
+            <div style="font-size:.85rem;line-height:1.65;">Compiled with <b>gcc</b> (latest stable). <br>• <b>scanf</b> reads from the stdin box below.<br>• Keep <b>main</b> returning <b>int</b>.<br>• Warnings appear in red with line numbers.</div>
+            <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px;margin-top:12px;font-size:.8rem;line-height:1.55;">
+              <b>Online execution:</b> Run sends your code to a sandboxed runner over HTTPS and returns the output. Nothing is stored. For fully offline work, try the SQL Playground.
+            </div>
+          </aside>
+        </div>
+        <div class="ilp-actionbar">
+          <span style="font-size:.85rem;color:var(--ilp-muted);margin-right:auto;" id="runMeta"></span>
+          <button type="button" class="ilp-primary-btn" id="btnRun">Run code &rarr;</button>
+        </div>
+      </div>
+    </div>
+<script>
+var PISTON_LANG = 'c';
+var __RT_CACHE__ = null;
+function escH(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function outSet(html){ document.getElementById('codeOut').innerHTML = html; }
+function outRunning(msg){
+  document.getElementById('codeOut').innerHTML = '<div style="display:flex;align-items:center;gap:10px;color:var(--ilp-muted);"><div class="ilp-spinner" style="width:22px;height:22px;margin:0;border-width:3px;"></div><span>'+escH(msg)+'</span></div>';
+  var st = document.getElementById('codeStatus'); if(st){ st.style.display='block'; st.textContent = msg; }
+}
+async function pickRuntime(){
+  if(__RT_CACHE__) return choose(__RT_CACHE__);
+  var r = await fetch('https://emkc.org/api/v2/piston/runtimes');
+  if(!r.ok) throw new Error('runtime list HTTP ' + r.status);
+  __RT_CACHE__ = await r.json();
+  return choose(__RT_CACHE__);
+}
+function choose(list){
+  var m = list.filter(function(x){ return x.language === PISTON_LANG; });
+  if(!m.length) throw new Error('Language pack not available right now');
+  m.sort(function(a,b){ return String(b.version||'').localeCompare(String(a.version||''), undefined, {numeric:true}); });
+  return m[0];
+}
+async function runCode(){
+  var code = document.getElementById('codeEd').value;
+  var stdin = document.getElementById('codeStdin').value;
+  var btn = document.getElementById('btnRun');
+  if(!code.trim()){ outSet('<span style="color:#c81e1e;">Write some code first.</span>'); return; }
+  btn.disabled = true;
+  document.getElementById('runMeta').textContent = '';
+  outRunning('Compiling & running…');
+  try{
+    var rt;
+    try{ rt = await pickRuntime(); }
+    catch(e){ rt = { language: PISTON_LANG, version: '*' }; }
+    document.getElementById('rtInfo').textContent = 'Runner: ' + rt.language + ' ' + (rt.version || '');
+    var res = await fetch('https://emkc.org/api/v2/piston/execute', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ language: rt.language, version: rt.version, files:[{content: code}], stdin: stdin })
+    });
+    if(!res.ok) throw new Error('runner HTTP ' + res.status);
+    var j = await res.json();
+    var run = j.run || {};
+    var html = '';
+    if(run.stdout) html += '<div style="color:#e2e8f0;white-space:pre-wrap;">' + escH(run.stdout) + '</div>';
+    if(run.stderr) html += '<div style="color:#fca5a5;white-space:pre-wrap;">' + escH(run.stderr) + '</div>';
+    if(!run.stdout && !run.stderr) html += '<span style="color:#64748b;">(no output)</span>';
+    outSet(html);
+    var meta = 'Exit code ' + (run.code == null ? '?' : run.code);
+    if(run.time) meta += ' • ' + run.time;
+    document.getElementById('runMeta').textContent = meta;
+    var st = document.getElementById('codeStatus'); if(st){ st.style.display='none'; }
+    if(run.code !== 0){
+      var hint = document.getElementById('errHint');
+      if(hint){ hint.style.display='block'; }
+    } else {
+      var hint2 = document.getElementById('errHint');
+      if(hint2){ hint2.style.display='none'; }
+    }
+  }catch(err){
+    outSet('<span style="color:#fca5a5;">Runner unreachable. Check your connection and try again. (' + escH(err.message) + ')</span>');
+  }finally{
+    btn.disabled = false;
+  }
+}
+(function(){
+  var ed = document.getElementById('codeEd');
+  ed.addEventListener('keydown', function(e){
+    if(e.key === 'Tab'){ e.preventDefault(); var s = ed.selectionStart; ed.value = ed.value.slice(0, s) + '\t' + ed.value.slice(ed.selectionEnd); ed.selectionStart = ed.selectionEnd = s + 1; }
+  });
+  document.getElementById('btnRun').addEventListener('click', runCode);
+  document.getElementById('btnClearCode').addEventListener('click', function(){
+    document.getElementById('codeOut').innerHTML = '<span style="color:#64748b;">Output appears here…</span>';
+    document.getElementById('runMeta').textContent = '';
+  });
+})();
+</script>
+    <section class="vytra-qa-section"><h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2><div class="vytra-qa-list"><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is the C compiler free?</span><span>▼</span></button><div class="vytra-qa-content">Yes — unlimited runs, no signup, no watermark. Fair-use limits of the sandbox apply.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Which compiler version runs my code?</span><span>▼</span></button><div class="vytra-qa-content">The latest stable gcc on the runner; the exact version shows above the editor once loaded.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is my code private?</span><span>▼</span></button><div class="vytra-qa-content">Runs are executed in an isolated sandbox and not stored. Avoid pasting secrets like API keys anyway.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is my code stored anywhere?</span><span>▼</span></button><div class="vytra-qa-content">No. Code is sent over HTTPS to an isolated sandbox for execution only and is not stored. Never paste passwords or API keys.</div></div></div></section>
+    <script>
+    document.querySelectorAll('.vytra-qa-header').forEach(function(h){h.addEventListener('click',function(){var i=h.closest('.vytra-qa-item');var a=i.classList.contains('active');document.querySelectorAll('.vytra-qa-item').forEach(function(x){x.classList.remove('active');});if(!a)i.classList.add('active');});});
+    </script>
+    <section class="vytra-related-section"><h3 class="vytra-section-title">Related Code Tools</h3><div class="vytra-related-grid"><a href="troubleshoot.html" class="vytra-related-card"><div class="vytra-related-name">Troubleshoot Code</div><div class="vytra-related-desc">Understand errors in plain language.</div></a><a href="sql-playground.html" class="vytra-related-card"><div class="vytra-related-name">SQL Playground</div><div class="vytra-related-desc">Query SQLite privately in-browser.</div></a><a href="cpp-compiler.html" class="vytra-related-card"><div class="vytra-related-name">C++ Compiler</div><div class="vytra-related-desc">Write modern C++ with STL, feed stdin, run on g++.</div></a><a href="java-compiler.html" class="vytra-related-card"><div class="vytra-related-name">Java Compiler</div><div class="vytra-related-desc">Write Java with a Main class, feed stdin, run on OpenJDK.</div></a></div></section>
+  </main>
+<footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../" class="logo" style="color:#ffffff;">
+          <img src="../assets/images/logo.svg" alt="Vytra" width="120" height="26" style="height:26px;width:auto;">
+        </a>
+        <p style="color:#94a3b8; font-size:0.875rem; margin-top:1rem; line-height:1.6;">
+          Free online tools for everyday digital work. Convert, compress, edit, and manage files securely in your browser.
+        </p>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">PDF Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../pdf/merge.html">Merge PDF</a></li>
+          <li><a href="../pdf/split.html">Split PDF</a></li>
+          <li><a href="../pdf/compress.html">Compress PDF</a></li>
+          <li><a href="../tools/">All PDF Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Code Tools</h4>
+        <ul class="footer-links">
+          <li><a href="../developer/c-compiler.html">C Compiler</a></li>
+          <li><a href="../developer/cpp-compiler.html">C++ Compiler</a></li>
+          <li><a href="../developer/java-compiler.html">Java Compiler</a></li>
+          <li><a href="../developer/">All Code Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Company & Help</h4>
+        <ul class="footer-links">
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../tools/">All Tools Directory</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#ffffff; font-size:0.95rem; margin-bottom:1rem;">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>&copy; 2026 Vytra.in &middot; 100% Client-Side Free Tools. All rights reserved.</div>
+    </div>
+  </footer>
+  <script defer src="../data/tools.js"></script>
+  <script defer src="../assets/js/common.js"></script>
+<script>
+(function ilpMegaInit(){
+  document.querySelectorAll('.ilp-has-mega').forEach(function(w){
+    var link=w.querySelector(':scope > a');
+    if(link) link.addEventListener('click',function(e){
+      if(window.innerWidth>960){ e.preventDefault(); var was=w.classList.contains('open');
+        document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+        if(!was) w.classList.add('open'); }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.ilp-has-mega')) document.querySelectorAll('.ilp-has-mega.open').forEach(function(o){o.classList.remove('open');});
+  });
+  var b=document.getElementById('navToggleBtn'), panel=document.getElementById('navLinks');
+  if(b&&panel) b.addEventListener('click',function(){ panel.classList.toggle('on'); });
+})();
+</script>
+<div class="ilp-auth-overlay" id="ilpAuthOverlay" aria-hidden="true">
+  <div class="ilp-auth-card" role="dialog" aria-modal="true" aria-labelledby="ilpAuthTitle">
+    <button type="button" class="ilp-auth-close" id="ilpAuthClose" aria-label="Close dialog">✕</button>
+    <img src="../assets/images/logo.svg" alt="Vytra" width="120" height="26" style="height:26px;width:auto;margin:0 auto;">
+    <h3 id="ilpAuthTitle">No account needed</h3>
+    <p>Vytra has no accounts, no passwords and no paywalls. Every PDF tool opens instantly and processes your files privately in your own browser.</p>
+    <div class="ilp-auth-points"><span>✓ Free forever</span><span>✓ No signup</span><span>✓ Files stay on device</span></div>
+    <a class="ilp-primary-btn" href="../tools/" style="text-decoration:none;">Browse all PDF tools</a>
+  </div>
+</div>
+<script>
+(function ilpAuthInit(){
+  var ov=document.getElementById('ilpAuthOverlay');
+  if(!ov) return;
+  var title=document.getElementById('ilpAuthTitle');
+  var close=document.getElementById('ilpAuthClose');
+  function open(mode){
+    title.textContent = mode==='signup' ? 'Sign up \u2014 without a form' : 'Log in \u2014 without a password';
+    ov.classList.add('on');
+    ov.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function shut(){
+    ov.classList.remove('on');
+    ov.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.querySelectorAll('.ilp-authbtn').forEach(function(b){
+    b.addEventListener('click',function(){ open(b.getAttribute('data-mode')); });
+  });
+  close.addEventListener('click',shut);
+  ov.addEventListener('click',function(e){ if(e.target===ov) shut(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') shut(); });
+})();
+</script>
+</body>
+</html>

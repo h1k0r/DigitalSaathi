@@ -65,7 +65,13 @@
 
     // Invoice Tools Suite
 
-    // Developer & Data Tools
+    // Developer & Code Tools
+    { title: 'C Compiler', category: 'Code Tools', icon: '🟢', url: 'developer/c-compiler.html', keywords: 'c compiler gcc run c program stdin piston execute online' },
+    { title: 'C++ Compiler', category: 'Code Tools', icon: '🔷', url: 'developer/cpp-compiler.html', keywords: 'cpp c++ compiler g++ stl run online stdin' },
+    { title: 'Java Compiler', category: 'Code Tools', icon: '☕', url: 'developer/java-compiler.html', keywords: 'java compiler openjdk main class run online stdin' },
+    { title: 'PHP Compiler', category: 'Code Tools', icon: '🐘', url: 'developer/php-compiler.html', keywords: 'php runner cli fgets stdin run online' },
+    { title: 'SQL Playground', category: 'Code Tools', icon: '🗄️', url: 'developer/sql-playground.html', keywords: 'sql playground sqlite sql.js query private browser local' },
+    { title: 'Troubleshoot Code', category: 'Code Tools', icon: '🩺', url: 'developer/troubleshoot.html', keywords: 'debug troubleshoot error bracket semicolon nullpointer gcc javac' },
             
     // Text & Utility Tools
   ];

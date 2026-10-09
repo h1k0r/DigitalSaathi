@@ -27,6 +27,13 @@ def run_tools_only_validation():
         ("Sign PDF", "pdf/sign.html", ["signature", "canvas"]),
         ("Edit PDF", "pdf/edit.html", ["pdfjsLib", "canvas"]),
         ("PDF to Excel", "pdf/pdf-to-excel.html", ["pdfjsLib", "xlsx"]),
+        ("C Compiler", "developer/c-compiler.html", ["piston", "stdin", "execute"]),
+        ("C++ Compiler", "developer/cpp-compiler.html", ["piston", "iostream", "execute"]),
+        ("Java Compiler", "developer/java-compiler.html", ["piston", "Main", "execute"]),
+        ("PHP Compiler", "developer/php-compiler.html", ["piston", "fgets", "execute"]),
+        ("SQL Playground", "developer/sql-playground.html", ["sql.js", "SQLite", "query"]),
+        ("Troubleshoot Code", "developer/troubleshoot.html", ["bracket", "semicolon", "NullPointer"]),
+        ("Code Tools Hub", "developer/index.html", ["compiler", "playground"]),
     ]
 
     all_passed = True
