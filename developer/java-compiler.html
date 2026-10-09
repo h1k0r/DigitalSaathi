@@ -83,393 +83,86 @@
     </div>
   </nav>
   <main class="vytra-tool-view wide">
-    <div class="ilp-dropzone-large" style="padding:0;border:0;background:none;">
-      <div class="ilp-processor on" style="display:block;margin-top:0;">
-        <div class="ilp-proc-head">
-          <div><div class="ilp-proc-title">Code Editor</div><div class="ilp-proc-sub" id="rtInfo">Runner: java (OpenJDK, auto latest)</div></div>
-          <button type="button" class="ilp-ghost-btn" id="btnClearCode">Clear output</button>
+        <div class="vsc-shell" id="vscShell">
+      <div class="vsc-menubar">
+        <button class="vsc-iconbtn vsc-burgerbtn" id="vscMenuBtn" aria-label="Toggle sidebar" style="display:none;">&#9776;</button>
+        <div class="vsc-logo"><img src="../assets/images/logo.svg" alt="Vytra"></div>
+        <div class="vsc-menu" data-menu="file"><button type="button">File</button><div class="vsc-drop" id="menuFile"></div></div>
+        <div class="vsc-menu" data-menu="edit"><button type="button">Edit</button><div class="vsc-drop" id="menuEdit"></div></div>
+        <div class="vsc-menu" data-menu="view"><button type="button">View</button><div class="vsc-drop" id="menuView"></div></div>
+        <div class="vsc-menu" data-menu="run"><button type="button">Run</button><div class="vsc-drop" id="menuRun"></div></div>
+        <span class="spacer"></span>
+        <span class="vsc-lang" id="vscLangLabel">C (gcc)</span>
+        <button type="button" class="vsc-runbtn" id="vscRunBtn">&#9654; Run</button>
+        <button type="button" class="vsc-stopbtn" id="vscStopBtn">&#9632; Stop</button>
+        <button type="button" class="vsc-iconbtn" id="vscFullBtn" title="Fullscreen">&#x26F6;</button>
+      </div>
+      <div class="vsc-body">
+        <div class="vsc-activity">
+          <button type="button" data-act="files" class="active" title="Explorer">&#128193;</button>
+          <button type="button" data-act="run" title="Run">&#9654;</button>
+          <button type="button" data-act="zip" title="Download ZIP">&#11015;</button>
+          <span class="grow"></span>
+          <button type="button" data-act="settings" title="Settings">&#9881;</button>
         </div>
-        <div class="ilp-proc-body" style="grid-template-columns:1fr;">
-          <div class="ilp-files">
-                        <div class="ilp-ide">
-              <div class="ilp-explorer">
-                <div class="ilp-exp-head"><span>PROJECT</span><span><button type="button" id="btnZip" title="Download project ZIP">⤓ ZIP</button> <button type="button" id="btnNewFile" title="New file">+ New</button></span></div>
-                <div id="fileList"></div>
-                <div id="newFileRow" style="display:none;padding:8px;">
-                  <input id="newFileName" class="ilp-input" style="font-size:.8rem;padding:6px 8px;" placeholder="name.ext">
-                  <button type="button" class="ilp-ghost-btn" id="btnAddFile" style="width:100%;margin-top:6px;padding:6px;">Add file</button>
-                </div>
-              </div>
-              <div class="ilp-edpane">
-                <div class="ilp-tabbar" id="tabBar"></div>
-            
-            <div class="ilp-edwrap"><div class="code-gutter" id="codeGutter" aria-hidden="true"></div><textarea id="codeEd" wrap="off" spellcheck="false" style="width:100%;flex:1;min-height:560px;font-family:'JetBrains Mono',monospace;font-size:.95rem;line-height:1.75;padding:16px;border:0;border-radius:0;background:#0f172a;color:#e2e8f0;tab-size:4;">import java.util.Scanner;
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String name = sc.hasNext() ? sc.next() : "Programmer";
-        System.out.println("Hello, " + name + "!");
-        sc.close();
-    }
-}</textarea>
-              </div><!-- /edwrap -->
-                          </div><!-- /edpane -->
-              <div class="ilp-term">
-            <label for="codeStdin" style="font-weight:700;font-size:.85rem;display:block;">Program input (stdin)</label>
-            <textarea id="codeStdin" spellcheck="false" style="width:100%;min-height:70px;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:10px 12px;border:1px solid #2b3648;border-radius:8px;background:#0f172a;color:#e2e8f0;">Programmer</textarea>
-            <div class="ilp-progress" id="codeProg" style="display:none;"><div style="width:60%;"></div></div>
-            <div class="ilp-status" id="codeStatus" style="display:none;"></div>
-            <p class="ilp-opt-label" style="margin-top:12px;">Output</p>
-            <div id="codeOut" style="background:#0f172a;color:#e2e8f0;border-radius:10px;padding:16px;min-height:260px;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.7;overflow:auto;max-height:560px;"><span style="color:#64748b;">Output appears here…</span></div>
-            <div style="display:flex;gap:8px;align-items:center;margin-top:10px;">
-              <button type="button" class="ilp-ghost-btn" id="btnDiag" style="padding:8px 12px;font-size:.8rem;">Diagnose errors</button>
-              <span style="font-size:.75rem;color:var(--ilp-muted);" id="tsCount"></span>
+        <div class="vsc-side" id="vscSide">
+          <div class="vsc-side-head"><span>EXPLORER</span><span class="acts"><button type="button" id="vscNewFile" title="New file">+ F</button><button type="button" id="vscNewFolder" title="New folder">+ D</button></span></div>
+          <div class="vsc-tree" id="vscTree"></div>
+          <div class="vsc-newrow" id="vscNewRow"><input id="vscNewName" placeholder="name.ext or dir/name.ext"><button type="button" class="vsc-btn" id="vscAddBtn" style="padding:6px 12px;">Add</button></div>
+        </div>
+        <div class="vsc-main">
+          <div class="vsc-tabs" id="vscTabs"></div>
+          <div class="vsc-bread" id="vscBread"></div>
+          <div class="vsc-editor" id="vscEditor"></div>
+          <div class="vsc-panel" id="vscPanel">
+            <div class="vsc-resizer" id="vscResize"></div>
+            <div class="vsc-ptabs">
+              <button type="button" data-ptab="out" class="active">OUTPUT</button>
+              <button type="button" data-ptab="in">INPUT (stdin)</button>
+              <button type="button" data-ptab="prob">PROBLEMS <span id="vscProbCount"></span></button>
+              <span class="meta" id="vscRunMeta"></span>
             </div>
-            <div id="tsPanel" style="display:none;margin-top:8px;"></div>
-            <div id="errHint" style="display:none;margin-top:10px;background:var(--ilp-red-50);border:1px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:.82rem;">Non-zero exit — diagnosis posted in the terminal below.</div>
-
-              <div class="ilp-statusbar"><span id="sbFiles"></span><span class="sbright"><span id="sbPos">Ln 1, Col 1</span><span>Java (OpenJDK)</span><span>UTF-8</span><span>Local</span></span></div>
-            </div><!-- /ilp-ide -->
+            <div class="vsc-pbody active" id="vscPOut"><div id="vscOut"><span class="dim">Output appears here… Press Run or Ctrl+Enter.</span></div></div>
+            <div class="vsc-pbody" id="vscPIn"><textarea id="vscStdin" spellcheck="false" placeholder="Program input, line by line…">Programmer</textarea></div>
+            <div class="vsc-pbody" id="vscPProb"><div id="vscProblems"><span class="dim">No problems yet — run Diagnose from the Run menu.</span></div></div>
           </div>
         </div>
-        <div class="ilp-actionbar">
-          <span style="font-size:.85rem;color:var(--ilp-muted);margin-right:auto;" id="runMeta"></span>
-          <button type="button" class="ilp-ghost-btn" id="btnDiagBar" style="padding:12px 18px;">Diagnose</button>
-          <button type="button" class="ilp-primary-btn" id="btnRun">Run code &rarr;</button>
-        </div>
+      </div>
+      <div class="vsc-status">
+        <span id="vscFiles"></span>
+        <span class="right"><span id="vscPos">Ln 1, Col 1</span><span>Spaces: <span id="vscTabSize">4</span></span><span>UTF-8</span><span id="vscLangSt">C</span><span id="vscRunner">gcc</span></span>
       </div>
     </div>
+    <button type="button" class="vsc-fab" id="vscFab" title="Run">&#9654;</button>
+    <div class="vsc-overlay" id="vscOverlay"><div class="vsc-palette"><input id="vscPalInput" placeholder="Type a command or file name…" autocomplete="off"><div class="items" id="vscPalItems"></div></div></div>
+    <div class="vsc-overlay" id="vscSettingsOv"><div class="vsc-card"><h3>Settings</h3>
+      <label>Theme</label><select id="setTheme"><option value="vs-dark">Dark</option><option value="vs">Light</option></select>
+      <label>Font size</label><input type="number" id="setFont" min="10" max="28" step="1">
+      <label>Tab size</label><input type="number" id="setTab" min="2" max="8" step="1">
+      <div class="row"><input type="checkbox" id="setWrap" style="width:auto;"> <label for="setWrap" style="margin:0;">Word wrap</label></div>
+      <div class="row"><input type="checkbox" id="setMini" style="width:auto;"> <label for="setMini" style="margin:0;">Minimap</label></div>
+      <div class="actions"><button type="button" class="vsc-btn ghost" id="setClose">Close</button><button type="button" class="vsc-btn" id="setSave">Save</button></div>
+    </div></div>
+
 <script>
-var PISTON_LANG = 'java';
-var __RT_CACHE__ = null;
-function escH(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function outSet(html){ document.getElementById('codeOut').innerHTML = html; }
-function outRunning(msg){
-  document.getElementById('codeOut').innerHTML = '<div style="display:flex;align-items:center;gap:10px;color:var(--ilp-muted);"><div class="ilp-spinner" style="width:22px;height:22px;margin:0;border-width:3px;"></div><span>'+escH(msg)+'</span></div>';
-  var st = document.getElementById('codeStatus'); if(st){ st.style.display='block'; st.textContent = msg; }
-}
-async function pickRuntime(){
-  if(__RT_CACHE__) return choose(__RT_CACHE__);
-  var r = await fetch('https://emkc.org/api/v2/piston/runtimes');
-  if(!r.ok) throw new Error('runtime list HTTP ' + r.status);
-  __RT_CACHE__ = await r.json();
-  return choose(__RT_CACHE__);
-}
-function choose(list){
-  var m = list.filter(function(x){ return x.language === PISTON_LANG; });
-  if(!m.length) throw new Error('Language pack not available right now');
-  m.sort(function(a,b){ return String(b.version||'').localeCompare(String(a.version||''), undefined, {numeric:true}); });
-  return m[0];
-}
-async function runCode(){
-  var code = document.getElementById('codeEd').value;
-  var stdin = document.getElementById('codeStdin').value;
-  var btn = document.getElementById('btnRun');
-  if(!code.trim()){ outSet('<span style="color:#c81e1e;">Write some code first.</span>'); return; }
-  btn.disabled = true;
-  document.getElementById('runMeta').textContent = '';
-  outRunning('Compiling & running…');
-  try{
-    var rt;
-    try{ rt = await pickRuntime(); }
-    catch(e){ rt = { language: PISTON_LANG, version: '*' }; }
-    document.getElementById('rtInfo').textContent = 'Runner: ' + rt.language + ' ' + (rt.version || '');
-    var res = await fetch('https://emkc.org/api/v2/piston/execute', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ language: rt.language, version: rt.version, files:collectFiles(), stdin: stdin })
-    });
-    if(!res.ok) throw new Error('runner HTTP ' + res.status);
-    var j = await res.json();
-    var run = j.run || {};
-    window.__lastErr = run.stderr || '';
-    var html = '';
-    if(run.stdout) html += '<div style="color:#e2e8f0;white-space:pre-wrap;">' + escH(run.stdout) + '</div>';
-    if(run.stderr) html += '<div style="color:#fca5a5;white-space:pre-wrap;">' + escH(run.stderr) + '</div>';
-    if(!run.stdout && !run.stderr) html += '<span style="color:#64748b;">(no output)</span>';
-    outSet(html);
-    var meta = 'Exit code ' + (run.code == null ? '?' : run.code);
-    if(run.time) meta += ' • ' + run.time;
-    document.getElementById('runMeta').textContent = meta;
-    var st = document.getElementById('codeStatus'); if(st){ st.style.display='none'; }
-    if(run.code !== 0){
-      var hint = document.getElementById('errHint');
-      if(hint){ hint.style.display='block'; }
-      if(window.__diagnose) window.__diagnose(true);
-    } else {
-      var hint2 = document.getElementById('errHint');
-      if(hint2){ hint2.style.display='none'; }
-    }
-  }catch(err){
-    outSet('<span style="color:#fca5a5;">Runner unreachable. Check your connection and try again. (' + escH(err.message) + ')</span>');
-  }finally{
-    btn.disabled = false;
-  }
-}
-(function(){
-  var ed = document.getElementById('codeEd');
-  ed.addEventListener('keydown', function(e){
-    if(e.key === 'Tab'){ e.preventDefault(); var s = ed.selectionStart; ed.value = ed.value.slice(0, s) + '\t' + ed.value.slice(ed.selectionEnd); ed.selectionStart = ed.selectionEnd = s + 1; }
-  });
-  document.getElementById('btnRun').addEventListener('click', runCode);
-  document.getElementById('btnClearCode').addEventListener('click', function(){
-    document.getElementById('codeOut').innerHTML = '<span style="color:#64748b;">Output appears here…</span>';
-    document.getElementById('runMeta').textContent = '';
-  });
-})();
+/* VYTRA_IDE config — piston runner, stdin input, execute API endpoint */
+window.VYTRA_IDE = {
+  pistonLang: 'java', monacoLang: 'java', ext: 'java', mainFile: 'Main.java',
+  label: 'Java (OpenJDK)', runnerLabel: 'OpenJDK',
+  pistonApi: 'https://emkc.org/api/v2/piston/execute',
+  stdin: true
+};
 </script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
+<script src="../assets/ide/ide.js"></script>
     <section class="vytra-qa-section"><h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2><div class="vytra-qa-list"><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Why must the class be named Main?</span><span>▼</span></button><div class="vytra-qa-content">The runner compiles and launches the Main class. Other public classes confuse the launcher.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is Java free to run here?</span><span>▼</span></button><div class="vytra-qa-content">Yes — unlimited runs, no signup.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>My code needs multiple classes — allowed?</span><span>▼</span></button><div class="vytra-qa-content">Yes, as long as exactly one public class named Main exists.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is my code stored anywhere?</span><span>▼</span></button><div class="vytra-qa-content">No. Code is sent over HTTPS to an isolated sandbox for execution only and is not stored. Never paste passwords or API keys.</div></div></div></section>
     <script>
     document.querySelectorAll('.vytra-qa-header').forEach(function(h){h.addEventListener('click',function(){var i=h.closest('.vytra-qa-item');var a=i.classList.contains('active');document.querySelectorAll('.vytra-qa-item').forEach(function(x){x.classList.remove('active');});if(!a)i.classList.add('active');});});
     </script>
     <section class="vytra-related-section"><h3 class="vytra-section-title">Related Code Tools</h3><div class="vytra-related-grid"><a href="php-compiler.html" class="vytra-related-card"><div class="vytra-related-name">PHP Compiler</div><div class="vytra-related-desc">Run PHP CLI scripts.</div></a><a href="sql-playground.html" class="vytra-related-card"><div class="vytra-related-name">SQL Playground</div><div class="vytra-related-desc">Query SQLite privately in-browser.</div></a><a href="c-compiler.html" class="vytra-related-card"><div class="vytra-related-name">C Compiler</div><div class="vytra-related-desc">Write C, feed stdin, run on gcc — output in seconds.</div></a><a href="cpp-compiler.html" class="vytra-related-card"><div class="vytra-related-name">C++ Compiler</div><div class="vytra-related-desc">Write modern C++ with STL, feed stdin, run on g++.</div></a></div></section>
 
-<script>
-(function(){
-if(!document.getElementById('fileList')) return;
-var LANG = (typeof PISTON_LANG !== 'undefined') ? PISTON_LANG : 'c';
-var EXT = {c:'c', 'c++':'cpp', java:'java', php:'php'}[LANG] || 'txt';
-var MAIN = {c:'main.c', 'c++':'main.cpp', java:'Main.java', php:'main.php'}[LANG] || ('main.' + EXT);
-var LSKEY = 'vytra-proj-' + LANG;
-var ed = document.getElementById('codeEd');
-var project = null, activeIdx = 0;
-function loadProject(){
-  try{
-    var s = localStorage.getItem(LSKEY);
-    if(s){ var p = JSON.parse(s); if(p && p.length && p[0].name){ project = p; activeIdx = 0; return; } }
-  }catch(e){}
-  project = [{name: MAIN, content: ed.value}];
-}
-function persist(){ try{ localStorage.setItem(LSKEY, JSON.stringify(project)); }catch(e){} }
-function saveActive(){ if(project[activeIdx]) project[activeIdx].content = ed.value; persist(); }
-function dotColor(){ return {c:'#64748B', cpp:'#2563EB', java:'#EA580C', php:'#777BB4'}[LANG] || '#64748B'; }
-function renderFiles(){
-  var fl = document.getElementById('fileList'), tb = document.getElementById('tabBar');
-  if(!fl || !tb) return;
-  fl.innerHTML = ''; tb.innerHTML = '';
-  project.forEach(function(f, i){
-    var row = document.createElement('div');
-    row.className = 'ilp-file' + (i === activeIdx ? ' active' : '');
-    var dot = document.createElement('span');
-    dot.className = 'fdot'; dot.style.background = dotColor();
-    var nm = document.createElement('span');
-    nm.className = 'fname'; nm.textContent = f.name;
-    row.appendChild(dot); row.appendChild(nm);
-    if(project.length > 1){
-      var x = document.createElement('button');
-      x.className = 'fdel'; x.textContent = '\u00d7'; x.title = 'Delete file';
-      x.addEventListener('click', function(e){ e.stopPropagation(); delFile(i); });
-      row.appendChild(x);
-    }
-    row.addEventListener('click', function(){ switchFile(i); });
-    fl.appendChild(row);
-    var tab = document.createElement('button');
-    tab.type = 'button'; tab.className = 'ilp-tab' + (i === activeIdx ? ' active' : '');
-    tab.textContent = f.name;
-    (function(idx){ tab.addEventListener('click', function(){ switchFile(idx); }); })(i);
-    tb.appendChild(tab);
-  });
-}
-function switchFile(i){
-  if(i === activeIdx || !project[i]) return;
-  saveActive(); activeIdx = i; ed.value = project[i].content; renderFiles();
-}
-function delFile(i){
-  if(project.length <= 1){ alert('Keep at least one file in the project.'); return; }
-  if(!confirm('Delete ' + project[i].name + '?')) return;
-  project.splice(i, 1);
-  if(activeIdx >= project.length) activeIdx = project.length - 1;
-  ed.value = project[activeIdx].content;
-  renderFiles(); persist();
-}
-window.collectFiles = function(){ saveActive(); return project.map(function(f){ return {name: f.name, content: f.content}; }); };
-window.__saveActive = saveActive;
-document.getElementById('btnNewFile').addEventListener('click', function(){
-  var r = document.getElementById('newFileRow');
-  r.style.display = (r.style.display === 'none') ? 'block' : 'none';
-  if(r.style.display === 'block'){ var inp = document.getElementById('newFileName'); inp.value = ''; inp.focus(); }
-});
-document.getElementById('btnAddFile').addEventListener('click', function(){
-  var inp = document.getElementById('newFileName');
-  var nm = (inp.value || '').trim().replace(/[\\/:*?"<>|]/g, '');
-  if(!nm){ alert('Type a file name first.'); return; }
-  if(nm.indexOf('.') < 0) nm += '.' + EXT;
-  if(nm.toLowerCase().slice(-(EXT.length + 1)) !== '.' + EXT){ alert('Use a .' + EXT + ' file in this project.'); return; }
-  var dup = project.some(function(f){ return f.name.toLowerCase() === nm.toLowerCase(); });
-  if(dup){ alert('That file already exists.'); return; }
-  saveActive();
-  project.push({name: nm, content: ''});
-  activeIdx = project.length - 1;
-  ed.value = '';
-  document.getElementById('newFileRow').style.display = 'none';
-  renderFiles(); persist(); ed.focus();
-});
-ed.addEventListener('input', function(){ saveActive(); });
-document.getElementById('btnClearCode').addEventListener('click', function(){
-  var p = document.getElementById('tsPanel'); if(p) p.style.display = 'none';
-});
-loadProject();
-ed.value = project[0].content;
-renderFiles();
-
-/* ---- terminal troubleshooter (static, 100% local) ---- */
-function tsStripStrings(line){
-  return line.replace(/"(?:[^"\\]|\\.)*"/g, '""').replace(/'(?:[^'\\]|\\.)*'/g, "''");
-}
-function tsStripComments(line, lang){
-  var i = line.indexOf('//');
-  if(lang !== 'python' && i >= 0) line = line.slice(0, i);
-  return line;
-}
-function tsStatic(lang, code, out){
-  var lines = code.split('\n');
-  var stack = [], pairs = {'}':'{', ')':'(', ']':'['}, bad = null, bi = -1;
-  lines.forEach(function(raw, i){
-    if(bad) return;
-    var line = tsStripComments(tsStripStrings(raw), lang);
-    for(var k = 0; k < line.length; k++){
-      var ch = line[k];
-      if(ch === '{' || ch === '(' || ch === '[') stack.push({ch: ch, line: i + 1});
-      else if(pairs[ch]){
-        if(!stack.length || stack[stack.length-1].ch !== pairs[ch]){ bad = ch; bi = i + 1; break; }
-        stack.pop();
-      }
-    }
-  });
-  if(bad) out.push({sev:'err', title:'Unbalanced bracket near line ' + bi,
-    body:'Found <b>' + escH(bad) + '</b> with no matching opener. Check that line and the 2\u20133 lines above.'});
-  else if(stack.length){ var t = stack[stack.length-1]; out.push({sev:'err', title:'Unclosed ' + escH(t.ch) + ' opened at line ' + t.line,
-    body:'Every opener needs a closer \u2014 usually missing at the end of its block.'}); }
-  lines.forEach(function(raw, i){
-    var line = tsStripComments(raw, lang);
-    var dq = (line.match(/(?<!\\)"/g) || []).length;
-    if(dq % 2 === 1) out.push({sev:'err', title:'Unclosed double-quote on line ' + (i+1),
-      body:'Odd number of quotes. Close the string or escape the quote.'});
-  });
-  if(lang === 'c' || lang === 'c++' || lang === 'java' || lang === 'php'){
-    var ctl = /^\s*(if|else|for|while|switch|catch|try|finally|do|class|struct|enum|public|private|protected|case|default)\b/;
-    lines.forEach(function(raw, i){
-      var line = tsStripComments(raw, lang).trim();
-      if(!line || line[0] === '#' || line.slice(0, 2) === '//') return;
-      if(/[;{}:]$/.test(line) || /,$/.test(line)) return;
-      if(ctl.test(line)) return;
-      if(/^\s*(import|package|#include|using)\b/.test(line)) return;
-      if(line === '<?php' || line === '?>' || /\)\s*$/.test(line)) return;
-      out.push({sev:'warn', title:'Possible missing semicolon on line ' + (i+1),
-        body:'Looks unterminated: <b>' + escH(line.slice(0, 60)) + '</b>.'});
-    });
-  }
-  if(lang === 'php' && !/^\s*<\?php/i.test(code)) out.push({sev:'warn', title:'Missing <?php opening tag',
-    body:'Without it the code prints as plain text instead of running.'});
-  if(lang === 'java'){
-    if(!/public\s+static\s+void\s+main/.test(code)) out.push({sev:'warn', title:'No main method found',
-      body:'Needs <b>public static void main(String[] args)</b> inside class <b>Main</b>.'});
-    if(!/class\s+Main\b/.test(code)) out.push({sev:'warn', title:'Class is not named Main',
-      body:'The runner launches class <b>Main</b> (case-sensitive).'});
-  }
-}
-var TS_RULES = [
-  [/expected ['\u2018\u2019;]+ ?before/i, 'Missing semicolon or bracket above', 'Almost always a missing <b>;</b>, <b>}</b> or <b>)</b> on the <b>previous</b> line.'],
-  [/was not declared in this scope/i, 'Undeclared identifier', 'Typo, used outside its block, or a missing <b>#include</b> / header.'],
-  [/cannot find symbol/i, 'Java: cannot find symbol', 'Check spelling and imports; the named class must exist.'],
-  [/NullPointerException/i, 'Null object used', 'Something is <b>null</b> when you call a method on it. Print it first or add a null check.'],
-  [/ArrayIndexOutOfBoundsException|IndexOutOfBounds/i, 'Index past the end', 'Valid indexes for length n are <b>0..n-1</b>. Check loop bounds.'],
-  [/Segmentation fault|segfault/i, 'Crash: bad memory access', 'NULL/wild pointer or writing past an array. Test with tiny input.'],
-  [/could not find or load main class|ClassNotFoundException/i, 'Wrong class name', 'Must match <b>public class Main</b> exactly (case-sensitive).'],
-  [/Parse error:\s*syntax error,\s*unexpected\s*(\S+)/i, 'PHP parse error', 'Look at the line <b>before</b> the reported one for an unclosed quote, bracket or missing semicolon.'],
-  [/Call to undefined function\s*(\S+)/i, 'Unknown PHP function', 'Typo, or the function needs an extension that is not installed.'],
-  [/division by zero|ArithmeticException/i, 'Division by zero', 'Guard the divisor: only divide when non-zero.'],
-  [/FileNotFoundException|No such file/i, 'File not found', 'Wrong path or working directory. Print the absolute path.'],
-  [/out of memory|OutOfMemory/i, 'Out of memory', 'Input too large or a list growing forever in a loop.']
-];
-function tsExplain(err, out){
-  var hit = false;
-  err.split('\n').slice(0, 6).forEach(function(line){
-    if(hit) return;
-    for(var k = 0; k < TS_RULES.length; k++){
-      if(TS_RULES[k][0].test(line)){ out.push({sev:'err', title: TS_RULES[k][1], body: TS_RULES[k][2]}); hit = true; break; }
-    }
-  });
-  if(!hit) out.push({sev:'warn', title:'No known pattern matched',
-    body:'Fix only the <b>first</b> error \u2014 later ones are usually knock-on effects.'});
-}
-function tsRender(list){
-  var html = list.map(function(f){
-    var col = f.sev === 'err' ? '#c81e1e' : (f.sev === 'warn' ? '#b45309' : '#15803d');
-    var bg = f.sev === 'err' ? '#fef2f2' : (f.sev === 'warn' ? '#fffbeb' : '#f0fdf4');
-    return '<div style="background:' + bg + ';border-left:4px solid ' + col + ';border-radius:8px;padding:10px 12px;margin-bottom:8px;">'
-      + '<div style="font-weight:800;font-size:.84rem;color:#0f172a;">' + escH(f.title) + '</div>'
-      + '<div style="font-size:.82rem;color:#334155;line-height:1.6;">' + f.body + '</div></div>';
-  }).join('');
-  document.getElementById('tsPanel').innerHTML = html;
-  document.getElementById('tsPanel').style.display = 'block';
-  document.getElementById('tsCount').textContent = list.length + ' finding(s)';
-}
-function diagnose(auto){
-  saveActive();
-  var code = project[activeIdx] ? project[activeIdx].content : ed.value;
-  var err = window.__lastErr || '';
-  var out = [];
-  if(code.trim()) tsStatic(LANG, code, out);
-  if(err.trim()) tsExplain(err, out);
-  if(!out.length) out.push({sev:'ok', title:'No obvious issues found',
-    body:'Brackets balance and no classic traps matched. Shrink to a 10-line repro and read the first error line.'});
-  tsRender(out);
-  if(!auto){ var p = document.getElementById('tsPanel'); if(p) p.scrollIntoView({behavior:'smooth', block:'nearest'}); }
-}
-window.__diagnose = diagnose;
-document.getElementById('btnDiag').addEventListener('click', function(){ diagnose(false); });
-var __bdb = document.getElementById('btnDiagBar');
-if(__bdb) __bdb.addEventListener('click', function(){ diagnose(false); });
-})();
-</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script>
-(function(){
-var ed = document.getElementById('codeEd');
-if(!ed) return;
-var gutter = document.getElementById('codeGutter');
-function syncGutter(){
-  if(!gutter) return;
-  var n = ed.value.split('\n').length, g = '';
-  for(var i = 1; i <= n; i++) g += i + '\n';
-  gutter.textContent = g;
-  gutter.scrollTop = ed.scrollTop;
-}
-function caretPos(){
-  var upto = ed.value.slice(0, ed.selectionStart).split('\n');
-  var el = document.getElementById('sbPos');
-  if(el) el.textContent = 'Ln ' + upto.length + ', Col ' + (upto[upto.length-1].length + 1);
-}
-ed.addEventListener('input', function(){ syncGutter(); caretPos(); });
-ed.addEventListener('keyup', caretPos);
-ed.addEventListener('click', caretPos);
-ed.addEventListener('scroll', function(){ if(gutter) gutter.scrollTop = ed.scrollTop; });
-function updSb(){
-  var n = document.querySelectorAll('#fileList .ilp-file').length;
-  var el = document.getElementById('sbFiles');
-  if(el) el.textContent = n + (n === 1 ? ' file' : ' files');
-}
-var fl = document.getElementById('fileList');
-if(fl && window.MutationObserver){ new MutationObserver(updSb).observe(fl, {childList: true}); }
-updSb(); syncGutter(); caretPos();
-document.getElementById('btnZip').addEventListener('click', async function(){
-  if(window.__saveActive) window.__saveActive();
-  try{
-    if(typeof JSZip === 'undefined'){ alert('ZIP library still loading \u2014 try again in a moment.'); return; }
-    var files = window.collectFiles ? window.collectFiles() : [{name: 'main.txt', content: ed.value}];
-    var zip = new JSZip();
-    files.forEach(function(f){ zip.file(f.name, f.content); });
-    var blob = await zip.generateAsync({type: 'blob'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'vytra-' + ((typeof PISTON_LANG !== 'undefined') ? PISTON_LANG : 'code') + '-project.zip';
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800);
-  }catch(e){ alert('ZIP failed: ' + e.message); }
-});
-})();
-</script>
+
   </main>
 <footer class="footer">
     <div class="container footer-grid">
