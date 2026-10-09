@@ -32,7 +32,6 @@ def run_tools_only_validation():
         ("Java Compiler", "developer/java-compiler.html", ["piston", "Main", "execute"]),
         ("PHP Compiler", "developer/php-compiler.html", ["piston", "fgets", "execute"]),
         ("SQL Playground", "developer/sql-playground.html", ["sql.js", "SQLite", "query"]),
-        ("Troubleshoot Code", "developer/troubleshoot.html", ["bracket", "semicolon", "NullPointer"]),
         ("Code Tools Hub", "developer/index.html", ["compiler", "playground"]),
     ]
 

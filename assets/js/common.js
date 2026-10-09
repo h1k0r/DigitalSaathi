@@ -71,7 +71,6 @@
     { title: 'Java Compiler', category: 'Code Tools', icon: '☕', url: 'developer/java-compiler.html', keywords: 'java compiler openjdk main class run online stdin' },
     { title: 'PHP Compiler', category: 'Code Tools', icon: '🐘', url: 'developer/php-compiler.html', keywords: 'php runner cli fgets stdin run online' },
     { title: 'SQL Playground', category: 'Code Tools', icon: '🗄️', url: 'developer/sql-playground.html', keywords: 'sql playground sqlite sql.js query private browser local' },
-    { title: 'Troubleshoot Code', category: 'Code Tools', icon: '🩺', url: 'developer/troubleshoot.html', keywords: 'debug troubleshoot error bracket semicolon nullpointer gcc javac' },
             
     // Text & Utility Tools
   ];

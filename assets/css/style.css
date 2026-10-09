@@ -4127,6 +4127,9 @@ img {
   margin: 1.5rem auto 4rem;
   padding: 0 1rem;
 }
+.vytra-tool-view.wide {
+  max-width: 1220px;
+}
 
 .vytra-tool-hero {
   text-align: center;

@@ -806,17 +806,6 @@
         "tags": ["sql", "sqlite", "sql.js", "query", "playground", "private"],
         "popular": true,
         "badge": "Private"
-    },
-    {
-        "id": "troubleshoot-code",
-        "name": "Troubleshoot Code",
-        "category": "developer",
-        "categoryName": "Code Tools",
-        "description": "Paste code and compiler errors for plain-language causes and fixes.",
-        "url": "developer/troubleshoot.html",
-        "tags": ["debug", "troubleshoot", "error", "bracket", "semicolon", "NullPointer"],
-        "popular": false,
-        "badge": "New"
     }
 ];
 
