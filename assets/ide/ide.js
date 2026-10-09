@@ -769,6 +769,7 @@ function menuItems(id, defs) {
 }
 function buildMenus() {
   menuItems('menuFile', [
+    ['Back to Vytra home', '', function () { location.href = '../'; }],
     ['New file', '', function () { askName('file'); }],
     ['New folder', '', function () { askName('dir'); }],
     ['-', ''],
