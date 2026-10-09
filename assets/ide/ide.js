@@ -225,12 +225,15 @@ row.addEventListener('click', function () { openFile(full); });
     var nm = document.createElement('span');
     nm.textContent = name;
     row.appendChild(g); row.appendChild(nm);
+    if (LS_COL_get()[full]) row.classList.add('closed');
     row.addEventListener('click', function () {
-      row.classList.toggle('closed');
+      var c = LS_COL_get();
+      if (c[full]) delete c[full]; else c[full] = 1;
+      LS_COL_set(c);
       paintTree();
     });
     host.appendChild(row);
-    if (!row.classList.contains('closed')) walk(node[name], full + '/', depth + 1);
+    if (!LS_COL_get()[full]) walk(node[name], full + '/', depth + 1);
   });
 }
 }
@@ -242,6 +245,9 @@ function edSet(v) {
   if (fallbackTa) fallbackTa.value = v == null ? '' : v;
 }
 function resetDirty(p) { state.dirty[p] = false; paintTabs(); }
+var LS_COL = LS_PROJ + '-collapsed';
+function LS_COL_get() { try { return JSON.parse(localStorage.getItem(LS_COL)) || {}; } catch (e) { return {}; } }
+function LS_COL_set(c) { try { localStorage.setItem(LS_COL, JSON.stringify(c)); } catch (e) {} }
 function closeDrawer() {
   var s = $('vscSide');
   if (s && window.innerWidth <= 900) s.classList.remove('drawer');
@@ -413,20 +419,22 @@ function ptab(name) {
   document.addEventListener('mouseup', function () { on = false; });
 })();
 
-/* ---------------- runner (existing piston API, unchanged format) ---------------- */
-var RT_CACHE = null, ABORT = null;
-function pickRuntime(list) {
-  var m = list.filter(function (x) { return x.language === LANG; });
-  if (!m.length) throw new Error('Language pack not available right now');
-  m.sort(function (a, b) { return String(b.version || '').localeCompare(String(a.version || ''), undefined, { numeric: true }); });
-  return m[0];
+/* ---------------- runner (wandbox sandbox) ---------------- */
+var ABORT = null;
+var WB_COMPILERS = { c: 'gcc-13.2.0-c', 'c++': 'gcc-13.2.0', java: 'openjdk-jdk-21+35', php: 'php-8.3.12' };
+var WB_LABELS = { c: 'gcc 13.2', 'c++': 'g++ 13.2', java: 'OpenJDK 21', php: 'PHP 8.3' };
+function mainFile() {
+  if (state.active && state.files[state.active] !== undefined) {
+    var nm = String(state.active).split('/').pop();
+    if (/^main\./i.test(nm) || state.open.length <= 1) return state.active;
+  }
+  for (var i = 0; i < state.open.length; i++) {
+    if (/^main\./i.test(String(state.open[i]).split('/').pop())) return state.open[i];
+  }
+  return state.active;
 }
-async function getRuntime() {
-  if (RT_CACHE) return pickRuntime(RT_CACHE);
-  var r = await fetch(API_RT);
-  if (!r.ok) throw new Error('runtime list HTTP ' + r.status);
-  RT_CACHE = await r.json();
-  return pickRuntime(RT_CACHE);
+function extraCodeFiles(except) {
+  return state.open.filter(function (p) { return p !== except && /\.(c|cpp|cc|h|hpp|java|php)$/i.test(p); });
 }
 function setRunning(on) {
   $('vscShell').classList.toggle('running', !!on);
@@ -434,8 +442,18 @@ function setRunning(on) {
 }
 function runCode() {
   syncEditorToModel();
-  var payload = { files: collectFiles(), stdin: $('vscStdin').value };
-  if (!payload.files.length) { vscOut('<span class="dim">No files to run.</span>', true); return; }
+  var mf = mainFile();
+  if (!mf) { vscOut('<span class="dim">No files to run.</span>', true); return; }
+  var code = state.files[mf] || '';
+  if (!code.trim()) { vscOut('<span class="dim">Main file is empty.</span>', true); return; }
+  var compiler = WB_COMPILERS[LANG] || 'gcc-13.2.0-c';
+  var notes = [];
+  if (LANG === 'java') {
+    var nc = code.replace(/public\s+class\s+Main\b/, 'class Main');
+    if (nc !== code) { code = nc; notes.push('Note: \u2018public\u2019 removed from Main for the sandbox'); }
+  }
+  var extras = extraCodeFiles(mf);
+  if (extras.length && LANG !== 'php') notes.push('Only ' + mf.split('/').pop() + ' ran \u2014 extra files stay in the project/ZIP');
   setRunning(true);
   ABORT = (typeof AbortController !== 'undefined') ? new AbortController() : null;
   vscOut('<span class="dim">Compiling &amp; running\u2026</span>', true);
@@ -444,27 +462,30 @@ function runCode() {
   var t0 = performance.now();
   (async function () {
     try {
-      var rt;
-      try { rt = await getRuntime(); }
-      catch (e) { rt = { language: LANG, version: '*' }; }
-      setRunnerLabel(rt.language + ' ' + (rt.version || ''));
-      var res = await fetch(CFG.pistonApi || API_RUN, {
+      setRunnerLabel(WB_LABELS[LANG] || compiler);
+      var body = { code: code, compiler: compiler, stdin: $('vscStdin').value, options: (LANG === 'c' || LANG === 'c++') ? 'warning' : '' };
+      if (extras.length) body.codes = extras.map(function (p) { return { file: p.split('/').pop(), code: state.files[p] }; });
+      var res = await fetch('https://wandbox.org/api/compile.json', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ language: rt.language, version: rt.version, files: payload.files, stdin: payload.stdin }),
+        body: JSON.stringify(body),
         signal: ABORT ? ABORT.signal : undefined
       });
       if (!res.ok) throw new Error('runner HTTP ' + res.status);
       var j = await res.json();
-      var run = j.run || {};
-      window.__lastErr = run.stderr || '';
+      var out = j.program_output || '';
+      var err = [j.compiler_error, j.program_error].filter(function (x) { return x; }).join('\n');
+      window.__lastErr = err;
       var html = '';
-      if (run.stdout) html += escH(run.stdout);
-      if (run.stderr) html += '<span class="err">' + escH(run.stderr) + '</span>';
-      if (!run.stdout && !run.stderr) html += '<span class="dim">(no output)</span>';
+      if (out) html += escH(out);
+      if (err) html += '<span class="err">' + escH(err) + '</span>';
+      if (!out && !err) html += '<span class="dim">(no output)</span>';
       vscOut(html, true);
+      var ok = (j.status === '0' || j.status === 0);
       var ms = Math.round(performance.now() - t0);
-      $('vscRunMeta').textContent = 'Exit ' + (run.code == null ? '?' : run.code) + ' \u2022 ' + ms + ' ms';
-      if (run.code !== 0) diagnose(true);
+      var meta = (ok ? 'Exit 0' : 'Failed') + ' \u2022 ' + ms + ' ms';
+      if (notes.length) meta += ' \u2022 ' + notes.join(' \u2022 ');
+      $('vscRunMeta').textContent = meta;
+      if (!ok) diagnose(true);
     } catch (err) {
       if (err && err.name === 'AbortError') vscOut('<span class="dim">Stopped.</span>', true);
       else vscOut('<span class="err">Runner unreachable. Check connection and retry. (' + escH(err.message || err) + ')</span>', true);
@@ -1027,7 +1048,7 @@ bootMonaco().then(function (ok) {
     var ls = $('vscLangSt');
     if (ls) ls.textContent = short;
   })();
-  getRuntime().then(function (rt) { setRunnerLabel(rt.language + ' ' + (rt.version || '')); }).catch(function () {});
+  setRunnerLabel((WB_LABELS[LANG] || LANG) + ' (sandbox)');
 });
 
 })();
