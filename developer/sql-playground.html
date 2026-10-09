@@ -99,7 +99,10 @@
           <div id="paneBrowse">
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
               <div style="font-weight:800;" id="browseTitle">students</div>
-              <div style="display:flex;gap:6px;align-items:center;">
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                <button type="button" class="ilp-ghost-btn" id="btnInsertRow" style="padding:4px 10px;">+ Insert row</button>
+                <button type="button" class="ilp-ghost-btn" id="btnEmptyTbl" style="padding:4px 10px;">Empty</button>
+                <button type="button" class="ilp-ghost-btn" id="btnDropTbl" style="padding:4px 10px;color:#c81e1e;">Drop</button>
                 <button type="button" class="ilp-ghost-btn" id="pgPrev" style="padding:4px 10px;">&lsaquo; Prev</button>
                 <span id="pgInfo" style="font-size:.8rem;color:var(--ilp-muted);"></span>
                 <button type="button" class="ilp-ghost-btn" id="pgNext" style="padding:4px 10px;">Next &rsaquo;</button>
@@ -125,6 +128,7 @@
           <p class="ilp-opt-label">Database</p>
           <div style="background:var(--ilp-bg);border:1px solid var(--ilp-border);border-radius:8px;padding:10px 12px;font-size:.85rem;margin-bottom:8px;">&#128451; <b>vytra_db</b><br><span style="font-size:.75rem;color:var(--ilp-muted);">SQLite &bull; 100% local</span></div>
           <div id="sqlTree" style="display:grid;gap:6px;"></div>
+          <button type="button" class="ilp-ghost-btn" id="btnNewTable" style="margin-top:8px;">+ New table</button>
           <div style="display:grid;gap:8px;margin-top:12px;">
             <button type="button" class="ilp-ghost-btn" id="btnExportDb">&#11015; Export .sqlite</button>
             <label class="ilp-ghost-btn" style="text-align:center;cursor:pointer;">&#11014; Import file<input type="file" id="sqlImport" accept=".sql,.sqlite,.db,.txt" style="display:none;"></label>
@@ -184,7 +188,7 @@ document.getElementById('sqlEd').addEventListener('keydown', function(e){
   if((e.ctrlKey || e.metaKey) && e.key === 'Enter'){ e.preventDefault(); runSql(); }
 });
 bootSql();
-
+</script>
 <script>
 var curTable = 'students', curPage = 0;
 var PAGE = 25;
@@ -229,18 +233,38 @@ function browse(tbl){
     var pages = Math.max(1, Math.ceil(cnt / PAGE));
     if(curPage >= pages) curPage = pages - 1;
     if(curPage < 0) curPage = 0;
-    var res = __db.exec("SELECT * FROM \"" + tbl.replace(/"/g, '""') + "\" LIMIT " + PAGE + " OFFSET " + (curPage * PAGE));
+    var hasRid = true, res;
+    try { res = __db.exec("SELECT rowid AS __rid, * FROM \"" + tbl.replace(/"/g, '""') + "\" LIMIT " + PAGE + " OFFSET " + (curPage * PAGE)); }
+    catch(e){ hasRid = false; res = __db.exec("SELECT * FROM \"" + tbl.replace(/"/g, '""') + "\" LIMIT " + PAGE + " OFFSET " + (curPage * PAGE)); }
     var html = '';
     if(res.length && res[0].values.length){
       html = '<table class="vytra-table" style="min-width:0;"><thead><tr>';
-      res[0].columns.forEach(function(c){ html += '<th>' + escH(c) + '</th>'; });
+      res[0].columns.forEach(function(c, ci){ if(hasRid && ci === 0) return; html += '<th>' + escH(c) + '</th>'; });
+      if(hasRid) html += '<th>Actions</th>';
       html += '</tr></thead><tbody>';
-      res[0].values.forEach(function(row){ html += '<tr>'; row.forEach(function(v){ html += '<td>' + escH(v === null ? 'NULL' : v) + '</td>'; }); html += '</tr>'; });
+      res[0].values.forEach(function(row){
+        html += '<tr>';
+        row.forEach(function(v, ci){
+          if(hasRid && ci === 0) return;
+          html += '<td>' + escH(v === null ? 'NULL' : v) + '</td>';
+        });
+        if(hasRid) html += '<td style="white-space:nowrap;"><button type="button" class="ilp-ghost-btn rowEdit" data-rid="' + row[0] + '" style="padding:3px 8px;font-size:.75rem;">Edit</button> <button type="button" class="ilp-ghost-btn rowDel" data-rid="' + row[0] + '" style="padding:3px 8px;font-size:.75rem;color:#c81e1e;">Del</button></td>';
+        html += '</tr>';
+      });
       html += '</tbody></table>';
+      out.innerHTML = '<div class="vytra-table-wrapper" style="border:0;">' + html + '</div>';
+      out.querySelectorAll('.rowEdit').forEach(function(b){ b.addEventListener('click', function(){ openEdit(tbl, b.getAttribute('data-rid')); }); });
+      out.querySelectorAll('.rowDel').forEach(function(b){ b.addEventListener('click', function(){
+        if(!confirm('Delete this row from ' + tbl + '?')) return;
+        try{ __db.exec('DELETE FROM "' + tbl.replace(/"/g, '""') + '" WHERE rowid = ' + (+b.getAttribute('data-rid'))); browse(tbl); }
+        catch(err){ alert('Delete failed: ' + err.message); }
+      }); });
     } else {
       html = '<div style="padding:14px;color:#64748b;font-size:.85rem;">Empty table — INSERT some rows from the console.</div>';
     }
-    out.innerHTML = '<div class="vytra-table-wrapper" style="border:0;">' + html + '</div>';
+    if(!(res.length && res[0].values.length)){
+      out.innerHTML = '<div class="vytra-table-wrapper" style="border:0;">' + html + '</div>';
+    }
     document.getElementById('pgInfo').textContent = 'Page ' + (curPage + 1) + ' of ' + pages + ' • ' + cnt + ' rows';
   }catch(e){
     out.innerHTML = '<div style="padding:14px;color:#c81e1e;font-size:.85rem;">Error: ' + escH(e.message) + '</div>';
@@ -301,6 +325,135 @@ document.getElementById('btnRunSql').addEventListener('click', function(){ setTi
 document.querySelectorAll('[data-q]').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(refreshTree, 60); }); });
 document.getElementById('btnResetDb').addEventListener('click', function(){ setTimeout(function(){ curTable = 'students'; curPage = 0; refreshTree(); browse(curTable); }, 80); });
 </script>
+<div id="pmaOverlay" style="display:none;position:fixed;inset:0;background:rgba(20,22,28,.55);z-index:400;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:88vh;overflow:auto;padding:22px;">
+    <h3 id="pmaTitle" style="margin:0 0 12px;font-size:1.1rem;"></h3>
+    <div id="pmaBody"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;">
+      <button type="button" class="ilp-ghost-btn" id="pmaCancel">Cancel</button>
+      <button type="button" class="ilp-primary-btn" id="pmaOk" style="padding:10px 22px;font-size:.9rem;">Save</button>
+    </div>
+  </div>
+</div>
+<script>
+function pmaCols(tbl){
+  var r = __db.exec("PRAGMA table_info(\"" + tbl.replace(/"/g, '""') + "\")");
+  return r.length ? r[0].values : [];
+}
+function sqlVal(v, type){
+  v = (v == null ? '' : String(v));
+  if(v === '') return 'NULL';
+  if(/INT|REAL|FLOA|DOUB|NUMERIC|DECIMAL/i.test(type || '') && v.trim() !== '' && !isNaN(Number(v))) return v;
+  return "'" + v.replace(/'/g, "''") + "'";
+}
+function pmaOpen(title, bodyHtml, onOk){
+  document.getElementById('pmaTitle').textContent = title;
+  document.getElementById('pmaBody').innerHTML = bodyHtml;
+  var ov = document.getElementById('pmaOverlay');
+  ov.style.display = 'flex';
+  document.getElementById('pmaCancel').onclick = function(){ ov.style.display = 'none'; };
+  ov.onclick = function(e){ if(e.target === ov) ov.style.display = 'none'; };
+  document.getElementById('pmaOk').onclick = function(){ if(onOk() !== false) ov.style.display = 'none'; };
+}
+function pmaClose(){ document.getElementById('pmaOverlay').style.display = 'none'; }
+function openInsert(){
+  if(!curTable) return;
+  var cols = pmaCols(curTable).filter(function(c){ return !(c[5] && /INT/i.test(c[2])); });
+  var h = '';
+  cols.forEach(function(c, i){
+    h += '<label style="display:block;font-size:.8rem;font-weight:700;margin:8px 0 3px;">' + escH(c[1]) + ' <span style="color:#94a3b8;font-weight:400;">(' + escH(c[2] || '') + ')</span></label>'
+       + '<input class="ilp-input pmaF" data-col="' + escH(c[1]) + '" data-type="' + escH(c[2] || '') + '" data-i="' + i + '">';
+  });
+  pmaOpen('Insert row — ' + curTable, h || '<p>No editable columns.</p>', function(){
+    var vals = [], names = [];
+    document.querySelectorAll('.pmaF').forEach(function(inp){
+      names.push('"' + inp.getAttribute('data-col').replace(/"/g, '""') + '"');
+      vals.push(sqlVal(inp.value, inp.getAttribute('data-type')));
+    });
+    if(!names.length) return false;
+    try{
+      __db.exec('INSERT INTO "' + curTable.replace(/"/g, '""') + '" (' + names.join(', ') + ') VALUES (' + vals.join(', ') + ')');
+      browse(curTable);
+    }catch(e){ alert('Insert failed: ' + e.message); return false; }
+  });
+}
+function openEdit(tbl, rid){
+  var cols = pmaCols(tbl);
+  var row;
+  try{ row = __db.exec('SELECT * FROM "' + tbl.replace(/"/g, '""') + '" WHERE rowid = ' + (+rid))[0]; }
+  catch(e){ alert('Load failed: ' + e.message); return; }
+  if(!row){ alert('Row not found.'); return; }
+  var h = '';
+  row.columns.forEach(function(c, i){
+    var v = row.values[0][i];
+    h += '<label style="display:block;font-size:.8rem;font-weight:700;margin:8px 0 3px;">' + escH(c) + '</label>'
+       + '<input class="ilp-input pmaF" data-col="' + escH(c) + '" value="' + escH(v === null ? '' : v) + '">';
+  });
+  pmaOpen('Edit row #' + rid + ' — ' + tbl, h, function(){
+    var sets = [];
+    document.querySelectorAll('.pmaF').forEach(function(inp){
+      var c = cols.filter(function(x){ return x[1] === inp.getAttribute('data-col'); })[0] || [];
+      sets.push('"' + inp.getAttribute('data-col').replace(/"/g, '""') + '" = ' + sqlVal(inp.value, c[2]));
+    });
+    try{
+      __db.exec('UPDATE "' + tbl.replace(/"/g, '""') + '" SET ' + sets.join(', ') + ' WHERE rowid = ' + (+rid));
+      browse(tbl);
+    }catch(e){ alert('Update failed: ' + e.message); return false; }
+  });
+}
+function openCreate(){
+  var h = '<label style="display:block;font-size:.8rem;font-weight:700;margin:0 0 3px;">Table name</label>'
+    + '<input class="ilp-input" id="pmaTbl" placeholder="e.g. orders">'
+    + '<div id="pmaCols" style="margin-top:10px;"></div>'
+    + '<button type="button" class="ilp-ghost-btn" id="pmaAddCol" style="margin-top:8px;font-size:.8rem;">+ Column</button>';
+  pmaOpen('Create table', h, function(){
+    var nm = (document.getElementById('pmaTbl').value || '').trim().replace(/[";]/g, '');
+    if(!nm){ alert('Name the table first.'); return false; }
+    var defs = [], ok = true;
+    document.querySelectorAll('.pmaCol').forEach(function(d){
+      var n = (d.querySelector('.cN').value || '').trim().replace(/[";\s]/g, '');
+      if(!n) return;
+      var d2 = d.querySelector('.cT').value + (d.querySelector('.cPk').checked ? ' PRIMARY KEY' : '') + (d.querySelector('.cNn').checked ? ' NOT NULL' : '');
+      var dv = d.querySelector('.cD').value.trim();
+      if(dv) d2 += ' DEFAULT ' + (/^\d+(\.\d+)?$/.test(dv) ? dv : "'" + dv.replace(/'/g, "''") + "'");
+      defs.push('"' + n + '" ' + d2);
+    });
+    if(!defs.length){ alert('Add at least one column.'); return false; }
+    try{
+      __db.exec('CREATE TABLE "' + nm.replace(/"/g, '""') + '" (' + defs.join(', ') + ')');
+      curTable = nm; curPage = 0; refreshTree(); browse(nm);
+    }catch(e){ alert('Create failed: ' + e.message); return false; }
+  });
+  var box = document.getElementById('pmaCols');
+  function addCol(){
+    var d = document.createElement('div');
+    d.className = 'pmaCol';
+    d.style.cssText = 'display:grid;grid-template-columns:1fr 110px auto auto;gap:6px;margin-top:6px;align-items:center;';
+    d.innerHTML = '<input class="ilp-input cN" placeholder="column" style="font-size:.8rem;padding:6px 8px;">'
+      + '<select class="ilp-input cT" style="font-size:.8rem;padding:6px;">'
+      + '<option>INTEGER</option><option selected>TEXT</option><option>REAL</option><option>BLOB</option><option>NUMERIC</option></select>'
+      + '<label style="font-size:.75rem;"><input type="checkbox" class="cPk"> PK</label>'
+      + '<label style="font-size:.75rem;"><input type="checkbox" class="cNn"> NN</label>'
+      + '<input class="ilp-input cD" placeholder="default" style="font-size:.8rem;padding:6px 8px;grid-column:1/-1;">';
+    box.appendChild(d);
+  }
+  document.getElementById('pmaAddCol').addEventListener('click', addCol);
+  addCol(); addCol();
+}
+document.getElementById('btnInsertRow').addEventListener('click', openInsert);
+document.getElementById('btnNewTable').addEventListener('click', openCreate);
+document.getElementById('btnEmptyTbl').addEventListener('click', function(){
+  if(!curTable) return;
+  if(!confirm('Delete ALL rows from ' + curTable + '?')) return;
+  try{ __db.exec('DELETE FROM "' + curTable.replace(/"/g, '""') + '"'); curPage = 0; browse(curTable); }
+  catch(e){ alert('Empty failed: ' + e.message); }
+});
+document.getElementById('btnDropTbl').addEventListener('click', function(){
+  if(!curTable) return;
+  if(!confirm('DROP table ' + curTable + ' permanently?')) return;
+  try{ __db.exec('DROP TABLE "' + curTable.replace(/"/g, '""') + '"'); curTable = ''; curPage = 0; refreshTree(); browse(sqlTables()[0] || ''); }
+  catch(e){ alert('Drop failed: ' + e.message); }
+});
 </script>
     <section class="vytra-qa-section"><h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2><div class="vytra-qa-list"><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is my data uploaded anywhere?</span><span>▼</span></button><div class="vytra-qa-content">No. SQLite runs as WebAssembly in your browser tab. Close the tab and everything vanishes.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Which SQL dialect works?</span><span>▼</span></button><div class="vytra-qa-content">SQLite. Most standard SELECT/JOIN/GROUP BY/INSERT/UPDATE/DELETE works; exotic vendor functions may differ.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Can I use my own tables?</span><span>▼</span></button><div class="vytra-qa-content">Yes — CREATE TABLE and INSERT work. Reset restores the 8-row students demo.</div></div></div></section>
     <script>
