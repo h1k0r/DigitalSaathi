@@ -27,10 +27,7 @@ def run_tools_only_validation():
         ("Sign PDF", "pdf/sign.html", ["signature", "canvas"]),
         ("Edit PDF", "pdf/edit.html", ["pdfjsLib", "canvas"]),
         ("PDF to Excel", "pdf/pdf-to-excel.html", ["pdfjsLib", "xlsx"]),
-        ("C Compiler", "developer/c-compiler.html", ["piston", "stdin", "execute"]),
-        ("C++ Compiler", "developer/cpp-compiler.html", ["piston", "iostream", "execute"]),
-        ("Java Compiler", "developer/java-compiler.html", ["piston", "Main", "execute"]),
-        ("PHP Compiler", "developer/php-compiler.html", ["piston", "fgets", "execute"]),
+        ("Code Editor & Compiler", "developer/index.html", ["monaco", "stdin", "execute", "python", "javascript"]),
         ("SQL Playground", "developer/sql-playground.html", ["sql.js", "SQLite", "query"]),
         ("Code Tools Hub", "developer/index.html", ["compiler", "playground"]),
     ]

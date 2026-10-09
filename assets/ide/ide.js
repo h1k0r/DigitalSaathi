@@ -5,11 +5,32 @@
 
 /* ---------------- config ---------------- */
 var CFG = window.VYTRA_IDE || {};
-var LANG = CFG.pistonLang || 'c';
-var MONACO_LANG = CFG.monacoLang || 'c';
-var EXT = CFG.ext || 'c';
-var MAIN = CFG.mainFile || ('main.' + EXT);
-var LABEL = CFG.label || LANG;
+var LANGS = {
+  c:          { monaco: 'c',          ext: 'c',   main: 'main.c',   label: 'C (gcc)',         runner: 'gcc',    wb: 'gcc-13.2.0-c' },
+  cpp:        { monaco: 'cpp',        ext: 'cpp', main: 'main.cpp', label: 'C++ (g++)',       runner: 'g++',    wb: 'gcc-13.2.0' },
+  java:       { monaco: 'java',       ext: 'java', main: 'Main.java', label: 'Java (OpenJDK)', runner: 'OpenJDK', wb: 'openjdk-jdk-21+35' },
+  php:        { monaco: 'php',        ext: 'php', main: 'main.php', label: 'PHP (CLI)',       runner: 'php',    wb: 'php-8.3.12' },
+  python:     { monaco: 'python',     ext: 'py',  main: 'main.py',  label: 'Python 3',        runner: 'python', wb: 'cpython-3.10.0' },
+  javascript: { monaco: 'javascript', ext: 'js',  main: 'main.js',  label: 'JavaScript (node)', runner: 'node', wb: 'nodejs-18.15.0' }
+};
+function urlLang() {
+  try {
+    var m = /[?&]lang=([a-z+]+)/i.exec(location.search || '');
+    if (m && LANGS[m[1].toLowerCase()]) return m[1].toLowerCase();
+  } catch (e) {}
+  return null;
+}
+function applyLangVars(key) {
+  var L = LANGS[key]; LANG = key;
+  MONACO_LANG = L.monaco; EXT = L.ext; MAIN = L.main; LABEL = L.label;
+  LS_PROJ = 'vytra-ide-proj-' + key; OLD_KEY = 'vytra-proj-' + key;
+}
+var LANG = urlLang() || CFG.pistonLang || 'c';
+if (!LANGS[LANG]) LANG = 'c';
+var MONACO_LANG = LANGS[LANG].monaco;
+var EXT = LANGS[LANG].ext;
+var MAIN = LANGS[LANG].main;
+var LABEL = LANGS[LANG].label;
 var LS_PROJ = 'vytra-ide-proj-' + LANG;
 var LS_SET = 'vytra-ide-settings';
 var OLD_KEY = 'vytra-proj-' + LANG;
@@ -21,7 +42,9 @@ var SAMPLES = {
   c: '#include <stdio.h>\n\nint main() {\n    char name[100];\n    if (scanf("%99s", name) != 1) return 0;\n    printf("Hello, %s!\\n", name);\n    return 0;\n}\n',
   'c++': '#include <iostream>\n#include <string>\nint main() {\n    std::string name;\n    if (!(std::cin >> name)) return 0;\n    std::cout << "Hello, " << name << "!" << std::endl;\n    return 0;\n}\n',
   java: 'import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String name = sc.hasNext() ? sc.next() : "Programmer";\n        System.out.println("Hello, " + name + "!");\n        sc.close();\n    }\n}\n',
-  php: "<?php\n$name = trim(fgets(STDIN) ?: '');\nif ($name === '') { $name = 'Programmer'; }\necho \"Hello, $name!\\n\";\n"
+  php: "<?php\n$name = trim(fgets(STDIN) ?: '');\nif ($name === '') { $name = 'Programmer'; }\necho \"Hello, $name!\\n\";\n",
+  python: 'name = input().strip() or "Programmer"\nprint(f"Hello, {name}!")\n',
+  javascript: "const fs = require('fs');\nconst name = fs.readFileSync(0, 'utf8').trim() || 'Programmer';\nconsole.log(`Hello, ${name}!`);\n"
 };
 var EXAMPLES = {
   c: [
@@ -39,6 +62,13 @@ EXAMPLES.java = [
 ];
 EXAMPLES.php = [
   { name: 'Hello World', files: { 'main.php': "<?php\necho \"Hello, World!\\n\";\n" } }
+];
+EXAMPLES.python = [
+  { name: 'Hello World', files: { 'main.py': 'print("Hello, World!")\n' } },
+  { name: 'Fibonacci', files: { 'main.py': 'a, b = 0, 1\nfor _ in range(10):\n    print(a, end=" ")\n    a, b = b, a + b\nprint()\n' } }
+];
+EXAMPLES.javascript = [
+  { name: 'Hello World', files: { 'main.js': 'console.log("Hello, World!");\n' } }
 ];
 
 /* ---------------- utils ---------------- */
@@ -72,6 +102,7 @@ function loadProject() {
     }
   } catch (e) {}
   if (fromHash) {
+    if (fromHash.l && LANGS[fromHash.l]) applyLangVars(fromHash.l);
     state.files = fromHash.f; state.open = Object.keys(fromHash.f); state.active = state.open[0] || null;
     if (fromHash.s !== undefined) { var si = $('vscStdin'); if (si) si.value = fromHash.s; }
     persist(); return;
@@ -193,10 +224,46 @@ function folderTree() {
   });
   return root;
 }
+function sanitizeProject() {
+  if (!state.files || typeof state.files !== 'object' || Array.isArray(state.files)) state.files = {};
+  Object.keys(state.files).forEach(function (k) {
+    if (typeof k !== 'string' || !k.trim() || typeof state.files[k] !== 'string') delete state.files[k];
+  });
+  var names = Object.keys(state.files);
+  if (!names.length) { state.files[MAIN] = SAMPLES[LANG] || ''; names = [MAIN]; }
+  state.open = (state.open || []).filter(function (p) { return state.files[p] !== undefined; });
+  if (!state.open.length) state.open = names.slice();
+  if (!state.active || state.files[state.active] === undefined) state.active = state.open[0];
+  if (state.dirty == null || typeof state.dirty !== 'object') state.dirty = {};
+}
 function paintTree() {
   var host = $('vscTree');
   if (!host) return;
-  host.innerHTML = '';
+  try {
+    host.innerHTML = '';
+    var names = Object.keys(state.files).filter(function (k) { return !/\/\.keep$/.test(k); });
+    if (!names.length) {
+      host.innerHTML = '<div style="padding:14px;font-size:.78rem;color:#858585;">No files yet<br><br>Click <b>+ F</b> above to add one.</div>';
+      return;
+    }
+    walk(folderTree(), '', 0);
+    if (!host.children.length) throw new Error('empty render');
+  } catch (e) {
+    try {
+      host.innerHTML = '';
+      Object.keys(state.files).forEach(function (p) {
+        if (/\/\.keep$/.test(p)) return;
+        var row = document.createElement('div');
+        row.className = 'vsc-titem' + (p === state.active ? ' active' : '');
+        var nm = document.createElement('span');
+        nm.className = 'fname'; nm.textContent = p;
+        row.appendChild(nm);
+        row.addEventListener('click', function () { openFile(p); });
+        host.appendChild(row);
+      });
+    } catch (e2) {}
+  }
+}
   function walk(node, prefix, depth) {
     Object.keys(node).sort().forEach(function (name) {
       var full = prefix + name;
@@ -235,7 +302,6 @@ row.addEventListener('click', function () { openFile(full); });
     host.appendChild(row);
     if (!LS_COL_get()[full]) walk(node[name], full + '/', depth + 1);
   });
-}
 }
 
 /* ---------------- explorer ops (cont.) ---------------- */
@@ -397,7 +463,7 @@ function resetDirty(p) { state.dirty[p] = false; paintTabs(); }
 function ptab(name) {
   var btns = document.querySelectorAll('.vsc-ptabs button');
   for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', btns[i].getAttribute('data-ptab') === name);
-  var bodies = { out: 'vscPOut', in: 'vscPIn', prob: 'vscPProb' };
+  var bodies = { out: 'vscPOut', in: 'vscPIn', prob: 'vscPProb', preview: 'vscPPreview' };
   for (var k in bodies) $(bodies[k]).classList.toggle('active', k === name);
 }
 (function panelTabs() {
@@ -421,8 +487,8 @@ function ptab(name) {
 
 /* ---------------- runner (wandbox sandbox) ---------------- */
 var ABORT = null;
-var WB_COMPILERS = { c: 'gcc-13.2.0-c', 'c++': 'gcc-13.2.0', java: 'openjdk-jdk-21+35', php: 'php-8.3.12' };
-var WB_LABELS = { c: 'gcc 13.2', 'c++': 'g++ 13.2', java: 'OpenJDK 21', php: 'PHP 8.3' };
+var WB_COMPILERS = { c: 'gcc-13.2.0-c', cpp: 'gcc-13.2.0', java: 'openjdk-jdk-21+35', php: 'php-8.3.12', python: 'cpython-3.10.0', javascript: 'nodejs-18.15.0' };
+var WB_LABELS = { c: 'gcc 13.2', cpp: 'g++ 13.2', java: 'OpenJDK 21', php: 'PHP 8.3', python: 'Python 3.10', javascript: 'node 18.15' };
 function mainFile() {
   if (state.active && state.files[state.active] !== undefined) {
     var nm = String(state.active).split('/').pop();
@@ -463,7 +529,7 @@ function runCode() {
   (async function () {
     try {
       setRunnerLabel(WB_LABELS[LANG] || compiler);
-      var body = { code: code, compiler: compiler, stdin: $('vscStdin').value, options: (LANG === 'c' || LANG === 'c++') ? 'warning' : '' };
+      var body = { code: code, compiler: compiler, stdin: $('vscStdin').value, options: (LANG === 'c' || LANG === 'cpp') ? 'warning' : '' };
       if (extras.length) body.codes = extras.map(function (p) { return { file: p.split('/').pop(), code: state.files[p] }; });
       var res = await fetch('https://wandbox.org/api/compile.json', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -540,6 +606,7 @@ function staticChecks(code, out) {
     if (dq % 2 === 1) out.push({ sev: 'err', t: 'Unclosed quote on line ' + (i + 1), b: 'Odd number of <b>"</b> \u2014 close the string.' });
   });
   var ctl = /^\s*(if|else|for|while|switch|catch|try|finally|do|class|struct|enum|public|private|protected|case|default)\b/;
+  if (LANG === 'c' || LANG === 'cpp' || LANG === 'java' || LANG === 'php') {
   lines.forEach(function (raw, i) {
     var line = sStripCom(raw).trim();
     if (!line || line[0] === '#' || line.slice(0, 2) === '//') return;
@@ -548,6 +615,14 @@ function staticChecks(code, out) {
     if (line === '<?php' || line === '?>') return;
     out.push({ sev: 'warn', t: 'Possible missing semicolon, line ' + (i + 1), b: '<b>' + escH(line.slice(0, 70)) + '</b>' });
   });
+  }
+  if (LANG === 'python') {
+    if (/\n\t/.test(code) && /\n    /.test(code)) out.push({ sev: 'err', t: 'Mixed tabs and spaces', b: 'Use <b>spaces only</b> (4 per level) \u2014 mixing causes TabError.' });
+    lines.forEach(function (raw, i) {
+      if (/^\s*(def\s+\w+.*|if\s+.*|elif\s+.*|else\s*|for\s+.*|while\s+.*|class\s+\w+.*|try\s*|except.*|finally\s*|with\s+.*)\)?\s*$/.test(raw) && !/:\s*(#.*)?$/.test(raw) && raw.trim() !== '')
+        out.push({ sev: 'err', t: 'Missing colon on line ' + (i + 1), b: 'Add a trailing <b>:</b>.' });
+    });
+  }
   if (LANG === 'php' && !/^\s*<\?php/i.test(code)) out.push({ sev: 'warn', t: 'Missing <?php tag', b: 'Without it the code prints as text instead of running.' });
   if (LANG === 'java') {
     if (!/public\s+static\s+void\s+main/.test(code)) out.push({ sev: 'warn', t: 'No main method', b: 'Needs <b>public static void main(String[] args)</b> in class <b>Main</b>.' });
@@ -934,7 +1009,7 @@ function importZip(file) {
 function shareLink() {
   syncEditorToModel();
   try {
-    var data = { f: state.files, s: $('vscStdin').value };
+    var data = { f: state.files, s: $('vscStdin').value, l: LANG };
     var raw = unescape(encodeURIComponent(JSON.stringify(data)));
     var h = '#s=' + btoa(raw).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     var url = location.href.split('#')[0] + h;
@@ -985,6 +1060,32 @@ function openSettings() {
 }
 function closeSettings() { $('vscSettingsOv').classList.remove('on'); }
 
+function syncLangUI() {
+  var short = { c: 'C', cpp: 'C++', java: 'Java', php: 'PHP', python: 'Python', javascript: 'JS' }[LANG] || LANG;
+  var sel = $('vscLangSel');
+  if (sel) sel.value = LANG;
+  var ls = $('vscLangSt');
+  if (ls) ls.textContent = short;
+}
+function switchLanguage(key) {
+  if (!LANGS[key] || key === LANG) return;
+  syncEditorToModel(); persist();
+  applyLangVars(key);
+  state = { files: {}, open: [], active: null, dirty: {} };
+  viewStates = {};
+  loadProject();
+  if (monacoOK && editor) { try { monaco.editor.setModelLanguage(editor.getModel(), MONACO_LANG); } catch (e) {} }
+  edSet(state.active ? state.files[state.active] : '');
+  paintTree(); paintTabs(); refreshStatus();
+  syncLangUI();
+  setRunnerLabel((WB_LABELS[LANG] || LANG) + ' (sandbox)');
+  try { history.replaceState(null, '', key === 'c' ? location.pathname : '?lang=' + key); } catch (e) {}
+}
+window.__switchLanguage = switchLanguage;
+['c', 'cpp', 'java', 'php', 'python', 'javascript'].forEach(function (k) {
+  PAL_CMDS.push(['Language: ' + LANGS[k].label, '', (function (kk) { return function () { switchLanguage(kk); }; })(k)]);
+});
+
 /* ---------------- activity bar + misc wiring ---------------- */
 function wireChrome() {
   var acts = document.querySelectorAll('.vsc-activity button');
@@ -1002,6 +1103,7 @@ function wireChrome() {
     })(acts[i]);
   }
   on($('vscMenuBtn'), 'click', toggleSide);
+  on($('vscLangSel'), 'change', function () { switchLanguage($('vscLangSel').value); });
   on($('vscNewFile'), 'click', function () { askName('file'); });
   on($('vscNewFolder'), 'click', function () { askName('dir'); });
   on($('vscAddBtn'), 'click', function () { confirmName(); });
@@ -1040,14 +1142,7 @@ bootMonaco().then(function (ok) {
   paintTabs();
   refreshStatus();
   var el = $('vscTabSize'); if (el) el.textContent = settings.tabSize;
-  setRunnerLabel(LANG);
-  (function () {
-    var short = { c: 'C', 'c++': 'C++', java: 'Java', php: 'PHP' }[LANG] || LANG;
-    var ll = $('vscLangLabel');
-    if (ll) ll.textContent = LABEL;
-    var ls = $('vscLangSt');
-    if (ls) ls.textContent = short;
-  })();
+  syncLangUI();
   setRunnerLabel((WB_LABELS[LANG] || LANG) + ' (sandbox)');
 });
 
