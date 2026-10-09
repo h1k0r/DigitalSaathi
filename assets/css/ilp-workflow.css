@@ -159,6 +159,21 @@
 .ilp-ide{display:grid;grid-template-columns:200px minmax(0,1fr) 340px;border:1px solid var(--ilp-border);border-radius:10px;overflow:hidden;background:#fff;}
 #codeEd{white-space:pre;overflow:auto;overflow-y:auto;}
 .ilp-explorer{background:#f8fafc;border-right:1px solid var(--ilp-border);display:flex;flex-direction:column;min-height:600px;}
+/* VS Code dark theme for the IDE */
+.ilp-explorer{background:#161d2b;border-right:1px solid #0b1220;color:#cbd5e1;}
+.ilp-exp-head{color:#7d8aa0;border-bottom-color:#0b1220;}
+.ilp-explorer .ilp-exp-head button{background:#0b1220;border-color:#2b3648;color:#cbd5e1;}
+.ilp-explorer .ilp-exp-head button:hover{border-color:#f87171;color:#f87171;}
+.ilp-explorer #newFileRow{border-top-color:#0b1220;}
+.ilp-explorer #newFileName{background:#0b1220;border-color:#2b3648;color:#e2e8f0;}
+.ilp-file{color:#aeb9cc;}
+.ilp-file:hover{background:#1f2937;}
+.ilp-file.active{background:#2b3648;color:#fff;}
+.ilp-edwrap{position:relative;flex:1;display:flex;min-height:0;}
+.code-gutter{position:absolute;left:0;top:0;bottom:0;width:44px;overflow:hidden;background:#0b1220;color:#475569;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.7;padding:14px 6px 14px 0;text-align:right;white-space:pre;user-select:none;border-right:1px solid #1e293b;}
+#codeEd{padding-left:56px !important;}
+.ilp-statusbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;background:#007acc;color:#fff;font-size:.72rem;font-weight:600;padding:5px 14px;font-family:'JetBrains Mono',monospace;}
+.ilp-statusbar .sbright{display:flex;gap:12px;}
 .ilp-exp-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--ilp-muted);border-bottom:1px solid var(--ilp-border);}
 .ilp-exp-head button{background:#fff;border:1px solid var(--ilp-border);border-radius:6px;font-size:.72rem;font-weight:700;padding:3px 8px;cursor:pointer;color:var(--ilp-ink);}
 .ilp-exp-head button:hover{border-color:#fecaca;color:var(--ilp-red);}

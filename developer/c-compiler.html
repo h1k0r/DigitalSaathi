@@ -93,7 +93,7 @@
           <div class="ilp-files">
                         <div class="ilp-ide">
               <div class="ilp-explorer">
-                <div class="ilp-exp-head"><span>PROJECT</span><button type="button" id="btnNewFile" title="New file">+ New</button></div>
+                <div class="ilp-exp-head"><span>PROJECT</span><span><button type="button" id="btnZip" title="Download project ZIP">⤓ ZIP</button> <button type="button" id="btnNewFile" title="New file">+ New</button></span></div>
                 <div id="fileList"></div>
                 <div id="newFileRow" style="display:none;padding:8px;">
                   <input id="newFileName" class="ilp-input" style="font-size:.8rem;padding:6px 8px;" placeholder="name.ext">
@@ -103,7 +103,7 @@
               <div class="ilp-edpane">
                 <div class="ilp-tabbar" id="tabBar"></div>
             <label for="codeEd" style="font-weight:700;font-size:.85rem;color:#cbd5e1;padding:10px 12px 0;">Source code</label>
-            <textarea id="codeEd" wrap="off" spellcheck="false" style="width:100%;flex:1;min-height:480px;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.7;padding:14px;border:0;border-radius:0;background:#0f172a;color:#e2e8f0;tab-size:4;">#include &lt;stdio.h&gt;
+            <div class="ilp-edwrap"><div class="code-gutter" id="codeGutter" aria-hidden="true"></div><textarea id="codeEd" wrap="off" spellcheck="false" style="width:100%;flex:1;min-height:480px;font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.7;padding:14px;border:0;border-radius:0;background:#0f172a;color:#e2e8f0;tab-size:4;">#include &lt;stdio.h&gt;
 
 int main() {
     char name[100];
@@ -111,10 +111,11 @@ int main() {
     printf("Hello, %s!\n", name);
     return 0;
 }</textarea>
+              </div><!-- /edwrap -->
                           </div><!-- /edpane -->
               <div class="ilp-term">
             <label for="codeStdin" style="font-weight:700;font-size:.85rem;display:block;">Program input (stdin)</label>
-            <textarea id="codeStdin" spellcheck="false" style="width:100%;min-height:70px;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;">Programmer</textarea>
+            <textarea id="codeStdin" spellcheck="false" style="width:100%;min-height:70px;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:10px 12px;border:1px solid #2b3648;border-radius:8px;background:#0f172a;color:#e2e8f0;">Programmer</textarea>
             <div class="ilp-progress" id="codeProg" style="display:none;"><div style="width:60%;"></div></div>
             <div class="ilp-status" id="codeStatus" style="display:none;"></div>
             <p class="ilp-opt-label" style="margin-top:12px;">Output</p>
@@ -125,6 +126,8 @@ int main() {
             </div>
             <div id="tsPanel" style="display:none;margin-top:8px;"></div>
             <div id="errHint" style="display:none;margin-top:10px;background:var(--ilp-red-50);border:1px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:.82rem;">Non-zero exit — diagnosis posted in the terminal below.</div>
+
+              <div class="ilp-statusbar"><span id="sbFiles"></span><span class="sbright"><span id="sbPos">Ln 1, Col 1</span><span>C (gcc)</span><span>UTF-8</span><span>Local</span></span></div>
             </div><!-- /ilp-ide -->
           </div>
         </div>
@@ -416,6 +419,54 @@ window.__diagnose = diagnose;
 document.getElementById('btnDiag').addEventListener('click', function(){ diagnose(false); });
 var __bdb = document.getElementById('btnDiagBar');
 if(__bdb) __bdb.addEventListener('click', function(){ diagnose(false); });
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function(){
+var ed = document.getElementById('codeEd');
+if(!ed) return;
+var gutter = document.getElementById('codeGutter');
+function syncGutter(){
+  if(!gutter) return;
+  var n = ed.value.split('\n').length, g = '';
+  for(var i = 1; i <= n; i++) g += i + '\n';
+  gutter.textContent = g;
+  gutter.scrollTop = ed.scrollTop;
+}
+function caretPos(){
+  var upto = ed.value.slice(0, ed.selectionStart).split('\n');
+  var el = document.getElementById('sbPos');
+  if(el) el.textContent = 'Ln ' + upto.length + ', Col ' + (upto[upto.length-1].length + 1);
+}
+ed.addEventListener('input', function(){ syncGutter(); caretPos(); });
+ed.addEventListener('keyup', caretPos);
+ed.addEventListener('click', caretPos);
+ed.addEventListener('scroll', function(){ if(gutter) gutter.scrollTop = ed.scrollTop; });
+function updSb(){
+  var n = document.querySelectorAll('#fileList .ilp-file').length;
+  var el = document.getElementById('sbFiles');
+  if(el) el.textContent = n + (n === 1 ? ' file' : ' files');
+}
+var fl = document.getElementById('fileList');
+if(fl && window.MutationObserver){ new MutationObserver(updSb).observe(fl, {childList: true}); }
+updSb(); syncGutter(); caretPos();
+document.getElementById('btnZip').addEventListener('click', async function(){
+  if(window.__saveActive) window.__saveActive();
+  try{
+    if(typeof JSZip === 'undefined'){ alert('ZIP library still loading \u2014 try again in a moment.'); return; }
+    var files = window.collectFiles ? window.collectFiles() : [{name: 'main.txt', content: ed.value}];
+    var zip = new JSZip();
+    files.forEach(function(f){ zip.file(f.name, f.content); });
+    var blob = await zip.generateAsync({type: 'blob'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'vytra-' + ((typeof PISTON_LANG !== 'undefined') ? PISTON_LANG : 'code') + '-project.zip';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+  }catch(e){ alert('ZIP failed: ' + e.message); }
+});
 })();
 </script>
   </main>
