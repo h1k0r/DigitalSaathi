@@ -45,6 +45,7 @@
         <select class="vsc-langsel" id="vscLangSel" aria-label="Language"><option value="c">C (gcc)</option><option value="cpp">C++ (g++)</option><option value="java">Java (OpenJDK)</option><option value="php">PHP (CLI)</option><option value="python">Python 3</option><option value="javascript">JavaScript (node)</option></select>
         <button type="button" class="vsc-runbtn" id="vscRunBtn">&#9654; Run</button>
         <button type="button" class="vsc-stopbtn" id="vscStopBtn">&#9632; Stop</button>
+        <button type="button" class="vsc-iconbtn" id="vscPrevBtn" title="Preview website">&#127760;</button>
         <button type="button" class="vsc-iconbtn" id="vscFullBtn" title="Fullscreen">&#x26F6;</button>
       </div>
       <div class="vsc-body">
@@ -70,11 +71,13 @@
               <button type="button" data-ptab="out" class="active">OUTPUT</button>
               <button type="button" data-ptab="in">INPUT (stdin)</button>
               <button type="button" data-ptab="prob">PROBLEMS <span id="vscProbCount"></span></button>
+              <button type="button" data-ptab="preview">PREVIEW</button>
               <span class="meta" id="vscRunMeta"></span>
             </div>
             <div class="vsc-pbody active" id="vscPOut"><div id="vscOut"><span class="dim">Output appears here… Press Run or Ctrl+Enter.</span></div></div>
             <div class="vsc-pbody" id="vscPIn"><textarea id="vscStdin" spellcheck="false" placeholder="Program input, line by line…">Programmer</textarea></div>
             <div class="vsc-pbody" id="vscPProb"><div id="vscProblems"><span class="dim">No problems yet — run Diagnose from the Run menu.</span></div></div>
+            <div class="vsc-pbody" id="vscPPreview"><div id="vscPreviewEmpty" style="color:#858585;font-size:.82rem;">No website yet — create an <b>index.html</b> file, or File menu → New website project.</div><iframe id="vscPreviewFrame" title="Website preview" sandbox="allow-scripts" style="display:none;width:100%;height:100%;min-height:300px;border:0;background:#fff;border-radius:6px;"></iframe></div>
           </div>
         </div>
       </div>

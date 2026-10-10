@@ -464,7 +464,10 @@ function ptab(name) {
   var btns = document.querySelectorAll('.vsc-ptabs button');
   for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', btns[i].getAttribute('data-ptab') === name);
   var bodies = { out: 'vscPOut', in: 'vscPIn', prob: 'vscPProb', preview: 'vscPPreview' };
-  for (var k in bodies) $(bodies[k]).classList.toggle('active', k === name);
+  for (var k in bodies) {
+    var el = $(bodies[k]);
+    if (el) el.classList.toggle('active', k === name);
+  }
 }
 (function panelTabs() {
   var btns = document.querySelectorAll('.vsc-ptabs button');
@@ -1037,6 +1040,7 @@ document.addEventListener('keydown', function (e) {
   var mod = e.ctrlKey || e.metaKey;
   if (mod && e.shiftKey && (e.key === 'P' || e.key === 'p')) { e.preventDefault(); openPalette('cmd'); }
   else if (mod && (e.key === 'p' || e.key === 'P')) { e.preventDefault(); openPalette('files'); }
+  else if (mod && e.shiftKey && (e.key === 'V' || e.key === 'v')) { e.preventDefault(); buildPreview(); }
   else if (mod && (e.key === 'b' || e.key === 'B')) { e.preventDefault(); toggleSide(); }
   else if (mod && (e.key === 's' || e.key === 'S')) { e.preventDefault(); syncEditorToModel(); persist(); flashStatus('Saved locally'); }
   else if (mod && e.key === 'Enter') { e.preventDefault(); runCode(); }
@@ -1133,6 +1137,107 @@ function wireChrome() {
   document.body.appendChild(zipIn);
   if (window.innerWidth <= 900) { var mb = $('vscMenuBtn'); if (mb) mb.style.display = ''; }
 }
+
+/* ---------------- website preview (static HTML/CSS/JS) ---------------- */
+var SITE_STARTER = {
+'index.html': '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>My Site</title>\n<link rel="stylesheet" href="styles.css">\n</head>\n<body>\n  <main class="card">\n    <h1 id="title">Hello, web!</h1>\n    <p>Built in Vytra IDE. Edit me.</p>\n    <button id="btn">Clicks: 0</button>\n  </main>\n<script src="app.js"><\/script>\n</body>\n</html>\n',
+'styles.css': 'body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;min-height:100vh;margin:0;align-items:center;justify-content:center;}\n.card{background:#1e293b;padding:40px;border-radius:16px;text-align:center;}\nbutton{background:#E5322D;color:#fff;border:0;padding:10px 22px;border-radius:8px;font-size:1rem;cursor:pointer;}\n',
+'app.js': 'var n = 0;\nvar b = document.getElementById("btn");\nif(b){ b.addEventListener("click", function(){ n++; b.textContent = "Clicks: " + n; }); }\n'
+};
+function previewFiles() {
+  var htmls = Object.keys(state.files).filter(function (p) { return /\.html?$/i.test(p) && !/\/\.keep$/.test(p); });
+  htmls.sort(function (a, b) {
+    var ai = /index\.html?$/i.test(a) ? 0 : 1, bi = /index\.html?$/i.test(b) ? 0 : 1;
+    return (ai - bi) || (a.length - b.length);
+  });
+  return htmls;
+}
+function findAsset(ref, extRe) {
+  var base = String(ref).split('?')[0].split('#')[0];
+  if (/^(https?:|data:|blob:|\/\/)/i.test(base)) return null;
+  var name = base.split('/').pop().toLowerCase();
+  if (!name) return null;
+  var keys = Object.keys(state.files);
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i].split('/').pop().toLowerCase() === name && extRe.test(keys[i])) return keys[i];
+  }
+  return null;
+}
+function buildPreview() {
+  syncEditorToModel();
+  var list = previewFiles();
+  var frame = $('vscPreviewFrame'), empty = $('vscPreviewEmpty');
+  if (!list.length) {
+    if (frame) frame.style.display = 'none';
+    if (empty) { empty.style.display = ''; empty.innerHTML = 'No website yet \u2014 create an <b>index.html</b> file, or File menu \u2192 New website project.'; }
+    ptab('preview');
+    return;
+  }
+  var doc = state.files[list[0]];
+  doc = doc.replace(/<link\b[^>]*href="([^"]+)"[^>]*>/gi, function (m, href) {
+    var k = findAsset(href, /\.css$/i);
+    if (k) return '<style>\n' + state.files[k] + '\n</style>';
+    return m;
+  });
+  doc = doc.replace(/<script\b[^>]*src="([^"]+)"[^>]*>\s*<\/script>/gi, function (m, src) {
+    var k = findAsset(src, /\.js$/i);
+    if (k) return '<script>\n' + state.files[k].replace(/<\/script/gi, '<\\/script') + '\n<' + '/script>';
+    return m;
+  });
+  var hook = '<script>(function(){function s(a){try{parent.postMessage({vytraConsole:a},\'*\');}catch(e){}}window.addEventListener(\'error\',function(e){s(\'error: \'+(e.message||\'unknown\'));});var fns=[\'log\',\'warn\',\'error\'];fns.forEach(function(k){var f=console[k].bind(console);console[k]=function(){try{var t=Array.prototype.map.call(arguments,function(a){try{return typeof a===\'object\'?JSON.stringify(a):String(a);}catch(x){return String(a);}}).join(\' \');s(k+\': \'+t);}catch(x){} return f.apply(null,arguments);};});})();<' + '/script>';
+  if (/<head\b[^>]*>/i.test(doc)) doc = doc.replace(/<head\b[^>]*>/i, function (m) { return m + hook; });
+  else doc = hook + doc;
+  if (window.__prevUrl) { try { URL.revokeObjectURL(window.__prevUrl); } catch (e) {} }
+  window.__prevUrl = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
+  if (frame) { frame.style.display = ''; frame.src = window.__prevUrl; }
+  if (empty) empty.style.display = 'none';
+  ptab('preview');
+}
+function newWebsiteProject() {
+  if (!confirm('Replace project with a website starter (index.html + styles.css + app.js)?')) return;
+  state.files = {}; for (var k in SITE_STARTER) state.files[k] = SITE_STARTER[k];
+  state.open = Object.keys(state.files); state.active = 'index.html';
+  edSet(state.files[state.active] || '');
+  paintTree(); paintTabs(); persist();
+  buildPreview();
+}
+(function initPreview(){
+  var fb = $('vscFullBtn');
+  if (fb && !$('vscPrevBtn')) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'vsc-iconbtn'; b.id = 'vscPrevBtn'; b.title = 'Preview website';
+    b.innerHTML = '&#127760;';
+    fb.parentElement.insertBefore(b, fb);
+    b.addEventListener('click', buildPreview);
+  }
+  var mr = $('menuRun');
+  if (mr && !$('vscPrevMenu')) {
+    var mb = document.createElement('button');
+    mb.id = 'vscPrevMenu';
+    mb.innerHTML = '<span>Preview website</span><span><kbd>Ctrl+Shift+V</kbd></span>';
+    mb.addEventListener('click', function () { closeMenus(); buildPreview(); });
+    mr.appendChild(mb);
+  }
+  var mf = $('menuFile');
+  if (mf && !$('vscWebItem')) {
+    var w = document.createElement('button');
+    w.id = 'vscWebItem';
+    w.innerHTML = '<span>New website project</span><span></span>';
+    w.addEventListener('click', function () { closeMenus(); newWebsiteProject(); });
+    mf.appendChild(w);
+  }
+  PAL_CMDS.push(['Preview website', 'Ctrl+Shift+V', function () { buildPreview(); }]);
+  PAL_CMDS.push(['New website project', '', function () { newWebsiteProject(); }]);
+  window.addEventListener('message', function (e) {
+    if (e && e.data && typeof e.data.vytraConsole === 'string') {
+      var el = $('vscOut');
+      if (!el) return;
+      var d = document.createElement('div');
+      d.innerHTML = '<span class="dim">[preview]</span> ' + escH(String(e.data.vytraConsole)).slice(0, 500);
+      el.appendChild(d); el.scrollTop = el.scrollHeight;
+    }
+  });
+})();
 
 /* ---------------- boot ---------------- */
 window.addEventListener('error', function (e) {
