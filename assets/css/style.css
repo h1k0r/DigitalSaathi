@@ -223,7 +223,7 @@ button, input, select, textarea {
    -------------------------------------------------------------------------- */
 .container {
   width: 100%;
-  max-width: var(--container-xl);
+  max-width: min(1600px, 96vw);
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--space-4);
@@ -4123,7 +4123,7 @@ img {
    VYTRA UNIFIED PROFESSIONAL TOOL PAGE DESIGN SYSTEM (PDF24 STANDARD)
    ========================================================================== */
 .vytra-tool-view {
-  max-width: 1040px;
+  max-width: min(1280px, 96vw);
   margin: 1.5rem auto 4rem;
   padding: 0 1rem;
 }
