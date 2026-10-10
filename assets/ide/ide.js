@@ -522,6 +522,8 @@ function runCode() {
   if (extras.length && LANG !== 'php') notes.push('Only ' + mf.split('/').pop() + ' ran \u2014 extra files stay in the project/ZIP');
   setRunning(true);
   ABORT = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var __timedOut = false;
+  var __to = setTimeout(function () { if (ABORT) { __timedOut = true; try { ABORT.abort(); } catch (e) {} } }, 90000);
   vscOut('<span class="dim">Compiling &amp; running\u2026</span>', true);
   ptab('out');
   $('vscRunMeta').textContent = '';
@@ -553,9 +555,10 @@ function runCode() {
       $('vscRunMeta').textContent = meta;
       if (!ok) diagnose(true);
     } catch (err) {
-      if (err && err.name === 'AbortError') vscOut('<span class="dim">Stopped.</span>', true);
+      if (err && err.name === 'AbortError') vscOut(__timedOut ? '<span class="err">Timed out after 90s — try smaller input.</span>' : '<span class="dim">Stopped.</span>', true);
       else vscOut('<span class="err">Runner unreachable. Check connection and retry. (' + escH(err.message || err) + ')</span>', true);
     } finally {
+      try { clearTimeout(__to); } catch (e) {}
       setRunning(false); ABORT = null;
     }
   })();
@@ -1132,10 +1135,31 @@ function wireChrome() {
 }
 
 /* ---------------- boot ---------------- */
-loadProject();
-buildMenus();
-wireChrome();
-paintTree();
+window.addEventListener('error', function (e) {
+  try {
+    var el = document.getElementById('vscOut');
+    if (el && window.__ideBooted) {
+      var d = document.createElement('div');
+      d.style.cssText = 'color:#fca5a5;font-size:.8rem;margin-top:8px;';
+      d.textContent = 'JS error: ' + (e.message || 'unknown');
+      el.appendChild(d);
+    }
+  } catch (x) {}
+});
+window.__ideBooted = false;
+try {
+  loadProject();
+  buildMenus();
+  wireChrome();
+  paintTree();
+} catch (e) {
+  try {
+    var el0 = document.getElementById('vscOut');
+    if (el0) el0.innerHTML = '<span class="err">Startup failed: ' + escH(e.message || e) + ' — try hard refresh (Ctrl+Shift+R).</span>';
+  } catch (x) {}
+  if (window.console && console.error) console.error(e);
+}
+window.__ideBooted = true;
 bootMonaco().then(function (ok) {
   if (ok) initMonaco();
   else initFallback();
