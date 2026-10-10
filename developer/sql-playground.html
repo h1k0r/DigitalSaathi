@@ -122,6 +122,7 @@
             <button type="button" data-pt="console">SQL</button>
             <button type="button" data-pt="search">Search</button>
             <button type="button" data-pt="export">Export</button>
+            <button type="button" data-pt="import">Import</button>
           </div>
           <div class="pma-notice" id="pmaNotice"></div>
           <div id="paneBrowse">
@@ -178,6 +179,34 @@
                 <button type="button" class="ilp-primary-btn" id="btnSearchGo" style="padding:10px 22px;">Search &rarr;</button>
                 <button type="button" class="ilp-ghost-btn" id="btnSearchClear">Clear filter</button>
               </div>
+            </div>
+          </div>
+          <div id="paneImport" style="display:none;">
+            <div class="pma-form" style="background:#fff;border:1px solid var(--ilp-border);border-radius:10px;padding:16px;">
+              <label>File to import (.sql or .csv)</label>
+              <input type="file" id="impFile" accept=".sql,.csv,.txt" class="ilp-input">
+              <div id="impName" style="font-size:.8rem;color:var(--ilp-muted);margin-top:4px;">No file chosen.</div>
+              <label>Format</label>
+              <div style="display:flex;gap:14px;font-size:.85rem;flex-wrap:wrap;">
+                <label><input type="radio" name="impFmt" value="auto" checked> Auto (by extension)</label>
+                <label><input type="radio" name="impFmt" value="sql"> SQL</label>
+                <label><input type="radio" name="impFmt" value="csv"> CSV</label>
+              </div>
+              <div id="csvOpts" style="background:var(--ilp-bg);border:1px solid var(--ilp-border);border-radius:8px;padding:12px;margin-top:10px;">
+                <div style="font-weight:800;font-size:.82rem;margin-bottom:6px;">CSV options (ignored for SQL)</div>
+                <label>Table name (existing table appends, missing table is created)</label>
+                <input id="impTable" class="ilp-input" placeholder="e.g. orders">
+                <label style="margin-top:8px;"><input type="checkbox" id="impHeader" checked> First row contains column names</label>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+                  <div><label>Separated with</label><input id="impSep" class="ilp-input" value="," maxlength="3"></div>
+                  <div><label>Enclosed with</label><input id="impEnc" class="ilp-input" value="&quot;" maxlength="2"></div>
+                  <div><label>Escaped with</label><input id="impEsc" class="ilp-input" value="&quot;" maxlength="2"></div>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <button type="button" class="ilp-primary-btn" id="btnImportGo" style="padding:10px 26px;">GO &rarr;</button>
+              </div>
+              <div id="impMsg" style="font-size:.85rem;margin-top:10px;"></div>
             </div>
           </div>
           <div id="paneExport" style="display:none;">
@@ -381,8 +410,8 @@ function orderClause(){
 }
 function sqlTab(which){
   document.querySelectorAll('#pmaTabs button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-pt') === which); });
-  ['browse','struct','console','search','export'].forEach(function(k){
-    document.getElementById(k === 'browse' ? 'paneBrowse' : k === 'struct' ? 'paneStruct' : k === 'console' ? 'paneConsole' : k === 'search' ? 'paneSearch' : 'paneExport').style.display = (k === which) ? 'block' : 'none';
+  ['browse','struct','console','search','export','import'].forEach(function(k){
+    document.getElementById(k === 'browse' ? 'paneBrowse' : k === 'struct' ? 'paneStruct' : k === 'console' ? 'paneConsole' : k === 'search' ? 'paneSearch' : k === 'import' ? 'paneImport' : 'paneExport').style.display = (k === which) ? 'block' : 'none';
   });
   if(which === 'browse') browse(curTable);
   if(which === 'search' && curTable && __db){
@@ -799,6 +828,117 @@ document.getElementById('btnExportGo').addEventListener('click', doExport);
 document.getElementById('btnRunSql').addEventListener('click', function(){ setTimeout(refreshTree, 60); });
 document.querySelectorAll('[data-q]').forEach(function(b){ b.addEventListener('click', function(){ setTimeout(refreshTree, 60); }); });
 document.getElementById('btnResetDb').addEventListener('click', function(){ setTimeout(function(){ curTable = 'students'; curPage = 0; searchWhere = ''; filterQ = ''; refreshAll(); }, 80); });
+</script>
+<script>
+var __impText = '', __impFile = '';
+document.getElementById('impFile').addEventListener('change', function(e){
+  var f = e.target.files && e.target.files[0];
+  document.getElementById('impName').textContent = f ? (f.name + ' (' + f.size + ' bytes)') : 'No file chosen.';
+  if(!f){ __impText = ''; return; }
+  var rd = new FileReader();
+  rd.onload = function(){ __impText = rd.result || ''; };
+  rd.readAsText(f);
+  if(!document.getElementById('impTable').value){
+    document.getElementById('impTable').value = f.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_]/g, '_') || 'imported';
+  }
+});
+function parseCSV(text, sep, quo, esc){
+  sep = sep || ','; quo = (quo === undefined || quo === '') ? '"' : quo; esc = (esc === undefined || esc === '') ? quo : esc;
+  text = String(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  var rows = [], row = [], field = '', inQ = false, i = 0;
+  while(i < text.length){
+    var c = text[i];
+    if(inQ){
+      if(c === esc && text[i+1] === quo){ field += quo; i += 2; continue; }
+      if(c === quo){ inQ = false; i++; continue; }
+      field += c; i++; continue;
+    }
+    if(c === quo){ inQ = true; i++; continue; }
+    if(c === '\n'){ row.push(field); field = ''; rows.push(row); row = []; i++; continue; }
+    if(sep && c === sep){ row.push(field); field = ''; i += sep.length; continue; }
+    field += c; i++;
+  }
+  row.push(field);
+  if(rows.length && row.length === 1 && row[0] === '') return rows;
+  rows.push(row);
+  return rows.filter(function(r){ return !(r.length === 1 && r[0] === ''); });
+}
+function inferType(vals){
+  var seen = false, allInt = true, allNum = true;
+  vals.forEach(function(v){
+    if(v === '' || v == null) return;
+    seen = true;
+    if(!/^[+-]?\d+$/.test(v.trim())) allInt = false;
+    if(v.trim() === '' || isNaN(Number(v))) allNum = false;
+  });
+  if(!seen) return 'TEXT';
+  if(allInt) return 'INTEGER';
+  if(allNum) return 'REAL';
+  return 'TEXT';
+}
+function tblExists(nm){
+  try{
+    var r = __db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name=" + qStr(nm));
+    return r.length > 0;
+  }catch(e){ return false; }
+}
+function qStr(s){ return "'" + String(s).replace(/'/g, "''") + "'"; }
+document.getElementById('btnImportGo').addEventListener('click', function(){
+  var msg = document.getElementById('impMsg');
+  function say(html, bad){ msg.innerHTML = html; msg.style.color = bad ? '#c81e1e' : '#15803d'; }
+  if(!__db){ say('Engine not ready yet.', true); return; }
+  if(!__impText){ say('Choose a file first.', true); return; }
+  var fmt = 'sql';
+  document.querySelectorAll('input[name=impFmt]').forEach(function(r){ if(r.checked) fmt = r.value; });
+  if(fmt === 'auto'){
+    var fn = (document.getElementById('impFile').value || '').toLowerCase();
+    fmt = /\.csv$/i.test(fn) ? 'csv' : 'sql';
+  }
+  try{
+    if(fmt === 'sql'){
+      __db.exec(__impText);
+      say('\u2713 SQL file executed.');
+      refreshAll();
+    } else {
+      var sep = document.getElementById('impSep').value || ',';
+      var quo = document.getElementById('impEnc').value;
+      var esc = document.getElementById('impEsc').value;
+      var header = document.getElementById('impHeader').checked;
+      var rows = parseCSV(__impText, sep, quo === '' ? '"' : quo, esc === '' ? (quo === '' ? '"' : quo) : esc);
+      if(!rows.length){ say('CSV is empty.', true); return; }
+      var tbl = (document.getElementById('impTable').value || 'imported').trim().replace(/[";]/g, '');
+      if(!tbl){ say('Name the target table.', true); return; }
+      var head = header ? rows[0].map(function(h){ return h.trim().replace(/[";]/g, '') || 'col'; }) : null;
+      var body = header ? rows.slice(1) : rows;
+      var cols;
+      if(tblExists(tbl)){
+        cols = pmaCols(tbl).map(function(c){ return c[1]; });
+        if(head){
+          var lower = cols.map(function(c){ return c.toLowerCase(); });
+          var mapped = head.map(function(h){ return lower.indexOf(String(h).toLowerCase()); });
+          if(mapped.some(function(i){ return i < 0; })){ say('Header names do not match table ' + tbl + ' columns (' + cols.join(', ') + ').', true); return; }
+          body = body.map(function(r){ return mapped.map(function(i){ return i < r.length ? r[i] : ''; }); });
+        } else if(body.length && body[0].length !== cols.length){
+          say('CSV has ' + body[0].length + ' columns but ' + tbl + ' has ' + cols.length + '.', true); return;
+        }
+      } else {
+        cols = head && head.length ? head : body[0].map(function(_, i){ return 'col' + (i + 1); });
+        var types = cols.map(function(_, i){ return inferType(body.map(function(r){ return r[i]; })); });
+        __db.exec('CREATE TABLE ' + qId(tbl) + ' (' + cols.map(function(c, i){ return qId(c) + ' ' + types[i]; }).join(', ') + ')');
+      }
+      var colTypes = {};
+      pmaCols(tbl).forEach(function(c){ colTypes[c[1]] = c[2]; });
+      var stmts = body.map(function(r){
+        return 'INSERT INTO ' + qId(tbl) + ' (' + cols.map(qId).join(', ') + ') VALUES ('
+          + cols.map(function(c, i){ return sqlVal(r[i] === undefined ? '' : r[i], colTypes[c]); }).join(', ') + ');';
+      });
+      for(var i = 0; i < stmts.length; i += 400){ __db.exec(stmts.slice(i, i + 400).join('\n')); }
+      say('\u2713 Imported ' + body.length + ' rows into ' + tbl + '.');
+      curTable = tbl; curPage = 0; searchWhere = ''; filterQ = '';
+      refreshAll(); sqlTab('browse');
+    }
+  }catch(e){ say('Import failed: ' + escH(e.message), true); }
+});
 </script>
     <section class="vytra-qa-section"><h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2><div class="vytra-qa-list"><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Is my data uploaded anywhere?</span><span>▼</span></button><div class="vytra-qa-content">No. SQLite runs as WebAssembly in your browser tab. Close the tab and everything vanishes.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Which SQL dialect works?</span><span>▼</span></button><div class="vytra-qa-content">SQLite. Most standard SELECT/JOIN/GROUP BY/INSERT/UPDATE/DELETE works; exotic vendor functions may differ.</div></div><div class="vytra-qa-item"><button type="button" class="vytra-qa-header"><span>Can I use my own tables?</span><span>▼</span></button><div class="vytra-qa-content">Yes — CREATE TABLE and INSERT work. Reset restores the 8-row students demo.</div></div></div></section>
     <script>
