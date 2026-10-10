@@ -489,7 +489,7 @@ function ptab(name) {
 })();
 
 /* ---------------- runner (wandbox sandbox) ---------------- */
-var ABORT = null;
+var ABORT = null, __runSeq = 0;
 var WB_COMPILERS = { c: 'gcc-13.2.0-c', cpp: 'gcc-13.2.0', java: 'openjdk-jdk-21+35', php: 'php-8.3.12', python: 'cpython-3.10.0', javascript: 'nodejs-18.15.0' };
 var WB_LABELS = { c: 'gcc 13.2', cpp: 'g++ 13.2', java: 'OpenJDK 21', php: 'PHP 8.3', python: 'Python 3.10', javascript: 'node 18.15' };
 function mainFile() {
@@ -531,6 +531,12 @@ function runCode() {
   ptab('out');
   $('vscRunMeta').textContent = '';
   var t0 = performance.now();
+  var mySeq = ++__runSeq;
+  var __tick = setInterval(function () {
+    if (mySeq !== __runSeq) { try { clearInterval(__tick); } catch (e) {} return; }
+    var m = document.getElementById('vscRunMeta');
+    if (m) m.textContent = 'Running… ' + ((performance.now() - t0) / 1000).toFixed(1) + 's';
+  }, 200);
   (async function () {
     try {
       setRunnerLabel(WB_LABELS[LANG] || compiler);
@@ -543,6 +549,7 @@ function runCode() {
       });
       if (!res.ok) throw new Error('runner HTTP ' + res.status);
       var j = await res.json();
+      if (mySeq !== __runSeq) return;
       var out = j.program_output || '';
       var err = [j.compiler_error, j.program_error].filter(function (x) { return x; }).join('\n');
       window.__lastErr = err;
@@ -558,10 +565,14 @@ function runCode() {
       $('vscRunMeta').textContent = meta;
       if (!ok) diagnose(true);
     } catch (err) {
+      try { clearInterval(__tick); } catch (e) {}
+      if (mySeq !== __runSeq) return;
       if (err && err.name === 'AbortError') vscOut(__timedOut ? '<span class="err">Timed out after 90s — try smaller input.</span>' : '<span class="dim">Stopped.</span>', true);
       else vscOut('<span class="err">Runner unreachable. Check connection and retry. (' + escH(err.message || err) + ')</span>', true);
     } finally {
       try { clearTimeout(__to); } catch (e) {}
+      try { clearInterval(__tick); } catch (e) {}
+      if (mySeq !== __runSeq) return;
       setRunning(false); ABORT = null;
     }
   })();
