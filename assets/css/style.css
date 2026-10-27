@@ -298,7 +298,7 @@ main {
   position: relative;
 }
 
-/* Desktop Navigation Menu Links (iLovePDF SaaS Style: Crisp, Uppercase, No Emojis) */
+/* Desktop Navigation Menu Links (Crisp, Uppercase, No Emojis) */
 .nav-links {
   display: flex;
   align-items: center;
@@ -424,7 +424,7 @@ main {
   padding-top: 8px;
 }
 
-/* Professional Vector SVG Icon Tile System (Like iLovePDF) */
+/* Professional Vector SVG Icon Tile System */
 .tool-icon-tile {
   width: 48px;
   height: 48px;
@@ -1551,7 +1551,7 @@ main {
 }
 
 /* ==========================================================================
-   PRO SAAS HERO & UPLOAD STYLING (Inspired by iLovePDF / Modern Web SaaS)
+   PRO SAAS HERO & UPLOAD STYLING (Modern Web SaaS)
    ========================================================================== */
 
 .tool-hero {

@@ -229,7 +229,7 @@ def build_article(a, nav, footer, mega):
         related_html.append(f'      <li><a href="{r["slug"]}.html">{html.escape(r["title"])}</a></li>')
     ld = {"@context": "https://schema.org", "@graph": [
         article_schema(a), breadcrumb_schema(a), faq_schema(a["faq"])]}
-    page = head(f"{html.escape(a['title'])} | Vytra Blog", a["desc"],
+    page = head(html.escape(a['title']), a["desc"],
                 f"{SITE}/blog/{a['slug']}.html", ld)
     page += nav + "\n"
     page += breadcrumb([("../", "Home"), ("./", "Blog"), (None, a["cat"])])
@@ -288,7 +288,7 @@ def build_index(nav, footer, mega):
              {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{SITE}/blog/"},
          ]},
     ]}
-    page = head("Vytra Blog \u2013 Free Guides for PDFs, Exam Forms & Document Work",
+    page = head("Vytra Blog \u2014 Free Guides for PDFs &amp; Exam Forms",
                 "Practical, tested guides: compress PDFs for exam forms, photo and signature "
                 "size rules, marksheet uploads, splitting, merging and more \u2014 written for "
                 "Indian students and job applicants.", f"{SITE}/blog/", ld, og_type="website")

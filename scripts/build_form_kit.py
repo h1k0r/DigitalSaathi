@@ -578,7 +578,7 @@ def tool_pages(specs):
     # ---------------- image/resize.html ----------------
     {
         "dir": "image", "slug": "resize",
-        "title": "Photo Resizer \u2014 Set Exact KB &amp; Pixels for Exam Forms | Vytra",
+        "title": "Photo Resizer \u2014 Set Exact KB &amp; Pixels | Vytra",
         "desc": "Resize form photos to the exact KB and pixel size your exam portal asks for. SSC, IBPS, RRB, UPSC presets. Free, private, in-browser.",
         "h1": "Photo Resizer",
         "tagline": "Set the exact KB <em>and</em> pixels your form asks for \u2014 no signup, nothing uploaded.",
@@ -673,7 +673,7 @@ def tool_pages(specs):
     # ---------------- image/signature.html ----------------
     {
         "dir": "image", "slug": "signature",
-        "title": "Signature Resizer \u2014 10\u201320KB Signatures with White Background | Vytra",
+        "title": "Signature Resizer \u2014 10\u201320KB, White Background | Vytra",
         "desc": "Resize exam signatures to the exact KB band with optional white-background cleanup and ink darkening. SSC, IBPS, RRB, UPSC presets. In-browser.",
         "h1": "Signature Resizer",
         "tagline": "White paper, tight crop, exact KB \u2014 the signature upload forms actually accept.",
@@ -860,7 +860,7 @@ def tool_pages(specs):
     # ---------------- forms/preflight.html ----------------
     {
         "dir": "forms", "slug": "preflight",
-        "title": "Pre-flight Checker \u2014 Verify Photo, Signature &amp; PDF Before Upload | Vytra",
+        "title": "Pre-flight Checker \u2014 Verify Files Before Upload | Vytra",
         "desc": "Check your form photo, signature or PDF against your exam's rules before uploading: KB band, pixels, format, background, encryption and page count \u2014 with auto-fix.",
         "h1": "Pre-flight Checker",
         "tagline": "Upload se pehle check karo \u2014 reject hone se pehle fix karo.",
@@ -1231,7 +1231,7 @@ def build_specs_html(nav, footer, mega, specs):
       <a href="../contact.html">contact page</a> and we will re-verify against the linked source.</p>
     </div>
 """
-    page = head("Exam Specs Database \u2014 Photo &amp; Signature Limits with Sources | Vytra",
+    page = head("Exam Specs Database \u2014 Photo &amp; Signature Limits | Vytra",
                 "Photo and signature KB/pixel limits for SSC, IBPS, RRB and UPSC forms, each row linked to its official source, with last-compiled date.",
                 f"{SITE}/forms/specs.html",
                 {"@context": "https://schema.org", "@type": "WebPage", "name": "Exam Specs Database",

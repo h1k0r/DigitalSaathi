@@ -175,7 +175,7 @@ def ssc_page(specs):
     return {
         "slug": "ssc-photo-resize-20kb-50kb",
         "crumb": "SSC Photo Resize",
-        "title": "SSC Photo Resize to 20\u201350 KB \u2014 Exact Pixels Tool | Vytra",
+        "title": "SSC Photo Resize to 20\u201350 KB \u2014 Exact Pixels | Vytra",
         "desc": "Resize SSC CGL/CHSL/MTS photo to 20\u201350 KB with exact pixels (200\u00d7230) in-browser. SSC preset pre-loaded, signature 10\u201320 KB band, official source links, common rejection fixes.",
         "h1": "SSC Photo Resize \u2014 20 KB to 50 KB, Exact Pixels",
         "h1_plain": "SSC Photo Resize to 20-50 KB",
@@ -348,7 +348,7 @@ def rrb_page(specs):
     return {
         "slug": "rrb-photo-signature-size",
         "crumb": "RRB Photo & Signature",
-        "title": "RRB Photo & Signature Size 2026 \u2014 Pixels, KB Band, Resizer | Vytra",
+        "title": "RRB Photo & Signature Size 2026 \u2014 Pixels & KB Band | Vytra",
         "desc": "RRB NTPC/Group D/ALP photo and signature size guide with typical KB bands, pixel values, official source links and an embedded resizer preset for RRB.",
         "h1": "RRB Photo & Signature Size \u2014 Check and Resize",
         "h1_plain": "RRB Photo & Signature Size Guide",
@@ -432,7 +432,7 @@ def compress100_page(specs):
     return {
         "slug": "compress-pdf-to-100kb",
         "crumb": "Compress PDF to 100 KB",
-        "title": "Compress PDF to Under 100 KB \u2014 SSC, UPSC Form Attachments | Vytra",
+        "title": "Compress PDF to Under 100 KB \u2014 SSC, UPSC Forms | Vytra",
         "desc": "Compress a PDF to under 100 KB in your browser: target 80 KB, Extreme preset pre-set, grayscale for colour scans. Why 'file is 95KB but portal says too big' happens and how to fix it.",
         "h1": "Compress PDF to Under 100 KB",
         "h1_plain": "Compress PDF to Under 100 KB",
@@ -518,7 +518,7 @@ def compress200_page(specs):
     return {
         "slug": "compress-pdf-to-200kb",
         "crumb": "Compress PDF to 200 KB",
-        "title": "Compress PDF to Under 200 KB \u2014 Marksheets & Certificates | Vytra",
+        "title": "Compress PDF to Under 200 KB \u2014 Marksheets & Docs | Vytra",
         "desc": "Compress a PDF to under 200 KB for marksheet and certificate uploads: 180 KB working target, Extreme preset pre-set, grayscale for colour scans, bundle strategy.",
         "h1": "Compress PDF to Under 200 KB",
         "h1_plain": "Compress PDF to Under 200 KB",

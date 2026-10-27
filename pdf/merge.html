@@ -29,7 +29,7 @@
   <meta name="theme-color" content="#E5322D">
   <title>Merge PDF Online Free — Combine PDFs in Seconds | Vytra</title>
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark. The fast iLovePDF alternative.">
+  <meta name="description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark.">
   
   <! - Fonts & Stylesheet - >
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -274,13 +274,13 @@
   <meta property="og:site_name" content="Vytra">
   <meta property="og:url" content="https://vytra.in/pdf/merge.html">
   <meta property="og:title" content="Merge PDF Online Free — Combine PDFs in Seconds | Vytra">
-  <meta property="og:description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark. The fast iLovePDF alternative.">
+  <meta property="og:description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark.">
   <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <! - Twitter Cards - >
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Merge PDF Online Free — Combine PDFs in Seconds | Vytra">
-  <meta name="twitter:description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark. The fast iLovePDF alternative.">
+  <meta name="twitter:description" content="Merge PDF files online free. Reorder by drag, combine in seconds, private in-browser processing, no signup, no watermark.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 
@@ -297,6 +297,7 @@
         <a href="../pdf/merge.html" class="ilp-link">MERGE PDF</a>
         <a href="../pdf/split.html" class="ilp-link">SPLIT PDF</a>
         <a href="../pdf/compress.html" class="ilp-link">COMPRESS PDF</a>
+        <a href="../blog/" class="ilp-link">BLOG</a>
         <div class="ilp-has-mega" data-mega="convert">
           <a href="../pdf/jpg-to-pdf.html" class="ilp-link">CONVERT PDF<svg width="9" height="6" viewBox="0 0 9 6" fill="none" style="display:inline;vertical-align:1px;margin-left:5px;"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <div class="ilp-mega" style="width:min(560px,94vw);">
@@ -416,7 +417,7 @@
         </button>
       </div>
 
-      <div class="ilp-drop-hint">... or drag & drop PDFs here — drag cards to reorder like iLovePDF</div>
+      <div class="ilp-drop-hint">... or drag & drop PDFs here — drag cards to reorder your pages</div>
       <div class="ilp-secure"><span>🔒 Files stay on device</span><span>⚡ Instant</span><span>📱 Mobile ready</span></div>
     </div>
 
@@ -856,7 +857,7 @@
     function safeToast(m,t){ notify(m,t||"info"); }
     function notify(msg,type){ if(window.dsToast&&window.dsToast.show) window.dsToast.show(msg,type||'info'); else if(window.showToast) window.showToast(msg,type); else alert(msg); }
 
-    // Render list of files with reorder controls + iLovePDF-style drag reorder
+    // Render list of files with reorder controls + smooth drag reorder
     function renderFileList() {
       fileListContainer.innerHTML = '';
       fileCountBadge.textContent = filesList.length;
@@ -904,7 +905,7 @@
         card.querySelector('[data-act="up"]').addEventListener('click', () => moveFile(index,-1));
         card.querySelector('[data-act="down"]').addEventListener('click', () => moveFile(index,1));
         card.querySelector('[data-act="del"]').addEventListener('click', () => removeFile(index));
-        // HTML5 drag reorder (iLovePDF parity)
+        // HTML5 drag reorder
         card.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text/plain', String(index)); card.style.opacity='0.4'; });
         card.addEventListener('dragend', () => { card.style.opacity=''; fileListContainer.querySelectorAll('.file-item-card').forEach(c=>c.style.borderColor=''); });
         card.addEventListener('dragover', (e) => { e.preventDefault(); card.style.borderColor='#2563eb'; });

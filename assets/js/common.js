@@ -1007,7 +1007,7 @@
   window.resolveRelativeUrl = resolveRelativeUrl;
 
   // ==========================================================================
-  // 10. AUTO-UPGRADE EMOJI ICONS TO PROFESSIONAL VECTOR SVG TILES (iLovePDF Standard)
+  // 10. AUTO-UPGRADE EMOJI ICONS TO PROFESSIONAL VECTOR SVG TILES (PROFESSIONAL STANDARD)
   // ==========================================================================
   function upgradeEmojiIcons() {
     if (!window.getToolSvgIcon) return;

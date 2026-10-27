@@ -81,7 +81,7 @@ index_seo_html = f'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iLovePDF Alternative — 100% Free Online PDF Tools Suite | DigitalSaathi</title>
+  <title>Free Online PDF Tools Suite | Merge, Split, Compress | Vytra</title>
   <meta name="description" content="Every tool you need to work with PDFs in one place. 100% Free, Private & Secure. Merge, split, compress, convert, edit, sign, and protect PDF files right inside your browser with zero server uploads.">
   <meta name="keywords" content="pdf tools, merge pdf, split pdf, compress pdf, convert pdf to word, jpg to pdf, sign pdf, protect pdf, free pdf online, ilovepdf alternative, digitalsaathi">
   <link rel="canonical" href="https://digitalsaathi.in/pdf/">

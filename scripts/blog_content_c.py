@@ -78,7 +78,7 @@ ARTICLES_C = [
     },
     {
         "slug": "ibps-form-upload-errors",
-        "title": "IBPS Form Upload Errors: Photo, Signature & Declaration Fixes",
+        "title": "IBPS Form Upload Errors: Photo & Signature Fixes",
         "desc": "Why IBPS photo/signature uploads fail — size bands, pixel dimensions, backgrounds — and how to fix each file before the deadline.",
         "excerpt": "Why IBPS photo/signature uploads fail — size bands, pixel dimensions, backgrounds — and how to fix each file before the deadline.",
         "cat": "Govt Exam Forms",
@@ -145,7 +145,7 @@ ARTICLES_C = [
     },
     {
         "slug": "scan-documents-mobile-upload-checks",
-        "title": "How to Scan Documents with Your Phone So They Pass Every Upload Check",
+        "title": "How to Scan Documents With Your Phone for Uploads",
         "desc": "Phone scanning done right: lighting, angles, page framing and export settings that produce upload-ready PDFs for exam and job forms.",
         "excerpt": "Phone scanning done right: lighting, angles, page framing and export settings that produce upload-ready PDFs for exam and job forms.",
         "cat": "Govt Exam Forms",
@@ -206,7 +206,7 @@ ARTICLES_C = [
     },
     {
         "slug": "documents-checklist-govt-application",
-        "title": "The Complete Document Checklist for a Government Job Application",
+        "title": "Document Checklist for a Government Job Application",
         "desc": "Every certificate, scan and file-size rule a govt application typically demands — plus the digital prep workflow that prevents last-day disasters.",
         "excerpt": "Every certificate, scan and file-size rule a govt application typically demands — plus the digital prep workflow that prevents last-day disasters.",
         "cat": "Govt Exam Forms",
@@ -280,7 +280,7 @@ ARTICLES_C = [
     },
     {
         "slug": "word-excel-ppt-to-pdf",
-        "title": "Word, Excel & PowerPoint to PDF: Preserve Formatting Without Office",
+        "title": "Word, Excel & PowerPoint to PDF Without Losing Format",
         "desc": "Convert DOCX, XLSX and PPTX to clean PDFs in your browser — fonts, tables and slide layouts locked exactly as designed, no software install.",
         "excerpt": "Convert DOCX, XLSX and PPTX to clean PDFs in your browser — fonts, tables and slide layouts locked exactly as designed, no software install.",
         "cat": "PDF Guides",

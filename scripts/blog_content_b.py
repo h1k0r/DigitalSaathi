@@ -92,7 +92,7 @@ ARTICLES_B = [
     },
     {
         "slug": "protect-pdf-password",
-        "title": "How to Protect a PDF With a Password (and What to Do If You Forget It)",
+        "title": "How to Protect a PDF With a Password",
         "desc": "Lock your own documents before emailing or WhatsApping them — free, in your browser. Plus the honest truth about forgotten passwords and 'unlock' tools.",
         "cat": "PDF Guides",
         "cat_slug": "pdf-guides",

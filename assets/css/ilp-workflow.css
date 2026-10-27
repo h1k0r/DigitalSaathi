@@ -1,4 +1,4 @@
-/* ILP-WORKFLOW v1.0 — iLovePDF-logic inspired processor (original code, no copied assets)
+/* ILP-WORKFLOW v1.0 — original workflow processor (hand-written code, no copied assets)
    Principles: 3-stage Select->Process->Download, large dropzone, file grid + options sidebar,
    sticky action bar, processing overlay, success screen. Fast: CSS-only, no framework. */
 :root{

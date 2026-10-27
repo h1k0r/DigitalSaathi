@@ -796,7 +796,7 @@
   }
 
   // =========================================================================
-  // Professional Vector SVG Icon Tile Generator (Like iLovePDF SaaS standard)
+  // Professional Vector SVG Icon Tile Generator (SaaS standard)
   // =========================================================================
   const SVG_ICONS = {
     'merge-pdf': {

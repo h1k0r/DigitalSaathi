@@ -4,7 +4,7 @@
 ARTICLES_A = [
     {
         "slug": "compress-pdf-100kb",
-        "title": "How to Compress a PDF to Under 100KB Without Losing Readability",
+        "title": "How to Compress PDF to Under 100KB (Keep It Readable)",
         "desc": "Shrink a PDF below 100KB for SSC, UPSC, IBPS and job portals — step by step, free, in your browser. Real before/after sizes, preset choice and blur fixes.",
         "cat": "PDF Guides",
         "cat_slug": "pdf-guides",
@@ -177,7 +177,7 @@ ARTICLES_A = [
     },
     {
         "slug": "ssc-photo-signature-size",
-        "title": "SSC Form Photo and Signature Size: Limits, Pixels and How to Get Them Right",
+        "title": "SSC Form Photo and Signature Size: Limits and Pixels",
         "desc": "Photo KB range, signature KB range, pixel dimensions and common rejection reasons for SSC and similar exam forms — plus the free workflow to hit the limits exactly.",
         "cat": "Govt Exam Forms",
         "cat_slug": "govt-exam-forms",
@@ -261,7 +261,7 @@ ARTICLES_A = [
     },
     {
         "slug": "compress-marksheet-under-200kb",
-        "title": "How to Compress a Marksheet PDF to Under 200KB for Government Portals",
+        "title": "Compress Marksheet PDF to Under 200KB for Portals",
         "desc": "Colour scan to under 200KB in under a minute — Extreme preset + grayscale, real before/after sizes, and how to keep marks and seals readable.",
         "cat": "Govt Exam Forms",
         "cat_slug": "govt-exam-forms",
@@ -346,7 +346,7 @@ ARTICLES_A = [
     },
     {
         "slug": "file-size-too-large-error",
-        "title": "\"File Size Too Large\" Error on Exam Portals: Causes and Fixes",
+        "title": "\"File Size Too Large\" Error on Exam Portals: Fixes",
         "desc": "Why the upload keeps failing even when the file 'looks small' — KB vs bytes, hidden weight, and a reliable fix order that works on SSC, UPSC, IBPS portals.",
         "cat": "Govt Exam Forms",
         "cat_slug": "govt-exam-forms",
