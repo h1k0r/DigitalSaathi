@@ -1075,6 +1075,16 @@ def hub_forms_page():
           <a href="../image/resize.html" style="color:#E5322D;font-weight:700;">Open \u2192</a>
         </div>
       </div>
+      <h2>Exam-specific guides (with the tool pre-set)</h2>
+      <p>Each guide below opens the right tool with that exam's preset already active, shows the
+      official spec table with sources, and fixes the rejections its candidates actually see:</p>
+      <ul style="line-height:2;font-size:.95rem;">
+        <li><a href="../ssc-photo-resize-20kb-50kb/">SSC photo resize (20\u201350 KB, exact pixels)</a></li>
+        <li><a href="../ibps-signature-resize-20kb/">IBPS signature resize (10\u201320 KB)</a></li>
+        <li><a href="../rrb-photo-signature-size/">RRB photo &amp; signature size guide</a></li>
+        <li><a href="../compress-pdf-to-100kb/">Compress PDF to under 100 KB</a></li>
+        <li><a href="../compress-pdf-to-200kb/">Compress PDF to under 200 KB</a></li>
+      </ul>
       <h2>The workflow this kit assumes</h2>
       <ol>
       <li>Read the notification's instruction page once \u2014 note KB bands and pixel asks.</li>

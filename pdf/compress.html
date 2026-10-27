@@ -1101,5 +1101,22 @@
 })();
 </script>
 
+<!-- Landing-page deep link: /compress-pdf-to-100kb/ and -200kb/ open this page with ?target=NN -->
+<script>
+(function(){
+  var m=/[?&]target=(\d{2,4})/.exec(location.search);
+  if(!m) return;
+  var card=document.getElementById('preset-extreme');
+  if(card) card.click();
+  var grid=document.querySelector('.preset-card-grid');
+  if(grid){
+    var note=document.createElement('p');
+    note.style.cssText='font-size:.82rem;font-weight:700;color:#2563eb;margin:0 0 8px;';
+    note.textContent='Pre-set from the landing page: Extreme preset is active \u2014 aim for about '+m[1]+' KB (tick grayscale for scanned or colour documents)';
+    grid.parentNode.insertBefore(note,grid);
+  }
+})();
+</script>
+
 </body>
 </html>
