@@ -183,7 +183,7 @@ ARTICLES_A = [
         "cat_slug": "govt-exam-forms",
         "date": "2026-10-27",
         "excerpt": "SSC forms reject more candidates on photo/signature specs than on anything else. KB ranges, pixel sizes, formats and the exact workflow to get it right the first time.",
-        "tool": {"href": "../pdf/jpg-to-pdf.html", "label": "Open JPG to PDF"},
+        "tool": {"href": "../image/resize.html", "label": "Open Photo Resizer"},
         "body": """
 <p>"Photo signature size galat hai." If there is one error that stalls SSC and allied exam applications more than any other, it is the photograph and signature upload. The rules are strict — a minimum <em>and</em> maximum file size, pixel dimensions, background colour, and a file format — and the portal validates every single one of them before letting you proceed.</p>
 

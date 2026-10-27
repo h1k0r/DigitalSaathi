@@ -12,6 +12,7 @@ ARTICLES_C = [
         "slug": "remove-rearrange-pages-pdf-mobile",
         "title": "How to Remove or Rearrange Pages in a PDF on Your Phone",
         "desc": "Reorder, rotate or delete pages inside a PDF from a phone browser — no app, no signup. Vytra's Organize PDF tool does it privately.",
+        "excerpt": "Reorder, rotate or delete pages inside a PDF from a phone browser — no app, no signup. Vytra's Organize PDF tool does it privately.",
         "cat": "PDF Guides",
         "date": "2026-10-31",
         "body": """
@@ -73,12 +74,13 @@ ARTICLES_C = [
             {"q": "Do I need to install an app?", "a": "No. The tool runs in the browser on phones and desktops alike — nothing to install, no account to create."},
         ],
         "related": ["split-pdf-extract-pages", "compress-pdf-under-100kb", "jpg-to-pdf-guide", "merge-pdfs-into-one"],
-        "toolcta": {"slug": "pdf/organize.html", "name": "Organize PDF"},
+        "tool": {"href": "../pdf/organize.html", "label": "Open Organize PDF"},
     },
     {
         "slug": "ibps-form-upload-errors",
         "title": "IBPS Form Upload Errors: Photo, Signature & Declaration Fixes",
         "desc": "Why IBPS photo/signature uploads fail — size bands, pixel dimensions, backgrounds — and how to fix each file before the deadline.",
+        "excerpt": "Why IBPS photo/signature uploads fail — size bands, pixel dimensions, backgrounds — and how to fix each file before the deadline.",
         "cat": "Govt Exam Forms",
         "date": "2026-11-02",
         "body": """
@@ -139,12 +141,13 @@ ARTICLES_C = [
             {"q": "Is it safe to edit the photo background?", "a": "A plain background for the photo itself is the notification's requirement. Altering document content — marks, dates, signatures — is malpractice and never acceptable."},
         ],
         "related": ["file-size-too-large-error", "compress-marksheet-under-200kb", "jpg-to-pdf-guide", "compress-pdf-under-100kb"],
-        "toolcta": {"slug": "pdf/compress.html", "name": "Compress PDF"},
+        "tool": {"href": "../pdf/compress.html", "label": "Open Compress PDF"},
     },
     {
         "slug": "scan-documents-mobile-upload-checks",
         "title": "How to Scan Documents with Your Phone So They Pass Every Upload Check",
         "desc": "Phone scanning done right: lighting, angles, page framing and export settings that produce upload-ready PDFs for exam and job forms.",
+        "excerpt": "Phone scanning done right: lighting, angles, page framing and export settings that produce upload-ready PDFs for exam and job forms.",
         "cat": "Govt Exam Forms",
         "date": "2026-11-05",
         "body": """
@@ -199,12 +202,13 @@ ARTICLES_C = [
             {"q": "Can I combine photos from different documents into one PDF?", "a": "Yes, if the form asks for one combined file — keep pages in the required order and name the download clearly so you know what it contains at upload time."},
         ],
         "related": ["compress-marksheet-under-200kb", "file-size-too-large-error", "documents-checklist-govt-application", "jpg-to-pdf-guide"],
-        "toolcta": {"slug": "pdf/scan-to-pdf.html", "name": "Scan to PDF"},
+        "tool": {"href": "../pdf/scan-to-pdf.html", "label": "Open Scan to PDF"},
     },
     {
         "slug": "documents-checklist-govt-application",
         "title": "The Complete Document Checklist for a Government Job Application",
         "desc": "Every certificate, scan and file-size rule a govt application typically demands — plus the digital prep workflow that prevents last-day disasters.",
+        "excerpt": "Every certificate, scan and file-size rule a govt application typically demands — plus the digital prep workflow that prevents last-day disasters.",
         "cat": "Govt Exam Forms",
         "date": "2026-11-08",
         "body": """
@@ -272,12 +276,13 @@ ARTICLES_C = [
             {"q": "Should scanned documents be colour or black-and-white?", "a": "Either works for legibility; compressing to grayscale usually preserves text clarity while cutting file size substantially for portals with strict caps."},
         ],
         "related": ["file-size-too-large-error", "compress-marksheet-under-200kb", "merge-pdfs-into-one", "scan-documents-mobile-upload-checks"],
-        "toolcta": {"slug": "tools/", "name": "All Vytra Tools"},
+        "tool": {"href": "../tools/", "label": "Open All Vytra Tools"},
     },
     {
         "slug": "word-excel-ppt-to-pdf",
         "title": "Word, Excel & PowerPoint to PDF: Preserve Formatting Without Office",
         "desc": "Convert DOCX, XLSX and PPTX to clean PDFs in your browser — fonts, tables and slide layouts locked exactly as designed, no software install.",
+        "excerpt": "Convert DOCX, XLSX and PPTX to clean PDFs in your browser — fonts, tables and slide layouts locked exactly as designed, no software install.",
         "cat": "PDF Guides",
         "date": "2026-11-11",
         "body": """
@@ -333,6 +338,6 @@ ARTICLES_C = [
             {"q": "Converted PDF too big for the upload cap?", "a": "Run one Extreme compression pass — Office exports are text-heavy and typically shrink dramatically with the embedded images re-encoded."},
         ],
         "related": ["compress-pdf-under-100kb", "merge-pdfs-into-one", "why-pdf-is-so-large", "protect-pdf-password"],
-        "toolcta": {"slug": "pdf/word-to-pdf.html", "name": "Word to PDF"},
+        "tool": {"href": "../pdf/word-to-pdf.html", "label": "Open Word to PDF"},
     },
 ]

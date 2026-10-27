@@ -1,0 +1,46 @@
+{
+  "updated": "2026-10-27",
+  "disclaimer": "Bands compiled from recent official notifications. Limits change between notifications — always verify against the exact notification you are applying under. Source link is given per exam.",
+  "exams": [
+    {
+      "id": "ssc",
+      "name": "SSC (CGL / CHSL / MTS / GD)",
+      "source": "https://ssc.gov.in",
+      "sourceLabel": "ssc.gov.in",
+      "photo": { "minKB": 20, "maxKB": 50, "format": "JPG", "ratioNum": [4, 5], "typicalPx": "200x230",
+        "note": "Recent SSC notifications use live webcam/phone photo capture for many posts — if yours does, use the fallback JPG band only when a file upload is actually asked." },
+      "signature": { "minKB": 10, "maxKB": 20, "format": "JPG", "ratioNum": [3, 1], "typicalPx": "140x60",
+        "note": "About 4.0 x 2.0 cm (older notices mentioned 6.0 x 2.0 cm). Sign on plain white paper, tight crop, dark pen." }
+    },
+    {
+      "id": "ibps",
+      "name": "IBPS (PO / Clerk / RRB / SO)",
+      "source": "https://ibps.in",
+      "sourceLabel": "ibps.in",
+      "photo": { "minKB": 20, "maxKB": 50, "format": "JPG", "ratioNum": [20, 23], "typicalPx": "200x230",
+        "note": "Plain light background, face centred, no cap or dark glasses." },
+      "signature": { "minKB": 10, "maxKB": 20, "format": "JPG", "ratioNum": [7, 3], "typicalPx": "140x60",
+        "note": "Sign on white paper with dark ink; crop tight around the signature only." }
+    },
+    {
+      "id": "rrb",
+      "name": "RRB (NTPC / Group D / ALP)",
+      "source": "https://rrbapply.gov.in",
+      "sourceLabel": "rrbapply.gov.in",
+      "photo": { "minKB": 15, "maxKB": 40, "format": "JPG", "ratioNum": [5, 6], "typicalPx": "200x230",
+        "note": "Bands differ between RRB notifications — read your exact advertisement." },
+      "signature": { "minKB": 10, "maxKB": 20, "format": "JPG", "ratioNum": [7, 3], "typicalPx": "140x60",
+        "note": "Scanned signature, white background, no surrounding paper visible." }
+    },
+    {
+      "id": "upsc",
+      "name": "UPSC (CSE / IES / CAPF)",
+      "source": "https://upsc.gov.in",
+      "sourceLabel": "upsc.gov.in",
+      "photo": { "minKB": 20, "maxKB": 50, "format": "JPG", "ratioNum": [7, 9], "typicalPx": "200x257",
+        "note": "Photo roughly 3.5 x 4.5 cm ratio; recent e-photo uploads ask for a recent colour photo." },
+      "signature": { "minKB": 10, "maxKB": 20, "format": "JPG", "ratioNum": [7, 3], "typicalPx": "140x60",
+        "note": "Roughly 3.5 x 1.5 cm ratio; scan at high contrast so ink stays crisp." }
+    }
+  ]
+}
