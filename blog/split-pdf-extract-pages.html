@@ -34,11 +34,11 @@
   <meta property="og:url" content="https://vytra.in/blog/split-pdf-extract-pages.html">
   <meta property="og:title" content="How to Split a PDF and Extract Only the Pages You Need">
   <meta property="og:description" content="Pull the exact pages a form asks for out of a big PDF — free, in your browser. Page ranges, bundle splitting and when extracting beats compressing.">
-  <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
+  <meta property="og:image" content="https://vytra.in/assets/images/blog/split-pdf-extract-pages.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="How to Split a PDF and Extract Only the Pages You Need">
   <meta name="twitter:description" content="Pull the exact pages a form asks for out of a big PDF — free, in your browser. Page ranges, bundle splitting and when extracting beats compressing.">
-  <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
+  <meta name="twitter:image" content="https://vytra.in/assets/images/blog/split-pdf-extract-pages.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -68,6 +68,10 @@
     .blog-card .card-meta { font-size: .76rem; color: #9ca3af; text-transform: uppercase;
       letter-spacing: .04em; font-weight: 700; }
     .blog-card .read-more { font-size: .85rem; font-weight: 700; color: #E5322D; }
+    .blog-feature-img { display: block; width: 100%; height: auto;
+      border-radius: 12px; margin: 1.1rem 0 .4rem; border: 1px solid #e5e7eb; }
+    .blog-card .blog-card-img { display: block; width: 100%; height: auto;
+      border-radius: 8px; border: 1px solid #e5e7eb; }
     .blog-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0 0; }
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
@@ -101,7 +105,12 @@
         "@type": "WebPage",
         "@id": "https://vytra.in/blog/split-pdf-extract-pages.html"
       },
-      "image": "https://vytra.in/assets/images/og-banner.png"
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://vytra.in/assets/images/blog/split-pdf-extract-pages.webp",
+        "width": 1200,
+        "height": 630
+      }
     },
     {
       "@context": "https://schema.org",
@@ -262,6 +271,9 @@
     <article class="legal-card">
       <h1>How to Split a PDF and Extract Only the Pages You Need</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: PDF Guides</div>
+      <img class="blog-feature-img" src="../assets/images/blog/split-pdf-extract-pages.webp"
+           alt="How to Split a PDF and Extract Only the Pages You Need — feature image for this Vytra guide"
+           width="1200" height="630" decoding="async" loading="lazy">
 
 <p>"Upload only pages 5 to 7 of your marksheet." "Submit the certificate — a single-page PDF." Application forms constantly demand <em>part</em> of a document, not the whole thing. Sending the full 40-page file means rejection (wrong content), an oversized upload, or both. Extracting the right pages takes seconds in a browser.</p>
 
@@ -415,7 +427,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <div>&copy; 2026 Vytra.in &middot; 100% Client-Side Free Tools. All rights reserved.</div>
+      <div>&copy; 2026 Vytra.in &middot; Free browser-based tools. All rights reserved.</div>
     </div>
   </footer>
   <script>

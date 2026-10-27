@@ -65,6 +65,10 @@ PAGE_STYLE = """
     .blog-card .card-meta { font-size: .76rem; color: #9ca3af; text-transform: uppercase;
       letter-spacing: .04em; font-weight: 700; }
     .blog-card .read-more { font-size: .85rem; font-weight: 700; color: #E5322D; }
+    .blog-feature-img { display: block; width: 100%; height: auto;
+      border-radius: 12px; margin: 1.1rem 0 .4rem; border: 1px solid #e5e7eb; }
+    .blog-card .blog-card-img { display: block; width: 100%; height: auto;
+      border-radius: 8px; border: 1px solid #e5e7eb; }
     .blog-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: .6rem 0 0; }
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
@@ -92,8 +96,9 @@ def load_shell():
     return nav, footer, mega
 
 
-def head(title, desc, canonical, extra_ld, og_type="article"):
+def head(title, desc, canonical, extra_ld, og_type="article", og_image=None):
     esc_t, esc_d = html.escape(title), html.escape(desc)
+    og_image = og_image or f"{SITE}/assets/images/og-banner.png"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,11 +135,11 @@ def head(title, desc, canonical, extra_ld, og_type="article"):
   <meta property="og:url" content="{canonical}">
   <meta property="og:title" content="{esc_t}">
   <meta property="og:description" content="{esc_d}">
-  <meta property="og:image" content="{SITE}/assets/images/og-banner.png">
+  <meta property="og:image" content="{og_image}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{esc_t}">
   <meta name="twitter:description" content="{esc_d}">
-  <meta name="twitter:image" content="{SITE}/assets/images/og-banner.png">
+  <meta name="twitter:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -205,7 +210,9 @@ def article_schema(a):
                       "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/images/logo.svg"}},
         "mainEntityOfPage": {"@type": "WebPage",
                              "@id": f"{SITE}/blog/{a['slug']}.html"},
-        "image": f"{SITE}/assets/images/og-banner.png",
+        "image": {"@type": "ImageObject",
+                  "url": f"{SITE}/assets/images/blog/{a['slug']}.webp",
+                  "width": 1200, "height": 630},
     }
 
 
@@ -230,7 +237,8 @@ def build_article(a, nav, footer, mega):
     ld = {"@context": "https://schema.org", "@graph": [
         article_schema(a), breadcrumb_schema(a), faq_schema(a["faq"])]}
     page = head(html.escape(a['title']), a["desc"],
-                f"{SITE}/blog/{a['slug']}.html", ld)
+                f"{SITE}/blog/{a['slug']}.html", ld,
+                og_image=f"{SITE}/assets/images/blog/{a['slug']}.webp")
     page += nav + "\n"
     page += breadcrumb([("../", "Home"), ("./", "Blog"), (None, a["cat"])])
     page += f"""
@@ -238,6 +246,9 @@ def build_article(a, nav, footer, mega):
     <article class="legal-card">
       <h1>{html.escape(a['title'])}</h1>
       <div class="blog-meta">Last updated: {TODAY_HUMAN} &middot; By <a href="../about.html">h1k0r</a> &middot; Category: {html.escape(a['cat'])}</div>
+      <img class="blog-feature-img" src="../assets/images/blog/{a['slug']}.webp"
+           alt="{html.escape(a['title'])} \u2014 feature image for this Vytra guide"
+           width="1200" height="630" decoding="async" loading="lazy">
 {a['body']}
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> {html.escape(a['tool']['label'])} &mdash; free,
@@ -268,16 +279,18 @@ def build_index(nav, footer, mega):
     cards = []
     for a in ARTICLES:
         cards.append(f"""      <div class="blog-card">
+        <img class="blog-card-img" src="../assets/images/blog/{a['slug']}.webp"
+             alt="{html.escape(a['title'])} \u2014 guide cover" width="1200" height="630" loading="lazy" decoding="async">
         <div class="card-meta">{html.escape(a['cat'])} &middot; {a['date']}</div>
         <h2><a href="{a['slug']}.html">{html.escape(a['title'])}</a></h2>
         <p>{html.escape(a['excerpt'])}</p>
         <a class="read-more" href="{a['slug']}.html">Read guide &rarr;</a>
       </div>""")
+    # Chips = categories that actually have published articles (no empty
+    # "coming soon" placeholders \u2014 they make a site look unfinished).
     chips = []
-    for c in ("PDF Guides", "Govt Exam Forms"):
-        chips.append(f'<span class="blog-chip">{c}</span>')
-    for c in ("Image & Photo Tools", "Productivity & Office", "Developer Tips"):
-        chips.append(f'<span class="blog-chip muted">{c} &middot; coming soon</span>')
+    for c in sorted({a['cat'] for a in ARTICLES}):
+        chips.append(f'<span class="blog-chip">{html.escape(c)}</span>')
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Blog", "@id": f"{SITE}/blog/#blog", "name": "Vytra Blog",
          "description": "Free, practical guides for PDFs, government exam forms and document work.",
