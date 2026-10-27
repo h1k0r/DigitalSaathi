@@ -27,15 +27,16 @@ TODAY_HUMAN = "27 October 2026"
 SITE = "https://vytra.in"
 
 try:
-    from blog_content_c import ARTICLES_C
+    from blog_content_c import ARTICLES_C1, ARTICLES_C2
 except ImportError:
-    ARTICLES_C = []
+    ARTICLES_C1, ARTICLES_C2 = [], []
 
-# Batch-2 drafts publish only when PUBLISH_BATCH2=1 (staggered publishing —
-# see blog_content_c.py header). Keeps bulk-publish dates off the sitemap.
-ARTICLES = ARTICLES_A + ARTICLES_B
+# Staggered publishing: C1 is live (dates = actual publish days); C2 holds
+# drafts released 2-3/week by moving entries C2 -> C1 with their real date.
+# PUBLISH_BATCH2=1 is the bulk fallback that publishes everything in C2.
+ARTICLES = ARTICLES_A + ARTICLES_B + ARTICLES_C1
 if os.environ.get("PUBLISH_BATCH2") == "1":
-    ARTICLES += ARTICLES_C
+    ARTICLES += ARTICLES_C2
 BY_SLUG = {a["slug"]: a for a in ARTICLES}
 
 ADSENSE = ('  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'

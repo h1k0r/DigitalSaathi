@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Vytra blog — BATCH 2 (drafts, NOT published by default).
+"""Vytra blog — BATCH 2 (staggered release).
 
-Publishing: run `set PUBLISH_BATCH2=1 && python scripts/build_blog.py` on the
-scheduled date (3-4 articles per week cadence — do not dump all at once).
+Release structure (durable, no env vars needed to keep live posts live):
+  ARTICLES_C1 — live now (published 2026-10-27)
+  ARTICLES_C2 — drafts; release 2-3 per week. To release one: move it into
+                ARTICLES_C1 and set its "date" to the ACTUAL publish day
+                (never a planned/fake date). Do not dump all at once.
+PUBLISH_BATCH2=1 publishes everything still in C2 (bulk fallback only).
 Content rules: honest claims only (typical ranges, no invented test numbers),
 tool CTA must point to a page that exists on the site.
 """
@@ -39,7 +43,7 @@ ARTICLES_C = [
 <p>Phone cameras love to add sideways pages to otherwise upright documents. Rotate any thumbnail that is lying on its side before downloading — a form reviewer should never have to tilt their head, and some auto-checkers complain about orientation too. Rotate, glance through the whole strip once, then export.</p>
 
 <h2>What this tool does not do</h2>
-<p>Honesty first: the organizer reorders, deletes and rotates pages. It does not compress the file (use <a href="compress-pdf-under-100kb.html">Extreme compression</a> if a size cap applies) and it does not recognise text in scanned images (scanned files are pictures of pages — OCR is a separate job). If your file must pass a 200KB limit, organise first, then compress — the order matters because compression should see the final page set.</p>
+<p>Honesty first: the organizer reorders, deletes and rotates pages. It does not compress the file (use <a href="compress-pdf-100kb.html">Extreme compression</a> if a size cap applies) and it does not recognise text in scanned images (scanned files are pictures of pages — OCR is a separate job). If your file must pass a 200KB limit, organise first, then compress — the order matters because compression should see the final page set.</p>
 
 <h2>A workflow that works on a phone</h2>
 <ul>
@@ -73,7 +77,7 @@ ARTICLES_C = [
             {"q": "Does deleting pages reduce the PDF size?", "a": "Usually yes, since each removed page also removes its content — but scanned pages are heavy, so a size-limited upload may still need a compression pass afterwards."},
             {"q": "Do I need to install an app?", "a": "No. The tool runs in the browser on phones and desktops alike — nothing to install, no account to create."},
         ],
-        "related": ["split-pdf-extract-pages", "compress-pdf-under-100kb", "jpg-to-pdf-guide", "merge-pdfs-into-one"],
+        "related": ["split-pdf-extract-pages", "compress-pdf-100kb", "jpg-to-pdf-guide", "merge-pdfs-into-one"],
         "tool": {"href": "../pdf/organize.html", "label": "Open Organize PDF"},
     },
     {
@@ -140,7 +144,7 @@ ARTICLES_C = [
             {"q": "Should I compress below the limit or stay near it?", "a": "Land in the middle of the stated band — files pushed to the extreme minimum can fail floor checks, and files a hair under the ceiling can fail byte-rounding checks."},
             {"q": "Is it safe to edit the photo background?", "a": "A plain background for the photo itself is the notification's requirement. Altering document content — marks, dates, signatures — is malpractice and never acceptable."},
         ],
-        "related": ["file-size-too-large-error", "compress-marksheet-under-200kb", "jpg-to-pdf-guide", "compress-pdf-under-100kb"],
+        "related": ["file-size-too-large-error", "compress-marksheet-under-200kb", "jpg-to-pdf-guide", "compress-pdf-100kb"],
         "tool": {"href": "../pdf/compress.html", "label": "Open Compress PDF"},
     },
     {
@@ -306,7 +310,7 @@ ARTICLES_C = [
 <p>Slide decks converted to PDF keep colours, graphics and animation-free layouts intact, and they open instantly on projectors and phones alike — no font substitutions, no missing transitions, no "can you email it in a format my tablet reads". If the deck carries speaker notes you don't want to share, export the handout view instead of the full presentation. The converter preserves whatever pages the deck produces.</p>
 
 <h2>After conversion: check, then compress if needed</h2>
-<p>Open the PDF and swipe through it — this thirty-second audit catches the two realistic failure modes: a font substitution on page one, and an unexpected page break in a long table. If the file must fit a portal's KB cap (assignments and application attachments frequently carry one), run it through <a href="compress-pdf-under-100kb.html">Extreme compression</a> — text-heavy Office exports compress extremely well, because their weight is usually embedded images, not text.</p>
+<p>Open the PDF and swipe through it — this thirty-second audit catches the two realistic failure modes: a font substitution on page one, and an unexpected page break in a long table. If the file must fit a portal's KB cap (assignments and application attachments frequently carry one), run it through <a href="compress-pdf-100kb.html">Extreme compression</a> — text-heavy Office exports compress extremely well, because their weight is usually embedded images, not text.</p>
 
 <h2>Converting from a phone</h2>
 <p>The same tools work in a mobile browser — useful when the file lives in Drive, WhatsApp or an email attachment. Open the converter, load the file from the phone's storage, convert, download. The phone's "share → save to files" gesture moves a WhatsApp-received résumé into the converter's reach in two taps. For a multi-file application bundle, convert each file in one session and download them in order — the phone's download list then mirrors the order you will upload them in.</p>
@@ -337,7 +341,16 @@ ARTICLES_C = [
             {"q": "Can I convert a file without installing Office?", "a": "Yes — the converters run entirely in the browser, so no Microsoft Office installation or account is required on your device."},
             {"q": "Converted PDF too big for the upload cap?", "a": "Run one Extreme compression pass — Office exports are text-heavy and typically shrink dramatically with the embedded images re-encoded."},
         ],
-        "related": ["compress-pdf-under-100kb", "merge-pdfs-into-one", "why-pdf-is-so-large", "protect-pdf-password"],
+        "related": ["compress-pdf-100kb", "merge-pdfs-into-one", "why-pdf-is-so-large", "protect-pdf-password"],
         "tool": {"href": "../pdf/word-to-pdf.html", "label": "Open Word to PDF"},
     },
 ]
+
+# ---------------------------------------------------------------------------
+# Staggered-release split — live set is data, not an env var, so plain
+# rebuilds never unpublish an article.
+ARTICLES_C1 = ARTICLES_C[:2]   # live now
+ARTICLES_C2 = ARTICLES_C[2:]   # drafts: release 2-3/week, real dates only
+
+for _a in ARTICLES_C1:
+    _a["date"] = "2026-10-27"  # actual publish day (was planned 10-31 / 11-02)
