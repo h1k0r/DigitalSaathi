@@ -318,6 +318,7 @@
             <div><h4>Code Tools</h4><a href="../developer/" style="font-weight:800;"><span class="ilp-badge" style="background:#E5322D;color:#fff;font-size:13px;">&#9654;</span>Open Code Editor</a><a href="../developer/?lang=c"><span class="ilp-badge" style="background:#64748B;color:#fff;font-size:13px;">C</span>C</a><a href="../developer/?lang=cpp"><span class="ilp-badge" style="background:#2563EB;color:#fff;font-size:10px;">C++</span>C++</a><a href="../developer/?lang=java"><span class="ilp-badge" style="background:#EA580C;color:#fff;font-size:13px;">J</span>Java</a><a href="../developer/?lang=php"><span class="ilp-badge" style="background:#777BB4;color:#fff;font-size:13px;">P</span>PHP</a><a href="../developer/?lang=python"><span class="ilp-badge" style="background:#3776AB;color:#fff;font-size:10px;">Py</span>Python</a><a href="../developer/?lang=javascript"><span class="ilp-badge" style="background:#FACC15;color:#1e1e1e;font-size:10px;">JS</span>JavaScript</a><a href="../developer/sql-playground.html"><span class="ilp-badge" style="background:#0E7490;color:#fff;font-size:13px;">S</span>SQL Playground</a></div>
           </div>
         </div>
+        <a href="../blog/" class="ilp-link">BLOG</a>
         <div class="ilp-has-mega" data-mega="all">
           <a href="../tools/" class="ilp-link red">ALL PDF TOOLS<svg width="9" height="6" viewBox="0 0 9 6" fill="none" style="display:inline;vertical-align:1px;margin-left:5px;"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <div class="ilp-mega">
@@ -334,8 +335,6 @@
       </div>
       <div class="ilp-nav-right">
         <button class="ilp-ghost-btn" id="headerSearchBtn" style="padding:8px 12px;" aria-label="Search tools">🔍 <span style="font-size:.78rem;">Search</span></button>
-        <button type="button" class="ilp-login ilp-authbtn" data-mode="login">Login</button>
-        <button type="button" class="ilp-signup ilp-authbtn" data-mode="signup">Sign up</button>
         <button class="ilp-burger" id="navToggleBtn" aria-label="Menu">☰</button>
       </div>
     </div>
@@ -707,7 +706,7 @@
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="vytra-ad-notice"> 100% free thanks to advertising</div>
+    <div class="vytra-ad-notice">Advertisement</div>
 
     <! - 3. Information Section (6 Feature Blocks Grid) - >
     <section class="vytra-info-section">
@@ -900,6 +899,7 @@
         <ul class="footer-links">
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../blog/">Blog &amp; Guides</a></li>
           <li><a href="../tools/">All Tools Directory</a></li>
         </ul>
       </div>
@@ -994,40 +994,6 @@
   if(b&&panel) b.addEventListener('click',function(){ panel.classList.toggle('on'); });
 })();
 </script>
-<div class="ilp-auth-overlay" id="ilpAuthOverlay" aria-hidden="true">
-  <div class="ilp-auth-card" role="dialog" aria-modal="true" aria-labelledby="ilpAuthTitle">
-    <button type="button" class="ilp-auth-close" id="ilpAuthClose" aria-label="Close dialog">✕</button>
-    <img src="../assets/images/logo.svg" alt="Vytra" width="120" height="26" style="height:26px;width:auto;margin:0 auto;">
-    <h3 id="ilpAuthTitle">No account needed</h3>
-    <p>Vytra has no accounts, no passwords and no paywalls. Every PDF tool opens instantly and processes your files privately in your own browser.</p>
-    <div class="ilp-auth-points"><span>✓ Free forever</span><span>✓ No signup</span><span>✓ Files stay on device</span></div>
-    <a class="ilp-primary-btn" href="../tools/" style="text-decoration:none;">Browse all PDF tools</a>
-  </div>
-</div>
-<script>
-(function ilpAuthInit(){
-  var ov=document.getElementById('ilpAuthOverlay');
-  if(!ov) return;
-  var title=document.getElementById('ilpAuthTitle');
-  var close=document.getElementById('ilpAuthClose');
-  function open(mode){
-    title.textContent = mode==='signup' ? 'Sign up — without a form' : 'Log in — without a password';
-    ov.classList.add('on');
-    ov.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
-  }
-  function shut(){
-    ov.classList.remove('on');
-    ov.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-  }
-  document.querySelectorAll('.ilp-authbtn').forEach(function(b){
-    b.addEventListener('click',function(){ open(b.getAttribute('data-mode')); });
-  });
-  close.addEventListener('click',shut);
-  ov.addEventListener('click',function(e){ if(e.target===ov) shut(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') shut(); });
-})();
-</script>
+
 </body>
 </html>

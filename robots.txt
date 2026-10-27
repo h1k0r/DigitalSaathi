@@ -1,10 +1,11 @@
-# Vytra.in Robots.txt — world-class crawl config to compete with iLovePDF
+# Vytra.in Robots.txt
 # https://vytra.in
 
 User-agent: *
 Allow: /
 Disallow: /design-system.html
 Disallow: /seo/
+Disallow: /templates/
 
 # Global XML Sitemap
 Sitemap: https://vytra.in/sitemap.xml
