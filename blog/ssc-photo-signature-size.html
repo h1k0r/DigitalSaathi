@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/ssc-photo-signature-size.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -180,6 +267,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -260,7 +348,17 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#the-four-rules-the-portal-actually-checks">The four rules the portal actually checks</a>
+        <a href="#check-what-your-current-files-look-like-to-the-portal">Check what your current files look like to the portal</a>
+        <a href="#the-free-browser-workflow-to-hit-the-spec-exactly">The free browser workflow to hit the spec exactly</a>
+        <a href="#why-photos-get-rejected-and-the-fixes">Why photos get rejected (and the fixes)</a>
+        <a href="#pro-tips">Pro tips</a>
+        <a href="#frequently-asked-questions">Frequently asked questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>SSC Form Photo and Signature Size: Limits and Pixels</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: Govt Exam Forms</div>
       <img class="blog-feature-img" src="../assets/images/blog/ssc-photo-signature-size.webp"
@@ -273,7 +371,7 @@
 
 <div class="highlight-box" style="border-left:4px solid #E5322D;"><p><strong>Important:</strong> Size limits and pixel dimensions change between exams and even between years. Always verify the exact numbers in the official notification on <a href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a> (or your exam body's site) — this guide teaches the method, the notification gives the numbers.</p></div>
 
-<h2>The four rules the portal actually checks</h2>
+<h2 id="the-four-rules-the-portal-actually-checks">The four rules the portal actually checks</h2>
 <ol>
 <li><strong>File size range.</strong> Not "under 100KB" — a <em>range</em>. A 5KB photo is rejected as too small just like a 90KB one is rejected as too large, because too-small files are usually blurry thumbnails. Aim for the middle of the range.</li>
 <li><strong>Pixel dimensions.</strong> The photo's width × height in pixels matters as much as its KB. A common passport-photo size family is around 200×230 pixels, but your notification may specify something else.</li>
@@ -281,13 +379,13 @@
 <li><strong>Background and framing.</strong> Plain white or light background, face clearly visible, no selfies with filters. Signatures must be on white paper, shot straight, without extra surrounding space.</li>
 </ol>
 
-<h2>Check what your current files look like to the portal</h2>
+<h2 id="check-what-your-current-files-look-like-to-the-portal">Check what your current files look like to the portal</h2>
 <ul>
 <li><strong>Size in KB:</strong> on Windows, right-click → Properties → Size. On Android, long-press the file → Details. On iPhone, open the photo in Files and check info. The portal sees the same number you do.</li>
 <li><strong>Dimensions:</strong> open the image in any viewer that shows properties, or upload the file to a photo app and check "image size". If your viewer says 3024×4032, that is a full-resolution camera photo — nowhere near a form-spec file.</li>
 </ul>
 
-<h2>The free browser workflow to hit the spec exactly</h2>
+<h2 id="the-free-browser-workflow-to-hit-the-spec-exactly">The free browser workflow to hit the spec exactly</h2>
 <ol>
 <li><strong>Crop first, resize second.</strong> Crop the photo to the required aspect (passport framing) — cropping after resizing distorts the face.</li>
 <li><strong>Resize to the exact pixel dimensions</strong> your notification asks for. This does most of the size reduction automatically.</li>
@@ -299,7 +397,7 @@
 
 <div class="highlight-box"><p><strong>What to expect:</strong> Camera photos start huge — a full-resolution phone photo is commonly 1–4MB at 3000+ pixels. Cropping to passport framing and resizing to the notification's pixel spec removes most of that weight; exported at 85% JPG quality, such photos typically land in the <strong>20–60KB</strong> band, and signatures (white paper, tight crop) rarely exceed <strong>10–25KB</strong>. The number that matters is what your file manager shows on the final export — check it every time.</p></div>
 
-<h2>Why photos get rejected (and the fixes)</h2>
+<h2 id="why-photos-get-rejected-and-the-fixes">Why photos get rejected (and the fixes)</h2>
 <ul>
 <li><strong>"File size not in range"</strong> — you are either under the minimum (too-small = blurry file) or over the maximum. Re-export at a different JPG quality; do not just keep compressing blindly.</li>
 <li><strong>"Dimensions not as specified"</strong> — resize to exact pixels. Note: a file inside the KB range can still have wrong dimensions.</li>
@@ -308,7 +406,7 @@
 <li><strong>Signature spanning extra space</strong> — tight crop, but not so tight that the last stroke is cut off. Check the preview the portal shows after upload.</li>
 </ul>
 
-<h2>Pro tips</h2>
+<h2 id="pro-tips">Pro tips</h2>
 <ul>
 <li>Make ONE perfect master photo and reuse it across SSC, IBPS, RRB and state forms — only the KB/px target changes.</li>
 <li>Keep masters in a folder named with their spec: <em>SSC_photo_31KB_200x230.jpg</em>.</li>
@@ -317,17 +415,7 @@
 <li>Never share your photograph and signature scans publicly (WhatsApp groups, forums) — they are enough for identity misuse.</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<dl>
-<dt>My photo is inside the KB range but still rejected. Why?</dt>
-<dd>Most often pixel dimensions, format (PNG instead of JPG), or background. The error message usually names the exact check that failed.</dd>
-<dt>Can I use the same photo for signature upload?</dt>
-<dd>No — the signature slot needs an image of your signature. Portals verify them as separate files with separate specs.</dd>
-<dt>Does the portal count file size in KB or bytes?</dt>
-<dd>It uses bytes internally; the KB you see is the same number divided by 1024. Trust what your file manager shows.</dd>
-<dt>Is a scanned hardcopy signature better than a digital one?</dt>
-<dd>Either works if it meets the spec. Many candidates photograph a signature made with black ink on white paper — that matches what examiners expect to see later.</dd>
-</dl>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2><div class="faq-list"><details><summary>My photo is inside the KB range but still rejected. Why?</summary><div class="faq-a">Most often pixel dimensions, format (PNG instead of JPG), or background. The error message usually names the exact check that failed.</div></details><details><summary>Can I use the same photo for signature upload?</summary><div class="faq-a">No — the signature slot needs an image of your signature. Portals verify them as separate files with separate specs.</div></details><details><summary>Does the portal count file size in KB or bytes?</summary><div class="faq-a">It uses bytes internally; the KB you see is the same number divided by 1024. Trust what your file manager shows.</div></details><details><summary>Is a scanned hardcopy signature better than a digital one?</summary><div class="faq-a">Either works if it meets the spec. Many candidates photograph a signature made with black ink on white paper — that matches what examiners expect to see later.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Photo Resizer &mdash; free,
@@ -352,7 +440,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -440,5 +529,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/jpg-to-pdf-guide.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -180,6 +267,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -260,7 +348,18 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#when-jpg-to-pdf-is-the-right-move">When JPG-to-PDF is the right move</a>
+        <a href="#step-by-step-photos-to-a-clean-pdf">Step-by-step: photos to a clean PDF</a>
+        <a href="#your-source-is-a-photo-now-what">Your source is a photo — now what?</a>
+        <a href="#page-size-and-layout-realities">Page size and layout realities</a>
+        <a href="#common-mistakes">Common mistakes</a>
+        <a href="#pro-tips">Pro tips</a>
+        <a href="#frequently-asked-questions">Frequently asked questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>JPG to PDF: Convert Photos and Scanned Documents Properly</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: PDF Guides</div>
       <img class="blog-feature-img" src="../assets/images/blog/jpg-to-pdf-guide.webp"
@@ -271,7 +370,7 @@
 
 <div class="highlight-box"><p><strong>Quick answer:</strong> Open the <a href="../pdf/jpg-to-pdf.html">JPG to PDF tool</a>, drop your images, arrange them in page order, convert — then check the result's size and compress with <a href="../pdf/compress.html">Extreme</a> if the portal has a limit. Crop images <em>before</em> converting; a PDF cannot fix a bad source photo.</p></div>
 
-<h2>When JPG-to-PDF is the right move</h2>
+<h2 id="when-jpg-to-pdf-is-the-right-move">When JPG-to-PDF is the right move</h2>
 <ul>
 <li><strong>Application bundles:</strong> photo + signature + ID images combined into the one PDF the form demands.</li>
 <li><strong>Declarations and receipts:</strong> signed sheets, payment screenshots and acknowledgements that must be submitted as one document.</li>
@@ -279,7 +378,7 @@
 <li><strong>Sharing multi-image documents:</strong> a PDF preserves order and prevents the "images got jumbled in WhatsApp" problem.</li>
 </ul>
 
-<h2>Step-by-step: photos to a clean PDF</h2>
+<h2 id="step-by-step-photos-to-a-clean-pdf">Step-by-step: photos to a clean PDF</h2>
 <ol>
 <li><strong>Crop first.</strong> Remove table backgrounds, fingers, shadows and neighbouring pages from each photo. Tight, straight crops are the single biggest quality lever — a PDF wraps your image as a page, good or bad as-is.</li>
 <li><strong>Fix orientation</strong> before converting. A sideways page inside the PDF forces readers to rotate views — and some portals reject it.</li>
@@ -290,18 +389,18 @@
 
 <div class="highlight-box"><p><strong>What to expect:</strong> Photos carry camera resolution, so a four-image form bundle converts to a PDF of <strong>several MB</strong> fast. One Extreme pass afterwards commonly brings that bundle into the <strong>100–250KB</strong> range — enough for most 200KB document slots — without retaking a single image. Check the size the tool reports before you upload; the portal checks the same number.</p></div>
 
-<h2>Your source is a photo — now what?</h2>
+<h2 id="your-source-is-a-photo-now-what">Your source is a photo — now what?</h2>
 <p>There is a difference between converting a well-made photo and salvaging a bad one. A well-lit photo shot parallel to the paper converts cleanly: crop, orient, convert, compress — done in a minute. A dark, angled photo with a hand shadow converts into exactly what it was: a poor image wrapped in PDF clothing. Quick triage before converting: is the text readable at full zoom on your phone? Are all four corners visible with margin? Is there glare across any stamp or signature? If any answer is no, reshoot — thirty seconds of retaking beats any amount of post-processing, because compression amplifies blur as much as it reduces size.</p>
 <p>For documents you photograph repeatedly (IDs, licences, certificate folders), build a fixed setup once: window light, document flat on a dark table, phone held directly above. Consistent inputs make every downstream conversion boringly reliable — and every bundle you assemble afterwards fits its limits without heroics.</p>
 
-<h2>Page size and layout realities</h2>
+<h2 id="page-size-and-layout-realities">Page size and layout realities</h2>
 <ul>
 <li><strong>Image dimensions ≠ page size.</strong> Your phone photo (3024×4032) does not become A4 automatically — tools map images to a page, and mismatched aspect ratios leave white margins or crop edges.</li>
 <li><strong>Check margins after conversion.</strong> A signature cut off at the page edge is worse than a slightly smaller image. If edges clip, crop the source image with margin and reconvert.</li>
 <li><strong>One document per file</strong> when the form has separate upload slots — photo here, signature there. Only bundle what the instruction says to bundle.</li>
 </ul>
 
-<h2>Common mistakes</h2>
+<h2 id="common-mistakes">Common mistakes</h2>
 <ul>
 <li><strong>Converting before cropping</strong> — shadows, table texture and stray fingers become part of the permanent document.</li>
 <li><strong>Leaving screenshots unedited</strong> — a phone screenshot with status-bar icons and notifications looks unprofessional at best; crop to the relevant region.</li>
@@ -310,7 +409,7 @@
 <li><strong>Uploading without a page-by-page review</strong> — order mistakes and clipped edges are invisible until someone else opens it.</li>
 </ul>
 
-<h2>Pro tips</h2>
+<h2 id="pro-tips">Pro tips</h2>
 <ul>
 <li>Shoot documents near a window in daylight, phone parallel to the paper — most "bad scans" are just poor light and angled cameras.</li>
 <li>Keep master photos in a folder like <em>Docs_2026/</em> — you will reuse them across dozens of applications.</li>
@@ -319,17 +418,7 @@
 <li>If the portal wants JPG images directly (not PDF), skip conversion — resize images to the KB range instead, as covered in the <a href="ssc-photo-signature-size.html">photo/signature guide</a>.</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<dl>
-<dt>Will converting JPG to PDF lose quality?</dt>
-<dd>The image is embedded as-is — no re-encoding loss at conversion time. Apparent quality issues come from the source photo itself (blur, bad light, tight resolution).</dd>
-<dt>How do I keep the PDF under a portal's size limit?</dt>
-<dd>After conversion, compress with the Extreme preset; for scanned text, add grayscale. Four typical form images compress from several MB to 100–200KB.</dd>
-<dt>Can I merge images from different sources into one PDF?</dt>
-<dd>Yes — phone photos, screenshots and exported images all convert together; just arrange the order before converting.</dd>
-<dt>Do the images upload to a server during conversion?</dt>
-<dd>No — browser-based conversion processes files on your device; they are not sent anywhere. For ID cards and signed declarations, that matters.</dd>
-</dl>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2><div class="faq-list"><details><summary>Will converting JPG to PDF lose quality?</summary><div class="faq-a">The image is embedded as-is — no re-encoding loss at conversion time. Apparent quality issues come from the source photo itself (blur, bad light, tight resolution).</div></details><details><summary>How do I keep the PDF under a portal's size limit?</summary><div class="faq-a">After conversion, compress with the Extreme preset; for scanned text, add grayscale. Four typical form images compress from several MB to 100–200KB.</div></details><details><summary>Can I merge images from different sources into one PDF?</summary><div class="faq-a">Yes — phone photos, screenshots and exported images all convert together; just arrange the order before converting.</div></details><details><summary>Do the images upload to a server during conversion?</summary><div class="faq-a">No — browser-based conversion processes files on your device; they are not sent anywhere. For ID cards and signed declarations, that matters.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open JPG to PDF &mdash; free,
@@ -354,7 +443,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -442,5 +532,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

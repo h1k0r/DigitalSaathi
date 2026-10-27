@@ -74,6 +74,93 @@ PAGE_STYLE = """
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 """
 
@@ -143,7 +230,7 @@ def head(title, desc, canonical, extra_ld, og_type="article", og_image=None):
   <meta name="twitter:image" content="{og_image}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 {PAGE_STYLE}
@@ -230,6 +317,68 @@ def breadcrumb_schema(a):
     }
 
 
+def _slugify(text):
+    s = re.sub(r"<[^>]+>", "", text).lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return s[:60].strip("-") or "section"
+
+
+def prep_body(body):
+    """Editorial pass over an article body.
+
+    1. Give every <h2> a stable id and collect (id, label) for the TOC.
+    2. Convert the FAQ <dl>/<dt>/<dd> block into <details> accordions
+       (visual only \u2014 FAQPage schema still reads a["faq"]).
+    Returns (html, toc_entries).
+    """
+    toc, used = [], set()
+
+    def add_id(m):
+        whole, inner = m.group(0), m.group(1)
+        if "id=" in whole:
+            hid = re.search(r'id="([^"]+)"', whole).group(1)
+        else:
+            base = _slugify(inner)
+            hid, n = base, 2
+            while hid in used:
+                hid, n = f"{base}-{n}", n + 1
+            whole = whole.replace("<h2", f'<h2 id="{hid}"', 1)
+        used.add(hid)
+        label = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", inner)).strip()
+        toc.append((hid, label))
+        return whole
+
+    body = re.sub(r"<h2[^>]*>(.*?)</h2>", add_id, body, flags=re.S)
+
+    def faq_sub(m):
+        inner = m.group(2)
+        pairs = re.findall(r"<dt>(.*?)</dt>\s*<dd>(.*?)</dd>", inner, re.S)
+        if not pairs or inner.count("<dt>") != len(pairs):
+            return m.group(0)  # unexpected shape \u2014 leave the dl untouched
+        items = "".join(
+            f"<details><summary>{q}</summary>"
+            f'<div class="faq-a">{ans}</div></details>'
+            for q, ans in pairs)
+        return m.group(1) + '<div class="faq-list">' + items + "</div>"
+
+    body = re.sub(
+        r"(<h2[^>]*>(?:Frequently asked questions|Common questions)</h2>)\s*"
+        r"<dl>(.*?)</dl>",
+        faq_sub, body, flags=re.S)
+    return body, toc
+
+
+def toc_markup(toc):
+    if len(toc) < 3:
+        return ""
+    out = ['      <aside class="blog-toc" aria-label="On this page">',
+           "        <strong>On this page</strong>"]
+    for hid, label in toc:
+        out.append(f'        <a href="#{hid}">{html.escape(label)}</a>')
+    out.append("      </aside>")
+    return "\n".join(out)
+
+
 def build_article(a, nav, footer, mega):
     related_html = []
     for rs in a["related"]:
@@ -237,20 +386,25 @@ def build_article(a, nav, footer, mega):
         related_html.append(f'      <li><a href="{r["slug"]}.html">{html.escape(r["title"])}</a></li>')
     ld = {"@context": "https://schema.org", "@graph": [
         article_schema(a), breadcrumb_schema(a), faq_schema(a["faq"])]}
+    body_html, toc = prep_body(a["body"])
     page = head(html.escape(a['title']), a["desc"],
                 f"{SITE}/blog/{a['slug']}.html", ld,
                 og_image=f"{SITE}/assets/images/blog/{a['slug']}.webp")
+    page += ('<div class="blog-progress" aria-hidden="true">'
+             '<i id="blog-progress-bar"></i></div>\n')
     page += nav + "\n"
     page += breadcrumb([("../", "Home"), ("./", "Blog"), (None, a["cat"])])
     page += f"""
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+{toc_markup(toc)}
+      <article class="legal-card blog-article">
       <h1>{html.escape(a['title'])}</h1>
       <div class="blog-meta">Last updated: {TODAY_HUMAN} &middot; By <a href="../about.html">h1k0r</a> &middot; Category: {html.escape(a['cat'])}</div>
       <img class="blog-feature-img" src="../assets/images/blog/{a['slug']}.webp"
            alt="{html.escape(a['title'])} \u2014 feature image for this Vytra guide"
            width="1200" height="630" decoding="async" loading="lazy">
-{a['body']}
+{body_html}
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> {html.escape(a['tool']['label'])} &mdash; free,
         private, and it runs entirely in your browser.</p>
@@ -260,13 +414,31 @@ def build_article(a, nav, footer, mega):
       <ul>
 {chr(10).join(related_html)}
       </ul>
-{author_box()}    </article>
+{author_box()}      </article>
+    </div>
   </main>
 
   {footer}
   {mega}
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){{
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){{ return document.querySelector(a.getAttribute('href')); }});
+    function tick(){{
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){{ if (s && s.getBoundingClientRect().top < 140) cur = i; }});
+      links.forEach(function(a, i){{ a.classList.toggle('on', i === cur); }});
+    }}
+    window.addEventListener('scroll', tick, {{passive: true}});
+    window.addEventListener('resize', tick, {{passive: true}});
+    tick();
+  }})();
+  </script>
 </body>
 </html>
 """
@@ -310,7 +482,7 @@ def build_index(nav, footer, mega):
     page += breadcrumb([("../", "Home"), (None, "Blog")])
     page += f"""
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <article class="legal-card blog-article">
       <h1>Vytra Blog &mdash; Guides That Make Forms Stop Rejecting You</h1>
       <p>
         Every guide here is written from hands-on testing: real file sizes, real portal

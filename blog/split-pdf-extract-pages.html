@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/split-pdf-extract-pages.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -188,6 +275,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -268,7 +356,18 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#split-vs-extract-vs-divide-the-mental-model">Split vs extract vs divide — the mental model</a>
+        <a href="#step-by-step-extract-the-pages-a-form-asks-for">Step-by-step: extract the pages a form asks for</a>
+        <a href="#from-extraction-to-submission-building-the-exact-bundle">From extraction to submission: building the exact bundle</a>
+        <a href="#when-extraction-beats-compression-and-vice-versa">When extraction beats compression (and vice versa)</a>
+        <a href="#common-mistakes">Common mistakes</a>
+        <a href="#pro-tips">Pro tips</a>
+        <a href="#frequently-asked-questions">Frequently asked questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>How to Split a PDF and Extract Only the Pages You Need</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: PDF Guides</div>
       <img class="blog-feature-img" src="../assets/images/blog/split-pdf-extract-pages.webp"
@@ -279,7 +378,7 @@
 
 <div class="highlight-box"><p><strong>Quick answer:</strong> Open the <a href="../pdf/split.html">Split PDF tool</a>, drop the document, enter the page range the form asked for (for example <strong>5-7</strong>), and extract. You get a new single-purpose PDF containing only those pages — originals untouched.</p></div>
 
-<h2>Split vs extract vs divide — the mental model</h2>
+<h2 id="split-vs-extract-vs-divide-the-mental-model">Split vs extract vs divide — the mental model</h2>
 <ul>
 <li><strong>Extract a range</strong> — "give me pages 5–7 as one new file." This is what most application instructions actually need.</li>
 <li><strong>Divide every page</strong> — "turn a 20-page PDF into 20 single-page files." Useful for uploading individual certificates scanned into one bundle.</li>
@@ -287,7 +386,7 @@
 </ul>
 <p>All three start from the same tool; you choose the mode and the range.</p>
 
-<h2>Step-by-step: extract the pages a form asks for</h2>
+<h2 id="step-by-step-extract-the-pages-a-form-asks-for">Step-by-step: extract the pages a form asks for</h2>
 <ol>
 <li>Open the <a href="../pdf/split.html">Split PDF tool</a> and drop your document. The tool shows the total page count — verify it matches your viewer.</li>
 <li><strong>Read the instruction twice.</strong> "Pages 5–7" means three pages: 5, 6 and 7 (inclusive). Off-by-one errors are the most common reason for re-uploads.</li>
@@ -298,18 +397,18 @@
 
 <div class="highlight-box"><p><strong>What to expect:</strong> Extraction copies only the pages you chose — a certificate sitting inside a heavy 40-page bundle comes out at its own weight (often <strong>100–300KB</strong> for a single scanned page) while the rest of the bundle stays behind. In size-limited forms, pulling the right page beats compressing the wrong document every time — the extracted number often clears the limit with no compression at all.</p></div>
 
-<h2>From extraction to submission: building the exact bundle</h2>
+<h2 id="from-extraction-to-submission-building-the-exact-bundle">From extraction to submission: building the exact bundle</h2>
 <p>Real applications rarely need a single extraction — they need a small, precise bundle assembled from several sources. The efficient pattern is: extract the required pages from each source document first (page 3 of the marksheet, page 1 of the category certificate, the ID side showing the address), then merge those extracted parts into exactly the file the form requests (<a href="merge-pdfs-into-one.html">merge guide</a>). Extract-<em>before</em>-merge keeps every intermediate file tiny, verifiable and reusable across applications — instead of merging everything and hunting through the result later.</p>
 <p>Name each extracted part as you go: <em>Marksheet_p3.pdf</em>, <em>CategoryCert_p1.pdf</em>. Assembling the final bundle then takes seconds, and reconstructing which document came from where stays trivial even weeks later during counselling. If a range extraction returns something unexpected — a blank page or the wrong section — redo it from the <em>original</em> document; never re-extract from an already-extracted file, where internal numbering no longer matches the source. Five seconds of page-by-page verification on the output closes the loop every time.</p>
 
-<h2>When extraction beats compression (and vice versa)</h2>
+<h2 id="when-extraction-beats-compression-and-vice-versa">When extraction beats compression (and vice versa)</h2>
 <ul>
 <li><strong>Extract when</strong> the instruction names specific pages, when only one certificate from a bundle is needed, or when a page limit exists alongside the size limit.</li>
 <li><strong>Compress when</strong> you need the whole document — all pages must travel together (complete marksheet sets, contracts, full certificates with attached pages).</li>
 <li><strong>Do both when</strong> the required pages are heavy colour scans: extract first (fewer pages), then compress (smaller each page).</li>
 </ul>
 
-<h2>Common mistakes</h2>
+<h2 id="common-mistakes">Common mistakes</h2>
 <ul>
 <li><strong>One-off pages counted wrong</strong> — some portals count from the cover page, some don't. Match the portal's numbering by previewing the original file page by page.</li>
 <li><strong>Extracting from an already-compressed file</strong> — works fine technically, but if you need further size cuts, extract from the <em>original</em> and then compress once. Repeated compression-decompression cycles slowly degrade scans.</li>
@@ -317,7 +416,7 @@
 <li><strong>Forgetting to verify the output</strong> — always open the extracted file before uploading it. A wrong page discovered after submission is a much larger problem.</li>
 </ul>
 
-<h2>Pro tips</h2>
+<h2 id="pro-tips">Pro tips</h2>
 <ul>
 <li>Combine extraction with merging: pull the right pages from three source documents, then merge those pages into one bundle (<a href="merge-pdfs-into-one.html">merge guide</a>) — the cleanest way to build exactly what a form requests, nothing more.</li>
 <li>Name outputs with their range: <em>Certificate_pp5-7.pdf</em> — instantly auditable during final review.</li>
@@ -326,17 +425,7 @@
 <li>If a portal asks for "single-page PDF", confirm the output is truly one page in your viewer before upload (a stray blank page hides easily).</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<dl>
-<dt>Does splitting reduce quality?</dt>
-<dd>No — pages are copied as-is. Quality changes only if you compress afterwards.</dd>
-<dt>Can I extract non-sequential pages, like 2 and 9 only?</dt>
-<dd>Yes — select individual pages in the tool (instead of a range) to build a small custom PDF.</dd>
-<dt>The extracted PDF is still too large — what next?</dt>
-<dd>Compress it with the Extreme preset (add grayscale for scans); fewer pages plus smaller pages clears almost any limit.</dd>
-<dt>Will page numbering stay correct after extraction?</dt>
-<dd>The visible numbers printed on the pages never change — but the PDF's internal first page becomes page 1. If the portal counts PDF pages, verify against that count.</dd>
-</dl>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2><div class="faq-list"><details><summary>Does splitting reduce quality?</summary><div class="faq-a">No — pages are copied as-is. Quality changes only if you compress afterwards.</div></details><details><summary>Can I extract non-sequential pages, like 2 and 9 only?</summary><div class="faq-a">Yes — select individual pages in the tool (instead of a range) to build a small custom PDF.</div></details><details><summary>The extracted PDF is still too large — what next?</summary><div class="faq-a">Compress it with the Extreme preset (add grayscale for scans); fewer pages plus smaller pages clears almost any limit.</div></details><details><summary>Will page numbering stay correct after extraction?</summary><div class="faq-a">The visible numbers printed on the pages never change — but the PDF's internal first page becomes page 1. If the portal counts PDF pages, verify against that count.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Split PDF &mdash; free,
@@ -361,7 +450,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -449,5 +539,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

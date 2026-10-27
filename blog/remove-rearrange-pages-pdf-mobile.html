@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/remove-rearrange-pages-pdf-mobile.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -172,6 +259,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -252,7 +340,19 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#the-situation-your-pdf-has-the-right-document-the-wrong-page">The situation: your PDF has the right document, the wrong pages</a>
+        <a href="#reorder-pages-by-dragging-thumbnails">Reorder pages by dragging thumbnails</a>
+        <a href="#delete-the-pages-the-form-never-asked-for">Delete the pages the form never asked for</a>
+        <a href="#rotate-before-you-export">Rotate before you export</a>
+        <a href="#what-this-tool-does-not-do">What this tool does not do</a>
+        <a href="#a-workflow-that-works-on-a-phone">A workflow that works on a phone</a>
+        <a href="#when-reordering-is-not-enough-rebuild-the-bundle">When reordering is not enough: rebuild the bundle</a>
+        <a href="#common-questions">Common questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>How to Remove or Rearrange Pages in a PDF on Your Phone</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: PDF Guides</div>
       <img class="blog-feature-img" src="../assets/images/blog/remove-rearrange-pages-pdf-mobile.webp"
@@ -261,11 +361,11 @@
 
 <div class="highlight-box"><p><strong>Quick answer:</strong> Open the <a href="../pdf/organize.html">Organize PDF tool</a>, load the file, then drag thumbnails to reorder pages, tick the pages you don't need to delete them, rotate any sideways scan, and download. Everything runs in your phone's browser — no app install, no account, and the file never leaves the device.</p></div>
 
-<h2>The situation: your PDF has the right document, the wrong pages</h2>
+<h2 id="the-situation-your-pdf-has-the-right-document-the-wrong-page">The situation: your PDF has the right document, the wrong pages</h2>
 <p>You scanned your certificate together with the admit card instructions. The form asks only for the certificate — but the PDF has eighteen pages, and the certificate sits somewhere in the middle, upside down, after two blank sheets. Or: you merged three documents in the wrong order and the marksheet now comes after the Aadhaar page. On a laptop you would fix this in a desktop editor. On a phone — where most form filling actually happens these days — you need something that works in the browser, at the last minute, without installing anything.</p>
 <p>That is exactly what a thumbnail organizer is for: it treats your PDF as a row of page cards you can shuffle, tick and rotate, then reassemble into a new file. No re-scanning, no re-taking photos, no losing the original.</p>
 
-<h2>Reorder pages by dragging thumbnails</h2>
+<h2 id="reorder-pages-by-dragging-thumbnails">Reorder pages by dragging thumbnails</h2>
 <p>Load the PDF and every page appears as a numbered thumbnail. On a phone, press and hold a thumbnail, then drag it to its new position — the others shift to make room. Typical uses:</p>
 <ul>
 <li><strong>Correct scan order:</strong> pages photographed out of sequence (page 3 before page 1) go back in reading order.</li>
@@ -274,17 +374,17 @@
 </ul>
 <p>Zoom in on a thumbnail if you are unsure which page is which — a tiny "12" in the corner is easy to misread at arm's length.</p>
 
-<h2>Delete the pages the form never asked for</h2>
+<h2 id="delete-the-pages-the-form-never-asked-for">Delete the pages the form never asked for</h2>
 <p>Tick the checkboxes on pages you don't need and remove them in one pass. Instructions sheets, blank separators, the wrong document that got swept into the same scan — all gone from the exported file.</p>
 <p>But pause before you delete: if the extra pages belong to <em>another</em> form and you will need them separately later, extraction is the safer move — it gives you the chosen pages as a brand-new file while keeping the original bundle untouched (see <a href="split-pdf-extract-pages.html">Split &amp; extract pages</a> for that workflow). Delete when the pages are genuinely waste; extract when they are still needed elsewhere.</p>
 
-<h2>Rotate before you export</h2>
+<h2 id="rotate-before-you-export">Rotate before you export</h2>
 <p>Phone cameras love to add sideways pages to otherwise upright documents. Rotate any thumbnail that is lying on its side before downloading — a form reviewer should never have to tilt their head, and some auto-checkers complain about orientation too. Rotate, glance through the whole strip once, then export.</p>
 
-<h2>What this tool does not do</h2>
+<h2 id="what-this-tool-does-not-do">What this tool does not do</h2>
 <p>Honesty first: the organizer reorders, deletes and rotates pages. It does not compress the file (use <a href="compress-pdf-100kb.html">Extreme compression</a> if a size cap applies) and it does not recognise text in scanned images (scanned files are pictures of pages — OCR is a separate job). If your file must pass a 200KB limit, organise first, then compress — the order matters because compression should see the final page set.</p>
 
-<h2>A workflow that works on a phone</h2>
+<h2 id="a-workflow-that-works-on-a-phone">A workflow that works on a phone</h2>
 <ul>
 <li>Open the form's instruction page first and note the exact requirement: which pages, what order, any size cap.</li>
 <li>Organise once: reorder, tick-delete waste, rotate, download.</li>
@@ -293,23 +393,11 @@
 <li>Keep the original scan safe; work only on copies.</li>
 </ul>
 
-<h2>When reordering is not enough: rebuild the bundle</h2>
+<h2 id="when-reordering-is-not-enough-rebuild-the-bundle">When reordering is not enough: rebuild the bundle</h2>
 <p>Sometimes the pages are right but the file is a mess of three documents scanned in one sitting. The organizer handles that too: delete everything that doesn't belong, then <a href="merge-pdfs-into-one.html">merge</a> the cleaned file with the other required documents in the prescribed order. Applications that ask for one combined attachment — declaration, certificate, marksheet, in that sequence — are assembled exactly this way: organise each part, merge once, compress once, upload once.</p>
 <p>One habit prevents most rework: organise on a copy, never on the master scan. If the merged bundle turns out to be missing a page, the master still contains everything and no re-shooting is needed — you simply extract the right page from the original and merge again.</p>
 
-<h2>Common questions</h2>
-<dl>
-<dt>Does organising a PDF change the original file?</dt>
-<dd>No. The tool reads your file and produces a new, rearranged copy. The file on your phone is never modified.</dd>
-<dt>Do pages lose quality when I reorder or rotate them?</dt>
-<dd>No. Reordering copies page objects; rotation records an orientation flag. Text stays text, scanned pages stay at their original resolution.</dd>
-<dt>Will it work with a 50-page scanned PDF?</dt>
-<dd>Yes — scanned files are image-heavy, so thumbnails may take a few seconds to appear, but reordering works the same way.</dd>
-<dt>Can I organise two PDFs in one session?</dt>
-<dd>The tool works on one PDF at a time — organise each file separately, then merge the results into the final bundle. Two passes, no quality loss.</dd>
-<dt>Is my document uploaded to a server?</dt>
-<dd>No. The pages are processed inside your browser's memory. Close the tab and it is gone.</dd>
-</dl>
+<h2 id="common-questions">Common questions</h2><div class="faq-list"><details><summary>Does organising a PDF change the original file?</summary><div class="faq-a">No. The tool reads your file and produces a new, rearranged copy. The file on your phone is never modified.</div></details><details><summary>Do pages lose quality when I reorder or rotate them?</summary><div class="faq-a">No. Reordering copies page objects; rotation records an orientation flag. Text stays text, scanned pages stay at their original resolution.</div></details><details><summary>Will it work with a 50-page scanned PDF?</summary><div class="faq-a">Yes — scanned files are image-heavy, so thumbnails may take a few seconds to appear, but reordering works the same way.</div></details><details><summary>Can I organise two PDFs in one session?</summary><div class="faq-a">The tool works on one PDF at a time — organise each file separately, then merge the results into the final bundle. Two passes, no quality loss.</div></details><details><summary>Is my document uploaded to a server?</summary><div class="faq-a">No. The pages are processed inside your browser's memory. Close the tab and it is gone.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Organize PDF &mdash; free,
@@ -335,7 +423,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -423,5 +512,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

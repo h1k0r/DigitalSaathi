@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/upsc-document-upload-limits.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -180,6 +267,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -260,7 +348,18 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#where-each-rule-is-stated">Where each rule is stated</a>
+        <a href="#check-your-files-against-the-rules">Check your files against the rules</a>
+        <a href="#producing-compliant-files-with-free-browser-tools">Producing compliant files with free browser tools</a>
+        <a href="#the-final-check-before-you-pay">The final check before you pay</a>
+        <a href="#common-upsc-upload-failures-and-their-real-causes">Common UPSC upload failures and their real causes</a>
+        <a href="#pro-tips">Pro tips</a>
+        <a href="#frequently-asked-questions">Frequently asked questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>UPSC Online Application: Document Upload Limits Explained</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: Govt Exam Forms</div>
       <img class="blog-feature-img" src="../assets/images/blog/upsc-document-upload-limits.webp"
@@ -273,7 +372,7 @@
 
 <div class="highlight-box" style="border-left:4px solid #E5322D;"><p><strong>Note:</strong> UPSC revises upload specifications between examinations — including acceptable size ranges and image dimensions. Treat any number you read on a blog (including this one) as a method hint, and the notification for your exam as the law.</p></div>
 
-<h2>Where each rule is stated</h2>
+<h2 id="where-each-rule-is-stated">Where each rule is stated</h2>
 <ol>
 <li><strong>The notification PDF</strong> — the definitive table of document requirements: which files, which type, which size range, which dimensions.</li>
 <li><strong>The application form's upload section</strong> — each field usually carries a live instruction line ("recent photograph … (format, size)") plus a preview after selection.</li>
@@ -281,7 +380,7 @@
 </ol>
 <p>Read all three once, before you start editing files. Most rejections trace back to skipping this step.</p>
 
-<h2>Check your files against the rules</h2>
+<h2 id="check-your-files-against-the-rules">Check your files against the rules</h2>
 <p>For every document, verify four attributes:</p>
 <ul>
 <li><strong>File size</strong> — file manager → Properties/Details. Compare against the stated range, then set your target 10% below the maximum (portals count bytes; leaving margin removes ambiguity).</li>
@@ -290,7 +389,7 @@
 <li><strong>Content</strong> — correct person, correct document, clearly legible, no cropped edges, signature fully inside the frame.</li>
 </ul>
 
-<h2>Producing compliant files with free browser tools</h2>
+<h2 id="producing-compliant-files-with-free-browser-tools">Producing compliant files with free browser tools</h2>
 <ol>
 <li><strong>Photograph:</strong> crop to the required framing first, resize to the specified pixels, export JPG, then check the KB. If over the range, lower JPG quality one notch at a time until it lands inside the range with the face still sharp.</li>
 <li><strong>Signature:</strong> black ink on white paper, photographed straight, tight crop, resize, export JPG within range.</li>
@@ -301,10 +400,10 @@
 
 <div class="highlight-box"><p><strong>What to expect:</strong> University-issued PDFs are often protected, colour and printed at 300 DPI — easily 3 to 8MB for a single document. Removing the password the institution applied to your own document, then Extreme + grayscale, typically brings such a file into the <strong>100–250KB</strong> band with seals and text still legible. Verify the final number against your exam's limit before uploading.</p></div>
 
-<h2>The final check before you pay</h2>
+<h2 id="the-final-check-before-you-pay">The final check before you pay</h2>
 <p>Before paying the fee, open the application preview that UPSC shows at the end and verify each uploaded image actually renders the right file — a technically-passing upload can still be an old photograph or the wrong signature scan, because candidates reuse folders full of documents from previous attempts. Fee payment locks the application; mistakes then surface only during a correction window, if one exists. Two minutes spent on this preview beats weeks of regret, and a screenshot of the final preview costs nothing to keep.</p>
 
-<h2>Common UPSC upload failures and their real causes</h2>
+<h2 id="common-upsc-upload-failures-and-their-real-causes">Common UPSC upload failures and their real causes</h2>
 <ul>
 <li><strong>"Photograph … not as specified"</strong> — dimensions or age of the photo, not just size. A passport photo cropped from an old studio session may be sharp but stale; follow the recency rule in the brochure.</li>
 <li><strong>Signature rejected</strong> — usually excess white space (signature floating in a huge frame) or a photo-of-a-photo that blurred the strokes. Crop tight, export fresh.</li>
@@ -312,7 +411,7 @@
 <li><strong>Payment blocked after uploads</strong> — one required field still in an invalid state. Scroll the form; every red-highlighted upload must show its confirmation.</li>
 </ul>
 
-<h2>Pro tips</h2>
+<h2 id="pro-tips">Pro tips</h2>
 <ul>
 <li>Prepare a "UPSC folder" before the form opens: photo (master + spec-compliant copy), signature, ID scan, category certificate — all pre-verified against last cycle's rules.</li>
 <li>Complete uploads early in the day. Deadline evening is when servers are slowest and validation timeouts most common.</li>
@@ -321,17 +420,7 @@
 <li>Ignore third-party "form-filling agents" who ask for your documents over WhatsApp; every step above is a five-minute self-service task.</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<dl>
-<dt>Where are the exact UPSC upload sizes?</dt>
-<dd>In the official notification/brochure for your examination, and restated beside each upload field in the form. They vary by examination and cycle.</dd>
-<dt>Can I use a phone photo for the UPSC photograph?</dt>
-<dd>Yes, if it meets the spec: plain background, sharp face, cropped and resized to the stated dimensions and size range, exported as JPG.</dd>
-<dt>The university PDF is password-protected — can I still upload it?</dt>
-<dd>Not as-is. Remove the password (your own document — legitimate), verify content, then compress to fit. Portals cannot open encrypted PDFs.</dd>
-<dt>Do I need colour scans of certificates?</dt>
-<dd>Only if the instruction says so. Portals regulate size, format and legibility; a grayscale scan that is clearly readable is standard practice for size-limited uploads.</dd>
-</dl>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2><div class="faq-list"><details><summary>Where are the exact UPSC upload sizes?</summary><div class="faq-a">In the official notification/brochure for your examination, and restated beside each upload field in the form. They vary by examination and cycle.</div></details><details><summary>Can I use a phone photo for the UPSC photograph?</summary><div class="faq-a">Yes, if it meets the spec: plain background, sharp face, cropped and resized to the stated dimensions and size range, exported as JPG.</div></details><details><summary>The university PDF is password-protected — can I still upload it?</summary><div class="faq-a">Not as-is. Remove the password (your own document — legitimate), verify content, then compress to fit. Portals cannot open encrypted PDFs.</div></details><details><summary>Do I need colour scans of certificates?</summary><div class="faq-a">Only if the instruction says so. Portals regulate size, format and legibility; a grayscale scan that is clearly readable is standard practice for size-limited uploads.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Compress PDF &mdash; free,
@@ -356,7 +445,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -444,5 +534,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

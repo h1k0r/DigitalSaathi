@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/file-size-too-large-error.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -180,6 +267,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -260,7 +348,19 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#cause-1-the-limit-is-not-where-you-think-it-is">Cause 1: the limit is not where you think it is</a>
+        <a href="#cause-2-kb-counted-two-ways">Cause 2: KB counted two ways</a>
+        <a href="#cause-3-hidden-weight-inside-the-pdf">Cause 3: hidden weight inside the PDF</a>
+        <a href="#cause-4-it-is-not-really-about-size">Cause 4: it is not really about size</a>
+        <a href="#different-portals-different-strictness">Different portals, different strictness</a>
+        <a href="#the-reliable-fix-order-do-these-top-to-bottom">The reliable fix order (do these top to bottom)</a>
+        <a href="#pro-tips">Pro tips</a>
+        <a href="#frequently-asked-questions">Frequently asked questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>&quot;File Size Too Large&quot; Error on Exam Portals: Fixes</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: Govt Exam Forms</div>
       <img class="blog-feature-img" src="../assets/images/blog/file-size-too-large-error.webp"
@@ -271,13 +371,13 @@
 
 <div class="highlight-box"><p><strong>Quick answer:</strong> Almost every "size too large" failure comes down to one of four things: the limit is smaller than you remember, KB is being counted differently, the file has hidden weight you cannot see (colour scan, embedded fonts, extra pages), or the portal is checking something else (format/password) and reporting size generically. Fix in order: re-read the limit → check the real size → compress with Extreme → check format and password.</p></div>
 
-<h2>Cause 1: the limit is not where you think it is</h2>
+<h2 id="cause-1-the-limit-is-not-where-you-think-it-is">Cause 1: the limit is not where you think it is</h2>
 <p>Notifications state limits per document type — photograph, signature, marksheet, acknowledgement — and they differ. A form may allow 200KB for marksheets but only 50KB for photos, or cap the <em>total</em> of all uploads. Re-open the notification (or the instruction line right above the upload field) and read the number the portal is actually enforcing for THAT field. Note: near-boundary files also fail — if the limit is 200KB and your file is 199KB, you are inside tolerance but leaving nothing for portals that count 1 KB = 1,000 bytes instead of 1,024.</p>
 
-<h2>Cause 2: KB counted two ways</h2>
+<h2 id="cause-2-kb-counted-two-ways">Cause 2: KB counted two ways</h2>
 <p>Your file manager says 200KB; the portal counts bytes. Tools that count in "decimal KB" treat 200KB as 200,000 bytes, while "binary KB" means 204,800 bytes. A file at 203,000 bytes passes one check and fails the other. <strong>Rule of thumb: stay 10% under any limit.</strong> A "200KB" target should mean 180KB or less in your file manager.</p>
 
-<h2>Cause 3: hidden weight inside the PDF</h2>
+<h2 id="cause-3-hidden-weight-inside-the-pdf">Cause 3: hidden weight inside the PDF</h2>
 <ul>
 <li><strong>Colour scan of a mostly-white page</strong> — the most common offender; grayscale alone can cut 40–70%.</li>
 <li><strong>Full camera resolution</strong> — 12MP photos embedded as pages. Downsampling to 150–200 DPI drops this dramatically.</li>
@@ -286,7 +386,7 @@
 <li><strong>Attachments inside the PDF</strong> — PDFs can embed files (a spreadsheet inside a form PDF adds its full size). Rare but shocking when it happens.</li>
 </ul>
 
-<h2>Cause 4: it is not really about size</h2>
+<h2 id="cause-4-it-is-not-really-about-size">Cause 4: it is not really about size</h2>
 <p>Some portals show a size-related message when the actual problem is:</p>
 <ul>
 <li><strong>Wrong format:</strong> .jpeg vs .jpg usually fine, but .png where JPG is demanded, or a PDF where an image is demanded.</li>
@@ -295,10 +395,10 @@
 <li><strong>Browser upload limits:</strong> outdated browsers or flaky extensions occasionally mangle uploads near the limit — try another browser before blaming the file.</li>
 </ul>
 
-<h2>Different portals, different strictness</h2>
+<h2 id="different-portals-different-strictness">Different portals, different strictness</h2>
 <p>Every portal enforces a little differently, and knowing the pattern prevents surprises. Some validate size client-side — the error is instant, the moment you pick the file. Others check after upload: the error arrives seconds later, so wait for it before re-selecting the file. A few display the limit in MB in the instructions but report failure in KB; some cap each attachment individually, others cap the total of everything you attach. The 10%-under-margin rule works across all of them. When a form states no limit anywhere in text, tap or hover the file input itself — the hint is usually baked into the field — and check it before your first upload attempt.</p>
 
-<h2>The reliable fix order (do these top to bottom)</h2>
+<h2 id="the-reliable-fix-order-do-these-top-to-bottom">The reliable fix order (do these top to bottom)</h2>
 <ol>
 <li><strong>Re-read the exact limit</strong> for that specific field in the notification or the form's instruction line — official sources: <a href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a>, <a href="https://upsc.gov.in" target="_blank" rel="noopener">upsc.gov.in</a> and <a href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a>.</li>
 <li><strong>Check the true size</strong> in file properties — and take 10% off the limit as your target.</li>
@@ -310,7 +410,7 @@
 
 <div class="highlight-box"><p><strong>What to expect:</strong> A classic near-boundary failure: a file your file manager rounds to "200KB" can still measure over the portal's byte-level cap — "200KB" as 200,000 bytes and "200KB" as 204,800 bytes are two different targets. The fix is arithmetic, not luck: compress to roughly <strong>10% below</strong> the stated limit (a "200KB" target becomes ~180KB) and that entire category of failures disappears. The content never changes — only the byte count.</p></div>
 
-<h2>Pro tips</h2>
+<h2 id="pro-tips">Pro tips</h2>
 <ul>
 <li>Set a personal rule: target 90% of any stated limit. It eliminates this entire category of failures.</li>
 <li>Screenshot every successful upload (confirmation message + file name).</li>
@@ -319,17 +419,7 @@
 <li>Never zip files to "fix" size errors — portals read the raw file, not your archive.</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<dl>
-<dt>The file is clearly under the limit but upload fails. Why?</dt>
-<dd>Check how the portal counts KB (decimal vs binary), whether the limit applies per-file or total, and whether the real issue is format or password protection.</dd>
-<dt>Does compressing change my document's content?</dt>
-<dd>No — compression reduces how the same pages are stored. Text, marks and seals remain exactly as they are.</dd>
-<dt>Why does the Extreme preset make text unselectable?</dt>
-<dd>Extreme rasterises pages — text is rendered as an image. That is the size-for-selectability trade-off; it does not affect visual reading.</dd>
-<dt>Which file should I compress: photo, signature or marksheet?</dt>
-<dd>Whichever one fails the check. Each field has its own limit — fix the specific field the error points at.</dd>
-</dl>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2><div class="faq-list"><details><summary>The file is clearly under the limit but upload fails. Why?</summary><div class="faq-a">Check how the portal counts KB (decimal vs binary), whether the limit applies per-file or total, and whether the real issue is format or password protection.</div></details><details><summary>Does compressing change my document's content?</summary><div class="faq-a">No — compression reduces how the same pages are stored. Text, marks and seals remain exactly as they are.</div></details><details><summary>Why does the Extreme preset make text unselectable?</summary><div class="faq-a">Extreme rasterises pages — text is rendered as an image. That is the size-for-selectability trade-off; it does not affect visual reading.</div></details><details><summary>Which file should I compress: photo, signature or marksheet?</summary><div class="faq-a">Whichever one fails the check. Each field has its own limit — fix the specific field the error points at.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Compress PDF &mdash; free,
@@ -354,7 +444,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -442,5 +533,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>

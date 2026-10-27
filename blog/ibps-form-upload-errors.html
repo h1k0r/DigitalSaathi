@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://vytra.in/assets/images/blog/ibps-form-upload-errors.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/ilp-workflow.css?v=20261009">
 
@@ -76,6 +76,93 @@
     .blog-chip { font-size: .8rem; font-weight: 700; background: #fef2f2; color: #b91c1c;
       border: 1px solid #fecaca; border-radius: 999px; padding: 5px 13px; }
     .blog-chip.muted { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+
+    /* ---- Editorial article layout (ported from the reviewer's design draft) */
+    html { scroll-padding-top: 92px; }
+    .blog-progress { position: fixed; top: 0; left: 0; right: 0; height: 4px;
+      z-index: 1100; pointer-events: none; }
+    .blog-progress i { display: block; height: 100%; width: 0; background: #E5322D; }
+    .blog-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px; align-items: start; }
+    .blog-toc { position: sticky; top: 88px; font-size: .92rem; }
+    .blog-toc strong { display: block; margin-bottom: 10px; font-size: .78rem;
+      text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
+    .blog-toc a { display: block; color: #6b7280; text-decoration: none;
+      padding: 6px 0 6px 13px; border-left: 3px solid #e5e7eb; line-height: 1.45; }
+    .blog-toc a:hover { color: #111827; }
+    .blog-toc a.on { color: #111827; border-color: #E5322D; font-weight: 700; }
+    @media (max-width: 960px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 0; }
+      .blog-toc { position: static; background: #f9fafb; border: 1px solid #e5e7eb;
+        border-radius: 10px; padding: 14px 16px; margin-bottom: 22px; }
+    }
+    /* Editorial typography: display headings + serif body (blog pages only) */
+    .blog-article h1, .blog-article h2, .blog-article h3, .blog-article h4,
+    .blog-article summary, .blog-card h2, .blog-toc, .blog-cta a {
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-article p, .blog-article li, .blog-article dd, .blog-article .faq-a {
+      font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    /* Quick-answer box */
+    .blog-article .highlight-box { background: #fdeceb; border-left: 5px solid #E5322D;
+      border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 1.5rem 0; }
+    .blog-article .highlight-box p { color: #111827; margin: 0; }
+    /* Closing CTA (dark, draft-style) */
+    .blog-article .blog-cta { background: #111827; border: 0; border-radius: 14px;
+      padding: 22px 24px; display: flex; gap: 18px; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; }
+    .blog-article .blog-cta p { color: #e5e7eb; margin: 0; flex: 1 1 260px; }
+    .blog-article .blog-cta strong { color: #fff; }
+    .blog-article .blog-cta a { background: #E5322D; color: #fff; padding: 11px 20px;
+      border-radius: 8px; font-weight: 700; text-decoration: none; margin: 0;
+      white-space: nowrap; }
+    .blog-article .blog-cta a:hover { background: #c8291f; }
+    /* Numbered step cards (top-level ordered lists only) */
+    .blog-article ol:not(li ol) { list-style: none; counter-reset: step;
+      padding: 0; margin: 1.4rem 0; }
+    .blog-article ol:not(li ol) > li { counter-increment: step; background: #f9fafb;
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px 14px 54px;
+      position: relative; margin-bottom: 10px; }
+    .blog-article ol:not(li ol) > li::before { content: counter(step); position: absolute;
+      left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+      background: #E5322D; color: #fff; display: grid; place-items: center;
+      font: 700 .9rem/1 "Bricolage Grotesque", sans-serif; }
+    /* FAQ accordions */
+    .blog-article .faq-list details { background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; margin-bottom: 10px; padding: 0 16px; }
+    .blog-article .faq-list summary { cursor: pointer; font-weight: 700; font-size: 1.02rem;
+      padding: 14px 0; list-style: none; display: flex; justify-content: space-between;
+      gap: 12px; align-items: flex-start; }
+    .blog-article .faq-list summary::-webkit-details-marker { display: none; }
+    .blog-article .faq-list summary::after { content: "+"; color: #E5322D;
+      font-size: 1.35rem; line-height: 1; flex: none; }
+    .blog-article .faq-list details[open] summary::after { content: "\2013"; }
+    .blog-article .faq-list .faq-a { color: #4b5563; font-size: .97rem;
+      line-height: 1.7; padding: 0 0 14px; }
+    /* Reusable components for future posts (fact bar, do/don't) */
+    .blog-facts { display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+      margin: 1.5rem 0; overflow: hidden;
+      font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; }
+    .blog-facts div { padding: 13px 18px; border-right: 1px solid #e5e7eb; }
+    .blog-facts div:last-child { border-right: 0; }
+    .blog-facts b { display: block; font-size: .76rem; color: #6b7280;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .blog-facts span { font-size: 1.02rem; font-weight: 700; color: #111827; }
+    .blog-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      margin: 1.5rem 0; }
+    .blog-dodont .do { background: #ecfdf5; border: 1px solid #bbf7d0;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont .dont { background: #fef2f2; border: 1px solid #fecaca;
+      border-radius: 12px; padding: 16px 18px; }
+    .blog-dodont h3 { margin: 0 0 8px; font-size: 1rem; }
+    .blog-dodont .do h3 { color: #14804a; }
+    .blog-dodont .dont h3 { color: #b42318; }
+    .blog-dodont ul { margin: 0; padding-left: 1.1em; }
+    @media (max-width: 560px) {
+      .blog-facts, .blog-dodont { grid-template-columns: 1fr; }
+      .blog-facts div { border-right: 0; border-bottom: 1px solid #e5e7eb; }
+      .blog-facts div:last-child { border-bottom: 0; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -172,6 +259,7 @@
   <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7919122689237518" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="blog-progress" aria-hidden="true"><i id="blog-progress-bar"></i></div>
 <nav class="ilp-topnav" id="main-nav">
     <div class="ilp-nav-inner">
       <a href="../" class="ilp-logo" aria-label="Vytra home"><img src="../assets/images/logo.svg" alt="Vytra" width="132" height="28" style="height:28px;width:auto;display:block;"></a>
@@ -252,7 +340,19 @@
   </div>
 
   <main class="container legal-content-wrap">
-    <article class="legal-card">
+    <div class="blog-layout">
+      <aside class="blog-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#the-error-is-generic-the-cause-is-specific">The error is generic; the cause is specific</a>
+        <a href="#cause-1-the-file-is-over-the-kb-band">Cause 1: the file is over the KB band</a>
+        <a href="#cause-2-wrong-pixel-dimensions">Cause 2: wrong pixel dimensions</a>
+        <a href="#cause-3-background-and-content-rules">Cause 3: background and content rules</a>
+        <a href="#cause-4-the-declaration-file">Cause 4: the declaration file</a>
+        <a href="#an-error-message-decoder">An error-message decoder</a>
+        <a href="#before-you-hit-submit">Before you hit submit</a>
+        <a href="#common-questions">Common questions</a>
+      </aside>
+      <article class="legal-card blog-article">
       <h1>IBPS Form Upload Errors: Photo &amp; Signature Fixes</h1>
       <div class="blog-meta">Last updated: 27 October 2026 &middot; By <a href="../about.html">h1k0r</a> &middot; Category: Govt Exam Forms</div>
       <img class="blog-feature-img" src="../assets/images/blog/ibps-form-upload-errors.webp"
@@ -261,23 +361,23 @@
 
 <div class="highlight-box"><p><strong>Quick answer:</strong> Most IBPS upload failures come from three causes — the file sits above the KB band, the pixel dimensions differ from the notification, or the wrong file got picked. Fix the size with <a href="../pdf/compress.html">Extreme compression</a>, re-export the photo at the exact pixel spec, and always re-read the band from the official notification on <a href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a> before uploading — the numbers change between recruitments.</p></div>
 
-<h2>The error is generic; the cause is specific</h2>
+<h2 id="the-error-is-generic-the-cause-is-specific">The error is generic; the cause is specific</h2>
 <p>IBPS forms rarely tell you <em>why</em> an upload failed. You get a one-line message — "file upload failed", "invalid file size", "image dimensions not as prescribed" — and a countdown timer. The underlying causes, however, are always one of a handful, and each has a mechanical fix you can do in a phone browser at 11 PM.</p>
 
-<h2>Cause 1: the file is over the KB band</h2>
+<h2 id="cause-1-the-file-is-over-the-kb-band">Cause 1: the file is over the KB band</h2>
 <p>Recruitment notifications state a band — commonly a 20–50KB window for photos and 10–20KB for signatures, with both a floor and a ceiling. Two traps live here. First, the ceiling: a phone camera photo weighs megabytes, so it must be compressed. Second, the floor: a file compressed <em>too</em> far lands under the minimum and fails just as hard. Aim for the middle of the band and verify the actual byte count in your file manager, because "45KB" as your phone rounds it may be 47,000 bytes to the portal.</p>
 <p>Workflow that works: open <a href="../pdf/compress.html">Compress PDF</a> for document files, or export the photo through the converter with the quality slider set low; check the resulting size; re-export once more if it missed the band. Photos and signatures are small files — one or two passes usually land them.</p>
 
-<h2>Cause 2: wrong pixel dimensions</h2>
+<h2 id="cause-2-wrong-pixel-dimensions">Cause 2: wrong pixel dimensions</h2>
 <p>The band mentions pixels as well as kilobytes — a photo might be asked at roughly 200×230 pixels, a signature at a wider, shorter ratio. A file inside the KB band but at the wrong dimensions still fails. Crop to the ratio first (fill the frame with the face for photos; the signature should touch neither edge nor float in white space), then export at the specified pixel size. Cropping removes weight too, which helps the KB band on the way by.</p>
 
-<h2>Cause 3: background and content rules</h2>
+<h2 id="cause-3-background-and-content-rules">Cause 3: background and content rules</h2>
 <p>Notifications specify backgrounds — commonly a plain light background for photos. Photograph the document against a white wall or white sheet in even light; avoid shadows across the face and avoid busy backgrounds. For the signature, sign on plain white paper with a dark pen, tight crop, no fingers in frame. These are content rules, not technical ones — but portals reject on them.</p>
 
-<h2>Cause 4: the declaration file</h2>
+<h2 id="cause-4-the-declaration-file">Cause 4: the declaration file</h2>
 <p>Many IBPS forms ask for a scanned declaration — a signed statement on paper — as its own upload, often as a PDF with its own size band. Photograph the declaration page flat, convert the photo to PDF with the <a href="jpg-to-pdf-guide.html">JPG-to-PDF workflow</a>, then compress the result into its band. Keep the wording exactly as the notification prescribes — declarations are checked against the required text.</p>
 
-<h2>An error-message decoder</h2>
+<h2 id="an-error-message-decoder">An error-message decoder</h2>
 <p>Portal messages are vague, but they map to a short list of causes:</p>
 <ul>
 <li><strong>"File size exceeds the prescribed limit"</strong> — the file is over the ceiling of the KB band; compress it or re-export at lower quality.</li>
@@ -288,7 +388,7 @@
 </ul>
 <p>None of these messages accuse you of anything — they are mechanical checks with mechanical fixes, each worth two calm minutes rather than ten panicked retries. Screenshot the error before retrying: if it persists, the picture is what support staff will ask for.</p>
 
-<h2>Before you hit submit</h2>
+<h2 id="before-you-hit-submit">Before you hit submit</h2>
 <ul>
 <li>Open each uploaded file on the phone and confirm it is the right document, right way up, legible at thumbnail size.</li>
 <li>Cross-check every number against the notification PDF from ibps.in — not against a coaching-site screenshot.</li>
@@ -296,19 +396,7 @@
 <li>Never alter a document's content — editing a marksheet or ageing a photo is malpractice with consequences far beyond one form.</li>
 </ul>
 
-<h2>Common questions</h2>
-<dl>
-<dt>Which exact KB limits does IBPS use?</dt>
-<dd>They differ per recruitment and per post. Only the notification you are applying under is authoritative — read it on ibps.in, don't copy numbers from old forms or YouTube comments.</dd>
-<dt>My photo is inside the band but still fails. Why?</dt>
-<dd>Usually pixel dimensions or background. Check the px spec in the notification and re-export at that exact size on a plain background.</dd>
-<dt>Can I compress a JPG photo?</dt>
-<dd>Yes — image tools and the converter's quality slider both reduce weight; PDF compression handles signature/declaration files that must be PDFs.</dd>
-<dt>Does compressing reduce legibility?</dt>
-<dd>At these small file sizes, a properly cropped photo stays perfectly legible — the compression cost is invisible at thumbnail scale, which is what the portal checks.</dd>
-<dt>Do the photo and signature bands differ?</dt>
-<dd>Yes — they usually have different KB ranges and different pixel ratios. Read both rows of the notification's upload table separately; copying one file's treatment onto the other is a classic failure during retests.</dd>
-</dl>
+<h2 id="common-questions">Common questions</h2><div class="faq-list"><details><summary>Which exact KB limits does IBPS use?</summary><div class="faq-a">They differ per recruitment and per post. Only the notification you are applying under is authoritative — read it on ibps.in, don't copy numbers from old forms or YouTube comments.</div></details><details><summary>My photo is inside the band but still fails. Why?</summary><div class="faq-a">Usually pixel dimensions or background. Check the px spec in the notification and re-export at that exact size on a plain background.</div></details><details><summary>Can I compress a JPG photo?</summary><div class="faq-a">Yes — image tools and the converter's quality slider both reduce weight; PDF compression handles signature/declaration files that must be PDFs.</div></details><details><summary>Does compressing reduce legibility?</summary><div class="faq-a">At these small file sizes, a properly cropped photo stays perfectly legible — the compression cost is invisible at thumbnail scale, which is what the portal checks.</div></details><details><summary>Do the photo and signature bands differ?</summary><div class="faq-a">Yes — they usually have different KB ranges and different pixel ratios. Read both rows of the notification's upload table separately; copying one file's treatment onto the other is a classic failure during retests.</div></details></div>
 
       <div class="highlight-box blog-cta">
         <p><strong>Try it yourself:</strong> Open Compress PDF &mdash; free,
@@ -334,7 +422,8 @@
           </div>
         </div>
       </div>
-    </article>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -422,5 +511,22 @@
 </script>
   <script defer src="../data/tools.js"></script>
   <script defer src="../assets/js/common.js"></script>
+  <script>
+  (function(){
+    var bar = document.getElementById('blog-progress-bar');
+    var links = [].slice.call(document.querySelectorAll('.blog-toc a'));
+    var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+    function tick(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+      var cur = 0;
+      secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < 140) cur = i; });
+      links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+    }
+    window.addEventListener('scroll', tick, {passive: true});
+    window.addEventListener('resize', tick, {passive: true});
+    tick();
+  })();
+  </script>
 </body>
 </html>
