@@ -267,7 +267,7 @@
 <li>Compress the result if the field also has a size limit — extraction alone often fixes size, but scans may still need the <a href="compress-pdf-100kb.html">Extreme preset</a>.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A 46-page document (admit card instructions + syllabus + blank form + certificate) weighed 3.1MB. The form asked only for the certificate — extracting that one page produced a <strong>180KB</strong> file that fit the limit without any compression at all. Extraction beat compression by an order of magnitude.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Extraction copies only the pages you chose — a certificate sitting inside a heavy 40-page bundle comes out at its own weight (often <strong>100–300KB</strong> for a single scanned page) while the rest of the bundle stays behind. In size-limited forms, pulling the right page beats compressing the wrong document every time — the extracted number often clears the limit with no compression at all.</p></div>
 
 <h2>From extraction to submission: building the exact bundle</h2>
 <p>Real applications rarely need a single extraction — they need a small, precise bundle assembled from several sources. The efficient pattern is: extract the required pages from each source document first (page 3 of the marksheet, page 1 of the category certificate, the ID side showing the address), then merge those extracted parts into exactly the file the form requests (<a href="merge-pdfs-into-one.html">merge guide</a>). Extract-<em>before</em>-merge keeps every intermediate file tiny, verifiable and reusable across applications — instead of merging everything and hunting through the result later.</p>

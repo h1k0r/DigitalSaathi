@@ -271,7 +271,7 @@
 
 <h2>The reliable fix order (do these top to bottom)</h2>
 <ol>
-<li><strong>Re-read the exact limit</strong> for that specific field in the notification or the form's instruction line.</li>
+<li><strong>Re-read the exact limit</strong> for that specific field in the notification or the form's instruction line — official sources: <a href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a>, <a href="https://upsc.gov.in" target="_blank" rel="noopener">upsc.gov.in</a> and <a href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a>.</li>
 <li><strong>Check the true size</strong> in file properties — and take 10% off the limit as your target.</li>
 <li><strong>Open the <a href="../pdf/compress.html">Compress PDF tool</a>, pick Extreme, tick grayscale for scans, compress.</strong> Single pages land well under strict limits; see the <a href="compress-marksheet-under-200kb.html">marksheet workflow</a> for real numbers.</li>
 <li><strong>Still too big?</strong> Split out only the required pages (the <a href="split-pdf-extract-pages.html">split guide</a> shows how) and compress again.</li>
@@ -279,7 +279,7 @@
 <li><strong>Retry in another browser</strong> if everything above passes — and do this well before the deadline, not in the last ten minutes.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A candidate's "200KB" file measured 207,314 bytes and failed three times. The portal counted decimal KB (limit = 200,000 bytes). Compressing to <strong>168KB</strong> (with Extreme + grayscale) uploaded on the first retry. The content never changed — only the byte count.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> A classic near-boundary failure: a file your file manager rounds to "200KB" can still measure over the portal's byte-level cap — "200KB" as 200,000 bytes and "200KB" as 204,800 bytes are two different targets. The fix is arithmetic, not luck: compress to roughly <strong>10% below</strong> the stated limit (a "200KB" target becomes ~180KB) and that entire category of failures disappears. The content never changes — only the byte count.</p></div>
 
 <h2>Pro tips</h2>
 <ul>

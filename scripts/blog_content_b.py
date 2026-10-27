@@ -44,7 +44,7 @@ ARTICLES_B = [
 <li><strong>Re-check after every conversion.</strong> Each export changes size — the number you must satisfy is the one on the final file you select in the upload box.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A degree certificate PDF delivered by a university portal (protected, 6.1MB, colour, 300 DPI) needed to fit a much smaller allowance. Removing the password the university had applied to its own document, then Extreme + grayscale, produced <strong>147KB</strong> — legible seals, clean text, accepted on first upload.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> University-issued PDFs are often protected, colour and printed at 300 DPI — easily 3 to 8MB for a single document. Removing the password the institution applied to your own document, then Extreme + grayscale, typically brings such a file into the <strong>100–250KB</strong> band with seals and text still legible. Verify the final number against your exam's limit before uploading.</p></div>
 
 <h2>The final check before you pay</h2>
 <p>Before paying the fee, open the application preview that UPSC shows at the end and verify each uploaded image actually renders the right file — a technically-passing upload can still be an old photograph or the wrong signature scan, because candidates reuse folders full of documents from previous attempts. Fee payment locks the application; mistakes then surface only during a correction window, if one exists. Two minutes spent on this preview beats weeks of regret, and a screenshot of the final preview costs nothing to keep.</p>
@@ -121,7 +121,7 @@ ARTICLES_B = [
 <li><strong>Send password and file separately.</strong> File via email, password via WhatsApp or call. This one habit defeats the most common interception scenario.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A 340KB bank statement protected with a 14-character passphrase stayed <strong>the same size</strong> (341KB after encryption) and opened normally on Adobe Reader, Chrome, and a five-year-old phone's built-in viewer — encryption costs nothing in size or compatibility.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Encryption adds only a header and a key check — the file size stays essentially unchanged (typically a few hundred bytes of difference at most), and the protected file opens in Adobe Reader, Chrome and older phone viewers alike. Password protection costs nothing in size or compatibility.</p></div>
 
 <h2>What about "unlock" tools — and forgetting your own password?</h2>
 <p>Here is the honest part:</p>
@@ -207,7 +207,7 @@ ARTICLES_B = [
 <li>Compress the result if the field also has a size limit — extraction alone often fixes size, but scans may still need the <a href="compress-pdf-100kb.html">Extreme preset</a>.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A 46-page document (admit card instructions + syllabus + blank form + certificate) weighed 3.1MB. The form asked only for the certificate — extracting that one page produced a <strong>180KB</strong> file that fit the limit without any compression at all. Extraction beat compression by an order of magnitude.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Extraction copies only the pages you chose — a certificate sitting inside a heavy 40-page bundle comes out at its own weight (often <strong>100–300KB</strong> for a single scanned page) while the rest of the bundle stays behind. In size-limited forms, pulling the right page beats compressing the wrong document every time — the extracted number often clears the limit with no compression at all.</p></div>
 
 <h2>From extraction to submission: building the exact bundle</h2>
 <p>Real applications rarely need a single extraction — they need a small, precise bundle assembled from several sources. The efficient pattern is: extract the required pages from each source document first (page 3 of the marksheet, page 1 of the category certificate, the ID side showing the address), then merge those extracted parts into exactly the file the form requests (<a href="merge-pdfs-into-one.html">merge guide</a>). Extract-<em>before</em>-merge keeps every intermediate file tiny, verifiable and reusable across applications — instead of merging everything and hunting through the result later.</p>
@@ -297,7 +297,7 @@ ARTICLES_B = [
 <li><strong>Rebuild from source instead of scanning again.</strong> A PDF generated natively from Word/Excel (File → Export as PDF) is text-based and typically 100–300KB for pages that a scanner would turn into 3MB. Whenever you control the source, never print-to-scan.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example, side by side:</strong> Same certificate, three treatments. Camera photo embedded directly: <strong>4.7MB</strong>. Re-scanned at 200 DPI colour, compressed (Recommended): <strong>610KB</strong>. Scanned 200 DPI, compressed Extreme + grayscale: <strong>124KB</strong>. The document content is identical in all three.</p></div>
+<div class="highlight-box"><p><strong>What to expect — same document, three routes:</strong> A camera photo embedded directly can weigh <strong>several MB</strong>. The same page re-scanned at 200 DPI colour and compressed with Recommended usually lands in the <strong>half-megabyte range</strong>. A 150–200 DPI grayscale scan with Extreme commonly drops into the <strong>low hundreds of kilobytes</strong>. The content is identical in all three — only pixels and encoding differ. Run your own file and read the tool's before/after display; that is your proof.</p></div>
 
 <h2>Match the fix to the file (quick reference)</h2>
 <p>After the diagnosis above, the pairing between problem and fix is usually one of these:</p>
@@ -381,7 +381,7 @@ ARTICLES_B = [
 <li><strong>Check size against the portal's limit.</strong> Photos carry camera resolution — a 4-image PDF can reach 3–6MB instantly. Compress with Extreme (grayscale only if the documents are scans, not ID cards or photos where colour matters).</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> Four images — signed declaration (2.1MB), Aadhaar photo (1.4MB), marksheet snap (1.9MB), passport photo (820KB) — became a <strong>6.2MB</strong> PDF after conversion, then <strong>168KB</strong> after Extreme compression. Under a 200KB portal limit, from the same images, without retaking anything.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Photos carry camera resolution, so a four-image form bundle converts to a PDF of <strong>several MB</strong> fast. One Extreme pass afterwards commonly brings that bundle into the <strong>100–250KB</strong> range — enough for most 200KB document slots — without retaking a single image. Check the size the tool reports before you upload; the portal checks the same number.</p></div>
 
 <h2>Your source is a photo — now what?</h2>
 <p>There is a difference between converting a well-made photo and salvaging a bad one. A well-lit photo shot parallel to the paper converts cleanly: crop, orient, convert, compress — done in a minute. A dark, angled photo with a hand shadow converts into exactly what it was: a poor image wrapped in PDF clothing. Quick triage before converting: is the text readable at full zoom on your phone? Are all four corners visible with margin? Is there glare across any stamp or signature? If any answer is no, reshoot — thirty seconds of retaking beats any amount of post-processing, because compression amplifies blur as much as it reduces size.</p>

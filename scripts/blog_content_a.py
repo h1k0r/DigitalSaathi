@@ -34,7 +34,7 @@ ARTICLES_A = [
 <li><strong>Name the output and press Compress PDF Now.</strong> Download the result and check the size before uploading to the portal.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A colour phone scan of a degree certificate started at <strong>3.8 MB</strong>. Extreme preset + grayscale brought it to <strong>96KB</strong> — under the 100KB limit in one attempt. The same file with only the Recommended preset stopped at 640KB, because light compression cannot overcome a colour scan.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> A colour phone scan of a single certificate usually starts between <strong>2 and 4MB</strong>. With Extreme + grayscale, single pages commonly land in the <strong>90–150KB</strong> band — comfortably under a 100KB or 200KB limit. Light presets alone rarely cross that finish line on colour scans. The tool displays your exact before/after sizes — always judge by that number, not by estimates.</p></div>
 
 <h2>Which preset should you actually pick?</h2>
 <ul>
@@ -120,7 +120,7 @@ ARTICLES_A = [
 <li>Download the result and <strong>rename it</strong> to something formal: <em>Documents_ShivamKumar.pdf</em>, not <em>merged_final_v3.pdf</em>.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A typical SSC document bundle — 10th marksheet (210KB), 12th marksheet (240KB), category certificate (180KB) and Aadhaar (95KB) — merged into one <strong>720KB</strong> file in about two seconds, with page order preserved exactly as arranged. The original files remained untouched.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Merged size ≈ sum of the parts — a bundle of four documents weighing 210KB, 240KB, 180KB and 95KB lands around <strong>700–730KB</strong> as one file. Merging takes seconds and copies pages structurally: the originals are never modified, and page order is preserved exactly as arranged. Judge the result by the size the tool reports after merging.</p></div>
 
 <h2>Does merging reduce quality?</h2>
 <p>No — merging is a <strong>structural operation</strong>, not a re-encoding. Text, vectors and fonts are copied page-for-page, so page 1 of your marksheet after merging is byte-equivalent in quality to the original. Two exceptions worth knowing:</p>
@@ -215,7 +215,7 @@ ARTICLES_A = [
 <li><strong>If the portal asks for a combined PDF</strong> (photo + signature in one file), build it with <a href="../pdf/jpg-to-pdf.html">JPG to PDF</a> and then compress with the <a href="compress-pdf-100kb.html">Extreme preset</a>.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A phone selfie came out at 1.6MB, 3024×4032 pixels. After cropping to passport framing, resizing to the notification's pixel spec and exporting JPG at 85% quality, the file was <strong>31KB</strong> — clean mid-range for a 20–50KB requirement. The signature photo, shot on white paper at 4.1MB, ended at <strong>12KB</strong> after the same treatment.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Camera photos start huge — a full-resolution phone photo is commonly 1–4MB at 3000+ pixels. Cropping to passport framing and resizing to the notification's pixel spec removes most of that weight; exported at 85% JPG quality, such photos typically land in the <strong>20–60KB</strong> band, and signatures (white paper, tight crop) rarely exceed <strong>10–25KB</strong>. The number that matters is what your file manager shows on the final export — check it every time.</p></div>
 
 <h2>Why photos get rejected (and the fixes)</h2>
 <ul>
@@ -271,7 +271,7 @@ ARTICLES_A = [
         "body": """
 <p>A marksheet is the worst-case document for file size: full-page colour scans, rubber stamps, holographic seals, and off-white paper that refuses to compress like clean white text. Government portals — scholarships, admissions, exam forms — routinely cap such documents at <strong>200KB or even 100KB</strong>, and a colour scan of a single marksheet can easily weigh 2–5MB.</p>
 
-<div class="highlight-box"><p><strong>Quick answer:</strong> In the <a href="../pdf/compress.html">Compress PDF tool</a>, select the <strong>Extreme</strong> preset and enable <strong>"Convert scanned marksheets to grayscale"</strong>. That combination is built for exactly this job: a 3MB colour scan typically lands at 80–180KB — under the 200KB line with a readable result.</p></div>
+<div class="highlight-box"><p><strong>Quick answer:</strong> In the <a href="../pdf/compress.html">Compress PDF tool</a>, select the <strong>Extreme</strong> preset and enable <strong>"Convert scanned marksheets to grayscale"</strong>. That combination is built for exactly this job: a 3MB colour scan typically lands at 80–180KB — under the 200KB line with a readable result. Always confirm the exact cap in your exam's official notification (<a href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a>, <a href="https://upsc.gov.in" target="_blank" rel="noopener">upsc.gov.in</a>, <a href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a>).</p></div>
 
 <h2>Why marksheets resist compression</h2>
 <ul>
@@ -290,7 +290,7 @@ ARTICLES_A = [
 <li>Under 200KB? Open the file and inspect it: every mark, the seal, the roll number and your name must be clearly legible. If it missed the limit, run it once more — or split multi-page bundles first (see below).</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A colour scan of a 10th-class marksheet — one page, phone photograph on a table with a slight shadow — started at <strong>2.6MB</strong>. Extreme + grayscale: <strong>112KB</strong>. The same file with Recommended only: 780KB (still rejected). Grayscale was the difference.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> Colour scans of a single marksheet typically start at <strong>2–5MB</strong>. Extreme + grayscale usually lands them around <strong>80–180KB</strong> — under most 100KB/200KB caps. With Recommended alone, colour scans often stall in the several-hundred-KB range, because light compression cannot undo a full-colour capture — which is exactly why the grayscale checkbox exists.</p></div>
 
 <h2>Multi-document bundles: compress smart, not hard</h2>
 <p>When one PDF contains four certificates and the limit is 200KB total, compression alone may not save you. In that case:</p>
@@ -387,7 +387,7 @@ ARTICLES_A = [
 
 <h2>The reliable fix order (do these top to bottom)</h2>
 <ol>
-<li><strong>Re-read the exact limit</strong> for that specific field in the notification or the form's instruction line.</li>
+<li><strong>Re-read the exact limit</strong> for that specific field in the notification or the form's instruction line — official sources: <a href="https://ssc.nic.in" target="_blank" rel="noopener">ssc.nic.in</a>, <a href="https://upsc.gov.in" target="_blank" rel="noopener">upsc.gov.in</a> and <a href="https://ibps.in" target="_blank" rel="noopener">ibps.in</a>.</li>
 <li><strong>Check the true size</strong> in file properties — and take 10% off the limit as your target.</li>
 <li><strong>Open the <a href="../pdf/compress.html">Compress PDF tool</a>, pick Extreme, tick grayscale for scans, compress.</strong> Single pages land well under strict limits; see the <a href="compress-marksheet-under-200kb.html">marksheet workflow</a> for real numbers.</li>
 <li><strong>Still too big?</strong> Split out only the required pages (the <a href="split-pdf-extract-pages.html">split guide</a> shows how) and compress again.</li>
@@ -395,7 +395,7 @@ ARTICLES_A = [
 <li><strong>Retry in another browser</strong> if everything above passes — and do this well before the deadline, not in the last ten minutes.</li>
 </ol>
 
-<div class="highlight-box"><p><strong>Real example:</strong> A candidate's "200KB" file measured 207,314 bytes and failed three times. The portal counted decimal KB (limit = 200,000 bytes). Compressing to <strong>168KB</strong> (with Extreme + grayscale) uploaded on the first retry. The content never changed — only the byte count.</p></div>
+<div class="highlight-box"><p><strong>What to expect:</strong> A classic near-boundary failure: a file your file manager rounds to "200KB" can still measure over the portal's byte-level cap — "200KB" as 200,000 bytes and "200KB" as 204,800 bytes are two different targets. The fix is arithmetic, not luck: compress to roughly <strong>10% below</strong> the stated limit (a "200KB" target becomes ~180KB) and that entire category of failures disappears. The content never changes — only the byte count.</p></div>
 
 <h2>Pro tips</h2>
 <ul>

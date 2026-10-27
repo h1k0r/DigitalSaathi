@@ -26,7 +26,16 @@ TODAY = "2026-10-27"
 TODAY_HUMAN = "27 October 2026"
 SITE = "https://vytra.in"
 
+try:
+    from blog_content_c import ARTICLES_C
+except ImportError:
+    ARTICLES_C = []
+
+# Batch-2 drafts publish only when PUBLISH_BATCH2=1 (staggered publishing —
+# see blog_content_c.py header). Keeps bulk-publish dates off the sitemap.
 ARTICLES = ARTICLES_A + ARTICLES_B
+if os.environ.get("PUBLISH_BATCH2") == "1":
+    ARTICLES += ARTICLES_C
 BY_SLUG = {a["slug"]: a for a in ARTICLES}
 
 ADSENSE = ('  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
