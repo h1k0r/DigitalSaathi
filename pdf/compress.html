@@ -603,7 +603,23 @@
     
 
     <! - 5. Questions and Answers (Accordion with Schema) - >
-    <section class="vytra-qa-section">
+    <section class="vytra-editorial" style="max-width:860px;margin:2.5rem auto;padding:0 1rem;">
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">When to compress a PDF with Vytra Compress</h2>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">Almost every government and banking portal caps uploads &mdash; 100 KB, 200 KB, 1 MB. Vytra Compress reduces a PDF inside your browser with three presets: Light for files that are close to the limit, Balanced for ordinary documents, and Extreme for scanned files that are far over. The grayscale toggle helps most with scanned marksheets and handwritten papers, where colour adds size but no information. The live size readout updates as you change presets, so you can stop as soon as the file drops under the portal's cap.</p>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">Compression works by re-encoding the images inside the PDF at lower resolution while keeping the text layer intact, which is why scanned documents shrink far more than text documents. If a file barely moves, it is already near the minimum for its content — reduce the pages themselves with Split instead of pushing quality lower. You can switch presets and preview repeatedly; the original file on your device is never modified until you save the copy.</p>
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">Common problems and how to fix them</h2>
+  <ul style="margin:0 0 1.15rem;padding-left:1.3rem;">
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">Barely any reduction &mdash; the file is probably text-based and already near its minimum; try Extreme, then grayscale.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">A scanned document stays large &mdash; scans are images; grayscale plus Extreme usually cuts them by 60-80%.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">Output looks blurry &mdash; use Light instead of Extreme when the document must stay clearly readable.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">Still over the limit &mdash; extract only the required pages with Split first, then compress.</li>
+  </ul>
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">A quick example</h2>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">A 2.1 MB scanned marksheet must go under 200 KB. Choose Extreme, tick grayscale, wait for the readout to settle under 200 KB, save, and confirm the size in your file manager before uploading.</p>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">If the portal rejects the file again afterwards, read its instruction page once more — some forms cap page count as well as size, and the fix then is Split, not a lower preset.</p>
+</section>
+
+<section class="vytra-qa-section">
       <h2 class="vytra-section-title" style="text-align:center;">Questions and Answers</h2>
       <div class="vytra-qa-list">
         <div class="vytra-qa-item active">
@@ -1113,7 +1129,7 @@
   if(grid){
     var note=document.createElement('p');
     note.style.cssText='font-size:.82rem;font-weight:700;color:#2563eb;margin:0 0 8px;';
-    note.textContent='Pre-set from the landing page: Extreme preset is active \u2014 aim for about '+m[1]+' KB (tick grayscale for scanned or colour documents)';
+    note.textContent='Pre-set from the landing page: Extreme preset is active — aim for about '+m[1]+' KB (tick grayscale for scanned or colour documents)';
     grid.parentNode.insertBefore(note,grid);
   }
 })();

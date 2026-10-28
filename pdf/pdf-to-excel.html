@@ -1089,7 +1089,7 @@
 
       const ws = XLSX.utils.aoa_to_sheet(extractedRows);
       const csvStr = XLSX.utils.sheet_to_csv(ws);
-      const blob = new Blob(['\ufeff', csvStr], { type: 'text/csv;charset=utf-8;' });
+      const blob = new Blob(['﻿', csvStr], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

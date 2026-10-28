@@ -22,18 +22,18 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vytra">
   <meta property="og:url" content="https://vytra.in/developer/">
-  <meta property="og:title" content="Online Code Editor & Compiler — C, C++, Java, PHP, Python, JS | Vytra">
+  <meta property="og:title" content="Online Code Editor – Python, JavaScript, Java, C++ | Vytra">
   <meta property="og:description" content="Free online code editor: JavaScript runs locally in your browser; C, C++, Java, PHP and Python compile via Wandbox. No signup.">
   <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Online Code Editor & Compiler — C, C++, Java, PHP, Python, JS | Vytra">
+  <meta name="twitter:title" content="Online Code Editor – Python, JavaScript, Java, C++ | Vytra">
   <meta name="twitter:description" content="Free online code editor and compiler for C, C++, Java, PHP, Python and JavaScript. No signup.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 </head>
 <body class="tool-page">
 
   <main class="vsc-page">
-    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Online Code Editor &amp; Compiler &mdash; C, C++, Java, PHP, Python, JavaScript | Vytra</h1>
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Online Code Editor &ndash; Python, JavaScript, Java, C++ | Vytra</h1>
         <div class="exec-note" style="max-width:860px;margin:14px auto 0;padding:10px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:.85rem;color:#475563;line-height:1.6;"><strong>How your code runs:</strong> JavaScript executes locally in your browser. C, C++, Java, PHP and Python are compiled and run by the free <a href="https://wandbox.org" target="_blank" rel="noopener">Wandbox</a> service — the code you write for those languages is sent there to execute.</div>
         <div class="vsc-shell" id="vscShell">
       <div class="vsc-menubar">
@@ -98,6 +98,22 @@
       <div class="row"><input type="checkbox" id="setMini" style="width:auto;"> <label for="setMini" style="margin:0;">Minimap</label></div>
       <div class="actions"><button type="button" class="vsc-btn ghost" id="setClose">Close</button><button type="button" class="vsc-btn" id="setSave">Save</button></div>
     </div></div>
+
+<section class="vytra-editorial" style="max-width:860px;margin:2.5rem auto;padding:0 1rem;">
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">How the Vytra Code Editor works</h2>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">The editor gives you six languages in one screen: JavaScript, Python, C, C++, Java and PHP. JavaScript runs entirely inside your browser in an isolated frame &mdash; nothing is sent anywhere. The other languages (C, C++, Java, PHP, Python) are compiled and executed by Wandbox, a free public compiler service: when you press Run, the code you wrote is sent to wandbox.org, executed there, and the output comes back to the console pane. That is the same model most online IDEs use, and it is stated openly here so you know exactly what happens to your code. Do not paste passwords, keys or private data into code you run through those languages.</p>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">Beyond running code, the editor keeps a small file workspace: several files can sit side by side and be saved as one archive download. The console separates standard output from error text, the stdin box handles interactive input, and JavaScript runs post their messages back into the console from inside the isolated frame. Nothing you type is stored on Vytra's side; closing the tab clears the session.</p>
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">Common editor problems</h2>
+  <ul style="margin:0 0 1.15rem;padding-left:1.3rem;">
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">Nothing appears in the console for C, C++, Java, PHP or Python &mdash; those languages need an internet connection because they run on Wandbox; check your network first.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">The console shows a compilation error &mdash; read the first error line; it names the file and the line that failed.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">Your program asks for input but seems stuck &mdash; type the input in the stdin box under the console and press Send.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">JavaScript works but C does not &mdash; expected: JavaScript runs locally, the compiled languages need the compiler service.</li>
+    <li style="font-size:0.95rem;line-height:1.7;color:var(--text-muted,#475569);margin-bottom:0.5rem;">You want to keep your code &mdash; use Save in the File menu; several files can live in one downloaded archive.</li>
+  </ul>
+  <h2 style="font-size:1.3rem;font-weight:800;color:var(--text-main,#0f172a);margin:0 0 0.7rem;">A quick example</h2>
+  <p style="font-size:0.95rem;line-height:1.75;color:var(--text-muted,#475569);margin:0 0 1.15rem;">Select Python, replace the template with a loop that prints the squares of 1 to 10, and press Run: the console prints ten lines in about a second. Switch the language to C and run again &mdash; the same window compiles and runs it through the service, and any compiler error appears in the same console.</p>
+</section>
 
 <script>
 /* VYTRA_IDE config — piston runner, stdin input, execute API endpoint */

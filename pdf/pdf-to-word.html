@@ -1152,7 +1152,7 @@
 
       const mimeType = format === 'docx' ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' : 'application/msword';
       const fileExt = format === 'docx' ? '.docx' : '.doc';
-      const blob = new Blob(['\ufeff', wordDocumentHtml], { type: mimeType });
+      const blob = new Blob(['﻿', wordDocumentHtml], { type: mimeType });
 
       if (generatedWordBlobUrl) {
         URL.revokeObjectURL(generatedWordBlobUrl);

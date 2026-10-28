@@ -645,7 +645,7 @@
             </tr>
             <tr>
               <td><strong>Bullet &amp; Numbered Lists</strong></td>
-              <td>Messy glyphs (&bull;, \u2022)</td>
+              <td>Messy glyphs (&bull;, •)</td>
               <td><code>- Normalized list items</code></td>
               <td>+25% cleaner tokens</td>
               <td>Parsed as discrete arguments</td>
@@ -1075,9 +1075,9 @@
           const h = line.height;
 
           // Check if bullet item
-          const isBullet = /^[&bull;\-\*\u2022\u25CF\u25AA]\s+/.test(text);
+          const isBullet = /^[&bull;\-\*•●▪]\s+/.test(text);
           if (isBullet) {
-            const cleanText = text.replace(/^[&bull;\-\*\u2022\u25CF\u25AA]\s+/, '');
+            const cleanText = text.replace(/^[&bull;\-\*•●▪]\s+/, '');
             if (listStyle === 'bullets') {
               markdownOutput += `- ${cleanText}\n`;
             } else if (listStyle === 'asterisk') {

@@ -281,14 +281,14 @@ function runSql(){
     var res = __db.exec(q);
     var ms = (performance.now() - t0).toFixed(1);
     var sec0 = (ms / 1000).toFixed(4);
-    if(!res.length){ out.innerHTML = '<div class="pma-resultbar">\u2713 MySQL returned an empty result set.</div>'; lastSel = { cols: [], rows: [], sql: q, ms: sec0 }; document.getElementById('sqlMeta').textContent = sec0 + ' seconds \u2022 local'; return; }
+    if(!res.length){ out.innerHTML = '<div class="pma-resultbar">✓ MySQL returned an empty result set.</div>'; lastSel = { cols: [], rows: [], sql: q, ms: sec0 }; document.getElementById('sqlMeta').textContent = sec0 + ' seconds • local'; return; }
     var html = '<table class="vytra-table" style="min-width:0;"><thead><tr>';
     res[0].columns.forEach(function(c){ html += '<th>' + escH(c) + '</th>'; });
     html += '</tr></thead><tbody>';
     res[0].values.forEach(function(row){ html += '<tr>'; row.forEach(function(v){ html += '<td>' + escH(v === null ? 'NULL' : v) + '</td>'; }); html += '</tr>'; });
     html += '</tbody></table>';
     var sec2 = (ms / 1000).toFixed(4);
-    out.innerHTML = '<div class="pma-resultbar">\u2713 Showing rows 0 - ' + (res[0].values.length - 1) + ' (' + res[0].values.length + ' total, Query took ' + sec2 + ' seconds.)</div><div class="pma-sqlbox">' + escH(q) + '</div><div class="vytra-table-wrapper" style="border:0;">' + html + '</div>';
+    out.innerHTML = '<div class="pma-resultbar">✓ Showing rows 0 - ' + (res[0].values.length - 1) + ' (' + res[0].values.length + ' total, Query took ' + sec2 + ' seconds.)</div><div class="pma-sqlbox">' + escH(q) + '</div><div class="vytra-table-wrapper" style="border:0;">' + html + '</div>';
     lastSel = { cols: res[0].columns.slice(), rows: res[0].values.map(function(r){ return r.slice(); }), sql: q, ms: sec2 };
     document.getElementById('sqlMeta').textContent = res[0].values.length + ' rows • ' + sec2 + ' seconds • local';
   }catch(e){
@@ -361,7 +361,7 @@ function refreshTree(){
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'ilp-ghost-btn';
     b.style.cssText = 'text-align:left;justify-content:flex-start;' + (n === curTable ? 'border-color:var(--ilp-red);color:var(--ilp-red);' : '');
-    b.textContent = '\u25a6 ' + n;
+    b.textContent = '▦ ' + n;
     b.addEventListener('click', function(){ curTable = n; curPage = 0; searchWhere = ''; refreshAll(); });
     host.appendChild(b);
   });
@@ -373,7 +373,7 @@ function refreshTree(){
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'ilp-ghost-btn';
       b.style.cssText = 'text-align:left;justify-content:flex-start;';
-      b.textContent = '\u25a6 ' + n;
+      b.textContent = '▦ ' + n;
       b.addEventListener('click', function(){ document.getElementById('sqlEd').value = 'SELECT * FROM ' + qId(n) + ';'; sqlTab('console'); runSql(); });
       host2.appendChild(b);
     });
@@ -494,7 +494,7 @@ function browse(tbl){
       }
     }
     var bar = document.getElementById('resultBar');
-    bar.textContent = '\u2713 Showing rows ' + (cnt ? a : 0) + ' - ' + (b - 1 < 0 ? 0 : b - 1) + ' (' + cnt + ' total, Query took ' + lastMs + ' seconds.)';
+    bar.textContent = '✓ Showing rows ' + (cnt ? a : 0) + ' - ' + (b - 1 < 0 ? 0 : b - 1) + ' (' + cnt + ' total, Query took ' + lastMs + ' seconds.)';
     var rs = document.getElementById('ranSql');
     rs.style.display = 'block'; rs.textContent = lastSql;
     document.getElementById('pgInfo').textContent = 'Page ' + (curPage + 1) + ' of ' + pages;
@@ -565,9 +565,9 @@ function runSql(){
     if(first === 'SELECT' || first === 'WITH' || first === 'PRAGMA' || first === 'EXPLAIN'){
       var res = __db.exec(q);
       var ms = ((performance.now() - t0) / 1000).toFixed(4);
-      if(!res.length){ out.innerHTML = '<div class="pma-resultbar">\u2713 MySQL returned an empty result set.</div>'; }
+      if(!res.length){ out.innerHTML = '<div class="pma-resultbar">✓ MySQL returned an empty result set.</div>'; }
       else{
-        var h = '<div class="pma-resultbar">\u2713 Showing rows 0 - ' + (res[0].values.length - 1) + ' (' + res[0].values.length + ' total, Query took ' + ms + ' seconds.)</div>';
+        var h = '<div class="pma-resultbar">✓ Showing rows 0 - ' + (res[0].values.length - 1) + ' (' + res[0].values.length + ' total, Query took ' + ms + ' seconds.)</div>';
         h += '<div class="pma-sqlbox">' + escH(q) + '</div>';
         h += gridHTML(res[0].columns, res[0].values, false);
         out.innerHTML = h;
@@ -576,7 +576,7 @@ function runSql(){
     } else {
       __db.exec(q);
       var ms2 = ((performance.now() - t0) / 1000).toFixed(4);
-      out.innerHTML = '<div class="pma-resultbar">\u2713 Query executed OK (' + ms2 + ' seconds).</div>';
+      out.innerHTML = '<div class="pma-resultbar">✓ Query executed OK (' + ms2 + ' seconds).</div>';
       document.getElementById('sqlMeta').textContent = ms2 + ' ms • local';
     }
     refreshTree();
@@ -913,7 +913,7 @@ document.getElementById('btnImportGo').addEventListener('click', function(){
   try{
     if(fmt === 'sql'){
       __db.exec(__impText);
-      say('\u2713 SQL file executed.');
+      say('✓ SQL file executed.');
       refreshAll();
     } else {
       var sep = document.getElementById('impSep').value || ',';
@@ -949,7 +949,7 @@ document.getElementById('btnImportGo').addEventListener('click', function(){
           + cols.map(function(c, i){ return sqlVal(r[i] === undefined ? '' : r[i], colTypes[c]); }).join(', ') + ');';
       });
       for(var i = 0; i < stmts.length; i += 400){ __db.exec(stmts.slice(i, i + 400).join('\n')); }
-      say('\u2713 Imported ' + body.length + ' rows into ' + tbl + '.');
+      say('✓ Imported ' + body.length + ' rows into ' + tbl + '.');
       curTable = tbl; curPage = 0; searchWhere = ''; filterQ = '';
       refreshAll(); sqlTab('browse');
     }
