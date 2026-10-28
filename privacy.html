@@ -29,7 +29,7 @@
   <meta name="theme-color" content="#E5322D">
   <title>Privacy Policy  -  Vytra</title>
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="description" content="Vytra Privacy Policy. Learn how your files are processed 100% locally in your web browser with zero server uploads, and how advertising cookies are managed.">
+  <meta name="description" content="Vytra Privacy Policy. How your files are processed in your browser, the disclosed translation and code-compilation exceptions, and how advertising cookies work.">
   <link rel="canonical" href="https://vytra.in/privacy.html">
 
   <! - Open Graph / Social Media - >
@@ -39,13 +39,13 @@
   <meta property="og:site_name" content="Vytra">
   <meta property="og:url" content="https://vytra.in/privacy.html">
   <meta property="og:title" content="Privacy Policy  -  Vytra">
-  <meta property="og:description" content="Vytra Privacy Policy. Learn how your files are processed 100% locally in your web browser with zero server uploads, and how advertising cookies are managed.">
+  <meta property="og:description" content="Vytra Privacy Policy. How your files are processed in your browser, the disclosed translation and code-compilation exceptions, and how advertising cookies work.">
   <meta property="og:image" content="https://vytra.in/assets/images/og-banner.png">
 
   <! - Twitter Cards - >
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Privacy Policy  -  Vytra">
-  <meta name="twitter:description" content="Vytra Privacy Policy. Learn how your files are processed 100% locally in your web browser with zero server uploads, and how advertising cookies are managed.">
+  <meta name="twitter:description" content="Vytra Privacy Policy. How your files are processed in your browser, the disclosed translation and code-compilation exceptions, and how advertising cookies work.">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
   <meta name="twitter:image" content="https://vytra.in/assets/images/og-banner.png">
 
@@ -213,16 +213,16 @@
       </p>
 
       <div class="highlight-box">
-        <h4 style="margin: 0 0 6px; color: #166534; font-weight: 700;">Core Guarantee: 100% In-Browser File Processing</h4>
+        <h4 style="margin: 0 0 6px; color: #166534; font-weight: 700;">Core Principle: In-Browser File Processing</h4>
         <p style="margin: 0; color: #14532d; font-size: 0.94rem;">
-          When you use Vytra tools (such as PDF compression, image resizing, format conversion, password generation, or calculation), your documents, photographs, and inputs are processed exclusively on your device. <strong>We do not upload, transmit, store, or view your files on any remote server.</strong>
+          When you use Vytra tools (such as PDF compression, image resizing, format conversion, password generation, or calculation), your documents, photographs, and inputs are processed exclusively on your device, with two disclosed exceptions: the Translate PDF tool sends extracted sentence text to Google's translation service, and the Code Editor sends compiled-language code (C, C++, Java, PHP, Python) to Wandbox's compiler. In both cases the source file itself stays on your device. <strong>Other than those two disclosures, we do not upload, transmit, store, or view your files on any remote server.</strong>
         </p>
       </div>
 
       <h2>1. Information We Do Not Collect</h2>
       <p>Because Vytra operates as a static client-side web application hosted via GitHub Pages:</p>
       <ul>
-        <li><strong>No File Storage:</strong> Your PDF files, images, code snippets, tokens, and documents are never uploaded to Vytra \u2014 file handling uses HTML5 File API, WebAssembly, and Canvas within your browser sandbox. <strong>One exception:</strong> the Translate PDF tool parses your file locally but sends the extracted sentence text to Google's public translation service (translate.googleapis.com) to produce the translation. The document file itself stays on your device.</li>
+        <li><strong>No File Storage:</strong> Your PDF files, images, code snippets, tokens, and documents are never uploaded to Vytra \u2014 file handling uses HTML5 File API, WebAssembly, and Canvas within your browser sandbox. <strong>One exception:</strong> the Translate PDF tool parses your file locally but sends the extracted sentence text to Google's public translation service (translate.googleapis.com) to produce the translation. The document file itself stays on your device. The Code Editor works the same way: JavaScript runs locally in an iframe, while source code written for C, C++, Java, PHP or Python is sent to Wandbox's public compiler (wandbox.org) to compile and run.</li>
         <li><strong>No Account Creation:</strong> Vytra does not require user registration, usernames, or passwords to access any tool.</li>
         <li><strong>No Financial Data Collection:</strong> Our financial and academic calculators (such as Loan EMI, CGPA, Attendance) compute values strictly in local JavaScript memory. No financial figures are logged or recorded.</li>
       </ul>
